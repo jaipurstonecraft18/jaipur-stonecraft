@@ -1,0 +1,172 @@
+.heroBanner {
+  position: relative;
+  width: 100%;
+  height: 55vh;
+  overflow: hidden;
+  background-color: var(--color-stone-grey);
+}
+
+.heroImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+}
+
+@media (min-width: 768px) {
+  .detailsGrid {
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--spacing-xxl);
+  }
+}
+
+.descriptionCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 300;
+  margin-top: var(--spacing-xxs);
+}
+
+/* Specifications Card */
+.specCol {
+  width: 100%;
+}
+
+.specCard {
+  border: 1px solid var(--color-stone-grey);
+  padding: var(--spacing-md);
+  background-color: var(--color-cream);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.specCardTitle {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-bronze);
+  border-bottom: 1px solid var(--color-stone-grey);
+  padding-bottom: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
+.specList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  list-style: none;
+  font-size: 0.9rem;
+}
+
+.specLabel {
+  font-weight: 600;
+  color: rgba(26, 25, 24, 0.5);
+  display: inline-block;
+  width: 100px;
+}
+
+.placeholderTag {
+  background-color: var(--color-stone-grey);
+  color: var(--color-charcoal);
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.textLink {
+  color: var(--color-charcoal);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color var(--transition-fast);
+}
+
+.textLink:hover {
+  color: var(--color-bronze);
+}
+
+/* Products Used tag box */
+.productsUsedSection {
+  border-top: 1px solid var(--color-stone-grey);
+  padding-top: var(--spacing-md);
+}
+
+.productsUsedTitle {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(26, 25, 24, 0.6);
+  margin-bottom: var(--spacing-xs);
+}
+
+.productsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.productTag {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: var(--color-stone-grey);
+  color: var(--color-charcoal);
+  padding: 0.4rem 0.8rem;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.productTag:hover {
+  background-color: var(--color-charcoal);
+  color: var(--color-cream);
+}
+
+/* Craftsmanship split block */
+.splitGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+}
+
+@media (min-width: 768px) {
+  .splitGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xxl);
+  }
+}
+
+.splitBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.splitTitle {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-bronze);
+  border-bottom: 1px solid var(--color-stone-grey);
+  padding-bottom: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
+}
+
+.splitBlock p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}

@@ -1,0 +1,106 @@
+.section {
+  border-top: 1px solid var(--color-stone-grey);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xxl);
+  }
+}
+
+.imageCol {
+  position: relative;
+  width: 100%;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: var(--color-stone-grey);
+  box-shadow: 0 16px 36px rgba(26, 25, 24, 0.08);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.imageWrapper:hover .image {
+  transform: scale(1.03);
+}
+
+.accentBadge {
+  position: absolute;
+  bottom: -1.25rem;
+  right: -1.25rem;
+  background-color: var(--color-charcoal);
+  color: var(--color-cream);
+  padding: var(--spacing-md);
+  border-radius: 4px;
+  border: 1px solid var(--color-bronze);
+  max-width: 220px;
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .accentBadge {
+    display: block;
+  }
+}
+
+.badgeNumber {
+  font-family: var(--font-cormorant), serif;
+  font-size: 2.25rem;
+  font-weight: 300;
+  color: var(--color-bronze);
+  line-height: 1;
+}
+
+.badgeText {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(247, 245, 240, 0.85);
+  margin-top: 0.25rem;
+}
+
+.textCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.heading {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(2.2rem, 4vw, 3.25rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--color-charcoal);
+}
+
+.paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: rgba(26, 25, 24, 0.85);
+}
+
+.ctaWrapper {
+  margin-top: var(--spacing-xs);
+}

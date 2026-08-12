@@ -1,0 +1,211 @@
+.section {
+  border-top: 1px solid var(--color-stone-grey);
+}
+
+.heroSpotlightCard {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  background-color: var(--color-charcoal);
+  color: var(--color-cream);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+  text-decoration: none;
+  box-shadow: 0 12px 32px rgba(26, 25, 24, 0.12);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.heroSpotlightCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(26, 25, 24, 0.2);
+}
+
+@media (min-width: 900px) {
+  .heroSpotlightCard {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+.spotlightImageWrapper {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  overflow: hidden;
+  background-color: var(--color-stone-grey);
+}
+
+@media (min-width: 900px) {
+  .spotlightImageWrapper {
+    min-height: 420px;
+  }
+}
+
+.spotlightImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.heroSpotlightCard:hover .spotlightImage {
+  transform: scale(1.04);
+}
+
+.spotlightContent {
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (min-width: 900px) {
+  .spotlightContent {
+    padding: var(--spacing-xl);
+  }
+}
+
+.spotlightTitle {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+  font-weight: 300;
+  color: #ffffff;
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.15;
+}
+
+.spotlightDesc {
+  font-size: 0.98rem;
+  color: rgba(247, 245, 240, 0.85);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+}
+
+.subcatChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.chip {
+  font-size: 0.78rem;
+  padding: 0.25rem 0.65rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(232, 228, 223, 0.2);
+  border-radius: 3px;
+  color: var(--color-cream);
+}
+
+.spotlightLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-bronze);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Row 2: Two-Column Featured Grid */
+.twoColGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+@media (min-width: 768px) {
+  .twoColGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Row 3: Three-Column Standard Grid */
+.threeColGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+}
+
+@media (min-width: 768px) {
+  .threeColGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.gridCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--color-cream);
+  border: 1px solid var(--color-stone-grey);
+  border-radius: 4px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gridCard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(158, 123, 79, 0.4);
+  box-shadow: 0 10px 24px rgba(26, 25, 24, 0.06);
+}
+
+.gridImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: var(--color-stone-grey);
+}
+
+.gridImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.gridCard:hover .gridImage {
+  transform: scale(1.04);
+}
+
+.gridContent {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.gridTitle {
+  font-family: var(--font-cormorant), serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--color-charcoal);
+  margin-bottom: var(--spacing-xxs);
+}
+
+.gridDesc {
+  font-size: 0.88rem;
+  color: rgba(26, 25, 24, 0.75);
+  line-height: 1.5;
+  margin-bottom: var(--spacing-xs);
+}
+
+.gridLink {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-bronze);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: auto;
+}

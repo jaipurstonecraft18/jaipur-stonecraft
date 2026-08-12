@@ -1,0 +1,57 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cols3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .cols4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--color-stone-grey);
+}
+
+.aspect45 {
+  aspect-ratio: 4 / 5;
+}
+
+.aspect32 {
+  aspect-ratio: 3 / 2;
+}
+
+.aspect11 {
+  aspect-ratio: 1 / 1;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform var(--transition-smooth);
+}
+
+.imageContainer:hover .image {
+  transform: scale(1.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image {
+    transition: none !important;
+  }
+  .imageContainer:hover .image {
+    transform: none !important;
+  }
+}

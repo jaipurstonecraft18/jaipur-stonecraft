@@ -1,0 +1,100 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .container {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--spacing-md);
+  }
+}
+
+.stepCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  position: relative;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+}
+
+.number {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-bronze);
+  background-color: var(--color-stone-grey);
+  width: 2.2rem;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.line {
+  height: 1px;
+  background-color: var(--color-stone-grey);
+  flex-grow: 1;
+}
+
+/* Hide horizontal connecting lines on mobile and last element */
+@media (max-width: 767px) {
+  .line {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .container > div:last-child .line {
+    display: none;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxs);
+  padding-top: var(--spacing-xxs);
+}
+
+.title {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--color-charcoal);
+  margin: 0;
+}
+
+.description {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: rgba(26, 25, 24, 0.7);
+}
+
+/* Dark theme overrides */
+:global(.dark) .number {
+  background-color: rgba(252, 251, 249, 0.1);
+  color: var(--color-bronze);
+}
+
+:global(.dark) .line {
+  background-color: rgba(252, 251, 249, 0.15);
+}
+
+:global(.dark) .title {
+  color: var(--color-cream);
+}
+
+:global(.dark) .description {
+  color: rgba(252, 251, 249, 0.7);
+}

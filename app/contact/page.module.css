@@ -1,0 +1,156 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: var(--spacing-xxl);
+  }
+}
+
+.infoCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.channelGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.channelTitle {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-bronze);
+  border-bottom: 1px solid var(--color-stone-grey);
+  padding-bottom: var(--spacing-xs);
+}
+
+.channel {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+}
+
+.icon {
+  font-size: 1.25rem;
+  color: var(--color-bronze);
+  line-height: 1;
+}
+
+.label {
+  display: block;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(26, 25, 24, 0.5);
+  margin-bottom: 2px;
+}
+
+.link {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-charcoal);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.link:hover {
+  color: var(--color-bronze);
+}
+
+.addressText {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-charcoal);
+}
+
+.businessCard {
+  background-color: rgba(158, 123, 79, 0.03);
+  border: 1px solid var(--color-stone-grey);
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.businessCard h4 {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-bronze);
+}
+
+.businessCard p {
+  line-height: 1.5;
+}
+
+/* Form column styles */
+.formCol {
+  width: 100%;
+}
+
+.formCard {
+  border: 1px solid var(--color-stone-grey);
+  background-color: var(--color-cream);
+  padding: var(--spacing-lg);
+}
+
+.formTitle {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-charcoal);
+  border-bottom: 1px solid var(--color-stone-grey);
+  padding-bottom: var(--spacing-sm);
+}
+
+/* Dark mode styling overrides */
+:global(.dark) .channelTitle {
+  border-color: rgba(252, 251, 249, 0.15);
+}
+
+:global(.dark) .label {
+  color: rgba(252, 251, 249, 0.5);
+}
+
+:global(.dark) .link {
+  color: var(--color-cream);
+}
+
+:global(.dark) .link:hover {
+  color: var(--color-bronze);
+}
+
+:global(.dark) .addressText {
+  color: var(--color-cream);
+}
+
+:global(.dark) .businessCard {
+  border-color: rgba(252, 251, 249, 0.15);
+}
+
+:global(.dark) .formCard {
+  background-color: var(--color-charcoal);
+  border-color: rgba(252, 251, 249, 0.15);
+}
+
+:global(.dark) .formTitle {
+  color: var(--color-cream);
+  border-color: rgba(252, 251, 249, 0.15);
+}

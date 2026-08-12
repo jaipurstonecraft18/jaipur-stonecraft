@@ -1,0 +1,27 @@
+.wrapper {
+  margin-bottom: var(--spacing-xl);
+  max-width: 800px;
+}
+
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.left {
+  text-align: left;
+}
+
+.heading {
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
+}
+
+.description {
+  color: rgba(26, 25, 24, 0.7);
+}
+
+:global(.dark) .description {
+  color: rgba(252, 251, 249, 0.75);
+}

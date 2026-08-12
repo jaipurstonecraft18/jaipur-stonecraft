@@ -1,0 +1,56 @@
+.whatsappBtn {
+  position: fixed;
+  bottom: var(--spacing-md);
+  right: var(--spacing-md);
+  background-color: var(--color-bronze);
+  color: var(--color-cream);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(26, 25, 24, 0.15);
+  z-index: 990;
+  transition: transform var(--transition-smooth), background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.whatsappBtn:hover {
+  background-color: var(--color-charcoal);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(26, 25, 24, 0.25);
+}
+
+/* Make sure focus outlines behave nicely around circle button */
+.whatsappBtn:focus-visible {
+  outline: 2px solid var(--color-bronze);
+  outline-offset: 4px;
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+@media (min-width: 768px) {
+  .whatsappBtn {
+    bottom: var(--spacing-lg);
+    right: var(--spacing-lg);
+    width: 56px;
+    height: 56px;
+  }
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsappBtn {
+    transition: none !important;
+  }
+  .whatsappBtn:hover {
+    transform: none !important;
+  }
+}

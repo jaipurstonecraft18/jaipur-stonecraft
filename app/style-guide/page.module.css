@@ -1,0 +1,160 @@
+.guideHeader {
+  border-bottom: 1px solid var(--color-stone-grey);
+  padding-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-xxl);
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxl);
+}
+
+.subSection {
+  border-bottom: 1px solid var(--color-stone-grey);
+  padding-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.subSection:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.subSectionTitle {
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-bronze);
+  text-transform: uppercase;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+
+/* Palette Swatches */
+.swatchGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.swatchCard {
+  background-color: var(--color-cream);
+  border: 1px solid var(--color-stone-grey);
+  padding: var(--spacing-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.swatchColor {
+  height: 100px;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.swatchDetails {
+  padding: var(--spacing-xs) 0;
+  text-align: left;
+}
+
+.swatchDetails h4 {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.swatchDetails p {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
+  color: rgba(26, 25, 24, 0.6);
+}
+
+/* Typography Showcase */
+.typoList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.typoRow {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: baseline;
+  gap: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+  .typoRow {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xs);
+  }
+}
+
+.typoLabel {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(26, 25, 24, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Button Showcase */
+.buttonShowcase {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.darkBox {
+  background-color: var(--color-charcoal);
+  color: var(--color-cream);
+  padding: var(--spacing-xl);
+  margin-top: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.darkBoxTitle {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  color: rgba(252, 251, 249, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--spacing-xs);
+}
+
+/* Layout Showcase */
+.layoutOutline {
+  border: 1px dashed var(--color-bronze);
+  padding: var(--spacing-lg) var(--spacing-md);
+  text-align: center;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.85rem;
+  background-color: rgba(158, 123, 79, 0.03);
+}
+
+.spacingDemo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.spacingBar {
+  background-color: var(--color-stone-grey);
+  border-left: 4px solid var(--color-bronze);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
+}

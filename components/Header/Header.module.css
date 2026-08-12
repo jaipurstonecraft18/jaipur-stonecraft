@@ -1,0 +1,484 @@
+/* ==========================================
+   UTILITY BAR STYLING
+   ========================================== */
+.utilityBar {
+  background-color: rgba(18, 17, 16, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(247, 245, 240, 0.7);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0;
+  transition: all 0.35s ease;
+}
+
+.utilityContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.utilityLeft {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.utilityDot {
+  color: var(--color-bronze);
+  opacity: 0.6;
+}
+
+.utilityRight {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.utilityLink {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.utilityLink:hover {
+  color: var(--color-bronze);
+}
+
+@media (max-width: 768px) {
+  .utilityRight {
+    display: none;
+  }
+  .utilityLeft {
+    justify-content: center;
+    width: 100%;
+    gap: 0.75rem;
+  }
+}
+
+/* ==========================================
+   MAIN HEADER & NAV STYLING (PROPORTIONAL FLEXBOX)
+   ========================================== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.mainNavWrapper {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  transition: height 0.35s ease;
+}
+
+/* Transparent Theme (Hero overlay) */
+.transparent {
+  background: linear-gradient(180deg, rgba(18, 17, 16, 0.65) 0%, rgba(18, 17, 16, 0.25) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-cream);
+}
+
+.transparent.scrolled {
+  background: rgba(18, 17, 16, 0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
+}
+
+/* Light Theme (Inner pages) */
+.light {
+  background-color: rgba(247, 245, 240, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-stone-grey);
+  color: var(--color-charcoal);
+}
+
+.light .utilityBar {
+  background-color: rgba(26, 25, 24, 0.96);
+  color: rgba(247, 245, 240, 0.85);
+}
+
+.light.scrolled {
+  background-color: rgba(247, 245, 240, 0.96);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* 1. LEFT ZONE: Brand Logo */
+.logo {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: inherit;
+  white-space: nowrap;
+  margin-right: clamp(1rem, 2.2vw, 2.25rem);
+  flex-shrink: 0;
+  z-index: 1001;
+}
+
+/* 2. CENTER ZONE: Desktop Navigation Links (Fluid Flex Spacing, Zero Overlap) */
+.desktopNav {
+  display: none;
+  flex: 1;
+}
+
+@media (min-width: 1140px) {
+  .desktopNav {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: clamp(0.55rem, 1.2vw, 1.5rem);
+  margin: 0;
+  padding: 0;
+}
+
+.navItemHasDropdown {
+  position: relative;
+}
+
+.navLink {
+  position: relative;
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(0.72rem, 0.85vw, 0.8rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: inherit;
+  white-space: nowrap;
+  opacity: 0.85;
+  transition: opacity 0.25s ease, color 0.25s ease;
+  padding: 0.35rem 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Indicator line under active/hover nav item */
+.navLink::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-bronze);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navLink:hover {
+  opacity: 1;
+  color: var(--color-bronze);
+}
+
+.navLink:hover::after {
+  transform: scaleX(1);
+}
+
+.navLink.active {
+  opacity: 1;
+  color: var(--color-bronze);
+}
+
+.navLink.active::after {
+  transform: scaleX(1);
+}
+
+.dropdownCaret {
+  font-size: 0.65rem;
+  color: var(--color-bronze);
+  transition: transform 0.25s ease;
+}
+
+.dropdownOpen .dropdownCaret {
+  transform: rotate(180deg);
+}
+
+/* Luxury Multi-Column Dropdown Panel */
+.dropdownPanel {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  width: 580px;
+  background-color: rgba(18, 17, 16, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(158, 123, 79, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  padding: 1.5rem;
+  z-index: 1200;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s ease;
+}
+
+.dropdownPanel.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdownGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.25rem;
+}
+
+.dropdownItem {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  padding: 0.6rem 0.75rem;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+.dropdownItem:hover {
+  background-color: rgba(158, 123, 79, 0.12);
+}
+
+.dropdownItemTitle {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-cream);
+  margin-bottom: 0.25rem;
+  transition: color 0.2s ease;
+}
+
+.dropdownItem:hover .dropdownItemTitle {
+  color: var(--color-bronze);
+}
+
+.dropdownItemDesc {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.78rem;
+  color: rgba(247, 245, 240, 0.65);
+  line-height: 1.4;
+}
+
+.dropdownFooter {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.dropdownFooterLink {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-bronze);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.dropdownFooterLink:hover {
+  color: var(--color-cream);
+}
+
+/* 3. RIGHT ZONE: Action Controls */
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 1vw, 1rem);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.searchIconButton {
+  background: transparent;
+  border: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.searchIconButton:hover {
+  color: var(--color-bronze);
+  background: rgba(158, 123, 79, 0.12);
+}
+
+/* Redesigned Request a Quote Button: Outlined Control */
+.quoteControl {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.55rem clamp(0.75rem, 1.2vw, 1.25rem);
+  background: rgba(18, 17, 16, 0.35);
+  border: 1px solid var(--color-bronze);
+  color: var(--color-cream);
+  border-radius: 2px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 1140px) {
+  .quoteControl {
+    display: inline-flex;
+  }
+}
+
+.quoteControl:hover {
+  background: var(--color-bronze);
+  color: var(--color-charcoal);
+  border-color: var(--color-bronze);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(158, 123, 79, 0.3);
+}
+
+/* Mobile Hamburger Toggle */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 24px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+@media (min-width: 1140px) {
+  .hamburger {
+    display: none;
+  }
+}
+
+.hamburgerLine {
+  width: 24px;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Mobile Navigation Drawer */
+.mobileDrawer {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-charcoal);
+  color: var(--color-cream);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 6rem 2rem 3rem;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+}
+
+.menuOpen .mobileDrawer {
+  transform: translateX(0);
+}
+
+.mobileNavList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.mobileNavItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileNavHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.mobileNavLink {
+  font-family: var(--font-cormorant), serif;
+  font-size: 1.75rem;
+  color: var(--color-cream);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.mobileNavLink:hover {
+  color: var(--color-bronze);
+}
+
+.mobileAccordionToggle {
+  background: none;
+  border: none;
+  color: var(--color-bronze);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.mobileSubList {
+  list-style: none;
+  padding-left: 1rem;
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.mobileSubLink {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.95rem;
+  color: rgba(247, 245, 240, 0.8);
+  text-decoration: none;
+}
+
+.mobileSubLink:hover {
+  color: var(--color-bronze);
+}

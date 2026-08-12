@@ -1,0 +1,180 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background-color: rgba(18, 17, 16, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--spacing-xl) var(--spacing-md);
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.closeButton {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  background: none;
+  border: none;
+  color: var(--color-cream);
+  font-size: 1.75rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.closeButton:hover {
+  color: var(--color-bronze);
+  transform: scale(1.1);
+}
+
+.searchContainer {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.heading {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 300;
+  color: var(--color-cream);
+  text-align: center;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.searchInput {
+  width: 100%;
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  padding: 1.25rem 1.5rem 1.25rem 3.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(232, 228, 223, 0.25);
+  border-radius: 4px;
+  color: var(--color-cream);
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.searchInput:focus {
+  border-color: var(--color-bronze);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.searchInput::placeholder {
+  color: rgba(247, 245, 240, 0.45);
+}
+
+.searchIcon {
+  position: absolute;
+  left: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-bronze);
+  pointer-events: none;
+}
+
+.suggestedSection {
+  margin-top: var(--spacing-sm);
+}
+
+.suggestedTitle {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-bronze);
+  margin-bottom: var(--spacing-xs);
+}
+
+.chipsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.chip {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(232, 228, 223, 0.15);
+  border-radius: 30px;
+  color: var(--color-cream);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.chip:hover {
+  background: rgba(158, 123, 79, 0.2);
+  border-color: var(--color-bronze);
+  color: #ffffff;
+}
+
+.resultsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.resultCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(232, 228, 223, 0.12);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--color-cream);
+  transition: all 0.2s ease;
+}
+
+.resultCard:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: var(--color-bronze);
+}
+
+.resultTitle {
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.resultType {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-bronze);
+}
+
+.noResults {
+  text-align: center;
+  color: rgba(247, 245, 240, 0.6);
+  font-size: 0.95rem;
+  padding: var(--spacing-lg) 0;
+}

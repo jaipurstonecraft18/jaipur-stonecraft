@@ -1,0 +1,224 @@
+/* ==========================================================================
+   JAIPUR STONECRAFT — DESIGN SYSTEM & GLOBAL STYLES
+   ========================================================================== */
+
+/* 1. Core Variables & Design Tokens
+   ========================================================================== */
+:root {
+  /* Colors (from DESIGN.md) */
+  --color-charcoal: #1A1918;
+  --color-cream: #FCFBF9;
+  --color-bronze: #9E7B4F;
+  --color-stone-grey: #E8E4DF;
+
+  /* Semantic Mappings */
+  --background: var(--color-cream);
+  --foreground: var(--color-charcoal);
+  --border: var(--color-stone-grey);
+  --accent: var(--color-bronze);
+
+  /* Spacing Scale (Modular & Scalable) */
+  --spacing-xxs: 0.25rem;   /* 4px */
+  --spacing-xs: 0.5rem;     /* 8px */
+  --spacing-sm: 1rem;       /* 16px */
+  --spacing-md: 1.5rem;     /* 24px */
+  --spacing-lg: 2rem;       /* 32px */
+  --spacing-xl: 3rem;       /* 48px */
+  --spacing-xxl: 4.5rem;     /* 72px */
+  
+  /* Vertical Section Spacing (Clamp scaling from ~48px on mobile to ~112px on desktop) */
+  --spacing-section: clamp(3rem, 8vw, 7rem);
+
+  /* Containers & Layout */
+  --container-max-width: 1280px;
+  --container-padding-mobile: 1.5rem;
+  --container-padding-desktop: 3rem;
+
+  /* Transitions & Micro-interactions */
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.2s ease;
+}
+
+/* 2. Reset & Base Elements
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--foreground);
+  background-color: var(--background);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Typography Scales (DESIGN.md: avoid tight spacing, excessive bold, or heavy weights) */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 300; /* Luxury serif feels more elegant when light */
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--color-charcoal);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.85rem, 4.5vw, 2.75rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.3;
+}
+
+h4 {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.625;
+  font-weight: 300; /* Clean light font weight for body */
+  color: rgba(26, 25, 24, 0.85); /* Slightly softer charcoal for body text readability */
+}
+
+p.large {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.6;
+}
+
+p.small {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: rgba(26, 25, 24, 0.7);
+}
+
+/* Eyebrows & Small Meta Labels */
+.eyebrow {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-bronze);
+  display: block;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Links & Interactive Elements */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+}
+
+/* Accessibility Focus States (REQUIREMENTS.md & RULES.md) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-bronze);
+  outline-offset: 4px;
+}
+
+/* Utilities */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 3. Global Page Layout wrappers
+   ========================================================================== */
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top padding offset for standard pages to prevent text overlapping under the fixed header */
+.page-offset {
+  padding-top: 80px;
+}
+
+/* Skip to Content Keyboard Link */
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 1.5rem;
+  background-color: var(--color-charcoal);
+  color: var(--color-cream);
+  padding: 0.75rem 1.5rem;
+  z-index: 9999;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 1px solid var(--color-bronze);
+  transition: top var(--transition-fast);
+  text-decoration: none;
+}
+
+.skip-to-content:focus {
+  top: 1.5rem;
+  outline: 2px solid var(--color-bronze);
+  outline-offset: 4px;
+}
+
+/* 4. Accessibility & Motion Preferences
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+

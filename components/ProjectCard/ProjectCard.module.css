@@ -1,0 +1,80 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-charcoal);
+  text-decoration: none;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2; /* Editorial architectural layout */
+  overflow: hidden;
+  background-color: var(--color-stone-grey);
+}
+
+.image {
+  object-fit: cover;
+  transition: transform var(--transition-smooth);
+}
+
+.card:hover .image {
+  transform: scale(1.03);
+}
+
+.content {
+  padding-top: var(--spacing-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxs);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(26, 25, 24, 0.5);
+}
+
+.dot {
+  color: var(--color-stone-grey);
+}
+
+.title {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.25;
+  transition: color var(--transition-fast);
+}
+
+.card:hover .title {
+  color: var(--color-bronze);
+}
+
+/* Adjust colors in dark section contexts */
+:global(.dark) .card {
+  color: var(--color-cream);
+}
+
+:global(.dark) .metaRow {
+  color: rgba(252, 251, 249, 0.5);
+}
+
+:global(.dark) .card:hover .title {
+  color: var(--color-bronze);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image {
+    transition: none !important;
+  }
+  .card:hover .image {
+    transform: none !important;
+  }
+}

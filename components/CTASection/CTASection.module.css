@@ -1,0 +1,33 @@
+.content {
+  text-align: center;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.heading {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.15;
+  font-weight: 300;
+}
+
+.description {
+  color: rgba(26, 25, 24, 0.7);
+  margin-bottom: var(--spacing-sm);
+}
+
+:global(.dark) .description {
+  color: rgba(252, 251, 249, 0.8);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  justify-content: center;
+  align-items: center;
+}

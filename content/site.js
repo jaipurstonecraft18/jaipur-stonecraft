@@ -1,0 +1,40 @@
+export const siteConfig = {
+  name: "Jaipur Stonecraft",
+  description: "Built on generations of family craftsmanship in Jaipur, creating premium marble deity statues, custom sacred art, luxury stone objects, and architectural masonry.",
+  contact: {
+    phone: "+91 70147 53278",
+    email: "Jaipurstonecraft18@gmail.com",
+    whatsapp: "+917014753278",
+    whatsappLink: "https://wa.me/917014753278",
+    address: "30, Industrial Area, Krisna Nagar a, Kartarpura, Gopal Pura Mode, Jaipur, Rajasthan 302015",
+    instagram: "[INSTAGRAM URL]",
+    pinterest: "[PINTEREST URL]",
+  },
+  utility: {
+    announcements: ["Handcrafted in Jaipur, India", "Generational Craftsmanship", "Worldwide Delivery"],
+    phone: "+91 70147 53278",
+    email: "Jaipurstonecraft18@gmail.com",
+  },
+  navigation: [
+    { label: "Home", href: "/" },
+    { label: "Collections", href: "/collections" },
+    { label: "Marble Hub", href: "/marble" },
+    { label: "Projects", href: "/projects" },
+    { label: "Craftsmanship", href: "/craftsmanship" },
+    { label: "About Us", href: "/our-story" },
+    { label: "Contact", href: "/contact" },
+  ],
+  collections: [
+    { label: "Sculptures & Statues", href: "/collections/sculptures-statues" },
+    { label: "Wall Art & Reliefs", href: "/collections/wall-art-reliefs" },
+    { label: "Temples & Architectural Stonework", href: "/collections/temples-architectural-stonework" },
+    { label: "Fountains & Water Features", href: "/collections/fountains-water-features" },
+    { label: "Decorative Stone Art", href: "/collections/decorative-stone-art" },
+    { label: "Custom & Bespoke Creations", href: "/collections/custom-bespoke-creations" },
+    { label: "Marble Crafts Hub", href: "/marble" },
+  ],
+  legal: [
+    { label: "Privacy Policy", href: "#" },
+    { label: "Terms & Conditions", href: "#" },
+  ],
+};

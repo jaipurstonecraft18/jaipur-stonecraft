@@ -1,0 +1,48 @@
+.section {
+  width: 100%;
+}
+
+/* Background Variants */
+.light {
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+}
+
+.dark {
+  background-color: var(--color-charcoal);
+  color: var(--color-cream);
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: var(--color-cream);
+}
+
+.dark p {
+  color: rgba(252, 251, 249, 0.85);
+}
+
+.grey {
+  background-color: var(--color-stone-grey);
+  color: var(--color-charcoal);
+}
+
+/* Spacing Variants */
+.standard {
+  padding-top: var(--spacing-section);
+  padding-bottom: var(--spacing-section);
+}
+
+.large {
+  padding-top: calc(var(--spacing-section) * 1.5);
+  padding-bottom: calc(var(--spacing-section) * 1.5);
+}
+
+.none {
+  padding-top: 0;
+  padding-bottom: 0;
+}
