@@ -1,5 +1,11 @@
+/**
+ * Jaipur Stonecraft — Products Data Provider
+ * 
+ * Re-exports & queries from the Central Product Database Store (/content/products-db/)
+ */
+
 import { categoriesData } from "./categories.js";
-import { designsData } from "./designs.js";
+import { getProductFromDB, getProductsByCategoryFromDB } from "@/content/products-db/products-db.js";
 
 export const productsData = categoriesData;
 
@@ -16,3 +22,5 @@ export function getProduct(collectionSlug, subcategorySlug, categorySlug) {
   }
   return null;
 }
+
+export { getProductFromDB, getProductsByCategoryFromDB };

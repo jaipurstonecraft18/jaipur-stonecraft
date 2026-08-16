@@ -24,7 +24,7 @@ export default function Footer() {
           <div className={styles.colNav}>
             <h4 className={styles.colTitle}>Explore</h4>
             <ul className={styles.linkList}>
-              {siteConfig.navigation.map((item) => (
+              {(siteConfig.footerExplore || siteConfig.navigation).map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className={styles.link}>
                     {item.label}

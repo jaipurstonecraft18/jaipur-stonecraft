@@ -14,8 +14,27 @@
 }
 
 .image {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   transition: transform var(--transition-smooth);
+}
+
+.badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background-color: rgba(18, 17, 16, 0.85);
+  backdrop-filter: blur(8px);
+  color: var(--color-bronze);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid rgba(158, 123, 79, 0.4);
+  z-index: 2;
 }
 
 .card:hover .image {
@@ -57,6 +76,61 @@
   color: var(--color-bronze);
 }
 
+.description {
+  font-size: 0.88rem;
+  color: rgba(26, 25, 24, 0.75);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.linkRow {
+  margin-top: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-bronze);
+  transition: gap var(--transition-fast);
+}
+
+.card:hover .linkRow {
+  gap: 0.6rem;
+}
+
+/* Featured & Secondary Variants */
+.featuredCard {
+  grid-column: span 1;
+}
+
+@media (min-width: 900px) {
+  .featuredCard {
+    grid-column: span 2;
+  }
+}
+
+.featuredImageContainer {
+  aspect-ratio: 16 / 9;
+}
+
+.featuredTitle {
+  font-size: 1.75rem;
+}
+
+.secondaryImageContainer {
+  aspect-ratio: 16 / 10;
+}
+
+.secondaryTitle {
+  font-size: 1.15rem;
+}
+
 /* Adjust colors in dark section contexts */
 :global(.dark) .card {
   color: var(--color-cream);
@@ -64,6 +138,10 @@
 
 :global(.dark) .metaRow {
   color: rgba(252, 251, 249, 0.5);
+}
+
+:global(.dark) .description {
+  color: rgba(252, 251, 249, 0.75);
 }
 
 :global(.dark) .card:hover .title {

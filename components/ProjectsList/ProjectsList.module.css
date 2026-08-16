@@ -27,8 +27,8 @@
 }
 
 .filterButton.active {
-  background-color: var(--color-charcoal);
-  border-color: var(--color-charcoal);
+  background-color: var(--color-bronze);
+  border-color: var(--color-bronze);
   color: var(--color-cream);
 }
 
@@ -65,7 +65,7 @@
 }
 
 :global(.dark) .filterButton.active {
-  background-color: var(--color-cream);
-  border-color: var(--color-cream);
-  color: var(--color-charcoal);
+  background-color: var(--color-bronze);
+  border-color: var(--color-bronze);
+  color: var(--color-cream);
 }

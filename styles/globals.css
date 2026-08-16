@@ -5,11 +5,21 @@
 /* 1. Core Variables & Design Tokens
    ========================================================================== */
 :root {
-  /* Colors (from DESIGN.md) */
+  /* Core Colors */
   --color-charcoal: #1A1918;
   --color-cream: #FCFBF9;
   --color-bronze: #9E7B4F;
   --color-stone-grey: #E8E4DF;
+
+  /* Secondary & Extended Neutrals */
+  --color-cream-secondary: #F4F1EA;
+  --color-charcoal-card: #22201E;
+  --color-border-subtle: #E2DDD5;
+  --color-bronze-light: rgba(158, 123, 79, 0.12);
+
+  /* Typography System Tokens */
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Semantic Mappings */
   --background: var(--color-cream);
@@ -24,7 +34,7 @@
   --spacing-md: 1.5rem;     /* 24px */
   --spacing-lg: 2rem;       /* 32px */
   --spacing-xl: 3rem;       /* 48px */
-  --spacing-xxl: 4.5rem;     /* 72px */
+  --spacing-xxl: 4.5rem;    /* 72px */
   
   /* Vertical Section Spacing (Clamp scaling from ~48px on mobile to ~112px on desktop) */
   --spacing-section: clamp(3rem, 8vw, 7rem);
@@ -33,6 +43,11 @@
   --container-max-width: 1280px;
   --container-padding-mobile: 1.5rem;
   --container-padding-desktop: 3rem;
+
+  /* Atelier Design & Component Primitives */
+  --radius-sharp: 0px;
+  --radius-subtle: 2px;
+  --radius-card: 4px;
 
   /* Transitions & Micro-interactions */
   --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);

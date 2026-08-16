@@ -1,0 +1,133 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--color-cream);
+  border: 1px solid var(--color-stone-grey);
+  border-radius: var(--radius-sharp, 0);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.card:hover {
+  border-color: rgba(158, 123, 79, 0.5);
+  box-shadow: 0 8px 24px rgba(26, 25, 24, 0.06);
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: var(--color-stone-grey);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-smooth);
+}
+
+.card:hover .image {
+  transform: scale(1.04);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding: var(--spacing-md);
+}
+
+.titleGroup {
+  margin-bottom: var(--spacing-xs);
+}
+
+.title {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: var(--color-charcoal);
+  line-height: 1.3;
+  margin-bottom: var(--spacing-xxs);
+}
+
+.metaBadge {
+  display: inline-block;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-bronze);
+  margin-bottom: var(--spacing-xxs);
+}
+
+.description {
+  font-size: 0.88rem;
+  color: rgba(26, 25, 24, 0.75);
+  line-height: 1.5;
+}
+
+.linkRow {
+  margin-top: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-bronze);
+  transition: gap var(--transition-fast);
+}
+
+.card:hover .linkRow {
+  gap: 0.6rem;
+}
+
+/* Featured & Secondary Variants */
+.featuredCard {
+  border-color: rgba(158, 123, 79, 0.4);
+  background-color: var(--color-cream);
+}
+
+.featuredImageWrapper {
+  aspect-ratio: 16 / 8;
+}
+
+@media (min-width: 768px) {
+  .featuredImageWrapper {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+.featuredTitle {
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+}
+
+.secondaryCard {
+  border-color: var(--color-stone-grey);
+}
+
+.secondaryImageWrapper {
+  aspect-ratio: 16 / 9;
+}
+
+.secondaryTitle {
+  font-size: 1.1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image {
+    transition: none !important;
+  }
+  .card:hover .image {
+    transform: none !important;
+  }
+}

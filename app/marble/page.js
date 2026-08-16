@@ -3,6 +3,7 @@ import Container from "@/components/Container/Container";
 import Section from "@/components/Section/Section";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
+import MaterialCard from "@/components/MaterialCard/MaterialCard";
 import CTASection from "@/components/CTASection/CTASection";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { marbleHubData } from "@/content/marble";
@@ -111,43 +112,14 @@ export default function MarbleHubPage() {
           >
             {Object.values(marbleHubData).map((cluster, idx) => (
               <ScrollReveal key={cluster.slug} animation="fade-up" delay={idx * 80}>
-                <div
-                  style={{
-                    padding: "var(--spacing-lg)",
-                    backgroundColor: "var(--color-cream)",
-                    border: "1px solid var(--color-stone-grey)",
-                    borderRadius: "4px",
-                    display: "flex",
-                    flexDirection: "column",
-                    justify: "space-between",
-                    height: "100%",
-                  }}
-                >
-                  <div>
-                    <span className="eyebrow" style={{ fontSize: "0.75rem", marginBottom: "var(--spacing-xxs)" }}>{cluster.eyebrow}</span>
-                    <h3 style={{ fontSize: "1.25rem", marginBottom: "var(--spacing-xs)" }}>
-                      {cluster.title}
-                    </h3>
-                    <p style={{ fontSize: "0.9rem", opacity: 0.8, marginBottom: "var(--spacing-md)", lineHeight: 1.5 }}>
-                      {cluster.description}
-                    </p>
-                  </div>
-
-                  <div>
-                    <Link
-                      href={`/marble/${cluster.slug}`}
-                      style={{
-                        display: "inline-block",
-                        fontSize: "0.85rem",
-                        color: "var(--color-bronze)",
-                        fontWeight: 600,
-                        textDecoration: "none",
-                      }}
-                    >
-                      Explore {cluster.title} &rarr;
-                    </Link>
-                  </div>
-                </div>
+                <MaterialCard
+                  name={cluster.title}
+                  badgeText={cluster.eyebrow}
+                  description={cluster.description}
+                  imageSrc={cluster.imageSrc || `https://placehold.co/800x500/E8E4DF/1A1918?text=${encodeURIComponent(cluster.title)}`}
+                  href={`/marble/${cluster.slug}`}
+                  variant={idx === 0 ? "featured" : "standard"}
+                />
               </ScrollReveal>
             ))}
           </div>

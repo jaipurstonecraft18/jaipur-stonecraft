@@ -24,6 +24,16 @@ export const siteConfig = {
     { label: "About Us", href: "/our-story" },
     { label: "Contact", href: "/contact" },
   ],
+  footerExplore: [
+    { label: "Home", href: "/" },
+    { label: "Collections", href: "/collections" },
+    { label: "Products", href: "/products" },
+    { label: "Marble Hub", href: "/marble" },
+    { label: "Projects", href: "/projects" },
+    { label: "Craftsmanship", href: "/craftsmanship" },
+    { label: "About Us", href: "/our-story" },
+    { label: "Contact", href: "/contact" },
+  ],
   collections: [
     { label: "Sculptures & Statues", href: "/collections/sculptures-statues" },
     { label: "Wall Art & Reliefs", href: "/collections/wall-art-reliefs" },

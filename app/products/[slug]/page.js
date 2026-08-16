@@ -1,29 +1,42 @@
 import { redirect, notFound } from "next/navigation";
 import { categoriesData } from "@/content/categories";
+import { productsDatabaseStore } from "@/content/products-db";
 
 export async function generateStaticParams() {
-  return Object.keys(categoriesData).map((slug) => ({ slug }));
+  const categorySlugs = Object.keys(categoriesData).map((slug) => ({ slug }));
+  const productSlugs = Object.keys(productsDatabaseStore).map((slug) => ({ slug }));
+  return [...categorySlugs, ...productSlugs];
 }
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const { slug } = resolvedParams;
   const category = categoriesData[slug];
-  if (!category) return {};
+  const product = productsDatabaseStore[slug];
 
-  return {
-    title: `${category.name} — Jaipur Stonecraft`,
-  };
+  if (category) {
+    return { title: `${category.name} — Jaipur Stonecraft` };
+  }
+  if (product) {
+    return { title: `${product.name} — Jaipur Stonecraft` };
+  }
+  return {};
 }
 
 export default async function LegacyProductRedirect({ params }) {
   const resolvedParams = await params;
   const { slug } = resolvedParams;
-  const category = categoriesData[slug];
 
-  if (!category) {
-    notFound();
+  const category = categoriesData[slug];
+  if (category) {
+    redirect(`/collections/${category.parentCollection}/${category.parentSubcategory}/${category.slug}`);
   }
 
-  redirect(`/collections/${category.parentCollection}/${category.parentSubcategory}/${category.slug}`);
+  const product = productsDatabaseStore[slug];
+  if (product) {
+    redirect(`/designs/${product.parentCategory}/${product.slug}`);
+  }
+
+  notFound();
 }
+

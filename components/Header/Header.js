@@ -230,7 +230,7 @@ export default function Header({ theme }) {
                             ))}
                           </div>
 
-                          <div className={styles.dropdownFooter}>
+                          <div className={styles.dropdownFooter} style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem" }}>
                             <Link
                               href={item.href}
                               className={styles.dropdownFooterLink}
@@ -238,6 +238,16 @@ export default function Header({ theme }) {
                             >
                               {isCollections ? "View All Collections \u2192" : "Explore Marble Hub \u2192"}
                             </Link>
+                            {isCollections && (
+                              <Link
+                                href="/products"
+                                className={styles.dropdownFooterLink}
+                                style={{ color: "var(--color-bronze)" }}
+                                onClick={() => setActiveDropdown(null)}
+                              >
+                                Full Product Catalogue &rarr;
+                              </Link>
+                            )}
                           </div>
                         </div>
                       </li>

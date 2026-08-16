@@ -1,9 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { categoriesData } from "@/content/categories";
-import { designsData } from "@/content/designs";
 import styles from "./SearchOverlay.module.css";
 
 const suggestedSearches = [
@@ -17,6 +15,15 @@ const suggestedSearches = [
 
 export default function SearchOverlay({ isOpen, onClose }) {
   const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
+  const [searchResults, setSearchResults] = useState({
+    productResults: [],
+    categoryResults: [],
+    totalCount: 0,
+    isFallback: false,
+    fallbackMessage: ""
+  });
+  const [searching, setSearching] = useState(false);
   const inputRef = useRef(null);
 
   // Focus input on open & lock body scroll
@@ -27,11 +34,66 @@ export default function SearchOverlay({ isOpen, onClose }) {
     } else {
       document.body.style.overflow = "";
       setQuery("");
+      setDebouncedQuery("");
+      setSearchResults({
+        productResults: [],
+        categoryResults: [],
+        totalCount: 0,
+        isFallback: false,
+        fallbackMessage: ""
+      });
     }
     return () => {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
+
+  // Debounce query input
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedQuery(query.trim());
+    }, 150);
+    return () => clearTimeout(handler);
+  }, [query]);
+
+  // Fetch search results via server API
+  useEffect(() => {
+    if (!debouncedQuery) {
+      setSearchResults({
+        productResults: [],
+        categoryResults: [],
+        totalCount: 0,
+        isFallback: false,
+        fallbackMessage: ""
+      });
+      return;
+    }
+
+    let active = true;
+    setSearching(true);
+
+    fetch(`/api/search?q=${encodeURIComponent(debouncedQuery)}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (active) {
+          setSearchResults({
+            productResults: data.products || [],
+            categoryResults: data.categoryResults || [],
+            totalCount: data.totalCount || 0,
+            isFallback: Boolean(data.isFallback),
+            fallbackMessage: data.fallbackMessage || ""
+          });
+        }
+      })
+      .catch((err) => console.error(err))
+      .finally(() => {
+        if (active) setSearching(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [debouncedQuery]);
 
   // Handle ESC key to close
   useEffect(() => {
@@ -44,52 +106,19 @@ export default function SearchOverlay({ isOpen, onClose }) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
-  // Client-side search results
-  const searchResults = useMemo(() => {
-    if (!query.trim()) return [];
-    const q = query.toLowerCase().trim();
-    const results = [];
-
-    // Search Categories
-    Object.values(categoriesData).forEach((cat) => {
-      if (cat.name.toLowerCase().includes(q) || cat.description.toLowerCase().includes(q)) {
-        results.push({
-          id: `cat-${cat.slug}`,
-          title: `${cat.name} Statues`,
-          type: "Category Landing",
-          href: `/collections/${cat.parentCollection}/${cat.parentSubcategory}/${cat.slug}`,
-        });
-      }
-    });
-
-    // Search Designs
-    Object.values(designsData).forEach((d) => {
-      if (d.name.toLowerCase().includes(q) || d.shortDescription.toLowerCase().includes(q)) {
-        results.push({
-          id: `des-${d.slug}`,
-          title: d.name,
-          type: "Masonic Design",
-          href: `/designs/${d.parentCategory}/${d.slug}`,
-        });
-      }
-    });
-
-    return results.slice(0, 8); // Limit to top 8 matches
-  }, [query]);
-
   if (!isOpen) return null;
+
+  const { productResults, categoryResults, totalCount, isFallback, fallbackMessage } = searchResults;
 
   return (
     <div className={`${styles.overlay} ${isOpen ? styles.open : ""}`} role="dialog" aria-modal="true" aria-label="Site Search">
-      {/* Close Button */}
       <button className={styles.closeButton} onClick={onClose} aria-label="Close search overlay">
         &times;
       </button>
 
       <div className={styles.searchContainer}>
-        <h2 className={styles.heading}>What are you looking for?</h2>
+        <h2 className={styles.heading}>What stonecraft artwork are you looking for?</h2>
 
-        {/* Search Input */}
         <div className={styles.inputWrapper}>
           <svg className={styles.searchIcon} width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="11" cy="11" r="8"></circle>
@@ -101,37 +130,108 @@ export default function SearchOverlay({ isOpen, onClose }) {
             className={styles.searchInput}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search deity statues, temple arches, marble fountains..."
+            placeholder="Search Makrana marble statues, Bansi Paharpur mandirs, jali screens..."
+            aria-label="Search query"
           />
+          {query && (
+            <button className={styles.clearBtn} onClick={() => setQuery("")} aria-label="Clear input">
+              &times;
+            </button>
+          )}
         </div>
 
-        {/* Live Search Results */}
-        {query.trim() !== "" ? (
-          <div className={styles.resultsList}>
-            {searchResults.length > 0 ? (
-              searchResults.map((res) => (
-                <Link key={res.id} href={res.href} onClick={onClose} className={styles.resultCard}>
-                  <span className={styles.resultTitle}>{res.title}</span>
-                  <span className={styles.resultType}>{res.type} &rarr;</span>
-                </Link>
-              ))
-            ) : (
-              <div className={styles.noResults}>
-                No matching category or design found for &ldquo;{query}&rdquo;.
-              </div>
-            )}
-          </div>
-        ) : (
-          /* Popular Searches Chips */
-          <div className={styles.suggestedSection}>
-            <h3 className={styles.suggestedTitle}>Popular Searches</h3>
-            <div className={styles.chipsGrid}>
-              {suggestedSearches.map((s) => (
-                <Link key={s.label} href={s.href} onClick={onClose} className={styles.chip}>
+        {!debouncedQuery && (
+          <div className={styles.suggestionsContainer}>
+            <span className={styles.suggestLabel}>Popular Collections:</span>
+            <div className={styles.chips}>
+              {suggestedSearches.map((s, idx) => (
+                <Link key={idx} href={s.href} onClick={onClose} className={styles.chip}>
                   {s.label}
                 </Link>
               ))}
             </div>
+          </div>
+        )}
+
+        {searching && (
+          <div style={{ textAlign: "center", padding: "1.5rem 0", color: "#888" }}>
+            Searching database...
+          </div>
+        )}
+
+        {!searching && debouncedQuery && (
+          <div className={styles.resultsWrapper}>
+            {isFallback && fallbackMessage && (
+              <div className={styles.fallbackNotice}>
+                <span className={styles.fallbackIcon}>💡</span>
+                <span>{fallbackMessage}</span>
+              </div>
+            )}
+
+            {categoryResults.length > 0 && (
+              <div className={styles.resultGroup}>
+                <h3 className={styles.groupTitle}>Collection Categories</h3>
+                <div className={styles.categoryList}>
+                  {categoryResults.map((cat) => (
+                    <Link key={cat.id} href={cat.href} onClick={onClose} className={styles.categoryResultCard}>
+                      <span className={styles.catName}>{cat.title}</span>
+                      <span className={styles.catArrow}>→</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {productResults.length > 0 && (
+              <div className={styles.resultGroup}>
+                <div className={styles.groupHeader}>
+                  <h3 className={styles.groupTitle}>Matching Artworks</h3>
+                  <span className={styles.resultCount}>{totalCount} total results</span>
+                </div>
+
+                <div className={styles.productGrid}>
+                  {productResults.map((p) => (
+                    <Link
+                      key={p.id}
+                      href={`/products/${p.slug}`}
+                      onClick={onClose}
+                      className={styles.productCard}
+                    >
+                      <div className={styles.imgWrapper}>
+                        <img src={p.imageSrc} alt={p.name} className={styles.prodImg} />
+                      </div>
+                      <div className={styles.prodDetails}>
+                        <span className={styles.prodMaterial}>
+                          {p.primaryMaterial?.name || "Natural Stone"}
+                        </span>
+                        <h4 className={styles.prodName}>{p.name}</h4>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {categoryResults.length === 0 && productResults.length === 0 && (
+              <div className={styles.noResults}>
+                <p>No stonecraft creations found matching &quot;<strong>{debouncedQuery}</strong>&quot;.</p>
+                <p className={styles.noResultsSub}>
+                  Try searching for terms like <em>&quot;Ganesh&quot;</em>, <em>&quot;White Marble&quot;</em>, or <em>&quot;Jali&quot;</em>.
+                </p>
+              </div>
+            )}
+
+            {totalCount > 6 && (
+              <div className={styles.viewAllWrapper}>
+                <Link
+                  href={`/search?q=${encodeURIComponent(debouncedQuery)}`}
+                  onClick={onClose}
+                  className={styles.viewAllBtn}
+                >
+                  View All {totalCount} Results for &quot;{debouncedQuery}&quot; →
+                </Link>
+              </div>
+            )}
           </div>
         )}
       </div>

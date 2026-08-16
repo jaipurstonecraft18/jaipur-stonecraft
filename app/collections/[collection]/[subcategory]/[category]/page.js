@@ -5,6 +5,8 @@ import Section from "@/components/Section/Section";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import CategoryCatalogue from "@/components/CategoryCatalogue/CategoryCatalogue";
+import CategoryCard from "@/components/CategoryCard/CategoryCard";
+import MaterialCard from "@/components/MaterialCard/MaterialCard";
 import CTASection from "@/components/CTASection/CTASection";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { collectionsData, getCollection, getSubcategory } from "@/content/collections";
@@ -184,23 +186,35 @@ export default async function CategoryLandingPage({ params }) {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-              gap: "var(--spacing-lg)",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "var(--spacing-xl)",
               marginTop: "var(--spacing-xl)"
             }}
           >
-            <div style={{ padding: "var(--spacing-md)", backgroundColor: "var(--color-cream)", border: "1px solid var(--color-stone-grey)", borderRadius: "4px" }}>
-              <h4 style={{ fontSize: "1.1rem", marginBottom: "var(--spacing-xxs)", color: "var(--color-bronze)" }}>Makrana White Marble</h4>
-              <p className="small">Renowned for its fine crystalline structure, purity, and low water absorption, ideal for sacred deity idols.</p>
-            </div>
-            <div style={{ padding: "var(--spacing-md)", backgroundColor: "var(--color-cream)", border: "1px solid var(--color-stone-grey)", borderRadius: "4px" }}>
-              <h4 style={{ fontSize: "1.1rem", marginBottom: "var(--spacing-xxs)", color: "var(--color-bronze)" }}>Bansi Paharpur Sandstone</h4>
-              <p className="small">Distinctive warm pink hue used traditionally in iconic Indian temple architecture and outdoor relief walls.</p>
-            </div>
-            <div style={{ padding: "var(--spacing-md)", backgroundColor: "var(--color-cream)", border: "1px solid var(--color-stone-grey)", borderRadius: "4px" }}>
-              <h4 style={{ fontSize: "1.1rem", marginBottom: "var(--spacing-xxs)", color: "var(--color-bronze)" }}>Black Rajasthan Marble</h4>
-              <p className="small">Deep dark marble providing high visual contrast for modern statues and dramatic architectural accents.</p>
-            </div>
+            <MaterialCard
+              name="Makrana White Marble"
+              origin="Nagaur, Rajasthan"
+              description="Renowned for its fine calcitic crystalline structure, purity, and zero water absorption, ideal for sacred deity idols."
+              imageSrc="https://placehold.co/800x500/FCFBF9/1A1918?text=Makrana+White+Marble"
+              href="/marble"
+              variant="standard"
+            />
+            <MaterialCard
+              name="Bansi Paharpur Sandstone"
+              origin="Bharatpur, Rajasthan"
+              description="Distinctive warm blush pink hue used traditionally in iconic Indian temple architecture and outdoor relief walls."
+              imageSrc="https://placehold.co/800x500/E8E4DF/9E7B4F?text=Bansi+Pink+Sandstone"
+              href="/marble"
+              variant="standard"
+            />
+            <MaterialCard
+              name="Black Rajasthan Marble"
+              origin="Bhainslana, Rajasthan"
+              description="Deep dark obsidian marble providing high visual contrast for modern statues and dramatic architectural accents."
+              imageSrc="https://placehold.co/800x500/1A1918/FCFBF9?text=Black+Rajasthan+Marble"
+              href="/marble"
+              variant="standard"
+            />
           </div>
         </Container>
       </Section>
@@ -260,16 +274,17 @@ export default async function CategoryLandingPage({ params }) {
               />
             </ScrollReveal>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "var(--spacing-lg)", marginTop: "var(--spacing-lg)" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "var(--spacing-xl)", marginTop: "var(--spacing-xl)" }}>
               {relatedCategories.map((relCat) => (
-                <Link
+                <CategoryCard
                   key={relCat.slug}
+                  name={relCat.name}
+                  description={relCat.description}
+                  imageSrc={relCat.imageSrc}
+                  imageAlt={relCat.imageAlt}
                   href={`/collections/${collection.slug}/${subcategory.slug}/${relCat.slug}`}
-                  style={{ padding: "var(--spacing-md)", backgroundColor: "var(--color-cream)", border: "1px solid var(--color-stone-grey)", borderRadius: "4px", textDecoration: "none", color: "inherit" }}
-                >
-                  <h4 style={{ fontSize: "1.05rem", marginBottom: "var(--spacing-xxs)" }}>{relCat.name}</h4>
-                  <span style={{ fontSize: "0.8rem", color: "var(--color-bronze)" }}>Explore Category &rarr;</span>
-                </Link>
+                  variant="secondary"
+                />
               ))}
             </div>
 

@@ -50,9 +50,11 @@ export default function ProjectsList() {
               <ProjectCard
                 name={proj.name}
                 type={proj.type}
-                location={proj.location}
+                location={proj.location !== "[LOCATION]" ? proj.location : "Jaipur / Global Site"}
+                description={proj.description ? proj.description.replace(/\[|\]/g, "") : null}
                 imageSrc={proj.imageSrc}
                 href={`/projects/${proj.slug}`}
+                variant={idx === 0 && activeCategory === "All" ? "featured" : "standard"}
               />
             </ScrollReveal>
           ))

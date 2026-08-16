@@ -4,6 +4,8 @@ import Container from "@/components/Container/Container";
 import Section from "@/components/Section/Section";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
+import CategoryCard from "@/components/CategoryCard/CategoryCard";
+import ProductCard from "@/components/ProductCard/ProductCard";
 import CTASection from "@/components/CTASection/CTASection";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { marbleHubData } from "@/content/marble";
@@ -132,50 +134,58 @@ export default async function MarbleSubPage({ params }) {
           {/* Related Categories */}
           {cluster.relatedCategories && cluster.relatedCategories.length > 0 && (
             <div style={{ marginTop: "var(--spacing-xl)" }}>
-              <h3 style={{ fontSize: "1.2rem", marginBottom: "var(--spacing-md)" }}>Master Categories:</h3>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "var(--spacing-md)" }}>
-                {cluster.relatedCategories.map((cat) => (
-                  <Link
-                    key={cat.href}
-                    href={cat.href}
-                    style={{
-                      padding: "var(--spacing-md)",
-                      backgroundColor: "var(--color-cream)",
-                      border: "1px solid var(--color-stone-grey)",
-                      borderRadius: "4px",
-                      textDecoration: "none",
-                      color: "inherit",
-                    }}
-                  >
-                    <h4 style={{ fontSize: "1.05rem", marginBottom: "var(--spacing-xxs)" }}>{cat.name}</h4>
-                    <span style={{ fontSize: "0.8rem", color: "var(--color-bronze)" }}>View Category Landing Page &rarr;</span>
-                  </Link>
-                ))}
+              <h3 style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.5rem", fontWeight: 400, marginBottom: "var(--spacing-md)" }}>
+                Marble Statue Collections
+              </h3>
+              
+              {/* Asymmetric Composition: Featured First Category + Supporting Cards Grid */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "var(--spacing-xl)" }}>
+                {/* 1. Featured Category (e.g. Ganesh Ji Statues) */}
+                <ScrollReveal animation="fade-up">
+                  <CategoryCard
+                    name={cluster.relatedCategories[0].name}
+                    badgeText="Featured Marble Category"
+                    description={`Bespoke hand-carved ${cluster.relatedCategories[0].name} in solid Makrana white marble, featuring authentic Shilpa Shastra proportions.`}
+                    href={cluster.relatedCategories[0].href}
+                    imageSrc={`https://placehold.co/1200x600/E8E4DF/1A1918?text=${encodeURIComponent(cluster.relatedCategories[0].name)}`}
+                    variant="featured"
+                  />
+                </ScrollReveal>
+
+                {/* 2. Supporting Visual Categories Grid (Shiva, Krishna, Buddha, etc.) */}
+                {cluster.relatedCategories.length > 1 && (
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "var(--spacing-xl)" }}>
+                    {cluster.relatedCategories.slice(1).map((cat, idx) => (
+                      <ScrollReveal key={cat.href} animation="fade-up" delay={idx * 80}>
+                        <CategoryCard
+                          name={cat.name}
+                          description={`Hand-carved ${cat.name} in Makrana marble.`}
+                          href={cat.href}
+                          imageSrc={`https://placehold.co/800x500/E8E4DF/1A1918?text=${encodeURIComponent(cat.name)}`}
+                          variant="standard"
+                        />
+                      </ScrollReveal>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           )}
 
           {/* Featured Designs */}
           {cluster.featuredDesigns && cluster.featuredDesigns.length > 0 && (
-            <div style={{ marginTop: "var(--spacing-xl)" }}>
-              <h3 style={{ fontSize: "1.2rem", marginBottom: "var(--spacing-md)" }}>Featured Masonic Designs:</h3>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "var(--spacing-md)" }}>
-                {cluster.featuredDesigns.map((des) => (
-                  <Link
+            <div style={{ marginTop: "var(--spacing-xxl)" }}>
+              <h3 style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "1.5rem", fontWeight: 400, marginBottom: "var(--spacing-md)" }}>Available Designs & Custom Configurations</h3>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "var(--spacing-xl)" }}>
+                {cluster.featuredDesigns.map((des, idx) => (
+                  <ProductCard
                     key={des.href}
+                    name={des.name}
                     href={des.href}
-                    style={{
-                      padding: "var(--spacing-md)",
-                      backgroundColor: "#ffffff",
-                      border: "1px solid var(--color-stone-grey)",
-                      borderRadius: "4px",
-                      textDecoration: "none",
-                      color: "inherit",
-                    }}
-                  >
-                    <h4 style={{ fontSize: "1.05rem", marginBottom: "var(--spacing-xxs)" }}>{des.name}</h4>
-                    <span style={{ fontSize: "0.8rem", color: "var(--color-bronze)" }}>View Design & Variant Options &rarr;</span>
-                  </Link>
+                    material="Makrana White Marble"
+                    imageSrc={`https://placehold.co/800x1000/E8E4DF/1A1918?text=${encodeURIComponent(des.name)}`}
+                    variant={idx === 0 ? "featured" : "standard"}
+                  />
                 ))}
               </div>
             </div>

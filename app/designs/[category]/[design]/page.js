@@ -13,7 +13,8 @@ import SecondaryButton from "@/components/SecondaryButton/SecondaryButton";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { getCollection, getSubcategory } from "@/content/collections";
 import { categoriesData } from "@/content/categories";
-import { designsData, getDesign, getDesignsByCategory } from "@/content/designs";
+import { designsData } from "@/content/designs";
+import { getProductFromDB, getRelatedProductsFromDB, getKnowledgeArticlesForProduct } from "@/content/products-db";
 import { siteConfig } from "@/content/site";
 import styles from "./page.module.css";
 
@@ -31,7 +32,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const { category: categorySlug, design: designSlug } = resolvedParams;
-  const design = getDesign(categorySlug, designSlug);
+  const design = getProductFromDB(categorySlug, designSlug);
 
   if (!design) return {};
 
@@ -65,7 +66,7 @@ export default async function DesignDetailPage({ params }) {
   const resolvedParams = await params;
   const { category: categorySlug, design: designSlug } = resolvedParams;
 
-  const design = getDesign(categorySlug, designSlug);
+  const design = getProductFromDB(categorySlug, designSlug);
   if (!design) {
     notFound();
   }
@@ -74,9 +75,8 @@ export default async function DesignDetailPage({ params }) {
   const collection = category ? getCollection(category.parentCollection) : null;
   const subcategory = category ? getSubcategory(category.parentCollection, category.parentSubcategory) : null;
 
-  const relatedDesigns = getDesignsByCategory(categorySlug)
-    .filter((d) => d.slug !== designSlug)
-    .slice(0, 3);
+  // SECTION 31: Data-Driven Relationship Engine (Genuine shared taxonomy)
+  const relatedDesigns = getRelatedProductsFromDB(design, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -101,7 +101,7 @@ export default async function DesignDetailPage({ params }) {
           "@type": "Brand",
           "name": "Jaipur Stonecraft",
         },
-        "material": design.variants?.materials?.join(", "),
+        "material": design.primaryMaterial ? design.primaryMaterial.name : "White Makrana Marble",
       },
     ],
   };
@@ -115,6 +115,7 @@ export default async function DesignDetailPage({ params }) {
       {/* 1. HERO & CONFIGURATION SECTION */}
       <Section background="light" spacing="standard" className="page-offset">
         <Container>
+          {/* SECTION 26: Data-Generated Logical Breadcrumbs */}
           <Breadcrumbs
             items={[
               { label: "Collections", href: "/collections" },
@@ -130,17 +131,19 @@ export default async function DesignDetailPage({ params }) {
             <div className={styles.imageCol}>
               <ScrollReveal animation="fade-scale">
                 <div className={styles.imageContainer}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={design.imageSrc}
-                    alt={design.name}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    alt={`${design.name} — Hand-carved ${design.primaryMaterial ? design.primaryMaterial.name : "Natural Marble"} by Jaipur Stonecraft`}
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    style={{ objectFit: "cover" }}
                   />
                 </div>
               </ScrollReveal>
             </div>
 
-            {/* Right Column: Title, Descriptions, Variants */}
+            {/* Right Column: Title, Descriptions, Specs & Knowledge Layer */}
             <div className={styles.infoCol}>
               <ScrollReveal animation="fade-up" className={styles.infoContent}>
                 <span className="eyebrow">{category ? category.name : "Stonecraft"} — Design Detail</span>
@@ -149,77 +152,71 @@ export default async function DesignDetailPage({ params }) {
                   {design.shortDescription}
                 </p>
 
-                {/* Variants & Configurations Box */}
-                <div className={styles.variantBox}>
-                  <h4 className={styles.boxTitle}>Available Variant Configurations</h4>
+                {/* SECTION 25: Data-Driven Internal Linking Badges */}
+                <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", margin: "1rem 0" }}>
+                  {design.primaryMaterial && (
+                    <Link
+                      href={`/products?material=${design.primaryMaterialId}`}
+                      style={{
+                        fontSize: "0.8rem",
+                        padding: "0.3rem 0.7rem",
+                        background: "var(--color-warm-cream, #f4f0ea)",
+                        border: "1px solid var(--color-border-subtle, #d8d2c7)",
+                        color: "var(--color-charcoal)",
+                        textDecoration: "none",
+                        borderRadius: "2px"
+                      }}
+                    >
+                      Material: {design.primaryMaterial.name} &rarr;
+                    </Link>
+                  )}
 
-                  {/* Materials */}
-                  <div className={styles.variantGroup}>
-                    <div className={styles.variantGroupLabel}>Material Block Options:</div>
-                    <div className={styles.pillContainer}>
-                      {design.variants.materials.map((mat) => (
-                        <span key={mat} className={styles.optionPill}>{mat}</span>
-                      ))}
-                    </div>
+                  {category && (
+                    <Link
+                      href={`/collections/${collection?.slug}/${subcategory?.slug}/${category.slug}`}
+                      style={{
+                        fontSize: "0.8rem",
+                        padding: "0.3rem 0.7rem",
+                        background: "var(--color-warm-cream, #f4f0ea)",
+                        border: "1px solid var(--color-border-subtle, #d8d2c7)",
+                        color: "var(--color-charcoal)",
+                        textDecoration: "none",
+                        borderRadius: "2px"
+                      }}
+                    >
+                      Category: {category.name} &rarr;
+                    </Link>
+                  )}
+                </div>
+
+                <div className={styles.divider} />
+
+                {/* Spec Highlights Grid */}
+                <div className={styles.specGrid}>
+                  <div className={styles.specItem}>
+                    <span className={styles.specLabel}>Primary Stone</span>
+                    <span className={styles.specValue}>{design.primaryMaterial ? design.primaryMaterial.name : "Makrana White Marble"}</span>
                   </div>
-
-                  {/* Sizes */}
-                  <div className={styles.variantGroup}>
-                    <div className={styles.variantGroupLabel}>Available Size Configurations:</div>
-                    <div className={styles.pillContainer}>
-                      {design.variants.sizes.map((sz) => (
-                        <span key={sz} className={styles.optionPill}>{sz}</span>
-                      ))}
-                    </div>
+                  <div className={styles.specItem}>
+                    <span className={styles.specLabel}>Stone Origin</span>
+                    <span className={styles.specValue}>{design.primaryMaterial ? design.primaryMaterial.origin : "Rajasthan, India"}</span>
                   </div>
-
-                  {/* Finishes */}
-                  <div className={styles.variantGroup}>
-                    <div className={styles.variantGroupLabel}>Surface Finishes:</div>
-                    <div className={styles.pillContainer}>
-                      {design.variants.finishes.map((fn) => (
-                        <span key={fn} className={styles.optionPill}>{fn}</span>
-                      ))}
-                    </div>
+                  <div className={styles.specItem}>
+                    <span className={styles.specLabel}>Environment</span>
+                    <span className={styles.specValue}>{design.attributes ? design.attributes.environment : "Indoor Sanctuary"}</span>
                   </div>
-
-                  {/* Colours */}
-                  <div className={styles.variantGroup}>
-                    <div className={styles.variantGroupLabel}>Stone Shades:</div>
-                    <div className={styles.pillContainer}>
-                      {design.variants.colours.map((clr) => (
-                        <span key={clr} className={styles.optionPill}>{clr}</span>
-                      ))}
-                    </div>
+                  <div className={styles.specItem}>
+                    <span className={styles.specLabel}>Customization</span>
+                    <span className={styles.specValue}>Available (Scale & Finish)</span>
                   </div>
                 </div>
 
-                {/* Specifications & Customization */}
-                <div className={styles.specBox}>
-                  <h4 className={styles.boxTitle}>Masonic Specifications</h4>
-                  <ul className={styles.specList}>
-                    <li>
-                      <span className={styles.specLabel}>Category:</span>{" "}
-                      <span>{category ? category.name : design.parentCategory}</span>
-                    </li>
-                    <li>
-                      <span className={styles.specLabel}>Iconography:</span>{" "}
-                      <span>Traditional Hand Chiseling</span>
-                    </li>
-                    <li>
-                      <span className={styles.specLabel}>Customization:</span>{" "}
-                      <span>CAD blueprint scaling & custom stone block sourcing available</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Call to Actions */}
-                <div className={styles.actions}>
-                  <PrimaryButton href={`/contact?type=quote&design=${design.slug}`} variant="charcoal">
-                    Request a Quote
+                <div className={styles.ctaGroup}>
+                  <PrimaryButton href={`/contact?type=quote&design=${design.slug}`}>
+                    Request a Quote for this Piece
                   </PrimaryButton>
-                  <SecondaryButton href={siteConfig.contact.whatsappLink} variant="bronze">
-                    WhatsApp Inquiry
+                  <SecondaryButton href={`/contact?type=custom&design=${design.slug}`}>
+                    Commission Custom Size
                   </SecondaryButton>
                 </div>
               </ScrollReveal>
@@ -228,105 +225,130 @@ export default async function DesignDetailPage({ params }) {
         </Container>
       </Section>
 
-      {/* 2. IMAGE GALLERY SECTION */}
-      <Section background="grey" spacing="standard">
+      {/* 2. SECTION 13: KNOWLEDGE LAYER & DETAILED MASONIC STORY */}
+      <Section background="dark" spacing="standard">
         <Container>
-          <ScrollReveal animation="fade-up">
-            <SectionHeading
-              eyebrow="Visual Study"
-              heading="Chisel & Detail Views"
-              description="A visual study of physical carvings, surface finishes, and close-up stone textures."
-            />
-          </ScrollReveal>
-
-          <div style={{ marginTop: "var(--spacing-lg)" }}>
-            <Gallery
-              images={design.imageGallery}
-              aspect="aspect45"
-              columns={3}
-              altPrefix={`${design.name} detail view`}
-            />
-          </div>
-        </Container>
-      </Section>
-
-      {/* 3. CRAFTSMANSHIP & TECHNICAL SPECS */}
-      <Section background="light" spacing="standard">
-        <Container>
-          <div className={styles.processGrid}>
-            <ScrollReveal animation="fade-up">
-              <h3 style={{ fontSize: "1.5rem", marginBottom: "var(--spacing-sm)" }}>Atelier Manufacturing Process</h3>
-              <p style={{ lineHeight: 1.6, marginBottom: "var(--spacing-sm)" }}>
-                Each {design.name} sculpture is hand-carved in our Jaipur workshop from a solid raw stone block. Master artisans map proportional grids onto the stone surface before extracting bulk volume using heavy spikes, followed by weeks of fine flat-chisel relief detailing.
-              </p>
-              <p style={{ lineHeight: 1.6 }}>
-                {design.detailedDescription}
-              </p>
-            </ScrollReveal>
-
-            <ScrollReveal animation="fade-up" delay={150}>
-              <div className={styles.detailCard} style={{ marginBottom: "var(--spacing-md)" }}>
-                <h4 style={{ fontSize: "1.1rem", marginBottom: "var(--spacing-xxs)" }}>Export Packaging & Freight</h4>
-                <p className="small">
-                  Enclosed in heat-treated wood frames with high-density shock wrap for safe air or ocean transport to international project destinations.
-                </p>
-              </div>
-              <div className={styles.detailCard}>
-                <h4 style={{ fontSize: "1.1rem", marginBottom: "var(--spacing-xxs)" }}>Architectural Adaptation</h4>
-                <p className="small">
-                  We adapt pedestal heights, backplates, and mounting anchors to fit exact site architectural blueprints.
-                </p>
-              </div>
-            </ScrollReveal>
-          </div>
-        </Container>
-      </Section>
-
-      {/* 4. RELATED DESIGNS */}
-      {relatedDesigns.length > 0 && (
-        <Section background="grey" spacing="standard">
-          <Container>
+          <div style={{ maxWidth: "840px", margin: "0 auto" }}>
             <ScrollReveal animation="fade-up">
               <SectionHeading
-                eyebrow="Recommendations"
-                heading={`More ${category ? category.name : "Category"} Designs`}
-                description="Explore other handcrafted masonic designs in this category."
+                eyebrow="Craftsmanship & Specifications"
+                heading="Masonic Artisanship & Material Details"
+                description={design.detailedDescription}
+                align="center"
               />
             </ScrollReveal>
 
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-                gap: "var(--spacing-xl)",
-                marginTop: "var(--spacing-lg)",
-              }}
-            >
-              {relatedDesigns.map((rel, idx) => (
-                <ScrollReveal key={rel.slug} animation="fade-up" delay={idx * 100}>
-                  <ProductCard
-                    name={rel.name}
-                    category={category ? category.name : rel.parentCategory}
-                    material={rel.variants?.materials?.[0] || "Marble"}
-                    imageSrc={rel.imageSrc}
-                    href={`/designs/${rel.parentCategory}/${rel.slug}`}
-                  />
-                </ScrollReveal>
+            {design.knowledgeLayer && (
+              <div style={{ marginTop: "var(--spacing-xl)", display: "grid", gap: "var(--spacing-lg)" }}>
+                <div style={{ background: "rgba(255,255,255,0.05)", padding: "1.5rem", borderRadius: "4px" }}>
+                  <h3 style={{ color: "var(--color-bronze)", fontSize: "1.1rem", marginBottom: "0.5rem" }}>Stone Material & Origin</h3>
+                  <p style={{ color: "var(--color-cream)", fontSize: "0.95rem", lineHeight: "1.6" }}>
+                    {design.knowledgeLayer.materialOrigin}
+                  </p>
+                </div>
+
+                <div style={{ background: "rgba(255,255,255,0.05)", padding: "1.5rem", borderRadius: "4px" }}>
+                  <h3 style={{ color: "var(--color-bronze)", fontSize: "1.1rem", marginBottom: "0.5rem" }}>Suitable Architectural Uses</h3>
+                  <p style={{ color: "var(--color-cream)", fontSize: "0.95rem", lineHeight: "1.6" }}>
+                    {design.knowledgeLayer.suitableFor}
+                  </p>
+                </div>
+
+                <div style={{ background: "rgba(255,255,255,0.05)", padding: "1.5rem", borderRadius: "4px" }}>
+                  <h3 style={{ color: "var(--color-bronze)", fontSize: "1.1rem", marginBottom: "0.5rem" }}>Care & Maintenance</h3>
+                  <p style={{ color: "var(--color-cream)", fontSize: "0.95rem", lineHeight: "1.6" }}>
+                    {design.knowledgeLayer.installationCare}
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Related Knowledge & Craftsmanship Guides */}
+            {getKnowledgeArticlesForProduct(design).length > 0 && (
+              <div style={{ marginTop: "3rem", paddingTop: "2rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+                <h3 style={{ color: "var(--color-cream)", fontFamily: "var(--font-cormorant), serif", fontSize: "1.4rem", marginBottom: "1rem" }}>
+                  Craftsmanship & Material Guides for this Piece
+                </h3>
+                <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                  {getKnowledgeArticlesForProduct(design).map((art) => (
+                    <Link
+                      key={art.slug}
+                      href={`/knowledge/${art.slug}`}
+                      style={{
+                        padding: "0.6rem 1rem",
+                        background: "rgba(158, 123, 79, 0.15)",
+                        border: "1px solid var(--color-bronze)",
+                        color: "var(--color-cream)",
+                        textDecoration: "none",
+                        fontSize: "0.85rem",
+                        borderRadius: "2px"
+                      }}
+                    >
+                      📖 Read: {art.title} &rarr;
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </Container>
+      </Section>
+
+      {/* 3. GALLERY SECTION */}
+      {design.imageGallery && design.imageGallery.length > 0 && (
+        <Section background="light" spacing="standard">
+          <Container>
+            <ScrollReveal animation="fade-up">
+              <SectionHeading
+                eyebrow="Visual Details"
+                heading="Artwork Perspective Views"
+                description={`View angles and masonic chiseling details for ${design.name}.`}
+                align="center"
+              />
+            </ScrollReveal>
+            <Gallery images={design.imageGallery} altPrefix={design.name} />
+          </Container>
+        </Section>
+      )}
+
+      {/* 4. SECTION 31: RELATED PRODUCTS RECOMMENDATION ENGINE */}
+      {relatedDesigns.length > 0 && (
+        <Section background="light" spacing="standard">
+          <Container>
+            <ScrollReveal animation="fade-up">
+              <SectionHeading
+                eyebrow="Related Atelier Creations"
+                heading="Similar Hand-Carved Artworks"
+                description="Explore complementary stonecraft creations sharing iconographic subject, stone material, or masonic tradition."
+                align="center"
+              />
+            </ScrollReveal>
+
+            <div className={styles.relatedGrid}>
+              {relatedDesigns.map((rel) => (
+                <ProductCard
+                  key={rel.slug}
+                  title={rel.name}
+                  category={category ? category.name : "Stonecraft"}
+                  imageSrc={rel.imageSrc}
+                  href={`/designs/${rel.parentCategory}/${rel.slug}`}
+                  shortDescription={rel.shortDescription}
+                />
               ))}
             </div>
           </Container>
         </Section>
       )}
 
-      {/* 5. FINAL CTA SECTION */}
+      {/* 5. INQUIRY CTA SECTION */}
       <CTASection
-        heading={`Inquire About ${design.name}`}
-        description="Receive detailed drawing layouts, discuss custom sizing parameters, or coordinate marble slab sample shipments."
+        eyebrow="Commission This Piece"
+        heading={`Acquire ${design.name}`}
+        description="Connect with our Jaipur stone studio to request custom dimensions, discuss shipping arrangements, or receive a formal quote."
         primaryCtaText="Request a Quote"
-        primaryCtaHref={`/contact?type=quote&design=${design.slug}`}
-        secondaryCtaText="WhatsApp Designer"
-        secondaryCtaHref={siteConfig.contact.whatsappLink}
-        background="dark"
+        primaryCtaLink={`/contact?type=quote&design=${design.slug}`}
+        secondaryCtaText="Contact via WhatsApp"
+        secondaryCtaLink={`https://wa.me/${siteConfig.contact.whatsapp}?text=Inquiry%20regarding%20${encodeURIComponent(design.name)}`}
       />
     </>
   );

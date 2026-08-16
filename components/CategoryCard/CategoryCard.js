@@ -8,17 +8,32 @@ export default function CategoryCard({
   imageAlt,
   href,
   featured = false,
+  variant,
+  badgeText,
 }) {
-  const cardClassName = `${styles.card} ${featured ? styles.featuredCard : ""}`;
-  const imageWrapperClass = `${styles.imageWrapper} ${featured ? styles.featuredImageWrapper : ""}`;
-  const contentClass = `${styles.content} ${featured ? styles.featuredContent : ""}`;
-  const titleClass = `${styles.title} ${featured ? styles.featuredTitle : ""}`;
-  const descriptionClass = `${styles.description} ${featured ? styles.featuredDescription : ""}`;
+  const isFeatured = variant === "featured" || featured;
+  const isSecondary = variant === "secondary";
+
+  const cardClassName = `${styles.card} ${
+    isFeatured ? styles.featuredCard : isSecondary ? styles.secondaryCard : ""
+  }`;
+  const imageWrapperClass = `${styles.imageWrapper} ${
+    isFeatured ? styles.featuredImageWrapper : isSecondary ? styles.secondaryImageWrapper : ""
+  }`;
+  const contentClass = `${styles.content} ${
+    isFeatured ? styles.featuredContent : isSecondary ? styles.secondaryContent : ""
+  }`;
+  const titleClass = `${styles.title} ${
+    isFeatured ? styles.featuredTitle : isSecondary ? styles.secondaryTitle : ""
+  }`;
+  const descriptionClass = `${styles.description} ${
+    isFeatured ? styles.featuredDescription : isSecondary ? styles.secondaryDescription : ""
+  }`;
 
   const defaultAlt = `Hand-carved white marble ${name} sculpture created by master artisans in Jaipur`;
 
   return (
-    <Link href={href} className={cardClassName}>
+    <Link href={href} className={cardClassName} aria-label={`Explore ${name} designs`}>
       {/* 1. Card Image */}
       <div className={imageWrapperClass}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -33,7 +48,9 @@ export default function CategoryCard({
       {/* 2. Card Content (Name -> Description -> Link) */}
       <div className={contentClass}>
         <div className={styles.titleGroup}>
-          {featured && <span className={styles.featuredBadge}>Featured Collection</span>}
+          {(isFeatured || badgeText) && (
+            <span className={styles.featuredBadge}>{badgeText || "Featured Category"}</span>
+          )}
           <h3 className={titleClass}>{name}</h3>
           {description && <p className={descriptionClass}>{description}</p>}
         </div>

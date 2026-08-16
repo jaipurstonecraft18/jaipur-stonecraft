@@ -133,11 +133,38 @@
   color: #ffffff;
 }
 
+.resultsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  width: 100%;
+}
+
+.fallbackNotice {
+  background: rgba(158, 123, 79, 0.15);
+  border: 1px solid var(--color-bronze);
+  color: var(--color-cream);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.sectionHeader {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-bronze);
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
 .resultsList {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
-  max-height: 400px;
+  max-height: 420px;
   overflow-y: auto;
   padding-right: 0.5rem;
 }
@@ -145,8 +172,8 @@
 .resultCard {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.25rem;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(232, 228, 223, 0.12);
   border-radius: 4px;
@@ -160,9 +187,31 @@
   border-color: var(--color-bronze);
 }
 
+.thumbnailWrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--color-stone-grey, #3a3835);
+}
+
+.thumbnailImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.resultDetails {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
 .resultTitle {
   font-size: 1.05rem;
   font-weight: 500;
+  color: var(--color-cream);
 }
 
 .resultType {
@@ -170,6 +219,17 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--color-bronze);
+  margin-top: 0.15rem;
+}
+
+.resultArrow {
+  font-size: 1.1rem;
+  color: var(--color-bronze);
+  transition: transform 0.2s ease;
+}
+
+.resultCard:hover .resultArrow {
+  transform: translateX(4px);
 }
 
 .noResults {
@@ -178,3 +238,27 @@
   font-size: 0.95rem;
   padding: var(--spacing-lg) 0;
 }
+
+.viewAllWrapper {
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.viewAllButton {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: rgba(158, 123, 79, 0.2);
+  border: 1px solid var(--color-bronze);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.viewAllButton:hover {
+  background: var(--color-bronze);
+  color: #ffffff;
+}
+
