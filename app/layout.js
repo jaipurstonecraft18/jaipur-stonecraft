@@ -1,6 +1,7 @@
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import PublicShell from "@/components/PublicShell/PublicShell";
 import "../styles/globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
           Skip to content
         </a>
         <PublicShell>{children}</PublicShell>
+        <Analytics />
       </body>
     </html>
   );
