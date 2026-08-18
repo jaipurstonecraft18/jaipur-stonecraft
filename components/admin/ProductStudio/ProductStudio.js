@@ -6,6 +6,9 @@ import Link from "next/link";
 import ImageStudio from "@/components/admin/ImageStudio/ImageStudio";
 import QuickAddModal from "@/components/admin/QuickAddModal/QuickAddModal";
 import MobileStickyBar from "@/components/admin/ProductStudio/MobileStickyBar";
+import AiAssistantModal from "@/components/admin/ProductStudio/AiAssistantModal";
+import FieldAiActions from "@/components/admin/ProductStudio/FieldAiActions";
+import SeoReadinessPanel from "@/components/admin/ProductStudio/SeoReadinessPanel";
 import styles from "@/app/admin/admin.module.css";
 
 const DEFAULT_PRODUCT_TYPES = [
@@ -63,6 +66,9 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
     targetField: "",
     fieldLabel: ""
   });
+
+  // AI Content Assistant Modal State
+  const [isAiModalOpen, setIsAiModalOpen] = useState(false);
 
   // Fetch dynamic active catalogue lists and categories from API
   useEffect(() => {
@@ -206,6 +212,16 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
       updated.splice(index, 1);
       return { ...prev, knowledgeLayer: updated };
     });
+    setIsDirty(true);
+    setSaveStatus("dirty");
+  };
+
+  const handleAcceptAiSuggestions = (updates) => {
+    setFormData((prev) => ({
+      ...prev,
+      ...updates,
+      seo: updates.seo ? { ...(prev.seo || {}), ...updates.seo } : prev.seo
+    }));
     setIsDirty(true);
     setSaveStatus("dirty");
   };
@@ -401,6 +417,19 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
             </button>
           )}
 
+          <button
+            type="button"
+            onClick={() => setIsAiModalOpen(true)}
+            className={styles.secondaryBtn}
+            style={{
+              borderColor: "var(--color-bronze)",
+              color: "var(--color-navy)",
+              fontWeight: "600"
+            }}
+          >
+            ✨ Analyze & Generate
+          </button>
+
           <button onClick={() => handleSave("draft")} className={styles.secondaryBtn} disabled={saving}>
             Save Draft
           </button>
@@ -429,25 +458,17 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
         </div>
       )}
 
-      {/* Product Completeness Indicator */}
-      <div className={styles.readinessBox}>
-        <div>
-          <div style={{ fontSize: "0.85rem", fontWeight: "600", color: "#555" }}>Product Readiness Score</div>
-          <div style={{ fontSize: "1.25rem", fontWeight: "700", fontFamily: "var(--font-display)" }}>
-            {readiness.percentage}% Complete
-          </div>
-        </div>
-
-        <div className={styles.progressBarTrack}>
-          <div className={styles.progressBarFill} style={{ width: `${readiness.percentage}%` }} />
-        </div>
-
-        <div style={{ fontSize: "0.8rem", color: "#666" }}>
-          {readiness.checks.filter(c => !c.ok).length === 0
-            ? "✓ Ready for publication"
-            : `Missing: ${readiness.checks.filter(c => !c.ok).map(c => c.label).join(", ")}`}
-        </div>
-      </div>
+      {/* Actionable SEO & Product Readiness Panel */}
+      <SeoReadinessPanel
+        productData={formData}
+        onTriggerAiFix={(actionKey) => {
+          if (actionKey === "generate_image_alts" && activeTab !== "media") {
+            setActiveTab("media");
+          } else {
+            setIsAiModalOpen(true);
+          }
+        }}
+      />
 
       {/* Tabbed Navigation Interface */}
       <div className={styles.studioTabs}>
@@ -571,7 +592,15 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
             </div>
 
             <div className={styles.formGroupFull}>
-              <label className={styles.label}>Short Summary Description</label>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.25rem" }}>
+                <label className={styles.label} style={{ margin: 0 }}>Short Summary Description</label>
+                <FieldAiActions
+                  fieldLabel="Short Description"
+                  currentValue={formData.shortDescription}
+                  contextData={formData}
+                  onApply={(newVal) => updateField("shortDescription", newVal)}
+                />
+              </div>
               <textarea
                 rows={3}
                 value={formData.shortDescription}
@@ -582,7 +611,15 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
             </div>
 
             <div className={styles.formGroupFull}>
-              <label className={styles.label}>Detailed Description & Carving Overview</label>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.25rem" }}>
+                <label className={styles.label} style={{ margin: 0 }}>Detailed Description & Carving Overview</label>
+                <FieldAiActions
+                  fieldLabel="Detailed Description"
+                  currentValue={formData.detailedDescription}
+                  contextData={formData}
+                  onApply={(newVal) => updateField("detailedDescription", newVal)}
+                />
+              </div>
               <textarea
                 rows={4}
                 value={formData.detailedDescription}
@@ -936,6 +973,25 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
       {/* TAB 6: SEO & METADATA */}
       {activeTab === "seo" && (
         <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem", paddingBottom: "0.75rem", borderBottom: "1px solid #E2DDD5" }}>
+            <div>
+              <h3 style={{ fontSize: "1rem", fontWeight: "600", color: "var(--color-navy)", margin: 0 }}>
+                🔍 Search Engine Optimization (SEO) & Metadata
+              </h3>
+              <p style={{ fontSize: "0.8rem", color: "#666", margin: "0.25rem 0 0" }}>
+                Configure search snippet titles, descriptions, and discovery keywords.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setIsAiModalOpen(true)}
+              className={styles.primaryBtn}
+              style={{ fontSize: "0.82rem" }}
+            >
+              ✨ Generate SEO & Content Intelligence
+            </button>
+          </div>
+
           <div className={styles.formGrid}>
             <div className={styles.formGroupFull}>
               <label className={styles.label}>Meta Title Tag *</label>
@@ -1033,6 +1089,19 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
             setSaveStatus("dirty");
           }
         }}
+      />
+
+      {/* AI Content Intelligence Modal */}
+      <AiAssistantModal
+        isOpen={isAiModalOpen}
+        onClose={() => setIsAiModalOpen(false)}
+        productData={formData}
+        selectedImages={
+          formData.imageSrc && !formData.imageSrc.includes("placehold.co")
+            ? [formData.imageSrc, ...(Array.isArray(formData.imageGallery) ? formData.imageGallery.map(i => typeof i === "string" ? i : i?.src) : [])].filter(Boolean)
+            : []
+        }
+        onAcceptSuggestions={handleAcceptAiSuggestions}
       />
     </div>
   );

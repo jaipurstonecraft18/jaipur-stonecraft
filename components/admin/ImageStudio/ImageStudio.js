@@ -16,6 +16,7 @@ export default function ImageStudio({
   const [successMessage, setSuccessMessage] = useState("");
   const [uploadProgress, setUploadProgress] = useState(0);
   const [lastFiles, setLastFiles] = useState(null);
+  const [isGeneratingAlts, setIsGeneratingAlts] = useState(false);
   const fileInputRef = useRef(null);
 
   // Normalize gallery items: handle both string URLs and object items
@@ -193,6 +194,56 @@ export default function ImageStudio({
     setSuccessMessage("✓ External image URL added to gallery.");
   };
 
+  const handleUpdateAltText = (index, newAlt) => {
+    const updated = [...normalizedGallery];
+    updated[index] = { ...updated[index], altText: newAlt };
+    onChange({
+      imageSrc,
+      imageGallery: updated
+    });
+  };
+
+  const handleBatchGenerateAltTexts = async () => {
+    if (normalizedGallery.length === 0) return;
+    setIsGeneratingAlts(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/admin/ai/generate-alt-texts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          productName,
+          materialName: primaryMaterialName,
+          images: normalizedGallery.map(img => img.src)
+        })
+      });
+
+      const json = await res.json();
+      if (res.ok && json.success && Array.isArray(json.images)) {
+        const updated = normalizedGallery.map((img, i) => {
+          const match = json.images.find(m => m.url === img.src) || json.images[i];
+          return {
+            ...img,
+            altText: match?.suggestedAlt || img.altText
+          };
+        });
+
+        onChange({
+          imageSrc,
+          imageGallery: updated
+        });
+        setSuccessMessage(`✓ Generated AI Image Alt Texts for ${json.images.length} photo(s).`);
+      } else {
+        setError(json.error || "Failed to generate AI image alt texts.");
+      }
+    } catch {
+      setError("Network error during AI image alt text generation.");
+    } finally {
+      setIsGeneratingAlts(false);
+    }
+  };
+
   return (
     <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
       <div style={{ marginBottom: "1.5rem" }}>
@@ -318,9 +369,23 @@ export default function ImageStudio({
 
       {/* Gallery Grid & Reordering */}
       <div>
-        <h3 style={{ fontSize: "0.95rem", fontWeight: "600", marginBottom: "0.75rem" }}>
-          Product Photo Gallery ({normalizedGallery.length} photos)
-        </h3>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem", flexWrap: "wrap", gap: "0.5rem" }}>
+          <h3 style={{ fontSize: "0.95rem", fontWeight: "600", margin: 0 }}>
+            Product Photo Gallery ({normalizedGallery.length} photos)
+          </h3>
+
+          {normalizedGallery.length > 0 && (
+            <button
+              type="button"
+              disabled={isGeneratingAlts}
+              onClick={handleBatchGenerateAltTexts}
+              className={styles.secondaryBtn}
+              style={{ fontSize: "0.78rem", borderColor: "var(--color-bronze)", color: "var(--color-navy)", fontWeight: "600" }}
+            >
+              {isGeneratingAlts ? "⌛ Analyzing Images..." : "✨ AI Generate Alt Text for All Images"}
+            </button>
+          )}
+        </div>
 
         {normalizedGallery.length === 0 ? (
           <div style={{ padding: "2rem", textAlign: "center", color: "#888", backgroundColor: "#FAFAFA", borderRadius: "6px" }}>
@@ -350,6 +415,19 @@ export default function ImageStudio({
                     <span className={`${styles.badge} ${imageSrc === img.src ? styles.badgePublished : styles.badgeDraft}`}>
                       {imageSrc === img.src ? "Cover Photo" : `Photo #${idx + 1}`}
                     </span>
+                  </div>
+
+                  {/* Alt Text Input */}
+                  <div>
+                    <label style={{ fontSize: "0.72rem", fontWeight: "600", color: "#666" }}>Image Alt Text (SEO):</label>
+                    <input
+                      type="text"
+                      value={img.altText || ""}
+                      onChange={(e) => handleUpdateAltText(idx, e.target.value)}
+                      placeholder="Descriptive image alt text..."
+                      className={styles.input}
+                      style={{ fontSize: "0.78rem", padding: "0.25rem 0.45rem", marginTop: "0.15rem" }}
+                    />
                   </div>
 
                   {/* Touch Actions */}
