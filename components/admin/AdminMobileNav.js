@@ -16,35 +16,45 @@ export default function AdminMobileNav() {
     <>
       {/* DESKTOP HEADER (> 768px) */}
       <header className={`${styles.topHeader} ${styles.desktopOnly}`}>
+        {/* Left: Brand Badge */}
         <div className={styles.brandNav}>
           <Link href="/admin" className={styles.brandTitle}>
             Jaipur Stonecraft
           </Link>
-          <nav className={styles.navLinks}>
-            <Link href="/admin" className={`${styles.navLink} ${pathname === "/admin" ? styles.navLinkActive : ""}`}>
-              Dashboard
-            </Link>
-            <Link href="/admin/products" className={`${styles.navLink} ${pathname.startsWith("/admin/products") ? styles.navLinkActive : ""}`}>
-              Products Catalogue
-            </Link>
-            <Link href="/admin/health" className={`${styles.navLink} ${pathname === "/admin/health" ? styles.navLinkActive : ""}`}>
-              Product Health Queue
-            </Link>
-            <Link href="/admin/catalogue" className={`${styles.navLink} ${pathname === "/admin/catalogue" ? styles.navLinkActive : ""}`}>
-              Catalogue Manager
-            </Link>
-            <Link href="/admin/categories" className={`${styles.navLink} ${pathname === "/admin/categories" ? styles.navLinkActive : ""}`}>
-              Categories Cover Manager
-            </Link>
-            <Link href="/admin/products/new" className={`${styles.navLink} ${pathname === "/admin/products/new" ? styles.navLinkActive : ""}`}>
-              + Add Product
-            </Link>
-          </nav>
+          <span className={styles.brandDivider} />
+          <span className={styles.studioBadge}>ADMIN</span>
         </div>
 
+        {/* Center: Logically Grouped Workspace Navigation */}
+        <nav className={styles.navLinks}>
+          <Link href="/admin" className={`${styles.navLink} ${pathname === "/admin" ? styles.navLinkActive : ""}`}>
+            Dashboard
+          </Link>
+          <Link href="/admin/products" className={`${styles.navLink} ${pathname.startsWith("/admin/products") && pathname !== "/admin/products/new" ? styles.navLinkActive : ""}`}>
+            Products
+          </Link>
+          <Link href="/admin/catalogue" className={`${styles.navLink} ${pathname === "/admin/catalogue" ? styles.navLinkActive : ""}`}>
+            Catalogue
+          </Link>
+          <Link href="/admin/content" className={`${styles.navLink} ${pathname === "/admin/content" ? styles.navLinkActive : ""}`}>
+            Content
+          </Link>
+          <Link href="/admin/media" className={`${styles.navLink} ${pathname === "/admin/media" ? styles.navLinkActive : ""}`}>
+            Media
+          </Link>
+        </nav>
+
+        {/* Right: Primary Action & Utilities */}
         <div className={styles.topActions}>
+          <Link
+            href="/admin/products/new"
+            className={styles.primaryBtn}
+            style={{ padding: "0.3rem 0.75rem", fontSize: "0.78rem", minHeight: "32px", borderRadius: "4px" }}
+          >
+            + Add Product
+          </Link>
           <Link href="/" target="_blank" className={styles.publicSiteLink}>
-            View Public Website ↗
+            View Website ↗
           </Link>
           <LogoutButton />
         </div>
@@ -87,6 +97,7 @@ export default function AdminMobileNav() {
             </div>
 
             <nav style={{ display: "flex", flexDirection: "column", gap: "0.35rem" }}>
+              <div style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "1px", color: "#888", marginTop: "0.5rem", marginBottom: "0.2rem" }}>CORE WORKSPACE</div>
               <Link
                 href="/admin"
                 onClick={toggleDrawer}
@@ -97,30 +108,9 @@ export default function AdminMobileNav() {
               <Link
                 href="/admin/products"
                 onClick={toggleDrawer}
-                className={`${styles.mobileDrawerLink} ${pathname.startsWith("/admin/products") ? styles.mobileDrawerLinkActive : ""}`}
+                className={`${styles.mobileDrawerLink} ${pathname === "/admin/products" ? styles.mobileDrawerLinkActive : ""}`}
               >
-                🗿 Products Catalogue
-              </Link>
-              <Link
-                href="/admin/health"
-                onClick={toggleDrawer}
-                className={`${styles.mobileDrawerLink} ${pathname === "/admin/health" ? styles.mobileDrawerLinkActive : ""}`}
-              >
-                🩺 Product Health Queue
-              </Link>
-              <Link
-                href="/admin/catalogue"
-                onClick={toggleDrawer}
-                className={`${styles.mobileDrawerLink} ${pathname === "/admin/catalogue" ? styles.mobileDrawerLinkActive : ""}`}
-              >
-                🏷️ Catalogue Manager
-              </Link>
-              <Link
-                href="/admin/categories"
-                onClick={toggleDrawer}
-                className={`${styles.mobileDrawerLink} ${pathname === "/admin/categories" ? styles.mobileDrawerLinkActive : ""}`}
-              >
-                🖼️ Categories Cover Manager
+                🗿 All Products
               </Link>
               <Link
                 href="/admin/products/new"
@@ -129,6 +119,36 @@ export default function AdminMobileNav() {
                 style={{ color: "var(--color-bronze)", fontWeight: "600" }}
               >
                 ⚡ + Add New Product Draft
+              </Link>
+              <Link
+                href="/admin/health"
+                onClick={toggleDrawer}
+                className={`${styles.mobileDrawerLink} ${pathname === "/admin/health" ? styles.mobileDrawerLinkActive : ""}`}
+              >
+                🩺 Product Health Queue
+              </Link>
+
+              <div style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "1px", color: "#888", marginTop: "0.85rem", marginBottom: "0.2rem" }}>CATALOGUE & MEDIA</div>
+              <Link
+                href="/admin/catalogue"
+                onClick={toggleDrawer}
+                className={`${styles.mobileDrawerLink} ${pathname === "/admin/catalogue" ? styles.mobileDrawerLinkActive : ""}`}
+              >
+                🏷️ Catalogue & Taxonomy
+              </Link>
+              <Link
+                href="/admin/content"
+                onClick={toggleDrawer}
+                className={`${styles.mobileDrawerLink} ${pathname === "/admin/content" ? styles.mobileDrawerLinkActive : ""}`}
+              >
+                🖼️ Website Content
+              </Link>
+              <Link
+                href="/admin/media"
+                onClick={toggleDrawer}
+                className={`${styles.mobileDrawerLink} ${pathname === "/admin/media" ? styles.mobileDrawerLinkActive : ""}`}
+              >
+                📁 Shared Media Inspector
               </Link>
             </nav>
 

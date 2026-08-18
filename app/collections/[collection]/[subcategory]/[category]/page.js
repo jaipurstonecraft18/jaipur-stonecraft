@@ -9,7 +9,7 @@ import CategoryCard from "@/components/CategoryCard/CategoryCard";
 import MaterialCard from "@/components/MaterialCard/MaterialCard";
 import CTASection from "@/components/CTASection/CTASection";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
-import { collectionsData, getCollection, getSubcategory } from "@/content/collections";
+import { getCollection, getSubcategory } from "@/content/collections";
 import { categoriesData, getCategory, getCategoriesBySubcategory } from "@/content/categories";
 import { getDesignsByCategory } from "@/content/designs";
 import { siteConfig } from "@/content/site";
@@ -30,7 +30,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const { collection, subcategory, category: categorySlug } = resolvedParams;
-  const category = getCategory(collection, subcategory, categorySlug);
+  const category = await getCategory(collection, subcategory, categorySlug);
 
   if (!category) return {};
 
@@ -62,16 +62,17 @@ export default async function CategoryLandingPage({ params }) {
   const resolvedParams = await params;
   const { collection: collectionSlug, subcategory: subcategorySlug, category: categorySlug } = resolvedParams;
 
-  const collection = getCollection(collectionSlug);
-  const subcategory = getSubcategory(collectionSlug, subcategorySlug);
-  const category = getCategory(collectionSlug, subcategorySlug, categorySlug);
+  const collection = await getCollection(collectionSlug);
+  const subcategory = await getSubcategory(collectionSlug, subcategorySlug);
+  const category = await getCategory(collectionSlug, subcategorySlug, categorySlug);
 
   if (!collection || !subcategory || !category) {
     notFound();
   }
 
-  const designs = getDesignsByCategory(categorySlug);
-  const relatedCategories = getCategoriesBySubcategory(collectionSlug, subcategorySlug)
+  const designs = await getDesignsByCategory(categorySlug);
+  const rawRelated = await getCategoriesBySubcategory(collectionSlug, subcategorySlug);
+  const relatedCategories = rawRelated
     .filter((cat) => cat.slug !== categorySlug)
     .slice(0, 4);
 
@@ -288,7 +289,6 @@ export default async function CategoryLandingPage({ params }) {
               ))}
             </div>
 
-            {/* Link to Marble Material Hub */}
             <div style={{ marginTop: "var(--spacing-xl)", textAlign: "center" }}>
               <Link
                 href={marbleHubData[category.slug] ? `/marble/${category.slug}` : "/marble"}

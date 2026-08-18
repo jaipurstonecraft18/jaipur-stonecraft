@@ -1,63 +1,144 @@
 import { NextResponse } from "next/server";
 import path from "path";
 import fs from "fs/promises";
+import sharp from "sharp";
 import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
 
-const ALLOWED_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/avif"];
+const ALLOWED_MIME_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/avif"];
 const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15MB
 
 export async function POST(request) {
   if (!isAuthorizedAdminRequest(request)) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ error: "Unauthorized access" }, { status: 401 });
   }
 
   try {
     const formData = await request.formData();
-    const targetFolder = formData.get("folder") === "categories" ? "categories" : "products";
-    const productSlug = (formData.get("productSlug") || "product").toString();
-    const files = formData.getAll("files");
+    const rawTargetFolder = formData.get("folder");
+    const targetFolder = rawTargetFolder === "categories" ? "categories" : "products";
+    
+    // Strict path traversal prevention & sanitization
+    const rawSlug = (formData.get("productSlug") || "product").toString();
+    const cleanSlug = path.basename(rawSlug).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "product";
 
+    const files = formData.getAll("files");
     if (!files || files.length === 0) {
-      return NextResponse.json({ error: "No image files provided" }, { status: 400 });
+      return NextResponse.json({ error: "No image files provided for upload" }, { status: 400 });
     }
 
-    const uploadDir = path.join(process.cwd(), "public", "uploads", targetFolder);
-    await fs.mkdir(uploadDir, { recursive: true });
+    const baseUploadDir = path.join(process.cwd(), "public", "uploads", targetFolder);
+    const rawDir = path.join(baseUploadDir, "raw");
+    const displayDir = path.join(baseUploadDir, "display");
+    const cardDir = path.join(baseUploadDir, "card");
+    const thumbDir = path.join(baseUploadDir, "thumb");
+
+    await Promise.all([
+      fs.mkdir(rawDir, { recursive: true }),
+      fs.mkdir(displayDir, { recursive: true }),
+      fs.mkdir(cardDir, { recursive: true }),
+      fs.mkdir(thumbDir, { recursive: true })
+    ]);
 
     const uploadedRecords = [];
 
     for (const file of files) {
       if (typeof file === "string" || !file.name) continue;
 
-      if (!ALLOWED_TYPES.includes(file.type)) {
-        return NextResponse.json({ error: `File type ${file.type} is not supported. Please upload JPEG, PNG, WebP, or AVIF images.` }, { status: 400 });
+      if (!ALLOWED_MIME_TYPES.includes(file.type)) {
+        return NextResponse.json({ error: `File type "${file.type}" is not supported. Upload JPEG, PNG, WebP, or AVIF.` }, { status: 400 });
       }
 
       if (file.size > MAX_FILE_SIZE) {
-        return NextResponse.json({ error: `File ${file.name} exceeds maximum 15MB limit.` }, { status: 400 });
+        return NextResponse.json({ error: `File "${file.name}" exceeds the maximum 15MB limit.` }, { status: 400 });
+      }
+
+      const buffer = Buffer.from(await file.arrayBuffer());
+
+      // Byte-level image verification using Sharp
+      let metadata;
+      try {
+        metadata = await sharp(buffer).metadata();
+        if (!metadata || !metadata.format) {
+          throw new Error("Invalid image header");
+        }
+      } catch (err) {
+        return NextResponse.json({ error: `File "${file.name}" is corrupted or is not a valid image.` }, { status: 400 });
       }
 
       const timestamp = Date.now();
-      const ext = path.extname(file.name) || ".jpg";
-      const cleanSlug = productSlug.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-      const filename = `${cleanSlug}-${timestamp}-${Math.random().toString(36).substring(2, 7)}${ext}`;
-      const filePath = path.join(uploadDir, filename);
+      const rawExt = path.extname(file.name).toLowerCase() || `.${metadata.format}`;
+      const baseFilename = `${cleanSlug}-${timestamp}-${Math.random().toString(36).substring(2, 7)}`;
 
-      const buffer = Buffer.from(await file.arrayBuffer());
-      await fs.writeFile(filePath, buffer);
+      const rawFilename = `${baseFilename}${rawExt}`;
+      const webpFilename = `${baseFilename}.webp`;
 
-      const publicUrl = `/uploads/${targetFolder}/${filename}`;
+      // 1. Save Unprocessed Raw Original File
+      const rawPath = path.join(rawDir, rawFilename);
+      await fs.writeFile(rawPath, buffer);
+
+      // 2. Process Sharp WebP Variants with EXIF Auto-Orientation & Metadata Stripping
+      const baseSharp = () => sharp(buffer).rotate();
+
+      // Display Variant (1200x1500 max, WebP 82%)
+      const displayBuffer = await baseSharp()
+        .resize(1200, 1500, { fit: "inside", withoutEnlargement: true })
+        .webp({ quality: 82 })
+        .toBuffer();
+      const displayPath = path.join(displayDir, webpFilename);
+      await fs.writeFile(displayPath, displayBuffer);
+
+      // Card Variant (600x750 max, WebP 80%)
+      const cardBuffer = await baseSharp()
+        .resize(600, 750, { fit: "inside", withoutEnlargement: true })
+        .webp({ quality: 80 })
+        .toBuffer();
+      const cardPath = path.join(cardDir, webpFilename);
+      await fs.writeFile(cardPath, cardBuffer);
+
+      // Thumb Variant (300x300 square cover, WebP 75%)
+      const thumbBuffer = await baseSharp()
+        .resize(300, 300, { fit: "cover", position: "center" })
+        .webp({ quality: 75 })
+        .toBuffer();
+      const thumbPath = path.join(thumbDir, webpFilename);
+      await fs.writeFile(thumbPath, thumbBuffer);
+
+      const rawSize = file.size;
+      const displaySize = displayBuffer.length;
+      const cardSize = cardBuffer.length;
+      const thumbSize = thumbBuffer.length;
+      const savingsPercent = Math.max(0, Math.round(((rawSize - displaySize) / rawSize) * 100));
+
+      const displayUrl = `/uploads/${targetFolder}/display/${webpFilename}`;
+      const rawUrl = `/uploads/${targetFolder}/raw/${rawFilename}`;
+      const cardUrl = `/uploads/${targetFolder}/card/${webpFilename}`;
+      const thumbUrl = `/uploads/${targetFolder}/thumb/${webpFilename}`;
+
       uploadedRecords.push({
-        url: publicUrl,
-        filename,
-        size: file.size,
-        type: file.type,
+        url: displayUrl, // Primary URL for backwards compatibility
+        rawUrl,
+        displayUrl,
+        cardUrl,
+        thumbUrl,
+        filename: webpFilename,
+        rawFilename,
+        originalSize: rawSize,
+        displaySize,
+        cardSize,
+        thumbSize,
+        savingsPercent,
+        dimensions: { width: metadata.width, height: metadata.height },
         altText: `${cleanSlug.replace(/-/g, " ")} hand-carved in Jaipur atelier`
       });
     }
 
-    return NextResponse.json({ success: true, images: uploadedRecords });
+    return NextResponse.json({
+      success: true,
+      images: uploadedRecords,
+      uploadedFiles: uploadedRecords
+    });
   } catch (error) {
-    return NextResponse.json({ error: error.message || "Upload failed" }, { status: 500 });
+    console.error("[Upload API Error]:", error);
+    return NextResponse.json({ error: error.message || "Failed to process image upload on server." }, { status: 500 });
   }
 }

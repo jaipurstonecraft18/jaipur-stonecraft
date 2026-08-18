@@ -1004,15 +1004,24 @@ export const categoriesData = {
   }
 };
 
-export function getCategory(collectionSlug, subcategorySlug, categorySlug) {
-  const cat = categoriesData[categorySlug];
-  if (cat && cat.parentCollection === collectionSlug && cat.parentSubcategory === subcategorySlug) {
-    return cat;
-  }
-  return null;
+import { getCategory as getCategoryFromDB, getCategoriesBySubcategory as getCategoriesBySubcategoryFromDB } from "../lib/db/taxonomy.js";
+
+export async function getCategory(collectionSlug, subcategorySlug, categorySlug) {
+  const targetSlug = categorySlug || collectionSlug;
+  try {
+    const dbCat = await getCategoryFromDB(collectionSlug, subcategorySlug, targetSlug);
+    if (dbCat) return dbCat;
+  } catch (e) {}
+
+  return categoriesData[targetSlug] || null;
 }
 
-export function getCategoriesBySubcategory(collectionSlug, subcategorySlug) {
+export async function getCategoriesBySubcategory(collectionSlug, subcategorySlug) {
+  try {
+    const dbCats = await getCategoriesBySubcategoryFromDB(collectionSlug, subcategorySlug);
+    if (dbCats && dbCats.length > 0) return dbCats;
+  } catch (e) {}
+
   return Object.values(categoriesData).filter(
     (cat) => cat.parentCollection === collectionSlug && cat.parentSubcategory === subcategorySlug
   );

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Container from "@/components/Container/Container";
 import Section from "@/components/Section/Section";
 import PrimaryButton from "@/components/PrimaryButton/PrimaryButton";
@@ -12,10 +13,11 @@ export default function HeritageStory() {
           {/* Left Column: Large Editorial Image */}
           <ScrollReveal animation="fade-up" className={styles.imageCol}>
             <div className={styles.imageWrapper}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/images/collections/custom.png"
                 alt="Sculpted marble portrait bust in Jaipur Stonecraft atelier"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className={styles.image}
                 loading="lazy"
               />

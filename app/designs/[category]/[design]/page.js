@@ -13,26 +13,22 @@ import SecondaryButton from "@/components/SecondaryButton/SecondaryButton";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { getCollection, getSubcategory } from "@/content/collections";
 import { categoriesData } from "@/content/categories";
-import { designsData } from "@/content/designs";
-import { getProductFromDB, getRelatedProductsFromDB, getKnowledgeArticlesForProduct } from "@/content/products-db";
+import { getProductFromDB, getRelatedProductsFromDB, getAllProductsFromDB, getKnowledgeArticlesForProduct } from "@/content/products-db";
 import { siteConfig } from "@/content/site";
 import styles from "./page.module.css";
 
 export async function generateStaticParams() {
-  const params = [];
-  Object.values(designsData).forEach((design) => {
-    params.push({
-      category: design.parentCategory,
-      design: design.slug,
-    });
-  });
-  return params;
+  const designs = await getAllProductsFromDB();
+  return designs.map((design) => ({
+    category: design.parentCategory,
+    design: design.slug,
+  }));
 }
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const { category: categorySlug, design: designSlug } = resolvedParams;
-  const design = getProductFromDB(categorySlug, designSlug);
+  const design = await getProductFromDB(categorySlug, designSlug);
 
   if (!design) return {};
 
@@ -66,17 +62,17 @@ export default async function DesignDetailPage({ params }) {
   const resolvedParams = await params;
   const { category: categorySlug, design: designSlug } = resolvedParams;
 
-  const design = getProductFromDB(categorySlug, designSlug);
+  const design = await getProductFromDB(categorySlug, designSlug);
   if (!design) {
     notFound();
   }
 
   const category = categoriesData[design.parentCategory];
-  const collection = category ? getCollection(category.parentCollection) : null;
-  const subcategory = category ? getSubcategory(category.parentCollection, category.parentSubcategory) : null;
+  const collection = category ? await getCollection(category.parentCollection) : null;
+  const subcategory = category ? await getSubcategory(category.parentCollection, category.parentSubcategory) : null;
 
-  // SECTION 31: Data-Driven Relationship Engine (Genuine shared taxonomy)
-  const relatedDesigns = getRelatedProductsFromDB(design, 3);
+  // Data-Driven Relationship Engine (Genuine shared taxonomy)
+  const relatedDesigns = await getRelatedProductsFromDB(design, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -115,7 +111,6 @@ export default async function DesignDetailPage({ params }) {
       {/* 1. HERO & CONFIGURATION SECTION */}
       <Section background="light" spacing="standard" className="page-offset">
         <Container>
-          {/* SECTION 26: Data-Generated Logical Breadcrumbs */}
           <Breadcrumbs
             items={[
               { label: "Collections", href: "/collections" },
@@ -152,7 +147,6 @@ export default async function DesignDetailPage({ params }) {
                   {design.shortDescription}
                 </p>
 
-                {/* SECTION 25: Data-Driven Internal Linking Badges */}
                 <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", margin: "1rem 0" }}>
                   {design.primaryMaterial && (
                     <Link
@@ -191,7 +185,6 @@ export default async function DesignDetailPage({ params }) {
 
                 <div className={styles.divider} />
 
-                {/* Spec Highlights Grid */}
                 <div className={styles.specGrid}>
                   <div className={styles.specItem}>
                     <span className={styles.specLabel}>Primary Stone</span>
@@ -225,7 +218,7 @@ export default async function DesignDetailPage({ params }) {
         </Container>
       </Section>
 
-      {/* 2. SECTION 13: KNOWLEDGE LAYER & DETAILED MASONIC STORY */}
+      {/* 2. KNOWLEDGE LAYER & DETAILED MASONIC STORY */}
       <Section background="dark" spacing="standard">
         <Container>
           <div style={{ maxWidth: "840px", margin: "0 auto" }}>
@@ -311,7 +304,7 @@ export default async function DesignDetailPage({ params }) {
         </Section>
       )}
 
-      {/* 4. SECTION 31: RELATED PRODUCTS RECOMMENDATION ENGINE */}
+      {/* 4. RELATED PRODUCTS RECOMMENDATION ENGINE */}
       {relatedDesigns.length > 0 && (
         <Section background="light" spacing="standard">
           <Container>

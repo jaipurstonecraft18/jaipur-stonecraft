@@ -39,16 +39,12 @@ export default async function KnowledgeArticlePage({ params }) {
     notFound();
   }
 
-  // Related products generated from taxonomy relationships
-  const relatedProducts = article.relatedProductSlugs
-    .map((productSlug) => {
-      // Find matching design
-      const found = Object.values(require("@/content/products-db").productsDatabaseStore).find(
-        (p) => p.slug === productSlug
-      );
-      return found || null;
+  const rawProducts = await Promise.all(
+    (article.relatedProductSlugs || []).map(async (productSlug) => {
+      return await getProductFromDB(productSlug);
     })
-    .filter(Boolean);
+  );
+  const relatedProducts = rawProducts.filter(Boolean);
 
   const jsonLd = {
     "@context": "https://schema.org",

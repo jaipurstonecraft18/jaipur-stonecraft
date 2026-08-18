@@ -1,22 +1,19 @@
 /**
  * Jaipur Stonecraft — Designs Gateway
  * 
- * Re-exports & queries from the Central Product Database Store (/content/products-db/ products-db.js)
+ * Re-exports & queries from the Central Product Database Store (/content/products-db/products-db.js)
  * ensuring ONE SINGLE SOURCE OF TRUTH across the platform.
  */
 
 import {
-  productsDatabaseStore,
   getProductFromDB,
   getProductsByCategoryFromDB
 } from "@/content/products-db/products-db.js";
 
-export const designsData = productsDatabaseStore;
-
-export function getDesign(categorySlug, designSlug) {
-  return getProductFromDB(categorySlug, designSlug);
+export async function getDesign(categorySlug, designSlug) {
+  return await getProductFromDB(categorySlug, designSlug);
 }
 
-export function getDesignsByCategory(categorySlug) {
-  return getProductsByCategoryFromDB(categorySlug);
+export async function getDesignsByCategory(categorySlug) {
+  return await getProductsByCategoryFromDB(categorySlug);
 }

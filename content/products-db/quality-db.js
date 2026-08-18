@@ -9,7 +9,7 @@
  * Surfaces internal quality reports to identify entries needing owner review or photography.
  */
 
-import { productsDatabaseStore } from "./products-db.js";
+import { getAllProductsFromDB } from "./products-db.js";
 
 export function evaluateProductQuality(product) {
   if (!product) return null;
@@ -25,8 +25,8 @@ export function evaluateProductQuality(product) {
   if (product.parentCategory) seoScore += 15;
   if (product.parentCollection) seoScore += 15;
   if (product.primaryMaterialId) seoScore += 15;
-  if (product.seo && product.seo.title && !product.seo.title.includes("PLACEHOLDER")) seoScore += 125;
-  if (product.seo && product.seo.description && product.seo.description.length > 50) seoScore += 10;
+  if (product.seo && product.seo.title && !product.seo.title.includes("PLACEHOLDER")) seoScore += 25;
+  if (product.seo && product.seo.description && product.seo.description.length > 50) seoScore += 15;
   seoScore = Math.min(100, seoScore);
 
   // 2. Content Readiness Checks (Max 100)
@@ -80,8 +80,8 @@ export function evaluateProductQuality(product) {
   };
 }
 
-export function generateFullCatalogQualityAuditReport() {
-  const allProducts = Object.values(productsDatabaseStore);
+export async function generateFullCatalogQualityAuditReport() {
+  const allProducts = await getAllProductsFromDB();
   const evaluations = allProducts.map(evaluateProductQuality);
 
   const totalProducts = evaluations.length;
@@ -94,7 +94,7 @@ export function generateFullCatalogQualityAuditReport() {
     gradeA,
     gradeB,
     gradeC,
-    averageOverallScore: Math.round(evaluations.reduce((sum, e) => sum + e.overallScore, 0) / totalProducts),
+    averageOverallScore: totalProducts > 0 ? Math.round(evaluations.reduce((sum, e) => sum + e.overallScore, 0) / totalProducts) : 0,
     evaluations
   };
 }

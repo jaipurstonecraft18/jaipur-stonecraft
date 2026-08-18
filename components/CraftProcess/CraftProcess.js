@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Container from "@/components/Container/Container";
 import PrimaryButton from "@/components/PrimaryButton/PrimaryButton";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
@@ -63,10 +64,11 @@ export default function CraftProcess() {
           {/* Right Column: Workshop Image */}
           <ScrollReveal animation="fade-up" delay={200} className={styles.workshopCol}>
             <div className={styles.workshopImageWrapper}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/images/craftsmanship/artisan-hands.png"
                 alt="Artisan hands chiseling white marble details in Jaipur workshop"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className={styles.workshopImage}
                 loading="lazy"
               />

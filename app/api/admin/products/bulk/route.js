@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import getDB from "@/lib/db/client.js";
+import { execute } from "@/lib/db/client.js";
 import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
 
 export async function POST(request) {
@@ -15,17 +15,16 @@ export async function POST(request) {
       return NextResponse.json({ error: "Action and array of product IDs are required" }, { status: 400 });
     }
 
-    const db = getDB();
     const placeholders = productIds.map(() => "?").join(",");
 
     if (action === "publish") {
-      db.prepare(`UPDATE products SET status = 'published', updated_at = CURRENT_TIMESTAMP WHERE id IN (${placeholders})`).run(...productIds);
+      await execute(`UPDATE products SET status = 'published' WHERE id IN (${placeholders})`, productIds);
     } else if (action === "archive") {
-      db.prepare(`UPDATE products SET status = 'archived', updated_at = CURRENT_TIMESTAMP WHERE id IN (${placeholders})`).run(...productIds);
+      await execute(`UPDATE products SET status = 'archived' WHERE id IN (${placeholders})`, productIds);
     } else if (action === "feature") {
-      db.prepare(`UPDATE products SET is_featured = 1, updated_at = CURRENT_TIMESTAMP WHERE id IN (${placeholders})`).run(...productIds);
+      await execute(`UPDATE products SET is_featured = 1 WHERE id IN (${placeholders})`, productIds);
     } else if (action === "unfeature") {
-      db.prepare(`UPDATE products SET is_featured = 0, updated_at = CURRENT_TIMESTAMP WHERE id IN (${placeholders})`).run(...productIds);
+      await execute(`UPDATE products SET is_featured = 0 WHERE id IN (${placeholders})`, productIds);
     } else {
       return NextResponse.json({ error: "Invalid bulk action" }, { status: 400 });
     }

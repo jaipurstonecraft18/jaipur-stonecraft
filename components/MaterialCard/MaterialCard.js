@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
 import styles from "./MaterialCard.module.css";
 
 export default function MaterialCard({
@@ -26,14 +28,16 @@ export default function MaterialCard({
 
   const defaultAlt = `Natural stone specimen of ${name} quarried in ${origin || "Rajasthan, India"}`;
   const fallbackImage = `https://placehold.co/800x500/E8E4DF/1A1918?text=${encodeURIComponent(name)}`;
+  const optimizedSrc = getImageVariantUrl(imageSrc, "card") || fallbackImage;
 
   return (
     <Link href={href || "/marble"} className={cardClassName}>
       <div className={imageWrapperClass}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={imageSrc || fallbackImage}
+        <Image
+          src={optimizedSrc}
           alt={imageAlt || defaultAlt}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className={styles.image}
           loading="lazy"
         />

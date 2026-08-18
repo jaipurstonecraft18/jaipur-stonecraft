@@ -32,6 +32,7 @@ export default function AdminCategoriesCoverPage() {
   const handleCoverUpload = async (item, file, type = "category") => {
     if (!file) return;
 
+    setMessage({ type: "", text: "" });
     const formData = new FormData();
     formData.append("files", file);
     formData.append("folder", "categories");
@@ -44,14 +45,14 @@ export default function AdminCategoriesCoverPage() {
       });
       const uploadData = await uploadRes.json();
 
-      if (uploadData.success && uploadData.images && uploadData.images.length > 0) {
+      if (uploadRes.ok && uploadData.success && uploadData.images && uploadData.images.length > 0) {
         const newUrl = uploadData.images[0].url;
         await updateCoverUrl(item.slug, newUrl, item.image_alt || item.name, type);
       } else {
-        alert(uploadData.error || "Upload failed");
+        setMessage({ type: "error", text: uploadData.error || "Upload failed." });
       }
     } catch (e) {
-      alert("Error uploading cover image");
+      setMessage({ type: "error", text: "Network error uploading cover image." });
     }
   };
 
@@ -68,10 +69,10 @@ export default function AdminCategoriesCoverPage() {
         setMessage({ type: "success", text: `Updated cover image for ${slug}` });
         fetchCategoryData();
       } else {
-        alert(data.error || "Failed to update cover");
+        setMessage({ type: "error", text: data.error || "Failed to update cover." });
       }
     } catch (e) {
-      alert("Failed to save cover image");
+      setMessage({ type: "error", text: "Failed to save cover image." });
     }
   };
 

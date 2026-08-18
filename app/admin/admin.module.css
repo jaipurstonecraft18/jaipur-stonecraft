@@ -44,117 +44,152 @@
 }
 
 .topHeader {
-  background-color: #1A1918;
-  color: #FCFBF9;
-  padding: 1rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #333;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+  background-color: #111110;
+  color: #FAF8F5;
+  padding: 0.5rem 1.5rem;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border-bottom: 1px solid #222220;
+  min-height: 52px;
+  height: auto;
+  box-sizing: border-box;
+  gap: 1rem;
+  width: 100%;
 }
 
 .brandNav {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  flex-wrap: wrap;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: 0.6rem;
+  flex-shrink: 0;
 }
 
 .brandTitle {
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
-  color: #FCFBF9;
+  letter-spacing: 0.02em;
+  color: #FAF8F5;
   text-decoration: none;
   white-space: nowrap;
 }
 
+.brandDivider {
+  width: 1px;
+  height: 14px;
+  background-color: #333330;
+  flex-shrink: 0;
+}
+
+.studioBadge {
+  color: #9E7B4F;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .navLinks {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: 0.25rem;
+  flex-shrink: 0;
 }
 
 .navLink {
-  color: #A09D98;
+  color: #888880;
   text-decoration: none;
-  font-size: 0.875rem;
+  font-size: 0.82rem;
   font-weight: 500;
-  transition: color 0.2s ease;
-  padding: 0.4rem 0.6rem;
+  transition: all 0.15s ease;
+  padding: 0.35rem 0.65rem;
   border-radius: 4px;
-  min-height: 44px;
   display: inline-flex;
   align-items: center;
+  white-space: nowrap;
 }
 
-.navLink:hover, .navLinkActive {
-  color: #FCFBF9;
-  background-color: rgba(255, 255, 255, 0.08);
+.navLink:hover {
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.navLinkActive {
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.09);
+  font-weight: 600;
 }
 
 .topActions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: 0.65rem;
+  flex-shrink: 0;
 }
 
 .publicSiteLink {
-  font-size: 0.8rem;
-  color: #9E7B4F;
+  font-size: 0.78rem;
+  color: #888880;
   text-decoration: none;
-  border: 1px solid #9E7B4F;
-  padding: 0.35rem 0.75rem;
+  padding: 0.3rem 0.6rem;
   border-radius: 4px;
-  transition: all 0.2s ease;
-  min-height: 44px;
+  transition: all 0.15s ease;
   display: inline-flex;
   align-items: center;
+  white-space: nowrap;
 }
 
 .publicSiteLink:hover {
-  background-color: #9E7B4F;
-  color: #FFF;
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .logoutBtn {
   background: transparent;
-  border: 1px solid #444;
-  color: #AAA;
-  padding: 0.35rem 0.75rem;
+  border: 1px solid #2B2B28;
+  color: #888880;
+  padding: 0.3rem 0.6rem;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 0.8rem;
-  min-height: 44px;
+  font-size: 0.78rem;
   display: inline-flex;
   align-items: center;
+  transition: all 0.15s ease;
+  white-space: nowrap;
 }
 
 .logoutBtn:hover {
-  border-color: #888;
-  color: #FFF;
+  border-color: #C5221F;
+  color: #FF6B6B;
+  background-color: rgba(197, 34, 31, 0.08);
 }
 
 .mainContent {
   max-width: 1380px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1.25rem 1.5rem;
 }
 
 .dashboardHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 .pageTitle {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-weight: 600;
 }
 
@@ -162,17 +197,17 @@
   background-color: var(--color-bronze);
   color: #FFFFFF;
   border: none;
-  padding: 0.65rem 1.25rem;
+  padding: 0.5rem 1rem;
   border-radius: 4px;
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   cursor: pointer;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   transition: background-color 0.2s ease;
-  min-height: 44px;
+  min-height: 38px;
 }
 
 .primaryBtn:hover {
@@ -183,16 +218,16 @@
   background-color: #E2DDD5;
   color: var(--color-charcoal);
   border: none;
-  padding: 0.65rem 1.25rem;
+  padding: 0.5rem 1rem;
   border-radius: 4px;
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   cursor: pointer;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  min-height: 44px;
+  min-height: 38px;
 }
 
 .secondaryBtn:hover {
@@ -201,17 +236,35 @@
 
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.25rem;
-  margin-bottom: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .statCard {
   background-color: #FFFFFF;
   border: 1px solid #E2DDD5;
   border-radius: 6px;
-  padding: 1.5rem;
+  padding: 1rem 1.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.stickyFooterBar {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid #E2DDD5;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+  margin-top: 1.5rem;
+  border-radius: 0 0 6px 6px;
 }
 
 .statLabel {
@@ -545,14 +598,14 @@
   border-top: 1px solid #333;
 }
 
-/* Slide-out Mobile Drawer */
+/* Slide-out Mobile Drawer — Hidden by default on Desktop */
 .mobileNavHeader {
-  background-color: #1A1918;
-  padding: 0.85rem 1rem;
-  display: flex;
+  display: none;
+  background-color: #111110;
+  padding: 0.75rem 1rem;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #222220;
 }
 
 .hamburgerBtn {
@@ -625,8 +678,12 @@
     display: none !important;
   }
 
+  .mobileNavHeader {
+    display: flex !important;
+  }
+
   .topHeader {
-    display: none; /* Replaced by AdminMobileNav on phone viewports */
+    display: none !important;
   }
 
   .mainContent {

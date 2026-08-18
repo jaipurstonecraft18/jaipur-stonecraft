@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import getDB from "@/lib/db/client.js";
+import { getOne, execute } from "@/lib/db/client.js";
 import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
 
 export async function POST(request) {
@@ -15,7 +15,6 @@ export async function POST(request) {
       return NextResponse.json({ error: "Name is required" }, { status: 400 });
     }
 
-    const db = getDB();
     const trimmedName = name.trim();
 
     // STRICT RULE: Granite is strictly excluded
@@ -26,8 +25,7 @@ export async function POST(request) {
     const id = trimmedName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
     if (targetField === "primaryMaterialId") {
-      // Check duplicate
-      const existing = db.prepare("SELECT * FROM materials WHERE LOWER(name) = LOWER(?) OR id = ?").get(trimmedName, id);
+      const existing = await getOne("SELECT * FROM materials WHERE LOWER(name) = LOWER(?) OR id = ?", [trimmedName, id]);
       if (existing) {
         return NextResponse.json({
           success: true,
@@ -36,10 +34,10 @@ export async function POST(request) {
         });
       }
 
-      db.prepare(`
+      await execute(`
         INSERT INTO materials (id, name, category, origin, color_family, durability, is_sacred_grade, description, is_active)
         VALUES (?, ?, ?, 'Rajasthan, India', ?, 'High / Millennial Grade', 1, 'Custom artisan material added via Product Studio.', 1)
-      `).run(id, trimmedName, category || "Marble", colorFamily || "White");
+      `, [id, trimmedName, category || "Marble", colorFamily || "White"]);
 
       return NextResponse.json({
         success: true,
@@ -49,7 +47,7 @@ export async function POST(request) {
     }
 
     if (targetField === "subjectId") {
-      const existing = db.prepare("SELECT * FROM subjects WHERE LOWER(primary_name) = LOWER(?) OR id = ?").get(trimmedName, id);
+      const existing = await getOne("SELECT * FROM subjects WHERE LOWER(primary_name) = LOWER(?) OR id = ?", [trimmedName, id]);
       if (existing) {
         return NextResponse.json({
           success: true,
@@ -58,10 +56,10 @@ export async function POST(request) {
         });
       }
 
-      db.prepare(`
+      await execute(`
         INSERT INTO subjects (id, primary_name, synonyms, tradition, iconography_elements, is_active)
         VALUES (?, ?, '[]', 'Vedic / Sacred', '[]', 1)
-      `).run(id, trimmedName);
+      `, [id, trimmedName]);
 
       return NextResponse.json({
         success: true,
@@ -71,7 +69,7 @@ export async function POST(request) {
     }
 
     if (targetField === "productType") {
-      const existing = db.prepare("SELECT * FROM product_types WHERE LOWER(name) = LOWER(?) OR id = ?").get(trimmedName, id);
+      const existing = await getOne("SELECT * FROM product_types WHERE LOWER(name) = LOWER(?) OR id = ?", [trimmedName, id]);
       if (existing) {
         return NextResponse.json({
           success: true,
@@ -79,14 +77,38 @@ export async function POST(request) {
         });
       }
 
-      db.prepare(`
+      await execute(`
         INSERT INTO product_types (id, name, description, is_active)
         VALUES (?, ?, 'Custom product type created via Product Studio.', 1)
-      `).run(id, trimmedName);
+      `, [id, trimmedName]);
 
       return NextResponse.json({
         success: true,
         item: { id, name: trimmedName }
+      });
+    }
+
+    if (targetField === "parentCategory") {
+      const existing = await getOne("SELECT * FROM categories WHERE LOWER(name) = LOWER(?) OR slug = ?", [trimmedName, id]);
+      if (existing) {
+        return NextResponse.json({
+          success: true,
+          item: { id: existing.slug, name: existing.name, slug: existing.slug, parentCollection: existing.parent_collection_slug, parentSubcategory: existing.parent_subcategory_slug }
+        });
+      }
+
+      const parentCollection = body.parentCollection || "sculptures-statues";
+      const parentSubcategory = body.parentSubcategory || "hindu-sculptures";
+
+      await execute(`
+        INSERT INTO categories (id, slug, parent_collection_slug, parent_subcategory_slug, name, description, image_src, image_alt, featured, is_active)
+        VALUES (?, ?, ?, ?, ?, 'Custom artisan category added via Product Studio.', 'https://placehold.co/800x500/E8E4DF/1A1918?text=Category', ?, 0, 1)
+      `, [id, id, parentCollection, parentSubcategory, trimmedName, `${trimmedName} hand-carved in Jaipur`]);
+
+      return NextResponse.json({
+        success: true,
+        item: { id: id, name: trimmedName, slug: id, parentCollection, parentSubcategory },
+        message: `Created new category "${trimmedName}".`
       });
     }
 

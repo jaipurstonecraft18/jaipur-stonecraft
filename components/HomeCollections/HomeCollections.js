@@ -1,9 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import Container from "@/components/Container/Container";
 import Section from "@/components/Section/Section";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { collectionsData } from "@/content/collections";
+import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
 import styles from "./HomeCollections.module.css";
 
 export default function HomeCollections() {
@@ -42,10 +44,11 @@ export default function HomeCollections() {
           <ScrollReveal animation="fade-up">
             <Link href={`/collections/${heroSpotlight.slug}`} className={styles.heroSpotlightCard}>
               <div className={styles.spotlightImageWrapper}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={heroSpotlight.imageSrc}
+                <Image
+                  src={getImageVariantUrl(heroSpotlight.imageSrc, "card")}
                   alt={heroSpotlight.name}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className={styles.spotlightImage}
                   loading="lazy"
                 />
@@ -87,8 +90,14 @@ export default function HomeCollections() {
               <ScrollReveal key={col.slug} animation="fade-up" delay={idx * 100}>
                 <Link href={`/collections/${col.slug}`} className={styles.gridCard}>
                   <div className={styles.gridImageWrapper}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={col.imageSrc} alt={col.name} className={styles.gridImage} loading="lazy" />
+                    <Image
+                      src={getImageVariantUrl(col.imageSrc, "card")}
+                      alt={col.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className={styles.gridImage}
+                      loading="lazy"
+                    />
                   </div>
                   <div className={styles.gridContent}>
                     <div>
@@ -112,8 +121,14 @@ export default function HomeCollections() {
               <ScrollReveal key={col.slug} animation="fade-up" delay={idx * 80}>
                 <Link href={`/collections/${col.slug}`} className={styles.gridCard}>
                   <div className={styles.gridImageWrapper}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={col.imageSrc} alt={col.name} className={styles.gridImage} loading="lazy" />
+                    <Image
+                      src={getImageVariantUrl(col.imageSrc, "card")}
+                      alt={col.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className={styles.gridImage}
+                      loading="lazy"
+                    />
                   </div>
                   <div className={styles.gridContent}>
                     <div>

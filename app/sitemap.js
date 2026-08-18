@@ -1,11 +1,10 @@
-import getDB from "@/lib/db/client.js";
+import { query } from "@/lib/db/client.js";
 import { getAllKnowledgeArticles } from "@/content/products-db";
 import { marbleHubData } from "@/content/marble";
 import { projectsData } from "@/content/projects";
 
-export default function sitemap() {
+export default async function sitemap() {
   const baseUrl = "https://jaipurstonecraft.com";
-  const db = getDB();
 
   // 1. Core Static Routes
   const staticRoutes = [
@@ -44,8 +43,21 @@ export default function sitemap() {
     priority: 0.8,
   }));
 
-  // 4. Dynamic Level 1 Collections Routes (SQLite)
-  const collectionRows = db.prepare("SELECT slug FROM collections").all();
+  let collectionRows = [];
+  let subcategoryRows = [];
+  let categoryRows = [];
+  let productRows = [];
+
+  try {
+    collectionRows = await query("SELECT slug FROM collections");
+    subcategoryRows = await query("SELECT slug, parent_collection_slug FROM subcategories");
+    categoryRows = await query("SELECT slug, parent_collection_slug, parent_subcategory_slug FROM categories");
+    productRows = await query("SELECT slug, parent_category, updated_at FROM products WHERE status = 'published'");
+  } catch (e) {
+    console.error("[Sitemap DB Query Error]:", e);
+  }
+
+  // 4. Dynamic Level 1 Collections Routes
   const collectionRoutes = collectionRows.map((col) => ({
     url: `${baseUrl}/collections/${col.slug}`,
     lastModified: new Date(),
@@ -53,8 +65,7 @@ export default function sitemap() {
     priority: 0.8,
   }));
 
-  // 5. Dynamic Level 2 Subcategory Routes (SQLite)
-  const subcategoryRows = db.prepare("SELECT slug, parent_collection_slug FROM subcategories").all();
+  // 5. Dynamic Level 2 Subcategory Routes
   const subcategoryRoutes = subcategoryRows.map((sub) => ({
     url: `${baseUrl}/collections/${sub.parent_collection_slug}/${sub.slug}`,
     lastModified: new Date(),
@@ -62,8 +73,7 @@ export default function sitemap() {
     priority: 0.7,
   }));
 
-  // 6. Dynamic Level 3 Category Landing Routes (SQLite)
-  const categoryRows = db.prepare("SELECT slug, parent_collection_slug, parent_subcategory_slug FROM categories").all();
+  // 6. Dynamic Level 3 Category Landing Routes
   const categoryRoutes = categoryRows.map((cat) => ({
     url: `${baseUrl}/collections/${cat.parent_collection_slug}/${cat.parent_subcategory_slug}/${cat.slug}`,
     lastModified: new Date(),
@@ -71,8 +81,7 @@ export default function sitemap() {
     priority: 0.7,
   }));
 
-  // 7. Dynamic Level 4 Design Detail Routes (SQLite — Published Products Only)
-  const productRows = db.prepare("SELECT slug, parent_category, updated_at FROM products WHERE status = 'published'").all();
+  // 7. Dynamic Level 4 Design Detail Routes
   const designRoutes = productRows.map((p) => ({
     url: `${baseUrl}/designs/${p.parent_category}/${p.slug}`,
     lastModified: p.updated_at ? new Date(p.updated_at) : new Date(),

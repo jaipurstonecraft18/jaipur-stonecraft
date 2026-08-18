@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
 import styles from "./ProductCard.module.css";
 
 export default function ProductCard({
@@ -27,14 +28,16 @@ export default function ProductCard({
   }`;
 
   const defaultAlt = `Hand-carved ${name} in ${material || 'white marble'} sculpted in Jaipur atelier`;
+  const optimizedImageSrc = getImageVariantUrl(imageSrc, "card") || `https://placehold.co/800x1000/E8E4DF/1A1918?text=${encodeURIComponent(name)}`;
 
   return (
     <Link href={href} className={cardClassName} aria-label={`View details for ${name}`}>
       <div className={imageContainerClass}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={imageSrc || `https://placehold.co/800x1000/E8E4DF/1A1918?text=${encodeURIComponent(name)}`}
+        <Image
+          src={optimizedImageSrc}
           alt={imageAlt || defaultAlt}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className={styles.image}
           loading="lazy"
         />

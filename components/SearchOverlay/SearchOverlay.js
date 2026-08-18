@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
 import styles from "./SearchOverlay.module.css";
 
 const suggestedSearches = [
@@ -198,7 +200,14 @@ export default function SearchOverlay({ isOpen, onClose }) {
                       className={styles.productCard}
                     >
                       <div className={styles.imgWrapper}>
-                        <img src={p.imageSrc} alt={p.name} className={styles.prodImg} />
+                        <Image
+                          src={getImageVariantUrl(p.imageSrc, "thumb")}
+                          alt={p.name}
+                          width={60}
+                          height={60}
+                          style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                          loading="lazy"
+                        />
                       </div>
                       <div className={styles.prodDetails}>
                         <span className={styles.prodMaterial}>

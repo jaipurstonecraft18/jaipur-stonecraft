@@ -34,7 +34,7 @@ export default async function ProductsCataloguePage({ searchParams }) {
   const page = parseInt(params?.page || "1", 10);
 
   // Paginated database query (16 items per page)
-  const { products, totalCount, currentPage, totalPages } = queryProductsDB({
+  const queryResult = await queryProductsDB({
     query,
     collection,
     material,
@@ -42,6 +42,11 @@ export default async function ProductsCataloguePage({ searchParams }) {
     page,
     pageSize: 16
   });
+
+  const products = queryResult?.products || [];
+  const totalCount = queryResult?.totalCount || 0;
+  const currentPage = queryResult?.currentPage || 1;
+  const totalPages = queryResult?.totalPages || 1;
 
   const collections = Object.values(collectionsStore);
 
@@ -85,7 +90,7 @@ export default async function ProductsCataloguePage({ searchParams }) {
                 <CollectionCard
                   key={product.id}
                   name={product.name}
-                  description={`${product.primaryMaterial.shortName} • Hand-carved in Jaipur`}
+                  description={`${product.primaryMaterial ? product.primaryMaterial.shortName : 'Makrana White'} • Hand-carved in Jaipur`}
                   imageSrc={product.imageSrc}
                   href={`/designs/${product.parentCategory}/${product.slug}`}
                 />

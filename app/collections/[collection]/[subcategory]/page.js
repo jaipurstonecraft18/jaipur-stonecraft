@@ -41,14 +41,14 @@ export default async function SubcategoryPage({ params }) {
   const resolvedParams = await params;
   const { collection: collectionSlug, subcategory: subcategorySlug } = resolvedParams;
 
-  const collection = getCollection(collectionSlug);
-  const subcategory = getSubcategory(collectionSlug, subcategorySlug);
+  const collection = await getCollection(collectionSlug);
+  const subcategory = await getSubcategory(collectionSlug, subcategorySlug);
 
   if (!collection || !subcategory) {
     notFound();
   }
 
-  const categories = getCategoriesBySubcategory(collectionSlug, subcategorySlug);
+  const categories = await getCategoriesBySubcategory(collectionSlug, subcategorySlug);
 
   // Data-driven visual hierarchy: separate featured vs standard categories
   const featuredCategories = categories.filter((c) => c.featured);

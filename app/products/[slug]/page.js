@@ -1,10 +1,11 @@
 import { redirect, notFound } from "next/navigation";
 import { categoriesData } from "@/content/categories";
-import { productsDatabaseStore } from "@/content/products-db";
+import { getProductFromDB, getAllProductsFromDB } from "@/content/products-db";
 
 export async function generateStaticParams() {
   const categorySlugs = Object.keys(categoriesData).map((slug) => ({ slug }));
-  const productSlugs = Object.keys(productsDatabaseStore).map((slug) => ({ slug }));
+  const products = await getAllProductsFromDB();
+  const productSlugs = products.map((p) => ({ slug: p.slug }));
   return [...categorySlugs, ...productSlugs];
 }
 
@@ -12,7 +13,7 @@ export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const { slug } = resolvedParams;
   const category = categoriesData[slug];
-  const product = productsDatabaseStore[slug];
+  const product = await getProductFromDB(slug);
 
   if (category) {
     return { title: `${category.name} — Jaipur Stonecraft` };
@@ -32,11 +33,10 @@ export default async function LegacyProductRedirect({ params }) {
     redirect(`/collections/${category.parentCollection}/${category.parentSubcategory}/${category.slug}`);
   }
 
-  const product = productsDatabaseStore[slug];
+  const product = await getProductFromDB(slug);
   if (product) {
     redirect(`/designs/${product.parentCategory}/${product.slug}`);
   }
 
   notFound();
 }
-

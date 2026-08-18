@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import getDB from "@/lib/db/client.js";
+import { query, getOne, execute } from "@/lib/db/client.js";
 import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
 
 // GET: Fetch catalogue entities with product usage counts
@@ -8,48 +8,46 @@ export async function GET(request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const db = getDB();
-
-  // 1. Materials with usage counts
-  const materials = db.prepare("SELECT * FROM materials ORDER BY name ASC").all().map((m) => {
-    const usage = db.prepare("SELECT COUNT(*) as count FROM products WHERE primary_material_id = ?").get(m.id);
+  const rawMaterials = await query("SELECT * FROM materials ORDER BY name ASC");
+  const materials = await Promise.all(rawMaterials.map(async (m) => {
+    const usage = await getOne("SELECT COUNT(*) as count FROM products WHERE primary_material_id = ?", [m.id]);
     return {
       ...m,
       isSacredGrade: Boolean(m.is_sacred_grade),
       isActive: Boolean(m.is_active ?? 1),
       usedByProductsCount: usage ? usage.count : 0
     };
-  });
+  }));
 
-  // 2. Subjects with usage counts
-  const subjects = db.prepare("SELECT * FROM subjects ORDER BY primary_name ASC").all().map((s) => {
-    const usage = db.prepare("SELECT COUNT(*) as count FROM products WHERE subject_id = ?").get(s.id);
+  const rawSubjects = await query("SELECT * FROM subjects ORDER BY primary_name ASC");
+  const subjects = await Promise.all(rawSubjects.map(async (s) => {
+    const usage = await getOne("SELECT COUNT(*) as count FROM products WHERE subject_id = ?", [s.id]);
     let synonyms = [];
-    try { synonyms = JSON.parse(s.synonyms || "[]"); } catch (e) {}
+    try { synonyms = typeof s.synonyms === "string" ? JSON.parse(s.synonyms || "[]") : (s.synonyms || []); } catch (e) {}
     return {
       ...s,
       synonyms,
       isActive: Boolean(s.is_active ?? 1),
       usedByProductsCount: usage ? usage.count : 0
     };
-  });
+  }));
 
-  // 3. Product Types with usage counts
-  const productTypes = db.prepare("SELECT * FROM product_types ORDER BY name ASC").all().map((pt) => {
-    const usage = db.prepare("SELECT COUNT(*) as count FROM products WHERE product_type = ?").get(pt.id);
+  const rawProductTypes = await query("SELECT * FROM product_types ORDER BY name ASC");
+  const productTypes = await Promise.all(rawProductTypes.map(async (pt) => {
+    const usage = await getOne("SELECT COUNT(*) as count FROM products WHERE product_type = ?", [pt.id]);
     return {
       ...pt,
       isActive: Boolean(pt.is_active ?? 1),
       usedByProductsCount: usage ? usage.count : 0
     };
-  });
+  }));
 
-  // 4. Attribute Definitions
-  const attributes = db.prepare("SELECT * FROM attribute_definitions ORDER BY name ASC").all().map((att) => {
+  const rawAttributes = await query("SELECT * FROM attribute_definitions ORDER BY name ASC");
+  const attributes = rawAttributes.map((att) => {
     let options = [];
     let appliesToProductTypes = [];
-    try { options = JSON.parse(att.options || "[]"); } catch (e) {}
-    try { appliesToProductTypes = JSON.parse(att.applies_to_product_types || "[]"); } catch (e) {}
+    try { options = typeof att.options === "string" ? JSON.parse(att.options || "[]") : (att.options || []); } catch (e) {}
+    try { appliesToProductTypes = typeof att.applies_to_product_types === "string" ? JSON.parse(att.applies_to_product_types || "[]") : (att.applies_to_product_types || []); } catch (e) {}
 
     return {
       id: att.id,
@@ -77,13 +75,12 @@ export async function POST(request) {
 
   try {
     const body = await request.json();
-    const { entityType, payload } = body; // entityType: 'material' | 'subject' | 'product_type' | 'attribute'
+    const { entityType, payload } = body;
 
     if (!entityType || !payload || !payload.name) {
       return NextResponse.json({ error: "Entity type and valid payload name are required" }, { status: 400 });
     }
 
-    const db = getDB();
     const trimmedName = payload.name.trim();
 
     // STRICT RULE: Granite is strictly excluded
@@ -94,34 +91,49 @@ export async function POST(request) {
     if (entityType === "material") {
       const id = payload.id || trimmedName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
       
-      // Check duplicate
-      const existing = db.prepare("SELECT * FROM materials WHERE (LOWER(name) = LOWER(?) OR id = ?) AND id != ?").get(trimmedName, id, payload.id || "");
+      const existing = await getOne("SELECT * FROM materials WHERE (LOWER(name) = LOWER(?) OR id = ?) AND id != ?", [trimmedName, id, payload.id || ""]);
       if (existing) {
         return NextResponse.json({ error: `Material "${trimmedName}" already exists in catalogue.` }, { status: 400 });
       }
 
-      db.prepare(`
-        INSERT INTO materials (id, name, category, origin, color_family, durability, is_sacred_grade, description, is_active)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)
-        ON CONFLICT(id) DO UPDATE SET
-          name = excluded.name,
-          category = excluded.category,
-          origin = excluded.origin,
-          color_family = excluded.color_family,
-          durability = excluded.durability,
-          is_sacred_grade = excluded.is_sacred_grade,
-          description = excluded.description,
-          is_active = excluded.is_active
-      `).run(
-        id,
-        trimmedName,
-        payload.category || "Marble",
-        payload.origin || "Rajasthan, India",
-        payload.colorFamily || "White",
-        payload.durability || "High / Millennial Grade",
-        payload.isSacredGrade ? 1 : 0,
-        payload.description || "",
-      );
+      const existingRecord = await getOne("SELECT id FROM materials WHERE id = ?", [id]);
+      if (existingRecord) {
+        await execute(`
+          UPDATE materials SET
+            name = ?,
+            category = ?,
+            origin = ?,
+            color_family = ?,
+            durability = ?,
+            is_sacred_grade = ?,
+            description = ?,
+            is_active = 1
+          WHERE id = ?
+        `, [
+          trimmedName,
+          payload.category || "Marble",
+          payload.origin || "Rajasthan, India",
+          payload.colorFamily || "White",
+          payload.durability || "High / Millennial Grade",
+          payload.isSacredGrade ? 1 : 0,
+          payload.description || "",
+          id
+        ]);
+      } else {
+        await execute(`
+          INSERT INTO materials (id, name, category, origin, color_family, durability, is_sacred_grade, description, is_active)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)
+        `, [
+          id,
+          trimmedName,
+          payload.category || "Marble",
+          payload.origin || "Rajasthan, India",
+          payload.colorFamily || "White",
+          payload.durability || "High / Millennial Grade",
+          payload.isSacredGrade ? 1 : 0,
+          payload.description || ""
+        ]);
+      }
 
       return NextResponse.json({ success: true, message: `Material "${trimmedName}" saved successfully.`, item: { id, name: trimmedName } });
     }
@@ -129,29 +141,43 @@ export async function POST(request) {
     if (entityType === "subject") {
       const id = payload.id || trimmedName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
-      const existing = db.prepare("SELECT * FROM subjects WHERE (LOWER(primary_name) = LOWER(?) OR id = ?) AND id != ?").get(trimmedName, id, payload.id || "");
+      const existing = await getOne("SELECT * FROM subjects WHERE (LOWER(primary_name) = LOWER(?) OR id = ?) AND id != ?", [trimmedName, id, payload.id || ""]);
       if (existing) {
         return NextResponse.json({ error: `Subject "${trimmedName}" already exists.` }, { status: 400 });
       }
 
-      db.prepare(`
-        INSERT INTO subjects (id, primary_name, synonyms, tradition, iconography_elements, default_category_slug, is_active)
-        VALUES (?, ?, ?, ?, ?, ?, 1)
-        ON CONFLICT(id) DO UPDATE SET
-          primary_name = excluded.primary_name,
-          synonyms = excluded.synonyms,
-          tradition = excluded.tradition,
-          iconography_elements = excluded.iconography_elements,
-          default_category_slug = excluded.default_category_slug,
-          is_active = excluded.is_active
-      `).run(
-        id,
-        trimmedName,
-        JSON.stringify(payload.synonyms || []),
-        payload.tradition || "Vedic / Masonic",
-        JSON.stringify(payload.iconographyElements || []),
-        payload.defaultCategorySlug || "",
-      );
+      const existingRecord = await getOne("SELECT id FROM subjects WHERE id = ?", [id]);
+      if (existingRecord) {
+        await execute(`
+          UPDATE subjects SET
+            primary_name = ?,
+            synonyms = ?,
+            tradition = ?,
+            iconography_elements = ?,
+            default_category_slug = ?,
+            is_active = 1
+          WHERE id = ?
+        `, [
+          trimmedName,
+          JSON.stringify(payload.synonyms || []),
+          payload.tradition || "Vedic / Masonic",
+          JSON.stringify(payload.iconographyElements || []),
+          payload.defaultCategorySlug || "",
+          id
+        ]);
+      } else {
+        await execute(`
+          INSERT INTO subjects (id, primary_name, synonyms, tradition, iconography_elements, default_category_slug, is_active)
+          VALUES (?, ?, ?, ?, ?, ?, 1)
+        `, [
+          id,
+          trimmedName,
+          JSON.stringify(payload.synonyms || []),
+          payload.tradition || "Vedic / Masonic",
+          JSON.stringify(payload.iconographyElements || []),
+          payload.defaultCategorySlug || ""
+        ]);
+      }
 
       return NextResponse.json({ success: true, message: `Subject "${trimmedName}" saved successfully.`, item: { id, primaryName: trimmedName } });
     }
@@ -159,14 +185,12 @@ export async function POST(request) {
     if (entityType === "product_type") {
       const id = payload.id || trimmedName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
-      db.prepare(`
-        INSERT INTO product_types (id, name, description, is_active)
-        VALUES (?, ?, ?, 1)
-        ON CONFLICT(id) DO UPDATE SET
-          name = excluded.name,
-          description = excluded.description,
-          is_active = excluded.is_active
-      `).run(id, trimmedName, payload.description || "");
+      const existingRecord = await getOne("SELECT id FROM product_types WHERE id = ?", [id]);
+      if (existingRecord) {
+        await execute("UPDATE product_types SET name = ?, description = ?, is_active = 1 WHERE id = ?", [trimmedName, payload.description || "", id]);
+      } else {
+        await execute("INSERT INTO product_types (id, name, description, is_active) VALUES (?, ?, ?, 1)", [id, trimmedName, payload.description || ""]);
+      }
 
       return NextResponse.json({ success: true, message: `Product type "${trimmedName}" saved.`, item: { id, name: trimmedName } });
     }
@@ -174,22 +198,35 @@ export async function POST(request) {
     if (entityType === "attribute") {
       const id = payload.id || trimmedName.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^|_$/g, "");
 
-      db.prepare(`
-        INSERT INTO attribute_definitions (id, name, data_type, options, applies_to_product_types, is_active)
-        VALUES (?, ?, ?, ?, ?, 1)
-        ON CONFLICT(id) DO UPDATE SET
-          name = excluded.name,
-          data_type = excluded.data_type,
-          options = excluded.options,
-          applies_to_product_types = excluded.applies_to_product_types,
-          is_active = excluded.is_active
-      `).run(
-        id,
-        trimmedName,
-        payload.dataType || "text",
-        JSON.stringify(payload.options || []),
-        JSON.stringify(payload.appliesToProductTypes || [])
-      );
+      const existingRecord = await getOne("SELECT id FROM attribute_definitions WHERE id = ?", [id]);
+      if (existingRecord) {
+        await execute(`
+          UPDATE attribute_definitions SET
+            name = ?,
+            data_type = ?,
+            options = ?,
+            applies_to_product_types = ?,
+            is_active = 1
+          WHERE id = ?
+        `, [
+          trimmedName,
+          payload.dataType || "text",
+          JSON.stringify(payload.options || []),
+          JSON.stringify(payload.appliesToProductTypes || []),
+          id
+        ]);
+      } else {
+        await execute(`
+          INSERT INTO attribute_definitions (id, name, data_type, options, applies_to_product_types, is_active)
+          VALUES (?, ?, ?, ?, ?, 1)
+        `, [
+          id,
+          trimmedName,
+          payload.dataType || "text",
+          JSON.stringify(payload.options || []),
+          JSON.stringify(payload.appliesToProductTypes || [])
+        ]);
+      }
 
       return NextResponse.json({ success: true, message: `Attribute "${trimmedName}" saved.`, item: { id, name: trimmedName } });
     }
@@ -208,13 +245,12 @@ export async function PUT(request) {
 
   try {
     const body = await request.json();
-    const { entityType, id, action } = body; // action: 'archive' | 'restore'
+    const { entityType, id, action } = body;
 
     if (!entityType || !id) {
       return NextResponse.json({ error: "Entity type and ID required" }, { status: 400 });
     }
 
-    const db = getDB();
     const newStatus = action === "archive" ? 0 : 1;
     const tableMap = {
       material: { table: "materials", fkCol: "primary_material_id" },
@@ -228,11 +264,11 @@ export async function PUT(request) {
 
     let usageCount = 0;
     if (target.fkCol) {
-      const usage = db.prepare(`SELECT COUNT(*) as count FROM products WHERE ${target.fkCol} = ?`).get(id);
+      const usage = await getOne(`SELECT COUNT(*) as count FROM products WHERE ${target.fkCol} = ?`, [id]);
       usageCount = usage ? usage.count : 0;
     }
 
-    db.prepare(`UPDATE ${target.table} SET is_active = ? WHERE id = ?`).run(newStatus, id);
+    await execute(`UPDATE ${target.table} SET is_active = ? WHERE id = ?`, [newStatus, id]);
 
     return NextResponse.json({
       success: true,

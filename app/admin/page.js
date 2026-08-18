@@ -1,28 +1,36 @@
 import Link from "next/link";
-import getDB from "@/lib/db/client.js";
+import { query, getOne } from "@/lib/db/client.js";
 import { formatProductFromRow } from "@/lib/db/products.js";
 import styles from "./admin.module.css";
 
 export const dynamic = "force-dynamic";
 
-export default function AdminDashboardPage() {
-  const db = getDB();
+export default async function AdminDashboardPage() {
+  let totalCount = 0;
+  let publishedCount = 0;
+  let draftCount = 0;
+  let archivedCount = 0;
+  let attentionCount = 0;
+  let recentProducts = [];
 
-  const totalRow = db.prepare("SELECT COUNT(*) as total FROM products").get();
-  const publishedRow = db.prepare("SELECT COUNT(*) as total FROM products WHERE status = 'published'").get();
-  const draftRow = db.prepare("SELECT COUNT(*) as total FROM products WHERE status = 'draft'").get();
-  const archivedRow = db.prepare("SELECT COUNT(*) as total FROM products WHERE status = 'archived'").get();
-  const attentionRow = db.prepare("SELECT COUNT(*) as total FROM products WHERE short_description IS NULL OR short_description = '' OR primary_material_id IS NULL").get();
+  try {
+    const totalRow = await getOne("SELECT COUNT(*) as total FROM products");
+    const publishedRow = await getOne("SELECT COUNT(*) as total FROM products WHERE status = 'published'");
+    const draftRow = await getOne("SELECT COUNT(*) as total FROM products WHERE status = 'draft'");
+    const archivedRow = await getOne("SELECT COUNT(*) as total FROM products WHERE status = 'archived'");
+    const attentionRow = await getOne("SELECT COUNT(*) as total FROM products WHERE short_description IS NULL OR short_description = '' OR primary_material_id IS NULL");
 
-  const totalCount = totalRow ? totalRow.total : 0;
-  const publishedCount = publishedRow ? publishedRow.total : 0;
-  const draftCount = draftRow ? draftRow.total : 0;
-  const archivedCount = archivedRow ? archivedRow.total : 0;
-  const attentionCount = attentionRow ? attentionRow.total : 0;
+    totalCount = totalRow ? totalRow.total : 0;
+    publishedCount = publishedRow ? publishedRow.total : 0;
+    draftCount = draftRow ? draftRow.total : 0;
+    archivedCount = archivedRow ? archivedRow.total : 0;
+    attentionCount = attentionRow ? attentionRow.total : 0;
 
-  // Recent 5 products
-  const recentRows = db.prepare("SELECT * FROM products ORDER BY updated_at DESC LIMIT 5").all();
-  const recentProducts = recentRows.map(formatProductFromRow);
+    const recentRows = await query("SELECT * FROM products ORDER BY updated_at DESC LIMIT 5");
+    recentProducts = await Promise.all(recentRows.map(formatProductFromRow));
+  } catch (e) {
+    console.error("[Admin Dashboard DB Error]:", e);
+  }
 
   return (
     <div>

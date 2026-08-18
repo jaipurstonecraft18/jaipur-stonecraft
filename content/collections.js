@@ -208,11 +208,23 @@ export const collectionsData = {
   }
 };
 
-export function getCollection(collectionSlug) {
+import { getCollection as getCollectionFromDB, getSubcategory as getSubcategoryFromDB } from "../lib/db/taxonomy.js";
+
+export async function getCollection(collectionSlug) {
+  try {
+    const dbCol = await getCollectionFromDB(collectionSlug);
+    if (dbCol) return dbCol;
+  } catch (e) {}
+
   return collectionsData[collectionSlug] || null;
 }
 
-export function getSubcategory(collectionSlug, subcategorySlug) {
+export async function getSubcategory(collectionSlug, subcategorySlug) {
+  try {
+    const dbSub = await getSubcategoryFromDB(collectionSlug, subcategorySlug);
+    if (dbSub) return dbSub;
+  } catch (e) {}
+
   const collection = collectionsData[collectionSlug];
   if (!collection) return null;
   return collection.subcategories.find((sub) => sub.slug === subcategorySlug) || null;

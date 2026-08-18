@@ -22,14 +22,40 @@ const DEFAULT_PRODUCT_TYPES = [
   { id: "custom_artwork", name: "Bespoke Commission / Tribute" }
 ];
 
+const KNOWLEDGE_SUGGESTIONS = [
+  "Craftsmanship & Technique",
+  "Material Origin & Characteristics",
+  "Symbolism / Cultural Context",
+  "Suitable Placement",
+  "Installation Requirements",
+  "Care & Maintenance"
+];
+
+function normalizeKnowledgeLayer(kl) {
+  if (Array.isArray(kl)) return kl;
+  if (kl && typeof kl === "object") {
+    const sections = [];
+    if (kl.whatIsThis) sections.push({ title: "What Is This Carving?", content: kl.whatIsThis });
+    if (kl.materialOrigin) sections.push({ title: "Material Origin & Characteristics", content: kl.materialOrigin });
+    if (kl.suitableFor) sections.push({ title: "Suitable Placement & Environments", content: kl.suitableFor });
+    if (kl.installationCare) sections.push({ title: "Installation Requirements & Care", content: kl.installationCare });
+    if (sections.length > 0) return sections;
+  }
+  return [
+    { title: "Craftsmanship & Technique", content: "" },
+    { title: "Material Origin & Characteristics", content: "" }
+  ];
+}
+
 export default function ProductStudio({ initialProduct, isNew = false }) {
   const router = useRouter();
 
-  // Dynamic Catalogue lists fetched from SQLite
+  // Dynamic Catalogue lists fetched from DB
   const [materialsList, setMaterialsList] = useState([]);
   const [subjectsList, setSubjectsList] = useState([]);
   const [productTypesList, setProductTypesList] = useState(DEFAULT_PRODUCT_TYPES);
   const [attributesList, setAttributesList] = useState([]);
+  const [categoriesList, setCategoriesList] = useState([]);
 
   // QuickAddModal State
   const [quickAddModal, setQuickAddModal] = useState({
@@ -38,7 +64,7 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
     fieldLabel: ""
   });
 
-  // Fetch dynamic active catalogue lists from API
+  // Fetch dynamic active catalogue lists and categories from API
   useEffect(() => {
     fetch("/api/admin/catalogue")
       .then((res) => res.json())
@@ -49,11 +75,23 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
         if (data.attributes) setAttributesList(data.attributes.filter((a) => a.isActive));
       })
       .catch((e) => console.error("Catalogue fetch error", e));
+
+    fetch("/api/admin/categories")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.categories) setCategoriesList(data.categories);
+      })
+      .catch((e) => console.error("Categories fetch error", e));
   }, []);
 
   // Form State
   const [formData, setFormData] = useState(() => {
-    if (initialProduct) return { ...initialProduct };
+    if (initialProduct) {
+      return {
+        ...initialProduct,
+        knowledgeLayer: normalizeKnowledgeLayer(initialProduct.knowledgeLayer)
+      };
+    }
     const timestamp = Date.now();
     return {
       name: "",
@@ -73,13 +111,10 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
       detailedDescription: "",
       imageSrc: "https://placehold.co/800x600/E8E4DF/1A1918?text=Product+Cover+Photo",
       imageGallery: [],
-      knowledgeLayer: {
-        whatIsThis: "",
-        materialOrigin: "",
-        suitableFor: "",
-        installationCare: "",
-        customizationOptions: ""
-      },
+      knowledgeLayer: [
+        { title: "Craftsmanship & Technique", content: "" },
+        { title: "Material Origin & Characteristics", content: "" }
+      ],
       attributes: {
         colorFamily: "White",
         finish: "Hand Honed (Natural Matte)",
@@ -138,6 +173,39 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
         [field]: value
       }
     }));
+    setIsDirty(true);
+    setSaveStatus("dirty");
+  };
+
+  const handleAddKnowledgeSection = (title = "") => {
+    setFormData((prev) => {
+      const currentSections = Array.isArray(prev.knowledgeLayer) ? prev.knowledgeLayer : normalizeKnowledgeLayer(prev.knowledgeLayer);
+      return {
+        ...prev,
+        knowledgeLayer: [...currentSections, { title: title || "New Information Section", content: "" }]
+      };
+    });
+    setIsDirty(true);
+    setSaveStatus("dirty");
+  };
+
+  const handleUpdateKnowledgeSection = (index, field, value) => {
+    setFormData((prev) => {
+      const currentSections = Array.isArray(prev.knowledgeLayer) ? [...prev.knowledgeLayer] : normalizeKnowledgeLayer(prev.knowledgeLayer);
+      currentSections[index] = { ...currentSections[index], [field]: value };
+      return { ...prev, knowledgeLayer: currentSections };
+    });
+    setIsDirty(true);
+    setSaveStatus("dirty");
+  };
+
+  const handleRemoveKnowledgeSection = (index) => {
+    setFormData((prev) => {
+      const currentSections = Array.isArray(prev.knowledgeLayer) ? [...prev.knowledgeLayer] : normalizeKnowledgeLayer(prev.knowledgeLayer);
+      const updated = [...currentSections];
+      updated.splice(index, 1);
+      return { ...prev, knowledgeLayer: updated };
+    });
     setIsDirty(true);
     setSaveStatus("dirty");
   };
@@ -298,6 +366,36 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
           )}
 
           {!isNew && (
+            <button
+              type="button"
+              onClick={async () => {
+                const confirmed = confirm(`Are you sure you want to PERMANENTLY delete "${formData.name}"?\n\nThis will safely remove the product record while preserving shared category and media data.`);
+                if (!confirmed) return;
+                setSaving(true);
+                try {
+                  const res = await fetch(`/api/admin/products/${formData.slug}?permanent=true`, { method: "DELETE" });
+                  const data = await res.json();
+                  if (res.ok && data.success) {
+                    alert(`Product "${formData.name}" permanently deleted.`);
+                    router.push("/admin/products");
+                  } else {
+                    alert(data.error || "Delete failed.");
+                  }
+                } catch (e) {
+                  alert("Error deleting product.");
+                } finally {
+                  setSaving(false);
+                }
+              }}
+              className={styles.secondaryBtn}
+              style={{ color: "#C5221F", borderColor: "#FCE8E6" }}
+              disabled={saving}
+            >
+              🗑️ Delete
+            </button>
+          )}
+
+          {!isNew && (
             <button onClick={handleDuplicate} className={styles.secondaryBtn} disabled={saving}>
               📋 Duplicate Draft
             </button>
@@ -354,16 +452,16 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
       {/* Tabbed Navigation Interface */}
       <div className={styles.studioTabs}>
         <button
-          className={`${styles.studioTab} ${activeTab === "basic" ? styles.studioTabActive : ""}`}
+          className={`${styles.studioTab} ${activeTab === "basic" || activeTab === "knowledge" ? styles.studioTabActive : ""}`}
           onClick={() => setActiveTab("basic")}
         >
-          1. Basic Details
+          1. Product Details
         </button>
         <button
           className={`${styles.studioTab} ${activeTab === "media" ? styles.studioTabActive : ""}`}
           onClick={() => setActiveTab("media")}
         >
-          2. 📸 Media Studio
+          2. 📸 Images
         </button>
         <button
           className={`${styles.studioTab} ${activeTab === "taxonomy" ? styles.studioTabActive : ""}`}
@@ -378,16 +476,10 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
           4. Specifications
         </button>
         <button
-          className={`${styles.studioTab} ${activeTab === "knowledge" ? styles.studioTabActive : ""}`}
-          onClick={() => setActiveTab("knowledge")}
-        >
-          5. Knowledge Layer
-        </button>
-        <button
           className={`${styles.studioTab} ${activeTab === "seo" ? styles.studioTabActive : ""}`}
           onClick={() => setActiveTab("seo")}
         >
-          6. SEO Metadata
+          5. SEO & Content
         </button>
       </div>
 
@@ -492,12 +584,85 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
             <div className={styles.formGroupFull}>
               <label className={styles.label}>Detailed Description & Carving Overview</label>
               <textarea
-                rows={6}
+                rows={4}
                 value={formData.detailedDescription}
                 onChange={(e) => updateField("detailedDescription", e.target.value)}
                 placeholder="Full artistic details, facial chiseling techniques, and proportion standards..."
                 className={styles.textarea}
               />
+            </div>
+
+            {/* PRODUCT KNOWLEDGE & DETAILS SECTION */}
+            <div className={styles.formGroupFull} style={{ marginTop: "1rem", paddingTop: "1rem", borderTop: "1px solid #E2DDD5" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem", flexWrap: "wrap", gap: "0.5rem" }}>
+                <div>
+                  <h3 style={{ fontSize: "0.95rem", fontWeight: "600", color: "var(--color-navy)" }}>
+                    📜 Product Knowledge & Details
+                  </h3>
+                  <p style={{ fontSize: "0.78rem", color: "#666", marginTop: "0.15rem" }}>
+                    Add flexible information blocks for craftsmanship techniques, stone origin, cultural symbolism, or care guides.
+                  </p>
+                </div>
+
+                {/* Optional Quick Template Suggestion Chips */}
+                <div style={{ display: "flex", gap: "0.35rem", flexWrap: "wrap" }}>
+                  {KNOWLEDGE_SUGGESTIONS.map((tmpl) => (
+                    <button
+                      key={tmpl}
+                      type="button"
+                      onClick={() => handleAddKnowledgeSection(tmpl)}
+                      className={styles.secondaryBtn}
+                      style={{ padding: "0.25rem 0.5rem", fontSize: "0.72rem", minHeight: "30px" }}
+                    >
+                      + {tmpl}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Dynamic List of Information Blocks */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
+                {(Array.isArray(formData.knowledgeLayer) ? formData.knowledgeLayer : normalizeKnowledgeLayer(formData.knowledgeLayer)).map((sec, idx) => (
+                  <div key={idx} style={{ border: "1px solid #E2DDD5", borderRadius: "6px", padding: "0.85rem", backgroundColor: "#FFF" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem", gap: "0.5rem" }}>
+                      <input
+                        type="text"
+                        value={sec.title || ""}
+                        onChange={(e) => handleUpdateKnowledgeSection(idx, "title", e.target.value)}
+                        placeholder="Section Title (e.g. Craftsmanship & Technique)"
+                        className={styles.input}
+                        style={{ fontWeight: "600", fontSize: "0.85rem", flex: 1, padding: "0.35rem 0.6rem" }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveKnowledgeSection(idx)}
+                        className={styles.secondaryBtn}
+                        style={{ color: "#C5221F", borderColor: "#FCE8E6", fontSize: "0.75rem", padding: "0.25rem 0.55rem", minHeight: "32px" }}
+                      >
+                        🗑 Remove
+                      </button>
+                    </div>
+
+                    <textarea
+                      rows={3}
+                      value={sec.content || ""}
+                      onChange={(e) => handleUpdateKnowledgeSection(idx, "content", e.target.value)}
+                      placeholder={`Enter details for ${sec.title || "this section"}...`}
+                      className={styles.textarea}
+                      style={{ width: "100%", fontSize: "0.85rem", padding: "0.45rem 0.6rem" }}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => handleAddKnowledgeSection("")}
+                className={styles.secondaryBtn}
+                style={{ marginTop: "0.85rem", width: "100%", justifyContent: "center", borderStyle: "dashed", fontSize: "0.82rem" }}
+              >
+                + Add Information Section
+              </button>
             </div>
           </div>
         </div>
@@ -576,7 +741,7 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
             </div>
 
             <div className={styles.formGroup}>
-              <label className={styles.label}>Parent Collection Slug</label>
+              <label className={styles.label}>Parent Collection *</label>
               <select
                 value={formData.parentCollection}
                 onChange={(e) => updateField("parentCollection", e.target.value)}
@@ -586,19 +751,48 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
                 <option value="wall-art-reliefs">Wall Art & Reliefs</option>
                 <option value="temples-architectural-stonework">Temples & Architectural Stonework</option>
                 <option value="garden-fountains-water-features">Garden Fountains & Water Features</option>
+                <option value="decorative-home-accents">Decorative & Home Accents</option>
                 <option value="custom-bespoke-creations">Custom Bespoke Creations</option>
               </select>
             </div>
 
             <div className={styles.formGroup}>
-              <label className={styles.label}>Parent Category Slug</label>
-              <input
-                type="text"
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <label className={styles.label}>Parent Category *</label>
+                <button
+                  type="button"
+                  onClick={() => setQuickAddModal({ isOpen: true, targetField: "parentCategory", fieldLabel: "Category" })}
+                  style={{ background: "none", border: "none", color: "var(--color-bronze)", fontWeight: "600", fontSize: "0.8rem", cursor: "pointer", minHeight: "44px" }}
+                >
+                  + Quick Add
+                </button>
+              </div>
+              <select
                 value={formData.parentCategory}
-                onChange={(e) => updateField("parentCategory", e.target.value)}
-                placeholder="e.g. ganesh-ji, shiva-ji, jali-screens"
-                className={styles.input}
-              />
+                onChange={(e) => {
+                  const selectedSlug = e.target.value;
+                  const catObj = categoriesList.find((c) => c.slug === selectedSlug);
+                  if (catObj) {
+                    setFormData((prev) => ({
+                      ...prev,
+                      parentCategory: selectedSlug,
+                      parentCollection: catObj.parent_collection_slug || catObj.parentCollection || prev.parentCollection,
+                      parentSubcategory: catObj.parent_subcategory_slug || catObj.parentSubcategory || prev.parentSubcategory
+                    }));
+                    setIsDirty(true);
+                    setSaveStatus("dirty");
+                  } else {
+                    updateField("parentCategory", selectedSlug);
+                  }
+                }}
+                className={styles.select}
+              >
+                {categoriesList.map((cat) => (
+                  <option key={cat.slug} value={cat.slug}>
+                    {cat.name} ({cat.slug})
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div className={styles.formGroup}>
@@ -737,56 +931,7 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
         </div>
       )}
 
-      {/* TAB 5: SHILPA SHASTRA KNOWLEDGE LAYER */}
-      {activeTab === "knowledge" && (
-        <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
-          <div className={styles.formGrid}>
-            <div className={styles.formGroupFull}>
-              <label className={styles.label}>What Is This Carving?</label>
-              <textarea
-                rows={2}
-                value={formData.knowledgeLayer?.whatIsThis || ""}
-                onChange={(e) => updateNestedField("knowledgeLayer", "whatIsThis", e.target.value)}
-                placeholder="A hand-carved deity sculpture sculpted from single-block Makrana white marble..."
-                className={styles.textarea}
-              />
-            </div>
 
-            <div className={styles.formGroupFull}>
-              <label className={styles.label}>Material Origin & Characteristics</label>
-              <textarea
-                rows={2}
-                value={formData.knowledgeLayer?.materialOrigin || ""}
-                onChange={(e) => updateNestedField("knowledgeLayer", "materialOrigin", e.target.value)}
-                placeholder="Quarried from Makrana, Rajasthan. Pure crystalline calcite structure..."
-                className={styles.textarea}
-              />
-            </div>
-
-            <div className={styles.formGroupFull}>
-              <label className={styles.label}>Suitable Installation Environments</label>
-              <textarea
-                rows={2}
-                value={formData.knowledgeLayer?.suitableFor || ""}
-                onChange={(e) => updateNestedField("knowledgeLayer", "suitableFor", e.target.value)}
-                placeholder="Ideal for home mandir sanctuaries, courtyard water features..."
-                className={styles.textarea}
-              />
-            </div>
-
-            <div className={styles.formGroupFull}>
-              <label className={styles.label}>Installation & Maintenance Care</label>
-              <textarea
-                rows={2}
-                value={formData.knowledgeLayer?.installationCare || ""}
-                onChange={(e) => updateNestedField("knowledgeLayer", "installationCare", e.target.value)}
-                placeholder="Zero chemical sealants required. Washable with natural water..."
-                className={styles.textarea}
-              />
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* TAB 6: SEO & METADATA */}
       {activeTab === "seo" && (
@@ -817,15 +962,48 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
         </div>
       )}
 
-      {/* STICKY MOBILE SAVE ACTION BAR */}
-      <MobileStickyBar
-        status={formData.status}
-        saveStatus={saveStatus}
-        lastSavedAt={lastSavedAt}
-        saving={saving}
-        onSaveDraft={() => handleSave("draft")}
-        onTogglePublish={() => handleSave(formData.status === "published" ? "draft" : "published")}
-      />
+      {/* STICKY ACTION FOOTER BAR */}
+      <div className={styles.stickyFooterBar}>
+        <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+          <span style={{ fontSize: "0.8rem", fontWeight: "600", color: saveStatus === "saved" ? "#137333" : "#B06000" }}>
+            {saveStatus === "saved" ? "✓ Saved" : "● Unsaved changes"}
+          </span>
+          {!isNew && (
+            <button
+              type="button"
+              onClick={() => setShowDeleteModal(true)}
+              className={styles.secondaryBtn}
+              style={{ color: "#C5221F", borderColor: "#FCE8E6", fontSize: "0.78rem", padding: "0.35rem 0.65rem", minHeight: "36px" }}
+            >
+              🗑 Delete
+            </button>
+          )}
+        </div>
+
+        <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+          <Link href="/admin/products" className={styles.secondaryBtn} style={{ padding: "0.4rem 0.75rem", fontSize: "0.8rem", minHeight: "36px" }}>
+            Cancel
+          </Link>
+          <button
+            type="button"
+            disabled={saving}
+            onClick={() => handleSave("draft")}
+            className={styles.secondaryBtn}
+            style={{ padding: "0.4rem 0.85rem", fontSize: "0.8rem", minHeight: "36px" }}
+          >
+            {saving ? "Saving..." : "Save Draft"}
+          </button>
+          <button
+            type="button"
+            disabled={saving}
+            onClick={() => handleSave(formData.status === "published" ? "draft" : "published")}
+            className={styles.primaryBtn}
+            style={{ padding: "0.4rem 1rem", fontSize: "0.8rem", minHeight: "36px" }}
+          >
+            {saving ? "Saving..." : formData.status === "published" ? "Unpublish to Draft" : "⚡ Publish Product"}
+          </button>
+        </div>
+      </div>
 
       {/* Quick Add Modal */}
       <QuickAddModal
@@ -843,6 +1021,16 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
           } else if (quickAddModal.targetField === "productType") {
             setProductTypesList((prev) => [...prev, createdItem]);
             updateField("productType", createdItem.id);
+          } else if (quickAddModal.targetField === "parentCategory") {
+            setCategoriesList((prev) => [...prev, createdItem]);
+            setFormData((prev) => ({
+              ...prev,
+              parentCategory: createdItem.slug || createdItem.id,
+              parentCollection: createdItem.parentCollection || prev.parentCollection,
+              parentSubcategory: createdItem.parentSubcategory || prev.parentSubcategory
+            }));
+            setIsDirty(true);
+            setSaveStatus("dirty");
           }
         }}
       />

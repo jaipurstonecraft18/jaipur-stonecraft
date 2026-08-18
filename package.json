@@ -7,13 +7,17 @@
     "dev": "next dev -H 0.0.0.0",
     "build": "next build",
     "start": "next start",
+    "backup": "node scripts/backup-runner.js",
+    "restore": "node scripts/restore-runner.js",
     "lint": "eslint"
   },
   "dependencies": {
     "better-sqlite3": "^12.11.1",
+    "mysql2": "^3.23.3",
     "next": "16.3.0",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "sharp": "^0.35.3"
   },
   "devDependencies": {
     "eslint": "^9",

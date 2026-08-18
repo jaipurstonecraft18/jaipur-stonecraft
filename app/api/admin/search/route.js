@@ -12,6 +12,6 @@ export async function GET(request) {
   const status = searchParams.get("status") || "all";
   const category = searchParams.get("category") || "";
 
-  const results = executeSmartSearch({ query, status, category, limit: 30 });
+  const results = await executeSmartSearch({ query, status, category, limit: 30 });
   return NextResponse.json(results);
 }

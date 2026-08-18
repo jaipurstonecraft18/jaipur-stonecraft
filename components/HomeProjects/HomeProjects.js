@@ -1,10 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
 import Container from "@/components/Container/Container";
 import Section from "@/components/Section/Section";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import PrimaryButton from "@/components/PrimaryButton/PrimaryButton";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { projectsData } from "@/content/projects";
+import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
 import styles from "./HomeProjects.module.css";
 
 export default function HomeProjects() {
@@ -30,10 +32,11 @@ export default function HomeProjects() {
             <ScrollReveal animation="fade-up">
               <Link href={`/projects/${heroProject.slug}`} className={styles.heroProjectCard}>
                 <div className={styles.heroImageWrapper}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={heroProject.imageSrc}
+                  <Image
+                    src={getImageVariantUrl(heroProject.imageSrc, "card")}
                     alt={heroProject.name}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className={styles.projectImage}
                     loading="lazy"
                   />
@@ -64,10 +67,11 @@ export default function HomeProjects() {
               <ScrollReveal key={proj.slug} animation="fade-up" delay={(idx + 1) * 100}>
                 <Link href={`/projects/${proj.slug}`} className={styles.subProjectCard}>
                   <div className={styles.subImageWrapper}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={proj.imageSrc}
+                    <Image
+                      src={getImageVariantUrl(proj.imageSrc, "card")}
                       alt={proj.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       className={styles.projectImage}
                       loading="lazy"
                     />

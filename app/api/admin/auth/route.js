@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { validateAdminCredentials, createSessionToken, isAuthorizedAdminRequest, COOKIE_NAME } from "@/lib/admin/auth.js";
+import { checkRateLimit, recordFailedAttempt, resetRateLimit, getClientIp } from "@/lib/admin/rate-limiter.js";
 
 export async function GET(request) {
   const isAuth = isAuthorizedAdminRequest(request);
@@ -7,21 +8,49 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
+  const clientIp = getClientIp(request);
+
+  // 1. Check Rate Limit
+  const rateLimitStatus = checkRateLimit(clientIp);
+  if (rateLimitStatus.isRateLimited) {
+    const minutesLeft = Math.ceil(rateLimitStatus.resetSeconds / 60);
+    return NextResponse.json(
+      {
+        success: false,
+        error: `Too many failed login attempts. Account locked for security. Please try again in ${minutesLeft} minutes.`
+      },
+      {
+        status: 429,
+        headers: { "Retry-After": String(rateLimitStatus.resetSeconds) }
+      }
+    );
+  }
+
   try {
     const body = await request.json();
     const { password } = body;
 
+    // 2. Validate Credentials
     if (!validateAdminCredentials(password)) {
+      recordFailedAttempt(clientIp);
+      const updatedStatus = checkRateLimit(clientIp);
       return NextResponse.json(
-        { success: false, error: "Invalid admin password" },
+        {
+          success: false,
+          error: "Invalid admin password",
+          remainingAttempts: updatedStatus.remainingAttempts
+        },
         { status: 401 }
       );
     }
 
+    // 3. Reset rate limit on successful authentication
+    resetRateLimit(clientIp);
+
     const token = createSessionToken();
     const response = NextResponse.json({ success: true, message: "Authenticated successfully" });
 
-    // Set secure HTTP-only cookie
+    // 4. Set secure HTTP-only cookie
     response.cookies.set({
       name: COOKIE_NAME,
       value: token,
@@ -34,6 +63,15 @@ export async function POST(request) {
 
     return response;
   } catch (error) {
+    const isConfigErr = error?.message?.includes("CRITICAL SECURITY CONFIGURATION ERROR");
+    if (isConfigErr) {
+      console.error("[CRITICAL AUTH ERROR]:", error.message);
+      return NextResponse.json(
+        { success: false, error: "Server authentication error: Security environment variables missing." },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
       { success: false, error: "Authentication failed" },
       { status: 500 }

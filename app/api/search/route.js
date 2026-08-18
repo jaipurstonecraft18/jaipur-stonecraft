@@ -25,8 +25,8 @@ export async function GET(request) {
     }
   });
 
-  // 2. Query SQLite products database
-  const dbResult = queryProductsDB({ query, pageSize: 6 });
+  // 2. Query MySQL products database
+  const dbResult = await queryProductsDB({ query, pageSize: 6 });
 
   return NextResponse.json({
     products: dbResult.products,

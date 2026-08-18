@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const { collection: collectionSlug } = resolvedParams;
-  const collection = getCollection(collectionSlug);
+  const collection = await getCollection(collectionSlug);
 
   if (!collection) return {};
 
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }) {
 export default async function CollectionPage({ params }) {
   const resolvedParams = await params;
   const { collection: collectionSlug } = resolvedParams;
-  const collection = getCollection(collectionSlug);
+  const collection = await getCollection(collectionSlug);
 
   if (!collection) {
     notFound();

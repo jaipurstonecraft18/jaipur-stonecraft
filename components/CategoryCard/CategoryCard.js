@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
 import styles from "./CategoryCard.module.css";
 
 export default function CategoryCard({
@@ -31,15 +33,17 @@ export default function CategoryCard({
   }`;
 
   const defaultAlt = `Hand-carved white marble ${name} sculpture created by master artisans in Jaipur`;
+  const optimizedSrc = getImageVariantUrl(imageSrc, "card") || `https://placehold.co/800x500/E8E4DF/1A1918?text=${encodeURIComponent(name)}`;
 
   return (
     <Link href={href} className={cardClassName} aria-label={`Explore ${name} designs`}>
       {/* 1. Card Image */}
       <div className={imageWrapperClass}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={imageSrc || `https://placehold.co/800x500/E8E4DF/1A1918?text=${encodeURIComponent(name)}`}
+        <Image
+          src={optimizedSrc}
           alt={imageAlt || defaultAlt}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className={styles.image}
           loading="lazy"
         />

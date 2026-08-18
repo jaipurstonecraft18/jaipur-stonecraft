@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
 import styles from "./ProjectCard.module.css";
 
 export default function ProjectCard({
@@ -28,14 +29,16 @@ export default function ProjectCard({
   }`;
 
   const defaultAlt = `${name} architectural stone installation executed by Jaipur Stonecraft`;
+  const optimizedSrc = getImageVariantUrl(imageSrc, "card") || `https://placehold.co/1200x800/E8E4DF/1A1918?text=${encodeURIComponent(name)}`;
 
   return (
     <Link href={href} className={cardClassName} aria-label={`View project details for ${name}`}>
       <div className={imageContainerClass}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={imageSrc || `https://placehold.co/1200x800/E8E4DF/1A1918?text=${encodeURIComponent(name)}`}
+        <Image
+          src={optimizedSrc}
           alt={imageAlt || defaultAlt}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
           className={styles.image}
           loading="lazy"
         />

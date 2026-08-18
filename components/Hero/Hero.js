@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Container from "@/components/Container/Container";
 import PrimaryButton from "@/components/PrimaryButton/PrimaryButton";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
@@ -37,10 +38,12 @@ export default function Hero({
           <source src="/videos/herovid.mp4" type="video/mp4" />
         </video>
       ) : (
-        /* eslint-disable-next-line @next/next/no-img-element */
-        <img
+        <Image
           src={imageSrc}
           alt="Hand-carved architectural stone sculpture detail"
+          fill
+          priority
+          sizes="100vw"
           className={styles.posterImage}
         />
       )}
