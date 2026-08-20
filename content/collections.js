@@ -208,7 +208,20 @@ export const collectionsData = {
   }
 };
 
-import { getCollection as getCollectionFromDB, getSubcategory as getSubcategoryFromDB } from "../lib/db/taxonomy.js";
+import {
+  getCollection as getCollectionFromDB,
+  getSubcategory as getSubcategoryFromDB,
+  getAllCollections as getAllCollectionsFromDB
+} from "../lib/db/taxonomy.js";
+
+export async function getAllCollections() {
+  try {
+    const dbCols = await getAllCollectionsFromDB();
+    if (dbCols && dbCols.length > 0) return dbCols;
+  } catch (e) {}
+
+  return Object.values(collectionsData);
+}
 
 export async function getCollection(collectionSlug) {
   try {

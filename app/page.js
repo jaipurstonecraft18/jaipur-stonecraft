@@ -37,13 +37,18 @@ export const metadata = {
   },
 };
 
-export default function Home() {
+import { getSiteContent } from "@/lib/db/content.js";
+
+export default async function Home() {
+  const heroImage = await getSiteContent("homepage_hero_image", "/images/hero/homepage-hero.png", "Hand-carved architectural stone sculpture detail");
+  const storyImage = await getSiteContent("homepage_story_image", "/images/collections/custom.png", "Sculpted marble portrait bust in Jaipur Stonecraft atelier");
+
   return (
     <>
       {/* 1. HERO SECTION (Transparent Navigation Overlay) */}
       <Hero
-        imageSrc="/images/hero/homepage-hero.png"
-        imageAlt="Hand-carved architectural stone sculpture detail"
+        imageSrc={heroImage.url}
+        imageAlt={heroImage.alt}
         videoSrc="/videos/herovid.webm"
         eyebrow="HANDCRAFTED IN JAIPUR"
         heading="Where Stone Becomes Legacy."
@@ -58,7 +63,7 @@ export default function Home() {
       <TrustStrip />
 
       {/* 3. HERITAGE & BRAND STORY SECTION */}
-      <HeritageStory />
+      <HeritageStory heroImage={storyImage} />
 
       {/* 4. EDITORIAL COLLECTIONS SHOWCASE */}
       <HomeCollections />

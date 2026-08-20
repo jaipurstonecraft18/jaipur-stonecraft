@@ -301,6 +301,21 @@
   color: #B06000;
 }
 
+.badgeHealthy {
+  background-color: #E6F4EA;
+  color: #137333;
+}
+
+.badgeAttention {
+  background-color: #FEF7E0;
+  color: #B06000;
+}
+
+.badgeIncomplete {
+  background-color: #FCE8E6;
+  color: #C5221F;
+}
+
 .badgeArchived {
   background-color: #F1F3F4;
   color: #5F6368;

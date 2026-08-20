@@ -5,7 +5,10 @@ import PrimaryButton from "@/components/PrimaryButton/PrimaryButton";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import styles from "./HeritageStory.module.css";
 
-export default function HeritageStory() {
+export default function HeritageStory({ heroImage }) {
+  const imgSrc = heroImage?.url || "/images/collections/custom.png";
+  const imgAlt = heroImage?.alt || "Sculpted marble portrait bust in Jaipur Stonecraft atelier";
+
   return (
     <Section background="light" spacing="standard" className={styles.section}>
       <Container>
@@ -14,8 +17,8 @@ export default function HeritageStory() {
           <ScrollReveal animation="fade-up" className={styles.imageCol}>
             <div className={styles.imageWrapper}>
               <Image
-                src="/images/collections/custom.png"
-                alt="Sculpted marble portrait bust in Jaipur Stonecraft atelier"
+                src={imgSrc}
+                alt={imgAlt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className={styles.image}

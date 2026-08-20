@@ -31,7 +31,12 @@ export const metadata = {
   },
 };
 
-export default function Craftsmanship() {
+import { getSiteContent } from "@/lib/db/content.js";
+
+export default async function Craftsmanship() {
+  const heroBanner = await getSiteContent("craftsmanship_hero_banner", "/images/craftsmanship/artisan-hands.png", "Generational stone carving techniques in Jaipur");
+  const chiselImg = await getSiteContent("craftsmanship_chisel_image", "https://placehold.co/800x1000/E8E4DF/1A1918?text=[DESIGN+MAPPING]", "Fine chisel detailing on marble deity idol");
+
   const stepsGallery = [
     "https://placehold.co/1200x800/E8E4DF/1A1918?text=[Quarry+Inspection]",
     "https://placehold.co/1200x800/E8E4DF/1A1918?text=[Masonry+Chiseling+Detail]",
@@ -57,8 +62,8 @@ export default function Craftsmanship() {
       <Section background="light" spacing="standard">
         <Container>
           <ImageWithText
-            imageSrc="https://placehold.co/800x1000/E8E4DF/1A1918?text=[STONE+SELECTION]"
-            imageAlt="Raw marble block inspection in quarry"
+            imageSrc={heroBanner.url}
+            imageAlt={heroBanner.alt}
             eyebrow="Phase 1: Sourcing"
             heading="Selecting the Solid Block"
             ctaText="Read Our Story"
@@ -78,8 +83,8 @@ export default function Craftsmanship() {
       <Section background="grey" spacing="standard">
         <Container>
           <ImageWithText
-            imageSrc="https://placehold.co/800x1000/E8E4DF/1A1918?text=[DESIGN+MAPPING]"
-            imageAlt="Blueprint layout mapped onto stone surface"
+            imageSrc={chiselImg.url}
+            imageAlt={chiselImg.alt}
             eyebrow="Phase 2: Modeling"
             heading="From CAD Draft to Chalk Grid"
             ctaText="Explore Collections"

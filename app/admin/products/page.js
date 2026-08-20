@@ -13,6 +13,7 @@ export default function AdminProductsListPage() {
   const [products, setProducts] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
+  const [healthCounts, setHealthCounts] = useState({ total: 0, healthy: 0, needsAttention: 0, incomplete: 0 });
   const [loading, setLoading] = useState(true);
   const [selectedIds, setSelectedIds] = useState([]);
   const [isQuickCreateOpen, setIsQuickCreateOpen] = useState(false);
@@ -20,6 +21,8 @@ export default function AdminProductsListPage() {
 
   // Filter States
   const statusFilter = searchParams.get("status") || "all";
+  const healthFilter = searchParams.get("health") || "all";
+  const issueFilter = searchParams.get("issue") || "all";
   const searchQuery = searchParams.get("search") || "";
   const categoryFilter = searchParams.get("category") || "";
   const page = parseInt(searchParams.get("page") || "1", 10);
@@ -31,6 +34,8 @@ export default function AdminProductsListPage() {
     try {
       const params = new URLSearchParams({
         status: statusFilter,
+        health: healthFilter,
+        issue: issueFilter,
         search: searchQuery,
         category: categoryFilter,
         page: page.toString(),
@@ -44,13 +49,16 @@ export default function AdminProductsListPage() {
         setProducts(data.products);
         setTotalCount(data.totalCount);
         setTotalPages(data.totalPages);
+        if (data.healthCounts) {
+          setHealthCounts(data.healthCounts);
+        }
       }
     } catch (e) {
       console.error("Failed to load products", e);
     } finally {
       setLoading(false);
     }
-  }, [statusFilter, searchQuery, categoryFilter, page]);
+  }, [statusFilter, healthFilter, searchQuery, categoryFilter, page]);
 
   useEffect(() => {
     fetchProducts();
@@ -177,6 +185,91 @@ export default function AdminProductsListPage() {
         </div>
       )}
 
+      {/* COMPACT PRODUCT HEALTH DISCOVERY BAR */}
+      <div style={{
+        backgroundColor: "#FAF9F6",
+        border: "1px solid #E2DDD5",
+        borderRadius: "6px",
+        padding: "0.75rem 1.25rem",
+        marginBottom: "1.25rem",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        flexWrap: "wrap",
+        gap: "0.75rem"
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+          <span style={{ fontSize: "0.85rem", fontWeight: "700", color: "var(--color-navy)" }}>
+            🏥 Health Discovery:
+          </span>
+          <span style={{ fontSize: "0.78rem", color: "#666" }}>
+            Filter products by content & SEO readiness
+          </span>
+        </div>
+
+        <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
+          <button
+            onClick={() => updateFilters({ health: "all", page: 1 })}
+            className={styles.secondaryBtn}
+            style={{
+              padding: "0.25rem 0.65rem",
+              fontSize: "0.78rem",
+              fontWeight: healthFilter === "all" ? "700" : "500",
+              backgroundColor: healthFilter === "all" ? "var(--color-navy)" : "#FFF",
+              color: healthFilter === "all" ? "#FFF" : "#333",
+              borderColor: healthFilter === "all" ? "var(--color-navy)" : "#E2DDD5"
+            }}
+          >
+            All ({healthCounts.total})
+          </button>
+
+          <button
+            onClick={() => updateFilters({ health: "healthy", page: 1 })}
+            className={styles.secondaryBtn}
+            style={{
+              padding: "0.25rem 0.65rem",
+              fontSize: "0.78rem",
+              fontWeight: healthFilter === "healthy" ? "700" : "500",
+              backgroundColor: healthFilter === "healthy" ? "#137333" : "#FFF",
+              color: healthFilter === "healthy" ? "#FFF" : "#137333",
+              borderColor: healthFilter === "healthy" ? "#137333" : "#CEEAD6"
+            }}
+          >
+            ✓ Healthy ({healthCounts.healthy})
+          </button>
+
+          <button
+            onClick={() => updateFilters({ health: "needs_attention", page: 1 })}
+            className={styles.secondaryBtn}
+            style={{
+              padding: "0.25rem 0.65rem",
+              fontSize: "0.78rem",
+              fontWeight: healthFilter === "needs_attention" ? "700" : "500",
+              backgroundColor: healthFilter === "needs_attention" ? "#B06000" : "#FFF",
+              color: healthFilter === "needs_attention" ? "#FFF" : "#B06000",
+              borderColor: healthFilter === "needs_attention" ? "#B06000" : "#FCE8E6"
+            }}
+          >
+            ⚠ Needs Attention ({healthCounts.needsAttention})
+          </button>
+
+          <button
+            onClick={() => updateFilters({ health: "incomplete", page: 1 })}
+            className={styles.secondaryBtn}
+            style={{
+              padding: "0.25rem 0.65rem",
+              fontSize: "0.78rem",
+              fontWeight: healthFilter === "incomplete" ? "700" : "500",
+              backgroundColor: healthFilter === "incomplete" ? "#C5221F" : "#FFF",
+              color: healthFilter === "incomplete" ? "#FFF" : "#C5221F",
+              borderColor: healthFilter === "incomplete" ? "#C5221F" : "#FCE8E6"
+            }}
+          >
+            ⛔ Critical / Incomplete ({healthCounts.incomplete})
+          </button>
+        </div>
+      </div>
+
       {/* Filter Bar & Search */}
       <div className={styles.tableCard}>
         <div className={styles.tableControls}>
@@ -187,7 +280,7 @@ export default function AdminProductsListPage() {
               className={`${styles.secondaryBtn} ${statusFilter === "all" ? styles.primaryBtn : ""}`}
               style={{ padding: "0.4rem 0.85rem", fontSize: "0.8rem" }}
             >
-              All ({totalCount})
+              All Statuses
             </button>
             <button
               onClick={() => updateFilters({ status: "published", page: 1 })}
@@ -221,13 +314,35 @@ export default function AdminProductsListPage() {
             ⚙️ Filter: {statusFilter.toUpperCase()}
           </button>
 
+          {/* Issue Category Select Dropdown */}
+          <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+            <select
+              value={issueFilter}
+              onChange={(e) => updateFilters({ issue: e.target.value, page: 1 })}
+              className={styles.select}
+              style={{ fontSize: "0.8rem", padding: "0.35rem 0.65rem", minWidth: "180px", cursor: "pointer" }}
+            >
+              <option value="all">Filter by Issue (All)</option>
+              <option value="primary_image">📷 Missing Primary Image</option>
+              <option value="product_images">🖼 Missing Product Images</option>
+              <option value="meta_description">📝 Missing Meta Description</option>
+              <option value="primary_keyword">🔍 Missing Primary Search Phrase</option>
+              <option value="image_alt_texts">🏷 Missing Image Alt Texts</option>
+              <option value="short_description">📄 Missing Short Description</option>
+              <option value="detailed_description">📖 Missing Detailed Copy</option>
+              <option value="seo_title">🏷 Suboptimal SEO Title</option>
+              <option value="category">📁 Missing Category Placement</option>
+              <option value="primary_material">🪨 Missing Primary Material</option>
+            </select>
+          </div>
+
           {/* Search Form */}
           <form
             onSubmit={(e) => {
               e.preventDefault();
               updateFilters({ search: searchInput, page: 1 });
             }}
-            style={{ display: "flex", gap: "0.5rem", width: "100%", maxWidth: "420px" }}
+            style={{ display: "flex", gap: "0.5rem", width: "100%", maxWidth: "340px" }}
           >
             <input
               type="text"
@@ -259,8 +374,8 @@ export default function AdminProductsListPage() {
                 <th>Product Name</th>
                 <th>SKU / Slug</th>
                 <th>Category</th>
-                <th>Material</th>
                 <th>Status</th>
+                <th style={{ width: "210px" }}>Health Status</th>
                 <th style={{ textAlign: "right" }}>Actions</th>
               </tr>
             </thead>
@@ -300,11 +415,28 @@ export default function AdminProductsListPage() {
                       <div style={{ fontSize: "0.75rem", color: "#888" }}>/{p.slug}</div>
                     </td>
                     <td>{p.parentCategory}</td>
-                    <td>{p.primaryMaterial?.name || p.primaryMaterialId}</td>
                     <td>
                       <span className={`${styles.badge} ${p.status === "published" ? styles.badgePublished : p.status === "draft" ? styles.badgeDraft : styles.badgeArchived}`}>
                         {p.status}
                       </span>
+                    </td>
+                    <td>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.2rem" }}>
+                        <span className={`${styles.badge} ${
+                          p.health?.status === "ready" 
+                            ? styles.badgeHealthy 
+                            : p.health?.status === "needs_attention" 
+                            ? styles.badgeAttention 
+                            : styles.badgeIncomplete
+                        }`}>
+                          {p.health?.status === "ready" ? "✓ Healthy" : p.health?.status === "needs_attention" ? "⚠ Attention" : "⛔ Incomplete"}
+                        </span>
+                        {p.health?.issueSummary && p.health?.status !== "ready" && (
+                          <span style={{ fontSize: "0.72rem", color: "#777", lineHeight: "1.2" }}>
+                            {p.health.issueSummary}
+                          </span>
+                        )}
+                      </div>
                     </td>
                     <td style={{ textAlign: "right" }}>
                       <div style={{ display: "inline-flex", gap: "0.35rem", justifyContent: "flex-end" }}>
@@ -374,8 +506,23 @@ export default function AdminProductsListPage() {
                       <code>{p.sku}</code>
                       <span>•</span>
                       <span>{p.parentCategory}</span>
-                      <span>•</span>
-                      <span>{p.primaryMaterial?.name || p.primaryMaterialId}</span>
+                    </div>
+
+                    <div style={{ marginTop: "0.4rem", display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                      <span className={`${styles.badge} ${
+                        p.health?.status === "ready" 
+                          ? styles.badgeHealthy 
+                          : p.health?.status === "needs_attention" 
+                          ? styles.badgeAttention 
+                          : styles.badgeIncomplete
+                      }`}>
+                        {p.health?.status === "ready" ? "✓ Healthy" : p.health?.status === "needs_attention" ? "⚠ Attention" : "⛔ Incomplete"}
+                      </span>
+                      {p.health?.issueSummary && p.health?.status !== "ready" && (
+                        <span style={{ fontSize: "0.72rem", color: "#777", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                          {p.health.issueSummary}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>

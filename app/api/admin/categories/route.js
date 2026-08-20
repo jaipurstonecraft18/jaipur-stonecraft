@@ -1,6 +1,20 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { query, getOne, execute, initDB } from "@/lib/db/client.js";
 import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
+
+function revalidateTaxonomyRoutes(slug) {
+  try {
+    revalidatePath("/");
+    revalidatePath("/collections");
+    revalidatePath("/collections/[collection]", "page");
+    if (slug) {
+      revalidatePath(`/collections/${slug}`);
+    }
+  } catch (e) {
+    console.error("[Revalidate Taxonomy Error]:", e);
+  }
+}
 
 // GET: Fetch categories & collections with product usage counts
 export async function GET(request) {
@@ -200,6 +214,8 @@ export async function PUT(request) {
     if (!slug) {
       return NextResponse.json({ error: "Slug is required" }, { status: 400 });
     }
+
+    revalidateTaxonomyRoutes(slug);
 
     if (type === "collection") {
       if (imageSrc !== undefined) {

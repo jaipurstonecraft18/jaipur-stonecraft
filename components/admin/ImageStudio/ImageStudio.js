@@ -203,6 +203,15 @@ export default function ImageStudio({
     });
   };
 
+  const handleUpdateCaption = (index, newCaption) => {
+    const updated = [...normalizedGallery];
+    updated[index] = { ...updated[index], caption: newCaption };
+    onChange({
+      imageSrc,
+      imageGallery: updated
+    });
+  };
+
   const handleBatchGenerateAltTexts = async () => {
     if (normalizedGallery.length === 0) return;
     setIsGeneratingAlts(true);
@@ -425,6 +434,19 @@ export default function ImageStudio({
                       value={img.altText || ""}
                       onChange={(e) => handleUpdateAltText(idx, e.target.value)}
                       placeholder="Descriptive image alt text..."
+                      className={styles.input}
+                      style={{ fontSize: "0.78rem", padding: "0.25rem 0.45rem", marginTop: "0.15rem" }}
+                    />
+                  </div>
+
+                  {/* Optional Caption Input */}
+                  <div>
+                    <label style={{ fontSize: "0.72rem", fontWeight: "600", color: "#888" }}>Display Caption (Optional):</label>
+                    <input
+                      type="text"
+                      value={img.caption || ""}
+                      onChange={(e) => handleUpdateCaption(idx, e.target.value)}
+                      placeholder="Optional image caption..."
                       className={styles.input}
                       style={{ fontSize: "0.78rem", padding: "0.25rem 0.45rem", marginTop: "0.15rem" }}
                     />

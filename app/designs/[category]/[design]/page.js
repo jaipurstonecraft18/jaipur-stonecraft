@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
 import Container from "@/components/Container/Container";
 import Section from "@/components/Section/Section";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
@@ -34,15 +35,33 @@ export async function generateMetadata({ params }) {
 
   const category = categoriesData[design.parentCategory];
 
+  // Parse SEO object safely if present
+  let seoObj = {};
+  if (typeof design.seo === "string") {
+    try { seoObj = JSON.parse(design.seo); } catch { seoObj = {}; }
+  } else if (design.seo && typeof design.seo === "object") {
+    seoObj = design.seo;
+  }
+
+  const pageTitle = (seoObj.title || seoObj.seoTitle || seoObj.titleTag || "").trim() || `${design.name} — ${category ? category.name : "Stonecraft"} Design`;
+  const metaDesc = (seoObj.description || seoObj.metaDescription || "").trim() || design.shortDescription || "";
+  
+  const primaryKw = (seoObj.primaryKeyword || "").trim();
+  const secondaryKws = Array.isArray(seoObj.secondaryKeywords) ? seoObj.secondaryKeywords : [];
+  const baseKws = Array.isArray(seoObj.keywords) ? seoObj.keywords : (typeof seoObj.keywords === "string" ? seoObj.keywords.split(",") : []);
+  const combinedKeywordsList = Array.from(new Set([primaryKw, ...secondaryKws, ...baseKws])).map(k => String(k).trim()).filter(Boolean);
+  const keywords = combinedKeywordsList.join(", ");
+
   return {
-    title: `${design.name} — ${category ? category.name : "Stonecraft"} Design`,
-    description: design.shortDescription,
+    title: pageTitle,
+    description: metaDesc,
+    keywords: keywords || undefined,
     alternates: {
       canonical: `https://jaipurstonecraft.com/designs/${categorySlug}/${designSlug}`,
     },
     openGraph: {
-      title: `${design.name} — ${category ? category.name : "Stonecraft"} Design`,
-      description: design.shortDescription,
+      title: pageTitle,
+      description: metaDesc,
       url: `https://jaipurstonecraft.com/designs/${categorySlug}/${designSlug}`,
       siteName: "Jaipur Stonecraft",
       type: "website",
@@ -51,11 +70,33 @@ export async function generateMetadata({ params }) {
           url: design.imageSrc,
           width: 800,
           height: 600,
-          alt: design.name,
+          alt: design.imageAlt || `${design.name} - Hand-carved in Jaipur`,
         },
       ],
     },
   };
+}
+
+
+function normalizeKnowledgeData(kl) {
+  let sections = [];
+  let faqs = [];
+
+  if (Array.isArray(kl)) {
+    sections = kl;
+  } else if (kl && typeof kl === "object") {
+    if (Array.isArray(kl.sections)) sections = kl.sections;
+    if (Array.isArray(kl.faqs)) faqs = kl.faqs;
+
+    if (sections.length === 0 && !kl.sections && !kl.faqs) {
+      if (kl.whatIsThis) sections.push({ title: "What Is This Carving?", content: kl.whatIsThis });
+      if (kl.materialOrigin) sections.push({ title: "Material Origin & Characteristics", content: kl.materialOrigin });
+      if (kl.suitableFor) sections.push({ title: "Suitable Placement & Environments", content: kl.suitableFor });
+      if (kl.installationCare) sections.push({ title: "Installation Requirements & Care", content: kl.installationCare });
+    }
+  }
+
+  return { sections, faqs };
 }
 
 export default async function DesignDetailPage({ params }) {
@@ -71,35 +112,64 @@ export default async function DesignDetailPage({ params }) {
   const collection = category ? await getCollection(category.parentCollection) : null;
   const subcategory = category ? await getSubcategory(category.parentCollection, category.parentSubcategory) : null;
 
+  const { sections: knowledgeSections, faqs: productFaqs } = normalizeKnowledgeData(design.knowledgeLayer);
+
   // Data-Driven Relationship Engine (Genuine shared taxonomy)
   const relatedDesigns = await getRelatedProductsFromDB(design, 3);
 
+  const jsonLdGraph = [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jaipurstonecraft.com" },
+        { "@type": "ListItem", "position": 2, "name": "Collections", "item": "https://jaipurstonecraft.com/collections" },
+        ...(collection ? [{ "@type": "ListItem", "position": 3, "name": collection.name, "item": `https://jaipurstonecraft.com/collections/${collection.slug}` }] : []),
+        ...(subcategory ? [{ "@type": "ListItem", "position": 4, "name": subcategory.name, "item": `https://jaipurstonecraft.com/collections/${collection?.slug}/${subcategory.slug}` }] : []),
+        ...(category ? [{ "@type": "ListItem", "position": 5, "name": category.name, "item": `https://jaipurstonecraft.com/collections/${collection?.slug}/${subcategory?.slug}/${category.slug}` }] : []),
+        { "@type": "ListItem", "position": 6, "name": design.name, "item": `https://jaipurstonecraft.com/designs/${categorySlug}/${designSlug}` },
+      ],
+    },
+    {
+      "@type": "Product",
+      "name": design.name,
+      "description": design.shortDescription || design.detailedDescription,
+      "image": design.imageSrc,
+      "sku": design.sku || undefined,
+      "category": category ? category.name : undefined,
+      "brand": {
+        "@type": "Brand",
+        "name": "Jaipur Stonecraft",
+      },
+      "material": design.primaryMaterial ? design.primaryMaterial.name : "White Makrana Marble",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/NewCondition",
+        "seller": {
+          "@type": "Organization",
+          "name": "Jaipur Stonecraft"
+        }
+      }
+    },
+  ];
+
+  if (productFaqs.length > 0) {
+    jsonLdGraph.push({
+      "@type": "FAQPage",
+      "mainEntity": productFaqs.map((faq) => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer,
+        },
+      })),
+    });
+  }
+
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jaipurstonecraft.com" },
-          { "@type": "ListItem", "position": 2, "name": "Collections", "item": "https://jaipurstonecraft.com/collections" },
-          ...(collection ? [{ "@type": "ListItem", "position": 3, "name": collection.name, "item": `https://jaipurstonecraft.com/collections/${collection.slug}` }] : []),
-          ...(subcategory ? [{ "@type": "ListItem", "position": 4, "name": subcategory.name, "item": `https://jaipurstonecraft.com/collections/${collection?.slug}/${subcategory.slug}` }] : []),
-          ...(category ? [{ "@type": "ListItem", "position": 5, "name": category.name, "item": `https://jaipurstonecraft.com/collections/${collection?.slug}/${subcategory?.slug}/${category.slug}` }] : []),
-          { "@type": "ListItem", "position": 6, "name": design.name, "item": `https://jaipurstonecraft.com/designs/${categorySlug}/${designSlug}` },
-        ],
-      },
-      {
-        "@type": "Product",
-        "name": design.name,
-        "description": design.shortDescription,
-        "image": design.imageSrc,
-        "brand": {
-          "@type": "Brand",
-          "name": "Jaipur Stonecraft",
-        },
-        "material": design.primaryMaterial ? design.primaryMaterial.name : "White Makrana Marble",
-      },
-    ],
+    "@graph": jsonLdGraph,
   };
 
   return (
@@ -127,10 +197,11 @@ export default async function DesignDetailPage({ params }) {
               <ScrollReveal animation="fade-scale">
                 <div className={styles.imageContainer}>
                   <Image
-                    src={design.imageSrc}
+                    src={getImageVariantUrl(design.imageSrc, "display")}
                     alt={`${design.name} — Hand-carved ${design.primaryMaterial ? design.primaryMaterial.name : "Natural Marble"} by Jaipur Stonecraft`}
                     fill
                     priority
+                    quality={90}
                     sizes="(max-width: 768px) 100vw, 50vw"
                     style={{ objectFit: "cover" }}
                   />
@@ -231,27 +302,36 @@ export default async function DesignDetailPage({ params }) {
               />
             </ScrollReveal>
 
-            {design.knowledgeLayer && (
+            {knowledgeSections.length > 0 && (
               <div style={{ marginTop: "var(--spacing-xl)", display: "grid", gap: "var(--spacing-lg)" }}>
-                <div style={{ background: "rgba(255,255,255,0.05)", padding: "1.5rem", borderRadius: "4px" }}>
-                  <h3 style={{ color: "var(--color-bronze)", fontSize: "1.1rem", marginBottom: "0.5rem" }}>Stone Material & Origin</h3>
-                  <p style={{ color: "var(--color-cream)", fontSize: "0.95rem", lineHeight: "1.6" }}>
-                    {design.knowledgeLayer.materialOrigin}
-                  </p>
-                </div>
+                {knowledgeSections.map((sec, idx) => (
+                  <div key={idx} style={{ background: "rgba(255,255,255,0.05)", padding: "1.5rem", borderRadius: "4px" }}>
+                    <h3 style={{ color: "var(--color-bronze)", fontSize: "1.1rem", marginBottom: "0.5rem" }}>{sec.title}</h3>
+                    <p style={{ color: "var(--color-cream)", fontSize: "0.95rem", lineHeight: "1.6" }}>
+                      {sec.content}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
 
-                <div style={{ background: "rgba(255,255,255,0.05)", padding: "1.5rem", borderRadius: "4px" }}>
-                  <h3 style={{ color: "var(--color-bronze)", fontSize: "1.1rem", marginBottom: "0.5rem" }}>Suitable Architectural Uses</h3>
-                  <p style={{ color: "var(--color-cream)", fontSize: "0.95rem", lineHeight: "1.6" }}>
-                    {design.knowledgeLayer.suitableFor}
-                  </p>
-                </div>
-
-                <div style={{ background: "rgba(255,255,255,0.05)", padding: "1.5rem", borderRadius: "4px" }}>
-                  <h3 style={{ color: "var(--color-bronze)", fontSize: "1.1rem", marginBottom: "0.5rem" }}>Care & Maintenance</h3>
-                  <p style={{ color: "var(--color-cream)", fontSize: "0.95rem", lineHeight: "1.6" }}>
-                    {design.knowledgeLayer.installationCare}
-                  </p>
+            {/* DYNAMIC PRODUCT FAQS & Q&A */}
+            {productFaqs.length > 0 && (
+              <div style={{ marginTop: "3rem", paddingTop: "2.5rem", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+                <h3 style={{ color: "var(--color-bronze)", fontFamily: "var(--font-cormorant), serif", fontSize: "1.5rem", marginBottom: "1.25rem", textAlign: "center" }}>
+                  Frequently Asked Questions
+                </h3>
+                <div style={{ display: "grid", gap: "1rem" }}>
+                  {productFaqs.map((faq, idx) => (
+                    <div key={idx} style={{ background: "rgba(255,255,255,0.04)", padding: "1.25rem 1.5rem", borderRadius: "4px", borderLeft: "3px solid var(--color-bronze)" }}>
+                      <h4 style={{ color: "var(--color-cream)", fontSize: "1.05rem", fontWeight: "600", marginBottom: "0.4rem" }}>
+                        Q: {faq.question}
+                      </h4>
+                      <p style={{ color: "rgba(244, 240, 234, 0.85)", fontSize: "0.92rem", lineHeight: "1.6" }}>
+                        {faq.answer}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
             )}

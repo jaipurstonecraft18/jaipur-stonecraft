@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { query, getOne, execute, initDB } from "@/lib/db/client.js";
 import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
 
@@ -113,6 +114,16 @@ export async function PUT(request) {
     `, [value, altText || existing.alt_text, keyName]);
 
     const updated = await getOne("SELECT * FROM site_content WHERE key_name = ?", [keyName]);
+
+    // Revalidate public route caches so updated content images render immediately
+    try {
+      revalidatePath("/");
+      revalidatePath("/craftsmanship");
+      revalidatePath("/our-story");
+    } catch (revalErr) {
+      console.error("[Revalidate Cache Error]:", revalErr);
+    }
+
     return NextResponse.json({ success: true, slot: updated, message: `Updated ${existing.label}` });
   } catch (error) {
     return NextResponse.json({ error: error.message || "Failed to update content" }, { status: 500 });

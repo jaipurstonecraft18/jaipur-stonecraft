@@ -18,6 +18,8 @@ export default function FieldAiActions({
     setIsOpen(true);
     setSuggestion(null);
 
+    const targetField = fieldLabel === "Short Description" ? "shortDescription" : "detailedDescription";
+
     try {
       const res = await fetch("/api/admin/ai/analyze-product", {
         method: "POST",
@@ -25,8 +27,10 @@ export default function FieldAiActions({
         body: JSON.stringify({
           product: {
             ...contextData,
-            [fieldLabel === "Short Description" ? "shortDescription" : "detailedDescription"]: currentValue
+            [targetField]: currentValue
           },
+          mode: "field",
+          fieldTarget: targetField,
           manualNotes: `Action requested: ${actionType} for field ${fieldLabel}. Preserve confirmed facts strictly.`
         })
       });
@@ -34,10 +38,10 @@ export default function FieldAiActions({
       const json = await res.json();
 
       if (json.success && json.data) {
-        const val = fieldLabel === "Short Description" ? json.data.short_description : json.data.detailed_description;
+        const val = json.data[targetField];
         setSuggestion(val || "Unable to refine field.");
       } else {
-        setSuggestion("AI refine service unavailable.");
+        setSuggestion(json.error || "AI refine service unavailable.");
       }
     } catch {
       setSuggestion("Error processing action.");

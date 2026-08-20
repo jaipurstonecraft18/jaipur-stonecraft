@@ -35,19 +35,31 @@ const KNOWLEDGE_SUGGESTIONS = [
 ];
 
 function normalizeKnowledgeLayer(kl) {
-  if (Array.isArray(kl)) return kl;
-  if (kl && typeof kl === "object") {
-    const sections = [];
-    if (kl.whatIsThis) sections.push({ title: "What Is This Carving?", content: kl.whatIsThis });
-    if (kl.materialOrigin) sections.push({ title: "Material Origin & Characteristics", content: kl.materialOrigin });
-    if (kl.suitableFor) sections.push({ title: "Suitable Placement & Environments", content: kl.suitableFor });
-    if (kl.installationCare) sections.push({ title: "Installation Requirements & Care", content: kl.installationCare });
-    if (sections.length > 0) return sections;
+  let sections = [];
+  let faqs = [];
+
+  if (Array.isArray(kl)) {
+    sections = kl;
+  } else if (kl && typeof kl === "object") {
+    if (Array.isArray(kl.sections)) sections = kl.sections;
+    if (Array.isArray(kl.faqs)) faqs = kl.faqs;
+
+    if (sections.length === 0 && !kl.sections && !kl.faqs) {
+      if (kl.whatIsThis) sections.push({ title: "What Is This Carving?", content: kl.whatIsThis });
+      if (kl.materialOrigin) sections.push({ title: "Material Origin & Characteristics", content: kl.materialOrigin });
+      if (kl.suitableFor) sections.push({ title: "Suitable Placement & Environments", content: kl.suitableFor });
+      if (kl.installationCare) sections.push({ title: "Installation Requirements & Care", content: kl.installationCare });
+    }
   }
-  return [
-    { title: "Craftsmanship & Technique", content: "" },
-    { title: "Material Origin & Characteristics", content: "" }
-  ];
+
+  if (sections.length === 0 && faqs.length === 0) {
+    sections = [
+      { title: "Craftsmanship & Technique", content: "" },
+      { title: "Material Origin & Characteristics", content: "" }
+    ];
+  }
+
+  return { sections, faqs };
 }
 
 export default function ProductStudio({ initialProduct, isNew = false }) {
@@ -185,10 +197,13 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
 
   const handleAddKnowledgeSection = (title = "") => {
     setFormData((prev) => {
-      const currentSections = Array.isArray(prev.knowledgeLayer) ? prev.knowledgeLayer : normalizeKnowledgeLayer(prev.knowledgeLayer);
+      const kl = normalizeKnowledgeLayer(prev.knowledgeLayer);
       return {
         ...prev,
-        knowledgeLayer: [...currentSections, { title: title || "New Information Section", content: "" }]
+        knowledgeLayer: {
+          ...kl,
+          sections: [...kl.sections, { title: title || "New Information Section", content: "" }]
+        }
       };
     });
     setIsDirty(true);
@@ -197,9 +212,10 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
 
   const handleUpdateKnowledgeSection = (index, field, value) => {
     setFormData((prev) => {
-      const currentSections = Array.isArray(prev.knowledgeLayer) ? [...prev.knowledgeLayer] : normalizeKnowledgeLayer(prev.knowledgeLayer);
-      currentSections[index] = { ...currentSections[index], [field]: value };
-      return { ...prev, knowledgeLayer: currentSections };
+      const kl = normalizeKnowledgeLayer(prev.knowledgeLayer);
+      const updated = [...kl.sections];
+      updated[index] = { ...updated[index], [field]: value };
+      return { ...prev, knowledgeLayer: { ...kl, sections: updated } };
     });
     setIsDirty(true);
     setSaveStatus("dirty");
@@ -207,10 +223,62 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
 
   const handleRemoveKnowledgeSection = (index) => {
     setFormData((prev) => {
-      const currentSections = Array.isArray(prev.knowledgeLayer) ? [...prev.knowledgeLayer] : normalizeKnowledgeLayer(prev.knowledgeLayer);
-      const updated = [...currentSections];
+      const kl = normalizeKnowledgeLayer(prev.knowledgeLayer);
+      const updated = [...kl.sections];
       updated.splice(index, 1);
-      return { ...prev, knowledgeLayer: updated };
+      return { ...prev, knowledgeLayer: { ...kl, sections: updated } };
+    });
+    setIsDirty(true);
+    setSaveStatus("dirty");
+  };
+
+  const handleAddFaq = (question = "", answer = "") => {
+    setFormData((prev) => {
+      const kl = normalizeKnowledgeLayer(prev.knowledgeLayer);
+      return {
+        ...prev,
+        knowledgeLayer: {
+          ...kl,
+          faqs: [...kl.faqs, { question: question || "Product Question", answer: answer || "" }]
+        }
+      };
+    });
+    setIsDirty(true);
+    setSaveStatus("dirty");
+  };
+
+  const handleUpdateFaq = (index, field, value) => {
+    setFormData((prev) => {
+      const kl = normalizeKnowledgeLayer(prev.knowledgeLayer);
+      const updated = [...kl.faqs];
+      updated[index] = { ...updated[index], [field]: value };
+      return { ...prev, knowledgeLayer: { ...kl, faqs: updated } };
+    });
+    setIsDirty(true);
+    setSaveStatus("dirty");
+  };
+
+  const handleRemoveFaq = (index) => {
+    setFormData((prev) => {
+      const kl = normalizeKnowledgeLayer(prev.knowledgeLayer);
+      const updated = [...kl.faqs];
+      updated.splice(index, 1);
+      return { ...prev, knowledgeLayer: { ...kl, faqs: updated } };
+    });
+    setIsDirty(true);
+    setSaveStatus("dirty");
+  };
+
+  const handleMoveFaq = (index, direction) => {
+    setFormData((prev) => {
+      const kl = normalizeKnowledgeLayer(prev.knowledgeLayer);
+      const targetIndex = index + direction;
+      if (targetIndex < 0 || targetIndex >= kl.faqs.length) return prev;
+      const updated = [...kl.faqs];
+      const temp = updated[index];
+      updated[index] = updated[targetIndex];
+      updated[targetIndex] = temp;
+      return { ...prev, knowledgeLayer: { ...kl, faqs: updated } };
     });
     setIsDirty(true);
     setSaveStatus("dirty");
@@ -659,7 +727,7 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
 
               {/* Dynamic List of Information Blocks */}
               <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
-                {(Array.isArray(formData.knowledgeLayer) ? formData.knowledgeLayer : normalizeKnowledgeLayer(formData.knowledgeLayer)).map((sec, idx) => (
+                {normalizeKnowledgeLayer(formData.knowledgeLayer).sections.map((sec, idx) => (
                   <div key={idx} style={{ border: "1px solid #E2DDD5", borderRadius: "6px", padding: "0.85rem", backgroundColor: "#FFF" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem", gap: "0.5rem" }}>
                       <input
@@ -700,6 +768,90 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
               >
                 + Add Information Section
               </button>
+            </div>
+
+            {/* DYNAMIC PRODUCT Q&A / FAQS SECTION */}
+            <div className={styles.formGroupFull} style={{ marginTop: "1.5rem", paddingTop: "1rem", borderTop: "1px solid #E2DDD5" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
+                <div>
+                  <h3 style={{ fontSize: "0.95rem", fontWeight: "600", color: "var(--color-navy)" }}>
+                    ❓ Product FAQs & Dynamic Q&A
+                  </h3>
+                  <p style={{ fontSize: "0.78rem", color: "#666", marginTop: "0.15rem" }}>
+                    Frequently asked client questions about custom dimensions, shipping, stone care, or sacred placement (rendered as SEO FAQ schema on public pages).
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleAddFaq("", "")}
+                  className={styles.secondaryBtn}
+                  style={{ fontSize: "0.78rem", padding: "0.3rem 0.65rem", borderColor: "var(--color-bronze)", color: "var(--color-navy)" }}
+                >
+                  + Add Product Question
+                </button>
+              </div>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
+                {normalizeKnowledgeLayer(formData.knowledgeLayer).faqs.map((faq, idx) => (
+                  <div key={idx} style={{ border: "1px solid #E2DDD5", borderRadius: "6px", padding: "0.85rem", backgroundColor: "#FAF9F6" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem", gap: "0.5rem" }}>
+                      <input
+                        type="text"
+                        value={faq.question || ""}
+                        onChange={(e) => handleUpdateFaq(idx, "question", e.target.value)}
+                        placeholder="Question (e.g. Can this sculpture be customized in height?)"
+                        className={styles.input}
+                        style={{ fontWeight: "600", fontSize: "0.85rem", flex: 1, padding: "0.35rem 0.6rem" }}
+                      />
+                      <div style={{ display: "flex", gap: "0.35rem" }}>
+                        <button
+                          type="button"
+                          disabled={idx === 0}
+                          onClick={() => handleMoveFaq(idx, -1)}
+                          className={styles.secondaryBtn}
+                          style={{ fontSize: "0.75rem", padding: "0.2rem 0.45rem", minHeight: "32px" }}
+                          title="Move Up"
+                        >
+                          ↑
+                        </button>
+                        <button
+                          type="button"
+                          disabled={idx === normalizeKnowledgeLayer(formData.knowledgeLayer).faqs.length - 1}
+                          onClick={() => handleMoveFaq(idx, 1)}
+                          className={styles.secondaryBtn}
+                          style={{ fontSize: "0.75rem", padding: "0.2rem 0.45rem", minHeight: "32px" }}
+                          title="Move Down"
+                        >
+                          ↓
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveFaq(idx)}
+                          className={styles.secondaryBtn}
+                          style={{ color: "#C5221F", borderColor: "#FCE8E6", fontSize: "0.75rem", padding: "0.25rem 0.55rem", minHeight: "32px" }}
+                        >
+                          🗑 Remove
+                        </button>
+                      </div>
+                    </div>
+
+                    <textarea
+                      rows={2}
+                      value={faq.answer || ""}
+                      onChange={(e) => handleUpdateFaq(idx, "answer", e.target.value)}
+                      placeholder="Answer (e.g. Yes, our Jaipur studio carves this piece in custom dimensions ranging from 12 inches to 10 feet...)"
+                      className={styles.textarea}
+                      style={{ width: "100%", fontSize: "0.85rem", padding: "0.45rem 0.6rem" }}
+                    />
+                  </div>
+                ))}
+
+                {normalizeKnowledgeLayer(formData.knowledgeLayer).faqs.length === 0 && (
+                  <div style={{ fontSize: "0.8rem", color: "#888", fontStyle: "italic", textAlign: "center", padding: "0.75rem", backgroundColor: "#FFF", borderRadius: "4px", border: "1px dashed #E2DDD5" }}>
+                    No product-specific FAQs added yet. Click "+ Add Product Question" or use AI Assistant to generate candidate Q&As.
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -1012,6 +1164,31 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
                 onChange={(e) => updateNestedField("seo", "description", e.target.value)}
                 placeholder="Hand-carved stone art sculpted by master stone artisans in Jaipur."
                 className={styles.textarea}
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Primary Search Phrase</label>
+              <input
+                type="text"
+                value={formData.seo?.primaryKeyword || ""}
+                onChange={(e) => updateNestedField("seo", "primaryKeyword", e.target.value)}
+                placeholder="e.g. Hand carved Ganesh statue white marble"
+                className={styles.input}
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Secondary Search Phrases (Comma-Separated)</label>
+              <input
+                type="text"
+                value={Array.isArray(formData.seo?.secondaryKeywords) ? formData.seo.secondaryKeywords.join(", ") : (formData.seo?.secondaryKeywords || "")}
+                onChange={(e) => {
+                  const arr = e.target.value.split(",").map((k) => k.trim()).filter(Boolean);
+                  updateNestedField("seo", "secondaryKeywords", arr);
+                }}
+                placeholder="e.g. Makrana marble murti, Jaipur stone carving, custom deity idol"
+                className={styles.input}
               />
             </div>
           </div>

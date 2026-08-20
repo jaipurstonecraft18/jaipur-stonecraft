@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { query, getOne, execute } from "@/lib/db/client.js";
 import { formatProductFromRow } from "@/lib/db/products.js";
 import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
+import { evaluateSeoReadiness } from "@/lib/seo/readiness-checker.js";
 
 export async function GET(request) {
   if (!isAuthorizedAdminRequest(request)) {
@@ -10,6 +11,9 @@ export async function GET(request) {
 
   const { searchParams } = new URL(request.url);
   const status = searchParams.get("status") || "all";
+  const healthFilter = searchParams.get("health") || "all";
+  const issueFilter = searchParams.get("issue") || "all";
+  const sortBy = searchParams.get("sort") || "health_priority";
   const search = searchParams.get("search") || "";
   const category = searchParams.get("category") || "";
   const page = parseInt(searchParams.get("page") || "1", 10);
@@ -34,24 +38,82 @@ export async function GET(request) {
     params.push(term, term, term);
   }
 
-  // Count total matching records
-  const countSql = sql.replace("SELECT *", "SELECT COUNT(*) as total");
-  const countRow = await getOne(countSql, params);
-  const totalCount = countRow ? countRow.total : 0;
-
-  // Pagination & Sorting
-  sql += " ORDER BY updated_at DESC LIMIT ? OFFSET ?";
-  const offset = (page - 1) * pageSize;
-  params.push(pageSize, offset);
+  sql += " ORDER BY updated_at DESC";
 
   const rows = await query(sql, params);
-  const products = await Promise.all(rows.map(formatProductFromRow));
+  const allFormattedProducts = await Promise.all(rows.map(formatProductFromRow));
+
+  let healthyCount = 0;
+  let needsAttentionCount = 0;
+  let incompleteCount = 0;
+
+  const productsWithHealth = allFormattedProducts.map((p) => {
+    const readiness = evaluateSeoReadiness(p);
+    const statusKey = readiness.overallStatus || readiness.healthStatus || "ready";
+
+    if (statusKey === "ready") healthyCount++;
+    else if (statusKey === "needs_attention") needsAttentionCount++;
+    else if (statusKey === "incomplete") incompleteCount++;
+
+    const issueItems = readiness.items.filter((i) => i.status !== "ok");
+    const primaryIssue = issueItems[0]?.message || "";
+    const issueCount = issueItems.length;
+
+    let issueSummary = "Healthy";
+    if (statusKey === "incomplete") {
+      issueSummary = issueCount === 1 ? primaryIssue : `${primaryIssue} (+${issueCount - 1} issue${issueCount > 2 ? 's' : ''})`;
+    } else if (statusKey === "needs_attention") {
+      issueSummary = issueCount === 1 ? primaryIssue : `${primaryIssue} (+${issueCount - 1} issue${issueCount > 2 ? 's' : ''})`;
+    }
+
+    return {
+      ...p,
+      health: {
+        status: statusKey,
+        issueSummary,
+        issueCount,
+        readiness
+      }
+    };
+  });
+
+  let filteredProducts = productsWithHealth;
+  if (healthFilter !== "all") {
+    const targetKey = healthFilter === "healthy" ? "ready" : healthFilter;
+    filteredProducts = productsWithHealth.filter((p) => p.health.status === targetKey);
+  }
+
+  if (issueFilter !== "all") {
+    filteredProducts = filteredProducts.filter((p) => {
+      const items = p.health?.readiness?.items || [];
+      return items.some((item) => item.id === issueFilter && item.status !== "ok");
+    });
+  }
+
+  if (sortBy === "health_priority") {
+    const healthWeight = { incomplete: 3, needs_attention: 2, ready: 1 };
+    filteredProducts.sort((a, b) => {
+      const weightDiff = (healthWeight[b.health.status] || 0) - (healthWeight[a.health.status] || 0);
+      if (weightDiff !== 0) return weightDiff;
+      return b.health.issueCount - a.health.issueCount;
+    });
+  }
+
+  const totalCount = filteredProducts.length;
+  const offset = (page - 1) * pageSize;
+  const paginatedProducts = filteredProducts.slice(offset, offset + pageSize);
 
   return NextResponse.json({
-    products,
+    products: paginatedProducts,
     totalCount,
+    healthCounts: {
+      total: allFormattedProducts.length,
+      healthy: healthyCount,
+      needsAttention: needsAttentionCount,
+      incomplete: incompleteCount
+    },
     currentPage: page,
-    totalPages: Math.ceil(totalCount / pageSize),
+    totalPages: Math.ceil(totalCount / pageSize) || 1,
     pageSize
   });
 }
@@ -113,17 +175,22 @@ export async function POST(request) {
     }
 
     if (body.imageSrc) {
+      const matchingGalleryItem = Array.isArray(body.imageGallery) 
+        ? body.imageGallery.find(item => (typeof item === "object" && (item.src === body.imageSrc || item.url === body.imageSrc)))
+        : null;
+      const heroAlt = body.imageAlt || matchingGalleryItem?.altText || matchingGalleryItem?.alt_text || `${name} - Hand-carved in Jaipur`;
+
       await execute(`
         INSERT INTO product_images (product_slug, url, alt_text, role, sort_order, is_primary)
         VALUES (?, ?, ?, 'hero', 0, 1)
-      `, [slug, body.imageSrc, `${name} - Hand-carved in Jaipur`]);
+      `, [slug, body.imageSrc, heroAlt]);
     }
 
     if (Array.isArray(body.imageGallery)) {
       for (let idx = 0; idx < body.imageGallery.length; idx++) {
         const item = body.imageGallery[idx];
-        const url = typeof item === "string" ? item : item?.src || "";
-        const alt = typeof item === "object" && item?.altText ? item.altText : `${name} detail view ${idx + 1}`;
+        const url = typeof item === "string" ? item : item?.src || item?.url || "";
+        const alt = typeof item === "object" ? (item.altText || item.alt_text || item.alt || `${name} detail view ${idx + 1}`) : `${name} detail view ${idx + 1}`;
         if (url && url !== body.imageSrc) {
           await execute(`
             INSERT INTO product_images (product_slug, url, alt_text, role, sort_order, is_primary)

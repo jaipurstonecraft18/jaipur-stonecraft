@@ -29,7 +29,12 @@ export const metadata = {
   },
 };
 
-export default function OurStory() {
+import { getSiteContent } from "@/lib/db/content.js";
+
+export default async function OurStory() {
+  const heritageBanner = await getSiteContent("about_heritage_banner", "https://placehold.co/800x1000/E8E4DF/1A1918?text=[Jaipur+Heritage+Workshop]", "Artisan carving marble in traditional Rajasthan workshop");
+  const quarryImg = await getSiteContent("about_quarry_image", "https://placehold.co/800x1000/E8E4DF/1A1918?text=[Traditional+Architectural+Drawing]", "Design sketch overlaying raw sandstone blocks");
+
   return (
     <>
       {/* 1. BREADCRUMBS & HEADER */}
@@ -49,8 +54,8 @@ export default function OurStory() {
       <Section background="light" spacing="standard">
         <Container>
           <ImageWithText
-            imageSrc="https://placehold.co/800x1000/E8E4DF/1A1918?text=[Jaipur+Heritage+Workshop]"
-            imageAlt="Artisan carving marble in traditional Rajasthan workshop"
+            imageSrc={heritageBanner.url}
+            imageAlt={heritageBanner.alt}
             eyebrow="The Heritage"
             heading="Passing Down the Chisel"
             ctaText="See Our Craftsmanship"
@@ -70,8 +75,8 @@ export default function OurStory() {
       <Section background="grey" spacing="standard">
         <Container>
           <ImageWithText
-            imageSrc="https://placehold.co/800x1000/E8E4DF/1A1918?text=[Traditional+Architectural+Drawing]"
-            imageAlt="Design sketch overlaying raw sandstone blocks"
+            imageSrc={quarryImg.url}
+            imageAlt={quarryImg.alt}
             eyebrow="The Transition"
             heading="Why We Founded Jaipur Stonecraft"
             ctaText="View Completed Projects"

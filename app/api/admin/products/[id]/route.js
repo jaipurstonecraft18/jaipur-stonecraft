@@ -100,17 +100,22 @@ export async function PUT(request, { params }) {
       await execute("DELETE FROM product_images WHERE product_slug = ?", [slug]);
       
       if (body.imageSrc) {
+        const matchingGalleryItem = Array.isArray(body.imageGallery) 
+          ? body.imageGallery.find(item => (typeof item === "object" && (item.src === body.imageSrc || item.url === body.imageSrc)))
+          : null;
+        const heroAlt = body.imageAlt || matchingGalleryItem?.altText || matchingGalleryItem?.alt_text || `${name} - Hand-carved in Jaipur`;
+
         await execute(`
           INSERT INTO product_images (product_slug, url, alt_text, role, sort_order, is_primary)
           VALUES (?, ?, ?, 'hero', 0, 1)
-        `, [slug, body.imageSrc, `${name} - Hand-carved in Jaipur`]);
+        `, [slug, body.imageSrc, heroAlt]);
       }
 
       if (Array.isArray(body.imageGallery)) {
         for (let idx = 0; idx < body.imageGallery.length; idx++) {
           const item = body.imageGallery[idx];
-          const url = typeof item === "string" ? item : item?.src || "";
-          const alt = typeof item === "object" && item?.altText ? item.altText : `${name} detail view ${idx + 1}`;
+          const url = typeof item === "string" ? item : item?.src || item?.url || "";
+          const alt = typeof item === "object" ? (item.altText || item.alt_text || item.alt || `${name} detail view ${idx + 1}`) : `${name} detail view ${idx + 1}`;
           if (url && url !== body.imageSrc) {
             await execute(`
               INSERT INTO product_images (product_slug, url, alt_text, role, sort_order, is_primary)

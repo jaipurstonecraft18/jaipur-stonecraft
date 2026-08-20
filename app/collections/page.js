@@ -4,7 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import CollectionCard from "@/components/CollectionCard/CollectionCard";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
-import { collectionsData } from "@/content/collections";
+import { getAllCollections } from "@/content/collections";
 
 export const metadata = {
   title: "Collections — Jaipur Stonecraft",
@@ -29,8 +29,8 @@ export const metadata = {
   },
 };
 
-export default function Collections() {
-  const collections = Object.values(collectionsData);
+export default async function Collections() {
+  const collections = await getAllCollections();
 
   return (
     <Section background="light" spacing="standard" className="page-offset">

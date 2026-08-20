@@ -4,12 +4,12 @@ import Container from "@/components/Container/Container";
 import Section from "@/components/Section/Section";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
-import { collectionsData } from "@/content/collections";
+import { getAllCollections } from "@/content/collections";
 import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
 import styles from "./HomeCollections.module.css";
 
-export default function HomeCollections() {
-  const collectionsList = Object.values(collectionsData);
+export default async function HomeCollections() {
+  const collectionsList = await getAllCollections();
 
   // 1. Hero Spotlight Collection: Sculptures & Statues
   const heroSpotlight = collectionsList.find((col) => col.slug === "sculptures-statues") || collectionsList[0];
@@ -45,9 +45,10 @@ export default function HomeCollections() {
             <Link href={`/collections/${heroSpotlight.slug}`} className={styles.heroSpotlightCard}>
               <div className={styles.spotlightImageWrapper}>
                 <Image
-                  src={getImageVariantUrl(heroSpotlight.imageSrc, "card")}
+                  src={getImageVariantUrl(heroSpotlight.imageSrc, "display")}
                   alt={heroSpotlight.name}
                   fill
+                  quality={90}
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className={styles.spotlightImage}
                   loading="lazy"
@@ -91,9 +92,10 @@ export default function HomeCollections() {
                 <Link href={`/collections/${col.slug}`} className={styles.gridCard}>
                   <div className={styles.gridImageWrapper}>
                     <Image
-                      src={getImageVariantUrl(col.imageSrc, "card")}
+                      src={getImageVariantUrl(col.imageSrc, "display")}
                       alt={col.name}
                       fill
+                      quality={90}
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className={styles.gridImage}
                       loading="lazy"
@@ -125,6 +127,7 @@ export default function HomeCollections() {
                       src={getImageVariantUrl(col.imageSrc, "card")}
                       alt={col.name}
                       fill
+                      quality={88}
                       sizes="(max-width: 768px) 100vw, 33vw"
                       className={styles.gridImage}
                       loading="lazy"
