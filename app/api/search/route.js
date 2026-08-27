@@ -1,38 +1,24 @@
 import { NextResponse } from "next/server";
-import { queryProductsDB } from "@/lib/db/products.js";
-import { categoriesData } from "@/content/categories.js";
+import { performSmartSearch } from "@/lib/search/smart-search-engine";
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const query = searchParams.get("q") || "";
+  const scope = searchParams.get("scope") || "all";
+  const limit = parseInt(searchParams.get("limit") || "100", 10);
 
   if (!query.trim()) {
-    return NextResponse.json({ products: [], categoryResults: [], totalCount: 0 });
+    return NextResponse.json({
+      products: [],
+      categories: [],
+      collections: [],
+      projects: [],
+      typoSuggestion: null,
+      totalCount: 0,
+    });
   }
 
-  // 1. Search category landings
-  const categoryResults = [];
-  const q = query.toLowerCase().trim();
+  const result = await performSmartSearch(query, { scope, limit });
 
-  Object.values(categoriesData).forEach((cat) => {
-    if (cat.name.toLowerCase().includes(q) || (cat.description || "").toLowerCase().includes(q)) {
-      categoryResults.push({
-        id: `cat-${cat.slug}`,
-        title: `${cat.name} Statues`,
-        type: "Category Landing",
-        href: `/collections/${cat.parentCollection}/${cat.parentSubcategory}/${cat.slug}`,
-      });
-    }
-  });
-
-  // 2. Query MySQL products database
-  const dbResult = await queryProductsDB({ query, pageSize: 6 });
-
-  return NextResponse.json({
-    products: dbResult.products,
-    categoryResults,
-    totalCount: dbResult.totalCount,
-    isFallback: dbResult.isFallback,
-    fallbackMessage: dbResult.fallbackMessage
-  });
+  return NextResponse.json(result);
 }

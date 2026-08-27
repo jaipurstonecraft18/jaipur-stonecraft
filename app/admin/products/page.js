@@ -61,7 +61,14 @@ export default function AdminProductsListPage() {
   }, [statusFilter, healthFilter, searchQuery, categoryFilter, page]);
 
   useEffect(() => {
-    fetchProducts();
+    let active = true;
+    const timer = setTimeout(() => {
+      if (active) fetchProducts();
+    }, 0);
+    return () => {
+      active = false;
+      clearTimeout(timer);
+    };
   }, [fetchProducts]);
 
   const updateFilters = (newParams) => {

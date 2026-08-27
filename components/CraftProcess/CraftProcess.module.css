@@ -1,121 +1,536 @@
+/* ==========================================
+   CRAFTSMANSHIP SECTION — WARM DARK ATELIER
+   ========================================== */
 .section {
-  background-color: var(--color-charcoal);
-  color: var(--color-cream);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: var(--spacing-section) 0;
+  position: relative;
+  background-color: #F7F2EB;
+  color: #221F1B;
+  padding: 3.5rem 0 4.5rem;
 }
 
-.headingWrapper {
-  text-align: center;
-  max-width: 780px;
-  margin: 0 auto var(--spacing-xxl);
+.outerContainer {
+  background-color: #1A1715;
+  border-radius: 28px;
+  padding: 4rem 2.5rem;
+  color: #FFFFFF;
+  box-shadow: 0 24px 54px rgba(26, 22, 19, 0.2);
 }
 
-.heading {
-  font-family: var(--font-cormorant), serif;
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
-  font-weight: 300;
-  color: #ffffff;
-  margin-top: var(--spacing-xxs);
-  margin-bottom: var(--spacing-sm);
-}
-
-.subHeading {
-  font-size: 1.05rem;
-  color: rgba(247, 245, 240, 0.8);
-  line-height: 1.6;
-}
-
-/* Main Grid: Left Steps Timeline + Right Workshop Visual */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-xl);
-  align-items: center;
-}
-
-@media (min-width: 960px) {
-  .grid {
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: var(--spacing-xxl);
+@media (min-width: 1200px) {
+  .outerContainer {
+    padding: 4.5rem 3.5rem;
   }
 }
 
-.stepsContainer {
+/* PART 1: MAIN CRAFTSMANSHIP HERO AREA */
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  margin-bottom: 4.5rem;
+}
+
+@media (min-width: 992px) {
+  .heroGrid {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3.5rem;
+  }
+}
+
+.eyebrow {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #C68A4C;
+  margin-bottom: 0.85rem;
+  display: block;
+}
+
+.heading {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: #FFFFFF;
+  margin-bottom: 1.25rem;
+}
+
+.description {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.96rem;
+  line-height: 1.65;
+  color: rgba(247, 245, 240, 0.82);
+  margin-bottom: 2rem;
+  max-width: 520px;
+}
+
+.badgeBox {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(212, 163, 89, 0.25);
+  border-radius: 16px;
+  width: fit-content;
+}
+
+.mandalaIcon {
+  flex-shrink: 0;
+}
+
+.badgeTitle {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #D4A359;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.badgeSub {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
+  color: rgba(247, 245, 240, 0.7);
+  margin: 0;
+}
+
+.heroImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* PART 2: THE CRAFTING JOURNEY (5 Arch Steps) */
+.journeySection {
+  margin-bottom: 4.5rem;
+}
+
+.journeyHeader {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  align-items: center;
+  text-align: center;
+  margin-bottom: 3.5rem;
 }
 
-.stepItem {
+.ornamentLine {
+  margin-top: 0.5rem;
+}
+
+.journeyGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 640px) {
+  .journeyGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .journeyGrid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+.journeyCard {
   display: flex;
-  gap: var(--spacing-md);
-  padding-bottom: var(--spacing-md);
-  border-bottom: 1px solid rgba(232, 228, 223, 0.15);
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.archWrapper {
   position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 120px 120px 20px 20px;
+  overflow: hidden;
+  background-color: #12100E;
+  border: 1px solid rgba(212, 163, 89, 0.2);
+  margin-bottom: 1.25rem;
+  transition: transform 0.35s ease, border-color 0.35s ease;
 }
 
-.stepItem:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.journeyCard:hover .archWrapper {
+  transform: translateY(-4px);
+  border-color: rgba(212, 163, 89, 0.6);
 }
 
-.stepNumber {
-  font-family: var(--font-cormorant), serif;
-  font-size: 1.75rem;
-  font-weight: 300;
-  color: var(--color-bronze);
-  flex-shrink: 0;
-  min-width: 55px;
+.archImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.journeyCard:hover .archImage {
+  transform: scale(1.05);
+}
+
+.stepBadge {
+  position: absolute;
+  bottom: 0.85rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #1A1715;
+  border: 1px solid #D4A359;
+  color: #D4A359;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .stepContent {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  align-items: center;
+}
+
+.stepNumText {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #D4A359;
+  margin-bottom: 0.35rem;
+  display: block;
 }
 
 .stepTitle {
-  font-family: var(--font-cormorant), serif;
-  font-size: 1.45rem;
-  font-weight: 400;
-  color: #ffffff;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  line-height: 1.25;
 }
 
 .stepDesc {
-  font-size: 0.92rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.5;
   color: rgba(247, 245, 240, 0.75);
-  line-height: 1.55;
 }
 
-.workshopCol {
-  position: relative;
-  width: 100%;
+/* PART 3: BEHIND EVERY CREATION (Human Story & Craft Values) */
+.storyContainer {
+  background: #231E1B;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 3rem 2.25rem;
 }
 
-.workshopImageWrapper {
+@media (min-width: 1200px) {
+  .storyContainer {
+    padding: 3.5rem 3rem;
+  }
+}
+
+.storyGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .storyGrid {
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 3.5rem;
+  }
+}
+
+.storyImageWrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 5;
-  border-radius: 4px;
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.workshopImage {
+.storyImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.workshopImageWrapper:hover .workshopImage {
-  transform: scale(1.04);
+.storyTitle {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+  line-height: 1.12;
 }
 
-.ctaRow {
-  margin-top: var(--spacing-xxl);
+.storyDesc {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: rgba(247, 245, 240, 0.82);
+  margin-bottom: 1.25rem;
+}
+
+.scriptAccent {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-style: italic;
+  font-size: 1.35rem;
+  color: #D4A359;
+  margin-bottom: 2rem;
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .valuesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.valueItem {
   display: flex;
-  justify-content: center;
+  gap: 0.85rem;
 }
+
+.valueIcon {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.valueTitle {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  margin-bottom: 0.25rem;
+}
+
+.valueDesc {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: rgba(247, 245, 240, 0.7);
+}
+
+/* PART 4: SECTION BOTTOM PROMISE TRANSITION BANNER */
+.promiseBanner {
+  background-color: #EFEBE4;
+  border-radius: 24px;
+  padding: 3.5rem 2rem;
+  margin-top: 3.5rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(28, 24, 20, 0.05);
+}
+
+.bannerHeading {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+  font-weight: 400;
+  color: #221F1B;
+  line-height: 1.2;
+  margin-bottom: 1.75rem;
+}
+
+.bannerSubHeading {
+  font-style: italic;
+  color: #8A5A23;
+}
+
+.bannerCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.85rem 2.25rem;
+  background-color: #221F1B;
+  color: #FFFFFF;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.bannerCta:hover {
+  background-color: #38322D;
+  transform: translateY(-2px);
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.bannerCta:hover .arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 2.5rem 0 3.5rem;
+  }
+
+  .outerContainer {
+    padding: 2rem 1.1rem;
+    border-radius: 20px;
+  }
+
+  .heroGrid {
+    margin-bottom: 2.5rem;
+    gap: 1.5rem;
+  }
+
+  .heading {
+    font-size: clamp(1.85rem, 6.5vw, 2.4rem);
+  }
+
+  .description {
+    font-size: 0.88rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .badgeBox {
+    width: 100%;
+    padding: 0.85rem 1rem;
+  }
+
+  .heroImageWrapper {
+    aspect-ratio: 16 / 10;
+    border-radius: 14px;
+  }
+
+  .journeySection {
+    margin-bottom: 2.5rem;
+  }
+
+  .journeyHeader {
+    margin-bottom: 1.75rem;
+  }
+
+  .journeyGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem 0.65rem;
+  }
+
+  .journeyCard:nth-child(5) {
+    grid-column: span 2;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  .archWrapper {
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    margin-bottom: 0.65rem;
+  }
+
+  .stepBadge {
+    width: 24px;
+    height: 24px;
+    font-size: 0.65rem;
+    bottom: 0.5rem;
+  }
+
+  .stepTitle {
+    font-size: 0.92rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .stepDesc {
+    font-size: 0.76rem;
+    line-height: 1.35;
+  }
+
+  .storyContainer {
+    padding: 1.75rem 1.1rem;
+    border-radius: 18px;
+  }
+
+  .storyImageWrapper {
+    aspect-ratio: 16 / 10;
+    border-radius: 14px;
+  }
+
+  .storyTitle {
+    font-size: clamp(1.65rem, 6vw, 2.1rem);
+  }
+
+  .storyDesc {
+    font-size: 0.86rem;
+    margin-bottom: 1rem;
+  }
+
+  .scriptAccent {
+    font-size: 1.15rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .valuesGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem 0.5rem;
+  }
+
+  .valueItem {
+    gap: 0.5rem;
+  }
+
+  .valueTitle {
+    font-size: 0.95rem;
+  }
+
+  .valueDesc {
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+
+  .promiseBanner {
+    padding: 2.25rem 1.1rem;
+    margin-top: 2rem;
+    border-radius: 18px;
+  }
+
+  .bannerHeading {
+    font-size: clamp(1.6rem, 5.5vw, 2.1rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .bannerCta {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+  }
+}
+

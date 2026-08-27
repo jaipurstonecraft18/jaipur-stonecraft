@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { query, getOne, execute } from "@/lib/db/client.js";
 import { formatProductFromRow } from "@/lib/db/products.js";
 import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
+import { safeUnlinkObsoleteUpload } from "@/lib/admin/uploads.js";
 
 export async function GET(request, { params }) {
   if (!isAuthorizedAdminRequest(request)) {
@@ -97,9 +98,13 @@ export async function PUT(request, { params }) {
     ]);
 
     if (body.imageSrc || Array.isArray(body.imageGallery)) {
+      const oldImages = await query("SELECT url FROM product_images WHERE product_slug = ?", [slug]);
+
       await execute("DELETE FROM product_images WHERE product_slug = ?", [slug]);
-      
+
+      const newUrls = new Set();
       if (body.imageSrc) {
+        newUrls.add(body.imageSrc);
         const matchingGalleryItem = Array.isArray(body.imageGallery) 
           ? body.imageGallery.find(item => (typeof item === "object" && (item.src === body.imageSrc || item.url === body.imageSrc)))
           : null;
@@ -117,11 +122,19 @@ export async function PUT(request, { params }) {
           const url = typeof item === "string" ? item : item?.src || item?.url || "";
           const alt = typeof item === "object" ? (item.altText || item.alt_text || item.alt || `${name} detail view ${idx + 1}`) : `${name} detail view ${idx + 1}`;
           if (url && url !== body.imageSrc) {
+            newUrls.add(url);
             await execute(`
               INSERT INTO product_images (product_slug, url, alt_text, role, sort_order, is_primary)
               VALUES (?, ?, ?, 'gallery', ?, 0)
             `, [slug, url, alt, idx + 1]);
           }
+        }
+      }
+
+      // Safe unlinking for removed/replaced images
+      for (const oldImg of oldImages) {
+        if (oldImg.url && !newUrls.has(oldImg.url)) {
+          await safeUnlinkObsoleteUpload(oldImg.url);
         }
       }
     }
@@ -236,20 +249,8 @@ export async function DELETE(request, { params }) {
 
       // 3. Safe Media Pruning: Check if image URLs are used by OTHER products before removing from disk
       for (const imgRecord of productImages) {
-        if (!imgRecord.url || !imgRecord.url.startsWith("/uploads/")) continue;
-        const otherUses = await getOne("SELECT id FROM product_images WHERE url = ? AND product_slug != ?", [imgRecord.url, existingRow.slug]);
-        if (!otherUses) {
-          // No other product uses this image - safe to delete file from disk if it exists locally
-          try {
-            const path = await import("path");
-            const fs = await import("fs");
-            const diskPath = path.default.join(process.cwd(), "public", imgRecord.url.replace(/^\//, ""));
-            if (fs.default.existsSync(diskPath)) {
-              fs.default.unlinkSync(diskPath);
-            }
-          } catch (e) {
-            // Ignore disk unlink errors
-          }
+        if (imgRecord.url) {
+          await safeUnlinkObsoleteUpload(imgRecord.url);
         }
       }
 

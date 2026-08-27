@@ -1,18 +1,13 @@
-import Container from "@/components/Container/Container";
-import Section from "@/components/Section/Section";
 import Hero from "@/components/Hero/Hero";
 import TrustStrip from "@/components/TrustStrip/TrustStrip";
 import HomeCollections from "@/components/HomeCollections/HomeCollections";
 import HeritageStory from "@/components/HeritageStory/HeritageStory";
+import FeaturedCreations from "@/components/FeaturedCreations/FeaturedCreations";
+import ClientReviews from "@/components/ClientReviews/ClientReviews";
 import CraftProcess from "@/components/CraftProcess/CraftProcess";
-import CapabilitiesSection from "@/components/CapabilitiesSection/CapabilitiesSection";
-import MaterialsSection from "@/components/MaterialsSection/MaterialsSection";
-import HomeProjects from "@/components/HomeProjects/HomeProjects";
-import WhyUsSection from "@/components/WhyUsSection/WhyUsSection";
-import SectionHeading from "@/components/SectionHeading/SectionHeading";
-import ImageWithText from "@/components/ImageWithText/ImageWithText";
 import CTASection from "@/components/CTASection/CTASection";
-import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
+import { getPageSection } from "@/lib/db/content.js";
+import { getAllCollections } from "@/content/collections";
 
 export const metadata = {
   title: "Jaipur Stonecraft — Premium Stone Atelier & Generational Craftsmanship",
@@ -28,7 +23,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "https://placehold.co/1200x630/E8E4DF/1A1918?text=Jaipur+Stonecraft+Atelier",
+        url: "https://jaipurstonecraft.com/images/collections/hero-sculptures-group.webp",
         width: 1200,
         height: 630,
         alt: "Jaipur Stonecraft Atelier white marble sculpture and temple stonework",
@@ -37,60 +32,114 @@ export const metadata = {
   },
 };
 
-import { getSiteContent } from "@/lib/db/content.js";
-
 export default async function Home() {
-  const heroImage = await getSiteContent("homepage_hero_image", "/images/hero/homepage-hero.png", "Hand-carved architectural stone sculpture detail");
-  const storyImage = await getSiteContent("homepage_story_image", "/images/collections/custom.png", "Sculpted marble portrait bust in Jaipur Stonecraft atelier");
+  const defaultSlides = [
+    {
+      eyebrow: "TIMELESS ART. CARVED BY HAND.",
+      headingTitle: "Where Stone",
+      headingAccent: "Becomes Art",
+      description: "Handcrafted sculptures, architectural stonework, and timeless creations shaped by master artisans with devotion and precision.",
+      primaryCtaText: "Explore Our Collections",
+      primaryCtaHref: "/collections",
+      secondaryCtaText: "Start a Custom Project",
+      secondaryCtaHref: "/contact?type=custom",
+      imageSrc: "/images/hero/hero-krishna-artisan.jpg"
+    },
+    {
+      eyebrow: "DIVINE SACRED MASONRY",
+      headingTitle: "Temples &",
+      headingAccent: "Architectural Art",
+      description: "Pure Makrana white marble mandirs, hand-carved stone pillars, and grand temple arches built to traditional iconographic standards.",
+      primaryCtaText: "View Temples",
+      primaryCtaHref: "/collections/temples-architectural-stonework",
+      secondaryCtaText: "Consult Artisan",
+      secondaryCtaHref: "/contact?type=quote",
+      imageSrc: "/images/collections/temples-architectural.jpg"
+    },
+    {
+      eyebrow: "HERITAGE STONE RELIEFS",
+      headingTitle: "Wall Murals &",
+      headingAccent: "High Reliefs",
+      description: "Spiritual high-relief stone panels, lattice jali screens, and bespoke architectural carvings for modern and classical residences.",
+      primaryCtaText: "Discover Wall Art",
+      primaryCtaHref: "/collections/wall-art-reliefs",
+      secondaryCtaText: "Custom Commission",
+      secondaryCtaHref: "/contact?type=custom",
+      imageSrc: "/images/collections/wall-art-relief.jpg"
+    }
+  ];
+
+  const heroData = await getPageSection("homepage_hero", { slides: defaultSlides });
+  const heroSlides = Array.isArray(heroData.slides) && heroData.slides.length > 0
+    ? heroData.slides
+    : heroData.imageSrc
+    ? [{ ...defaultSlides[0], ...heroData }, defaultSlides[1], defaultSlides[2]]
+    : defaultSlides;
+
+  const trustData = await getPageSection("homepage_trust_strip", {
+    stats: [
+      { value: "3+", label: "Generations of Craft" },
+      { value: "500+", label: "Master Artisans in Atelier" },
+      { value: "25+", label: "Countries Shipped & Installed" },
+      { value: "1000+", label: "Bespoke Commissions Delivered" }
+    ]
+  });
+
+  const storyData = await getPageSection("homepage_story", {
+    eyebrow: "ABOUT JAIPUR STONECRAFT",
+    heading: "Heritage of Indian Stone Art",
+    paragraph1: "Jaipur Stonecraft brings together tradition, devotion and artistic excellence. For over four decades, we have been crafting exquisite marble and stone sculptures, temple art, fountains and custom creations that stand as symbols of faith, beauty and timeless craftsmanship.",
+    imageSrc: "/images/brand/heritage-ganesha.jpg"
+  });
+
+  const ctaData = await getPageSection("homepage_cta", {
+    heading: "Have a Vision in Mind?",
+    description: "Whether you have a hand sketch, architectural CAD blueprint, or a reference photo, our atelier team will guide your custom stone creation from block selection to global delivery.",
+    primaryCtaText: "Discuss Your Project",
+    primaryCtaHref: "/contact?type=custom",
+    secondaryCtaText: "Request a Quote",
+    secondaryCtaHref: "/contact?type=quote"
+  });
+
+  const reviewsData = await getPageSection("homepage_reviews", {
+    eyebrow: "WHAT OUR CLIENTS SAY",
+    heading: "Trusted by Devotees. Loved for Generations.",
+    reviews: []
+  });
+
+  const collectionsDataList = await getAllCollections();
 
   return (
     <>
-      {/* 1. HERO SECTION (Transparent Navigation Overlay) */}
-      <Hero
-        imageSrc={heroImage.url}
-        imageAlt={heroImage.alt}
-        videoSrc="/videos/herovid.webm"
-        eyebrow="HANDCRAFTED IN JAIPUR"
-        heading="Where Stone Becomes Legacy."
-        description="Bespoke white marble sculptures, temple architecture, and custom architectural stonework carved by master artisans in Rajasthan."
-        primaryCtaText="Explore Collections"
-        primaryCtaHref="/collections"
-        secondaryCtaText="Discuss Your Project"
-        secondaryCtaHref="/contact?type=custom"
-      />
+      {/* 1. HERO SECTION (Connected to Page CMS with 3-Slide Dynamic Management) */}
+      <Hero slides={heroSlides} />
 
-      {/* 2. TRUST / BRAND PROMISE STRIP */}
-      <TrustStrip />
+      {/* 2. FLOATING ACHIEVEMENT / STATISTICS BAR (Connected to Page CMS with Fallback) */}
+      <TrustStrip stats={trustData?.stats} />
 
-      {/* 3. HERITAGE & BRAND STORY SECTION */}
-      <HeritageStory heroImage={storyImage} />
+      {/* 3. HERITAGE & BRAND STORY SECTION (Connected to Page CMS with Fallback) */}
+      <HeritageStory storyData={storyData} />
 
-      {/* 4. EDITORIAL COLLECTIONS SHOWCASE */}
-      <HomeCollections />
+      {/* 4. EDITORIAL COLLECTIONS SHOWCASE (Single Source of Truth DB-driven) */}
+      <HomeCollections collections={collectionsDataList} />
 
-      {/* 5. CAPABILITIES SECTION ("BEYOND THE STATUE") */}
-      <CapabilitiesSection />
+      {/* 5. FEATURED CREATIONS MOSAIC (Warm Dark Showcase) */}
+      <FeaturedCreations />
 
-      {/* 6. CRAFTSMANSHIP PROCESS SECTION */}
+      {/* 6. CLIENT REVIEWS (Connected to Page CMS with Dynamic Reviews & Photos) */}
+      <ClientReviews reviewsData={reviewsData} />
+
+      {/* 7. CRAFTSMANSHIP PROCESS SECTION */}
       <CraftProcess />
 
-      {/* 7. MATERIALS & MARBLE HUB LINK SECTION */}
-      <MaterialsSection />
-
-      {/* 8. FEATURED PROJECTS CASE STUDIES SHOWCASE */}
-      <HomeProjects />
-
-      {/* 9. WHY JAIPUR STONECRAFT ATELIER STANDARDS */}
-      <WhyUsSection />
-
-      {/* 10. FINAL CONVERSION CTA SECTION */}
+      {/* 8. FINAL CONVERSION CTA SECTION (Connected to Page CMS with Fallback) */}
       <CTASection
-        heading="Have a Vision in Mind?"
-        description="Whether you have a hand sketch, architectural CAD blueprint, or a reference photo, our atelier team will guide your custom stone creation from block selection to global delivery."
-        primaryCtaText="Discuss Your Project"
-        primaryCtaHref="/contact?type=custom"
-        secondaryCtaText="Request a Quote"
-        secondaryCtaHref="/contact?type=quote"
+        heading={ctaData.heading}
+        description={ctaData.description}
+        primaryCtaText={ctaData.primaryCtaText}
+        primaryCtaHref={ctaData.primaryCtaHref}
+        secondaryCtaText={ctaData.secondaryCtaText}
+        secondaryCtaHref={ctaData.secondaryCtaHref}
         background="dark"
       />
       <script

@@ -1,0 +1,291 @@
+.section {
+  padding: var(--spacing-section) 0;
+  background-color: var(--color-charcoal);
+  color: var(--color-cream);
+  border-bottom: 1px solid rgba(232, 228, 223, 0.12);
+  overflow: hidden;
+}
+
+.header {
+  text-align: center;
+  max-width: 740px;
+  margin: 0 auto var(--spacing-xl) auto;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-bronze);
+  display: block;
+  margin-bottom: var(--spacing-xs);
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  font-weight: 300;
+  color: var(--color-cream);
+  line-height: 1.15;
+  margin-bottom: var(--spacing-sm);
+}
+
+.subHeading {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(252, 251, 249, 0.78);
+}
+
+.trackContainer {
+  position: relative;
+  margin-bottom: var(--spacing-xl);
+  padding: 0 var(--spacing-md);
+}
+
+.connectingLine {
+  position: absolute;
+  top: 24px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-bronze), transparent);
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.nodesWrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.nodeBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: transform var(--transition-fast);
+}
+
+.nodeBtn:hover {
+  transform: translateY(-2px);
+}
+
+.nodeCircle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--color-charcoal-card);
+  border: 1px solid rgba(212, 163, 89, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: rgba(252, 251, 249, 0.7);
+  transition: all var(--transition-fast);
+}
+
+.activeNode .nodeCircle {
+  background-color: var(--color-bronze);
+  border-color: var(--color-bronze);
+  color: var(--color-charcoal);
+  box-shadow: 0 0 20px rgba(212, 163, 89, 0.4);
+}
+
+.nodeLabel {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: rgba(252, 251, 249, 0.6);
+  transition: color var(--transition-fast);
+  text-transform: uppercase;
+}
+
+.activeNode .nodeLabel {
+  color: var(--color-cream);
+}
+
+.showcaseCard {
+  background-color: var(--color-charcoal-card);
+  border: 1px solid rgba(212, 163, 89, 0.25);
+  border-radius: var(--radius-subtle);
+  padding: var(--spacing-xl);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.showcaseGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+.imageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-subtle);
+  overflow: hidden;
+  border: 1px solid rgba(232, 228, 223, 0.1);
+}
+
+.showcaseImage {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.imageFrame:hover .showcaseImage {
+  transform: scale(1.03);
+}
+
+.stepBadge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: rgba(26, 25, 24, 0.88);
+  backdrop-filter: blur(8px);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-subtle);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--color-bronze);
+}
+
+.stageCategory {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--color-bronze);
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+.stageTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 300;
+  color: var(--color-cream);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-sm);
+}
+
+.stageDesc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(252, 251, 249, 0.82);
+  margin-bottom: var(--spacing-md);
+}
+
+.quoteBox {
+  position: relative;
+  padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 2.5rem;
+  background-color: rgba(26, 25, 24, 0.6);
+  border-left: 2px solid var(--color-bronze);
+  border-radius: 0 var(--radius-subtle) var(--radius-subtle) 0;
+  margin-bottom: var(--spacing-lg);
+}
+
+.quoteMark {
+  position: absolute;
+  top: 0.25rem;
+  left: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--color-bronze);
+  opacity: 0.4;
+}
+
+.quoteText {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: rgba(252, 251, 249, 0.9);
+}
+
+.controlsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid rgba(232, 228, 223, 0.1);
+}
+
+.navArrowBtn {
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-bronze);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+  padding: 0.4rem 0;
+}
+
+.navArrowBtn:hover:not(:disabled) {
+  color: var(--color-cream);
+}
+
+.navArrowBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.stepCounter {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: rgba(252, 251, 249, 0.6);
+}
+
+@media (max-width: 991px) {
+  .showcaseGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .showcaseCard {
+    padding: var(--spacing-md);
+  }
+
+  .trackContainer {
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: var(--spacing-xs);
+  }
+
+  .trackContainer::-webkit-scrollbar {
+    display: none;
+  }
+
+  .connectingLine {
+    display: none;
+  }
+
+  .nodesWrapper {
+    justify-content: flex-start;
+    gap: var(--spacing-sm);
+  }
+
+  .nodeLabel {
+    font-size: 0.65rem;
+  }
+}

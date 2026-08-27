@@ -1,0 +1,562 @@
+/* ==========================================
+   COLLECTIONS OVERVIEW — EDITORIAL DESIGN SYSTEM
+   ========================================== */
+
+.pageWrapper {
+  background-color: var(--color-cream, #FAF8F5);
+  color: var(--color-charcoal, #1A1918);
+  min-height: 100vh;
+}
+
+/* ==========================================
+   1. INTRO & HEADER SECTION
+   ========================================== */
+.introSection {
+  padding-top: clamp(120px, 14vh, 160px);
+  padding-bottom: var(--spacing-xl, 3rem);
+  text-align: center;
+  background-color: #FAF8F5;
+  border-bottom: 1px solid rgba(184, 123, 49, 0.15);
+}
+
+.introContainer {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.breadcrumbWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.eyebrow {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(0.72rem, 0.9vw, 0.82rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--color-bronze, #B87B31);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.heading {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--color-charcoal, #1A1918);
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.description {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  font-weight: 350;
+  line-height: 1.7;
+  color: rgba(26, 25, 24, 0.8);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ==========================================
+   2. MAIN COLLECTIONS CONTAINER & SECTIONS
+   ========================================== */
+.collectionsSection {
+  padding: var(--spacing-2xl, 4.5rem) 0;
+}
+
+.sectionDivider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  font-weight: 600;
+  color: var(--color-charcoal, #1A1918);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.sectionLine {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(184, 123, 49, 0.3) 0%, transparent 100%);
+}
+
+/* ==========================================
+   FEATURE 1: SPOTLIGHT HERO CARD (Sculptures & Statues)
+   ========================================== */
+.spotlightCard {
+  position: relative;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(184, 123, 49, 0.25);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05);
+  margin-bottom: 3.5rem;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.overlayCardLink {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.spotlightCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px rgba(184, 123, 49, 0.12);
+  border-color: var(--color-bronze, #B87B31);
+}
+
+.spotlightImageWrapper {
+  position: relative;
+  min-height: 420px;
+  overflow: hidden;
+}
+
+.spotlightImage {
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spotlightCard:hover .spotlightImage {
+  transform: scale(1.04);
+}
+
+.spotlightContent {
+  padding: clamp(2rem, 3.5vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #FFFFFF;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-bronze, #B87B31);
+  background-color: rgba(184, 123, 49, 0.1);
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  width: fit-content;
+  margin-bottom: 1rem;
+}
+
+.collectionTitle {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+  font-weight: 600;
+  color: var(--color-charcoal, #1A1918);
+  margin-bottom: 0.85rem;
+  line-height: 1.18;
+}
+
+.collectionDesc {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #555450;
+  margin-bottom: 1.5rem;
+}
+
+/* Subcategory Navigation Pills */
+.subcatHeader {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #888680;
+  margin-bottom: 0.75rem;
+}
+
+.pillsContainer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.pill {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-charcoal, #1A1918);
+  background-color: #F4F0E8;
+  padding: 0.4rem 0.85rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.pill:hover {
+  background-color: var(--color-bronze, #B87B31);
+  color: #FFFFFF;
+}
+
+.primaryLink {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #B87B31 0%, #9E6523 100%);
+  padding: 0.8rem 1.6rem;
+  border-radius: 6px;
+  text-decoration: none;
+  width: fit-content;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(184, 123, 49, 0.25);
+}
+
+.primaryLink:hover {
+  background: linear-gradient(135deg, #C98A3C 0%, #AD7029 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(184, 123, 49, 0.4);
+}
+
+/* ==========================================
+   FEATURE 2: 2-COLUMN ASYMMETRIC GRID
+   (Wall Art & Reliefs + Temples & Architecture)
+   ========================================== */
+.twoColGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.25rem;
+  margin-bottom: 3.5rem;
+}
+
+.featureCard {
+  position: relative;
+  cursor: pointer;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  border-color: rgba(184, 123, 49, 0.4);
+}
+
+.featureImageWrapper {
+  position: relative;
+  height: 290px;
+  overflow: hidden;
+}
+
+.featureImage {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.featureCard:hover .featureImage {
+  transform: scale(1.05);
+}
+
+.featureContent {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.featureTitle {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: var(--color-charcoal, #1A1918);
+  margin-bottom: 0.65rem;
+}
+
+.featureDesc {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #555450;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.secondaryLink {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-bronze, #B87B31);
+  text-decoration: none;
+  margin-top: auto;
+  transition: gap 0.25s ease;
+}
+
+.featureCard:hover .secondaryLink {
+  gap: 0.75rem;
+}
+
+/* ==========================================
+   FEATURE 3: 3-COLUMN TRIO GRID
+   (Fountains, Decorative Art & Bespoke)
+   ========================================== */
+.threeColGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.85rem;
+  margin-bottom: 4rem;
+}
+
+.trioCard {
+  position: relative;
+  cursor: pointer;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.trioCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.07);
+  border-color: rgba(184, 123, 49, 0.35);
+}
+
+.trioImageWrapper {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.trioImage {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.trioCard:hover .trioImage {
+  transform: scale(1.05);
+}
+
+.trioContent {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.trioTitle {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--color-charcoal, #1A1918);
+  margin-bottom: 0.5rem;
+}
+
+.trioDesc {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: #666560;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+/* Distinct Bespoke Card styling */
+.bespokeCard {
+  background-color: #121110;
+  color: #F7F5F0;
+  border: 1px solid #B87B31;
+}
+
+.bespokeCard .trioTitle {
+  color: #FFFFFF;
+}
+
+.bespokeCard .trioDesc {
+  color: rgba(247, 245, 240, 0.78);
+}
+
+.bespokeBadge {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #D4A359;
+  background-color: rgba(212, 163, 89, 0.15);
+  padding: 0.25rem 0.65rem;
+  border-radius: 12px;
+  width: fit-content;
+  margin-bottom: 0.6rem;
+}
+
+.bespokeLink {
+  color: #D4A359;
+}
+
+/* ==========================================
+   3. CLOSING BESPOKE TRANSITION SECTION
+   ========================================== */
+.bespokeCTASection {
+  background: linear-gradient(180deg, #1A1918 0%, #11100F 100%);
+  color: #F7F5F0;
+  padding: 4.5rem 0;
+  border-top: 1px solid rgba(184, 123, 49, 0.3);
+  text-align: center;
+}
+
+.ctaBox {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.ctaEyebrow {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #D4A359;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.ctaHeading {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 500;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+}
+
+.ctaDesc {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: rgba(247, 245, 240, 0.8);
+  margin-bottom: 2rem;
+}
+
+.ctaButtonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.goldButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #B87B31 0%, #9E6523 100%);
+  padding: 0.85rem 1.85rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 18px rgba(184, 123, 49, 0.35);
+}
+
+.goldButton:hover {
+  background: linear-gradient(135deg, #C98A3C 0%, #AD7029 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(184, 123, 49, 0.5);
+}
+
+.outlineButton {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #F7F5F0;
+  border: 1px solid rgba(247, 245, 240, 0.35);
+  padding: 0.85rem 1.75rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.outlineButton:hover {
+  border-color: #D4A359;
+  color: #D4A359;
+  background: rgba(212, 163, 89, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   RESPONSIVE LAYOUT BREAKPOINTS
+   ========================================== */
+@media (max-width: 1024px) {
+  .spotlightCard {
+    grid-template-columns: 1fr;
+  }
+  .spotlightImageWrapper {
+    min-height: 320px;
+  }
+  .threeColGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .twoColGrid {
+    grid-template-columns: 1fr;
+  }
+  .threeColGrid {
+    grid-template-columns: 1fr;
+  }
+  .introSection {
+    padding-top: 110px;
+    padding-bottom: 2rem;
+  }
+  .collectionsSection {
+    padding: 2.5rem 0;
+  }
+  .spotlightContent {
+    padding: 1.5rem;
+  }
+  .featureContent {
+    padding: 1.5rem;
+  }
+}

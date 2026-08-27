@@ -41,3 +41,20 @@
   font-weight: 600;
   pointer-events: none;
 }
+
+.darkTheme .breadcrumbs {
+  color: rgba(250, 248, 245, 0.7);
+}
+
+.darkTheme .separator {
+  color: rgba(250, 248, 245, 0.4);
+}
+
+.darkTheme .link:hover {
+  color: #D4B886;
+}
+
+.darkTheme .current {
+  color: #FAF8F5;
+}
+

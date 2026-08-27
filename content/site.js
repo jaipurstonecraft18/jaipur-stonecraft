@@ -18,11 +18,9 @@ export const siteConfig = {
   navigation: [
     { label: "Home", href: "/" },
     { label: "Collections", href: "/collections" },
-    { label: "Marble Hub", href: "/marble" },
-    { label: "Projects", href: "/projects" },
     { label: "Craftsmanship", href: "/craftsmanship" },
-    { label: "About Us", href: "/our-story" },
-    { label: "Contact", href: "/contact" },
+    { label: "Our World", href: "/our-world" },
+    { label: "Our Story", href: "/our-story" },
   ],
   footerExplore: [
     { label: "Home", href: "/" },

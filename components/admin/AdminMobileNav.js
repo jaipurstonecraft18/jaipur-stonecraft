@@ -22,7 +22,7 @@ export default function AdminMobileNav() {
             Jaipur Stonecraft
           </Link>
           <span className={styles.brandDivider} />
-          <span className={styles.studioBadge}>ADMIN</span>
+          <span className={styles.studioBadge}>ADMIN STUDIO</span>
         </div>
 
         {/* Center: Logically Grouped Workspace Navigation */}
@@ -36,8 +36,17 @@ export default function AdminMobileNav() {
           <Link href="/admin/catalogue" className={`${styles.navLink} ${pathname === "/admin/catalogue" ? styles.navLinkActive : ""}`}>
             Catalogue
           </Link>
-          <Link href="/admin/content" className={`${styles.navLink} ${pathname === "/admin/content" ? styles.navLinkActive : ""}`}>
-            Content
+          <Link href="/admin/pages" className={`${styles.navLink} ${pathname.startsWith("/admin/pages") ? styles.navLinkActive : ""}`}>
+            Page CMS
+          </Link>
+          <Link href="/admin/projects" className={`${styles.navLink} ${pathname.startsWith("/admin/projects") ? styles.navLinkActive : ""}`}>
+            Projects
+          </Link>
+          <Link href="/admin/inquiries" className={`${styles.navLink} ${pathname.startsWith("/admin/inquiries") ? styles.navLinkActive : ""}`}>
+            Inquiries
+          </Link>
+          <Link href="/admin/settings" className={`${styles.navLink} ${pathname === "/admin/settings" ? styles.navLinkActive : ""}`}>
+            Settings
           </Link>
           <Link href="/admin/media" className={`${styles.navLink} ${pathname === "/admin/media" ? styles.navLinkActive : ""}`}>
             Media
@@ -97,7 +106,7 @@ export default function AdminMobileNav() {
             </div>
 
             <nav style={{ display: "flex", flexDirection: "column", gap: "0.35rem" }}>
-              <div style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "1px", color: "#888", marginTop: "0.5rem", marginBottom: "0.2rem" }}>CORE WORKSPACE</div>
+              <div style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "1px", color: "#888", marginTop: "0.5rem", marginBottom: "0.2rem" }}>CATALOGUE WORKSPACE</div>
               <Link
                 href="/admin"
                 onClick={toggleDrawer}
@@ -127,8 +136,6 @@ export default function AdminMobileNav() {
               >
                 🩺 Product Health Queue
               </Link>
-
-              <div style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "1px", color: "#888", marginTop: "0.85rem", marginBottom: "0.2rem" }}>CATALOGUE & MEDIA</div>
               <Link
                 href="/admin/catalogue"
                 onClick={toggleDrawer}
@@ -136,12 +143,35 @@ export default function AdminMobileNav() {
               >
                 🏷️ Catalogue & Taxonomy
               </Link>
+
+              <div style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "1px", color: "#888", marginTop: "0.85rem", marginBottom: "0.2rem" }}>WEBSITE CMS & LEADS</div>
               <Link
-                href="/admin/content"
+                href="/admin/pages"
                 onClick={toggleDrawer}
-                className={`${styles.mobileDrawerLink} ${pathname === "/admin/content" ? styles.mobileDrawerLinkActive : ""}`}
+                className={`${styles.mobileDrawerLink} ${pathname.startsWith("/admin/pages") ? styles.mobileDrawerLinkActive : ""}`}
               >
-                🖼️ Website Content
+                📄 Website Page CMS
+              </Link>
+              <Link
+                href="/admin/projects"
+                onClick={toggleDrawer}
+                className={`${styles.mobileDrawerLink} ${pathname.startsWith("/admin/projects") ? styles.mobileDrawerLinkActive : ""}`}
+              >
+                🏛️ Projects & Case Studies
+              </Link>
+              <Link
+                href="/admin/inquiries"
+                onClick={toggleDrawer}
+                className={`${styles.mobileDrawerLink} ${pathname.startsWith("/admin/inquiries") ? styles.mobileDrawerLinkActive : ""}`}
+              >
+                📬 Customer Inquiries & Leads
+              </Link>
+              <Link
+                href="/admin/settings"
+                onClick={toggleDrawer}
+                className={`${styles.mobileDrawerLink} ${pathname === "/admin/settings" ? styles.mobileDrawerLinkActive : ""}`}
+              >
+                ⚙️ Global Site Settings
               </Link>
               <Link
                 href="/admin/media"

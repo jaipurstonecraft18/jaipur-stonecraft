@@ -1,0 +1,322 @@
+.popoverContainer {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: min(560px, 92vw);
+  background-color: var(--color-cream);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-subtle);
+  box-shadow: 0 16px 40px rgba(26, 25, 24, 0.16);
+  z-index: 9999;
+  margin-top: 0.5rem;
+  padding: var(--spacing-md);
+  color: var(--color-charcoal);
+  animation: popoverFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes popoverFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.inputBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.searchIcon {
+  position: absolute;
+  left: 0.85rem;
+  color: var(--color-bronze);
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 2.5rem;
+  background-color: var(--color-cream-secondary);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-subtle);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-charcoal);
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.searchInput:focus {
+  border-color: var(--color-bronze);
+  box-shadow: 0 0 0 2px rgba(158, 123, 79, 0.15);
+}
+
+.clearBtn {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: rgba(26, 25, 24, 0.5);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.2rem;
+}
+
+.clearBtn:hover {
+  color: var(--color-charcoal);
+}
+
+.popularBox {
+  padding-top: var(--spacing-xs);
+}
+
+.boxTitle {
+  font-family: var(--font-body);
+  font-size: 0.725rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-bronze);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.tagChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chipBtn {
+  background-color: var(--color-cream-secondary);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-charcoal);
+  font-family: var(--font-body);
+  font-size: 0.775rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.chipBtn:hover {
+  border-color: var(--color-bronze);
+  color: var(--color-bronze);
+  background-color: #ffffff;
+}
+
+.statusBox {
+  padding: var(--spacing-md) 0;
+  text-align: center;
+}
+
+.statusText {
+  font-family: var(--font-body);
+  font-size: 0.825rem;
+  color: rgba(26, 25, 24, 0.6);
+}
+
+.resultsBox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  max-height: 440px;
+  overflow-y: auto;
+  padding-right: 0.2rem;
+}
+
+.typoBanner {
+  background-color: var(--color-cream-secondary);
+  border: 1px solid rgba(158, 123, 79, 0.3);
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-subtle);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: rgba(26, 25, 24, 0.8);
+}
+
+.typoLink {
+  background: none;
+  border: none;
+  color: var(--color-bronze);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  font-size: 0.8rem;
+}
+
+.groupTitleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+
+.groupHeader {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-bronze);
+  display: block;
+}
+
+.countBadge {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  color: rgba(26, 25, 24, 0.5);
+}
+
+.categoryPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.catPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: var(--color-cream-secondary);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-charcoal);
+  font-family: var(--font-body);
+  font-size: 0.775rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-subtle);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.catPill:hover {
+  border-color: var(--color-bronze);
+  color: var(--color-bronze);
+}
+
+.productList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.productRow {
+  display: grid;
+  grid-template-columns: 50px 1fr 20px;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--color-cream-secondary);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-subtle);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.productRow:hover {
+  border-color: var(--color-bronze);
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(26, 25, 24, 0.05);
+}
+
+.thumbFrame {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-subtle);
+  overflow: hidden;
+  background-color: #0d0d0d;
+  flex-shrink: 0;
+}
+
+.thumbImg {
+  object-fit: cover;
+}
+
+.prodInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.prodCat {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  color: var(--color-bronze);
+  font-weight: 500;
+  margin-bottom: 0.1rem;
+}
+
+.prodTitle {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--color-charcoal);
+  line-height: 1.2;
+}
+
+.arrowIcon {
+  color: var(--color-bronze);
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+.productRow:hover .arrowIcon {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+.viewFullBtn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-bronze);
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-subtle);
+  background-color: var(--color-cream-secondary);
+  border: 1px solid var(--color-border-subtle);
+  transition: all var(--transition-fast);
+}
+
+.viewFullBtn:hover {
+  background-color: var(--color-charcoal);
+  color: var(--color-cream);
+}
+
+.zeroState {
+  padding: var(--spacing-md) 0;
+  text-align: center;
+}
+
+.zeroText {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-charcoal);
+  margin-bottom: 0.35rem;
+}
+
+.zeroHint {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: rgba(26, 25, 24, 0.65);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .popoverContainer {
+    position: fixed;
+    top: 70px;
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+    max-height: 80vh;
+  }
+}

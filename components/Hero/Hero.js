@@ -1,101 +1,175 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/Container/Container";
-import PrimaryButton from "@/components/PrimaryButton/PrimaryButton";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import styles from "./Hero.module.css";
 
-export default function Hero({
-  eyebrow = "HANDCRAFTED IN JAIPUR",
-  description = "Bespoke white marble sculptures, temple architecture, and custom architectural stonework carved by master artisans in Rajasthan.",
-  primaryCtaText = "Explore Collections",
-  primaryCtaHref = "/collections",
-  secondaryCtaText = "Discuss Your Project",
-  secondaryCtaHref = "/contact?type=custom",
-  videoSrc = "/videos/herovid.webm",
-  imageSrc = "/images/hero/homepage-hero.png",
-}) {
-  const [videoError, setVideoError] = useState(false);
+const heroSlides = [
+  {
+    eyebrow: "TIMELESS ART. CARVED BY HAND.",
+    headingTitle: "Where Stone",
+    headingAccent: "Becomes Art",
+    description: "Handcrafted sculptures, architectural stonework, and timeless creations shaped by master artisans with devotion and precision.",
+    primaryCtaText: "Explore Collections",
+    primaryCtaHref: "/collections",
+    secondaryCtaText: "Custom Project",
+    secondaryCtaHref: "/contact?type=custom",
+    imageSrc: "/images/hero/hero-krishna-artisan.jpg",
+    imageAlt: "Master white marble sculpture of Lord Krishna carved by artisan in studio",
+  },
+  {
+    eyebrow: "DIVINE SACRED MASONRY",
+    headingTitle: "Temples &",
+    headingAccent: "Architectural Art",
+    description: "Pure Makrana white marble mandirs, hand-carved stone pillars, and grand temple arches built to traditional iconographic standards.",
+    primaryCtaText: "View Temples",
+    primaryCtaHref: "/collections/temples-architectural-stonework",
+    secondaryCtaText: "Consult Artisan",
+    secondaryCtaHref: "/contact?type=quote",
+    imageSrc: "/images/collections/temples-architectural.webp",
+    imageAlt: "Intricately carved stone temple architecture",
+  },
+  {
+    eyebrow: "HERITAGE STONE RELIEFS",
+    headingTitle: "Wall Murals &",
+    headingAccent: "High Reliefs",
+    description: "Spiritual high-relief stone panels, lattice jali screens, and bespoke architectural carvings for modern and classical residences.",
+    primaryCtaText: "Discover Wall Art",
+    primaryCtaHref: "/collections/wall-art-reliefs",
+    secondaryCtaText: "Custom Commission",
+    secondaryCtaHref: "/contact?type=custom",
+    imageSrc: "/images/collections/wall-art-relief.webp",
+    imageAlt: "Hand-carved sandstone wall relief mural",
+  },
+];
+
+export default function Hero(props) {
+  const dynamicSlides = Array.isArray(props.slides) && props.slides.length > 0
+    ? props.slides
+    : Array.isArray(props.heroData?.slides) && props.heroData.slides.length > 0
+    ? props.heroData.slides
+    : heroSlides;
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % dynamicSlides.length);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, [dynamicSlides.length]);
+
+  const slide = dynamicSlides[currentSlide] || dynamicSlides[0] || heroSlides[0];
+
+  const handlePrev = () => {
+    setCurrentSlide((prev) => (prev - 1 + dynamicSlides.length) % dynamicSlides.length);
+  };
+
+  const handleNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % dynamicSlides.length);
+  };
 
   return (
     <section className={styles.hero} aria-label="Hero Section">
-      {/* Background Media: Video with Image Poster Fallback */}
-      {!videoError && videoSrc ? (
-        <video
-          className={styles.videoBackground}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          poster={imageSrc}
-          onError={() => setVideoError(true)}
+      {/* Background Image Slider */}
+      {dynamicSlides.map((s, idx) => (
+        <div
+          key={(s.imageSrc || "hero-slide") + idx}
+          className={`${styles.slideBackground} ${idx === currentSlide ? styles.activeBackground : ""}`}
         >
-          <source src={videoSrc} type="video/webm" />
-          <source src="/videos/herovid.mp4" type="video/mp4" />
-        </video>
-      ) : (
-        <Image
-          src={imageSrc}
-          alt="Hand-carved architectural stone sculpture detail"
-          fill
-          priority
-          sizes="100vw"
-          className={styles.posterImage}
-        />
-      )}
+          <Image
+            src={s.imageSrc || "/images/hero/hero-krishna-artisan.jpg"}
+            alt={s.imageAlt || s.headingTitle || "Jaipur Stonecraft Atelier"}
+            fill
+            priority={idx === 0}
+            sizes="100vw"
+            className={styles.heroImage}
+          />
+        </div>
+      ))}
 
-      {/* Multi-Layer Nuanced Protection Overlay */}
+      {/* Atmospheric Warm Multi-Layer Overlay Gradient */}
       <div className={styles.overlay} aria-hidden="true" />
 
-      {/* Left-Aligned Editorial Hero Content (Aligned with Global Grid) */}
+      {/* Hero Content Container */}
       <Container style={{ position: "relative", zIndex: 3, width: "100%" }}>
         <div className={styles.contentWrapper}>
-          <ScrollReveal animation="fade-up">
+          <ScrollReveal animation="fade-up" key={`eyebrow-${currentSlide}`}>
             <div className={styles.eyebrowWrapper}>
-              <span className={styles.eyebrowLine} aria-hidden="true" />
-              <span className={styles.eyebrow}>{eyebrow}</span>
+              <span className={styles.eyebrow}>{slide.eyebrow}</span>
             </div>
           </ScrollReveal>
 
-          <ScrollReveal animation="fade-up" delay={100}>
+          <ScrollReveal animation="fade-up" delay={100} key={`heading-${currentSlide}`}>
             <h1 className={styles.heading}>
-              Where Stone Becomes <span className={styles.accentText}>Legacy.</span>
+              {slide.headingTitle || "Where Stone"}{" "}
+              <br className={styles.desktopBreak} />
+              <span className={styles.accentText}>{slide.headingAccent || "Becomes Art"}</span>
             </h1>
           </ScrollReveal>
 
-          <ScrollReveal animation="fade-up" delay={200}>
-            <p className={styles.description}>{description}</p>
+          <ScrollReveal animation="fade-up" delay={200} key={`desc-${currentSlide}`}>
+            <p className={styles.description}>{slide.description}</p>
           </ScrollReveal>
 
-          <ScrollReveal animation="fade-up" delay={300}>
+          <ScrollReveal animation="fade-up" delay={300} key={`cta-${currentSlide}`}>
             <div className={styles.ctaGroup}>
-              <PrimaryButton href={primaryCtaHref} variant="bronze">
-                {primaryCtaText}
-              </PrimaryButton>
-
-              <Link href={secondaryCtaHref} className={styles.secondaryCta}>
-                <span>{secondaryCtaText}</span>
+              <Link href={slide.primaryCtaHref || "/collections"} className={styles.primaryCta}>
+                <span>{slide.primaryCtaText || "Explore Our Collections"}</span>
                 <span className={styles.ctaArrow} aria-hidden="true">&rarr;</span>
+              </Link>
+
+              <Link href={slide.secondaryCtaHref || "/contact?type=custom"} className={styles.secondaryCta}>
+                <span>{slide.secondaryCtaText || "Start a Custom Project"}</span>
               </Link>
             </div>
           </ScrollReveal>
+
+          {/* Interactive Mobile & Desktop Slider Controls */}
+          <div className={styles.sliderControls} aria-label="Hero Slide Controls">
+            <button
+              onClick={handlePrev}
+              className={styles.sliderArrow}
+              aria-label="Previous Slide"
+            >
+              &#8592;
+            </button>
+            <div className={styles.slideCounter}>
+              <span className={styles.activeSlide}>0{currentSlide + 1}</span>
+              <span className={styles.slideDivider}>/</span>
+              <span className={styles.totalSlides}>0{dynamicSlides.length}</span>
+            </div>
+            <div className={styles.slideDots}>
+              {dynamicSlides.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentSlide(idx)}
+                  className={`${styles.dot} ${idx === currentSlide ? styles.activeDot : ""}`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+            <button
+              onClick={handleNext}
+              className={styles.sliderArrow}
+              aria-label="Next Slide"
+            >
+              &#8594;
+            </button>
+          </div>
         </div>
       </Container>
 
-      {/* Subtle Scroll Indicator */}
-      <a href="#trust-strip" className={styles.scrollIndicator} aria-label="Scroll to content">
-        <span className={styles.scrollIcon} aria-hidden="true">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <polyline points="19 12 12 19 5 12"></polyline>
-          </svg>
-        </span>
-        <span>SCROLL</span>
-      </a>
+      {/* Organic Soft Curve Transition into Heritage Section Background */}
+      <div className={styles.bottomCurve} aria-hidden="true">
+        <svg viewBox="0 0 1440 90" fill="none" preserveAspectRatio="none">
+          <path d="M0,45 C480,95 960,15 1440,55 L1440,90 L0,90 Z" fill="#F7F2EB" />
+        </svg>
+      </div>
     </section>
   );
 }
+

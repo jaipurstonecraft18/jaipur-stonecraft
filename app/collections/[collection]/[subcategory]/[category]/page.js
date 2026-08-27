@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import Container from "@/components/Container/Container";
 import Section from "@/components/Section/Section";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
@@ -124,37 +125,102 @@ export default async function CategoryLandingPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* 1. BREADCRUMBS & HERO INTRO */}
-      <Section background="light" spacing="standard" className="page-offset">
-        <Container>
-          <Breadcrumbs
-            items={[
-              { label: "Collections", href: "/collections" },
-              { label: collection.name, href: `/collections/${collection.slug}` },
-              { label: subcategory.name, href: `/collections/${collection.slug}/${subcategory.slug}` },
-              { label: category.name },
-            ]}
+      {/* 1. BREADCRUMBS & HERO INTRO BANNER */}
+      <div style={{
+        position: "relative",
+        minHeight: "420px",
+        display: "flex",
+        alignItems: "center",
+        paddingTop: "calc(90px + var(--spacing-lg))",
+        paddingBottom: "var(--spacing-xxl)",
+        overflow: "hidden",
+        backgroundColor: "#111110",
+        color: "#FAF8F5",
+        borderBottom: "1px solid rgba(158, 123, 79, 0.3)"
+      }}>
+        {/* Dimmed Background Cover Image */}
+        <div style={{ position: "absolute", inset: 0, zIndex: 1 }}>
+          <Image
+            src={category.imageSrc || category.image_src || subcategory.imageSrc || collection.imageSrc || "/images/collections/hero-sculptures-group.webp"}
+            alt={`${category.name} background`}
+            fill
+            sizes="100vw"
+            style={{ objectFit: "cover", filter: "brightness(0.6) contrast(1.05)" }}
+            priority
           />
+          <div style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(180deg, rgba(17, 17, 16, 0.72) 0%, rgba(26, 25, 24, 0.88) 100%)"
+          }} />
+        </div>
 
-          <ScrollReveal animation="fade-up">
-            <SectionHeading
-              eyebrow={`${collection.name} — ${subcategory.name}`}
-              heading={`${category.name} Statues & Sculptures`}
-              description={category.description}
-              align="center"
-              headingLevel="h1"
+        {/* Foreground Content */}
+        <Container style={{ position: "relative", zIndex: 3 }}>
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            textAlign: "center",
+            maxWidth: "840px",
+            margin: "0 auto"
+          }}>
+            <Breadcrumbs
+              items={[
+                { label: "Collections", href: "/collections" },
+                { label: collection.name, href: `/collections/${collection.slug}` },
+                { label: subcategory.name, href: `/collections/${collection.slug}/${subcategory.slug}` },
+                { label: category.name },
+              ]}
+              theme="dark"
             />
-          </ScrollReveal>
 
-          <ScrollReveal animation="fade-up" delay={100}>
-            <div style={{ maxWidth: "800px", margin: "var(--spacing-md) auto 0", textAlign: "center" }}>
-              <p style={{ lineHeight: 1.7, fontSize: "1.05rem", color: "rgba(26, 25, 24, 0.85)" }}>
-                Our Jaipur workshop specializes in hand-carved {category.name} sculptures, bringing generational masonic techniques to sacred and residential spaces worldwide. Sculpted from premium Makrana white marble and regional sandstones, each design adheres to authentic iconographic proportions and artistic refinement.
+            <ScrollReveal animation="fade-up">
+              <span style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                fontFamily: "var(--font-body)",
+                fontSize: "0.75rem",
+                fontWeight: "600",
+                textTransform: "uppercase",
+                letterSpacing: "0.22em",
+                color: "#E6C894",
+                background: "rgba(158, 123, 79, 0.25)",
+                backdropFilter: "blur(4px)",
+                padding: "0.4rem 1rem",
+                borderRadius: "var(--radius-subtle)",
+                border: "1px solid rgba(230, 200, 148, 0.35)",
+                marginBottom: "0.75rem"
+              }}>
+                {collection.name} — {subcategory.name}
+              </span>
+              <h1 style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(2.4rem, 5vw, 4rem)",
+                fontWeight: "300",
+                lineHeight: 1.12,
+                color: "#FFFFFF",
+                letterSpacing: "-0.02em",
+                textShadow: "0 4px 20px rgba(0, 0, 0, 0.6)",
+                marginBottom: "0.75rem"
+              }}>
+                {category.name} Statues & Sculptures
+              </h1>
+              <p style={{
+                fontSize: "clamp(1rem, 1.4vw, 1.12rem)",
+                lineHeight: 1.7,
+                color: "rgba(250, 248, 245, 0.9)",
+                maxWidth: "760px",
+                margin: "0 auto",
+                textShadow: "0 2px 10px rgba(0, 0, 0, 0.6)"
+              }}>
+                {category.description || `Our Jaipur workshop specializes in hand-carved ${category.name} sculptures, bringing generational masonic techniques to sacred and residential spaces worldwide.`}
               </p>
-            </div>
-          </ScrollReveal>
+            </ScrollReveal>
+          </div>
         </Container>
-      </Section>
+      </div>
 
       {/* 2. DESIGN CATALOGUE & FILTERS */}
       <Section background="grey" spacing="standard">

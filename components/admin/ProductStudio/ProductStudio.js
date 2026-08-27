@@ -848,7 +848,7 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
 
                 {normalizeKnowledgeLayer(formData.knowledgeLayer).faqs.length === 0 && (
                   <div style={{ fontSize: "0.8rem", color: "#888", fontStyle: "italic", textAlign: "center", padding: "0.75rem", backgroundColor: "#FFF", borderRadius: "4px", border: "1px dashed #E2DDD5" }}>
-                    No product-specific FAQs added yet. Click "+ Add Product Question" or use AI Assistant to generate candidate Q&As.
+                    No product-specific FAQs added yet. Click &quot;+ Add Product Question&quot; or use AI Assistant to generate candidate Q&amp;As.
                   </div>
                 )}
               </div>

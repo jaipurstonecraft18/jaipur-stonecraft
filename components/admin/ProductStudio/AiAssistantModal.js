@@ -31,13 +31,6 @@ export default function AiAssistantModal({
   const [activeReviewTab, setActiveReviewTab] = useState("descriptions");
   const [warningMessage, setWarningMessage] = useState("");
 
-  // Trigger analysis when modal opens
-  useEffect(() => {
-    if (isOpen && status === "idle") {
-      runAnalysis(false, selectedMode);
-    }
-  }, [isOpen]);
-
   const [analysisMeta, setAnalysisMeta] = useState({ fromCache: false, imagesAnalyzedCount: 0, modelUsed: "", provider: "" });
 
   const runAnalysis = async (skipCache = false, targetMode = selectedMode) => {
@@ -104,6 +97,16 @@ export default function AiAssistantModal({
       setErrorMessage(err.message || "Network error during AI analysis.");
     }
   };
+
+  // Trigger analysis when modal opens
+  useEffect(() => {
+    if (isOpen && status === "idle") {
+      const timer = setTimeout(() => {
+        runAnalysis(false, selectedMode);
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, status, selectedMode]);
 
 
   if (!isOpen) return null;

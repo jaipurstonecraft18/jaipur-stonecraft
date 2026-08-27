@@ -4,11 +4,11 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Container from "@/components/Container/Container";
-import SearchOverlay from "@/components/SearchOverlay/SearchOverlay";
+import HeaderSearchDropdown from "@/components/Search/HeaderSearchDropdown";
 import { siteConfig } from "@/content/site";
 import styles from "./Header.module.css";
 
-// 1. Collections Dropdown Data (Real 6 Level-1 Collections)
+// Collections Dropdown Data (Real Level-1 Collections)
 const collectionsDropdownItems = [
   {
     title: "Sculptures & Statues",
@@ -42,40 +42,11 @@ const collectionsDropdownItems = [
   },
 ];
 
-// 2. Marble Hub Dropdown Data (Real Marble Hub Pages)
-const marbleDropdownItems = [
-  {
-    title: "White Marble Deity Statues",
-    href: "/marble/statues",
-    description: "Makrana white marble deity idols & bespoke masonic portrait busts",
-  },
-  {
-    title: "Marble Ganesh Idols",
-    href: "/marble/ganesh",
-    description: "Lord Ganesha statues carved from single-block white marble",
-  },
-  {
-    title: "Lord Shiva Statues & Lingams",
-    href: "/marble/shiva",
-    description: "Meditating Shiva statues & hand-turned Shiva Lingams",
-  },
-  {
-    title: "Courtyard Fountains & Basins",
-    href: "/marble/fountains",
-    description: "Tiered white marble fountains & carved lotus basins",
-  },
-  {
-    title: "Custom Marble Home Temples",
-    href: "/marble/home-mandirs",
-    description: "Bespoke white marble mandirs & pooja sanctuary arches",
-  },
-];
-
 export default function Header({ theme }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null); // 'collections' | 'marble' | null
-  const [mobileAccordion, setMobileAccordion] = useState({ collections: false, marble: false });
+  const [activeDropdown, setActiveDropdown] = useState(null); // 'collections' | null
+  const [mobileAccordion, setMobileAccordion] = useState({ collections: false });
   const hoverTimer = useRef(null);
 
   const pathname = usePathname();
@@ -177,117 +148,109 @@ export default function Header({ theme }) {
         {/* 2. MAIN NAVIGATION BAR */}
         <div className={styles.mainNavWrapper}>
           <Container className={styles.navContainer}>
-            {/* ZONE 1: Brand Logo */}
+            {/* ZONE 1: Left - Brand Logo */}
             <Link href="/" className={styles.logo} aria-label="Jaipur Stonecraft Home">
-              JAIPUR STONECRAFT
+              <svg className={styles.logoIcon} width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z" fill="var(--color-bronze)" fillOpacity="0.25" stroke="var(--color-bronze)"/>
+                <circle cx="12" cy="12" r="3" fill="var(--color-bronze)"/>
+              </svg>
+              <span>JAIPUR STONECRAFT</span>
             </Link>
 
-            {/* ZONE 2: Desktop Navigation Links with Luxury Dropdowns */}
+            {/* ZONE 2: Center - Main Navigation (Exactly 5 Items) */}
             <nav className={styles.desktopNav} aria-label="Desktop Navigation">
               <ul className={styles.navList}>
-                {siteConfig.navigation.map((item) => {
-                  const isCollections = item.label === "Collections";
-                  const isMarble = item.label === "Marble Hub";
-                  const hasDropdown = isCollections || isMarble;
-                  const dropdownKey = isCollections ? "collections" : isMarble ? "marble" : null;
-                  const isDropdownActive = activeDropdown === dropdownKey;
+                {/* 1st: Home */}
+                <li>
+                  <Link href="/" className={`${styles.navLink} ${pathname === "/" ? styles.active : ""}`}>
+                    Home
+                  </Link>
+                </li>
 
-                  if (hasDropdown) {
-                    return (
-                      <li
-                        key={item.href}
-                        className={`${styles.navItemHasDropdown} ${isDropdownActive ? styles.dropdownOpen : ""}`}
-                        onMouseEnter={() => handleMouseEnter(dropdownKey)}
-                        onMouseLeave={handleMouseLeave}
-                      >
+                {/* 2nd: Collections ⌄ */}
+                <li
+                  className={`${styles.navItemHasDropdown} ${activeDropdown === "collections" ? styles.dropdownOpen : ""}`}
+                  onMouseEnter={() => handleMouseEnter("collections")}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <Link
+                    href="/collections"
+                    className={`${styles.navLink} ${pathname.startsWith("/collections") ? styles.active : ""}`}
+                    aria-expanded={activeDropdown === "collections"}
+                    aria-haspopup="true"
+                  >
+                    <span>Collections</span>
+                    <span className={styles.dropdownCaret} aria-hidden="true">&#9662;</span>
+                  </Link>
+                  <div
+                    className={`${styles.dropdownPanel} ${activeDropdown === "collections" ? styles.show : ""}`}
+                    onMouseEnter={() => handleMouseEnter("collections")}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <div className={styles.dropdownGrid}>
+                      {collectionsDropdownItems.map((sub) => (
                         <Link
-                          href={item.href}
-                          className={`${styles.navLink} ${pathname.startsWith(item.href) ? styles.active : ""}`}
-                          aria-expanded={isDropdownActive}
-                          aria-haspopup="true"
+                          key={sub.href}
+                          href={sub.href}
+                          className={styles.dropdownItem}
+                          onClick={() => setActiveDropdown(null)}
                         >
-                          <span>{item.label}</span>
-                          <span className={styles.dropdownCaret} aria-hidden="true">&#9662;</span>
+                          <span className={styles.dropdownItemTitle}>{sub.title}</span>
+                          <span className={styles.dropdownItemDesc}>{sub.description}</span>
                         </Link>
+                      ))}
+                    </div>
+                  </div>
+                </li>
 
-                        {/* Dropdown Panel */}
-                        <div
-                          className={`${styles.dropdownPanel} ${isDropdownActive ? styles.show : ""}`}
-                          onMouseEnter={() => handleMouseEnter(dropdownKey)}
-                          onMouseLeave={handleMouseLeave}
-                        >
-                          <div className={styles.dropdownGrid}>
-                            {(isCollections ? collectionsDropdownItems : marbleDropdownItems).map((sub) => (
-                              <Link
-                                key={sub.href}
-                                href={sub.href}
-                                className={styles.dropdownItem}
-                                onClick={() => setActiveDropdown(null)}
-                              >
-                                <span className={styles.dropdownItemTitle}>{sub.title}</span>
-                                <span className={styles.dropdownItemDesc}>{sub.description}</span>
-                              </Link>
-                            ))}
-                          </div>
+                {/* 3rd: Craftsmanship */}
+                <li>
+                  <Link href="/craftsmanship" className={`${styles.navLink} ${pathname.startsWith("/craftsmanship") ? styles.active : ""}`}>
+                    Craftsmanship
+                  </Link>
+                </li>
 
-                          <div className={styles.dropdownFooter} style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem" }}>
-                            <Link
-                              href={item.href}
-                              className={styles.dropdownFooterLink}
-                              onClick={() => setActiveDropdown(null)}
-                            >
-                              {isCollections ? "View All Collections \u2192" : "Explore Marble Hub \u2192"}
-                            </Link>
-                            {isCollections && (
-                              <Link
-                                href="/products"
-                                className={styles.dropdownFooterLink}
-                                style={{ color: "var(--color-bronze)" }}
-                                onClick={() => setActiveDropdown(null)}
-                              >
-                                Full Product Catalogue &rarr;
-                              </Link>
-                            )}
-                          </div>
-                        </div>
-                      </li>
-                    );
-                  }
+                {/* 4th: Our World */}
+                <li>
+                  <Link href="/our-world" className={`${styles.navLink} ${pathname.startsWith("/our-world") ? styles.active : ""}`}>
+                    Our World
+                  </Link>
+                </li>
 
-                  return (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className={`${styles.navLink} ${pathname === item.href ? styles.active : ""}`}
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  );
-                })}
+                {/* 5th: Our Story */}
+                <li>
+                  <Link href="/our-story" className={`${styles.navLink} ${pathname === "/our-story" ? styles.active : ""}`}>
+                    Our Story
+                  </Link>
+                </li>
               </ul>
             </nav>
 
-            {/* ZONE 3: Action Controls (Search + Request Quote CTA + Mobile Hamburger) */}
-            <div className={styles.navActions}>
-              {/* Search Trigger Button */}
+            {/* ZONE 3: Right - Action Area (Search Icon + Get a Quote CTA) */}
+            <div className={styles.navActions} style={{ position: "relative" }}>
               <button
-                className={styles.searchIconButton}
-                onClick={() => setIsSearchOpen(true)}
-                aria-label="Open search overlay"
+                className={styles.actionIconButton}
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                aria-label={isSearchOpen ? "Close search" : "Open search"}
               >
-                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
                   <circle cx="11" cy="11" r="8"></circle>
                   <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
               </button>
 
-              {/* Redesigned Request a Quote Control */}
+              {/* NON-INTRUSIVE LAZY-LOADED POPOVER SEARCH */}
+              <HeaderSearchDropdown
+                isOpen={isSearchOpen}
+                onClose={() => setIsSearchOpen(false)}
+              />
+
+              {/* Refined Golden Pill "Get a Quote" Button */}
               <Link
                 href="/contact?type=quote"
-                className={styles.quoteControl}
+                className={styles.goldenQuoteButton}
               >
-                Request a Quote
+                Get a Quote
               </Link>
 
               {/* Mobile Hamburger Button */}
@@ -305,96 +268,113 @@ export default function Header({ theme }) {
           </Container>
         </div>
 
-        {/* Mobile Navigation Drawer with Accordion Support */}
-        <div className={styles.mobileDrawer} aria-hidden={!isOpen}>
-          <ul className={styles.mobileNavList}>
-            {siteConfig.navigation.map((item) => {
-              const isCollections = item.label === "Collections";
-              const isMarble = item.label === "Marble Hub";
-              const key = isCollections ? "collections" : isMarble ? "marble" : null;
-              const isExpanded = key ? mobileAccordion[key] : false;
+        {/* Mobile Navigation Drawer Backdrop */}
+        <div
+          className={`${styles.mobileBackdrop} ${isOpen ? styles.backdropOpen : ""}`}
+          onClick={() => setIsOpen(false)}
+          aria-hidden="true"
+        />
 
-              if (key) {
-                return (
-                  <li key={item.href} className={styles.mobileNavItem}>
-                    <div className={styles.mobileNavHeader}>
+        {/* Mobile Navigation Drawer */}
+        <div className={styles.mobileDrawer} aria-hidden={!isOpen}>
+          <div className={styles.mobileDrawerHeader}>
+            <span className={styles.mobileDrawerTitle}>JAIPUR STONECRAFT</span>
+            <button
+              className={styles.mobileCloseButton}
+              onClick={() => setIsOpen(false)}
+              aria-label="Close navigation menu"
+            >
+              &times;
+            </button>
+          </div>
+
+          <ul className={styles.mobileNavList}>
+            {/* 1. Home */}
+            <li>
+              <Link href="/" className={styles.mobileNavLink} onClick={() => setIsOpen(false)}>
+                Home
+              </Link>
+            </li>
+
+            {/* 2. Collections (Accordion) */}
+            <li className={styles.mobileNavItem}>
+              <div className={styles.mobileNavHeader}>
+                <Link href="/collections" className={styles.mobileNavLink} onClick={() => setIsOpen(false)}>
+                  Collections
+                </Link>
+                <button
+                  className={styles.mobileAccordionToggle}
+                  onClick={() => toggleMobileAccordion("collections")}
+                  aria-label="Toggle Collections sub-items"
+                >
+                  {mobileAccordion.collections ? "\u2212" : "+"}
+                </button>
+              </div>
+
+              {mobileAccordion.collections && (
+                <ul className={styles.mobileSubList}>
+                  {collectionsDropdownItems.map((sub) => (
+                    <li key={sub.href}>
                       <Link
-                        href={item.href}
-                        className={styles.mobileNavLink}
+                        href={sub.href}
+                        className={styles.mobileSubLink}
                         onClick={() => setIsOpen(false)}
                       >
-                        {item.label}
+                        {sub.title}
                       </Link>
-                      <button
-                        className={styles.mobileAccordionToggle}
-                        onClick={() => toggleMobileAccordion(key)}
-                        aria-label={`Toggle ${item.label} sub-items`}
-                      >
-                        {isExpanded ? "\u2212" : "+"}
-                      </button>
-                    </div>
-
-                    {isExpanded && (
-                      <ul className={styles.mobileSubList}>
-                        {(isCollections ? collectionsDropdownItems : marbleDropdownItems).map((sub) => (
-                          <li key={sub.href}>
-                            <Link
-                              href={sub.href}
-                              className={styles.mobileSubLink}
-                              onClick={() => setIsOpen(false)}
-                            >
-                              {sub.title}
-                            </Link>
-                          </li>
-                        ))}
-                        <li>
-                          <Link
-                            href={item.href}
-                            className={styles.mobileSubLink}
-                            style={{ color: "var(--color-bronze)", fontWeight: 600 }}
-                            onClick={() => setIsOpen(false)}
-                          >
-                            {isCollections ? "View All Collections \u2192" : "Explore Marble Hub \u2192"}
-                          </Link>
-                        </li>
-                      </ul>
-                    )}
+                    </li>
+                  ))}
+                  <li>
+                    <Link
+                      href="/collections"
+                      className={styles.mobileSubLink}
+                      style={{ color: "var(--color-bronze)", fontWeight: 600 }}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      View All Collections &rarr;
+                    </Link>
                   </li>
-                );
-              }
+                </ul>
+              )}
+            </li>
 
-              return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={styles.mobileNavLink}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              );
-            })}
+            {/* 3. Craftsmanship */}
+            <li>
+              <Link href="/craftsmanship" className={styles.mobileNavLink} onClick={() => setIsOpen(false)}>
+                Craftsmanship
+              </Link>
+            </li>
+
+            {/* 4. Our World */}
+            <li>
+              <Link href="/our-world" className={styles.mobileNavLink} onClick={() => setIsOpen(false)}>
+                Our World
+              </Link>
+            </li>
+
+            {/* 5. Our Story */}
+            <li>
+              <Link href="/our-story" className={styles.mobileNavLink} onClick={() => setIsOpen(false)}>
+                Our Story
+              </Link>
+            </li>
           </ul>
 
-          <div style={{ marginTop: "auto" }}>
+          <div style={{ marginTop: "auto", paddingTop: "1rem" }}>
             <Link
               href="/contact?type=quote"
-              className={styles.quoteControl}
-              style={{ display: "flex", width: "100%", textAlign: "center", justifyContent: "center", padding: "0.85rem" }}
+              className={styles.goldenQuoteButton}
+              style={{ display: "flex", width: "100%", textAlign: "center", justifyContent: "center", padding: "0.85rem", minHeight: "46px" }}
               onClick={() => setIsOpen(false)}
             >
-              Request a Quote
+              Get a Quote
             </Link>
           </div>
         </div>
       </header>
 
-      {/* SEARCH OVERLAY COMPONENT */}
-      <SearchOverlay
-        isOpen={isSearchOpen}
-        onClose={() => setIsSearchOpen(false)}
-      />
+      {/* HEADER END */}
     </>
   );
 }
+

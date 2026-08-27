@@ -1,0 +1,205 @@
+.stageSection {
+  padding: var(--spacing-section) 0;
+  background-color: var(--color-charcoal-card);
+  color: var(--color-cream);
+  border-bottom: 1px solid rgba(232, 228, 223, 0.1);
+}
+
+.stageHeader {
+  margin-bottom: var(--spacing-lg);
+}
+
+.markerBadge {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.markerNum {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 300;
+  color: var(--color-bronze);
+  line-height: 1;
+}
+
+.markerLine {
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-bronze);
+  opacity: 0.4;
+}
+
+.markerText {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--color-bronze);
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.blueprintFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: #151413;
+  border: 1px solid rgba(212, 163, 89, 0.25);
+  border-radius: var(--radius-subtle);
+  overflow: hidden;
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.blueprintInner {
+  position: relative;
+  z-index: 2;
+}
+
+.blueprintTag {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--color-bronze);
+  margin-bottom: var(--spacing-sm);
+  border-bottom: 1px stroke rgba(212, 163, 89, 0.2);
+  padding-bottom: 0.5rem;
+}
+
+.blueprintTitle {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 300;
+  color: var(--color-cream);
+  margin-bottom: 0.5rem;
+}
+
+.blueprintSub {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(252, 251, 249, 0.75);
+  margin-bottom: var(--spacing-md);
+}
+
+.specsList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid rgba(212, 163, 89, 0.2);
+}
+
+.specItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.specLabel {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: rgba(212, 163, 89, 0.8);
+}
+
+.specValue {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--color-cream);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-bronze);
+  margin-bottom: var(--spacing-xs);
+  display: block;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 300;
+  color: var(--color-cream);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+}
+
+.narrativeText p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(252, 251, 249, 0.82);
+  margin-bottom: var(--spacing-sm);
+}
+
+.stepsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+.stepPoint {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}
+
+.stepBullet {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--color-bronze);
+  color: var(--color-bronze);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stepPointTitle {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--color-cream);
+}
+
+.stepPointDesc {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: rgba(252, 251, 249, 0.7);
+}
+
+@media (max-width: 991px) {
+  .mainGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .specsList {
+    grid-template-columns: 1fr;
+  }
+}

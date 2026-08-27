@@ -87,24 +87,22 @@ export default function ContactForm({
     setIsSubmitting(true);
 
     try {
-      // Simulate network request (1.5 seconds mock delay)
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Post inquiry to real backend API endpoint
+      const res = await fetch("/api/admin/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          inquiryType: formType,
+          message: `[${formData.projectType || "General"}] ${formData.dimensions ? `Dimensions: ${formData.dimensions}. ` : ""}${formData.message}`
+        })
+      });
 
-      // Console logging for verification testing
-      console.log("Mock Form Submission Data:", formData);
-
-      /* 
-        =========================================
-        CONNECT REAL SUBMISSION HANDLER HERE
-        =========================================
-        To wire up to a live CRM or email trigger:
-        1. Replace this stub with a fetch() call to your Next.js route:
-           await fetch('/api/inquiry', {
-             method: 'POST',
-             body: JSON.stringify(formData)
-           })
-        2. Integrate with Salesforce, HubSpot, or a mailer service like Resend/SendGrid.
-      */
+      if (!res.ok) {
+        throw new Error("Failed to submit inquiry");
+      }
 
       setIsSuccess(true);
       

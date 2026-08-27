@@ -1,0 +1,836 @@
+/* ==========================================================================
+   JAIPUR STONECRAFT — COLLECTION DETAIL SYSTEM STYLES
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. HERO SECTION
+   -------------------------------------------------------------------------- */
+.heroSection {
+  background-color: var(--color-cream);
+  padding-top: calc(80px + var(--spacing-lg));
+  padding-bottom: var(--spacing-xl);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-stone-grey);
+}
+
+/* FULL-WIDTH DIMMED COVER HERO BANNER */
+.heroBannerHeader {
+  position: relative;
+  min-height: 460px;
+  display: flex;
+  align-items: center;
+  padding-top: calc(90px + var(--spacing-lg));
+  padding-bottom: var(--spacing-xxl);
+  overflow: hidden;
+  color: #FAF8F5;
+  border-bottom: 1px solid rgba(158, 123, 79, 0.3);
+  background-color: #111110;
+}
+
+.heroBannerBgWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.heroBannerBgImage {
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.65) contrast(1.05);
+}
+
+.heroBannerOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(17, 17, 16, 0.72) 0%, rgba(26, 25, 24, 0.88) 100%);
+  z-index: 2;
+}
+
+.heroBannerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 840px;
+  margin: 0 auto;
+  gap: var(--spacing-xs);
+}
+
+.eyebrowBadgeGold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #E6C894;
+  background: rgba(158, 123, 79, 0.25);
+  backdrop-filter: blur(4px);
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-subtle);
+  border: 1px solid rgba(230, 200, 148, 0.35);
+  margin-bottom: 0.5rem;
+}
+
+.heroBannerTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+  font-weight: 300;
+  line-height: 1.12;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.heroBannerTagline {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+  font-weight: 400;
+  font-style: italic;
+  color: #D4B886;
+  line-height: 1.35;
+  margin-bottom: var(--spacing-xs);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.heroBannerDescription {
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.7;
+  color: rgba(250, 248, 245, 0.88);
+  max-width: 680px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.heroSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: radial-gradient(circle at 70% 30%, rgba(158, 123, 79, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.breadcrumbsWrapper {
+  margin-bottom: var(--spacing-xs);
+}
+
+.eyebrowBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-bronze);
+  background: var(--color-bronze-light);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-subtle);
+  border: 1px solid rgba(158, 123, 79, 0.2);
+  width: fit-content;
+}
+
+.heroTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5.2vw, 3.8rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--color-charcoal);
+  letter-spacing: -0.02em;
+}
+
+.heroTagline {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-bronze);
+  line-height: 1.35;
+  margin-bottom: var(--spacing-xs);
+}
+
+.heroDescription {
+  font-size: clamp(0.98rem, 1.4vw, 1.12rem);
+  line-height: 1.7;
+  color: rgba(26, 25, 24, 0.82);
+  max-width: 580px;
+}
+
+.heroVisualWrapper {
+  position: relative;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-stone-grey);
+}
+
+.heroImageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.heroImage {
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.heroVisualWrapper:hover .heroImage {
+  transform: scale(1.03);
+}
+
+.heroBadgeOverlay {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  background: rgba(26, 25, 24, 0.88);
+  backdrop-filter: blur(8px);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-subtle);
+  border-left: 3px solid var(--color-bronze);
+  color: var(--color-cream);
+}
+
+.heroBadgeTitle {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-bronze);
+  display: block;
+}
+
+.heroBadgeValue {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--color-cream);
+}
+
+/* --------------------------------------------------------------------------
+   2. METRICS STRIP
+   -------------------------------------------------------------------------- */
+.metricsSection {
+  background-color: var(--color-cream-secondary);
+  border-bottom: 1px solid var(--color-stone-grey);
+  padding: var(--spacing-md) 0;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.metricItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0 var(--spacing-sm);
+  border-right: 1px solid var(--color-border-subtle);
+}
+
+.metricItem:last-child {
+  border-right: none;
+}
+
+.metricLabel {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-bronze);
+}
+
+.metricValue {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--color-charcoal);
+  line-height: 1.3;
+}
+
+/* --------------------------------------------------------------------------
+   3. SUBCOLLECTION EXPLORATION (Scalable Layout Engine)
+   -------------------------------------------------------------------------- */
+.subcollectionsSection {
+  background-color: var(--color-cream);
+  padding: var(--spacing-section) 0;
+}
+
+.sectionHeader {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto var(--spacing-xxl);
+}
+
+.sectionEyebrow {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-bronze);
+  display: block;
+  margin-bottom: var(--spacing-xs);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: var(--color-charcoal);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-sm);
+}
+
+.sectionDesc {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: rgba(26, 25, 24, 0.8);
+}
+
+/* FEATURED SUB-COLLECTION CARD (Item #1) */
+.featuredSubCard {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  background: var(--color-cream-secondary);
+  border: 1px solid var(--color-stone-grey);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+  transition: box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.featuredSubCard:hover {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.07);
+  border-color: var(--color-bronze);
+}
+
+.featuredSubImageWrapper {
+  position: relative;
+  min-height: 380px;
+  overflow: hidden;
+}
+
+.subImage {
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.featuredSubCard:hover .subImage {
+  transform: scale(1.04);
+}
+
+.featuredSubContent {
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  position: relative;
+}
+
+.indexBadge {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: rgba(158, 123, 79, 0.35);
+  line-height: 1;
+}
+
+.subTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 300;
+  color: var(--color-charcoal);
+  line-height: 1.25;
+}
+
+.subDesc {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(26, 25, 24, 0.82);
+}
+
+.exploreLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-bronze);
+  margin-top: var(--spacing-xs);
+  transition: gap var(--transition-fast);
+}
+
+.featuredSubCard:hover .exploreLink {
+  gap: 0.85rem;
+}
+
+.cardOverlayLink {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+/* REMAINING SUBCOLLECTIONS GRID (Adaptable 2 or 3 cols) */
+.subGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.subCard {
+  background: var(--color-cream);
+  border: 1px solid var(--color-stone-grey);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.subCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+  border-color: var(--color-bronze);
+}
+
+.subCardImageWrapper {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.subCard:hover .subImage {
+  transform: scale(1.05);
+}
+
+.subCardBody {
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+}
+
+.subCardHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.subCardTitle {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 400;
+  color: var(--color-charcoal);
+  line-height: 1.3;
+}
+
+.subCardIndex {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: rgba(158, 123, 79, 0.4);
+}
+
+.subCardDesc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(26, 25, 24, 0.78);
+}
+
+/* --------------------------------------------------------------------------
+   4. MATERIALS PALETTE SHOWCASE
+   -------------------------------------------------------------------------- */
+.materialsSection {
+  background-color: var(--color-cream-secondary);
+  padding: var(--spacing-section) 0;
+  border-top: 1px solid var(--color-stone-grey);
+  border-bottom: 1px solid var(--color-stone-grey);
+}
+
+.materialsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.materialCard {
+  background: var(--color-cream);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-card);
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  position: relative;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.materialCard:hover {
+  border-color: var(--color-bronze);
+  transform: translateY(-2px);
+}
+
+.materialHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.materialName {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--color-charcoal);
+}
+
+.materialOrigin {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-bronze);
+  background: var(--color-bronze-light);
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+}
+
+.materialDesc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(26, 25, 24, 0.8);
+}
+
+.materialLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-bronze);
+  margin-top: auto;
+  padding-top: var(--spacing-xs);
+}
+
+/* --------------------------------------------------------------------------
+   5. CRAFTSMANSHIP & PROCESS (Dark Transition Section)
+   -------------------------------------------------------------------------- */
+.craftSection {
+  background-color: var(--color-charcoal);
+  color: var(--color-cream);
+  padding: var(--spacing-section) 0;
+  position: relative;
+}
+
+.craftSection p {
+  color: rgba(252, 251, 249, 0.9) !important;
+}
+
+.ctaSection p {
+  color: rgba(252, 251, 249, 0.85) !important;
+}
+
+.craftEyebrow {
+  color: var(--color-bronze);
+}
+
+.craftTitle {
+  color: var(--color-cream);
+}
+
+.craftDesc {
+  color: rgba(252, 251, 249, 0.8);
+}
+
+.processGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xxl);
+}
+
+.processStep {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  position: relative;
+  padding-left: var(--spacing-md);
+  border-left: 1px solid rgba(158, 123, 79, 0.3);
+}
+
+.stepNum {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--color-bronze);
+  line-height: 1;
+}
+
+.stepTitle {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--color-cream);
+}
+
+.stepDesc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(252, 251, 249, 0.75);
+}
+
+/* --------------------------------------------------------------------------
+   6. FEATURED ARTWORKS / HIGHLIGHTS SHOWCASE
+   -------------------------------------------------------------------------- */
+.artworksSection {
+  background-color: var(--color-cream);
+  padding: var(--spacing-section) 0;
+}
+
+.artworksGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+.artworkCard {
+  background: var(--color-cream-secondary);
+  border: 1px solid var(--color-stone-grey);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.artworkCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+}
+
+.artworkImageWrapper {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.artworkImage {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.artworkCard:hover .artworkImage {
+  transform: scale(1.05);
+}
+
+.artworkContent {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.artworkTitle {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-charcoal);
+}
+
+.artworkMeta {
+  font-size: 0.82rem;
+  color: rgba(26, 25, 24, 0.65);
+}
+
+/* --------------------------------------------------------------------------
+   7. COMPACT CLOSING CTA
+   -------------------------------------------------------------------------- */
+.ctaSection {
+  background-color: var(--color-charcoal-card);
+  color: var(--color-cream);
+  padding: var(--spacing-xxl) 0;
+  text-align: center;
+  border-top: 1px solid rgba(158, 123, 79, 0.2);
+}
+
+.ctaContainer {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.ctaEyebrow {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-bronze);
+}
+
+.ctaHeading {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+  font-weight: 300;
+  color: var(--color-cream);
+  line-height: 1.2;
+}
+
+.ctaDesc {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: rgba(252, 251, 249, 0.82);
+  margin-bottom: var(--spacing-md);
+}
+
+.ctaButtonGroup {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.primaryGoldButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: var(--color-bronze);
+  color: var(--color-cream);
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-subtle);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.primaryGoldButton:hover {
+  background-color: #886840;
+  transform: translateY(-2px);
+}
+
+.secondaryOutlineButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: transparent;
+  color: var(--color-cream);
+  border: 1px solid rgba(252, 251, 249, 0.35);
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-subtle);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  transition: border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.secondaryOutlineButton:hover {
+  border-color: var(--color-bronze);
+  color: var(--color-bronze);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   8. RESPONSIVE BREAKPOINTS (Mobile & Tablet Optimization)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+
+  .metricItem {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-subtle);
+    padding-bottom: var(--spacing-xs);
+  }
+
+  .metricItem:nth-child(3),
+  .metricItem:nth-child(4) {
+    border-bottom: none;
+  }
+
+  .featuredSubCard {
+    grid-template-columns: 1fr;
+  }
+
+  .featuredSubImageWrapper {
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 640px) {
+  .heroSection {
+    padding-top: calc(70px + var(--spacing-md));
+  }
+
+  .metricsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .metricItem {
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .subGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .featuredSubContent {
+    padding: var(--spacing-md);
+  }
+
+  .ctaButtonGroup {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .primaryGoldButton,
+  .secondaryOutlineButton {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -23,7 +23,14 @@ export default function AdminHealthPage() {
   };
 
   useEffect(() => {
-    fetchHealth();
+    let active = true;
+    const timer = setTimeout(() => {
+      if (active) fetchHealth();
+    }, 0);
+    return () => {
+      active = false;
+      clearTimeout(timer);
+    };
   }, []);
 
   if (loading || !healthData) {

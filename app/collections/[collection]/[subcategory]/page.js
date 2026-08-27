@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Container from "@/components/Container/Container";
 import Section from "@/components/Section/Section";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
@@ -61,27 +62,106 @@ export default async function SubcategoryPage({ params }) {
     : categories;
 
   return (
-    <Section background="light" spacing="standard" className="page-offset">
-      <Container>
-        <Breadcrumbs
-          items={[
-            { label: "Collections", href: "/collections" },
-            { label: collection.name, href: `/collections/${collection.slug}` },
-            { label: subcategory.name },
-          ]}
-        />
-
-        <ScrollReveal animation="fade-up">
-          <SectionHeading
-            eyebrow={collection.name}
-            heading={subcategory.name}
-            description={subcategory.description}
-            align="center"
-            headingLevel="h1"
+    <>
+      {/* 1. BREADCRUMBS & HERO INTRO BANNER */}
+      <div style={{
+        position: "relative",
+        minHeight: "420px",
+        display: "flex",
+        alignItems: "center",
+        paddingTop: "calc(90px + var(--spacing-lg))",
+        paddingBottom: "var(--spacing-xxl)",
+        overflow: "hidden",
+        backgroundColor: "#111110",
+        color: "#FAF8F5",
+        borderBottom: "1px solid rgba(158, 123, 79, 0.3)"
+      }}>
+        {/* Dimmed Background Cover Image */}
+        <div style={{ position: "absolute", inset: 0, zIndex: 1 }}>
+          <Image
+            src={subcategory.imageSrc || subcategory.image_src || collection.imageSrc || "/images/collections/hero-sculptures-group.jpg"}
+            alt={`${subcategory.name} background`}
+            fill
+            sizes="100vw"
+            style={{ objectFit: "cover", filter: "brightness(0.6) contrast(1.05)" }}
+            priority
           />
-        </ScrollReveal>
+          <div style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(180deg, rgba(17, 17, 16, 0.72) 0%, rgba(26, 25, 24, 0.88) 100%)"
+          }} />
+        </div>
 
-        <div style={{ marginTop: "var(--spacing-xl)" }}>
+        {/* Foreground Content */}
+        <Container style={{ position: "relative", zIndex: 3 }}>
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            textAlign: "center",
+            maxWidth: "840px",
+            margin: "0 auto"
+          }}>
+            <Breadcrumbs
+              items={[
+                { label: "Collections", href: "/collections" },
+                { label: collection.name, href: `/collections/${collection.slug}` },
+                { label: subcategory.name },
+              ]}
+              theme="dark"
+            />
+
+            <ScrollReveal animation="fade-up">
+              <span style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                fontFamily: "var(--font-body)",
+                fontSize: "0.75rem",
+                fontWeight: "600",
+                textTransform: "uppercase",
+                letterSpacing: "0.22em",
+                color: "#E6C894",
+                background: "rgba(158, 123, 79, 0.25)",
+                backdropFilter: "blur(4px)",
+                padding: "0.4rem 1rem",
+                borderRadius: "var(--radius-subtle)",
+                border: "1px solid rgba(230, 200, 148, 0.35)",
+                marginBottom: "0.75rem"
+              }}>
+                {collection.name}
+              </span>
+              <h1 style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(2.4rem, 5vw, 4rem)",
+                fontWeight: "300",
+                lineHeight: 1.12,
+                color: "#FFFFFF",
+                letterSpacing: "-0.02em",
+                textShadow: "0 4px 20px rgba(0, 0, 0, 0.6)",
+                marginBottom: "0.75rem"
+              }}>
+                {subcategory.name}
+              </h1>
+              <p style={{
+                fontSize: "clamp(1rem, 1.4vw, 1.12rem)",
+                lineHeight: 1.7,
+                color: "rgba(250, 248, 245, 0.9)",
+                maxWidth: "760px",
+                margin: "0 auto",
+                textShadow: "0 2px 10px rgba(0, 0, 0, 0.6)"
+              }}>
+                {subcategory.description}
+              </p>
+            </ScrollReveal>
+          </div>
+        </Container>
+      </div>
+
+      <Section background="light" spacing="standard">
+        <Container>
+          <div style={{ marginTop: "var(--spacing-md)" }}>
           {/* 1. FEATURED PROMINENT CATEGORY */}
           {primaryFeatured && (
             <ScrollReveal animation="fade-up">
@@ -124,5 +204,6 @@ export default async function SubcategoryPage({ params }) {
         </div>
       </Container>
     </Section>
-  );
+  </>
+);
 }

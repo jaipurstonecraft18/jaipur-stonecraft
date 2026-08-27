@@ -21,9 +21,9 @@ export async function POST(request) {
     const rawSlug = (formData.get("productSlug") || "product").toString();
     const cleanSlug = path.basename(rawSlug).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "product";
 
-    const files = formData.getAll("files");
+    const files = formData.getAll("files").concat(formData.getAll("file")).filter((f) => f && typeof f !== "string");
     if (!files || files.length === 0) {
-      return NextResponse.json({ error: "No image files provided for upload" }, { status: 400 });
+      return NextResponse.json({ error: "No image file provided to upload" }, { status: 400 });
     }
 
     const baseUploadDir = path.join(process.cwd(), "public", "uploads", targetFolder);

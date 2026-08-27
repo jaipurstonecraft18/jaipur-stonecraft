@@ -1,0 +1,239 @@
+.stageSection {
+  padding: var(--spacing-section) 0;
+  background-color: var(--color-cream);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.stageHeader {
+  margin-bottom: var(--spacing-lg);
+}
+
+.markerBadge {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.markerNum {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 300;
+  color: var(--color-bronze);
+  line-height: 1;
+}
+
+.markerLine {
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-bronze);
+  opacity: 0.4;
+}
+
+.markerText {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--color-bronze);
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  margin-bottom: var(--spacing-xxl);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-bronze);
+  margin-bottom: var(--spacing-xs);
+  display: block;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 300;
+  color: var(--color-charcoal);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+}
+
+.narrativeText p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(26, 25, 24, 0.82);
+  margin-bottom: var(--spacing-sm);
+}
+
+.technicalBox {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: var(--color-cream-secondary);
+  border-left: 3px solid var(--color-bronze);
+  border-radius: 0 var(--radius-subtle) var(--radius-subtle) 0;
+}
+
+.techHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.techTitle {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--color-charcoal);
+  font-weight: 400;
+}
+
+.techDesc {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: rgba(26, 25, 24, 0.75);
+}
+
+.ctaLinkGroup {
+  margin-top: var(--spacing-md);
+}
+
+.storyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--color-bronze);
+  transition: color var(--transition-fast);
+}
+
+.storyLink:hover {
+  color: var(--color-charcoal);
+}
+
+.imageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-subtle);
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(26, 25, 24, 0.06);
+}
+
+.stageImage {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.imageFrame:hover .stageImage {
+  transform: scale(1.03);
+}
+
+.imageBadge {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  background-color: rgba(26, 25, 24, 0.88);
+  backdrop-filter: blur(8px);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-subtle);
+  color: var(--color-cream);
+  display: flex;
+  flex-direction: column;
+}
+
+.imageBadgeLabel {
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+
+.imageBadgeSub {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--color-bronze);
+  letter-spacing: 0.05em;
+}
+
+.swatchSection {
+  padding-top: var(--spacing-lg);
+  border-top: 1px dashed var(--color-border-subtle);
+}
+
+.swatchHeading {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--color-charcoal);
+  margin-bottom: var(--spacing-md);
+}
+
+.swatchGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+}
+
+.swatchCard {
+  padding: var(--spacing-md);
+  background-color: var(--color-cream-secondary);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-subtle);
+}
+
+.swatchColorHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.swatchCircle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1.5px solid;
+  flex-shrink: 0;
+}
+
+.swatchName {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--color-charcoal);
+  line-height: 1.2;
+}
+
+.swatchOrigin {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--color-bronze);
+  display: block;
+}
+
+.swatchDesc {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(26, 25, 24, 0.75);
+}
+
+@media (max-width: 991px) {
+  .mainGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .swatchGrid {
+    grid-template-columns: 1fr;
+  }
+}

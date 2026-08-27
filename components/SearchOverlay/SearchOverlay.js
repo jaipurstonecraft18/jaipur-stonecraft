@@ -35,15 +35,17 @@ export default function SearchOverlay({ isOpen, onClose }) {
       setTimeout(() => inputRef.current?.focus(), 100);
     } else {
       document.body.style.overflow = "";
-      setQuery("");
-      setDebouncedQuery("");
-      setSearchResults({
-        productResults: [],
-        categoryResults: [],
-        totalCount: 0,
-        isFallback: false,
-        fallbackMessage: ""
-      });
+      setTimeout(() => {
+        setQuery("");
+        setDebouncedQuery("");
+        setSearchResults({
+          productResults: [],
+          categoryResults: [],
+          totalCount: 0,
+          isFallback: false,
+          fallbackMessage: ""
+        });
+      }, 0);
     }
     return () => {
       document.body.style.overflow = "";
@@ -61,18 +63,13 @@ export default function SearchOverlay({ isOpen, onClose }) {
   // Fetch search results via server API
   useEffect(() => {
     if (!debouncedQuery) {
-      setSearchResults({
-        productResults: [],
-        categoryResults: [],
-        totalCount: 0,
-        isFallback: false,
-        fallbackMessage: ""
-      });
       return;
     }
 
     let active = true;
-    setSearching(true);
+    const timer = setTimeout(() => {
+      if (active) setSearching(true);
+    }, 0);
 
     fetch(`/api/search?q=${encodeURIComponent(debouncedQuery)}`)
       .then((res) => res.json())
@@ -94,6 +91,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
 
     return () => {
       active = false;
+      clearTimeout(timer);
     };
   }, [debouncedQuery]);
 
@@ -108,9 +106,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
-
-  const { productResults, categoryResults, totalCount, isFallback, fallbackMessage } = searchResults;
+  const { productResults, categoryResults, totalCount, isFallback, fallbackMessage } = debouncedQuery ? searchResults : { productResults: [], categoryResults: [], totalCount: 0, isFallback: false, fallbackMessage: "" };
 
   return (
     <div className={`${styles.overlay} ${isOpen ? styles.open : ""}`} role="dialog" aria-modal="true" aria-label="Site Search">

@@ -1,0 +1,189 @@
+.stageSection {
+  padding: var(--spacing-section) 0;
+  background-color: var(--color-cream);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.stageHeader {
+  margin-bottom: var(--spacing-lg);
+}
+
+.markerBadge {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.markerNum {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 300;
+  color: var(--color-bronze);
+  line-height: 1;
+}
+
+.markerLine {
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-bronze);
+  opacity: 0.4;
+}
+
+.markerText {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--color-bronze);
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.imageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-subtle);
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(26, 25, 24, 0.08);
+}
+
+.stageImage {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.imageFrame:hover .stageImage {
+  transform: scale(1.03);
+}
+
+.imageBadge {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  background-color: rgba(26, 25, 24, 0.88);
+  backdrop-filter: blur(8px);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-subtle);
+  color: var(--color-cream);
+  display: flex;
+  flex-direction: column;
+}
+
+.imageBadgeLabel {
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+
+.imageBadgeSub {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--color-bronze);
+  letter-spacing: 0.05em;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-bronze);
+  margin-bottom: var(--spacing-xs);
+  display: block;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 300;
+  color: var(--color-charcoal);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+}
+
+.narrativeText p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(26, 25, 24, 0.82);
+  margin-bottom: var(--spacing-sm);
+}
+
+.accordionContainer {
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.accordionTitle {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--color-charcoal);
+  margin-bottom: var(--spacing-sm);
+}
+
+.accordionList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.accordionItem {
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-subtle);
+  background-color: var(--color-cream-secondary);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+}
+
+.accordionItem.open {
+  border-color: rgba(158, 123, 79, 0.4);
+  background-color: var(--color-cream);
+}
+
+.accordionBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.itemTitle {
+  font-family: var(--font-body);
+  font-size: 0.925rem;
+  font-weight: 500;
+  color: var(--color-charcoal);
+}
+
+.accordionIcon {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-bronze);
+}
+
+.accordionBody {
+  padding: 0 1rem 0.85rem 1rem;
+}
+
+.accordionBody p {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: rgba(26, 25, 24, 0.75);
+}
+
+@media (max-width: 991px) {
+  .mainGrid {
+    grid-template-columns: 1fr;
+  }
+}

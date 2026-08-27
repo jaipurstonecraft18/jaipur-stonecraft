@@ -34,7 +34,14 @@ export default function AdminMediaPage() {
   };
 
   useEffect(() => {
-    fetchMedia();
+    let active = true;
+    const timer = setTimeout(() => {
+      if (active) fetchMedia();
+    }, 0);
+    return () => {
+      active = false;
+      clearTimeout(timer);
+    };
   }, [searchQuery]);
 
   const handleDeleteMedia = async (mediaItem) => {

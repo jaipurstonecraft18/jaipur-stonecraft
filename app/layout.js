@@ -20,6 +20,7 @@ const inter = Inter({
 import { generateOrganizationSchema } from "@/lib/seo/schemas";
 
 export const metadata = {
+  metadataBase: new URL("https://jaipurstonecraft.com"),
   title: "Jaipur Stonecraft",
   description: "Premium stone craftsmanship and custom sculpture atelier.",
 };

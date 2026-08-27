@@ -11,6 +11,8 @@ export default async function AdminDashboardPage() {
   let draftCount = 0;
   let archivedCount = 0;
   let attentionCount = 0;
+  let newInquiriesCount = 0;
+  let projectsCount = 0;
   let recentProducts = [];
 
   try {
@@ -19,12 +21,21 @@ export default async function AdminDashboardPage() {
     const draftRow = await getOne("SELECT COUNT(*) as total FROM products WHERE status = 'draft'");
     const archivedRow = await getOne("SELECT COUNT(*) as total FROM products WHERE status = 'archived'");
     const attentionRow = await getOne("SELECT COUNT(*) as total FROM products WHERE short_description IS NULL OR short_description = '' OR primary_material_id IS NULL");
+    
+    let inquiriesRow = null;
+    let projectsRow = null;
+    try {
+      inquiriesRow = await getOne("SELECT COUNT(*) as total FROM inquiries WHERE status = 'new'");
+      projectsRow = await getOne("SELECT COUNT(*) as total FROM projects");
+    } catch (tblErr) {}
 
     totalCount = totalRow ? totalRow.total : 0;
     publishedCount = publishedRow ? publishedRow.total : 0;
     draftCount = draftRow ? draftRow.total : 0;
     archivedCount = archivedRow ? archivedRow.total : 0;
     attentionCount = attentionRow ? attentionRow.total : 0;
+    newInquiriesCount = inquiriesRow ? inquiriesRow.total : 0;
+    projectsCount = projectsRow ? projectsRow.total : 0;
 
     const recentRows = await query("SELECT * FROM products ORDER BY updated_at DESC LIMIT 5");
     recentProducts = await Promise.all(recentRows.map(formatProductFromRow));
@@ -38,7 +49,7 @@ export default async function AdminDashboardPage() {
         <div>
           <h1 className={styles.pageTitle}>Dashboard Overview</h1>
           <p style={{ color: "#666", fontSize: "0.9rem", marginTop: "0.25rem" }}>
-            Real-time snapshot of the Jaipur Stonecraft catalogue
+            Operational command center for Jaipur Stonecraft catalogue, website CMS, and customer leads.
           </p>
         </div>
         <Link href="/admin/products/new" className={styles.primaryBtn}>
@@ -46,7 +57,7 @@ export default async function AdminDashboardPage() {
         </Link>
       </div>
 
-      {/* Snapshot Metrics Grid */}
+      {/* Snapshot Operational Metrics Grid */}
       <div className={styles.statsGrid}>
         <div className={styles.statCard}>
           <div className={styles.statLabel}>Total Products</div>
@@ -68,30 +79,46 @@ export default async function AdminDashboardPage() {
         </div>
 
         <div className={styles.statCard}>
-          <div className={styles.statLabel}>Archived</div>
-          <div className={styles.statValue} style={{ color: "#5F6368" }}>
-            {archivedCount}
-          </div>
-        </div>
-
-        <div className={styles.statCard}>
           <div className={styles.statLabel}>Needs Attention</div>
           <div className={styles.statValue} style={{ color: "#C5221F" }}>
             {attentionCount}
           </div>
         </div>
+
+        <div className={styles.statCard} style={{ borderColor: newInquiriesCount > 0 ? "#C5221F" : "#E2DDD5", backgroundColor: newInquiriesCount > 0 ? "#FCE8E6" : "#FFF" }}>
+          <div className={styles.statLabel}>New Customer Leads</div>
+          <div className={styles.statValue} style={{ color: newInquiriesCount > 0 ? "#C5221F" : "var(--color-navy)" }}>
+            {newInquiriesCount}
+          </div>
+        </div>
+
+        <div className={styles.statCard}>
+          <div className={styles.statLabel}>Portfolio Projects</div>
+          <div className={styles.statValue} style={{ color: "var(--color-bronze)" }}>
+            {projectsCount}
+          </div>
+        </div>
       </div>
 
-      {/* Quick Action Navigation */}
-      <div style={{ display: "flex", gap: "1rem", marginBottom: "2rem", flexWrap: "wrap" }}>
+      {/* Quick Action Workspace Links */}
+      <div style={{ display: "flex", gap: "0.75rem", marginBottom: "2rem", flexWrap: "wrap" }}>
         <Link href="/admin/products" className={styles.secondaryBtn}>
-          📋 View Full Products List
+          📋 All Products ({totalCount})
         </Link>
-        <Link href="/admin/products?status=draft" className={styles.secondaryBtn}>
-          📝 View Drafts ({draftCount})
+        <Link href="/admin/health" className={styles.secondaryBtn} style={{ color: attentionCount > 0 ? "#C5221F" : "inherit" }}>
+          🩺 Health Audit ({attentionCount})
         </Link>
-        <Link href="/admin/products?status=archived" className={styles.secondaryBtn}>
-          📦 View Archived ({archivedCount})
+        <Link href="/admin/inquiries" className={styles.secondaryBtn} style={{ fontWeight: "600", color: newInquiriesCount > 0 ? "#C5221F" : "inherit" }}>
+          📬 Lead Inbox ({newInquiriesCount} New)
+        </Link>
+        <Link href="/admin/pages" className={styles.secondaryBtn}>
+          📄 Website Page CMS
+        </Link>
+        <Link href="/admin/projects" className={styles.secondaryBtn}>
+          🏛️ Projects Portfolio ({projectsCount})
+        </Link>
+        <Link href="/admin/settings" className={styles.secondaryBtn}>
+          ⚙️ Site Settings
         </Link>
       </div>
 

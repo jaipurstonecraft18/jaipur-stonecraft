@@ -1,0 +1,174 @@
+.recommendSection {
+  padding: var(--spacing-xxl) 0;
+  background-color: var(--color-cream);
+}
+
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-desktop);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 300;
+  color: var(--color-charcoal);
+  line-height: 1.2;
+}
+
+.ornamentDivider {
+  color: var(--color-bronze);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.recommendGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.card {
+  background-color: var(--color-cream-secondary);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-subtle);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(26, 25, 24, 0.08);
+}
+
+.imageLink {
+  display: block;
+  text-decoration: none;
+}
+
+.imageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background-color: #0d0d0d;
+  overflow: hidden;
+}
+
+.cardImage {
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .cardImage {
+  transform: scale(1.04);
+}
+
+.favoriteIcon {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+}
+
+.cardBody {
+  padding: var(--spacing-sm);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 0.2rem;
+}
+
+.titleLink {
+  color: var(--color-charcoal);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.titleLink:hover {
+  color: var(--color-bronze);
+}
+
+.priceTag {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: rgba(26, 25, 24, 0.65);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.cardFooter {
+  margin-top: auto;
+}
+
+.viewLink {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--color-bronze);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.viewLink:hover {
+  color: var(--color-charcoal);
+}
+
+.btnRow {
+  display: flex;
+  justify-content: center;
+}
+
+.viewAllBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.75rem;
+  border: 1px solid var(--color-border-subtle);
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: var(--radius-subtle);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.viewAllBtn:hover {
+  border-color: var(--color-charcoal);
+  background-color: #ffffff;
+}
+
+@media (max-width: 1200px) {
+  .recommendGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 991px) {
+  .container {
+    padding: 0 var(--container-padding-mobile);
+  }
+}
+
+@media (max-width: 576px) {
+  .recommendGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

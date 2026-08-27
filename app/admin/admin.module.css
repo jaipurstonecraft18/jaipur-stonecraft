@@ -291,6 +291,30 @@
   letter-spacing: 0.03em;
 }
 
+.aspectBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: #F3EFEA;
+  color: var(--color-bronze);
+  border: 1px solid rgba(158, 123, 79, 0.35);
+  margin-top: 0.35rem;
+}
+
+.aspectHint {
+  font-size: 0.78rem;
+  color: #777;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+
+
 .badgePublished {
   background-color: #E6F4EA;
   color: #137333;

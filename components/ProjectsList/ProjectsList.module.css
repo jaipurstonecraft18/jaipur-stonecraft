@@ -1,3 +1,63 @@
+.searchBarWrapper {
+  position: relative;
+  max-width: 600px;
+  margin: var(--spacing-md) auto 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 1rem;
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.8rem 2.5rem 0.8rem 2.75rem;
+  background-color: var(--color-cream-secondary);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-subtle);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-charcoal);
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.searchInput:focus {
+  border-color: var(--color-bronze);
+  box-shadow: 0 0 0 2px rgba(158, 123, 79, 0.15);
+}
+
+.clearBtn {
+  position: absolute;
+  right: 0.85rem;
+  background: none;
+  border: none;
+  color: rgba(26, 25, 24, 0.5);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.typoBanner {
+  max-width: 600px;
+  margin: 0.5rem auto 0 auto;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.825rem;
+  color: rgba(26, 25, 24, 0.8);
+}
+
+.typoLink {
+  background: none;
+  border: none;
+  color: var(--color-bronze);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .filterBar {
   display: flex;
   flex-wrap: wrap;

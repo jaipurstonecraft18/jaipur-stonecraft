@@ -1,211 +1,433 @@
+/* ==========================================
+   OUR COLLECTIONS SECTION — WARM CLASSICAL
+   ========================================== */
 .section {
-  border-top: 1px solid var(--color-stone-grey);
+  position: relative;
+  background-color: #F7F2EB;
+  color: #221F1B;
+  padding: 4rem 0 5.5rem;
 }
 
-.heroSpotlightCard {
+.headerWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.eyebrow {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #B87B31;
+  margin-bottom: 0.85rem;
+}
+
+.heading {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(2.5rem, 4.2vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.12;
+  color: #221F1B;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.desktopBreak {
+  display: block;
+}
+
+.ornamentLine {
+  margin-bottom: 1.35rem;
+  display: flex;
+  justify-content: center;
+}
+
+.description {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.98rem;
+  font-weight: 400;
+  line-height: 1.65;
+  color: #554D45;
+  max-width: 580px;
+}
+
+/* 1. FEATURED HERO COLLECTION PANEL (Top Big Card) */
+.featuredCard {
   position: relative;
-  width: 100%;
+  cursor: pointer;
   display: grid;
   grid-template-columns: 1fr;
-  background-color: var(--color-charcoal);
-  color: var(--color-cream);
-  border-radius: 4px;
+  background-color: #1D1916;
+  color: #FFFFFF;
+  border-radius: 28px;
   overflow: hidden;
-  margin-top: var(--spacing-xl);
-  margin-bottom: var(--spacing-xl);
-  text-decoration: none;
-  box-shadow: 0 12px 32px rgba(26, 25, 24, 0.12);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-bottom: 2.5rem;
+  box-shadow: 0 20px 48px rgba(28, 24, 20, 0.16);
 }
 
-.heroSpotlightCard:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 40px rgba(26, 25, 24, 0.2);
+.overlayCardLink {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
 }
 
-@media (min-width: 900px) {
-  .heroSpotlightCard {
-    grid-template-columns: 1.1fr 0.9fr;
+@media (min-width: 992px) {
+  .featuredCard {
+    grid-template-columns: 1.15fr 0.85fr;
   }
 }
 
-.spotlightImageWrapper {
+.featuredImageCol {
   position: relative;
   width: 100%;
-  min-height: 320px;
+  min-height: 380px;
   overflow: hidden;
-  background-color: var(--color-stone-grey);
+  background-color: #151311;
 }
 
-@media (min-width: 900px) {
-  .spotlightImageWrapper {
-    min-height: 420px;
+@media (min-width: 992px) {
+  .featuredImageCol {
+    min-height: 480px;
   }
 }
 
-.spotlightImage {
+.featuredImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.heroSpotlightCard:hover .spotlightImage {
-  transform: scale(1.04);
+.featuredCard:hover .featuredImage {
+  transform: scale(1.03);
 }
 
-.spotlightContent {
-  padding: var(--spacing-lg);
+.featuredTextCol {
+  padding: 3rem 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-@media (min-width: 900px) {
-  .spotlightContent {
-    padding: var(--spacing-xl);
+@media (min-width: 1200px) {
+  .featuredTextCol {
+    padding: 3.75rem 3.25rem;
   }
 }
 
-.spotlightTitle {
-  font-family: var(--font-cormorant), serif;
-  font-size: clamp(1.8rem, 3.5vw, 2.75rem);
-  font-weight: 300;
-  color: #ffffff;
-  margin-bottom: var(--spacing-xs);
-  line-height: 1.15;
+.featuredEyebrow {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #C68A4C;
+  margin-bottom: 0.85rem;
+  display: inline-block;
 }
 
-.spotlightDesc {
-  font-size: 0.98rem;
-  color: rgba(247, 245, 240, 0.85);
+.featuredTitle {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+  font-weight: 400;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+  line-height: 1.12;
+}
+
+.featuredDesc {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.95rem;
   line-height: 1.6;
-  margin-bottom: var(--spacing-md);
+  color: rgba(247, 245, 240, 0.82);
+  margin-bottom: 2rem;
+  max-width: 480px;
 }
 
-.subcatChips {
+.pillGrid {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: var(--spacing-md);
+  gap: 0.65rem;
+  margin-bottom: 2.5rem;
 }
 
-.chip {
+.pill {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-inter), sans-serif;
   font-size: 0.78rem;
-  padding: 0.25rem 0.65rem;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(232, 228, 223, 0.2);
-  border-radius: 3px;
-  color: var(--color-cream);
+  font-weight: 500;
+  padding: 0.5rem 1.1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 6px;
+  color: #FAF6F0;
+  text-decoration: none;
+  transition: all 0.25s ease;
 }
 
-.spotlightLink {
+.pill:hover {
+  border-color: #D4A359;
+  color: #D4A359;
+  background: rgba(212, 163, 89, 0.12);
+  transform: translateY(-1px);
+}
+
+.featuredLink {
+  position: relative;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   font-family: var(--font-inter), sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--color-bronze);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  color: #D4A359;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
-/* Row 2: Two-Column Featured Grid */
-.twoColGrid {
+.featuredLink:hover {
+  color: #E6B86A;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.featuredLink:hover .arrow,
+.cardLink:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* 2. MIDDLE ROW — 2 COLUMNS */
+.twoColRow {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-xl);
-  margin-bottom: var(--spacing-xl);
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 
 @media (min-width: 768px) {
-  .twoColGrid {
+  .twoColRow {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Row 3: Three-Column Standard Grid */
-.threeColGrid {
+/* 3. BOTTOM ROW — 3 COLUMNS */
+.threeColRow {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-xl);
+  gap: 2rem;
+  margin-bottom: 3.5rem;
 }
 
-@media (min-width: 768px) {
-  .threeColGrid {
+@media (min-width: 900px) {
+  .threeColRow {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.gridCard {
+/* SECONDARY COLLECTION CARDS */
+.collectionCard {
+  position: relative;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  background-color: var(--color-cream);
-  border: 1px solid var(--color-stone-grey);
-  border-radius: 4px;
+  background: #FAF6F0;
+  border-radius: 24px;
+  border: 1px solid rgba(225, 215, 200, 0.85);
   overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 30px rgba(28, 24, 20, 0.05);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  height: 100%;
 }
 
-.gridCard:hover {
-  transform: translateY(-2px);
-  border-color: rgba(158, 123, 79, 0.4);
-  box-shadow: 0 10px 24px rgba(26, 25, 24, 0.06);
+.collectionCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 42px rgba(28, 24, 20, 0.12);
+  border-color: rgba(184, 123, 49, 0.4);
 }
 
-.gridImageWrapper {
+.cardImageWrapper {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background-color: var(--color-stone-grey);
+  background-color: #E8E2D8;
 }
 
-.gridImage {
+.cardImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.gridCard:hover .gridImage {
+.collectionCard:hover .cardImage {
   transform: scale(1.04);
 }
 
-.gridContent {
-  padding: var(--spacing-md);
+.cardBody {
+  position: relative;
+  padding: 2rem 2.25rem 2.25rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
 }
 
-.gridTitle {
-  font-family: var(--font-cormorant), serif;
-  font-size: 1.35rem;
-  font-weight: 400;
-  color: var(--color-charcoal);
-  margin-bottom: var(--spacing-xxs);
+.iconBadge {
+  position: absolute;
+  top: -28px;
+  right: 2rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #FAF6F0;
+  border: 1px solid rgba(225, 215, 200, 0.95);
+  box-shadow: 0 6px 18px rgba(28, 24, 20, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
 }
 
-.gridDesc {
-  font-size: 0.88rem;
-  color: rgba(26, 25, 24, 0.75);
-  line-height: 1.5;
-  margin-bottom: var(--spacing-xs);
+.cardTitle {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #221F1B;
+  margin-bottom: 0.65rem;
+  line-height: 1.2;
 }
 
-.gridLink {
+.cardDesc {
   font-family: var(--font-inter), sans-serif;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--color-bronze);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #554D45;
+  margin-bottom: 1.75rem;
+}
+
+.cardLink {
+  position: relative;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #B87B31;
+  text-decoration: none;
   margin-top: auto;
+  transition: color 0.2s ease;
 }
+
+.cardLink:hover {
+  color: #9E6523;
+}
+
+.bottomDivider {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 2.75rem 0 3.5rem;
+  }
+
+  .headerWrapper {
+    margin-bottom: 2rem;
+  }
+
+  .heading {
+    font-size: clamp(2rem, 7.5vw, 2.6rem);
+  }
+
+  .desktopBreak {
+    display: inline;
+  }
+
+  .featuredCard {
+    margin-bottom: 1.5rem;
+    border-radius: 20px;
+  }
+
+  .featuredImageCol {
+    min-height: 220px;
+  }
+
+  .featuredTextCol {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .featuredTitle {
+    font-size: clamp(1.65rem, 6vw, 2.1rem);
+  }
+
+  .featuredDesc {
+    font-size: 0.88rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .pillGrid {
+    margin-bottom: 1.5rem;
+    gap: 0.4rem;
+  }
+
+  .pill {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .twoColRow, .threeColRow {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem 0.65rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .collectionCard {
+    border-radius: 16px;
+  }
+
+  .cardImageWrapper {
+    aspect-ratio: 4 / 3;
+  }
+
+  .cardBody {
+    padding: 1.25rem 0.85rem 1.25rem;
+  }
+
+  .iconBadge {
+    right: 0.75rem;
+    width: 38px;
+    height: 38px;
+    top: -19px;
+  }
+
+  .cardTitle {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .cardDesc {
+    font-size: 0.78rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+}
+

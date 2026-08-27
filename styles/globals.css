@@ -198,6 +198,13 @@ textarea:focus-visible {
   padding-top: 80px;
 }
 
+@media (max-width: 991px) {
+  .page-offset {
+    padding-top: 60px;
+  }
+}
+
+
 /* Skip to Content Keyboard Link */
 .skip-to-content {
   position: absolute;

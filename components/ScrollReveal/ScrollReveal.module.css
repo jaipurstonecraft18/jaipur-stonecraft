@@ -1,38 +1,10 @@
 .reveal {
-  transition-property: opacity, transform;
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* Fade animation */
-.fade {
-  opacity: 0;
-}
-.fade.active {
-  opacity: 1;
-}
-
-/* Fade-Up animation */
-.fade-up {
-  opacity: 0;
-  transform: translateY(30px);
-}
-.fade-up.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Fade-Scale animation */
-.fade-scale {
-  opacity: 0;
-  transform: scale(0.96);
-}
-.fade-scale.active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Reduced Motion Override (RULES.md & REQUIREMENTS.md) */
+/* Reduced Motion Override */
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     transition: none !important;

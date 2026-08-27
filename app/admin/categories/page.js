@@ -26,7 +26,14 @@ export default function AdminCategoriesCoverPage() {
   };
 
   useEffect(() => {
-    fetchCategoryData();
+    let active = true;
+    const timer = setTimeout(() => {
+      if (active) fetchCategoryData();
+    }, 0);
+    return () => {
+      active = false;
+      clearTimeout(timer);
+    };
   }, []);
 
   const handleCoverUpload = async (item, file, type = "category") => {
@@ -85,8 +92,34 @@ export default function AdminCategoriesCoverPage() {
             Upload and update primary hero cover images for collections and categories
           </p>
         </div>
-        <Link href="/admin/products" className={styles.secondaryBtn}>
-          ← Back to Products List
+        <Link href="/admin/catalogue" className={styles.primaryBtn}>
+          🏷️ Open Catalogue & Taxonomy Manager →
+        </Link>
+      </div>
+
+      {/* Unified Taxonomy Notice Banner */}
+      <div style={{
+        padding: "1rem 1.25rem",
+        backgroundColor: "#FAF0E6",
+        border: "1px solid var(--color-bronze)",
+        borderRadius: "6px",
+        marginBottom: "1.5rem",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexWrap: "wrap",
+        gap: "1rem"
+      }}>
+        <div>
+          <strong style={{ color: "var(--color-navy)", display: "block", marginBottom: "0.2rem" }}>
+            💡 Category & Collection Management is Unified in Catalogue & Taxonomy
+          </strong>
+          <span style={{ fontSize: "0.85rem", color: "#555" }}>
+            You can manage cover images, subcategory assignments, materials, subjects, and descriptions directly inside the Catalogue & Taxonomy Manager.
+          </span>
+        </div>
+        <Link href="/admin/catalogue" className={styles.secondaryBtn} style={{ borderColor: "var(--color-bronze)", fontWeight: "600" }}>
+          Go to Catalogue & Taxonomy
         </Link>
       </div>
 
@@ -134,7 +167,7 @@ export default function AdminCategoriesCoverPage() {
                 <th>Slug</th>
                 <th>Parent Collection</th>
                 <th>Cover Image URL</th>
-                <th style={{ textAlign: "right" }}>Upload New Cover</th>
+                <th style={{ textAlign: "right" }}>Upload New Cover <span style={{ fontSize: "0.72rem", color: "#888", display: "block" }}>📐 4:3 (800 × 600 px)</span></th>
               </tr>
             </thead>
             <tbody>
@@ -185,7 +218,7 @@ export default function AdminCategoriesCoverPage() {
                 <th>Collection Name</th>
                 <th>Slug</th>
                 <th>Cover Image URL</th>
-                <th style={{ textAlign: "right" }}>Upload New Cover</th>
+                <th style={{ textAlign: "right" }}>Upload New Cover <span style={{ fontSize: "0.72rem", color: "#888", display: "block" }}>📐 4:3 (800 × 600 px)</span></th>
               </tr>
             </thead>
             <tbody>

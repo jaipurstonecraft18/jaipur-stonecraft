@@ -256,7 +256,12 @@ export default function ImageStudio({
   return (
     <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
       <div style={{ marginBottom: "1.5rem" }}>
-        <h2 style={{ fontSize: "1.1rem", fontWeight: "600" }}>📸 Interactive Product Image Studio</h2>
+        <h2 style={{ fontSize: "1.1rem", fontWeight: "600", display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
+          📸 Interactive Product Image Studio
+          <span className={styles.aspectBadge}>
+            📐 Recommended Aspect Ratio: <strong>1:1 Square (1000 × 1000 px)</strong> or <strong>4:3 Standard</strong>
+          </span>
+        </h2>
         <p style={{ color: "#666", fontSize: "0.85rem", marginTop: "0.25rem" }}>
           Upload high-resolution carving photos directly from mobile camera or desktop gallery. Set main cover image and reorder.
         </p>
@@ -313,7 +318,10 @@ export default function ImageStudio({
           <div style={{ fontSize: "1rem", fontWeight: "600", color: "var(--color-bronze)", marginBottom: "0.25rem" }}>
             Tap to Choose / Take Photos
           </div>
-          <div style={{ fontSize: "0.8rem", color: "#777" }}>
+          <div style={{ fontSize: "0.82rem", color: "#555", fontWeight: "600", margin: "0.35rem 0" }}>
+            📐 Ideal Photo Format: <span style={{ color: "var(--color-navy)", backgroundColor: "#EFEBE4", padding: "0.15rem 0.4rem", borderRadius: "3px" }}>1:1 Square (1000 × 1000 px)</span>
+          </div>
+          <div style={{ fontSize: "0.78rem", color: "#777" }}>
             Supports JPG, PNG, WEBP, AVIF (Max 15MB per file) from mobile camera or gallery
           </div>
         </label>

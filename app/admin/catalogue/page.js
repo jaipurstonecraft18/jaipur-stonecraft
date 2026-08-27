@@ -76,7 +76,14 @@ export default function AdminCataloguePage() {
   };
 
   useEffect(() => {
-    fetchCatalogue();
+    let active = true;
+    const timer = setTimeout(() => {
+      if (active) fetchCatalogue();
+    }, 0);
+    return () => {
+      active = false;
+      clearTimeout(timer);
+    };
   }, []);
 
   const openAddModal = (type) => {
@@ -908,12 +915,15 @@ export default function AdminCataloguePage() {
               </div>
 
               <div className={styles.formGroup}>
-                <label className={styles.label}>Cover Image URL</label>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
+                  <label className={styles.label}>Cover Image URL</label>
+                  <span className={styles.aspectBadge}>📐 Recommended: 4:3 Landscape (800 × 600 px)</span>
+                </div>
                 <input
                   type="text"
                   value={catFormData.imageSrc}
                   onChange={(e) => setCatFormData({ ...catFormData, imageSrc: e.target.value })}
-                  placeholder="https://placehold.co/800x500..."
+                  placeholder="https://placehold.co/800x600..."
                   className={styles.input}
                 />
               </div>

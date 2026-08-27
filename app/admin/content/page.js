@@ -25,7 +25,14 @@ export default function AdminContentPage() {
   };
 
   useEffect(() => {
-    fetchContent();
+    let active = true;
+    const timer = setTimeout(() => {
+      if (active) fetchContent();
+    }, 0);
+    return () => {
+      active = false;
+      clearTimeout(timer);
+    };
   }, []);
 
   const handleMediaUpload = async (slot, file) => {
@@ -91,13 +98,39 @@ export default function AdminContentPage() {
     <div>
       <div className={styles.dashboardHeader}>
         <div>
-          <h1 className={styles.pageTitle}>Website Content & Media Manager</h1>
+          <h1 className={styles.pageTitle}>Website Media Slot Inspector (Legacy)</h1>
           <p style={{ color: "#666", fontSize: "0.875rem", marginTop: "0.25rem" }}>
-            Managed editorial media slots for Homepage, Our Story, and Craftsmanship showcase sections
+            Managed editorial image slots for static website page key/value references
           </p>
         </div>
-        <Link href="/admin/products" className={styles.secondaryBtn}>
-          ← Back to Products
+        <Link href="/admin/pages" className={styles.primaryBtn}>
+          📄 Open Full Page CMS Manager →
+        </Link>
+      </div>
+
+      {/* Unified Page CMS Notice Banner */}
+      <div style={{
+        padding: "1rem 1.25rem",
+        backgroundColor: "#FAF0E6",
+        border: "1px solid var(--color-bronze)",
+        borderRadius: "6px",
+        marginBottom: "1.5rem",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexWrap: "wrap",
+        gap: "1rem"
+      }}>
+        <div>
+          <strong style={{ color: "var(--color-navy)", display: "block", marginBottom: "0.2rem" }}>
+            💡 Looking to edit Website Headings, Copy, Hero Banners & Stats?
+          </strong>
+          <span style={{ fontSize: "0.85rem", color: "#555" }}>
+            All website page sections (Homepage, Our Story, Craftsmanship) are now managed under the unified Page CMS.
+          </span>
+        </div>
+        <Link href="/admin/pages" className={styles.secondaryBtn} style={{ borderColor: "var(--color-bronze)", fontWeight: "600" }}>
+          Go to Page CMS Manager
         </Link>
       </div>
 
@@ -144,7 +177,7 @@ export default function AdminContentPage() {
                   <code style={{ fontSize: "0.78rem", color: "#666" }}>Key: {slot.key_name}</code>
                 </div>
                 <span className={`${styles.badge} ${styles.badgePublished}`}>
-                  Predefined Editable Slot
+                  Legacy Slot
                 </span>
               </div>
 

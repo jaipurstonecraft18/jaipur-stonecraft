@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { query, getOne, execute, initDB } from "@/lib/db/client.js";
 import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
+import { safeUnlinkObsoleteUpload } from "@/lib/admin/uploads.js";
 
 function revalidateTaxonomyRoutes(slug) {
   try {
@@ -219,7 +220,11 @@ export async function PUT(request) {
 
     if (type === "collection") {
       if (imageSrc !== undefined) {
+        const oldCol = await getOne("SELECT image_src FROM collections WHERE slug = ?", [slug]);
         await execute("UPDATE collections SET image_src = ? WHERE slug = ?", [imageSrc, slug]);
+        if (oldCol?.image_src && oldCol.image_src !== imageSrc) {
+          await safeUnlinkObsoleteUpload(oldCol.image_src);
+        }
       }
       if (isActive !== undefined) {
         await execute("UPDATE collections SET is_active = ? WHERE slug = ?", [isActive ? 1 : 0, slug]);
@@ -227,7 +232,11 @@ export async function PUT(request) {
       return NextResponse.json({ success: true, message: `Updated collection "${slug}".` });
     } else {
       if (imageSrc !== undefined) {
+        const oldCat = await getOne("SELECT image_src FROM categories WHERE slug = ?", [slug]);
         await execute("UPDATE categories SET image_src = ?, image_alt = ? WHERE slug = ?", [imageSrc, imageAlt || "", slug]);
+        if (oldCat?.image_src && oldCat.image_src !== imageSrc) {
+          await safeUnlinkObsoleteUpload(oldCat.image_src);
+        }
       }
       if (isActive !== undefined) {
         await execute("UPDATE categories SET is_active = ? WHERE slug = ?", [isActive ? 1 : 0, slug]);

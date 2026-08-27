@@ -1,0 +1,139 @@
+.stageSection {
+  padding: var(--spacing-section) 0;
+  background-color: var(--color-cream-secondary);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.stageHeader {
+  margin-bottom: var(--spacing-lg);
+}
+
+.markerBadge {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.markerNum {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 300;
+  color: var(--color-bronze);
+  line-height: 1;
+}
+
+.markerLine {
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-bronze);
+  opacity: 0.4;
+}
+
+.markerText {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--color-bronze);
+}
+
+.topIntro {
+  max-width: 760px;
+  margin-bottom: var(--spacing-xl);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-bronze);
+  margin-bottom: var(--spacing-xs);
+  display: block;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 300;
+  color: var(--color-charcoal);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-sm);
+}
+
+.introDesc {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: rgba(26, 25, 24, 0.82);
+}
+
+.editorialGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+}
+
+.card {
+  background-color: var(--color-cream);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-subtle);
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.cardImage {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .cardImage {
+  transform: scale(1.04);
+}
+
+.cardContent {
+  padding: var(--spacing-lg);
+  flex-grow: 1;
+}
+
+.cardTag {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--color-bronze);
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--color-charcoal);
+  margin-bottom: 0.5rem;
+}
+
+.cardDesc {
+  font-family: var(--font-body);
+  font-size: 0.925rem;
+  line-height: 1.6;
+  color: rgba(26, 25, 24, 0.78);
+}
+
+@media (max-width: 991px) {
+  .editorialGrid {
+    grid-template-columns: 1fr;
+  }
+}

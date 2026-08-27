@@ -1,0 +1,506 @@
+/* ==========================================================================
+   JAIPUR STONECRAFT — OUR STORY REFERENCE-LED EDITORIAL SYSTEM
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. EDITORIAL HERO SECTION (Hero Grid Split)
+   -------------------------------------------------------------------------- */
+.headerSection {
+  background-color: var(--color-cream);
+  padding-top: calc(80px + var(--spacing-md));
+  padding-bottom: var(--spacing-xxl);
+}
+
+.topBar {
+  margin-bottom: var(--spacing-md);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-bronze);
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--color-charcoal);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--spacing-sm);
+}
+
+.leadDescription {
+  font-family: var(--font-body);
+  font-size: clamp(0.975rem, 1.4vw, 1.1rem);
+  line-height: 1.7;
+  color: rgba(26, 25, 24, 0.82);
+}
+
+.heroVisual {
+  position: relative;
+}
+
+.heroImageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-subtle);
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-border-subtle);
+  background-color: #0d0d0d;
+}
+
+.heroImage {
+  object-fit: cover;
+}
+
+/* --------------------------------------------------------------------------
+   2. CHAPTER I: HERITAGE SECTION (Passing Down the Chisel)
+   -------------------------------------------------------------------------- */
+.lineageSection {
+  background-color: var(--color-cream-secondary);
+  padding: var(--spacing-xxl) 0;
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.lineageGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.lineageImageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-subtle);
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-border-subtle);
+  background-color: #0d0d0d;
+}
+
+.lineageImage {
+  object-fit: cover;
+}
+
+.lineageContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionChapterBadge {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-bronze);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.sectionHeading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 300;
+  color: var(--color-charcoal);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-sm);
+}
+
+.lineageBody {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(26, 25, 24, 0.82);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.pullQuoteBox {
+  border-left: 2px solid var(--color-bronze);
+  padding-left: var(--spacing-md);
+  margin: var(--spacing-xs) 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--color-charcoal);
+  line-height: 1.45;
+}
+
+/* --------------------------------------------------------------------------
+   3. CHAPTER II: OUR VALUES (Principles Behind Every Chisel)
+   -------------------------------------------------------------------------- */
+.valuesSection {
+  background-color: var(--color-cream);
+  padding: var(--spacing-xxl) 0;
+}
+
+.valuesHeader {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.valuesHeading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 300;
+  color: var(--color-charcoal);
+  line-height: 1.2;
+}
+
+.ornamentDivider {
+  color: var(--color-bronze);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+}
+
+.valueCard {
+  background-color: var(--color-cream-secondary);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-subtle);
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.valueNum {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--color-bronze);
+  margin-bottom: 0.25rem;
+}
+
+.valueIcon {
+  margin-bottom: 0.6rem;
+}
+
+.valueTitle {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--color-charcoal);
+  margin-bottom: 0.35rem;
+}
+
+.valueDesc {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: rgba(26, 25, 24, 0.78);
+}
+
+/* --------------------------------------------------------------------------
+   4. CHAPTER III: DARK BRAND TRANSITION STRIP (Statistics & Heritage Bar)
+   -------------------------------------------------------------------------- */
+.darkTransitionSection {
+  background-color: #171615;
+  color: var(--color-cream);
+  padding: var(--spacing-xl) 0;
+  border-top: 1px solid rgba(232, 228, 223, 0.1);
+  border-bottom: 1px solid rgba(232, 228, 223, 0.1);
+}
+
+.statsBar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+  text-align: center;
+}
+
+.statCol {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 var(--spacing-sm);
+}
+
+.statIcon {
+  margin-bottom: 0.4rem;
+}
+
+.statValue {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  color: var(--color-cream);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.statLabel {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: rgba(252, 251, 249, 0.72);
+}
+
+.statDivider {
+  position: absolute;
+  right: 0;
+  top: 15%;
+  bottom: 15%;
+  width: 1px;
+  background-color: rgba(212, 163, 89, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   5. CHAPTER IV: OUR VISION (Carving Indian Heritage for the World)
+   -------------------------------------------------------------------------- */
+.futureSection {
+  background-color: var(--color-cream);
+  padding: var(--spacing-xxl) 0;
+}
+
+.futureGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.futureContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.futureEyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-bronze);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.futureTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 300;
+  color: var(--color-charcoal);
+  line-height: 1.2;
+}
+
+.ornamentDividerLeft {
+  color: var(--color-bronze);
+  font-size: 0.85rem;
+  margin: 0.25rem 0 1rem 0;
+}
+
+.futureLead {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--color-charcoal);
+  margin-bottom: var(--spacing-sm);
+}
+
+.futureSub {
+  font-family: var(--font-body);
+  font-size: 0.925rem;
+  line-height: 1.65;
+  color: rgba(26, 25, 24, 0.78);
+}
+
+.futureImageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-subtle);
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-border-subtle);
+  background-color: #0d0d0d;
+}
+
+.futureImage {
+  object-fit: cover;
+}
+
+/* --------------------------------------------------------------------------
+   6. CHAPTER V: FINAL STORY CTA CARD (Bring Your Vision to Stone)
+   -------------------------------------------------------------------------- */
+.ctaSection {
+  background-color: var(--color-cream);
+  padding-bottom: var(--spacing-xxl);
+}
+
+.ctaCard {
+  position: relative;
+  background-color: #151413;
+  color: var(--color-cream);
+  border-radius: var(--radius-subtle);
+  padding: var(--spacing-xl);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+}
+
+.ctaBgFrame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ctaBgImage {
+  object-fit: cover;
+  opacity: 0.12;
+  filter: grayscale(100%);
+}
+
+.ctaBgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #151413 0%, rgba(21, 20, 19, 0.88) 100%);
+}
+
+.ctaContentGrid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+.ctaEyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-bronze);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.ctaHeading {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 300;
+  color: var(--color-cream);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.ctaDesc {
+  font-family: var(--font-body);
+  font-size: 0.925rem;
+  line-height: 1.6;
+  color: rgba(252, 251, 249, 0.78);
+}
+
+.ctaActionCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.primaryGoldButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  background-color: #c49653;
+  color: var(--color-charcoal);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-subtle);
+  text-decoration: none;
+  transition: background-color var(--transition-fast);
+}
+
+.primaryGoldButton:hover {
+  background-color: #d4a359;
+}
+
+.secondaryOutlineButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.6rem;
+  border: 1px solid rgba(252, 251, 249, 0.35);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-subtle);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.secondaryOutlineButton:hover {
+  border-color: var(--color-cream);
+  background-color: rgba(252, 251, 249, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   7. RESPONSIVE MEDIA QUERIES
+   -------------------------------------------------------------------------- */
+@media (max-width: 991px) {
+  .heroGrid,
+  .lineageGrid,
+  .futureGrid,
+  .ctaContentGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .valuesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .statsBar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .statDivider {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .valuesGrid,
+  .statsBar {
+    grid-template-columns: 1fr;
+  }
+}

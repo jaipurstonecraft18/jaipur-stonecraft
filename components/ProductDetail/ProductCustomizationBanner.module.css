@@ -1,0 +1,148 @@
+.bannerSection {
+  position: relative;
+  background-color: #151413;
+  color: var(--color-cream);
+  padding: var(--spacing-xxl) 0;
+  overflow: hidden;
+}
+
+.bgFrame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bgImage {
+  object-fit: cover;
+  opacity: 0.15;
+  filter: grayscale(100%);
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #151413 0%, rgba(21, 20, 19, 0.85) 100%);
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-desktop);
+}
+
+.bannerGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.2vw, 2.75rem);
+  font-weight: 300;
+  color: var(--color-cream);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-sm);
+}
+
+.description {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(252, 251, 249, 0.78);
+  margin-bottom: var(--spacing-lg);
+  max-width: 600px;
+}
+
+.actionRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.goldBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.6rem;
+  background-color: #c49653;
+  color: var(--color-charcoal);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-subtle);
+  text-decoration: none;
+  transition: background-color var(--transition-fast);
+}
+
+.goldBtn:hover {
+  background-color: #d4a359;
+}
+
+.outlineBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.6rem;
+  border: 1px solid rgba(252, 251, 249, 0.4);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-subtle);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.outlineBtn:hover {
+  border-color: var(--color-cream);
+  background-color: rgba(252, 251, 249, 0.08);
+}
+
+.badgesCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.badgeItem {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.badgeIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba(252, 251, 249, 0.05);
+  border: 1px solid rgba(212, 163, 89, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.badgeLabel {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-cream);
+}
+
+@media (max-width: 991px) {
+  .bannerGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+
+  .container {
+    padding: 0 var(--container-padding-mobile);
+  }
+}

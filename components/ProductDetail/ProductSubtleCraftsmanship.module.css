@@ -1,0 +1,215 @@
+.atelierSection {
+  background-color: #171615;
+  color: var(--color-cream);
+  padding: var(--spacing-xxl) 0;
+  border-top: 1px solid rgba(232, 228, 223, 0.1);
+  border-bottom: 1px solid rgba(232, 228, 223, 0.1);
+}
+
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-desktop);
+}
+
+.bannerGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.imageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-subtle);
+  overflow: hidden;
+  border: 1px solid rgba(212, 163, 89, 0.25);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+.bannerImage {
+  object-fit: cover;
+}
+
+.bannerHeading {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.2vw, 2.75rem);
+  font-weight: 300;
+  color: var(--color-cream);
+  line-height: 1.25;
+  margin-bottom: var(--spacing-sm);
+}
+
+.bannerDesc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(252, 251, 249, 0.78);
+  margin-bottom: var(--spacing-xl);
+}
+
+.sequenceTrack {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-xs);
+}
+
+.seqNodeWrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  flex-grow: 1;
+}
+
+.seqNode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.seqCircle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: rgba(252, 251, 249, 0.05);
+  border: 1px stroke rgba(212, 163, 89, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.4rem;
+}
+
+.seqTitle {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--color-cream);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.seqSub {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: rgba(252, 251, 249, 0.6);
+  margin-top: 0.15rem;
+}
+
+.seqArrow {
+  color: var(--color-bronze);
+  opacity: 0.4;
+  font-size: 1.1rem;
+}
+
+.detailsSection {
+  padding: var(--spacing-xxl) 0;
+  background-color: var(--color-cream);
+}
+
+.detailsHeader {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 300;
+  color: var(--color-charcoal);
+  line-height: 1.2;
+}
+
+.ornamentDivider {
+  color: var(--color-bronze);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--spacing-md);
+}
+
+.detailCard {
+  background-color: var(--color-cream-secondary);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-subtle);
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.cardIcon {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--color-charcoal);
+  line-height: 1.2;
+}
+
+.cardSub {
+  font-family: var(--font-body);
+  font-size: 0.725rem;
+  font-weight: 600;
+  color: var(--color-bronze);
+  text-transform: uppercase;
+  display: block;
+}
+
+.cardDesc {
+  font-family: var(--font-body);
+  font-size: 0.825rem;
+  line-height: 1.5;
+  color: rgba(26, 25, 24, 0.75);
+}
+
+@media (max-width: 1200px) {
+  .cardsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 991px) {
+  .bannerGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .sequenceTrack {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+
+  .seqArrow {
+    display: none;
+  }
+
+  .container {
+    padding: 0 var(--container-padding-mobile);
+  }
+}
+
+@media (max-width: 576px) {
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+}
