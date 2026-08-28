@@ -1,0 +1,211 @@
+.floatingContainer {
+  position: fixed;
+  bottom: calc(var(--spacing-md, 1.5rem) + 68px);
+  right: var(--spacing-md, 1.5rem);
+  z-index: 989;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Main Social Toggle Button */
+.socialToggleBtn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: transparent;
+  color: #D4A359;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.28));
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), filter 0.22s ease;
+  outline: none;
+}
+
+.socialToggleBtn:hover {
+  transform: translateY(-3px) scale(1.06);
+  filter: drop-shadow(0 10px 24px rgba(184, 123, 49, 0.42));
+}
+
+.socialToggleBtn:focus-visible {
+  outline: 2px solid #B87B31;
+  outline-offset: 4px;
+}
+
+.socialToggleActive {
+  width: 52px;
+  height: 52px;
+  background-color: #1C1917;
+  color: #FAF4EB;
+  border: 1.5px solid #D4A359;
+  box-shadow: 0 6px 22px rgba(184, 123, 49, 0.4);
+}
+
+.vectorLogoSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.socialToggleBtn:hover .vectorLogoSvg {
+  transform: rotate(5deg);
+}
+
+.closeIcon {
+  display: block;
+  transition: transform 0.22s ease;
+}
+
+.socialToggleActive .closeIcon {
+  transform: rotate(90deg);
+}
+
+/* Expanded Circular Social Stack (Vertical) */
+.socialStack {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(12px) scale(0.92);
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: bottom center;
+}
+
+.socialStackOpen {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Individual Circular Social Button */
+.circleBtn {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #FAF7F2;
+  border: 1px solid #D8CFC2;
+  color: #1C1917;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(28, 25, 23, 0.15);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.18s ease;
+}
+
+/* Quiet Luxury Hover & Accent States */
+.igHover:hover {
+  border-color: #E1306C;
+  color: #E1306C;
+  background-color: #FFFFFF;
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(225, 48, 108, 0.25);
+}
+
+.fbHover:hover {
+  border-color: #1877F2;
+  color: #1877F2;
+  background-color: #FFFFFF;
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(24, 119, 242, 0.25);
+}
+
+.pinHover:hover {
+  border-color: #BD081C;
+  color: #BD081C;
+  background-color: #FFFFFF;
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(189, 8, 28, 0.25);
+}
+
+.ytHover:hover {
+  border-color: #FF0000;
+  color: #FF0000;
+  background-color: #FFFFFF;
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(255, 0, 0, 0.25);
+}
+
+.circleBtn:focus-visible {
+  outline: 2px solid #B87B31;
+  outline-offset: 3px;
+}
+
+/* Tooltip Badge on Hover/Focus */
+.tooltipLabel {
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #1C1917;
+  color: #FAF4EB;
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.circleBtn:hover .tooltipLabel,
+.circleBtn:focus-visible .tooltipLabel {
+  opacity: 1;
+}
+
+/* Desktop Sizing Adjustments */
+@media (min-width: 768px) {
+  .floatingContainer {
+    bottom: calc(var(--spacing-lg, 2rem) + 76px);
+    right: var(--spacing-lg, 2rem);
+  }
+
+  .socialToggleBtn {
+    width: 56px;
+    height: 56px;
+  }
+
+  .socialToggleActive {
+    width: 56px;
+    height: 56px;
+  }
+
+  .circleBtn {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .socialToggleBtn,
+  .socialStack,
+  .circleBtn,
+  .vectorLogoSvg,
+  .closeIcon,
+  .tooltipLabel {
+    transition: none !important;
+    transform: none !important;
+  }
+}

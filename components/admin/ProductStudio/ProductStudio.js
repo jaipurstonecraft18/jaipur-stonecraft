@@ -985,6 +985,31 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
             </div>
 
             <div className={styles.formGroup}>
+              <label className={styles.label}>Product Family / Sub-Type (Optional)</label>
+              <input
+                type="text"
+                value={formData.attributes?.productFamily || ""}
+                onChange={(e) => updateNestedField("attributes", "productFamily", e.target.value)}
+                placeholder="e.g. Radha Krishna, Shiv Parivar, Laddu Gopal, Shivling, Jali Panel"
+                className={styles.input}
+              />
+              <span style={{ fontSize: "0.75rem", color: "#888" }}>Logical grouping (e.g. Radha Krishna under Krishna Ji)</span>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Availability & Production Status</label>
+              <select
+                value={formData.attributes?.availabilityStatus || "ready_stock"}
+                onChange={(e) => updateNestedField("attributes", "availabilityStatus", e.target.value)}
+                className={styles.select}
+              >
+                <option value="ready_stock">Ready Stock (Immediate Dispatch)</option>
+                <option value="made_to_order">Made to Order (Custom Atelier Carving)</option>
+                <option value="commission_only">Bespoke Project Commission Only</option>
+              </select>
+            </div>
+
+            <div className={styles.formGroup}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <label className={styles.label}>Sacred Deity / Subject Entity</label>
                 <button

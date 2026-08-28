@@ -2,34 +2,34 @@
   position: fixed;
   bottom: var(--spacing-md);
   right: var(--spacing-md);
-  background-color: var(--color-bronze);
-  color: var(--color-cream);
-  width: 50px;
-  height: 50px;
+  background-color: #25d366;
+  color: #ffffff;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(26, 25, 24, 0.15);
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
   z-index: 990;
   transition: transform var(--transition-smooth), background-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .whatsappBtn:hover {
-  background-color: var(--color-charcoal);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(26, 25, 24, 0.25);
+  background-color: #128c7e;
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(18, 140, 126, 0.45);
 }
 
 /* Make sure focus outlines behave nicely around circle button */
 .whatsappBtn:focus-visible {
-  outline: 2px solid var(--color-bronze);
+  outline: 2px solid #25d366;
   outline-offset: 4px;
 }
 
 .icon {
-  width: 22px;
-  height: 22px;
+  width: 28px;
+  height: 28px;
   fill: currentColor;
 }
 
@@ -37,12 +37,12 @@
   .whatsappBtn {
     bottom: var(--spacing-lg);
     right: var(--spacing-lg);
-    width: 56px;
-    height: 56px;
+    width: 64px;
+    height: 64px;
   }
   .icon {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
   }
 }
 
@@ -54,3 +54,4 @@
     transform: none !important;
   }
 }
+

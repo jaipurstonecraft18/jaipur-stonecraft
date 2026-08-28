@@ -42,7 +42,7 @@
 .utilityRight {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1rem;
   white-space: nowrap;
 }
 
@@ -54,6 +54,37 @@
 
 .utilityLink:hover {
   color: var(--color-bronze);
+}
+
+.utilitySocials {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.utilitySocialLink {
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity 0.2s ease, color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.utilitySocialLink:hover {
+  opacity: 1;
+  color: var(--color-bronze);
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.utilitySocialLink:focus-visible {
+  outline: 2px solid var(--color-bronze);
+  outline-offset: 2px;
 }
 
 
@@ -413,14 +444,14 @@
   top: 0;
   right: 0;
   bottom: 0;
-  width: min(80vw, 340px);
+  width: min(85vw, 340px);
   height: 100vh;
   background-color: var(--color-charcoal);
   color: var(--color-cream);
   z-index: 2000;
   display: flex;
   flex-direction: column;
-  padding: 1.5rem 1.5rem 2.5rem;
+  padding: 1.25rem 1.25rem 2rem;
   transform: translateX(100%);
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: -8px 0 32px rgba(0, 0, 0, 0.5);
@@ -605,4 +636,68 @@
     height: 2.5px !important;
     background-color: var(--color-bronze) !important;
   }
+}
+
+/* Mobile Navigation CONNECT WITH US Social Area */
+.mobileSocialSection {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  padding-bottom: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mobileSocialEyebrow {
+  display: block;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--color-bronze);
+  margin-bottom: 0.65rem;
+}
+
+.mobileSocialGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 0.65rem;
+}
+
+.mobileSocialLink {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.55rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  color: var(--color-cream);
+  text-decoration: none;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  min-height: 38px;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.mobileSocialLink:hover,
+.mobileSocialLink:focus-visible {
+  background-color: rgba(184, 123, 49, 0.18);
+  border-color: var(--color-bronze);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.mobileSocialLink:focus-visible {
+  outline: 2px solid var(--color-bronze);
+  outline-offset: 2px;
+}
+
+.mobileSocialLink svg {
+  color: var(--color-bronze);
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.mobileSocialLink:hover svg {
+  color: #E6C594;
 }

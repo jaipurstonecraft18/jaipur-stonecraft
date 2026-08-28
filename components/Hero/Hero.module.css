@@ -32,8 +32,8 @@
   inset: 0;
   z-index: 2;
   background: 
-    linear-gradient(90deg, rgba(18, 17, 16, 0.95) 0%, rgba(18, 17, 16, 0.75) 45%, rgba(18, 17, 16, 0.15) 85%),
-    linear-gradient(180deg, rgba(18, 17, 16, 0.6) 0%, transparent 40%, rgba(18, 17, 16, 0.95) 100%);
+    linear-gradient(90deg, rgba(18, 17, 16, 0.84) 0%, rgba(18, 17, 16, 0.50) 45%, rgba(18, 17, 16, 0.05) 85%),
+    linear-gradient(180deg, rgba(18, 17, 16, 0.35) 0%, transparent 40%, rgba(18, 17, 16, 0.75) 100%);
 }
 
 .contentWrapper {
@@ -287,9 +287,9 @@
   .overlay {
     background: linear-gradient(
       180deg,
-      rgba(18, 17, 16, 0.92) 0%,
-      rgba(18, 17, 16, 0.78) 50%,
-      rgba(18, 17, 16, 0.96) 100%
+      rgba(18, 17, 16, 0.78) 0%,
+      rgba(18, 17, 16, 0.52) 50%,
+      rgba(18, 17, 16, 0.84) 100%
     );
   }
 

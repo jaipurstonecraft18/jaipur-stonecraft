@@ -186,6 +186,34 @@
 }
 
 @media (max-width: 768px) {
+  .section {
+    padding: 2.5rem 0 3rem;
+  }
+
+  .headerWrapper {
+    margin-bottom: 1.75rem;
+  }
+
+  .heading {
+    font-size: clamp(1.85rem, 6.5vw, 2.3rem);
+    margin-bottom: 0.65rem;
+  }
+
+  .reviewCardWrapper {
+    flex: 0 0 88%;
+  }
+
+  .reviewCard {
+    padding: 1.35rem 1.1rem;
+    border-radius: 16px;
+  }
+
+  .quoteText {
+    font-size: 0.86rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
   .navBtn {
     display: none;
   }

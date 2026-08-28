@@ -34,8 +34,10 @@ export async function generateMetadata({ params }) {
     seoObj = design.seo;
   }
 
-  const pageTitle = (seoObj.title || seoObj.seoTitle || seoObj.titleTag || "").trim() || `${design.name} — Hand-Carved Marble Statue by Jaipur Stonecraft`;
-  const metaDesc = (seoObj.description || seoObj.metaDescription || "").trim() || design.shortDescription || `Bespoke hand-carved ${design.name} in natural Makrana marble and regional Rajasthan sandstone. Custom sizes available for global shipping.`;
+  const pageTitle = (seoObj.title || seoObj.seoTitle || seoObj.titleTag || "").trim() || `${design.name} | Jaipur Stonecraft`;
+  const metaDesc = (seoObj.description || seoObj.metaDescription || "").trim() || design.shortDescription || `Hand-carved ${design.name} sculpted in Jaipur, Rajasthan. Custom dimensions and worldwide delivery available.`;
+  const canonicalUrl = (seoObj.canonicalUrl || seoObj.canonical || "").trim() || `https://jaipurstonecraft.com/designs/${categorySlug}/${designSlug}`;
+  const isIndexable = seoObj.indexable !== undefined ? Boolean(seoObj.indexable) : true;
   
   const primaryKw = (seoObj.primaryKeyword || "").trim();
   const secondaryKws = Array.isArray(seoObj.secondaryKeywords) ? seoObj.secondaryKeywords : [];
@@ -46,13 +48,14 @@ export async function generateMetadata({ params }) {
     title: pageTitle,
     description: metaDesc,
     keywords: combinedKeywordsList.join(", ") || undefined,
+    robots: isIndexable ? { index: true, follow: true } : { index: false, follow: true },
     alternates: {
-      canonical: `https://jaipurstonecraft.com/designs/${categorySlug}/${designSlug}`,
+      canonical: canonicalUrl,
     },
     openGraph: {
       title: pageTitle,
       description: metaDesc,
-      url: `https://jaipurstonecraft.com/designs/${categorySlug}/${designSlug}`,
+      url: canonicalUrl,
       siteName: "Jaipur Stonecraft",
       type: "website",
       images: [
@@ -83,6 +86,12 @@ export default async function DesignDetailPage({ params }) {
   // Data-driven related products
   const relatedDesigns = await getRelatedProductsFromDB(design, 6);
 
+  const availabilitySchema = design.attributes?.availabilityStatus === "made_to_order" 
+    ? "https://schema.org/MadeToOrder"
+    : design.isCustomOnly
+    ? "https://schema.org/PreOrder"
+    : "https://schema.org/InStock";
+
   const jsonLdGraph = [
     {
       "@type": "BreadcrumbList",
@@ -105,10 +114,10 @@ export default async function DesignDetailPage({ params }) {
         "@type": "Brand",
         "name": "Jaipur Stonecraft",
       },
-      "material": design.primaryMaterial ? design.primaryMaterial.name : "White Makrana Marble",
+      "material": design.primaryMaterial ? design.primaryMaterial.name : (design.attributes?.stoneVariety || "White Makrana Marble"),
       "offers": {
         "@type": "Offer",
-        "availability": "https://schema.org/InStock",
+        "availability": availabilitySchema,
         "itemCondition": "https://schema.org/NewCondition",
         "seller": {
           "@type": "Organization",

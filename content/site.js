@@ -7,8 +7,16 @@ export const siteConfig = {
     whatsapp: "+917014753278",
     whatsappLink: "https://wa.me/917014753278",
     address: "30, Industrial Area, Krisna Nagar a, Kartarpura, Gopal Pura Mode, Jaipur, Rajasthan 302015",
-    instagram: "[INSTAGRAM URL]",
-    pinterest: "[PINTEREST URL]",
+    instagram: "https://instagram.com/jaipurstonecraft",
+    facebook: "https://facebook.com/jaipurstonecraft",
+    pinterest: "https://pinterest.com/jaipurstonecraft",
+    youtube: "https://youtube.com/@jaipurstonecraft",
+  },
+  social: {
+    instagram: "https://instagram.com/jaipurstonecraft",
+    facebook: "https://facebook.com/jaipurstonecraft",
+    pinterest: "https://pinterest.com/jaipurstonecraft",
+    youtube: "https://youtube.com/@jaipurstonecraft",
   },
   utility: {
     announcements: ["Handcrafted in Jaipur, India", "Generational Craftsmanship", "Worldwide Delivery"],

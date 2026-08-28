@@ -27,9 +27,10 @@ export default function AdminSettingsPage() {
   });
 
   const [social, setSocial] = useState({
-    instagram: "https://instagram.com",
-    pinterest: "https://pinterest.com",
-    youtube: "https://youtube.com"
+    instagram: "https://instagram.com/jaipurstonecraft",
+    facebook: "https://facebook.com/jaipurstonecraft",
+    pinterest: "https://pinterest.com/jaipurstonecraft",
+    youtube: "https://youtube.com/@jaipurstonecraft"
   });
 
   useEffect(() => {
@@ -270,6 +271,16 @@ export default function AdminSettingsPage() {
                 type="text"
                 value={social.instagram}
                 onChange={(e) => setSocial({ ...social, instagram: e.target.value })}
+                className={styles.input}
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Facebook Profile URL</label>
+              <input
+                type="text"
+                value={social.facebook}
+                onChange={(e) => setSocial({ ...social, facebook: e.target.value })}
                 className={styles.input}
               />
             </div>

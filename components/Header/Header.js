@@ -49,6 +49,30 @@ export default function Header({ theme }) {
   const [mobileAccordion, setMobileAccordion] = useState({ collections: false });
   const hoverTimer = useRef(null);
 
+  const [socialState, setSocialState] = useState({
+    instagram: siteConfig.social?.instagram || "https://instagram.com/jaipurstonecraft",
+    facebook: siteConfig.social?.facebook || "https://facebook.com/jaipurstonecraft",
+    pinterest: siteConfig.social?.pinterest || "https://pinterest.com/jaipurstonecraft",
+    youtube: siteConfig.social?.youtube || "https://youtube.com/@jaipurstonecraft",
+  });
+
+  useEffect(() => {
+    fetch("/api/settings")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && data.settings?.social_links) {
+          const s = data.settings.social_links;
+          setSocialState({
+            instagram: s.instagram || siteConfig.social?.instagram,
+            facebook: s.facebook || siteConfig.social?.facebook,
+            pinterest: s.pinterest || siteConfig.social?.pinterest,
+            youtube: s.youtube || siteConfig.social?.youtube,
+          });
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const pathname = usePathname();
   const [prevPathname, setPrevPathname] = useState(pathname);
 
@@ -134,13 +158,58 @@ export default function Header({ theme }) {
             </div>
 
             <div className={styles.utilityRight}>
-              <a href={`tel:${siteConfig.contact.phone}`} className={styles.utilityLink}>
+              <a href={`tel:${siteConfig.contact.phone}`} className={styles.utilityLink} aria-label={`Call us at ${siteConfig.contact.phone}`}>
                 {siteConfig.contact.phone}
               </a>
               <span className={styles.utilityDot}>•</span>
-              <a href={`mailto:${siteConfig.contact.email}`} className={styles.utilityLink}>
-                {siteConfig.contact.email}
-              </a>
+              <div className={styles.utilitySocials} aria-label="Social media links">
+                <a
+                  href={socialState.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.utilitySocialLink}
+                  aria-label="Jaipur Stonecraft on Instagram"
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </a>
+                <a
+                  href={socialState.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.utilitySocialLink}
+                  aria-label="Jaipur Stonecraft on Facebook"
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                  </svg>
+                </a>
+                <a
+                  href={socialState.pinterest}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.utilitySocialLink}
+                  aria-label="Jaipur Stonecraft on Pinterest"
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.08 3.16 9.42 7.62 11.16-.1-.95-.2-2.4.04-3.44.22-.94 1.4-5.96 1.4-5.96s-.36-.72-.36-1.78c0-1.66.97-2.91 2.17-2.91 1.02 0 1.51.77 1.51 1.69 0 1.03-.65 2.57-1 3.99-.28 1.19.6 2.16 1.78 2.16 2.13 0 3.77-2.25 3.77-5.49 0-2.86-2.06-4.87-5.01-4.87-3.41 0-5.41 2.56-5.41 5.2 0 1.03.39 2.14.89 2.74.1.12.11.23.08.35-.09.37-.29 1.2-.33 1.36-.05.23-.17.27-.4.17-1.5-.69-2.44-2.88-2.44-4.65 0-3.78 2.75-7.25 7.92-7.25 4.16 0 7.39 2.97 7.39 6.92 0 4.14-2.61 7.46-6.23 7.46-1.22 0-2.36-.63-2.76-1.38l-.75 2.85c-.27 1.05-1 2.35-1.5 3.15 1.12.34 2.31.53 3.55.53 6.61 0 11.99-5.37 11.99-12C24 5.37 18.63 0 12 0z"/>
+                  </svg>
+                </a>
+                <a
+                  href={socialState.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.utilitySocialLink}
+                  aria-label="Jaipur Stonecraft on YouTube"
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                </a>
+              </div>
             </div>
           </Container>
         </div>
@@ -360,15 +429,75 @@ export default function Header({ theme }) {
             </li>
           </ul>
 
-          <div style={{ marginTop: "auto", paddingTop: "1rem" }}>
+          <div style={{ marginTop: "1.5rem", paddingTop: "0.5rem", paddingBottom: "1.5rem" }}>
             <Link
               href="/contact?type=quote"
               className={styles.goldenQuoteButton}
-              style={{ display: "flex", width: "100%", textAlign: "center", justifyContent: "center", padding: "0.85rem", minHeight: "46px" }}
+              style={{ display: "flex", width: "100%", textAlign: "center", justifyContent: "center", padding: "0.8rem", minHeight: "44px" }}
               onClick={() => setIsOpen(false)}
             >
               Get a Quote
             </Link>
+
+            {/* Mobile Navigation CONNECT WITH US Social Area */}
+            <div className={styles.mobileSocialSection}>
+              <span className={styles.mobileSocialEyebrow}>CONNECT WITH US</span>
+              <div className={styles.mobileSocialGrid}>
+                <a
+                  href={socialState.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.mobileSocialLink}
+                  aria-label="Jaipur Stonecraft on Instagram"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                  <span>Instagram</span>
+                </a>
+
+                <a
+                  href={socialState.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.mobileSocialLink}
+                  aria-label="Jaipur Stonecraft on Facebook"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                  </svg>
+                  <span>Facebook</span>
+                </a>
+
+                <a
+                  href={socialState.pinterest}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.mobileSocialLink}
+                  aria-label="Jaipur Stonecraft on Pinterest"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.08 3.16 9.42 7.62 11.16-.1-.95-.2-2.4.04-3.44.22-.94 1.4-5.96 1.4-5.96s-.36-.72-.36-1.78c0-1.66.97-2.91 2.17-2.91 1.02 0 1.51.77 1.51 1.69 0 1.03-.65 2.57-1 3.99-.28 1.19.6 2.16 1.78 2.16 2.13 0 3.77-2.25 3.77-5.49 0-2.86-2.06-4.87-5.01-4.87-3.41 0-5.41 2.56-5.41 5.2 0 1.03.39 2.14.89 2.74.1.12.11.23.08.35-.09.37-.29 1.2-.33 1.36-.05.23-.17.27-.4.17-1.5-.69-2.44-2.88-2.44-4.65 0-3.78 2.75-7.25 7.92-7.25 4.16 0 7.39 2.97 7.39 6.92 0 4.14-2.61 7.46-6.23 7.46-1.22 0-2.36-.63-2.76-1.38l-.75 2.85c-.27 1.05-1 2.35-1.5 3.15 1.12.34 2.31.53 3.55.53 6.61 0 11.99-5.37 11.99-12C24 5.37 18.63 0 12 0z"/>
+                  </svg>
+                  <span>Pinterest</span>
+                </a>
+
+                <a
+                  href={socialState.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.mobileSocialLink}
+                  aria-label="Jaipur Stonecraft on YouTube"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                  <span>YouTube</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </header>

@@ -3,10 +3,12 @@ import TrustStrip from "@/components/TrustStrip/TrustStrip";
 import HomeCollections from "@/components/HomeCollections/HomeCollections";
 import HeritageStory from "@/components/HeritageStory/HeritageStory";
 import FeaturedCreations from "@/components/FeaturedCreations/FeaturedCreations";
+import BeyondTheGallery from "@/components/BeyondTheGallery/BeyondTheGallery";
 import ClientReviews from "@/components/ClientReviews/ClientReviews";
 import CraftProcess from "@/components/CraftProcess/CraftProcess";
 import CTASection from "@/components/CTASection/CTASection";
-import { getPageSection } from "@/lib/db/content.js";
+import { getPageSection, getSiteSetting } from "@/lib/db/content.js";
+import { siteConfig } from "@/content/site";
 import { getAllCollections } from "@/content/collections";
 
 export const metadata = {
@@ -107,6 +109,10 @@ export default async function Home() {
     reviews: []
   });
 
+  const socialData = await getPageSection("homepage_social", {});
+  const craftData = await getPageSection("craftsmanship_hero", {});
+  const globalSocialLinks = await getSiteSetting("social_links", siteConfig.social);
+
   const collectionsDataList = await getAllCollections();
 
   return (
@@ -123,14 +129,17 @@ export default async function Home() {
       {/* 4. EDITORIAL COLLECTIONS SHOWCASE (Single Source of Truth DB-driven) */}
       <HomeCollections collections={collectionsDataList} />
 
-      {/* 5. FEATURED CREATIONS MOSAIC (Warm Dark Showcase) */}
+      {/* 5. BEYOND THE GALLERY (SOCIAL MEDIA SHOWCASE) */}
+      <BeyondTheGallery sectionData={socialData} globalSocial={globalSocialLinks} />
+
+      {/* 6. FEATURED CREATIONS MOSAIC (From Our Hands to Your World) */}
       <FeaturedCreations />
 
       {/* 6. CLIENT REVIEWS (Connected to Page CMS with Dynamic Reviews & Photos) */}
       <ClientReviews reviewsData={reviewsData} />
 
       {/* 7. CRAFTSMANSHIP PROCESS SECTION */}
-      <CraftProcess />
+      <CraftProcess sectionData={craftData} />
 
       {/* 8. FINAL CONVERSION CTA SECTION (Connected to Page CMS with Fallback) */}
       <CTASection

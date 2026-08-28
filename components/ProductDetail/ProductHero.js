@@ -120,10 +120,11 @@ export default function ProductHero({ design, category, collection, subcategory 
               Hand-Carved {design.primaryMaterial ? design.primaryMaterial.name : "Marble Statue"}
             </p>
 
-            {/* Rating Summary Bar */}
-            <div className={styles.ratingBar}>
-              <span className={styles.stars} aria-hidden="true">★★★★★</span>
-              <span className={styles.ratingText}>5.0 (18 Reviews)</span>
+            {/* Product Status & Stone Origin Badge */}
+            <div className={styles.ratingBar} style={{ color: "var(--color-bronze)", fontWeight: "600", fontSize: "0.85rem" }}>
+              <span>📍 Handcrafted in Jaipur Studio</span>
+              <span style={{ margin: "0 0.5rem", opacity: 0.5 }}>|</span>
+              <span>{design.attributes?.availabilityStatus === "made_to_order" ? "Made to Order" : "Ready for Atelier Order"}</span>
             </div>
 
             {/* Product Description */}

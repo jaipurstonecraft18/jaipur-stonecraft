@@ -16,6 +16,104 @@ import { getDesignsByCategory } from "@/content/designs";
 import { siteConfig } from "@/content/site";
 import { marbleHubData } from "@/content/marble";
 
+const FINAL_CUSTOMER_NAMES = {
+  "ganesh-ji": "Ganesh Statues & Murtis",
+  "shiva-ji": "Shiva Statues & Idols",
+  "krishna-ji": "Krishna Statues & Murtis",
+  "ram-darbar": "Ram Darbar Statues",
+  "hanuman-ji": "Hanuman Statues & Murtis",
+  "durga-maa": "Durga Maa Statues",
+  "lakshmi-ji": "Lakshmi Statues & Idols",
+  "saraswati-ji": "Saraswati Statues",
+  "vishnu-ji": "Vishnu Statues",
+  "buddha-statues": "Buddha Statues",
+  "mahavira-statues": "Lord Mahavira Statues",
+  "tirthankara-murtis": "Jain Tirthankara Murtis",
+  "dhyan-buddha-sculptures": "Dhyan Buddha Sculptures",
+  "cultural-tribal-figures": "Cultural & Tribal Sculptures",
+  "bespoke-portrait-busts": "Portrait Busts",
+  "full-body-figures": "Full Body Human Statues",
+  "artisan-figures": "Artisan Sculptures",
+  "abstract-form-sculptures": "Abstract Stone Sculptures",
+  "classical-figure-carvings": "Classical Figure Carvings",
+  "modernist-stone-sculptures": "Modernist Stone Art",
+  "mythological-figures": "Mythological Sculptures",
+  "stone-elephants": "Carved Stone Elephants",
+  "masonic-lions": "Guardian Lion Statues",
+  "sacred-nandi-statues": "Sacred Nandi Statues",
+  "peacock-sculptures": "Carved Peacock Sculptures",
+  "horse-sculptures": "Stone Horse Sculptures",
+  "devotional-relief-panels": "Devotional Relief Panels",
+  "mandala-wall-art": "Stone Mandala Wall Art",
+  "temple-wall-murals": "Temple Wall Murals",
+  "tree-of-life-relief": "Tree of Life Wall Reliefs",
+  "rajasthani-heritage-scenes": "Rajasthani Heritage Reliefs",
+  "royal-court-panels": "Royal Court Carved Panels",
+  "traditional-procession-murals": "Procession Stone Murals",
+  "jharokha-relief-panels": "Jharokha Relief Panels",
+  "botanical-reliefs": "Botanical Stone Reliefs",
+  "floral-pattern-panels": "Floral Carved Panels",
+  "geometric-carved-walls": "Geometric Stone Wall Panels",
+  "modern-textured-stone-walls": "Textured Stone Wall Murals",
+  "architectural-accent-murals": "Architectural Accent Murals",
+  "bespoke-feature-walls": "Bespoke Feature Wall Panels",
+  "custom-crests-logos": "Custom Stone Crests & Logos",
+  "compact-wall-mandirs": "Compact Wall-Mounted Mandirs",
+  "pooja-room-panels": "Pooja Room Stone Panels",
+  "marble-home-temples": "Marble Home Mandirs & Temples",
+  "carved-mandir-arches": "Carved Mandir Arches",
+  "garbhagriha-architecture": "Garbhagriha Temple Architecture",
+  "intricate-torans": "Carved Stone Torans",
+  "pillared-mandapas": "Pillared Mandapas & Pavilions",
+  "shikhara-domes": "Temple Shikhara & Domes",
+  "jali-screens": "Stone Jali & Architectural Screens",
+  "jharokhas-windows": "Stone Jharokhas & Heritage Windows",
+  "carved-pillars-columns": "Carved Stone Pillars & Columns",
+  "stone-balustrades": "Carved Stone Balustrades",
+  "stone-door-frames": "Carved Stone Door Frames",
+  "portico-carvings": "Carved Stone Porticos",
+  "bespoke-facade-elements": "Architectural Facade Elements",
+  "custom-heritage-columns": "Custom Heritage Columns",
+  "tiered-marble-fountains": "Tiered Marble Fountains",
+  "lotus-basin-fountains": "Lotus Basin Fountains",
+  "central-courtyard-fountains": "Central Courtyard Fountains",
+  "figurative-water-sculptures": "Figurative Water Sculptures",
+  "cascading-water-walls": "Cascading Water Walls",
+  "abstract-water-sculptures": "Abstract Water Features",
+  "poolside-waterfalls": "Poolside Stone Waterfalls",
+  "heritage-palace-spouts": "Heritage Palace Water Spouts",
+  "large-scale-features": "Large-Scale Water Features",
+  "carved-stone-vases": "Carved Stone Vases",
+  "pedestals-plinths": "Pedestals & Statue Plinths",
+  "decorative-bowls-urns": "Decorative Stone Bowls & Urli",
+  "luxury-marble-objects": "Luxury Marble Accessories",
+  "tabletop-statuettes": "Tabletop Stone Statuettes",
+  "miniature-reliefs": "Miniature Carved Reliefs",
+  "artisan-accessories": "Handcrafted Stone Accessories",
+  "stone-planters": "Carved Stone Planters",
+  "garden-lanterns": "Stone Garden Lanterns",
+  "benches-seating": "Carved Stone Benches",
+  "bespoke-deity-statues": "Custom Deity Statue Commissions",
+  "monumental-stone-art": "Monumental Stone Sculptures",
+  "commissioned-artwork": "Commissioned Stone Artwork",
+  "lifesize-memorial-busts": "Memorial Busts & Sculptures",
+  "ancestral-portrait-carvings": "Ancestral Portrait Sculptures",
+  "full-temple-carving-projects": "Full Temple Construction Projects",
+  "luxury-estate-stonework": "Luxury Estate Stonework",
+  "bespoke-heritage-restoration": "Heritage Stone Restoration"
+};
+
+const PRODUCT_FAMILY_TAGS = {
+  "krishna-ji": ["Radha Krishna", "Laddu Gopal", "Bal Gopal", "Jugal Jodi"],
+  "shiva-ji": ["Shiv Parivar", "Shivlinga", "Mahadev", "Sacred Nandi"],
+  "ganesh-ji": ["Seated Ganesh", "Riddhi Siddhi", "Dancing Ganesha", "Mandir Idol"],
+  "ram-darbar": ["Ram Sita Laxman", "Hanuman Sewa", "Ram Lalla"],
+  "buddha-statues": ["Dhyan Mudra", "Abhaya Mudra", "Sleeping Buddha"],
+  "home-mandirs": ["Marble Mandir", "Pooja Room Panel", "Compact Wall Temple"],
+  "jali-screens": ["Geometric Jali", "Floral Lattice", "Bansi Pink Jali", "Marble Screen"],
+  "tiered-marble-fountains": ["3-Tier Fountain", "Lotus Basin", "Courtyard Waterfall"]
+};
+
 export async function generateStaticParams() {
   const params = [];
   Object.values(categoriesData).forEach((cat) => {
@@ -35,15 +133,20 @@ export async function generateMetadata({ params }) {
 
   if (!category) return {};
 
+  const customerName = FINAL_CUSTOMER_NAMES[categorySlug] || category.name;
+  const designs = await getDesignsByCategory(categorySlug);
+  const isIndexable = designs.length > 0 || ["marble-home-temples", "carved-pillars-columns", "bespoke-portrait-busts"].includes(categorySlug);
+
   return {
-    title: `${category.name} Marble Statues & Sculptures — Jaipur Stonecraft`,
-    description: `Bespoke hand-carved ${category.name} statues, temple sculptures, and custom masonic artwork created by master artisans in Jaipur.`,
+    title: `${customerName} — Handcrafted in Jaipur | Jaipur Stonecraft`,
+    description: `Bespoke hand-carved ${customerName}, temple sculptures, and custom architectural stone artwork sculpted by master artisans in Jaipur.`,
+    robots: isIndexable ? { index: true, follow: true } : { index: false, follow: true },
     alternates: {
       canonical: `https://jaipurstonecraft.com/collections/${collection}/${subcategory}/${categorySlug}`,
     },
     openGraph: {
-      title: `${category.name} Marble Statues & Sculptures — Jaipur Stonecraft`,
-      description: `Bespoke hand-carved ${category.name} statues, temple sculptures, and custom masonic artwork created by master artisans in Jaipur.`,
+      title: `${customerName} — Handcrafted in Jaipur | Jaipur Stonecraft`,
+      description: `Bespoke hand-carved ${customerName}, temple sculptures, and custom architectural stone artwork sculpted by master artisans in Jaipur.`,
       url: `https://jaipurstonecraft.com/collections/${collection}/${subcategory}/${categorySlug}`,
       siteName: "Jaipur Stonecraft",
       type: "website",
@@ -52,7 +155,7 @@ export async function generateMetadata({ params }) {
           url: category.imageSrc,
           width: 800,
           height: 600,
-          alt: category.name,
+          alt: customerName,
         },
       ],
     },
@@ -71,7 +174,9 @@ export default async function CategoryLandingPage({ params }) {
     notFound();
   }
 
+  const customerName = FINAL_CUSTOMER_NAMES[categorySlug] || category.name;
   const designs = await getDesignsByCategory(categorySlug);
+  const productFamilyList = PRODUCT_FAMILY_TAGS[categorySlug] || [];
   const rawRelated = await getCategoriesBySubcategory(collectionSlug, subcategorySlug);
   const relatedCategories = rawRelated
     .filter((cat) => cat.slug !== categorySlug)
@@ -205,18 +310,42 @@ export default async function CategoryLandingPage({ params }) {
                 textShadow: "0 4px 20px rgba(0, 0, 0, 0.6)",
                 marginBottom: "0.75rem"
               }}>
-                {category.name} Statues & Sculptures
+                {customerName}
               </h1>
               <p style={{
                 fontSize: "clamp(1rem, 1.4vw, 1.12rem)",
                 lineHeight: 1.7,
                 color: "rgba(250, 248, 245, 0.9)",
                 maxWidth: "760px",
-                margin: "0 auto",
+                margin: "0 auto 1.25rem",
                 textShadow: "0 2px 10px rgba(0, 0, 0, 0.6)"
               }}>
-                {category.description || `Our Jaipur workshop specializes in hand-carved ${category.name} sculptures, bringing generational masonic techniques to sacred and residential spaces worldwide.`}
+                {category.description || `Our Jaipur atelier hand-chisels bespoke ${customerName} from pure Makrana marble and regional Rajasthan sandstone, serving sacred temples and luxury residences worldwide.`}
               </p>
+
+              {/* Product Family Discovery Pills */}
+              {productFamilyList.length > 0 && (
+                <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", justifyContent: "center", marginTop: "0.5rem" }}>
+                  <span style={{ fontSize: "0.8rem", color: "rgba(250, 248, 245, 0.7)", alignSelf: "center", marginRight: "0.25rem" }}>Popular Forms:</span>
+                  {productFamilyList.map((tag) => (
+                    <span
+                      key={tag}
+                      style={{
+                        fontSize: "0.78rem",
+                        fontWeight: "500",
+                        color: "#FAF8F5",
+                        backgroundColor: "rgba(255, 255, 255, 0.12)",
+                        border: "1px solid rgba(230, 200, 148, 0.3)",
+                        padding: "0.25rem 0.75rem",
+                        borderRadius: "20px",
+                        backdropFilter: "blur(4px)"
+                      }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
             </ScrollReveal>
           </div>
         </Container>
@@ -228,8 +357,8 @@ export default async function CategoryLandingPage({ params }) {
           <ScrollReveal animation="fade-up">
             <SectionHeading
               eyebrow="Catalogue"
-              heading={`Explore ${category.name} Designs`}
-              description="Filter our curated masonic designs by material, size, or finish, and select a design to view available configurations."
+              heading={`Explore ${customerName}`}
+              description="Filter our curated designs by material, size, or finish, and select a design to view available configurations."
             />
           </ScrollReveal>
 

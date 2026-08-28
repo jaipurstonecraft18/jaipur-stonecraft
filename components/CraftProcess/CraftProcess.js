@@ -4,7 +4,7 @@ import Container from "@/components/Container/Container";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import styles from "./CraftProcess.module.css";
 
-const journeySteps = [
+const defaultJourneySteps = [
   {
     step: "01",
     title: "SELECT THE FINEST STONE",
@@ -42,7 +42,7 @@ const journeySteps = [
   },
 ];
 
-const craftValues = [
+const defaultCraftValues = [
   {
     title: "Generations of Skill",
     description: "Decades of inherited knowledge, passed down with pride.",
@@ -84,7 +84,22 @@ const craftValues = [
   },
 ];
 
-export default function CraftProcess() {
+export default function CraftProcess({ sectionData }) {
+  const data = {
+    eyebrow: "THE ART OF CRAFTSMANSHIP",
+    heading: "Where Tradition\nMeets Mastery.",
+    description: "Every masterpiece begins with passion, precision, and the hands of our skilled artisans. Experience the timeless journey of stone transformed into divinity.",
+    heroImageSrc: "/images/hero/hero-krishna-artisan.jpg",
+    storyTitle: "Hands That Create.\nHearts That Care.",
+    storyDesc: "Our artisans are the soul of Jaipur Stonecraft. With generations of experience and unwavering dedication, they pour their heart into every chisel stroke.",
+    storyScriptAccent: "Built on Tradition. Perfected by Time.",
+    storyImageSrc: "/images/collections/hero-sculptures-group.webp",
+    journeySteps: defaultJourneySteps,
+    ...sectionData,
+  };
+
+  const stepsList = Array.isArray(data.journeySteps) && data.journeySteps.length > 0 ? data.journeySteps : defaultJourneySteps;
+
   return (
     <section className={styles.section} aria-label="Craftsmanship">
       <Container>
@@ -95,14 +110,12 @@ export default function CraftProcess() {
             {/* Left Content Side */}
             <ScrollReveal animation="fade-up">
               <div className={styles.heroContent}>
-                <span className={styles.eyebrow}>THE ART OF CRAFTSMANSHIP</span>
-                <h2 className={styles.heading}>
-                  Where Tradition <br />
-                  Meets Mastery.
+                <span className={styles.eyebrow}>{data.eyebrow}</span>
+                <h2 className={styles.heading} style={{ whiteSpace: "pre-line" }}>
+                  {data.heading}
                 </h2>
                 <p className={styles.description}>
-                  Every masterpiece begins with passion, precision, and the hands of our skilled artisans.
-                  Experience the timeless journey of stone transformed into divinity.
+                  {data.description}
                 </p>
 
                 {/* Craftsmanship Statement Badge Box */}
@@ -127,8 +140,8 @@ export default function CraftProcess() {
             <ScrollReveal animation="fade-up" delay={150}>
               <div className={styles.heroImageWrapper}>
                 <Image
-                  src="/images/hero/hero-krishna-artisan.jpg"
-                  alt="Master artisan chiseling white marble Krishna statue in Jaipur workshop"
+                  src={data.heroImageSrc || "/images/hero/hero-krishna-artisan.jpg"}
+                  alt="Master artisan chiseling white marble sculpture in Jaipur workshop"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className={styles.heroImage}
@@ -155,24 +168,24 @@ export default function CraftProcess() {
             </ScrollReveal>
 
             <div className={styles.journeyGrid}>
-              {journeySteps.map((step, idx) => (
-                <ScrollReveal key={step.step} animation="fade-up" delay={idx * 80}>
+              {stepsList.map((step, idx) => (
+                <ScrollReveal key={step.step || idx} animation="fade-up" delay={idx * 80}>
                   <div className={styles.journeyCard}>
                     {/* Arch Framed Image */}
                     <div className={styles.archWrapper}>
                       <Image
-                        src={step.imageSrc}
-                        alt={step.alt}
+                        src={step.imageSrc || defaultJourneySteps[idx]?.imageSrc || "/images/craftsmanship/step-01-select-stone.jpg"}
+                        alt={step.title || "Crafting step"}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 20vw"
                         className={styles.archImage}
                         loading="lazy"
                       />
-                      <span className={styles.stepBadge}>{step.step}</span>
+                      <span className={styles.stepBadge}>{step.step || `0${idx + 1}`}</span>
                     </div>
 
                     <div className={styles.stepContent}>
-                      <span className={styles.stepNumText}>{step.step}</span>
+                      <span className={styles.stepNumText}>{step.step || `0${idx + 1}`}</span>
                       <h3 className={styles.stepTitle}>{step.title}</h3>
                       <p className={styles.stepDesc}>{step.description}</p>
                     </div>
@@ -189,7 +202,7 @@ export default function CraftProcess() {
               <ScrollReveal animation="fade-up">
                 <div className={styles.storyImageWrapper}>
                   <Image
-                    src="/images/collections/hero-sculptures-group.webp"
+                    src={data.storyImageSrc || "/images/collections/hero-sculptures-group.webp"}
                     alt="White marble goddess facial profile carved by master artisan"
                     fill
                     sizes="(max-width: 1024px) 100vw, 45vw"
@@ -203,19 +216,17 @@ export default function CraftProcess() {
               <ScrollReveal animation="fade-up" delay={150}>
                 <div className={styles.storyContent}>
                   <span className={styles.eyebrow}>BEHIND EVERY CREATION</span>
-                  <h3 className={styles.storyTitle}>
-                    Hands That Create. <br />
-                    Hearts That Care.
+                  <h3 className={styles.storyTitle} style={{ whiteSpace: "pre-line" }}>
+                    {data.storyTitle}
                   </h3>
                   <p className={styles.storyDesc}>
-                    Our artisans are the soul of Jaipur Stonecraft. With generations of experience and unwavering dedication,
-                    they pour their heart into every chisel stroke.
+                    {data.storyDesc}
                   </p>
-                  <p className={styles.scriptAccent}>Built on Tradition. Perfected by Time.</p>
+                  <p className={styles.scriptAccent}>{data.storyScriptAccent}</p>
 
                   {/* 4 Craft Values Grid */}
                   <div className={styles.valuesGrid}>
-                    {craftValues.map((val) => (
+                    {defaultCraftValues.map((val) => (
                       <div key={val.title} className={styles.valueItem}>
                         <div className={styles.valueIcon}>{val.icon}</div>
                         <div>

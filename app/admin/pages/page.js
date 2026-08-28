@@ -124,6 +124,39 @@ export default function AdminPageCMS() {
     reviews: defaultReviews
   });
 
+  const defaultHomepageSocial = {
+    enabled: true,
+    eyebrow: "FOLLOW THE CRAFT",
+    heading: "Beyond the Gallery",
+    description: "There is more to our craft than the finished piece. Discover our world across our social channels.",
+    videoTitle: "CRAFT IN MOTION",
+    videoMessage: "See the craft come to life.",
+    videoDescription: "From raw stone to timeless beauty – watch the hands, tools and traditions behind every creation.",
+    videoSrc: "/videos/herovid.webm",
+    videoPoster: "/images/craftsmanship/artisan-hands.png",
+    youtubeCtaText: "Watch more on YouTube \u2197",
+    instagramCard: {
+      title: "Instagram",
+      description: "Latest creations & studio moments.",
+      ctaText: "Explore Instagram \u2192",
+      imageSrc: "/images/brand/heritage-ganesha.jpg"
+    },
+    pinterestCard: {
+      title: "Pinterest",
+      description: "Stonework ideas & inspiration for every space.",
+      ctaText: "Explore Pinterest \u2192",
+      imageSrc: "/images/collections/wall-art-relief.webp"
+    },
+    facebookCard: {
+      title: "Facebook",
+      description: "Projects, updates & our journey together.",
+      ctaText: "Visit Facebook \u2192",
+      imageSrc: "/images/craftsmanship/step-02-shape-precision.jpg"
+    }
+  };
+
+  const [homepageSocial, setHomepageSocial] = useState(defaultHomepageSocial);
+
   const [storyHeader, setStoryHeader] = useState({
     eyebrow: "",
     heading: "",
@@ -167,6 +200,7 @@ export default function AdminPageCMS() {
                 reviews: Array.isArray(sec.content?.reviews) && sec.content.reviews.length > 0 ? sec.content.reviews : defaultReviews
               });
             }
+            if (sec.keyName === "homepage_social") setHomepageSocial({ ...defaultHomepageSocial, ...sec.content });
             if (sec.keyName === "story_header") setStoryHeader(sec.content);
             if (sec.keyName === "craftsmanship_hero") setCraftsmanshipHero(sec.content);
           });
@@ -697,6 +731,509 @@ export default function AdminPageCMS() {
             </div>
           </div>
 
+          {/* SECTION 4: SOCIAL MEDIA SHOWCASE (BEYOND THE GALLERY) */}
+          <div style={{
+            backgroundColor: "#FAF7F2",
+            border: "2px solid #D8CFC2",
+            borderRadius: "14px",
+            padding: "1.75rem",
+            marginBottom: "2rem",
+            boxShadow: "0 10px 32px rgba(184, 123, 49, 0.08)"
+          }}>
+            {/* Header Banner */}
+            <div style={{
+              background: "linear-gradient(135deg, #1C1917 0%, #2A2521 100%)",
+              color: "#FFFFFF",
+              padding: "1.25rem 1.5rem",
+              borderRadius: "10px",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: "1.5rem",
+              flexWrap: "wrap",
+              gap: "0.75rem",
+              boxShadow: "0 6px 20px rgba(0, 0, 0, 0.15)"
+            }}>
+              <div>
+                <h3 style={{ fontSize: "1.15rem", fontWeight: "600", color: "#D4A359", margin: 0, display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span>🌐</span> 4. Social Media Showcase (Beyond the Gallery)
+                </h3>
+                <p style={{ fontSize: "0.8rem", color: "rgba(255, 255, 255, 0.7)", margin: "0.35rem 0 0 0" }}>
+                  Manage the homepage video feature, section titles, and social channel cards (Instagram, Pinterest, Facebook)
+                </p>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                <span style={{ backgroundColor: "rgba(212, 163, 89, 0.2)", color: "#E6C594", padding: "0.3rem 0.75rem", borderRadius: "20px", fontSize: "0.78rem", border: "1px solid rgba(212, 163, 89, 0.4)" }}>
+                  📍 Used on Homepage (/)
+                </span>
+                <button
+                  type="button"
+                  onClick={() => handleSaveSection("homepage_social", homepageSocial)}
+                  style={{
+                    backgroundColor: "#B87B31",
+                    color: "#FFFFFF",
+                    border: "none",
+                    padding: "0.55rem 1.25rem",
+                    borderRadius: "6px",
+                    fontWeight: "600",
+                    fontSize: "0.85rem",
+                    cursor: "pointer",
+                    boxShadow: "0 4px 12px rgba(184, 123, 49, 0.3)"
+                  }}
+                  disabled={saving}
+                >
+                  {saving ? "Saving..." : "Save Social Section"}
+                </button>
+              </div>
+            </div>
+
+            {/* Sub-Panel 1: Header Copy & Bottom Banner */}
+            <div style={{ backgroundColor: "#FFFFFF", border: "1px solid #E2DDD5", borderRadius: "10px", padding: "1.25rem", marginBottom: "1.5rem" }}>
+              <h4 style={{ fontSize: "0.92rem", fontWeight: "600", color: "#B87B31", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                <span>📝</span> Section Header Copy & Accent Text
+              </h4>
+              <div className={styles.formGrid}>
+                <div className={styles.formGroupFull}>
+                  <div className={styles.checkboxGroup}>
+                    <input
+                      type="checkbox"
+                      id="enableSocial"
+                      checked={homepageSocial.enabled !== false}
+                      onChange={(e) => setHomepageSocial({ ...homepageSocial, enabled: e.target.checked })}
+                    />
+                    <label htmlFor="enableSocial" className={styles.label} style={{ fontWeight: "600", color: "#1C1917" }}>
+                      Enable "Beyond the Gallery" Social Section on Homepage
+                    </label>
+                  </div>
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Section Eyebrow Tagline</label>
+                  <input
+                    type="text"
+                    value={homepageSocial.eyebrow || ""}
+                    onChange={(e) => setHomepageSocial({ ...homepageSocial, eyebrow: e.target.value })}
+                    className={styles.input}
+                    placeholder="FOLLOW THE CRAFT"
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Main Section Heading</label>
+                  <input
+                    type="text"
+                    value={homepageSocial.heading || ""}
+                    onChange={(e) => setHomepageSocial({ ...homepageSocial, heading: e.target.value })}
+                    className={styles.input}
+                    placeholder="Beyond the Gallery"
+                  />
+                </div>
+
+                <div className={styles.formGroupFull}>
+                  <label className={styles.label}>Supporting Subtitle Copy</label>
+                  <textarea
+                    rows={2}
+                    value={homepageSocial.description || ""}
+                    onChange={(e) => setHomepageSocial({ ...homepageSocial, description: e.target.value })}
+                    className={styles.textarea}
+                    placeholder="There is more to our craft than the finished piece. Discover our world across our social channels."
+                  />
+                </div>
+
+                <div className={styles.formGroupFull}>
+                  <label className={styles.label}>Footer Accent Sub-strip Text (Bottom Banner)</label>
+                  <input
+                    type="text"
+                    value={homepageSocial.footerStripText || "FOLLOW • EXPLORE • GET INSPIRED"}
+                    onChange={(e) => setHomepageSocial({ ...homepageSocial, footerStripText: e.target.value })}
+                    className={styles.input}
+                    placeholder="FOLLOW • EXPLORE • GET INSPIRED"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Sub-Panel 2: Craft in Motion Video Banner (Dark Studio Panel) */}
+            <div style={{ backgroundColor: "#181512", border: "1px solid #3A332B", borderRadius: "10px", padding: "1.35rem", marginBottom: "1.5rem", color: "#FFFFFF" }}>
+              <h4 style={{ fontSize: "0.92rem", fontWeight: "600", color: "#D4A359", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                <span>🎥</span> Craft in Motion — Cinematic Video Feature Banner
+              </h4>
+
+              <div className={styles.formGrid}>
+                <div className={styles.formGroup}>
+                  <label className={styles.label} style={{ color: "#D4A359" }}>Video Title Tagline</label>
+                  <input
+                    type="text"
+                    value={homepageSocial.videoTitle || ""}
+                    onChange={(e) => setHomepageSocial({ ...homepageSocial, videoTitle: e.target.value })}
+                    className={styles.input}
+                    style={{ backgroundColor: "#24201C", borderColor: "#4A4035", color: "#FFFFFF" }}
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label} style={{ color: "#D4A359" }}>Video Main Message</label>
+                  <input
+                    type="text"
+                    value={homepageSocial.videoMessage || ""}
+                    onChange={(e) => setHomepageSocial({ ...homepageSocial, videoMessage: e.target.value })}
+                    className={styles.input}
+                    style={{ backgroundColor: "#24201C", borderColor: "#4A4035", color: "#FFFFFF" }}
+                  />
+                </div>
+
+                <div className={styles.formGroupFull}>
+                  <label className={styles.label} style={{ color: "#D4A359" }}>Video Description Copy</label>
+                  <textarea
+                    rows={2}
+                    value={homepageSocial.videoDescription || ""}
+                    onChange={(e) => setHomepageSocial({ ...homepageSocial, videoDescription: e.target.value })}
+                    className={styles.textarea}
+                    style={{ backgroundColor: "#24201C", borderColor: "#4A4035", color: "#FFFFFF" }}
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label} style={{ color: "#D4A359" }}>YouTube CTA Button Text</label>
+                  <input
+                    type="text"
+                    value={homepageSocial.youtubeCtaText || ""}
+                    onChange={(e) => setHomepageSocial({ ...homepageSocial, youtubeCtaText: e.target.value })}
+                    className={styles.input}
+                    style={{ backgroundColor: "#24201C", borderColor: "#4A4035", color: "#FFFFFF" }}
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label} style={{ color: "#D4A359" }}>YouTube Destination Link (Optional Override)</label>
+                  <input
+                    type="text"
+                    value={homepageSocial.youtubeUrl || ""}
+                    onChange={(e) => setHomepageSocial({ ...homepageSocial, youtubeUrl: e.target.value })}
+                    className={styles.input}
+                    style={{ backgroundColor: "#24201C", borderColor: "#4A4035", color: "#FFFFFF" }}
+                    placeholder="https://youtube.com/@jaipurstonecraft"
+                  />
+                </div>
+
+                <div className={styles.formGroupFull}>
+                  <label className={styles.label} style={{ color: "#D4A359" }}>Video File URL (.webm or .mp4)</label>
+                  <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem" }}>
+                    <input
+                      type="text"
+                      value={homepageSocial.videoSrc || ""}
+                      onChange={(e) => setHomepageSocial({ ...homepageSocial, videoSrc: e.target.value })}
+                      className={styles.input}
+                      style={{ flex: 1, backgroundColor: "#24201C", borderColor: "#4A4035", color: "#FFFFFF" }}
+                      placeholder="/videos/herovid.webm or upload video"
+                    />
+                    <input
+                      type="file"
+                      accept="video/*"
+                      onChange={(e) => handleImageUpload(e, (url) => setHomepageSocial({ ...homepageSocial, videoSrc: url }))}
+                      style={{ fontSize: "0.82rem", color: "#D4A359" }}
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.formGroupFull}>
+                  <label className={styles.label} style={{ color: "#D4A359" }}>Video Poster / Fallback Image</label>
+                  <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem" }}>
+                    <img
+                      src={homepageSocial.videoPoster || "/images/craftsmanship/artisan-hands.png"}
+                      alt="Poster Preview"
+                      style={{ width: "80px", height: "45px", objectFit: "cover", borderRadius: "4px", backgroundColor: "#24201C", border: "1px solid #4A4035" }}
+                      onError={(e) => { e.target.src = "https://placehold.co/160x90/24201C/FFFFFF?text=Poster"; }}
+                    />
+                    <input
+                      type="text"
+                      value={homepageSocial.videoPoster || ""}
+                      onChange={(e) => setHomepageSocial({ ...homepageSocial, videoPoster: e.target.value })}
+                      className={styles.input}
+                      style={{ flex: 1, backgroundColor: "#24201C", borderColor: "#4A4035", color: "#FFFFFF" }}
+                    />
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleImageUpload(e, (url) => setHomepageSocial({ ...homepageSocial, videoPoster: url }))}
+                      style={{ fontSize: "0.82rem", color: "#D4A359" }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Sub-Panel 3: 3 Social Destination Cards */}
+            <div style={{ backgroundColor: "#FFFFFF", border: "1px solid #E2DDD5", borderRadius: "10px", padding: "1.25rem" }}>
+              <h4 style={{ fontSize: "0.92rem", fontWeight: "600", color: "#B87B31", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                <span>🎴</span> 3 Destination Cards (Instagram, Pinterest, Facebook)
+              </h4>
+
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.25rem" }}>
+                {/* Instagram Card */}
+                <div style={{ border: "1px solid #E8CFE4", borderRadius: "8px", overflow: "hidden", backgroundColor: "#FDF8FC" }}>
+                  <div style={{ background: "linear-gradient(135deg, #833AB4, #FD1D1D, #F56040)", color: "#FFFFFF", padding: "0.6rem 1rem", fontWeight: "600", fontSize: "0.85rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <span>📷</span> 1. Instagram Card
+                  </div>
+                  <div style={{ padding: "1rem" }} className={styles.formGrid}>
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Title</label>
+                      <input
+                        type="text"
+                        value={homepageSocial.instagramCard?.title || "Instagram"}
+                        onChange={(e) => setHomepageSocial({
+                          ...homepageSocial,
+                          instagramCard: { ...homepageSocial.instagramCard, title: e.target.value }
+                        })}
+                        className={styles.input}
+                      />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>CTA Label</label>
+                      <input
+                        type="text"
+                        value={homepageSocial.instagramCard?.ctaText || "Explore Instagram \u2192"}
+                        onChange={(e) => setHomepageSocial({
+                          ...homepageSocial,
+                          instagramCard: { ...homepageSocial.instagramCard, ctaText: e.target.value }
+                        })}
+                        className={styles.input}
+                      />
+                    </div>
+                    <div className={styles.formGroupFull}>
+                      <label className={styles.label}>Description</label>
+                      <input
+                        type="text"
+                        value={homepageSocial.instagramCard?.description || ""}
+                        onChange={(e) => setHomepageSocial({
+                          ...homepageSocial,
+                          instagramCard: { ...homepageSocial.instagramCard, description: e.target.value }
+                        })}
+                        className={styles.input}
+                      />
+                    </div>
+                    <div className={styles.formGroupFull}>
+                      <label className={styles.label}>Destination URL Override</label>
+                      <input
+                        type="text"
+                        value={homepageSocial.instagramCard?.url || ""}
+                        onChange={(e) => setHomepageSocial({
+                          ...homepageSocial,
+                          instagramCard: { ...homepageSocial.instagramCard, url: e.target.value }
+                        })}
+                        className={styles.input}
+                        placeholder="https://instagram.com/jaipurstonecraft"
+                      />
+                    </div>
+                    <div className={styles.formGroupFull}>
+                      <label className={styles.label}>Card Image</label>
+                      <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+                        <img
+                          src={homepageSocial.instagramCard?.imageSrc || "/images/brand/heritage-ganesha.jpg"}
+                          alt="Instagram Card"
+                          style={{ width: "45px", height: "45px", objectFit: "cover", borderRadius: "4px", border: "1px solid #E8CFE4" }}
+                        />
+                        <input
+                          type="text"
+                          value={homepageSocial.instagramCard?.imageSrc || ""}
+                          onChange={(e) => setHomepageSocial({
+                            ...homepageSocial,
+                            instagramCard: { ...homepageSocial.instagramCard, imageSrc: e.target.value }
+                          })}
+                          className={styles.input}
+                          style={{ flex: 1 }}
+                        />
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => handleImageUpload(e, (url) => setHomepageSocial({
+                            ...homepageSocial,
+                            instagramCard: { ...homepageSocial.instagramCard, imageSrc: url }
+                          }))}
+                          style={{ fontSize: "0.78rem" }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Pinterest Card */}
+                <div style={{ border: "1px solid #F3D0D3", borderRadius: "8px", overflow: "hidden", backgroundColor: "#FCF6F6" }}>
+                  <div style={{ background: "#BD081C", color: "#FFFFFF", padding: "0.6rem 1rem", fontWeight: "600", fontSize: "0.85rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <span>📌</span> 2. Pinterest Card
+                  </div>
+                  <div style={{ padding: "1rem" }} className={styles.formGrid}>
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Title</label>
+                      <input
+                        type="text"
+                        value={homepageSocial.pinterestCard?.title || "Pinterest"}
+                        onChange={(e) => setHomepageSocial({
+                          ...homepageSocial,
+                          pinterestCard: { ...homepageSocial.pinterestCard, title: e.target.value }
+                        })}
+                        className={styles.input}
+                      />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>CTA Label</label>
+                      <input
+                        type="text"
+                        value={homepageSocial.pinterestCard?.ctaText || "Explore Pinterest \u2192"}
+                        onChange={(e) => setHomepageSocial({
+                          ...homepageSocial,
+                          pinterestCard: { ...homepageSocial.pinterestCard, ctaText: e.target.value }
+                        })}
+                        className={styles.input}
+                      />
+                    </div>
+                    <div className={styles.formGroupFull}>
+                      <label className={styles.label}>Description</label>
+                      <input
+                        type="text"
+                        value={homepageSocial.pinterestCard?.description || ""}
+                        onChange={(e) => setHomepageSocial({
+                          ...homepageSocial,
+                          pinterestCard: { ...homepageSocial.pinterestCard, description: e.target.value }
+                        })}
+                        className={styles.input}
+                      />
+                    </div>
+                    <div className={styles.formGroupFull}>
+                      <label className={styles.label}>Destination URL Override</label>
+                      <input
+                        type="text"
+                        value={homepageSocial.pinterestCard?.url || ""}
+                        onChange={(e) => setHomepageSocial({
+                          ...homepageSocial,
+                          pinterestCard: { ...homepageSocial.pinterestCard, url: e.target.value }
+                        })}
+                        className={styles.input}
+                        placeholder="https://pinterest.com/jaipurstonecraft"
+                      />
+                    </div>
+                    <div className={styles.formGroupFull}>
+                      <label className={styles.label}>Card Image</label>
+                      <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+                        <img
+                          src={homepageSocial.pinterestCard?.imageSrc || "/images/collections/temples-architectural.webp"}
+                          alt="Pinterest Card"
+                          style={{ width: "45px", height: "45px", objectFit: "cover", borderRadius: "4px", border: "1px solid #F3D0D3" }}
+                        />
+                        <input
+                          type="text"
+                          value={homepageSocial.pinterestCard?.imageSrc || ""}
+                          onChange={(e) => setHomepageSocial({
+                            ...homepageSocial,
+                            pinterestCard: { ...homepageSocial.pinterestCard, imageSrc: e.target.value }
+                          })}
+                          className={styles.input}
+                          style={{ flex: 1 }}
+                        />
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => handleImageUpload(e, (url) => setHomepageSocial({
+                            ...homepageSocial,
+                            pinterestCard: { ...homepageSocial.pinterestCard, imageSrc: url }
+                          }))}
+                          style={{ fontSize: "0.78rem" }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Facebook Card */}
+                <div style={{ border: "1px solid #D0E1F9", borderRadius: "8px", overflow: "hidden", backgroundColor: "#F6F9FE" }}>
+                  <div style={{ background: "#1877F2", color: "#FFFFFF", padding: "0.6rem 1rem", fontWeight: "600", fontSize: "0.85rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <span>👍</span> 3. Facebook Card
+                  </div>
+                  <div style={{ padding: "1rem" }} className={styles.formGrid}>
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Title</label>
+                      <input
+                        type="text"
+                        value={homepageSocial.facebookCard?.title || "Facebook"}
+                        onChange={(e) => setHomepageSocial({
+                          ...homepageSocial,
+                          facebookCard: { ...homepageSocial.facebookCard, title: e.target.value }
+                        })}
+                        className={styles.input}
+                      />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>CTA Label</label>
+                      <input
+                        type="text"
+                        value={homepageSocial.facebookCard?.ctaText || "Visit Facebook \u2192"}
+                        onChange={(e) => setHomepageSocial({
+                          ...homepageSocial,
+                          facebookCard: { ...homepageSocial.facebookCard, ctaText: e.target.value }
+                        })}
+                        className={styles.input}
+                      />
+                    </div>
+                    <div className={styles.formGroupFull}>
+                      <label className={styles.label}>Description</label>
+                      <input
+                        type="text"
+                        value={homepageSocial.facebookCard?.description || ""}
+                        onChange={(e) => setHomepageSocial({
+                          ...homepageSocial,
+                          facebookCard: { ...homepageSocial.facebookCard, description: e.target.value }
+                        })}
+                        className={styles.input}
+                      />
+                    </div>
+                    <div className={styles.formGroupFull}>
+                      <label className={styles.label}>Destination URL Override</label>
+                      <input
+                        type="text"
+                        value={homepageSocial.facebookCard?.url || ""}
+                        onChange={(e) => setHomepageSocial({
+                          ...homepageSocial,
+                          facebookCard: { ...homepageSocial.facebookCard, url: e.target.value }
+                        })}
+                        className={styles.input}
+                        placeholder="https://facebook.com/jaipurstonecraft"
+                      />
+                    </div>
+                    <div className={styles.formGroupFull}>
+                      <label className={styles.label}>Card Image</label>
+                      <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+                        <img
+                          src={homepageSocial.facebookCard?.imageSrc || "/images/craftsmanship/step-02-shape-precision.jpg"}
+                          alt="Facebook Card"
+                          style={{ width: "45px", height: "45px", objectFit: "cover", borderRadius: "4px", border: "1px solid #D0E1F9" }}
+                        />
+                        <input
+                          type="text"
+                          value={homepageSocial.facebookCard?.imageSrc || ""}
+                          onChange={(e) => setHomepageSocial({
+                            ...homepageSocial,
+                            facebookCard: { ...homepageSocial.facebookCard, imageSrc: e.target.value }
+                          })}
+                          className={styles.input}
+                          style={{ flex: 1 }}
+                        />
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => handleImageUpload(e, (url) => setHomepageSocial({
+                            ...homepageSocial,
+                            facebookCard: { ...homepageSocial.facebookCard, imageSrc: url }
+                          }))}
+                          style={{ fontSize: "0.78rem" }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* SECTION 5: CLIENT TESTIMONIALS & REVIEWS */}
           <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
@@ -1011,54 +1548,275 @@ export default function AdminPageCMS() {
 
       {/* TAB 3: CRAFTSMANSHIP PAGE */}
       {activeTab === "craftsmanship" && (
-        <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
-            <div>
-              <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
-                Craftsmanship → Atelier Manifesto Hero
-              </h3>
-              <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
-                📍 Used on /craftsmanship
-              </span>
+        <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
+          {/* 1. CRAFTSMANSHIP HERO SECTION */}
+          <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem", flexWrap: "wrap", gap: "0.5rem" }}>
+              <div>
+                <h3 style={{ fontSize: "1.1rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
+                  1. Craftsmanship Atelier Hero
+                </h3>
+                <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
+                  📍 Used on / & /craftsmanship
+                </span>
+              </div>
+              <button
+                onClick={() => handleSaveSection("craftsmanship_hero", craftsmanshipHero)}
+                className={styles.primaryBtn}
+                disabled={saving}
+              >
+                {saving ? "Saving..." : "Save All Craftsmanship Changes"}
+              </button>
             </div>
-            <button
-              onClick={() => handleSaveSection("craftsmanship_hero", craftsmanshipHero)}
-              className={styles.primaryBtn}
-              disabled={saving}
-            >
-              {saving ? "Saving..." : "Save Craftsmanship Hero"}
-            </button>
+
+            <div className={styles.formGrid}>
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Eyebrow</label>
+                <input
+                  type="text"
+                  value={craftsmanshipHero.eyebrow || "THE ART OF CRAFTSMANSHIP"}
+                  onChange={(e) => setCraftsmanshipHero({ ...craftsmanshipHero, eyebrow: e.target.value })}
+                  className={styles.input}
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Heading</label>
+                <input
+                  type="text"
+                  value={craftsmanshipHero.heading || "Where Tradition Meets Mastery."}
+                  onChange={(e) => setCraftsmanshipHero({ ...craftsmanshipHero, heading: e.target.value })}
+                  className={styles.input}
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Description</label>
+                <textarea
+                  rows={3}
+                  value={craftsmanshipHero.description || ""}
+                  onChange={(e) => setCraftsmanshipHero({ ...craftsmanshipHero, description: e.target.value })}
+                  className={styles.textarea}
+                />
+              </div>
+
+              {/* HERO MAIN ARTISAN PHOTO */}
+              <div className={styles.formGroupFull} style={{ marginTop: "0.5rem", padding: "1rem", backgroundColor: "#FAF9F6", borderRadius: "10px", border: "1px solid #E8E5DF" }}>
+                <label className={styles.label} style={{ fontSize: "0.9rem", fontWeight: "600", color: "var(--color-navy)", marginBottom: "0.5rem" }}>
+                  📸 Hero Craftsmanship Master Photo
+                </label>
+                <div style={{ display: "flex", gap: "1rem", alignItems: "center", flexWrap: "wrap" }}>
+                  <div style={{ position: "relative", width: "120px", height: "80px", borderRadius: "8px", overflow: "hidden", backgroundColor: "#EAE7E1", flexShrink: 0 }}>
+                    <img
+                      src={craftsmanshipHero.heroImageSrc || "/images/hero/hero-krishna-artisan.jpg"}
+                      alt="Hero Craftsmanship Preview"
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
+                  </div>
+                  <div style={{ flex: 1, minWidth: "220px" }}>
+                    <input
+                      type="text"
+                      value={craftsmanshipHero.heroImageSrc || "/images/hero/hero-krishna-artisan.jpg"}
+                      onChange={(e) => setCraftsmanshipHero({ ...craftsmanshipHero, heroImageSrc: e.target.value })}
+                      className={styles.input}
+                      placeholder="/images/hero/hero-krishna-artisan.jpg"
+                      style={{ marginBottom: "0.5rem" }}
+                    />
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleImageUpload(e, (url) => setCraftsmanshipHero({ ...craftsmanshipHero, heroImageSrc: url }))}
+                      style={{ fontSize: "0.85rem" }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className={styles.formGrid}>
-            <div className={styles.formGroupFull}>
-              <label className={styles.label}>Eyebrow</label>
-              <input
-                type="text"
-                value={craftsmanshipHero.eyebrow}
-                onChange={(e) => setCraftsmanshipHero({ ...craftsmanshipHero, eyebrow: e.target.value })}
-                className={styles.input}
-              />
+          {/* 2. THE 5 MANUFACTURING & CRAFTING JOURNEY STEPS */}
+          <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem", flexWrap: "wrap", gap: "0.5rem" }}>
+              <div>
+                <h3 style={{ fontSize: "1.1rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
+                  2. Manufacturing & Crafting Journey Steps (5 Stages)
+                </h3>
+                <p style={{ fontSize: "0.82rem", color: "#666", marginTop: "0.2rem" }}>
+                  Upload custom manufacturing stage photos, update step titles and process descriptions.
+                </p>
+              </div>
+              <button
+                onClick={() => handleSaveSection("craftsmanship_hero", craftsmanshipHero)}
+                className={styles.primaryBtn}
+                disabled={saving}
+              >
+                {saving ? "Saving..." : "Save Step Changes"}
+              </button>
             </div>
 
-            <div className={styles.formGroupFull}>
-              <label className={styles.label}>Heading</label>
-              <input
-                type="text"
-                value={craftsmanshipHero.heading}
-                onChange={(e) => setCraftsmanshipHero({ ...craftsmanshipHero, heading: e.target.value })}
-                className={styles.input}
-              />
+            <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+              {(craftsmanshipHero.journeySteps || [
+                { step: "01", title: "SELECT THE FINEST STONE", description: "Handpicked premium marble chosen for its purity, strength, and timeless beauty.", imageSrc: "/images/craftsmanship/step-01-select-stone.jpg" },
+                { step: "02", title: "SHAPE WITH PRECISION", description: "Artisans carve the form with care, bringing the first life to the stone.", imageSrc: "/images/craftsmanship/step-02-shape-precision.jpg" },
+                { step: "03", title: "REFINE THE DETAILS", description: "Every detail is meticulously carved to perfection, giving it character and grace.", imageSrc: "/images/craftsmanship/step-03-refine-details.jpg" },
+                { step: "04", title: "POLISH TO PERFECTION", description: "Surface is smoothed and polished to enhance the natural beauty of marble.", imageSrc: "/images/craftsmanship/step-04-polish-perfection.jpg" },
+                { step: "05", title: "A MASTERPIECE IS BORN", description: "A timeless creation, ready to be cherished for generations.", imageSrc: "/images/brand/heritage-ganesha.jpg" }
+              ]).map((stepItem, idx) => (
+                <div key={idx} style={{ padding: "1.25rem", backgroundColor: "#FAF9F6", borderRadius: "12px", border: "1px solid #E5E1D8" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.85rem" }}>
+                    <span style={{ fontSize: "0.85rem", fontWeight: "700", color: "var(--color-bronze)", letterSpacing: "0.08em" }}>
+                      STAGE {stepItem.step || `0${idx + 1}`}
+                    </span>
+                  </div>
+
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "1rem" }}>
+                    <div>
+                      <label className={styles.label}>Step Title</label>
+                      <input
+                        type="text"
+                        value={stepItem.title || ""}
+                        onChange={(e) => {
+                          const updated = [...(craftsmanshipHero.journeySteps || [])];
+                          updated[idx] = { ...updated[idx], title: e.target.value };
+                          setCraftsmanshipHero({ ...craftsmanshipHero, journeySteps: updated });
+                        }}
+                        className={styles.input}
+                      />
+                    </div>
+                    <div>
+                      <label className={styles.label}>Step Description</label>
+                      <input
+                        type="text"
+                        value={stepItem.description || ""}
+                        onChange={(e) => {
+                          const updated = [...(craftsmanshipHero.journeySteps || [])];
+                          updated[idx] = { ...updated[idx], description: e.target.value };
+                          setCraftsmanshipHero({ ...craftsmanshipHero, journeySteps: updated });
+                        }}
+                        className={styles.input}
+                      />
+                    </div>
+                  </div>
+
+                  {/* STEP IMAGE EDITING & UPLOAD */}
+                  <div style={{ display: "flex", gap: "1rem", alignItems: "center", flexWrap: "wrap", backgroundColor: "#FFFFFF", padding: "0.85rem", borderRadius: "8px", border: "1px solid #E8E5DF" }}>
+                    <div style={{ position: "relative", width: "100px", height: "70px", borderRadius: "6px", overflow: "hidden", backgroundColor: "#EAE7E1", flexShrink: 0 }}>
+                      <img
+                        src={stepItem.imageSrc || "/images/craftsmanship/step-01-select-stone.jpg"}
+                        alt={`Step ${idx + 1} Preview`}
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      />
+                    </div>
+                    <div style={{ flex: 1, minWidth: "220px" }}>
+                      <label className={styles.label} style={{ fontSize: "0.78rem", marginBottom: "0.25rem" }}>Manufacturing Stage Photo</label>
+                      <input
+                        type="text"
+                        value={stepItem.imageSrc || ""}
+                        onChange={(e) => {
+                          const updated = [...(craftsmanshipHero.journeySteps || [])];
+                          updated[idx] = { ...updated[idx], imageSrc: e.target.value };
+                          setCraftsmanshipHero({ ...craftsmanshipHero, journeySteps: updated });
+                        }}
+                        className={styles.input}
+                        placeholder="/images/craftsmanship/step-01-select-stone.jpg"
+                        style={{ marginBottom: "0.4rem" }}
+                      />
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload(e, (url) => {
+                          const updated = [...(craftsmanshipHero.journeySteps || [])];
+                          updated[idx] = { ...updated[idx], imageSrc: url };
+                          setCraftsmanshipHero({ ...craftsmanshipHero, journeySteps: updated });
+                        })}
+                        style={{ fontSize: "0.82rem" }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 3. BEHIND EVERY CREATION STORY SECTION */}
+          <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem", flexWrap: "wrap", gap: "0.5rem" }}>
+              <div>
+                <h3 style={{ fontSize: "1.1rem", fontWeight: "600", color: "var(--color-navy)" }}>
+                  3. Behind Every Creation (Human Story & Artisan Profile)
+                </h3>
+              </div>
+              <button
+                onClick={() => handleSaveSection("craftsmanship_hero", craftsmanshipHero)}
+                className={styles.primaryBtn}
+                disabled={saving}
+              >
+                {saving ? "Saving..." : "Save Story Changes"}
+              </button>
             </div>
 
-            <div className={styles.formGroupFull}>
-              <label className={styles.label}>Description</label>
-              <textarea
-                rows={3}
-                value={craftsmanshipHero.description}
-                onChange={(e) => setCraftsmanshipHero({ ...craftsmanshipHero, description: e.target.value })}
-                className={styles.textarea}
-              />
+            <div className={styles.formGrid}>
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Story Section Title</label>
+                <input
+                  type="text"
+                  value={craftsmanshipHero.storyTitle || "Hands That Create. Hearts That Care."}
+                  onChange={(e) => setCraftsmanshipHero({ ...craftsmanshipHero, storyTitle: e.target.value })}
+                  className={styles.input}
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Story Description</label>
+                <textarea
+                  rows={3}
+                  value={craftsmanshipHero.storyDesc || ""}
+                  onChange={(e) => setCraftsmanshipHero({ ...craftsmanshipHero, storyDesc: e.target.value })}
+                  className={styles.textarea}
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Script Accent Line</label>
+                <input
+                  type="text"
+                  value={craftsmanshipHero.storyScriptAccent || "Built on Tradition. Perfected by Time."}
+                  onChange={(e) => setCraftsmanshipHero({ ...craftsmanshipHero, storyScriptAccent: e.target.value })}
+                  className={styles.input}
+                />
+              </div>
+
+              {/* STORY IMAGE EDITING & UPLOAD */}
+              <div className={styles.formGroupFull} style={{ marginTop: "0.5rem", padding: "1rem", backgroundColor: "#FAF9F6", borderRadius: "10px", border: "1px solid #E8E5DF" }}>
+                <label className={styles.label} style={{ fontSize: "0.9rem", fontWeight: "600", color: "var(--color-navy)", marginBottom: "0.5rem" }}>
+                  📸 Story Feature Photo (Goddess Profile / Atelier Sculpture)
+                </label>
+                <div style={{ display: "flex", gap: "1rem", alignItems: "center", flexWrap: "wrap" }}>
+                  <div style={{ position: "relative", width: "120px", height: "80px", borderRadius: "8px", overflow: "hidden", backgroundColor: "#EAE7E1", flexShrink: 0 }}>
+                    <img
+                      src={craftsmanshipHero.storyImageSrc || "/images/collections/hero-sculptures-group.webp"}
+                      alt="Story Feature Preview"
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
+                  </div>
+                  <div style={{ flex: 1, minWidth: "220px" }}>
+                    <input
+                      type="text"
+                      value={craftsmanshipHero.storyImageSrc || "/images/collections/hero-sculptures-group.webp"}
+                      onChange={(e) => setCraftsmanshipHero({ ...craftsmanshipHero, storyImageSrc: e.target.value })}
+                      className={styles.input}
+                      placeholder="/images/collections/hero-sculptures-group.webp"
+                      style={{ marginBottom: "0.5rem" }}
+                    />
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleImageUpload(e, (url) => setCraftsmanshipHero({ ...craftsmanshipHero, storyImageSrc: url }))}
+                      style={{ fontSize: "0.85rem" }}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
