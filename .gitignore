@@ -47,4 +47,9 @@ next-env.d.ts
 # scratch scripts
 scratch/
 
+# database backups & dumps
+backups/
+*.sql
+*.sql.gz
+
 
