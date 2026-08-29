@@ -53,7 +53,7 @@ jobs:
             -p "${SSH_PORT:-65002}" \
             -o BatchMode=yes \
             "${SSH_USER:-u209772524}@${SSH_HOST:-217.21.91.171}" \
-            "bash /home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com/hbuilds/last-source/scripts/deploy-hostinger.sh '${TARGET_COMMIT}'"
+            "cd /home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com/hbuilds/last-source && git fetch origin main && git checkout -f '${TARGET_COMMIT}' && bash scripts/deploy-hostinger.sh '${TARGET_COMMIT}'"
 
       - name: Cleanup SSH Credentials
         if: always()
