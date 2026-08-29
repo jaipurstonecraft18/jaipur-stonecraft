@@ -1,7 +1,7 @@
 /**
  * Jaipur Stonecraft — Central Product Database Provider API
  * 
- * Delegates query operations directly to the persistent SQLite database engine.
+ * Delegates query operations directly to the persistent MySQL database engine.
  * STRICT RULE: Granite is strictly excluded.
  */
 

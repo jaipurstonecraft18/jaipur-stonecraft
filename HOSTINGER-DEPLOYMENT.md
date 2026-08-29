@@ -131,32 +131,34 @@ To enable automated daily backups of database and images:
 
 ---
 
-## 9. Production -> Local Synchronization (Backup & Development)
+## 9. Bidirectional Synchronization (Local <-> Hostinger Production)
 
-To pull the production database back to your local development environment:
-1. Configure `PRODUCTION_DATABASE_URL` in your local `.env` (using Hostinger Remote MySQL or SSH tunnel).
-2. Run the safe one-way sync command:
-   ```bash
-   npm run sync:prod
-   ```
-3. This creates a timestamped compressed backup in `backups/db/cloud_sync/` and refreshes your local MySQL mirror without altering production data.
+Full synchronization manual available at [`docs/DATA-SYNCHRONIZATION-MANUAL.md`](docs/DATA-SYNCHRONIZATION-MANUAL.md).
+
+* **Check Synchronization & Parity**:
+  ```bash
+  npm run sync:status
+  npm run sync:verify
+  ```
+* **Push Local Changes -> Production (Dry-run preview by default)**:
+  ```bash
+  npm run sync:push              # Preview changes
+  npm run sync:push -- --confirm # Confirmed live push (creates pre-push backup first)
+  ```
+* **Pull Production Changes -> Local**:
+  ```bash
+  npm run sync:pull              # Preview changes
+  npm run sync:pull -- --confirm # Confirmed live pull (creates pre-pull backup first)
+  ```
 
 ---
 
 ## 10. Disaster Recovery & Rollback Procedure
 
-### Application Rollback
-If a code deployment causes issues:
-```bash
-git checkout <previous-commit-hash>
-npm run build
-# Restart application in hPanel
-```
-
 ### Database Restoration
 To restore a database dump:
 ```bash
-node --env-file=.env scripts/restore-runner.js --db --file backups/db/full/db_full_YYYY-MM-DD.sql.gz
+npm run restore -- --file=backups/db/full/db_full_YYYY-MM-DD.sql.gz --confirm
 ```
 
 ### Media Restoration
