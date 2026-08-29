@@ -43,14 +43,13 @@ echo "==========================================================================
 mkdir -p "${VERSIONS_DIR}"
 mkdir -p "${SHARED_UPLOADS}"
 
-# Seed shared storage if not yet populated (non-destructive copy from active release or last-source)
-if [ ! -d "${SHARED_UPLOADS}/products" ]; then
-    echo "[Preflight] Initializing shared uploads storage from existing assets..."
-    if [ -d "${CURRENT_LINK}/nodejs/public/uploads/products" ]; then
-        cp -rn "${CURRENT_LINK}/nodejs/public/uploads/"* "${SHARED_UPLOADS}/" 2>/dev/null || true
-    elif [ -d "${LAST_SOURCE}/public/uploads/products" ]; then
-        cp -rn "${LAST_SOURCE}/public/uploads/"* "${SHARED_UPLOADS}/" 2>/dev/null || true
-    fi
+# Seed shared storage if not yet populated (non-destructive rsync)
+if [ -d "${LAST_SOURCE}/public/uploads" ]; then
+    echo "[Preflight] Synchronizing shared uploads storage from source..."
+    rsync -a --ignore-existing "${LAST_SOURCE}/public/uploads/" "${SHARED_UPLOADS}/" 2>/dev/null || true
+elif [ -d "${CURRENT_LINK}/nodejs/public/uploads" ]; then
+    echo "[Preflight] Synchronizing shared uploads storage from active release..."
+    rsync -a --ignore-existing "${CURRENT_LINK}/nodejs/public/uploads/" "${SHARED_UPLOADS}/" 2>/dev/null || true
 fi
 
 # Step 2: Fetch and checkout target commit in last-source
