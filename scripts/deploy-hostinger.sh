@@ -57,7 +57,7 @@ fi
 echo "[Step 1/6] Updating last-source working copy from origin..."
 cd "${LAST_SOURCE}"
 git fetch origin main --tags
-git checkout -f "${TARGET_COMMIT}"
+git reset --hard FETCH_HEAD
 DEPLOYED_HASH="$(git rev-parse HEAD)"
 SHORT_HASH="$(git rev-parse --short HEAD)"
 RELEASE_ID="$(date +%Y%m%d_%H%M%S)_${SHORT_HASH}"
