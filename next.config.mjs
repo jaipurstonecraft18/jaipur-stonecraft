@@ -29,6 +29,7 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
+  },
   experimental: {
     cpus: 2,
   },
