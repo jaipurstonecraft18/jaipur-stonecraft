@@ -17,6 +17,8 @@
     "preflight:hostinger": "node --env-file=.env scripts/hostinger-preflight.mjs",
     "verify:migration": "node --env-file=.env scripts/verify-hostinger-migration.mjs",
     "package:hostinger": "node --env-file=.env scripts/package-hostinger-deployment.mjs",
+    "deploy:prod": "node scripts/remote-deploy.mjs",
+    "rollback:prod": "node scripts/remote-rollback.mjs",
     "migrate:aiven": "node --env-file=.env scripts/migrate-mysql-to-aiven.mjs",
     "migrate:b2": "node --env-file=.env scripts/migrate-images-to-b2.mjs",
     "lint": "eslint"
