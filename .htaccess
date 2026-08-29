@@ -1,0 +1,22 @@
+# Jaipur Stonecraft — Hostinger Apache / LiteSpeed Web Server Security Hardening
+# Blocks public access to sensitive backend directories, database dumps, and environment files
+
+<IfModule mod_authz_core.c>
+    # Deny direct access to environment files, git, and database archives
+    <FilesMatch "^\.env|\.git|.*\.(sql|gz|db|log|sh|bat|ps1|mjs|sqlite)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+
+<IfModule !mod_authz_core.c>
+    <FilesMatch "^\.env|\.git|.*\.(sql|gz|db|log|sh|bat|ps1|mjs|sqlite)$">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+</IfModule>
+
+# Deny direct HTTP directory browsing for internal folders
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(backups|data|lib|scripts|scratch|\.git)(/.*)?$ - [F,L,NC]
+</IfModule>

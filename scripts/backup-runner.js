@@ -1,44 +1,54 @@
 /**
- * Jaipur Stonecraft — CLI Backup Execution Script
+ * Jaipur Stonecraft — CLI Master Local Backup Execution Runner (Phase 5C)
  * 
  * Usage:
- *   node scripts/backup-runner.js
  *   npm run backup
+ *   npm run backup -- --full
  */
 
 import { runFullBackup } from "../lib/backup/backup-engine.js";
 
 async function main() {
+  const isForceFull = process.argv.includes("--full");
+
   console.log("==================================================");
-  console.log("JAIPUR STONECRAFT — AUTOMATED BACKUP RUNNER");
+  console.log("JAIPUR STONECRAFT — MASTER LOCAL BACKUP SYSTEM");
+  console.log(`Mode: ${isForceFull ? "Forced Full Backup" : "Change-Aware Delta Backup"}`);
+  console.log("Target: Local Storage (Aiven MySQL -> Local DB & CAS Images)");
   console.log("==================================================\n");
 
   try {
-    const report = await runFullBackup();
+    const report = await runFullBackup({ forceFull: isForceFull });
 
     console.log("✅ BACKUP COMPLETED SUCCESSFULLY");
     console.log("Timestamp:", report.timestamp);
     console.log("Execution Time:", `${report.durationMs} ms`);
     console.log("");
-    console.log("--- Database Backup ---");
-    console.log("SQL Dump File:", report.database.filePath);
-    console.log("File Size:", `${report.database.fileSizeKb} KB`);
-    console.log("Tables Exported:", Object.keys(report.database.summary.tables).join(", "));
-    console.log("Total Rows Exported:", report.database.summary.totalRows);
-    console.log("Google Drive Sync:", report.database.googleDriveSync.synced ? "SYNCED" : `SKIPPED (${report.database.googleDriveSync.reason})`);
+    console.log("--- 1. Database Backup (Aiven MySQL / Local Mirror) ---");
+    console.log("Source:", report.database.source);
+    console.log("Status:", report.database.status);
+    console.log("Total Records:", report.database.totalRows);
+    console.log("Dump File Created:", report.database.dumpFileCreated ? "YES (New compressed dump)" : "NO (Unchanged - deduplicated)");
+    console.log("Compressed Dump Path:", report.database.dumpFilePath);
+    console.log("Compressed Dump Size:", `${report.database.compressedSizeKb} KB (.sql.gz)`);
+    console.log("Database Manifest:", report.database.manifestFilePath);
     console.log("");
-    console.log("--- Image Archive Backup ---");
-    console.log("Archive JSON File:", report.images.filePath);
-    console.log("Archive File Size:", `${report.images.fileSizeKb} KB`);
-    console.log("Total Production Images:", report.images.totalImages);
-    console.log("Total Image Content Size:", `${(report.images.totalSizeBytes / 1024).toFixed(2)} KB`);
-    console.log("Google Drive Sync:", report.images.googleDriveSync.synced ? "SYNCED" : `SKIPPED (${report.images.googleDriveSync.reason})`);
+    console.log("--- 2. Content-Addressable Image Backup (public/uploads) ---");
+    console.log("Total Production Files:", report.images.totalImages);
+    console.log("Total Size:", `${(report.images.totalSizeBytes / (1024 * 1024)).toFixed(2)} MB`);
+    console.log("Change Detection Breakdown:");
+    console.log(`  - New Files:       ${report.images.stats.newFiles}`);
+    console.log(`  - Modified Files:  ${report.images.stats.modifiedFiles}`);
+    console.log(`  - Unchanged Files: ${report.images.stats.unchangedFiles} (Skipped redundant copy)`);
+    console.log(`  - Deleted Files:   ${report.images.stats.deletedFiles} (Preserved in historical CAS)`);
+    console.log("New Objects Stored:", `${report.images.newObjectsStored} unique file(s)`);
+    console.log("Image Manifest:", report.images.manifestFilePath);
     console.log("");
-    console.log("--- Retention Pruning ---");
-    console.log("Retention Limit:", `${report.retention.retentionLimit} backups`);
-    console.log("Local DB Files Pruned:", report.retention.localDbFilesPruned);
-    console.log("Local Image Files Pruned:", report.retention.localImgFilesPruned);
-    console.log("Remote Drive Files Pruned:", report.retention.remoteDriveFilesPruned);
+    console.log("--- 3. Retention & Pruning ---");
+    console.log("Local Retention Limit:", `${report.retention.retentionLimit} backups`);
+    console.log("Local DB Dumps Pruned:", report.retention.localDbDumpsPruned);
+    console.log("Local DB Manifests Pruned:", report.retention.localDbManifestsPruned);
+    console.log("Local Image Manifests Pruned:", report.retention.localImgManifestsPruned);
     console.log("--------------------------------------------------\n");
     process.exit(0);
   } catch (error) {

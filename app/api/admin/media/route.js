@@ -113,7 +113,7 @@ export async function GET(request) {
   }
 }
 
-// DELETE: Safely remove unused media file from disk
+// DELETE: Safely remove unused media file from disk and B2
 export async function DELETE(request) {
   if (!isAuthorizedAdminRequest(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -139,7 +139,7 @@ export async function DELETE(request) {
       }, { status: 400 });
     }
 
-    // Unlink display, raw, card, and thumb files safely
+    // Unlink display, raw, card, and thumb files safely from local disk
     const baseDiskPath = path.join(process.cwd(), "public", mediaUrl.replace(/^\//, ""));
     const rawDiskPath = baseDiskPath.replace("/display/", "/raw/").replace(/\.webp$/, ".png");
     const cardDiskPath = baseDiskPath.replace("/display/", "/card/");
@@ -156,7 +156,29 @@ export async function DELETE(request) {
     safeUnlink(cardDiskPath);
     safeUnlink(thumbDiskPath);
 
-    return NextResponse.json({ success: true, message: "Media file deleted safely from disk." });
+    // Delete corresponding objects from B2 if configured
+    const hasB2 = process.env.B2_KEY_ID && process.env.B2_APPLICATION_KEY && !process.env.B2_KEY_ID.startsWith("PASTE_");
+    if (hasB2) {
+      try {
+        const { deleteObject } = await import("@/lib/storage/b2-client.js");
+        const cleanRel = mediaUrl.replace(/^\/?uploads\/?/, "");
+        const b2DisplayKey = `production/${cleanRel}`;
+        const b2RawKey = `production/${cleanRel.replace("/display/", "/raw/").replace(/\.webp$/, ".png")}`;
+        const b2CardKey = `production/${cleanRel.replace("/display/", "/card/")}`;
+        const b2ThumbKey = `production/${cleanRel.replace("/display/", "/thumb/")}`;
+
+        await Promise.allSettled([
+          deleteObject(b2DisplayKey),
+          deleteObject(b2RawKey),
+          deleteObject(b2CardKey),
+          deleteObject(b2ThumbKey)
+        ]);
+      } catch (b2Err) {
+        console.warn("[Media API] B2 delete warning:", b2Err.message || b2Err);
+      }
+    }
+
+    return NextResponse.json({ success: true, message: "Media file deleted safely from disk and cloud storage." });
   } catch (error) {
     return NextResponse.json({ error: error.message || "Failed to delete media" }, { status: 500 });
   }
