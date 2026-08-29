@@ -53,10 +53,19 @@ jobs:
           
           echo "Connecting to Hostinger (${TARGET_USER}@${TARGET_HOST}:${TARGET_PORT}) to deploy commit ${TARGET_COMMIT}..."
           
+          # Test SSH handshake first
           ssh -i ~/.ssh/deploy_key \
             -p "$TARGET_PORT" \
             -o BatchMode=yes \
-            -o StrictHostKeyChecking=accept-new \
+            -o StrictHostKeyChecking=no \
+            "${TARGET_USER}@${TARGET_HOST}" \
+            "echo '=== SSH AUTHENTICATION SUCCESSFUL ==='"
+          
+          # Run deployment runner
+          ssh -i ~/.ssh/deploy_key \
+            -p "$TARGET_PORT" \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=no \
             "${TARGET_USER}@${TARGET_HOST}" \
             "cd /home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com/hbuilds/last-source && git fetch origin main && git reset --hard FETCH_HEAD && bash scripts/deploy-hostinger.sh '${TARGET_COMMIT}'"
 
