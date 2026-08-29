@@ -98,8 +98,8 @@ fi
 echo "[Step 4/6] Installing dependencies and building production bundle..."
 cd "${NEW_NODEJS_DIR}"
 
-# Run clean npm install
-npm ci --omit=optional
+# Run clean npm install (including sharp linux platform bindings)
+npm ci
 
 # Compile production build with worker constraints
 npm run build
