@@ -86,7 +86,7 @@ rm -rf "${NEW_NODEJS_DIR}/public/uploads"
 ln -sfn "${SHARED_UPLOADS}" "${NEW_NODEJS_DIR}/public/uploads"
 
 # Verify media availability
-MEDIA_COUNT="$(find "${NEW_NODEJS_DIR}/public/uploads" -type f | wc -l)"
+MEDIA_COUNT="$(find -L "${NEW_NODEJS_DIR}/public/uploads" -type f | wc -l)"
 echo "Persistent Media Assets Available in Release: ${MEDIA_COUNT}"
 if [ "${MEDIA_COUNT}" -lt 50 ]; then
     echo "ERROR: Media count check failed (${MEDIA_COUNT} assets found). Aborting deployment for safety."
