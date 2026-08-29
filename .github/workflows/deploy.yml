@@ -30,8 +30,8 @@ jobs:
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
           
-          # Write deployment private key with strict permissions
-          echo "$SSH_KEY" > ~/.ssh/deploy_key
+          # Write deployment private key with strict LF formatting and permissions
+          printf '%s\n' "$SSH_KEY" | tr -d '\r' > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           
           # Pin verified Hostinger ED25519 host key directly to eliminate MITM risk
@@ -47,13 +47,18 @@ jobs:
           SSH_USER: ${{ secrets.HOSTINGER_SSH_USER }}
           TARGET_COMMIT: ${{ github.sha }}
         run: |
-          echo "Connecting to Hostinger (${SSH_USER:-u209772524}@${SSH_HOST:-217.21.91.171}:${SSH_PORT:-65002}) to deploy commit ${TARGET_COMMIT}..."
+          TARGET_HOST="${SSH_HOST:-217.21.91.171}"
+          TARGET_PORT="${SSH_PORT:-65002}"
+          TARGET_USER="${SSH_USER:-u209772524}"
+          
+          echo "Connecting to Hostinger (${TARGET_USER}@${TARGET_HOST}:${TARGET_PORT}) to deploy commit ${TARGET_COMMIT}..."
           
           ssh -i ~/.ssh/deploy_key \
-            -p "${SSH_PORT:-65002}" \
+            -p "$TARGET_PORT" \
             -o BatchMode=yes \
-            "${SSH_USER:-u209772524}@${SSH_HOST:-217.21.91.171}" \
-            "cd /home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com/hbuilds/last-source && git fetch origin main && git checkout -f '${TARGET_COMMIT}' && bash scripts/deploy-hostinger.sh '${TARGET_COMMIT}'"
+            -o StrictHostKeyChecking=accept-new \
+            "${TARGET_USER}@${TARGET_HOST}" \
+            "cd /home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com/hbuilds/last-source && git fetch origin main && git reset --hard FETCH_HEAD && bash scripts/deploy-hostinger.sh '${TARGET_COMMIT}'"
 
       - name: Cleanup SSH Credentials
         if: always()
