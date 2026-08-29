@@ -1,0 +1,61 @@
+name: Production Deployment to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+# Prevent overlapping deployments to protect release integrity
+concurrency:
+  group: production-deployment
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to Hostinger
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup SSH Authentication & Pinned Known Hosts
+        env:
+          SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          SSH_PORT: ${{ secrets.HOSTINGER_SSH_PORT }}
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          
+          # Write deployment private key with strict permissions
+          echo "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          
+          # Pin verified Hostinger ED25519 host key directly to eliminate MITM risk
+          TARGET_HOST="${SSH_HOST:-217.21.91.171}"
+          TARGET_PORT="${SSH_PORT:-65002}"
+          echo "[$TARGET_HOST]:$TARGET_PORT ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK5AsvHgeGrFgvZwdSBg+3ulOfljSLDNy+vup5bWc4zl" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Execute Production Deployment on Hostinger
+        env:
+          SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          SSH_PORT: ${{ secrets.HOSTINGER_SSH_PORT }}
+          SSH_USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          TARGET_COMMIT: ${{ github.sha }}
+        run: |
+          echo "Connecting to Hostinger (${SSH_USER:-u209772524}@${SSH_HOST:-217.21.91.171}:${SSH_PORT:-65002}) to deploy commit ${TARGET_COMMIT}..."
+          
+          ssh -i ~/.ssh/deploy_key \
+            -p "${SSH_PORT:-65002}" \
+            -o BatchMode=yes \
+            "${SSH_USER:-u209772524}@${SSH_HOST:-217.21.91.171}" \
+            "bash /home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com/hbuilds/last-source/scripts/deploy-hostinger.sh '${TARGET_COMMIT}'"
+
+      - name: Cleanup SSH Credentials
+        if: always()
+        run: |
+          rm -f ~/.ssh/deploy_key
