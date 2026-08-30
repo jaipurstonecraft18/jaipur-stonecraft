@@ -1,25 +1,34 @@
 /**
- * Jaipur Stonecraft — 1-Command Local Production Deployment Runner
+ * Jaipur Stonecraft — 1-Command Production Deployment Runner
  *
- * Usage: npm run deploy:prod
+ * Usage:
+ * - Local CLI: npm run deploy:prod
+ * - CI/CD: Dispatched by GitHub Actions Self-Hosted Runner
  *
  * GUARANTEES:
- * 1. Uses verified local SSH key authentication to Hostinger (Port 65002).
- * 2. Deploys the exact committed & pushed Git revision to production.
- * 3. Zero database modifications, zero table drops, zero data sync.
- * 4. 100% media persistence (public/uploads preserved via hbuilds/shared/uploads).
- * 5. Atomic zero-downtime release switchover on Hostinger.
- * 6. Automated live health check verification upon completion.
+ * 1. Resilient Credential Resolution:
+ *    - Priority 1: GitHub Secret / Environment variable `HOSTINGER_SSH_KEY`
+ *    - Priority 2: Custom path in `DEPLOY_KEY_PATH`
+ *    - Priority 3: Local workspace fallback at `scratch/deploy_key`
+ * 2. Automatic Secure Ephemeral Key Management:
+ *    - Temporary keys in OS tmpdir are automatically wiped upon process completion.
+ * 3. 100% Media & Database Safety:
+ *    - Zero database migrations/writes.
+ *    - Persistent uploads symlinked from `hbuilds/shared/uploads`.
+ * 4. Atomic Release Switchover:
+ *    - Zero downtime release activation and LiteSpeed Passenger worker reload.
+ * 5. Automated Health Verification Probes.
  */
 
 import { spawn, execSync } from "child_process";
 import fs from "fs";
 import path from "path";
+import os from "os";
+import crypto from "crypto";
 
 const SSH_HOST = process.env.HOSTINGER_SSH_HOST || "217.21.91.171";
 const SSH_PORT = process.env.HOSTINGER_SSH_PORT || "65002";
 const SSH_USER = process.env.HOSTINGER_SSH_USER || "u209772524";
-const DEPLOY_KEY_PATH = path.join(process.cwd(), "scratch", "deploy_key");
 
 const REMOTE_APP_DIR = "/home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com/hbuilds/last-source";
 const LIVE_URL = "https://lavenderblush-crab-850824.hostingersite.com";
@@ -31,28 +40,52 @@ console.log(`Target Server:   ${SSH_USER}@${SSH_HOST}:${SSH_PORT}`);
 console.log(`Timestamp:       ${new Date().toISOString()}`);
 console.log("================================================================================");
 
-// Step 1: Resolve deploy key
-let deployKeyPath = process.env.DEPLOY_KEY_PATH;
+// Step 1: Secure Credential Resolution
+let deployKeyPath = "";
+let isEphemeralKey = false;
 
-if (!deployKeyPath || !fs.existsSync(deployKeyPath)) {
-  const localRepoKey = path.join(process.cwd(), "scratch", "deploy_key");
+if (process.env.HOSTINGER_SSH_KEY && process.env.HOSTINGER_SSH_KEY.trim().length > 0) {
+  const randomSuffix = crypto.randomBytes(6).toString("hex");
+  const tempKeyPath = path.join(os.tmpdir(), `jsc_deploy_key_${randomSuffix}`);
+  const normalizedKey = process.env.HOSTINGER_SSH_KEY.replace(/\r\n/g, "\n").trim() + "\n";
+  
+  fs.writeFileSync(tempKeyPath, normalizedKey, { mode: 0o600 });
+  deployKeyPath = tempKeyPath;
+  isEphemeralKey = true;
+  console.log("Credential Source: GitHub Secret (HOSTINGER_SSH_KEY, ephemeral)");
+} else if (process.env.DEPLOY_KEY_PATH && fs.existsSync(process.env.DEPLOY_KEY_PATH)) {
+  deployKeyPath = process.env.DEPLOY_KEY_PATH;
+  console.log(`Credential Source: DEPLOY_KEY_PATH environment variable (${deployKeyPath})`);
+} else {
+  const localKey = path.join(process.cwd(), "scratch", "deploy_key");
   const fallbackKey = "D:\\jsc\\jsc web1\\scratch\\deploy_key";
 
-  if (fs.existsSync(localRepoKey)) {
-    deployKeyPath = localRepoKey;
+  if (fs.existsSync(localKey)) {
+    deployKeyPath = localKey;
+    console.log("Credential Source: Local workspace key (scratch/deploy_key)");
   } else if (fs.existsSync(fallbackKey)) {
     deployKeyPath = fallbackKey;
-  } else if (process.env.HOSTINGER_SSH_KEY) {
-    const tempKeyDir = path.join(process.cwd(), ".tmp_deploy");
-    if (!fs.existsSync(tempKeyDir)) fs.mkdirSync(tempKeyDir, { recursive: true });
-    deployKeyPath = path.join(tempKeyDir, "id_ed25519");
-    fs.writeFileSync(deployKeyPath, process.env.HOSTINGER_SSH_KEY.replace(/\r\n/g, "\n"), { mode: 0o600 });
+    console.log(`Credential Source: Fallback workspace key (${fallbackKey})`);
   }
 }
 
+function cleanupEphemeralKey() {
+  if (isEphemeralKey && deployKeyPath && fs.existsSync(deployKeyPath)) {
+    try {
+      fs.unlinkSync(deployKeyPath);
+    } catch {
+      // Ignore cleanup error
+    }
+  }
+}
+
+process.on("exit", cleanupEphemeralKey);
+process.on("SIGINT", () => { cleanupEphemeralKey(); process.exit(130); });
+process.on("SIGTERM", () => { cleanupEphemeralKey(); process.exit(143); });
+
 if (!deployKeyPath || !fs.existsSync(deployKeyPath)) {
-  console.error(`\n[FATAL ERROR] Deployment key not found.`);
-  console.error("Please ensure the dedicated deploy key is present or set HOSTINGER_SSH_KEY / DEPLOY_KEY_PATH.");
+  console.error("\n[FATAL ERROR] Deployment private key could not be resolved.");
+  console.error("Please ensure HOSTINGER_SSH_KEY secret is configured or scratch/deploy_key exists.");
   process.exit(1);
 }
 
@@ -74,8 +107,7 @@ try {
   } catch {
     originMain = localHead;
   }
-} catch (err) {
-  // If in CI detached HEAD environment, fall back to environment variable
+} catch {
   localHead = process.env.TARGET_COMMIT || process.env.GITHUB_SHA || "";
   originMain = localHead;
 }
@@ -116,6 +148,7 @@ const sshProcess = spawn("ssh", [
 });
 
 sshProcess.on("close", async (code) => {
+  cleanupEphemeralKey();
   const durationSec = ((Date.now() - startTime) / 1000).toFixed(1);
   console.log("--------------------------------------------------------------------------------");
 
