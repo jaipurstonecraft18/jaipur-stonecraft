@@ -31,14 +31,32 @@ console.log(`Target Server:   ${SSH_USER}@${SSH_HOST}:${SSH_PORT}`);
 console.log(`Timestamp:       ${new Date().toISOString()}`);
 console.log("================================================================================");
 
-// Step 1: Verify local deploy key exists
-if (!fs.existsSync(DEPLOY_KEY_PATH)) {
-  console.error(`\n[FATAL ERROR] Deployment key not found at: ${DEPLOY_KEY_PATH}`);
-  console.error("Please ensure the dedicated deploy key is present before running deployment.");
+// Step 1: Resolve deploy key
+let deployKeyPath = process.env.DEPLOY_KEY_PATH;
+
+if (!deployKeyPath || !fs.existsSync(deployKeyPath)) {
+  const localRepoKey = path.join(process.cwd(), "scratch", "deploy_key");
+  const fallbackKey = "D:\\jsc\\jsc web1\\scratch\\deploy_key";
+
+  if (fs.existsSync(localRepoKey)) {
+    deployKeyPath = localRepoKey;
+  } else if (fs.existsSync(fallbackKey)) {
+    deployKeyPath = fallbackKey;
+  } else if (process.env.HOSTINGER_SSH_KEY) {
+    const tempKeyDir = path.join(process.cwd(), ".tmp_deploy");
+    if (!fs.existsSync(tempKeyDir)) fs.mkdirSync(tempKeyDir, { recursive: true });
+    deployKeyPath = path.join(tempKeyDir, "id_ed25519");
+    fs.writeFileSync(deployKeyPath, process.env.HOSTINGER_SSH_KEY.replace(/\r\n/g, "\n"), { mode: 0o600 });
+  }
+}
+
+if (!deployKeyPath || !fs.existsSync(deployKeyPath)) {
+  console.error(`\n[FATAL ERROR] Deployment key not found.`);
+  console.error("Please ensure the dedicated deploy key is present or set HOSTINGER_SSH_KEY / DEPLOY_KEY_PATH.");
   process.exit(1);
 }
 
-// Step 2: Inspect local Git state
+// Step 2: Inspect local Git state & determine target commit
 let localBranch = "";
 let localHead = "";
 let originMain = "";
@@ -57,25 +75,20 @@ try {
     originMain = localHead;
   }
 } catch (err) {
-  console.error("\n[FATAL ERROR] Failed to query local Git repository status:", err.message);
-  process.exit(1);
+  // If in CI detached HEAD environment, fall back to environment variable
+  localHead = process.env.TARGET_COMMIT || process.env.GITHUB_SHA || "";
+  originMain = localHead;
 }
 
-const shortHead = localHead.substring(0, 7);
-console.log(`Local Branch:    ${localBranch}`);
-console.log(`Local Commit:    ${shortHead} (${localHead})`);
+const targetCommit = process.env.TARGET_COMMIT || process.env.GITHUB_SHA || localHead;
+const shortHead = targetCommit.substring(0, 7);
+console.log(`Target Commit:   ${shortHead} (${targetCommit})`);
+if (localBranch) console.log(`Local Branch:    ${localBranch}`);
 
-if (hasUncommitted) {
+if (hasUncommitted && !process.env.GITHUB_ACTIONS) {
   console.warn("\n[WARNING] You have uncommitted changes in your local workspace.");
   console.warn("Only committed and pushed changes will be deployed to Hostinger production.\n");
 }
-
-if (localHead !== originMain) {
-  console.warn(`[WARNING] Local HEAD (${shortHead}) differs from origin/main (${originMain.substring(0, 7)}).`);
-  console.warn("Ensure you have pushed your latest commits with `git push origin main`.\n");
-}
-
-const targetCommit = localHead;
 
 // Step 3: Construct remote execution command
 const remoteCommand = [
@@ -91,7 +104,7 @@ console.log("-------------------------------------------------------------------
 const startTime = Date.now();
 
 const sshProcess = spawn("ssh", [
-  "-i", DEPLOY_KEY_PATH,
+  "-i", deployKeyPath,
   "-p", SSH_PORT,
   "-o", "BatchMode=yes",
   "-o", "StrictHostKeyChecking=accept-new",
