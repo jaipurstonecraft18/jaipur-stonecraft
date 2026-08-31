@@ -8,6 +8,8 @@ import ProductRecommendations from "@/components/ProductDetail/ProductRecommenda
 import ProductCustomizationBanner from "@/components/ProductDetail/ProductCustomizationBanner";
 import { getCollection, getSubcategory } from "@/content/collections";
 import { categoriesData } from "@/content/categories";
+import { getProductFromDB, getRelatedProductsFromDB, getAllProductsFromDB } from "@/content/products-db";
+
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
