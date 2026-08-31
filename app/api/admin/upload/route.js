@@ -3,8 +3,6 @@ import path from "path";
 import fs from "fs/promises";
 import sharp from "sharp";
 import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
-import { uploadObject } from "@/lib/storage/b2-client.js";
-import { toB2Url } from "@/lib/storage/media-helper.js";
 
 const ALLOWED_MIME_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/avif"];
 const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15MB
@@ -105,37 +103,6 @@ export async function POST(request) {
       const thumbPath = path.join(thumbDir, webpFilename);
       await fs.writeFile(thumbPath, thumbBuffer);
 
-      // 3. Dual Storage: Upload to Backblaze B2 if configured
-      const hasB2 = process.env.B2_KEY_ID && process.env.B2_APPLICATION_KEY && !process.env.B2_KEY_ID.startsWith("PASTE_");
-      if (hasB2) {
-        try {
-          await Promise.all([
-            uploadObject({
-              key: `production/${targetFolder}/raw/${rawFilename}`,
-              body: buffer,
-              contentType: file.type || "application/octet-stream"
-            }),
-            uploadObject({
-              key: `production/${targetFolder}/display/${webpFilename}`,
-              body: displayBuffer,
-              contentType: "image/webp"
-            }),
-            uploadObject({
-              key: `production/${targetFolder}/card/${webpFilename}`,
-              body: cardBuffer,
-              contentType: "image/webp"
-            }),
-            uploadObject({
-              key: `production/${targetFolder}/thumb/${webpFilename}`,
-              body: thumbBuffer,
-              contentType: "image/webp"
-            })
-          ]);
-        } catch (b2Err) {
-          console.warn("[Upload API] B2 cloud upload warning (local copy preserved):", b2Err.message || b2Err);
-        }
-      }
-
       const rawSize = file.size;
       const displaySize = displayBuffer.length;
       const cardSize = cardBuffer.length;
@@ -149,7 +116,6 @@ export async function POST(request) {
 
       uploadedRecords.push({
         url: displayUrl, // Primary canonical URL for backward compatibility & local fallback
-        b2Url: toB2Url(displayUrl),
         rawUrl,
         displayUrl,
         cardUrl,
@@ -176,4 +142,5 @@ export async function POST(request) {
     return NextResponse.json({ error: error.message || "Failed to process image upload on server." }, { status: 500 });
   }
 }
+
 

@@ -22,12 +22,6 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
-      {
-        protocol: "https",
-        hostname: "**.backblazeb2.com",
-        port: "",
-        pathname: "/**",
-      },
     ],
   },
   experimental: {

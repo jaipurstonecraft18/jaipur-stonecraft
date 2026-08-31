@@ -156,30 +156,9 @@ export async function DELETE(request) {
     safeUnlink(cardDiskPath);
     safeUnlink(thumbDiskPath);
 
-    // Delete corresponding objects from B2 if configured
-    const hasB2 = process.env.B2_KEY_ID && process.env.B2_APPLICATION_KEY && !process.env.B2_KEY_ID.startsWith("PASTE_");
-    if (hasB2) {
-      try {
-        const { deleteObject } = await import("@/lib/storage/b2-client.js");
-        const cleanRel = mediaUrl.replace(/^\/?uploads\/?/, "");
-        const b2DisplayKey = `production/${cleanRel}`;
-        const b2RawKey = `production/${cleanRel.replace("/display/", "/raw/").replace(/\.webp$/, ".png")}`;
-        const b2CardKey = `production/${cleanRel.replace("/display/", "/card/")}`;
-        const b2ThumbKey = `production/${cleanRel.replace("/display/", "/thumb/")}`;
-
-        await Promise.allSettled([
-          deleteObject(b2DisplayKey),
-          deleteObject(b2RawKey),
-          deleteObject(b2CardKey),
-          deleteObject(b2ThumbKey)
-        ]);
-      } catch (b2Err) {
-        console.warn("[Media API] B2 delete warning:", b2Err.message || b2Err);
-      }
-    }
-
-    return NextResponse.json({ success: true, message: "Media file deleted safely from disk and cloud storage." });
+    return NextResponse.json({ success: true, message: "Media file deleted safely from disk." });
   } catch (error) {
     return NextResponse.json({ error: error.message || "Failed to delete media" }, { status: 500 });
   }
 }
+
