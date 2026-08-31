@@ -56,7 +56,7 @@ export default async function Home() {
       primaryCtaHref: "/collections/temples-architectural-stonework",
       secondaryCtaText: "Consult Artisan",
       secondaryCtaHref: "/contact?type=quote",
-      imageSrc: "/images/collections/temples-architectural.jpg"
+      imageSrc: "/images/collections/temples-architectural.webp"
     },
     {
       eyebrow: "HERITAGE STONE RELIEFS",
@@ -67,7 +67,7 @@ export default async function Home() {
       primaryCtaHref: "/collections/wall-art-reliefs",
       secondaryCtaText: "Custom Commission",
       secondaryCtaHref: "/contact?type=custom",
-      imageSrc: "/images/collections/wall-art-relief.jpg"
+      imageSrc: "/images/collections/wall-art-relief.webp"
     }
   ];
 
