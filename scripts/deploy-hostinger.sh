@@ -79,11 +79,15 @@ rsync -a \
     --exclude="public/uploads" \
     "${LAST_SOURCE}/" "${NEW_NODEJS_DIR}/"
 
-# Step 4: Link persistent shared uploads into new release
-echo "[Step 3/6] Linking persistent shared uploads storage..."
+# Step 4: Link persistent shared uploads and copy config .env into new release
+echo "[Step 3/6] Linking persistent shared uploads storage & configuration..."
 mkdir -p "${NEW_NODEJS_DIR}/public"
 rm -rf "${NEW_NODEJS_DIR}/public/uploads"
 ln -sfn "${SHARED_UPLOADS}" "${NEW_NODEJS_DIR}/public/uploads"
+
+if [ -f "${HBUILDS_ROOT}/config/.env" ]; then
+    cp -f "${HBUILDS_ROOT}/config/.env" "${NEW_NODEJS_DIR}/.env"
+fi
 
 # Verify media availability
 MEDIA_COUNT="$(find -L "${NEW_NODEJS_DIR}/public/uploads" -type f | wc -l)"

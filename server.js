@@ -11,6 +11,18 @@ import fs from "fs";
 import path from "path";
 import next from "next";
 
+// Load environment configuration from .env if present
+try {
+  if (typeof process.loadEnvFile === "function") {
+    const envCandidate = path.join(process.cwd(), ".env");
+    if (fs.existsSync(envCandidate)) {
+      process.loadEnvFile(envCandidate);
+    }
+  }
+} catch (e) {
+  // Non-fatal if .env is missing or already populated in environment
+}
+
 const dev = process.env.NODE_ENV !== "production";
 const hostname = process.env.HOSTNAME || "0.0.0.0";
 const port = parseInt(process.env.PORT || "3000", 10);
