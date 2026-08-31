@@ -5,6 +5,9 @@ import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import ProjectsList from "@/components/ProjectsList/ProjectsList";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: "Completed Installations Portfolio — Jaipur Stonecraft",
   description: "Browse completed structural columns, sandstones arches, deity sculptures, and carved jali lattice screens built globally.",

@@ -11,6 +11,9 @@ import { getPageSection, getSiteSetting } from "@/lib/db/content.js";
 import { siteConfig } from "@/content/site";
 import { getAllCollections } from "@/content/collections";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: "Jaipur Stonecraft — Premium Stone Atelier & Generational Craftsmanship",
   description: "Bespoke white marble deity statues, temple architecture, stone wall murals, and custom architectural stonework carved by master artisans in Jaipur, India.",

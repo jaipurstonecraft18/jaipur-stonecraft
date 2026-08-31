@@ -6,6 +6,9 @@ import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { getAllCollections } from "@/content/collections";
 import styles from "@/components/CollectionsOverview/CollectionsOverview.module.css";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: "Bespoke Stonecraft Collections — Jaipur Stonecraft Atelier",
   description: "Explore the 6 main stonecraft collections carved in white marble, sandstone & limestone by master sculptors in Jaipur, India.",

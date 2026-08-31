@@ -10,6 +10,9 @@ import ExportLogisticsStage from "@/components/Craftsmanship/ExportLogisticsStag
 import MasterpieceBorn from "@/components/Craftsmanship/MasterpieceBorn";
 import CTASection from "@/components/CTASection/CTASection";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: "Atelier Journey & Craftsmanship Process — Jaipur Stonecraft",
   description: "Explore the step-by-step hand carving journey inside our Jaipur atelier: raw stone selection, blueprint grid mapping, generational chiseling, water-stone honing, and global export packaging.",

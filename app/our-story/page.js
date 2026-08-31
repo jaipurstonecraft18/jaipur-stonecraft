@@ -6,6 +6,9 @@ import StoryFutureSection from "@/components/OurStory/StoryFutureSection";
 import StoryCTA from "@/components/OurStory/StoryCTA";
 import { getPageSection } from "@/lib/db/content.js";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: "Our Story — Jaipur Stonecraft Atelier",
   description: "Discover the generational family heritage, master artisan hands, and modern vision behind Jaipur Stonecraft's hand-carved white marble and sandstone atelier.",
@@ -35,7 +38,7 @@ export default async function OurStory() {
     eyebrow: "OUR STORY",
     heading: "Generational Hands, Modern Vision",
     subtitle: "From historic stone hubs in Rajasthan to world-class architectural projects, our family's dedication to chiseling raw natural stone spans decades. Today, we bring this generational craft directly to global architects, sacred trusts, and private collectors without middleman distortion.",
-    imageSrc: "/images/collections/hero-sculptures-group.jpg"
+    imageSrc: "/images/collections/hero-sculptures-group.webp"
   });
 
   const jsonLd = {

@@ -7,7 +7,8 @@ import SubcollectionExploration from "@/components/CollectionDetail/Subcollectio
 import CollectionMaterials from "@/components/CollectionDetail/CollectionMaterials";
 import CollectionCraftProcess from "@/components/CollectionDetail/CollectionCraftProcess";
 import CollectionFeaturedArtworks from "@/components/CollectionDetail/CollectionFeaturedArtworks";
-import CollectionCTA from "@/components/CollectionDetail/CollectionCTA";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function generateStaticParams() {
   return Object.keys(collectionsData).map((collection) => ({

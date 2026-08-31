@@ -6,7 +6,8 @@ import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import CollectionCard from "@/components/CollectionCard/CollectionCard";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import SearchInterface from "@/components/Search/SearchInterface";
-import { queryProductsDB, materialsDB, collectionsStore } from "@/content/products-db";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function generateMetadata({ searchParams }) {
   const params = await searchParams;
