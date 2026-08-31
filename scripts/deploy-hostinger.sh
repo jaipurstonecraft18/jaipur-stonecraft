@@ -144,6 +144,8 @@ ln -sfn "versions/${RELEASE_ID}" "${CURRENT_LINK}"
 echo "[Step 6/6] Reloading LiteSpeed Passenger worker..."
 mkdir -p "${NEW_NODEJS_DIR}/tmp"
 touch "${NEW_NODEJS_DIR}/tmp/restart.txt"
+rm -rf "${NEW_NODEJS_DIR}/.next/cache" 2>/dev/null || true
+pkill -f "lsnode" 2>/dev/null || true
 pkill -f "next-server" 2>/dev/null || true
 
 # Step 8: Retain last 4 releases for rollback, remove older ones
