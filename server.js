@@ -11,16 +11,24 @@ import fs from "fs";
 import path from "path";
 import next from "next";
 
-// Load environment configuration from .env if present
+// Load environment configuration from .env if present and apply to process.env
 try {
-  if (typeof process.loadEnvFile === "function") {
-    const envCandidate = path.join(process.cwd(), ".env");
-    if (fs.existsSync(envCandidate)) {
-      process.loadEnvFile(envCandidate);
+  const envCandidate = path.join(process.cwd(), ".env");
+  if (fs.existsSync(envCandidate)) {
+    const lines = fs.readFileSync(envCandidate, "utf8").split("\n");
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (trimmed && !trimmed.startsWith("#") && trimmed.includes("=")) {
+        const [k, ...rest] = trimmed.split("=");
+        const v = rest.join("=").trim().replace(/^['"]|['"]$/g, "");
+        if (k && v !== undefined) {
+          process.env[k.trim()] = v;
+        }
+      }
     }
   }
 } catch (e) {
-  // Non-fatal if .env is missing or already populated in environment
+  // Non-fatal if .env is missing
 }
 
 const dev = process.env.NODE_ENV !== "production";
