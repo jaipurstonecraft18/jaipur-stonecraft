@@ -11,6 +11,7 @@
     "restore": "node --env-file=.env scripts/sync-runner.mjs restore",
     "sync:status": "node --env-file=.env scripts/sync-runner.mjs status",
     "sync:verify": "node --env-file=.env scripts/sync-runner.mjs verify",
+    "sync:watch": "node --env-file=.env scripts/sync-watcher.mjs",
     "sync:push": "node --env-file=.env scripts/sync-runner.mjs push",
     "sync:pull": "node --env-file=.env scripts/sync-runner.mjs pull",
     "sync:prod": "node --env-file=.env scripts/sync-runner.mjs pull",
