@@ -18,7 +18,8 @@ function parseArgs() {
     command,
     confirm: args.includes("--confirm"),
     dryRun: args.includes("--dry-run"),
-    force: args.includes("--force")
+    force: args.includes("--force"),
+    resolve: args.find(a => a.startsWith("--resolve="))?.split("=")[1] || (args.includes("--resolve-local") ? "local" : null)
   };
 }
 
