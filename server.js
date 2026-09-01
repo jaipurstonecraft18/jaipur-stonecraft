@@ -104,6 +104,15 @@ app.prepare().then(() => {
         }
       }
 
+      // Ensure HTML routes are never cached by Hostinger CDN / LiteSpeed
+      if (!parsedUrl.pathname?.startsWith("/_next/static/") && !parsedUrl.pathname?.startsWith("/uploads/") && !parsedUrl.pathname?.startsWith("/images/")) {
+        res.setHeader("Cache-Control", "private, no-cache, no-store, max-age=0, must-revalidate");
+        res.setHeader("CDN-Cache-Control", "no-store");
+        res.setHeader("Surrogate-Control", "no-store");
+        res.setHeader("Pragma", "no-cache");
+        res.setHeader("X-LiteSpeed-Purge", "*");
+      }
+
       await handle(req, res, parsedUrl);
     } catch (err) {
       console.error("Error occurred handling request:", req.url, err);
