@@ -65,6 +65,19 @@ app.prepare().then(() => {
   createServer(async (req, res) => {
     try {
       const parsedUrl = parse(req.url, true);
+
+      // Resilient fallback for legacy / cached /_next/image requests
+      if (parsedUrl.pathname === "/_next/image" && parsedUrl.query?.url) {
+        const targetUrl = String(parsedUrl.query.url);
+        if (targetUrl.startsWith("/") || targetUrl.startsWith("http")) {
+          res.writeHead(307, {
+            Location: targetUrl,
+            "Cache-Control": "public, max-age=31536000, immutable",
+          });
+          return res.end();
+        }
+      }
+
       await handle(req, res, parsedUrl);
     } catch (err) {
       console.error("Error occurred handling request:", req.url, err);
