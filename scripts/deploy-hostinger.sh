@@ -136,9 +136,9 @@ cat << METADATA > "${NEW_RELEASE_DIR}/.metadata.json"
 }
 METADATA
 
-# Step 6: Atomic release switchover
 echo "[Step 5/6] Atomically switching active release to ${RELEASE_ID}..."
 ln -sfn "versions/${RELEASE_ID}" "${CURRENT_LINK}"
+ln -sfn "${SHARED_UPLOADS}" "${DOMAIN_ROOT}/public_html/uploads"
 
 # Step 7: Graceful process reload
 echo "[Step 6/6] Reloading LiteSpeed Passenger worker..."

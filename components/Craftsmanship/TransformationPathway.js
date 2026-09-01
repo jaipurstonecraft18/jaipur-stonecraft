@@ -151,6 +151,7 @@ export default function TransformationPathway({ steps = [] }) {
                 {/* Stage Navigation Controls */}
                 <div className={styles.controlsRow}>
                   <button
+                    type="button"
                     onClick={() => setActiveIdx((prev) => Math.max(0, prev - 1))}
                     disabled={activeIdx === 0}
                     className={styles.navArrowBtn}
@@ -159,11 +160,12 @@ export default function TransformationPathway({ steps = [] }) {
                     &larr; Previous Stage
                   </button>
                   <span className={styles.stepCounter}>
-                    {activeIdx + 1} / {transformationNodes.length}
+                    {activeIdx + 1} / {nodes.length}
                   </span>
                   <button
-                    onClick={() => setActiveIdx((prev) => Math.min(transformationNodes.length - 1, prev + 1))}
-                    disabled={activeIdx === transformationNodes.length - 1}
+                    type="button"
+                    onClick={() => setActiveIdx((prev) => Math.min(nodes.length - 1, prev + 1))}
+                    disabled={activeIdx === nodes.length - 1}
                     className={styles.navArrowBtn}
                     aria-label="Next Transformation Stage"
                   >
