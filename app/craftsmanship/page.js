@@ -9,6 +9,7 @@ import InspectionHoningStage from "@/components/Craftsmanship/InspectionHoningSt
 import ExportLogisticsStage from "@/components/Craftsmanship/ExportLogisticsStage";
 import MasterpieceBorn from "@/components/Craftsmanship/MasterpieceBorn";
 import CTASection from "@/components/CTASection/CTASection";
+import { getPageSection } from "@/lib/db/content.js";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -36,11 +37,18 @@ export const metadata = {
   },
 };
 
-export default function Craftsmanship() {
+export default async function Craftsmanship() {
+  const craftData = await getPageSection("craftsmanship_hero", {
+    eyebrow: "JAIPUR ATELIER & MASONRY",
+    heading: "From Raw Stone to Finished Art",
+    description: "Inside our Jaipur workshop, generational carvers transform solid Makrana marble monoliths and regional sandstones into divine sculptures, temple architecture, and architectural elements using hand mallets and steel chisels.",
+    heroImageSrc: "/images/craftsmanship/artisan-hands.png"
+  });
+
   return (
     <main style={{ minHeight: "100vh", backgroundColor: "var(--color-cream)" }}>
       {/* 1. EDITORIAL ATELIER HERO */}
-      <AtelierHero />
+      <AtelierHero data={craftData} />
 
       {/* 2. TRANSFORMATION PATHWAY (SIGNATURE VISUAL MOMENT) */}
       <TransformationPathway />

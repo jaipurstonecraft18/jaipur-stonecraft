@@ -95,6 +95,7 @@ export default async function CollectionsPage() {
                     src={spotlight.imageSrc || "/images/collections/hero-sculptures-group.jpg"}
                     alt={spotlight.name}
                     fill
+                    unoptimized
                     sizes="(max-width: 1024px) 100vw, 55vw"
                     className={styles.spotlightImage}
                     priority
@@ -155,6 +156,7 @@ export default async function CollectionsPage() {
                       src={majorOne.imageSrc || "/images/collections/wall-art-relief.jpg"}
                       alt={majorOne.name}
                       fill
+                      unoptimized
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className={styles.featureImage}
                     />
@@ -201,6 +203,7 @@ export default async function CollectionsPage() {
                       src={majorTwo.imageSrc || "/images/collections/temples-architectural.jpg"}
                       alt={majorTwo.name}
                       fill
+                      unoptimized
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className={styles.featureImage}
                     />
@@ -258,6 +261,7 @@ export default async function CollectionsPage() {
                       src={trioOne.imageSrc || "/images/collections/garden.png"}
                       alt={trioOne.name}
                       fill
+                      unoptimized
                       sizes="(max-width: 1024px) 50vw, 33vw"
                       className={styles.trioImage}
                     />
@@ -287,6 +291,7 @@ export default async function CollectionsPage() {
                       src={trioTwo.imageSrc || "/images/collections/luxury.png"}
                       alt={trioTwo.name}
                       fill
+                      unoptimized
                       sizes="(max-width: 1024px) 50vw, 33vw"
                       className={styles.trioImage}
                     />
@@ -316,6 +321,7 @@ export default async function CollectionsPage() {
                       src={trioThree.imageSrc || "/images/collections/custom.png"}
                       alt={trioThree.name}
                       fill
+                      unoptimized
                       sizes="(max-width: 1024px) 50vw, 33vw"
                       className={styles.trioImage}
                     />

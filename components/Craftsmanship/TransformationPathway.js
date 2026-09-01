@@ -113,6 +113,7 @@ export default function TransformationPathway() {
                     src={activeNode.imageSrc}
                     alt={activeNode.alt}
                     fill
+                    unoptimized
                     sizes="(max-width: 1024px) 100vw, 45vw"
                     className={styles.showcaseImage}
                     priority

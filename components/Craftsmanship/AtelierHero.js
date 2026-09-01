@@ -4,7 +4,12 @@ import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import styles from "./AtelierHero.module.css";
 
-export default function AtelierHero() {
+export default function AtelierHero({ data = {} }) {
+  const eyebrow = data.eyebrow || "JAIPUR ATELIER & MASONRY";
+  const heading = data.heading || "From Raw Stone to Finished Art";
+  const description = data.description || "Inside our Jaipur workshop, generational carvers transform solid Makrana marble monoliths and regional sandstones into divine sculptures, temple architecture, and architectural elements using hand mallets and steel chisels.";
+  const imageSrc = data.heroImageSrc || "/images/craftsmanship/artisan-hands.png";
+
   return (
     <section className={styles.heroSection}>
       <Container>
@@ -18,12 +23,10 @@ export default function AtelierHero() {
           {/* Left Column: Heading & Atelier Story */}
           <div className={styles.contentCol}>
             <ScrollReveal animation="fade-up">
-              <span className={styles.eyebrow}>JAIPUR ATELIER & MASONRY</span>
-              <h1 className={styles.heading}>From Raw Stone to Finished Art</h1>
+              <span className={styles.eyebrow}>{eyebrow}</span>
+              <h1 className={styles.heading}>{heading}</h1>
               <p className={styles.leadDescription}>
-                Inside our Jaipur workshop, generational carvers transform solid Makrana marble 
-                monoliths and regional sandstones into divine sculptures, temple architecture, 
-                and architectural elements using hand mallets and steel chisels.
+                {description}
               </p>
               
               <div className={styles.atelierNote}>
@@ -41,9 +44,10 @@ export default function AtelierHero() {
             <ScrollReveal animation="fade-up" delay={150}>
               <div className={styles.imageFrame}>
                 <Image
-                  src="/images/craftsmanship/artisan-hands.png"
-                  alt="Master sculptor hands chiseling white marble in Jaipur Stonecraft workshop"
+                  src={imageSrc}
+                  alt={heading || "Master sculptor hands chiseling white marble in Jaipur Stonecraft workshop"}
                   fill
+                  unoptimized
                   sizes="(max-width: 991px) 100vw, 45vw"
                   className={styles.heroImage}
                   priority

@@ -26,6 +26,7 @@ export default function MasterpieceBorn() {
                   src="/images/brand/heritage-ganesha.jpg"
                   alt="Completed white marble Ganesha murti masterpiece by Jaipur Stonecraft"
                   fill
+                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 48vw"
                   className={styles.masterpieceImage}
                   priority

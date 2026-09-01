@@ -57,6 +57,7 @@ export default function InspectionHoningStage() {
                   src="/images/craftsmanship/step-04-polish-perfection.jpg"
                   alt="Hand polishing smooth white marble sculpture surface with water in Jaipur"
                   fill
+                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 48vw"
                   className={styles.stageImage}
                 />

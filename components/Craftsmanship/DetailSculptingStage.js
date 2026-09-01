@@ -37,6 +37,7 @@ export default function DetailSculptingStage() {
                   src="/images/craftsmanship/step-03-refine-details.jpg"
                   alt="Master carver chiseling intricate deity facial expressions in marble"
                   fill
+                  unoptimized
                   sizes="(max-width: 991px) 100vw, 50vw"
                   className={styles.cardImage}
                 />
@@ -59,6 +60,7 @@ export default function DetailSculptingStage() {
                   src="/images/craftsmanship/artisan-hands.png"
                   alt="Artisan hands chiseling delicate relief motifs into stone"
                   fill
+                  unoptimized
                   sizes="(max-width: 991px) 100vw, 50vw"
                   className={styles.cardImage}
                 />

@@ -66,6 +66,7 @@ export default function HandChiselingStage() {
                   src="/images/hero/hero-krishna-artisan.jpg"
                   alt="Master artisan chiseling white marble statue in Jaipur workshop"
                   fill
+                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 45vw"
                   className={styles.heroImage}
                   priority
@@ -77,6 +78,7 @@ export default function HandChiselingStage() {
                   src="/images/craftsmanship/step-02-shape-precision.jpg"
                   alt="Artisan hands chiseling initial contours into white marble block"
                   fill
+                  unoptimized
                   sizes="(max-width: 1024px) 80vw, 30vw"
                   className={styles.subImage}
                 />

@@ -93,6 +93,7 @@ export default function StoneSourcingStage() {
                   src="/images/craftsmanship/step-01-select-stone.jpg"
                   alt="Raw white marble quarry stone blocks selected in Rajasthan"
                   fill
+                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 48vw"
                   className={styles.stageImage}
                   priority
