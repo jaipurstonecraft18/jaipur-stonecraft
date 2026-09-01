@@ -84,7 +84,8 @@ const defaultCraftValues = [
   },
 ];
 
-export default function CraftProcess({ sectionData }) {
+export default function CraftProcess({ sectionData, data: propData }) {
+  const incoming = sectionData || propData || {};
   const data = {
     eyebrow: "THE ART OF CRAFTSMANSHIP",
     heading: "Where Tradition\nMeets Mastery.",
@@ -94,11 +95,13 @@ export default function CraftProcess({ sectionData }) {
     storyDesc: "Our artisans are the soul of Jaipur Stonecraft. With generations of experience and unwavering dedication, they pour their heart into every chisel stroke.",
     storyScriptAccent: "Built on Tradition. Perfected by Time.",
     storyImageSrc: "/images/collections/hero-sculptures-group.webp",
-    journeySteps: defaultJourneySteps,
-    ...sectionData,
+    ...incoming,
   };
 
-  const stepsList = Array.isArray(data.journeySteps) && data.journeySteps.length > 0 ? data.journeySteps : defaultJourneySteps;
+  const stepsList = defaultJourneySteps.map((defStep, idx) => ({
+    ...defStep,
+    ...(incoming.journeySteps?.[idx] || {})
+  }));
 
   return (
     <section className={styles.section} aria-label="Craftsmanship">

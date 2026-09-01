@@ -164,11 +164,34 @@ export default function AdminPageCMS() {
     imageSrc: ""
   });
 
+  const defaultCraftsmanshipSteps = [
+    { step: "01", title: "SELECT THE FINEST STONE", description: "Handpicked premium marble chosen for its purity, strength, and timeless beauty.", imageSrc: "/images/craftsmanship/step-01-select-stone.jpg" },
+    { step: "02", title: "SHAPE WITH PRECISION", description: "Artisans carve the form with care, bringing the first life to the stone.", imageSrc: "/images/craftsmanship/step-02-shape-precision.jpg" },
+    { step: "03", title: "REFINE THE DETAILS", description: "Every detail is meticulously carved to perfection, giving it character and grace.", imageSrc: "/images/craftsmanship/step-03-refine-details.jpg" },
+    { step: "04", title: "POLISH TO PERFECTION", description: "Surface is smoothed and polished to enhance the natural beauty of marble.", imageSrc: "/images/craftsmanship/step-04-polish-perfection.jpg" },
+    { step: "05", title: "A MASTERPIECE IS BORN", description: "A timeless creation, ready to be cherished for generations.", imageSrc: "/images/brand/heritage-ganesha.jpg" }
+  ];
+
   const [craftsmanshipHero, setCraftsmanshipHero] = useState({
-    eyebrow: "",
-    heading: "",
-    description: ""
+    eyebrow: "ATELIER JOURNEY",
+    heading: "FROM RAW STONE TO FINISHED ART",
+    description: "Every masterpiece carved at Jaipur Stonecraft begins as a single solid block selected from natural stone quarries. Explore how generational master carvers transform raw marble into timeless sacred art.",
+    heroImageSrc: "/images/craftsmanship/artisan-hands.png",
+    storyTitle: "Hands That Create.\nHearts That Care.",
+    storyDesc: "Our artisans are the soul of Jaipur Stonecraft. With generations of experience and unwavering dedication, they pour their heart into every chisel stroke.",
+    storyScriptAccent: "Built on Tradition. Perfected by Time.",
+    storyImageSrc: "/images/collections/hero-sculptures-group.webp",
+    journeySteps: defaultCraftsmanshipSteps
   });
+
+  const updateCraftStep = (idx, field, value) => {
+    const currentSteps = defaultCraftsmanshipSteps.map((defStep, i) => ({
+      ...defStep,
+      ...(craftsmanshipHero.journeySteps?.[i] || {})
+    }));
+    currentSteps[idx] = { ...currentSteps[idx], [field]: value };
+    setCraftsmanshipHero((prev) => ({ ...prev, journeySteps: currentSteps }));
+  };
 
   // Fetch page sections from API
   useEffect(() => {
@@ -202,7 +225,24 @@ export default function AdminPageCMS() {
             }
             if (sec.keyName === "homepage_social") setHomepageSocial({ ...defaultHomepageSocial, ...sec.content });
             if (sec.keyName === "story_header") setStoryHeader(sec.content);
-            if (sec.keyName === "craftsmanship_hero") setCraftsmanshipHero(sec.content);
+            if (sec.keyName === "craftsmanship_hero") {
+              const mergedSteps = defaultCraftsmanshipSteps.map((defStep, idx) => ({
+                ...defStep,
+                ...(sec.content?.journeySteps?.[idx] || {})
+              }));
+              setCraftsmanshipHero({
+                eyebrow: "ATELIER JOURNEY",
+                heading: "FROM RAW STONE TO FINISHED ART",
+                description: "Every masterpiece carved at Jaipur Stonecraft begins as a single solid block selected from natural stone quarries. Explore how generational master carvers transform raw marble into timeless sacred art.",
+                heroImageSrc: "/images/craftsmanship/artisan-hands.png",
+                storyTitle: "Hands That Create.\nHearts That Care.",
+                storyDesc: "Our artisans are the soul of Jaipur Stonecraft. With generations of experience and unwavering dedication, they pour their heart into every chisel stroke.",
+                storyScriptAccent: "Built on Tradition. Perfected by Time.",
+                storyImageSrc: "/images/collections/hero-sculptures-group.webp",
+                ...sec.content,
+                journeySteps: mergedSteps
+              });
+            }
           });
         }
         setLoading(false);
@@ -1675,11 +1715,7 @@ export default function AdminPageCMS() {
                       <input
                         type="text"
                         value={stepItem.title || ""}
-                        onChange={(e) => {
-                          const updated = [...(craftsmanshipHero.journeySteps || [])];
-                          updated[idx] = { ...updated[idx], title: e.target.value };
-                          setCraftsmanshipHero({ ...craftsmanshipHero, journeySteps: updated });
-                        }}
+                        onChange={(e) => updateCraftStep(idx, "title", e.target.value)}
                         className={styles.input}
                       />
                     </div>
@@ -1688,11 +1724,7 @@ export default function AdminPageCMS() {
                       <input
                         type="text"
                         value={stepItem.description || ""}
-                        onChange={(e) => {
-                          const updated = [...(craftsmanshipHero.journeySteps || [])];
-                          updated[idx] = { ...updated[idx], description: e.target.value };
-                          setCraftsmanshipHero({ ...craftsmanshipHero, journeySteps: updated });
-                        }}
+                        onChange={(e) => updateCraftStep(idx, "description", e.target.value)}
                         className={styles.input}
                       />
                     </div>
@@ -1702,7 +1734,7 @@ export default function AdminPageCMS() {
                   <div style={{ display: "flex", gap: "1rem", alignItems: "center", flexWrap: "wrap", backgroundColor: "#FFFFFF", padding: "0.85rem", borderRadius: "8px", border: "1px solid #E8E5DF" }}>
                     <div style={{ position: "relative", width: "100px", height: "70px", borderRadius: "6px", overflow: "hidden", backgroundColor: "#EAE7E1", flexShrink: 0 }}>
                       <img
-                        src={stepItem.imageSrc || "/images/craftsmanship/step-01-select-stone.jpg"}
+                        src={stepItem.imageSrc || defaultCraftsmanshipSteps[idx]?.imageSrc || "/images/craftsmanship/step-01-select-stone.jpg"}
                         alt={`Step ${idx + 1} Preview`}
                         style={{ width: "100%", height: "100%", objectFit: "cover" }}
                       />
@@ -1712,11 +1744,7 @@ export default function AdminPageCMS() {
                       <input
                         type="text"
                         value={stepItem.imageSrc || ""}
-                        onChange={(e) => {
-                          const updated = [...(craftsmanshipHero.journeySteps || [])];
-                          updated[idx] = { ...updated[idx], imageSrc: e.target.value };
-                          setCraftsmanshipHero({ ...craftsmanshipHero, journeySteps: updated });
-                        }}
+                        onChange={(e) => updateCraftStep(idx, "imageSrc", e.target.value)}
                         className={styles.input}
                         placeholder="/images/craftsmanship/step-01-select-stone.jpg"
                         style={{ marginBottom: "0.4rem" }}
@@ -1724,11 +1752,7 @@ export default function AdminPageCMS() {
                       <input
                         type="file"
                         accept="image/*"
-                        onChange={(e) => handleImageUpload(e, (url) => {
-                          const updated = [...(craftsmanshipHero.journeySteps || [])];
-                          updated[idx] = { ...updated[idx], imageSrc: url };
-                          setCraftsmanshipHero({ ...craftsmanshipHero, journeySteps: updated });
-                        })}
+                        onChange={(e) => handleImageUpload(e, (url) => updateCraftStep(idx, "imageSrc", url))}
                         style={{ fontSize: "0.82rem" }}
                       />
                     </div>

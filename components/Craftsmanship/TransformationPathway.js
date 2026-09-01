@@ -59,9 +59,20 @@ const transformationNodes = [
   },
 ];
 
-export default function TransformationPathway() {
+export default function TransformationPathway({ steps = [] }) {
+  const nodes = transformationNodes.map((defNode, idx) => {
+    const override = steps[idx];
+    if (!override) return defNode;
+    return {
+      ...defNode,
+      title: override.title || defNode.title,
+      description: override.description || defNode.description,
+      imageSrc: override.imageSrc || defNode.imageSrc
+    };
+  });
+
   const [activeIdx, setActiveIdx] = useState(0);
-  const activeNode = transformationNodes[activeIdx];
+  const activeNode = nodes[activeIdx] || nodes[0];
 
   return (
     <section className={styles.section} aria-label="Transformation Pathway">
@@ -82,19 +93,20 @@ export default function TransformationPathway() {
           <div className={styles.trackContainer}>
             <div className={styles.connectingLine} aria-hidden="true" />
             <div className={styles.nodesWrapper}>
-              {transformationNodes.map((node, idx) => {
+              {nodes.map((node, idx) => {
                 const isActive = idx === activeIdx;
                 return (
                   <button
-                    key={node.id}
+                    key={node.id || idx}
+                    type="button"
                     onClick={() => setActiveIdx(idx)}
                     className={`${styles.nodeBtn} ${isActive ? styles.activeNode : ""}`}
                     aria-selected={isActive}
                   >
                     <div className={styles.nodeCircle}>
-                      <span>{node.step}</span>
+                      <span>{node.step || `0${idx + 1}`}</span>
                     </div>
-                    <span className={styles.nodeLabel}>{node.label}</span>
+                    <span className={styles.nodeLabel}>{node.label || node.title}</span>
                   </button>
                 );
               })}

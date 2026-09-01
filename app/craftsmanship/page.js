@@ -51,7 +51,7 @@ export default async function Craftsmanship() {
       <AtelierHero data={craftData} />
 
       {/* 2. TRANSFORMATION PATHWAY (SIGNATURE VISUAL MOMENT) */}
-      <TransformationPathway />
+      <TransformationPathway steps={craftData.journeySteps} />
 
       {/* 3. STICKY ATELIER PROCESS TIMELINE NAVIGATION */}
       <ProcessTimelineNav />
