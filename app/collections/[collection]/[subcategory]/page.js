@@ -7,6 +7,7 @@ import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import CategoryCard from "@/components/CategoryCard/CategoryCard";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { collectionsData, getCollection, getSubcategory } from "@/content/collections";
+import { getCategoriesBySubcategory } from "@/content/categories";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 

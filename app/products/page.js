@@ -6,6 +6,7 @@ import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import CollectionCard from "@/components/CollectionCard/CollectionCard";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import SearchInterface from "@/components/Search/SearchInterface";
+import { queryProductsDB, collectionsStore, materialsDB } from "@/content/products-db";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
