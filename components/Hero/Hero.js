@@ -84,6 +84,7 @@ export default function Hero(props) {
             src={s.imageSrc || "/images/hero/hero-krishna-artisan.jpg"}
             alt={s.imageAlt || s.headingTitle || "Jaipur Stonecraft Atelier"}
             fill
+            unoptimized
             priority={idx === 0}
             sizes="100vw"
             className={styles.heroImage}

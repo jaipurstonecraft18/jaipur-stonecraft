@@ -37,6 +37,7 @@ export default function HeritageStory({ storyData }) {
                 src={imgSrc}
                 alt={imgAlt}
                 fill
+                unoptimized
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className={styles.image}
                 loading="lazy"

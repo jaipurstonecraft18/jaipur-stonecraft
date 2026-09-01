@@ -29,6 +29,7 @@ export default function CollectionFeaturedArtworks({ artworks = [], collectionNa
                     src={item.imageSrc || "/images/collections/hero-sculptures-group.webp"}
                     alt={item.title}
                     fill
+                    unoptimized
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className={styles.artworkImage}
                   />

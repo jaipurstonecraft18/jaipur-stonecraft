@@ -159,6 +159,7 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
                   src={data.instagramCard?.imageSrc || "/images/brand/heritage-ganesha.jpg"}
                   alt="Jaipur Stonecraft Instagram sculptured creation"
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className={styles.cardImage}
                 />
@@ -192,6 +193,7 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
                   src={data.pinterestCard?.imageSrc || "/images/collections/temples-architectural.webp"}
                   alt="Jaipur Stonecraft Pinterest architectural stonework"
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className={styles.cardImage}
                 />
@@ -223,6 +225,7 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
                   src={data.facebookCard?.imageSrc || "/images/craftsmanship/step-02-shape-precision.jpg"}
                   alt="Jaipur Stonecraft Facebook workshop and project updates"
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className={styles.cardImage}
                 />

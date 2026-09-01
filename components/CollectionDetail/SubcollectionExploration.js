@@ -38,6 +38,7 @@ export default function SubcollectionExploration({ collection }) {
                   src={featuredSub.imageSrc || collection.imageSrc || "/images/collections/hero-sculptures-group.webp"}
                   alt={featuredSub.name}
                   fill
+                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 55vw"
                   className={styles.subImage}
                   priority
@@ -75,6 +76,7 @@ export default function SubcollectionExploration({ collection }) {
                         src={sub.imageSrc || "/images/collections/hero-sculptures-group.webp"}
                         alt={sub.name}
                         fill
+                        unoptimized
                         sizes="(max-width: 768px) 100vw, 33vw"
                         className={styles.subImage}
                       />

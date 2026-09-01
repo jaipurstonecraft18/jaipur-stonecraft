@@ -82,6 +82,7 @@ export default function HomeCollections({ collections }) {
                 src={spotlightImg}
                 alt={spotlightTitle}
                 fill
+                unoptimized
                 sizes="(max-width: 1024px) 100vw, 55vw"
                 className={styles.featuredImage}
                 priority
@@ -146,6 +147,7 @@ export default function HomeCollections({ collections }) {
                   src={wallArtImg}
                   alt={wallArtTitle}
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className={styles.cardImage}
                 />
@@ -180,6 +182,7 @@ export default function HomeCollections({ collections }) {
                   src={templesImg}
                   alt={templesTitle}
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className={styles.cardImage}
                 />
@@ -217,6 +220,7 @@ export default function HomeCollections({ collections }) {
                   src={fountainsImg}
                   alt={fountainsTitle}
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className={styles.cardImage}
                 />
@@ -250,6 +254,7 @@ export default function HomeCollections({ collections }) {
                   src={decorImg}
                   alt={decorTitle}
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className={styles.cardImage}
                 />
@@ -283,6 +288,7 @@ export default function HomeCollections({ collections }) {
                   src={customImg}
                   alt={customTitle}
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className={styles.cardImage}
                 />

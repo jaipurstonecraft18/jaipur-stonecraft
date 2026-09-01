@@ -38,7 +38,7 @@ export default function ProductCard({
           src={optimizedImageSrc}
           alt={imageAlt || defaultAlt}
           fill
-          quality={isFeatured ? 90 : 88}
+          unoptimized
           sizes={isFeatured ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"}
           className={styles.image}
           loading="lazy"

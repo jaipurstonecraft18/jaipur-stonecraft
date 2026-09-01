@@ -143,6 +143,7 @@ export default function CraftProcess({ sectionData }) {
                   src={data.heroImageSrc || "/images/hero/hero-krishna-artisan.jpg"}
                   alt="Master artisan chiseling white marble sculpture in Jaipur workshop"
                   fill
+                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className={styles.heroImage}
                   priority
@@ -177,6 +178,7 @@ export default function CraftProcess({ sectionData }) {
                         src={step.imageSrc || defaultJourneySteps[idx]?.imageSrc || "/images/craftsmanship/step-01-select-stone.jpg"}
                         alt={step.title || "Crafting step"}
                         fill
+                        unoptimized
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 20vw"
                         className={styles.archImage}
                         loading="lazy"
@@ -205,6 +207,7 @@ export default function CraftProcess({ sectionData }) {
                     src={data.storyImageSrc || "/images/collections/hero-sculptures-group.webp"}
                     alt="White marble goddess facial profile carved by master artisan"
                     fill
+                    unoptimized
                     sizes="(max-width: 1024px) 100vw, 45vw"
                     className={styles.storyImage}
                     loading="lazy"
