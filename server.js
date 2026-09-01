@@ -68,13 +68,39 @@ app.prepare().then(() => {
 
       // Resilient fallback for legacy / cached /_next/image requests
       if (parsedUrl.pathname === "/_next/image" && parsedUrl.query?.url) {
-        const targetUrl = String(parsedUrl.query.url);
+        let targetUrl = String(parsedUrl.query.url);
+        if (targetUrl.startsWith("/")) {
+          const publicPath = path.join(process.cwd(), "public", targetUrl);
+          if (!fs.existsSync(publicPath)) {
+            const webpCandidate = targetUrl.replace(/\.(jpg|jpeg|png)$/i, ".webp");
+            const webpPath = path.join(process.cwd(), "public", webpCandidate);
+            if (fs.existsSync(webpPath)) {
+              targetUrl = webpCandidate;
+            }
+          }
+        }
         if (targetUrl.startsWith("/") || targetUrl.startsWith("http")) {
           res.writeHead(307, {
             Location: targetUrl,
             "Cache-Control": "public, max-age=31536000, immutable",
           });
           return res.end();
+        }
+      }
+
+      // Direct legacy static asset extension fallback
+      if (parsedUrl.pathname && (parsedUrl.pathname.startsWith("/images/") || parsedUrl.pathname.startsWith("/uploads/"))) {
+        const publicPath = path.join(process.cwd(), "public", parsedUrl.pathname);
+        if (!fs.existsSync(publicPath)) {
+          const webpCandidate = parsedUrl.pathname.replace(/\.(jpg|jpeg|png)$/i, ".webp");
+          const webpPath = path.join(process.cwd(), "public", webpCandidate);
+          if (fs.existsSync(webpPath)) {
+            res.writeHead(307, {
+              Location: webpCandidate,
+              "Cache-Control": "public, max-age=31536000, immutable",
+            });
+            return res.end();
+          }
         }
       }
 
