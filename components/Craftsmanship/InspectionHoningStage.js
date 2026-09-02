@@ -98,6 +98,7 @@ export default function InspectionHoningStage() {
                         className={`${styles.accordionItem} ${isOpen ? styles.open : ""}`}
                       >
                         <button
+                          type="button"
                           onClick={() => setOpenId(isOpen ? null : item.id)}
                           className={styles.accordionBtn}
                           aria-expanded={isOpen}

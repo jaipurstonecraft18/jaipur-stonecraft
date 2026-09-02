@@ -58,6 +58,7 @@ export default function ProcessTimelineNav() {
               return (
                 <button
                   key={stage.id}
+                  type="button"
                   onClick={() => scrollToStage(stage.id)}
                   className={`${styles.stageBtn} ${isActive ? styles.active : ""}`}
                   aria-current={isActive ? "location" : undefined}

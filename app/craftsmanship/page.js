@@ -1,5 +1,5 @@
 import AtelierHero from "@/components/Craftsmanship/AtelierHero";
-import TransformationPathway from "@/components/Craftsmanship/TransformationPathway";
+import TransformationPathway from "@/components/Craftsmanship/TransformationPathwaySection";
 import ProcessTimelineNav from "@/components/Craftsmanship/ProcessTimelineNav";
 import StoneSourcingStage from "@/components/Craftsmanship/StoneSourcingStage";
 import BlueprintModelingStage from "@/components/Craftsmanship/BlueprintModelingStage";
@@ -51,7 +51,7 @@ export default async function Craftsmanship() {
       <AtelierHero data={craftData} />
 
       {/* 2. TRANSFORMATION PATHWAY (SIGNATURE VISUAL MOMENT) */}
-      <TransformationPathway steps={craftData.journeySteps} />
+      <TransformationPathway />
 
       {/* 3. STICKY ATELIER PROCESS TIMELINE NAVIGATION */}
       <ProcessTimelineNav />

@@ -1,0 +1,185 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import Container from "@/components/Container/Container";
+import styles from "./TransformationPathwaySection.module.css";
+
+const transformationNodes = [
+  {
+    id: "raw-stone",
+    step: "01",
+    label: "RAW STONE",
+    title: "The Uncarved Monolith",
+    description: "Extracted from Nagaur & Bharatpur quarries, raw white Makrana marble blocks carry age-old crystalline purity before entering our Jaipur workshop.",
+    imageSrc: "/images/craftsmanship/step-01-select-stone.jpg",
+    alt: "Raw white marble stone blocks stacked in quarry",
+    masonQuote: "In every block of raw Makrana marble, a sculpture is already waiting. Our duty is simply to remove what does not belong.",
+  },
+  {
+    id: "artisan-hand",
+    step: "02",
+    label: "ARTISAN HAND",
+    title: "Chalk Grids & Blueprint Alignment",
+    description: "Master carvers translate 2D architectural CAD drawings directly onto stone faces using plumb lines, hand calipers, and chalk grids.",
+    imageSrc: "/images/hero/hero-krishna-artisan.jpg",
+    alt: "Master artisan aligning chalk grid lines on marble statue",
+    masonQuote: "The chalk grid is where architectural precision meets artisan intuition.",
+  },
+  {
+    id: "emerging-form",
+    step: "03",
+    label: "EMERGING FORM",
+    title: "Roughing Out Mass & Contour",
+    description: "Tempered steel point chisels strike away major stone volume, revealing the initial silhouette and structural weight of the sculpture.",
+    imageSrc: "/images/craftsmanship/step-02-shape-precision.jpg",
+    alt: "Artisan hands chiseling initial contours into white marble",
+    masonQuote: "Rough chiseling requires confidence and strength. One misplaced blow can fracture a block.",
+  },
+  {
+    id: "sacred-detail",
+    step: "04",
+    label: "SACRED DETAIL",
+    title: "Sculpting Facial Grace & Friezes",
+    description: "Micro-chisels and fine rasps outline delicate eyes, serene lips, crown ornaments, and organic floral drape curves.",
+    imageSrc: "/images/craftsmanship/step-03-refine-details.jpg",
+    alt: "Master carver chiseling intricate deity facial expressions",
+    masonQuote: "Facial expressions cannot be rushed. It takes hours of quiet chiseling to capture divine peace in stone.",
+  },
+  {
+    id: "finished-art",
+    step: "05",
+    label: "FINISHED ART",
+    title: "Water-Honed Sacred Masterpiece",
+    description: "Polished with natural water stones to reveal translucent calcite luster, inspect-certified, and framed for global transit.",
+    imageSrc: "/images/brand/heritage-ganesha.jpg",
+    alt: "Completed white marble Ganesha murti masterpiece",
+    masonQuote: "When water washes off the final stone dust and the marble shines in the sunlight, the piece is born.",
+  },
+];
+
+export default function TransformationPathway({ steps }) {
+  const nodes = Array.isArray(steps) && steps.length > 0
+    ? transformationNodes.map((defNode, idx) => {
+        const override = steps[idx];
+        if (!override) return defNode;
+        return {
+          ...defNode,
+          title: override.title || defNode.title,
+          description: override.description || defNode.description,
+          imageSrc: override.imageSrc || defNode.imageSrc
+        };
+      })
+    : transformationNodes;
+
+  const [activeIdx, setActiveIdx] = useState(0);
+  const activeNode = nodes[activeIdx] || nodes[0];
+
+  return (
+    <section className={styles.section} aria-label="Transformation Pathway">
+      <Container>
+        <div className={styles.header}>
+          <span className={styles.eyebrow}>METAMORPHOSIS OF STONE</span>
+          <h2 className={styles.heading}>The Atelier Transformation Pathway</h2>
+          <p className={styles.subHeading}>
+            Experience how raw quarry stone evolves into a sacred architectural creation 
+            through five distinct physical states of craftsmanship.
+          </p>
+        </div>
+
+        {/* Connected Step Node Track */}
+        <div className={styles.trackContainer}>
+          <div className={styles.connectingLine} aria-hidden="true" />
+          <div className={styles.nodesWrapper} role="tablist" aria-label="Transformation Stages">
+            {nodes.map((node, idx) => {
+              const isActive = idx === activeIdx;
+              return (
+                <button
+                  key={node.id || idx}
+                  type="button"
+                  role="tab"
+                  id={`stage-tab-${node.id || idx}`}
+                  aria-controls={`stage-panel-${node.id || idx}`}
+                  aria-selected={isActive}
+                  onClick={() => setActiveIdx(idx)}
+                  className={`${styles.nodeBtn} ${isActive ? styles.activeNode : ""}`}
+                >
+                  <div className={styles.nodeCircle}>
+                    <span>{node.step || `0${idx + 1}`}</span>
+                  </div>
+                  <span className={styles.nodeLabel}>{node.label || node.title}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Transformation Stage Showcase Card */}
+        <div 
+          className={styles.showcaseCard}
+          role="tabpanel"
+          id={`stage-panel-${activeNode.id || activeIdx}`}
+          aria-labelledby={`stage-tab-${activeNode.id || activeIdx}`}
+        >
+          <div className={styles.showcaseGrid}>
+            {/* Left Image Feature */}
+            <div className={styles.imageCol}>
+              <div className={styles.imageFrame}>
+                <Image
+                  src={activeNode.imageSrc}
+                  alt={activeNode.alt}
+                  fill
+                  unoptimized
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                  className={styles.showcaseImage}
+                  priority
+                />
+                <div className={styles.stepBadge}>
+                  <span>STAGE {activeNode.step} OF 05</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Content & Mason Wisdom Quote */}
+            <div className={styles.contentCol}>
+              <span className={styles.stageCategory}>{activeNode.label}</span>
+              <h3 className={styles.stageTitle}>{activeNode.title}</h3>
+              <p className={styles.stageDesc}>{activeNode.description}</p>
+
+              {/* Tactile Mason Quote */}
+              <div className={styles.quoteBox}>
+                <div className={styles.quoteMark} aria-hidden="true">“</div>
+                <p className={styles.quoteText}>{activeNode.masonQuote}</p>
+              </div>
+
+              {/* Stage Navigation Controls */}
+              <div className={styles.controlsRow}>
+                <button
+                  type="button"
+                  onClick={() => setActiveIdx((prev) => Math.max(0, prev - 1))}
+                  disabled={activeIdx === 0}
+                  className={styles.navArrowBtn}
+                  aria-label="Previous Transformation Stage"
+                >
+                  ← Previous Stage
+                </button>
+                <span className={styles.stepCounter}>
+                  {activeIdx + 1} / {nodes.length}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setActiveIdx((prev) => Math.min(nodes.length - 1, prev + 1))}
+                  disabled={activeIdx === nodes.length - 1}
+                  className={styles.navArrowBtn}
+                  aria-label="Next Transformation Stage"
+                >
+                  Next Stage →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
