@@ -41,7 +41,8 @@ export default function ProcessTimelineNav() {
   const scrollToStage = (id) => {
     const el = document.getElementById(id);
     if (el) {
-      const yOffset = -80; // Offset for sticky navbar
+      const isDesktop = typeof window !== "undefined" && window.innerWidth >= 992;
+      const yOffset = isDesktop ? -170 : -120; // Offset for both fixed header and sticky timeline bar
       const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }

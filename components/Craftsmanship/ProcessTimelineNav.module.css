@@ -1,13 +1,14 @@
 .stickyNav {
   position: sticky;
-  top: 72px;
-  z-index: 90;
-  background-color: rgba(252, 251, 249, 0.94);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  top: 105px;
+  z-index: 990;
+  background-color: rgba(252, 251, 249, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border-subtle);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   padding: 0.75rem 0;
-  transition: background-color var(--transition-fast);
+  transition: top 0.25s ease, background-color var(--transition-fast);
 }
 
 .navWrapper {
@@ -78,11 +79,13 @@
   text-transform: uppercase;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .stickyNav {
     top: 60px;
   }
+}
 
+@media (max-width: 768px) {
   .navLabel {
     display: none;
   }
