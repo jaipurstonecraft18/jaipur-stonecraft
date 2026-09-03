@@ -14,10 +14,16 @@
   z-index: 1002;
 }
 
-/* Make utility bar seamlessly transparent on top unscrolled hero */
-.transparent:not(.scrolled) .utilityBar {
-  background-color: rgba(18, 17, 16, 0.15);
-  border-bottom: none;
+/* Completely transparent utility bar when unscrolled at top of homepage */
+.transparent .utilityBar {
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+}
+
+/* Scrolled down on homepage: utility bar becomes pure black */
+.transparent.scrolled .utilityBar {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
 }
 
 .utilityContainer {
@@ -99,7 +105,10 @@
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .mainNavWrapper {
@@ -110,21 +119,26 @@
   transition: height 0.35s ease;
 }
 
-/* Transparent Theme (Hero overlay - unscrolled top position) */
+/* Homepage Header - Completely Transparent with NO blur when unscrolled at top */
 .transparent {
-  background: linear-gradient(180deg, rgba(18, 17, 16, 0.25) 0%, rgba(18, 17, 16, 0.05) 70%, transparent 100%);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border-bottom: none;
+  background: transparent;
+  background-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
   color: var(--color-cream);
 }
 
+/* Homepage Header - Becomes Solid Black when scrolled down (black outline, no white glow) */
 .transparent.scrolled {
-  background: rgba(18, 17, 16, 0.95);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
+  background: #000000;
+  background-color: #000000;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid #000000;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+  color: var(--color-cream);
 }
 
 /* Light Theme (Inner pages) */
