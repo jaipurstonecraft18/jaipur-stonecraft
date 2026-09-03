@@ -2,7 +2,17 @@ import Container from "@/components/Container/Container";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import styles from "./BlueprintModelingStage.module.css";
 
-export default function BlueprintModelingStage() {
+export default function BlueprintModelingStage({ data = {} }) {
+  const eyebrow = data.eyebrow || "PROPORTION & ANATOMICAL ACCURACY";
+  const heading = data.heading || "From CAD Draft to Chalk Grid";
+  const paragraphs = data.narrative
+    ? data.narrative.split("\n\n").filter(Boolean)
+    : [
+        "Before a chisel touches the stone, our master carvers collaborate with client architects and interior design teams. We translate architectural CAD blueprints and hand sketches into full-scale physical grid lines mapped directly across the stone monolith face.",
+        "For complex custom commissions—such as bespoke deity statues, ornate Jali screens, or architectural temple columns—artisans hand-sculpt a full 1:1 clay maquette model first.",
+        "This physical modeling stage allows client approval of subtle facial expressions, crown proportions, and drape folds before stone cutting begins."
+      ];
+
   return (
     <section id="stage-02" className={styles.stageSection} aria-label="Stage 02: Design & Modeling">
       <Container>
@@ -68,23 +78,13 @@ export default function BlueprintModelingStage() {
           {/* Right Narrative */}
           <ScrollReveal animation="fade-up" delay={150}>
             <div className={styles.contentCol}>
-              <span className={styles.eyebrow}>PROPORTION & ANATOMICAL ACCURACY</span>
-              <h2 className={styles.heading}>From CAD Draft to Chalk Grid</h2>
+              <span className={styles.eyebrow}>{eyebrow}</span>
+              <h2 className={styles.heading}>{heading}</h2>
               
               <div className={styles.narrativeText}>
-                <p>
-                  Before a chisel touches the stone, our master carvers collaborate with client architects 
-                  and interior design teams. We translate architectural CAD blueprints and hand sketches into 
-                  full-scale physical grid lines mapped directly across the stone monolith face.
-                </p>
-                <p>
-                  For complex custom commissions—such as bespoke deity statues, ornate Jali screens, or architectural 
-                  temple columns—artisans hand-sculpt a full 1:1 clay maquette model first.
-                </p>
-                <p>
-                  This physical modeling stage allows client approval of subtle facial expressions, crown proportions, 
-                  and drape folds before stone cutting begins.
-                </p>
+                {paragraphs.map((p, idx) => (
+                  <p key={idx}>{p}</p>
+                ))}
               </div>
 
               <div className={styles.stepsList}>

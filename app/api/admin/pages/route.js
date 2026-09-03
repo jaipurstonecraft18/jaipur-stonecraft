@@ -46,21 +46,28 @@ export async function PUT(request) {
     }
 
     const existing = await getOne("SELECT * FROM page_sections WHERE key_name = ?", [keyName]);
-    if (!existing) {
-      return NextResponse.json({ error: "Page section slot not found" }, { status: 404 });
-    }
-
     const contentJson = JSON.stringify(content);
-    await execute(`
-      UPDATE page_sections
-      SET content_json = ?, updated_at = CURRENT_TIMESTAMP
-      WHERE key_name = ?
-    `, [contentJson, keyName]);
+    if (!existing) {
+      const label = body.label || keyName.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase());
+      const page = body.page || "Our Story";
+      const sectionId = body.sectionId || keyName.split("_")[1] || "section";
+      await execute(`
+        INSERT INTO page_sections (key_name, page, section_id, label, content_json)
+        VALUES (?, ?, ?, ?, ?)
+      `, [keyName, page, sectionId, label, contentJson]);
+    } else {
+      await execute(`
+        UPDATE page_sections
+        SET content_json = ?, updated_at = CURRENT_TIMESTAMP
+        WHERE key_name = ?
+      `, [contentJson, keyName]);
+    }
 
     // Revalidate public page caches
     try {
       revalidatePath("/");
       revalidatePath("/our-story");
+      revalidatePath("/our-world");
       revalidatePath("/craftsmanship");
     } catch (revalErr) {
       console.error("[Revalidate Cache Error]:", revalErr);

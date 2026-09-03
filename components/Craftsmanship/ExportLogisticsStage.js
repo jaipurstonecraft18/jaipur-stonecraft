@@ -34,7 +34,16 @@ const crateFeatures = [
   }
 ];
 
-export default function ExportLogisticsStage() {
+export default function ExportLogisticsStage({ data = {} }) {
+  const eyebrow = data.eyebrow || "CRATING & SHIPMENT PROTECTION";
+  const heading = data.heading || "Custom Wooden Crate Packaging";
+  const paragraphs = data.narrative
+    ? data.narrative.split("\n\n").filter(Boolean)
+    : [
+        "Transporting heavy marble sculptures and carved architectural components around the globe requires uncompromising packaging standards.",
+        "We build bespoke wooden crates for each finished creation. Stone elements are floating-braced inside dense shock-absorbing foam beds, ensuring zero surface contact with crate walls."
+      ];
+
   return (
     <section id="stage-06" className={styles.stageSection} aria-label="Stage 06: Export Logistics">
       <Container>
@@ -51,18 +60,13 @@ export default function ExportLogisticsStage() {
           {/* Left Narrative */}
           <ScrollReveal animation="fade-up">
             <div className={styles.contentCol}>
-              <span className={styles.eyebrow}>CRATING & SHIPMENT PROTECTION</span>
-              <h2 className={styles.heading}>Custom Wooden Crate Packaging</h2>
+              <span className={styles.eyebrow}>{eyebrow}</span>
+              <h2 className={styles.heading}>{heading}</h2>
               
               <div className={styles.narrativeText}>
-                <p>
-                  Transporting heavy marble sculptures and carved architectural components around the globe 
-                  requires uncompromising packaging standards.
-                </p>
-                <p>
-                  We build bespoke wooden crates for each finished creation. Stone elements are floating-braced 
-                  inside dense shock-absorbing foam beds, ensuring zero surface contact with crate walls.
-                </p>
+                {paragraphs.map((p, idx) => (
+                  <p key={idx}>{p}</p>
+                ))}
               </div>
 
               <div className={styles.ctaGroup}>

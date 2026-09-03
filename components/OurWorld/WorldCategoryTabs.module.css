@@ -1,0 +1,117 @@
+.tabsWrapper {
+  background-color: var(--color-cream);
+  border-bottom: 1px solid var(--color-stone-grey);
+  position: relative;
+  z-index: 10;
+}
+
+.scrollContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  padding: 1.25rem 0;
+}
+
+.scrollContainer::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.tabsList {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 3.5vw, 3rem);
+  list-style: none;
+  margin: 0;
+  padding: 0 1rem;
+  white-space: nowrap;
+}
+
+.tabButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  background: transparent;
+  border: none;
+  padding: 0.5rem 0.75rem 0.75rem 0.75rem;
+  color: rgba(26, 25, 24, 0.6);
+  cursor: pointer;
+  position: relative;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  outline: none;
+}
+
+.tabButton:hover {
+  color: var(--color-charcoal);
+  transform: translateY(-1px);
+}
+
+.tabButton:focus-visible {
+  outline: 2px solid var(--color-bronze);
+  outline-offset: 4px;
+  border-radius: var(--radius-subtle);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: inherit;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.active .iconWrapper {
+  color: var(--color-bronze);
+  transform: scale(1.08);
+}
+
+.tabLabel {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: capitalize;
+  color: inherit;
+  transition: color var(--transition-fast), font-weight var(--transition-fast);
+}
+
+.active {
+  color: var(--color-charcoal);
+}
+
+.active .tabLabel {
+  font-weight: 600;
+  color: var(--color-charcoal);
+}
+
+.activeIndicator {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background-color: var(--color-bronze);
+  border-radius: 2px;
+  transition: all var(--transition-smooth);
+}
+
+@media (max-width: 991px) {
+  .scrollContainer {
+    justify-content: flex-start;
+    padding: 1rem 0.5rem;
+  }
+
+  .tabsList {
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .tabLabel {
+    font-size: 0.75rem;
+  }
+}

@@ -195,12 +195,12 @@ textarea:focus-visible {
 
 /* Top padding offset for standard pages to prevent text overlapping under the fixed header */
 .page-offset {
-  padding-top: 80px;
+  padding-top: clamp(140px, 12vw, 165px);
 }
 
 @media (max-width: 991px) {
   .page-offset {
-    padding-top: 60px;
+    padding-top: calc(60px + var(--spacing-md));
   }
 }
 

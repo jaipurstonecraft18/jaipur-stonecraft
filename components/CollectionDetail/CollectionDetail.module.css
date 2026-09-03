@@ -7,7 +7,7 @@
    -------------------------------------------------------------------------- */
 .heroSection {
   background-color: var(--color-cream);
-  padding-top: calc(80px + var(--spacing-lg));
+  padding-top: calc(104px + var(--spacing-md));
   padding-bottom: var(--spacing-xl);
   position: relative;
   overflow: hidden;
@@ -20,7 +20,7 @@
   min-height: 460px;
   display: flex;
   align-items: center;
-  padding-top: calc(90px + var(--spacing-lg));
+  padding-top: calc(104px + var(--spacing-lg));
   padding-bottom: var(--spacing-xxl);
   overflow: hidden;
   color: #FAF8F5;

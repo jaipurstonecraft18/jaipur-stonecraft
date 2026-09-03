@@ -4,7 +4,16 @@ import Container from "@/components/Container/Container";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import styles from "./MasterpieceBorn.module.css";
 
-export default function MasterpieceBorn() {
+export default function MasterpieceBorn({ imageSrc, data = {} }) {
+  const eyebrow = data.eyebrow || "DEVOTION IN STONE";
+  const heading = data.heading || "A Masterpiece Born for Generations";
+  const paragraphs = data.narrative
+    ? data.narrative.split("\n\n").filter(Boolean)
+    : [
+        "From quarry monolith to finished art, the journey through our atelier represents hundreds of hours of focused hand chiseling, blueprint alignment, and water-stone honing.",
+        "Whether sculpting a sacred deity idol, an architectural column, or a bespoke stone mantel, our promise remains constant: 100% handcrafted craftsmanship carrying timeless grace."
+      ];
+
   return (
     <section id="stage-07" className={styles.stageSection} aria-label="Stage 07: Masterpiece Born">
       <Container>
@@ -23,7 +32,7 @@ export default function MasterpieceBorn() {
             <div className={styles.imageCol}>
               <div className={styles.imageFrame}>
                 <Image
-                  src="/images/brand/heritage-ganesha.jpg"
+                  src={imageSrc || "/images/brand/heritage-ganesha.jpg"}
                   alt="Completed white marble Ganesha murti masterpiece by Jaipur Stonecraft"
                   fill
                   unoptimized
@@ -42,18 +51,13 @@ export default function MasterpieceBorn() {
           {/* Right Editorial Conclusion & Inquiry CTAs */}
           <ScrollReveal animation="fade-up" delay={150}>
             <div className={styles.contentCol}>
-              <span className={styles.eyebrow}>DEVOTION IN STONE</span>
-              <h2 className={styles.heading}>A Masterpiece Born for Generations</h2>
+              <span className={styles.eyebrow}>{eyebrow}</span>
+              <h2 className={styles.heading}>{heading}</h2>
 
               <div className={styles.narrativeText}>
-                <p>
-                  From quarry monolith to finished art, the journey through our atelier represents 
-                  hundreds of hours of focused hand chiseling, blueprint alignment, and water-stone honing.
-                </p>
-                <p>
-                  Whether sculpting a sacred deity idol, an architectural column, or a bespoke stone mantel, 
-                  our promise remains constant: 100% handcrafted craftsmanship carrying timeless grace.
-                </p>
+                {paragraphs.map((p, idx) => (
+                  <p key={idx}>{p}</p>
+                ))}
               </div>
 
               {/* Action Buttons */}

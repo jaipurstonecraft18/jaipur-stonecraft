@@ -10,7 +10,19 @@ const toolSet = [
   { name: "Wooden Mallet (Mugri)", use: "Delicate force distribution to protect crystalline marble structure." },
 ];
 
-export default function HandChiselingStage() {
+export default function HandChiselingStage({ heroImageSrc, subImageSrc, data = {} }) {
+  const eyebrow = data.eyebrow || "PURE HANDCRAFTED PRECISION";
+  const heading = data.heading || "Generational Hand Chiseling";
+  const quote = data.quote || "Stone has a natural grain and heartbeat. A machine cuts with raw force, but a master mason listens to the stone to release the form sleeping inside.";
+  const quoteAuthor = data.quoteAuthor || "— Master Carver, Jaipur Atelier";
+  const paragraphs = data.narrative
+    ? data.narrative.split("\n\n").filter(Boolean)
+    : [
+        "Our carving process relies entirely on traditional manual tools: tempered steel points, flat chisels, claw chisels, and heavy wooden mallets.",
+        "By holding traditional hand chisels, our master masons retain direct tactile feedback from the stone. Every strike responds to the natural calcite grain, creating organic depth and delicate shadow contours that high-speed automated machinery simply cannot duplicate.",
+        "Architectural columns, deity statues, and intricate wall panels are carved centimeter by centimeter, referencing original scale templates at every stage of depth reduction."
+      ];
+
   return (
     <section id="stage-03" className={styles.stageSection} aria-label="Stage 03: Hand Chiseling">
       <Container>
@@ -27,33 +39,22 @@ export default function HandChiselingStage() {
           {/* Left Content */}
           <ScrollReveal animation="fade-up">
             <div className={styles.contentCol}>
-              <span className={styles.eyebrow}>PURE HANDCRAFTED PRECISION</span>
-              <h2 className={styles.heading}>Generational Hand Chiseling</h2>
+              <span className={styles.eyebrow}>{eyebrow}</span>
+              <h2 className={styles.heading}>{heading}</h2>
 
               <div className={styles.narrativeText}>
-                <p>
-                  Our carving process relies entirely on traditional manual tools: tempered steel points, 
-                  flat chisels, claw chisels, and heavy wooden mallets.
-                </p>
-                <p>
-                  By holding traditional hand chisels, our master masons retain direct tactile feedback from the stone. 
-                  Every strike responds to the natural calcite grain, creating organic depth and delicate shadow contours 
-                  that high-speed automated machinery simply cannot duplicate.
-                </p>
-                <p>
-                  Architectural columns, deity statues, and intricate wall panels are carved centimeter by centimeter, 
-                  referencing original scale templates at every stage of depth reduction.
-                </p>
+                {paragraphs.map((p, idx) => (
+                  <p key={idx}>{p}</p>
+                ))}
               </div>
 
               {/* Master Sculptor Quote Box */}
               <div className={styles.quoteCard}>
                 <div className={styles.quoteMark} aria-hidden="true">&ldquo;</div>
                 <blockquote className={styles.quoteText}>
-                  Stone has a natural grain and heartbeat. A machine cuts with raw force, but a master mason 
-                  listens to the stone to release the form sleeping inside.
+                  {quote}
                 </blockquote>
-                <div className={styles.quoteAuthor}>— Master Carver, Jaipur Atelier</div>
+                <div className={styles.quoteAuthor}>{quoteAuthor}</div>
               </div>
             </div>
           </ScrollReveal>
@@ -63,7 +64,7 @@ export default function HandChiselingStage() {
             <div className={styles.visualCol}>
               <div className={styles.mainImageFrame}>
                 <Image
-                  src="/images/hero/hero-krishna-artisan.jpg"
+                  src={heroImageSrc || "/images/hero/hero-krishna-artisan.jpg"}
                   alt="Master artisan chiseling white marble statue in Jaipur workshop"
                   fill
                   unoptimized
@@ -75,7 +76,7 @@ export default function HandChiselingStage() {
 
               <div className={styles.staggeredImageFrame}>
                 <Image
-                  src="/images/craftsmanship/step-02-shape-precision.jpg"
+                  src={subImageSrc || "/images/craftsmanship/step-02-shape-precision.jpg"}
                   alt="Artisan hands chiseling initial contours into white marble block"
                   fill
                   unoptimized

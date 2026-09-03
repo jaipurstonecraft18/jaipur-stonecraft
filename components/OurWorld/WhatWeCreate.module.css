@@ -1,0 +1,125 @@
+.section {
+  background-color: var(--color-cream);
+  padding-top: clamp(4rem, 7vw, 6.5rem);
+  padding-bottom: clamp(4rem, 7vw, 6.5rem);
+}
+
+.headerWrapper {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto clamp(2.5rem, 5vw, 4rem) auto;
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-bronze);
+  margin-bottom: 0.65rem;
+}
+
+.heading {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--color-charcoal);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2.25rem 1.5rem;
+  background-color: #FFFFFF;
+  border-radius: var(--radius-subtle);
+  border: 1px solid var(--color-border-subtle);
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-bronze);
+  box-shadow: 0 10px 28px rgba(158, 123, 79, 0.12);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: var(--color-cream-secondary);
+  color: var(--color-bronze);
+  margin-bottom: 1.5rem;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.card:hover .iconWrapper {
+  background-color: rgba(158, 123, 79, 0.15);
+  transform: scale(1.08);
+}
+
+.cardTitle {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--color-charcoal);
+  margin: 0 0 0.75rem 0;
+  line-height: 1.25;
+}
+
+.cardDescription {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(26, 25, 24, 0.75);
+  margin: 0 0 1.5rem 0;
+  flex-grow: 1;
+}
+
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-bronze);
+  text-decoration: none;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  margin-top: auto;
+}
+
+.cardLink:hover {
+  color: var(--color-charcoal);
+  transform: translateX(3px);
+}
+
+@media (max-width: 1024px) {
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}

@@ -87,15 +87,14 @@ const defaultCraftValues = [
 export default function CraftProcess({ sectionData, data: propData }) {
   const incoming = sectionData || propData || {};
   const data = {
-    eyebrow: "THE ART OF CRAFTSMANSHIP",
-    heading: "Where Tradition\nMeets Mastery.",
-    description: "Every masterpiece begins with passion, precision, and the hands of our skilled artisans. Experience the timeless journey of stone transformed into divinity.",
-    heroImageSrc: "/images/hero/hero-krishna-artisan.jpg",
-    storyTitle: "Hands That Create.\nHearts That Care.",
-    storyDesc: "Our artisans are the soul of Jaipur Stonecraft. With generations of experience and unwavering dedication, they pour their heart into every chisel stroke.",
-    storyScriptAccent: "Built on Tradition. Perfected by Time.",
-    storyImageSrc: "/images/collections/hero-sculptures-group.webp",
-    ...incoming,
+    eyebrow: incoming.homeEyebrow || "THE ART OF CRAFTSMANSHIP",
+    heading: incoming.homeHeading || "Where Tradition\nMeets Mastery.",
+    description: incoming.homeDescription || "Every masterpiece begins with passion, precision, and the hands of our skilled artisans. Experience the timeless journey of stone transformed into divinity.",
+    heroImageSrc: incoming.heroImageSrc || "/images/hero/hero-krishna-artisan.jpg",
+    storyTitle: incoming.storyTitle || "Hands That Create.\nHearts That Care.",
+    storyDesc: incoming.storyDesc || "Our artisans are the soul of Jaipur Stonecraft. With generations of experience and unwavering dedication, they pour their heart into every chisel stroke.",
+    storyScriptAccent: incoming.storyScriptAccent || "Built on Tradition. Perfected by Time.",
+    storyImageSrc: incoming.storyImageSrc || "/images/collections/hero-sculptures-group.webp",
   };
 
   const stepsList = defaultJourneySteps.map((defStep, idx) => ({

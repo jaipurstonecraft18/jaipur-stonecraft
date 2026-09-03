@@ -58,19 +58,26 @@ const transformationNodes = [
   },
 ];
 
-export default function TransformationPathway({ steps }) {
-  const nodes = Array.isArray(steps) && steps.length > 0
-    ? transformationNodes.map((defNode, idx) => {
-        const override = steps[idx];
-        if (!override) return defNode;
-        return {
-          ...defNode,
-          title: override.title || defNode.title,
-          description: override.description || defNode.description,
-          imageSrc: override.imageSrc || defNode.imageSrc
-        };
-      })
-    : transformationNodes;
+export default function TransformationPathway({ steps, node02Image }) {
+  const nodes = transformationNodes.map((defNode, idx) => {
+    let node = defNode;
+    if (Array.isArray(steps) && steps[idx]) {
+      const override = steps[idx];
+      node = {
+        ...node,
+        title: override.title || node.title,
+        description: override.description || node.description,
+        imageSrc: override.imageSrc || node.imageSrc
+      };
+    }
+    if (idx === 1 && node02Image) {
+      node = {
+        ...node,
+        imageSrc: node02Image
+      };
+    }
+    return node;
+  });
 
   const [activeIdx, setActiveIdx] = useState(0);
   const activeNode = nodes[activeIdx] || nodes[0];

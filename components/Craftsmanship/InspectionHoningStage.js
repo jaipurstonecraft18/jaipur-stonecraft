@@ -33,8 +33,17 @@ const auditChecklist = [
   }
 ];
 
-export default function InspectionHoningStage() {
+export default function InspectionHoningStage({ imageSrc, data = {} }) {
   const [openId, setOpenId] = useState("dim");
+
+  const eyebrow = data.eyebrow || "SURFACE HONING & VERIFICATION";
+  const heading = data.heading || "Honing & Quality Inspection";
+  const paragraphs = data.narrative
+    ? data.narrative.split("\n\n").filter(Boolean)
+    : [
+        "After carving, stone surfaces are honed by hand using progress-graded water stones—moving from coarse 120-grit up to 1200-grit smooth emery.",
+        "This natural water-honing process highlights the organic depth and translucent calcite luminosity of Makrana marble without using artificial wax or chemical lacquer coatings."
+      ];
 
   return (
     <section id="stage-05" className={styles.stageSection} aria-label="Stage 05: Inspection & Honing">
@@ -54,7 +63,7 @@ export default function InspectionHoningStage() {
             <div className={styles.imageCol}>
               <div className={styles.imageFrame}>
                 <Image
-                  src="/images/craftsmanship/step-04-polish-perfection.jpg"
+                  src={imageSrc || "/images/craftsmanship/step-04-polish-perfection.jpg"}
                   alt="Hand polishing smooth white marble sculpture surface with water in Jaipur"
                   fill
                   unoptimized
@@ -72,18 +81,13 @@ export default function InspectionHoningStage() {
           {/* Right Narrative & Interactive Checklist */}
           <ScrollReveal animation="fade-up" delay={150}>
             <div className={styles.contentCol}>
-              <span className={styles.eyebrow}>SURFACE HONING & VERIFICATION</span>
-              <h2 className={styles.heading}>Honing & Quality Inspection</h2>
+              <span className={styles.eyebrow}>{eyebrow}</span>
+              <h2 className={styles.heading}>{heading}</h2>
 
               <div className={styles.narrativeText}>
-                <p>
-                  After carving, stone surfaces are honed by hand using progress-graded water stones—moving 
-                  from coarse 120-grit up to 1200-grit smooth emery.
-                </p>
-                <p>
-                  This natural water-honing process highlights the organic depth and translucent calcite 
-                  luminosity of Makrana marble without using artificial wax or chemical lacquer coatings.
-                </p>
+                {paragraphs.map((p, idx) => (
+                  <p key={idx}>{p}</p>
+                ))}
               </div>
 
               {/* Interactive Audit Accordion */}

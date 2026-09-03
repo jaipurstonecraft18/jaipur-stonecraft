@@ -7,7 +7,7 @@
    -------------------------------------------------------------------------- */
 .headerSection {
   background-color: var(--color-cream);
-  padding-top: calc(80px + var(--spacing-md));
+  padding-top: clamp(140px, 12vw, 165px);
   padding-bottom: var(--spacing-xxl);
 }
 
@@ -477,6 +477,10 @@
    7. RESPONSIVE MEDIA QUERIES
    -------------------------------------------------------------------------- */
 @media (max-width: 991px) {
+  .headerSection {
+    padding-top: calc(60px + var(--spacing-md));
+  }
+
   .heroGrid,
   .lineageGrid,
   .futureGrid,

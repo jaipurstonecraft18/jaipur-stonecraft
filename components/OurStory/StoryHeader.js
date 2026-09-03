@@ -6,7 +6,7 @@ import styles from "./OurStory.module.css";
 
 export default function StoryHeader({ eyebrow, heading, subtitle, imageSrc }) {
   return (
-    <header className={styles.headerSection}>
+    <section className={styles.headerSection}>
       <Container>
         <div className={styles.topBar}>
           <Breadcrumbs items={[{ label: "Our Story" }]} />
@@ -42,6 +42,6 @@ export default function StoryHeader({ eyebrow, heading, subtitle, imageSrc }) {
           </div>
         </div>
       </Container>
-    </header>
+    </section>
   );
 }

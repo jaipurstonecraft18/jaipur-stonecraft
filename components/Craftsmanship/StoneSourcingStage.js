@@ -28,7 +28,17 @@ const stoneTypes = [
   },
 ];
 
-export default function StoneSourcingStage() {
+export default function StoneSourcingStage({ imageSrc, data = {} }) {
+  const eyebrow = data.eyebrow || "QUARRY SELECTION & MINERAL INTEGRITY";
+  const heading = data.heading || "Selecting the Solid Block";
+  const auditStandard = data.auditStandard || "Density checks eliminate soft pockets or iron deposits before carving begins. Zero unverified blocks enter our studio.";
+  const paragraphs = data.narrative
+    ? data.narrative.split("\n\n").filter(Boolean)
+    : [
+        "Every lasting sculpture begins at the quarry face. We source raw blocks of white Makrana marble, pink Bansi Paharpur sandstone, and Dholpur sandstone directly from historic quarries across Rajasthan.",
+        "Our senior quarry inspectors examine raw stone monoliths before extraction. We check each block for mineral density, hairline fractures, and structural stability. Only blocks completely free from internal stress lines are carted to our Jaipur workshop."
+      ];
+
   return (
     <section id="stage-01" className={styles.stageSection} aria-label="Stage 01: Stone Selection">
       <Container>
@@ -46,19 +56,13 @@ export default function StoneSourcingStage() {
           {/* Left Editorial Narrative */}
           <ScrollReveal animation="fade-up">
             <div className={styles.contentCol}>
-              <span className={styles.eyebrow}>QUARRY SELECTION & MINERAL INTEGRITY</span>
-              <h2 className={styles.heading}>Selecting the Solid Block</h2>
+              <span className={styles.eyebrow}>{eyebrow}</span>
+              <h2 className={styles.heading}>{heading}</h2>
               
               <div className={styles.narrativeText}>
-                <p>
-                  Every lasting sculpture begins at the quarry face. We source raw blocks of white Makrana marble, 
-                  pink Bansi Paharpur sandstone, and Dholpur sandstone directly from historic quarries across Rajasthan.
-                </p>
-                <p>
-                  Our senior quarry inspectors examine raw stone monoliths before extraction. We check each block 
-                  for mineral density, hairline fractures, and structural stability. Only blocks completely free from 
-                  internal stress lines are carted to our Jaipur workshop.
-                </p>
+                {paragraphs.map((p, idx) => (
+                  <p key={idx}>{p}</p>
+                ))}
               </div>
 
               {/* Technical Callout Box */}
@@ -72,7 +76,7 @@ export default function StoneSourcingStage() {
                   <span className={styles.techTitle}>Block Audit Standard</span>
                 </div>
                 <p className={styles.techDesc}>
-                  Density checks eliminate soft pockets or iron deposits before carving begins. Zero unverified blocks enter our studio.
+                  {auditStandard}
                 </p>
               </div>
 
@@ -90,7 +94,7 @@ export default function StoneSourcingStage() {
             <div className={styles.imageCol}>
               <div className={styles.imageFrame}>
                 <Image
-                  src="/images/craftsmanship/step-01-select-stone.jpg"
+                  src={imageSrc || "/images/craftsmanship/step-01-select-stone.jpg"}
                   alt="Raw white marble quarry stone blocks selected in Rajasthan"
                   fill
                   unoptimized

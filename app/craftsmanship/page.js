@@ -45,46 +45,75 @@ export default async function Craftsmanship() {
     heroImageSrc: "/images/craftsmanship/artisan-hands.png"
   });
 
+  const pageImages = craftData?.pageImages || {};
+  const pageStages = craftData?.stages || {};
+  const closingCta = craftData?.closingCta || {};
+
+  const pathwaySteps = Array.isArray(craftData?.journeySteps) ? [
+    craftData.journeySteps[0] ? { imageSrc: craftData.journeySteps[0].imageSrc } : null,
+    null, // Node 02 (Artisan Hand / Blueprint Mapping) remains independent
+    craftData.journeySteps[1] ? { imageSrc: craftData.journeySteps[1].imageSrc } : null,
+    craftData.journeySteps[2] ? { imageSrc: craftData.journeySteps[2].imageSrc } : null,
+    craftData.journeySteps[4] ? { imageSrc: craftData.journeySteps[4].imageSrc } : null,
+  ] : null;
+
   return (
-    <main style={{ minHeight: "100vh", backgroundColor: "var(--color-cream)" }}>
+    <div style={{ minHeight: "100vh", backgroundColor: "var(--color-cream)" }}>
       {/* 1. EDITORIAL ATELIER HERO */}
       <AtelierHero data={craftData} />
 
       {/* 2. TRANSFORMATION PATHWAY (SIGNATURE VISUAL MOMENT) */}
-      <TransformationPathway />
+      <TransformationPathway steps={pathwaySteps} node02Image={pageImages.node02} />
 
       {/* 3. STICKY ATELIER PROCESS TIMELINE NAVIGATION */}
       <ProcessTimelineNav />
 
       {/* 4. STAGE 01: RAW STONE SELECTION (LIGHT) */}
-      <StoneSourcingStage />
+      <StoneSourcingStage
+        imageSrc={craftData.journeySteps?.[0]?.imageSrc}
+        data={pageStages.stage01}
+      />
 
       {/* 5. STAGE 02: BLUEPRINT MAPPING & MODELING (DARK ATELIER) */}
-      <BlueprintModelingStage />
+      <BlueprintModelingStage data={pageStages.stage02} />
 
       {/* 6. STAGE 03: GENERATIONAL HAND CARVING (LIGHT) */}
-      <HandChiselingStage />
+      <HandChiselingStage
+        heroImageSrc={pageImages.stage03_hero}
+        subImageSrc={pageImages.stage03_sub}
+        data={pageStages.stage03}
+      />
 
       {/* 7. STAGE 04: REFINEMENT & DETAIL SCULPTING (WARM LIGHT) */}
-      <DetailSculptingStage />
+      <DetailSculptingStage
+        facialImageSrc={pageImages.stage04_facial}
+        jaliImageSrc={pageImages.stage04_jali}
+        data={pageStages.stage04}
+      />
 
       {/* 8. STAGE 05: HONING & QUALITY INSPECTION (LIGHT) */}
-      <InspectionHoningStage />
+      <InspectionHoningStage
+        imageSrc={pageImages.stage05_honing}
+        data={pageStages.stage05}
+      />
 
       {/* 9. STAGE 06: EXPORT LOGISTICS & CRATING (DARK TRANSIT) */}
-      <ExportLogisticsStage />
+      <ExportLogisticsStage data={pageStages.stage06} />
 
       {/* 10. STAGE 07: THE MASTERPIECE BORN (LIGHT) */}
-      <MasterpieceBorn />
+      <MasterpieceBorn
+        imageSrc={pageImages.stage07_masterpiece}
+        data={pageStages.stage07}
+      />
 
       {/* 11. CLOSING INQUIRY CTA SECTION (DARK) */}
       <CTASection
-        heading="Bring Jaipur Stonecraft to Your Project"
-        description="Collaborate with our master masons to custom-carve white marble deity statues, temple architecture, garden fountains, fireplace mantels, or bespoke stone friezes."
-        primaryCtaText="Request a Quote"
-        primaryCtaHref="/contact?type=quote"
-        secondaryCtaText="Start Custom Project"
-        secondaryCtaHref="/contact?type=custom"
+        heading={closingCta.heading || "Bring Jaipur Stonecraft to Your Project"}
+        description={closingCta.description || "Collaborate with our master masons to custom-carve white marble deity statues, temple architecture, garden fountains, fireplace mantels, or bespoke stone friezes."}
+        primaryCtaText={closingCta.primaryCtaText || "Request a Quote"}
+        primaryCtaHref={closingCta.primaryCtaHref || "/contact?type=quote"}
+        secondaryCtaText={closingCta.secondaryCtaText || "Start Custom Project"}
+        secondaryCtaHref={closingCta.secondaryCtaHref || "/contact?type=custom"}
         background="dark"
       />
 
@@ -144,6 +173,6 @@ export default async function Craftsmanship() {
           }),
         }}
       />
-    </main>
+    </div>
   );
 }
