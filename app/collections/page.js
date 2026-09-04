@@ -4,6 +4,7 @@ import Container from "@/components/Container/Container";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { getAllCollections } from "@/content/collections";
+import { getImageVariantUrl } from "@/lib/utils/image-utils";
 import styles from "@/components/CollectionsOverview/CollectionsOverview.module.css";
 
 export const dynamic = "force-dynamic";
@@ -92,10 +93,9 @@ export default async function CollectionsPage() {
                 />
                 <div className={styles.spotlightImageWrapper}>
                   <Image
-                    src={spotlight.imageSrc || "/images/collections/hero-sculptures-group.jpg"}
+                    src={getImageVariantUrl(spotlight.imageSrc || "/images/collections/hero-sculptures-group.webp", "display")}
                     alt={spotlight.name}
                     fill
-                    unoptimized
                     sizes="(max-width: 1024px) 100vw, 55vw"
                     className={styles.spotlightImage}
                     priority
@@ -153,10 +153,9 @@ export default async function CollectionsPage() {
                   />
                   <div className={styles.featureImageWrapper}>
                     <Image
-                      src={majorOne.imageSrc || "/images/collections/wall-art-relief.jpg"}
+                      src={getImageVariantUrl(majorOne.imageSrc || "/images/collections/wall-art-relief.webp", "card")}
                       alt={majorOne.name}
                       fill
-                      unoptimized
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className={styles.featureImage}
                     />
@@ -200,10 +199,9 @@ export default async function CollectionsPage() {
                   />
                   <div className={styles.featureImageWrapper}>
                     <Image
-                      src={majorTwo.imageSrc || "/images/collections/temples-architectural.jpg"}
+                      src={getImageVariantUrl(majorTwo.imageSrc || "/images/collections/temples-architectural.webp", "card")}
                       alt={majorTwo.name}
                       fill
-                      unoptimized
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className={styles.featureImage}
                     />
@@ -258,10 +256,9 @@ export default async function CollectionsPage() {
                   />
                   <div className={styles.trioImageWrapper}>
                     <Image
-                      src={trioOne.imageSrc || "/images/collections/garden.png"}
+                      src={getImageVariantUrl(trioOne.imageSrc || "/images/collections/garden.webp", "card")}
                       alt={trioOne.name}
                       fill
-                      unoptimized
                       sizes="(max-width: 1024px) 50vw, 33vw"
                       className={styles.trioImage}
                     />
@@ -288,10 +285,9 @@ export default async function CollectionsPage() {
                   />
                   <div className={styles.trioImageWrapper}>
                     <Image
-                      src={trioTwo.imageSrc || "/images/collections/luxury.png"}
+                      src={getImageVariantUrl(trioTwo.imageSrc || "/images/collections/luxury.webp", "card")}
                       alt={trioTwo.name}
                       fill
-                      unoptimized
                       sizes="(max-width: 1024px) 50vw, 33vw"
                       className={styles.trioImage}
                     />
@@ -318,10 +314,9 @@ export default async function CollectionsPage() {
                   />
                   <div className={styles.trioImageWrapper}>
                     <Image
-                      src={trioThree.imageSrc || "/images/collections/custom.png"}
+                      src={getImageVariantUrl(trioThree.imageSrc || "/images/collections/custom.webp", "card")}
                       alt={trioThree.name}
                       fill
-                      unoptimized
                       sizes="(max-width: 1024px) 50vw, 33vw"
                       className={styles.trioImage}
                     />

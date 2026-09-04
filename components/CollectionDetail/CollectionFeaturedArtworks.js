@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/Container/Container";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
+import { getImageVariantUrl } from "@/lib/utils/image-utils";
 import styles from "./CollectionDetail.module.css";
 
 export default function CollectionFeaturedArtworks({ artworks = [], collectionName = "" }) {
@@ -26,10 +27,9 @@ export default function CollectionFeaturedArtworks({ artworks = [], collectionNa
               <div className={styles.artworkCard}>
                 <div className={styles.artworkImageWrapper}>
                   <Image
-                    src={item.imageSrc || "/images/collections/hero-sculptures-group.webp"}
+                    src={getImageVariantUrl(item.imageSrc || "/images/collections/hero-sculptures-group.webp", "card")}
                     alt={item.title}
                     fill
-                    unoptimized
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className={styles.artworkImage}
                   />

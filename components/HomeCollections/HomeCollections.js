@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/Container/Container";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
+import { getImageVariantUrl } from "@/lib/utils/image-utils";
 import styles from "./HomeCollections.module.css";
 
 export default function HomeCollections({ collections }) {
@@ -19,12 +20,12 @@ export default function HomeCollections({ collections }) {
   const decor = colMap["decorative-stone-art"] || collections?.[4] || {};
   const custom = colMap["custom-bespoke-creations"] || collections?.[5] || {};
 
-  const spotlightImg = spotlight.imageSrc || "/images/collections/hero-sculptures-group.webp";
-  const wallArtImg = wallArt.imageSrc || "/images/collections/wall-art-relief.webp";
-  const templesImg = temples.imageSrc || "/images/collections/temples-architectural.webp";
-  const fountainsImg = fountains.imageSrc || "/images/collections/garden.webp";
-  const decorImg = decor.imageSrc || "/images/collections/luxury.webp";
-  const customImg = custom.imageSrc || "/images/collections/custom.webp";
+  const spotlightImg = getImageVariantUrl(spotlight.imageSrc || "/images/collections/hero-sculptures-group.webp", "display");
+  const wallArtImg = getImageVariantUrl(wallArt.imageSrc || "/images/collections/wall-art-relief.webp", "card");
+  const templesImg = getImageVariantUrl(temples.imageSrc || "/images/collections/temples-architectural.webp", "card");
+  const fountainsImg = getImageVariantUrl(fountains.imageSrc || "/images/collections/garden.webp", "card");
+  const decorImg = getImageVariantUrl(decor.imageSrc || "/images/collections/luxury.webp", "card");
+  const customImg = getImageVariantUrl(custom.imageSrc || "/images/collections/custom.webp", "card");
 
   const spotlightTitle = spotlight.name || "Sculptures & Statues";
   const wallArtTitle = wallArt.name || "Wall Art & Reliefs";
@@ -82,7 +83,6 @@ export default function HomeCollections({ collections }) {
                 src={spotlightImg}
                 alt={spotlightTitle}
                 fill
-                unoptimized
                 sizes="(max-width: 1024px) 100vw, 55vw"
                 className={styles.featuredImage}
                 priority
@@ -147,7 +147,6 @@ export default function HomeCollections({ collections }) {
                   src={wallArtImg}
                   alt={wallArtTitle}
                   fill
-                  unoptimized
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className={styles.cardImage}
                 />
@@ -182,7 +181,6 @@ export default function HomeCollections({ collections }) {
                   src={templesImg}
                   alt={templesTitle}
                   fill
-                  unoptimized
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className={styles.cardImage}
                 />
@@ -220,7 +218,6 @@ export default function HomeCollections({ collections }) {
                   src={fountainsImg}
                   alt={fountainsTitle}
                   fill
-                  unoptimized
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className={styles.cardImage}
                 />
@@ -254,7 +251,6 @@ export default function HomeCollections({ collections }) {
                   src={decorImg}
                   alt={decorTitle}
                   fill
-                  unoptimized
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className={styles.cardImage}
                 />
@@ -288,7 +284,6 @@ export default function HomeCollections({ collections }) {
                   src={customImg}
                   alt={customTitle}
                   fill
-                  unoptimized
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className={styles.cardImage}
                 />

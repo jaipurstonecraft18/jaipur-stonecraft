@@ -63,10 +63,9 @@ export default function InspectionHoningStage({ imageSrc, data = {} }) {
             <div className={styles.imageCol}>
               <div className={styles.imageFrame}>
                 <Image
-                  src={imageSrc || "/images/craftsmanship/step-04-polish-perfection.jpg"}
+                  src={imageSrc || "/images/craftsmanship/step-04-polish-perfection.webp"}
                   alt="Hand polishing smooth white marble sculpture surface with water in Jaipur"
                   fill
-                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 48vw"
                   className={styles.stageImage}
                 />

@@ -2,13 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/Container/Container";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
+import { getImageVariantUrl } from "@/lib/utils/image-utils";
 import styles from "./HeritageStory.module.css";
 
 export default function HeritageStory({ storyData }) {
   const eyebrow = storyData?.eyebrow || "ABOUT JAIPUR STONECRAFT";
   const heading = storyData?.heading || "Heritage of Indian Stone Art";
   const description = storyData?.paragraph1 || storyData?.description || "Jaipur Stonecraft brings together tradition, devotion and artistic excellence. For over four decades, we have been crafting exquisite marble and stone sculptures, temple art, fountains and custom creations that stand as symbols of faith, beauty and timeless craftsmanship.";
-  const imgSrc = storyData?.imageSrc || "/images/brand/heritage-ganesha.jpg";
+  const imgSrc = storyData?.imageSrc || "/images/brand/heritage-ganesha.webp";
   const imgAlt = "Hand-carved white marble Ganesha statue adorned with marigolds in Jaipur Stonecraft courtyard";
 
   return (
@@ -34,10 +35,9 @@ export default function HeritageStory({ storyData }) {
           <ScrollReveal animation="fade-up" className={styles.imageCol}>
             <div className={styles.imageCard}>
               <Image
-                src={imgSrc}
+                src={getImageVariantUrl(imgSrc, "display")}
                 alt={imgAlt}
                 fill
-                unoptimized
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className={styles.image}
                 loading="lazy"

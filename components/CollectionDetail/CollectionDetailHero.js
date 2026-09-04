@@ -19,7 +19,6 @@ export default function CollectionDetailHero({ collection, heroData }) {
           src={heroImageSrc}
           alt={`${collection.name} cover`}
           fill
-          unoptimized
           priority
           sizes="100vw"
           className={styles.heroBannerBgImage}

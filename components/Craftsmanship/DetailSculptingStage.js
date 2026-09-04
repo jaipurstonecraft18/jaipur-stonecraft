@@ -36,10 +36,9 @@ export default function DetailSculptingStage({ facialImageSrc, jaliImageSrc, dat
             <div className={styles.card}>
               <div className={styles.cardImageWrapper}>
                 <Image
-                  src={facialImageSrc || "/images/craftsmanship/step-03-refine-details.jpg"}
+                  src={facialImageSrc || "/images/craftsmanship/step-03-refine-details.webp"}
                   alt="Master carver chiseling intricate deity facial expressions in marble"
                   fill
-                  unoptimized
                   sizes="(max-width: 991px) 100vw, 50vw"
                   className={styles.cardImage}
                 />
@@ -56,10 +55,9 @@ export default function DetailSculptingStage({ facialImageSrc, jaliImageSrc, dat
             <div className={styles.card}>
               <div className={styles.cardImageWrapper}>
                 <Image
-                  src={jaliImageSrc || "/images/craftsmanship/artisan-hands.png"}
+                  src={jaliImageSrc || "/images/craftsmanship/artisan-hands.webp"}
                   alt="Artisan hands chiseling delicate relief motifs into stone"
                   fill
-                  unoptimized
                   sizes="(max-width: 991px) 100vw, 50vw"
                   className={styles.cardImage}
                 />

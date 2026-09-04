@@ -8,7 +8,7 @@ const mosaicItems = [
   {
     id: 1,
     type: "image",
-    src: "/images/brand/heritage-ganesha.jpg",
+    src: "/images/brand/heritage-ganesha.webp",
     alt: "White Marble Lord Ganesha Statue adorned with marigolds",
     title: "White Marble Ganesha Murti",
     gridClass: styles.tileGanesha,
@@ -25,7 +25,7 @@ const mosaicItems = [
   {
     id: 3,
     type: "image",
-    src: "/images/creations/sai-baba-seated.jpg",
+    src: "/images/creations/sai-baba-seated.webp",
     alt: "Seated Sai Baba White Marble Sculpture",
     title: "Sai Baba Devotional Statue",
     gridClass: styles.tileSaiBaba,
@@ -42,7 +42,7 @@ const mosaicItems = [
   {
     id: 5,
     type: "image",
-    src: "/images/creations/krishna-alcove.jpg",
+    src: "/images/creations/krishna-alcove.webp",
     alt: "Lord Krishna Marble Statue in Temple Alcove",
     title: "Krishna Mandir Alcove Sculpture",
     gridClass: styles.tileKrishna,
@@ -67,7 +67,7 @@ const mosaicItems = [
   {
     id: 8,
     type: "image",
-    src: "/images/creations/marble-home-mandir.jpg",
+    src: "/images/creations/marble-home-mandir.webp",
     alt: "Custom Carved White Marble Home Mandir Temple",
     title: "Custom Home Mandir Sanctuary",
     gridClass: styles.tileMandir,
@@ -84,7 +84,7 @@ const mosaicItems = [
   {
     id: 10,
     type: "image",
-    src: "/images/creations/black-nandi-statue.jpg",
+    src: "/images/creations/black-nandi-statue.webp",
     alt: "Hand-Carved Black Marble Nandi Bull Sculpture",
     title: "Black Marble Nandi Murti",
     gridClass: styles.tileNandi,
@@ -93,7 +93,7 @@ const mosaicItems = [
 
 export default function FeaturedCreations() {
   return (
-    <section className={styles.section} aria-label="Featured Creations">
+    <section className={styles.section} aria-label="Customer Creations and Reviews">
       <Container>
         <div className={styles.outerContainer}>
           {/* Section Header */}
@@ -117,7 +117,6 @@ export default function FeaturedCreations() {
                       src={item.src}
                       alt={item.alt}
                       fill
-                      unoptimized
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className={styles.cardImage}
                       loading="lazy"

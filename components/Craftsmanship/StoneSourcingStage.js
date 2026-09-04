@@ -94,10 +94,9 @@ export default function StoneSourcingStage({ imageSrc, data = {} }) {
             <div className={styles.imageCol}>
               <div className={styles.imageFrame}>
                 <Image
-                  src={imageSrc || "/images/craftsmanship/step-01-select-stone.jpg"}
+                  src={imageSrc || "/images/craftsmanship/step-01-select-stone.webp"}
                   alt="Raw white marble quarry stone blocks selected in Rajasthan"
                   fill
-                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 48vw"
                   className={styles.stageImage}
                   priority

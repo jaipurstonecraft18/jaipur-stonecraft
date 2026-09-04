@@ -9,6 +9,8 @@ function revalidateTaxonomyRoutes(slug) {
     revalidatePath("/");
     revalidatePath("/collections");
     revalidatePath("/collections/[collection]", "page");
+    revalidatePath("/collections/[collection]/[subcategory]", "page");
+    revalidatePath("/collections/[collection]/[subcategory]/[category]", "page");
     if (slug) {
       revalidatePath(`/collections/${slug}`);
     }
@@ -17,7 +19,7 @@ function revalidateTaxonomyRoutes(slug) {
   }
 }
 
-// GET: Fetch categories & collections with product usage counts
+// GET: Fetch categories, collections & subcategories with product usage counts & sort orders
 export async function GET(request) {
   if (!isAuthorizedAdminRequest(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -25,9 +27,9 @@ export async function GET(request) {
 
   try {
     await initDB();
-    const rawCategories = await query("SELECT * FROM categories ORDER BY name ASC");
+    const rawCategories = await query("SELECT * FROM categories ORDER BY sort_order ASC, name ASC");
     const rawCollections = await query("SELECT * FROM collections ORDER BY name ASC");
-    const rawSubcategories = await query("SELECT * FROM subcategories ORDER BY name ASC");
+    const rawSubcategories = await query("SELECT * FROM subcategories ORDER BY sort_order ASC, name ASC");
 
     const categories = await Promise.all(rawCategories.map(async (c) => {
       const usage = await getOne("SELECT COUNT(*) as count FROM products WHERE parent_category = ? OR parent_category = ?", [c.slug, c.name]);
@@ -37,7 +39,22 @@ export async function GET(request) {
         parentSubcategory: c.parent_subcategory_slug,
         imageSrc: c.image_src,
         imageAlt: c.image_alt,
+        sortOrder: c.sort_order ?? 0,
         isActive: Boolean(c.is_active ?? 1),
+        usedByProductsCount: usage ? usage.count : 0
+      };
+    }));
+
+    const subcategories = await Promise.all(rawSubcategories.map(async (s) => {
+      const catCount = await getOne("SELECT COUNT(*) as count FROM categories WHERE parent_subcategory_slug = ?", [s.slug]);
+      const usage = await getOne("SELECT COUNT(*) as count FROM products WHERE parent_subcategory = ? OR parent_subcategory = ?", [s.slug, s.name]);
+      return {
+        ...s,
+        parentCollection: s.parent_collection_slug,
+        imageSrc: s.image_src,
+        sortOrder: s.sort_order ?? 0,
+        isActive: Boolean(s.is_active ?? 1),
+        categoryCount: catCount ? catCount.count : 0,
         usedByProductsCount: usage ? usage.count : 0
       };
     }));
@@ -45,16 +62,18 @@ export async function GET(request) {
     const collections = await Promise.all(rawCollections.map(async (col) => {
       const usage = await getOne("SELECT COUNT(*) as count FROM products WHERE parent_collection = ? OR parent_collection = ?", [col.slug, col.name]);
       const catCount = await getOne("SELECT COUNT(*) as count FROM categories WHERE parent_collection_slug = ?", [col.slug]);
+      const subCount = await getOne("SELECT COUNT(*) as count FROM subcategories WHERE parent_collection_slug = ?", [col.slug]);
       return {
         ...col,
         imageSrc: col.image_src,
         isActive: Boolean(col.is_active ?? 1),
         usedByProductsCount: usage ? usage.count : 0,
-        categoryCount: catCount ? catCount.count : 0
+        categoryCount: catCount ? catCount.count : 0,
+        subcategoryCount: subCount ? subCount.count : 0
       };
     }));
 
-    return NextResponse.json({ categories, collections, subcategories: rawSubcategories });
+    return NextResponse.json({ categories, collections, subcategories });
   } catch (error) {
     return NextResponse.json({ error: error.message || "Failed to fetch categories" }, { status: 500 });
   }
@@ -201,7 +220,7 @@ export async function POST(request) {
   }
 }
 
-// PUT: Cover image or status quick update
+// PUT: Cover image, status, or display order quick update
 export async function PUT(request) {
   if (!isAuthorizedAdminRequest(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -210,7 +229,29 @@ export async function PUT(request) {
   try {
     await initDB();
     const body = await request.json();
-    const { slug, imageSrc, imageAlt, isActive, type = "category" } = body;
+
+    // 1. Batch Reorder Handler
+    if (body.action === "reorder") {
+      const { type = "subcategory", items = [] } = body;
+      if (type === "subcategory") {
+        for (const item of items) {
+          if (item.slug && typeof item.sortOrder === "number") {
+            await execute("UPDATE subcategories SET sort_order = ? WHERE slug = ?", [item.sortOrder, item.slug]);
+          }
+        }
+      } else if (type === "category") {
+        for (const item of items) {
+          if (item.slug && typeof item.sortOrder === "number") {
+            await execute("UPDATE categories SET sort_order = ? WHERE slug = ?", [item.sortOrder, item.slug]);
+          }
+        }
+      }
+      revalidateTaxonomyRoutes();
+      return NextResponse.json({ success: true, message: `Updated display order for ${items.length} ${type}(s).` });
+    }
+
+    // 2. Individual Item Update
+    const { slug, imageSrc, imageAlt, isActive, sortOrder, type = "category" } = body;
 
     if (!slug) {
       return NextResponse.json({ error: "Slug is required" }, { status: 400 });
@@ -230,6 +271,21 @@ export async function PUT(request) {
         await execute("UPDATE collections SET is_active = ? WHERE slug = ?", [isActive ? 1 : 0, slug]);
       }
       return NextResponse.json({ success: true, message: `Updated collection "${slug}".` });
+    } else if (type === "subcategory") {
+      if (imageSrc !== undefined) {
+        const oldSub = await getOne("SELECT image_src FROM subcategories WHERE slug = ?", [slug]);
+        await execute("UPDATE subcategories SET image_src = ? WHERE slug = ?", [imageSrc, slug]);
+        if (oldSub?.image_src && oldSub.image_src !== imageSrc) {
+          await safeUnlinkObsoleteUpload(oldSub.image_src);
+        }
+      }
+      if (isActive !== undefined) {
+        await execute("UPDATE subcategories SET is_active = ? WHERE slug = ?", [isActive ? 1 : 0, slug]);
+      }
+      if (sortOrder !== undefined) {
+        await execute("UPDATE subcategories SET sort_order = ? WHERE slug = ?", [Number(sortOrder), slug]);
+      }
+      return NextResponse.json({ success: true, message: `Updated subcategory "${slug}".` });
     } else {
       if (imageSrc !== undefined) {
         const oldCat = await getOne("SELECT image_src FROM categories WHERE slug = ?", [slug]);
@@ -240,6 +296,9 @@ export async function PUT(request) {
       }
       if (isActive !== undefined) {
         await execute("UPDATE categories SET is_active = ? WHERE slug = ?", [isActive ? 1 : 0, slug]);
+      }
+      if (sortOrder !== undefined) {
+        await execute("UPDATE categories SET sort_order = ? WHERE slug = ?", [Number(sortOrder), slug]);
       }
       return NextResponse.json({ success: true, message: `Updated category "${slug}".` });
     }
@@ -281,6 +340,21 @@ export async function DELETE(request) {
 
       await execute("DELETE FROM collections WHERE slug = ?", [slug]);
       return NextResponse.json({ success: true, message: `Collection "${slug}" deleted permanently.` });
+    } else if (type === "subcategory") {
+      const prodUsage = await getOne("SELECT COUNT(*) as count FROM products WHERE parent_subcategory = ?", [slug]);
+      const catUsage = await getOne("SELECT COUNT(*) as count FROM categories WHERE parent_subcategory_slug = ?", [slug]);
+      const totalUsage = (prodUsage ? prodUsage.count : 0) + (catUsage ? catUsage.count : 0);
+
+      if (totalUsage > 0) {
+        await execute("UPDATE subcategories SET is_active = 0 WHERE slug = ?", [slug]);
+        return NextResponse.json({
+          success: true,
+          message: `Subcategory archived safely. (Referenced by ${catUsage?.count || 0} categories and ${prodUsage?.count || 0} products)`
+        });
+      }
+
+      await execute("DELETE FROM subcategories WHERE slug = ?", [slug]);
+      return NextResponse.json({ success: true, message: `Subcategory "${slug}" deleted permanently.` });
     } else {
       const prodUsage = await getOne("SELECT COUNT(*) as count FROM products WHERE parent_category = ?", [slug]);
       if (prodUsage && prodUsage.count > 0) {

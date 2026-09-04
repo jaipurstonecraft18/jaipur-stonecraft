@@ -36,6 +36,9 @@ export default function AdminMobileNav() {
           <Link href="/admin/catalogue" className={`${styles.navLink} ${pathname === "/admin/catalogue" ? styles.navLinkActive : ""}`}>
             Catalogue
           </Link>
+          <Link href="/admin/categories" className={`${styles.navLink} ${pathname === "/admin/categories" ? styles.navLinkActive : ""}`}>
+            Categories & Covers
+          </Link>
           <Link href="/admin/pages" className={`${styles.navLink} ${pathname.startsWith("/admin/pages") ? styles.navLinkActive : ""}`}>
             Page CMS
           </Link>
@@ -142,6 +145,13 @@ export default function AdminMobileNav() {
                 className={`${styles.mobileDrawerLink} ${pathname === "/admin/catalogue" ? styles.mobileDrawerLinkActive : ""}`}
               >
                 🏷️ Catalogue & Taxonomy
+              </Link>
+              <Link
+                href="/admin/categories"
+                onClick={toggleDrawer}
+                className={`${styles.mobileDrawerLink} ${pathname === "/admin/categories" ? styles.mobileDrawerLinkActive : ""}`}
+              >
+                📂 Categories & Covers Manager
               </Link>
 
               <div style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "1px", color: "#888", marginTop: "0.85rem", marginBottom: "0.2rem" }}>WEBSITE CMS & LEADS</div>

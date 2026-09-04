@@ -32,7 +32,6 @@ export default function StoryHeader({ eyebrow, heading, subtitle, imageSrc }) {
                   src={imageSrc || "/images/collections/hero-sculptures-group.webp"}
                   alt="Jaipur Stonecraft white marble goddess sculpture carved by master artisan"
                   fill
-                  unoptimized
                   priority
                   sizes="(max-width: 991px) 100vw, 45vw"
                   className={styles.heroImage}

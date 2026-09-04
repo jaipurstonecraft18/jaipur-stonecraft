@@ -2,7 +2,18 @@ import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/Container/Container";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
+import { getImageVariantUrl } from "@/lib/utils/image-utils";
 import styles from "./CollectionDetail.module.css";
+
+function getSubCoverImage(sub, col, variant = "card") {
+  let url = "/images/collections/hero-sculptures-group.webp";
+  if (sub?.imageSrc && typeof sub.imageSrc === "string" && !sub.imageSrc.includes("placehold.co")) {
+    url = sub.imageSrc;
+  } else if (col?.imageSrc && typeof col.imageSrc === "string" && !col.imageSrc.includes("placehold.co")) {
+    url = col.imageSrc;
+  }
+  return getImageVariantUrl(url, variant);
+}
 
 export default function SubcollectionExploration({ collection }) {
   const subcategories = collection.subcategories || [];
@@ -24,9 +35,9 @@ export default function SubcollectionExploration({ collection }) {
           </div>
         </ScrollReveal>
 
-        {/* 1. FEATURED PRIMARY SUB-COLLECTION (Item #01 - Prominent Editorial Card) */}
+        {/* 1. FEATURED SUB-COLLECTION (Item #01 - Big Banner Card) */}
         {featuredSub && (
-          <ScrollReveal animation="fade-up">
+          <ScrollReveal animation="fade-up" delay={100}>
             <div className={styles.featuredSubCard}>
               <Link
                 href={`/collections/${collection.slug}/${featuredSub.slug}`}
@@ -35,10 +46,9 @@ export default function SubcollectionExploration({ collection }) {
               />
               <div className={styles.featuredSubImageWrapper}>
                 <Image
-                  src={featuredSub.imageSrc || collection.imageSrc || "/images/collections/hero-sculptures-group.webp"}
+                  src={getSubCoverImage(featuredSub, collection, "display")}
                   alt={featuredSub.name}
                   fill
-                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 55vw"
                   className={styles.subImage}
                   priority
@@ -73,10 +83,9 @@ export default function SubcollectionExploration({ collection }) {
                     />
                     <div className={styles.subCardImageWrapper}>
                       <Image
-                        src={sub.imageSrc || "/images/collections/hero-sculptures-group.webp"}
+                        src={getSubCoverImage(sub, collection, "card")}
                         alt={sub.name}
                         fill
-                        unoptimized
                         sizes="(max-width: 768px) 100vw, 33vw"
                         className={styles.subImage}
                       />

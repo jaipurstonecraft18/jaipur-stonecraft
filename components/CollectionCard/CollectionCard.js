@@ -14,7 +14,6 @@ export default function CollectionCard({ imageSrc, imageAlt, name, description, 
           src={optimizedSrc}
           alt={imageAlt || defaultAlt}
           fill
-          unoptimized
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className={styles.image}
           loading="lazy"

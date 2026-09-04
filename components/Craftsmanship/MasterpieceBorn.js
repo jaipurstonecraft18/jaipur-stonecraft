@@ -32,10 +32,9 @@ export default function MasterpieceBorn({ imageSrc, data = {} }) {
             <div className={styles.imageCol}>
               <div className={styles.imageFrame}>
                 <Image
-                  src={imageSrc || "/images/brand/heritage-ganesha.jpg"}
+                  src={imageSrc || "/images/brand/heritage-ganesha.webp"}
                   alt="Completed white marble Ganesha murti masterpiece by Jaipur Stonecraft"
                   fill
-                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 48vw"
                   className={styles.masterpieceImage}
                   priority

@@ -79,26 +79,26 @@ export async function POST(request) {
       // 2. Process Sharp WebP Variants with EXIF Auto-Orientation & Metadata Stripping
       const baseSharp = () => sharp(buffer).rotate();
 
-      // Display Variant (1920x2400 max, WebP 90% - High-Res for Hero/Cover/Detail)
+      // Display Variant (1920x2400 max, WebP 85% with smartSubsample - High-Res for Hero/Cover/Detail)
       const displayBuffer = await baseSharp()
         .resize(1920, 2400, { fit: "inside", withoutEnlargement: true })
-        .webp({ quality: 90 })
+        .webp({ quality: 85, effort: 5, smartSubsample: true })
         .toBuffer();
       const displayPath = path.join(displayDir, webpFilename);
       await fs.writeFile(displayPath, displayBuffer);
 
-      // Card Variant (1080x1350 max, WebP 88% - Crisp for High-DPI Card Grids)
+      // Card Variant (1080x1350 max, WebP 82% with smartSubsample - Crisp for High-DPI Card Grids)
       const cardBuffer = await baseSharp()
         .resize(1080, 1350, { fit: "inside", withoutEnlargement: true })
-        .webp({ quality: 88 })
+        .webp({ quality: 82, effort: 5, smartSubsample: true })
         .toBuffer();
       const cardPath = path.join(cardDir, webpFilename);
       await fs.writeFile(cardPath, cardBuffer);
 
-      // Thumb Variant (400x400 square cover, WebP 85%)
+      // Thumb Variant (400x400 square cover, WebP 80%)
       const thumbBuffer = await baseSharp()
         .resize(400, 400, { fit: "cover", position: "center" })
-        .webp({ quality: 85 })
+        .webp({ quality: 80, effort: 4 })
         .toBuffer();
       const thumbPath = path.join(thumbDir, webpFilename);
       await fs.writeFile(thumbPath, thumbBuffer);

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/Container/Container";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
+import { getImageVariantUrl } from "@/lib/utils/image-utils";
 import styles from "./Hero.module.css";
 
 const heroSlides = [
@@ -17,7 +18,7 @@ const heroSlides = [
     primaryCtaHref: "/collections",
     secondaryCtaText: "Custom Project",
     secondaryCtaHref: "/contact?type=custom",
-    imageSrc: "/images/hero/hero-krishna-artisan.jpg",
+    imageSrc: "/images/hero/hero-krishna-artisan.webp",
     imageAlt: "Master white marble sculpture of Lord Krishna carved by artisan in studio",
   },
   {
@@ -49,16 +50,17 @@ const heroSlides = [
 export default function Hero(props) {
   const dynamicSlides = Array.isArray(props.slides) && props.slides.length > 0
     ? props.slides
-    : Array.isArray(props.heroData?.slides) && props.heroData.slides.length > 0
-    ? props.heroData.slides
+    : (props.content?.slides && Array.isArray(props.content.slides) && props.content.slides.length > 0)
+    ? props.content.slides
     : heroSlides;
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
+    if (dynamicSlides.length <= 1) return;
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % dynamicSlides.length);
-    }, 7000);
+    }, 6000);
     return () => clearInterval(timer);
   }, [dynamicSlides.length]);
 
@@ -81,10 +83,9 @@ export default function Hero(props) {
           className={`${styles.slideBackground} ${idx === currentSlide ? styles.activeBackground : ""}`}
         >
           <Image
-            src={s.imageSrc || "/images/hero/hero-krishna-artisan.jpg"}
+            src={getImageVariantUrl(s.imageSrc || "/images/hero/hero-krishna-artisan.webp", "display")}
             alt={s.imageAlt || s.headingTitle || "Jaipur Stonecraft Atelier"}
             fill
-            unoptimized
             priority={idx === 0}
             sizes="100vw"
             className={styles.heroImage}

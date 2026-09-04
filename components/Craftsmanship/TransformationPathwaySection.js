@@ -12,7 +12,7 @@ const transformationNodes = [
     label: "RAW STONE",
     title: "The Uncarved Monolith",
     description: "Extracted from Nagaur & Bharatpur quarries, raw white Makrana marble blocks carry age-old crystalline purity before entering our Jaipur workshop.",
-    imageSrc: "/images/craftsmanship/step-01-select-stone.jpg",
+    imageSrc: "/images/craftsmanship/step-01-select-stone.webp",
     alt: "Raw white marble stone blocks stacked in quarry",
     masonQuote: "In every block of raw Makrana marble, a sculpture is already waiting. Our duty is simply to remove what does not belong.",
   },
@@ -22,7 +22,7 @@ const transformationNodes = [
     label: "ARTISAN HAND",
     title: "Chalk Grids & Blueprint Alignment",
     description: "Master carvers translate 2D architectural CAD drawings directly onto stone faces using plumb lines, hand calipers, and chalk grids.",
-    imageSrc: "/images/hero/hero-krishna-artisan.jpg",
+    imageSrc: "/images/hero/hero-krishna-artisan.webp",
     alt: "Master artisan aligning chalk grid lines on marble statue",
     masonQuote: "The chalk grid is where architectural precision meets artisan intuition.",
   },
@@ -32,7 +32,7 @@ const transformationNodes = [
     label: "EMERGING FORM",
     title: "Roughing Out Mass & Contour",
     description: "Tempered steel point chisels strike away major stone volume, revealing the initial silhouette and structural weight of the sculpture.",
-    imageSrc: "/images/craftsmanship/step-02-shape-precision.jpg",
+    imageSrc: "/images/craftsmanship/step-02-shape-precision.webp",
     alt: "Artisan hands chiseling initial contours into white marble",
     masonQuote: "Rough chiseling requires confidence and strength. One misplaced blow can fracture a block.",
   },
@@ -42,7 +42,7 @@ const transformationNodes = [
     label: "SACRED DETAIL",
     title: "Sculpting Facial Grace & Friezes",
     description: "Micro-chisels and fine rasps outline delicate eyes, serene lips, crown ornaments, and organic floral drape curves.",
-    imageSrc: "/images/craftsmanship/step-03-refine-details.jpg",
+    imageSrc: "/images/craftsmanship/step-03-refine-details.webp",
     alt: "Master carver chiseling intricate deity facial expressions",
     masonQuote: "Facial expressions cannot be rushed. It takes hours of quiet chiseling to capture divine peace in stone.",
   },
@@ -52,7 +52,7 @@ const transformationNodes = [
     label: "FINISHED ART",
     title: "Water-Honed Sacred Masterpiece",
     description: "Polished with natural water stones to reveal translucent calcite luster, inspect-certified, and framed for global transit.",
-    imageSrc: "/images/brand/heritage-ganesha.jpg",
+    imageSrc: "/images/brand/heritage-ganesha.webp",
     alt: "Completed white marble Ganesha murti masterpiece",
     masonQuote: "When water washes off the final stone dust and the marble shines in the sunlight, the piece is born.",
   },
@@ -136,7 +136,6 @@ export default function TransformationPathway({ steps, node02Image }) {
                   src={activeNode.imageSrc}
                   alt={activeNode.alt}
                   fill
-                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 45vw"
                   className={styles.showcaseImage}
                   priority

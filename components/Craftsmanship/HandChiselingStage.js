@@ -64,10 +64,9 @@ export default function HandChiselingStage({ heroImageSrc, subImageSrc, data = {
             <div className={styles.visualCol}>
               <div className={styles.mainImageFrame}>
                 <Image
-                  src={heroImageSrc || "/images/hero/hero-krishna-artisan.jpg"}
+                  src={heroImageSrc || "/images/hero/hero-krishna-artisan.webp"}
                   alt="Master artisan chiseling white marble statue in Jaipur workshop"
                   fill
-                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 45vw"
                   className={styles.heroImage}
                   priority
@@ -76,10 +75,9 @@ export default function HandChiselingStage({ heroImageSrc, subImageSrc, data = {
 
               <div className={styles.staggeredImageFrame}>
                 <Image
-                  src={subImageSrc || "/images/craftsmanship/step-02-shape-precision.jpg"}
+                  src={subImageSrc || "/images/craftsmanship/step-02-shape-precision.webp"}
                   alt="Artisan hands chiseling initial contours into white marble block"
                   fill
-                  unoptimized
                   sizes="(max-width: 1024px) 80vw, 30vw"
                   className={styles.subImage}
                 />

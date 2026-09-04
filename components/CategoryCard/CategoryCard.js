@@ -34,7 +34,7 @@ export default function CategoryCard({
 
   const defaultAlt = `Hand-carved white marble ${name} sculpture created by master artisans in Jaipur`;
   const targetVariant = isFeatured ? "display" : "card";
-  const optimizedSrc = getImageVariantUrl(imageSrc, targetVariant) || `https://placehold.co/800x500/E8E4DF/1A1918?text=${encodeURIComponent(name)}`;
+  const optimizedSrc = (imageSrc ? getImageVariantUrl(imageSrc, targetVariant) : null) || "/images/collections/hero-sculptures-group.webp";
 
   return (
     <Link href={href} className={cardClassName} aria-label={`Explore ${name} designs`}>
@@ -44,7 +44,7 @@ export default function CategoryCard({
           src={optimizedSrc}
           alt={imageAlt || defaultAlt}
           fill
-          unoptimized
+          unoptimized={Boolean(optimizedSrc?.includes("placehold.co"))}
           sizes={isFeatured ? "(max-width: 768px) 100vw, 80vw" : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"}
           className={styles.image}
           loading="lazy"

@@ -535,6 +535,46 @@ export default function AdminPageCMS() {
     }
   };
 
+  const handleVideoUpload = async (e, callback) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const validMimeTypes = ["video/webm", "video/mp4"];
+    const isExtensionValid = /\.(webm|mp4)$/i.test(file.name);
+
+    if (!validMimeTypes.includes(file.type) && !isExtensionValid) {
+      alert("Invalid file format. Please upload a .webm or .mp4 video file.");
+      e.target.value = "";
+      return;
+    }
+
+    setSaving(true);
+    setMessage({ type: "info", text: "Uploading video file..." });
+    const formData = new FormData();
+    formData.append("video", file);
+
+    try {
+      const res = await fetch("/api/admin/upload-video", {
+        method: "POST",
+        body: formData
+      });
+      const data = await res.json();
+      if (res.ok && data.url) {
+        callback(data.url);
+        setMessage({ type: "success", text: "Video uploaded successfully!" });
+      } else {
+        alert(data.error || "Video upload failed");
+        setMessage({ type: "error", text: data.error || "Video upload failed." });
+      }
+    } catch (err) {
+      alert("Error uploading video");
+      setMessage({ type: "error", text: "Error uploading video." });
+    } finally {
+      setSaving(false);
+      e.target.value = "";
+    }
+  };
+
   if (loading) {
     return (
       <div style={{ padding: "2rem", textAlign: "center" }}>
@@ -1198,8 +1238,8 @@ export default function AdminPageCMS() {
                     />
                     <input
                       type="file"
-                      accept="video/*"
-                      onChange={(e) => handleImageUpload(e, (url) => setHomepageSocial({ ...homepageSocial, videoSrc: url }))}
+                      accept="video/webm,video/mp4"
+                      onChange={(e) => handleVideoUpload(e, (url) => setHomepageSocial({ ...homepageSocial, videoSrc: url }))}
                       style={{ fontSize: "0.82rem", color: "#D4A359" }}
                     />
                   </div>

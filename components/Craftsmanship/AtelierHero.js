@@ -8,7 +8,7 @@ export default function AtelierHero({ data = {} }) {
   const eyebrow = data.eyebrow || "JAIPUR ATELIER & MASONRY";
   const heading = data.heading || "From Raw Stone to Finished Art";
   const description = data.description || "Inside our Jaipur workshop, generational carvers transform solid Makrana marble monoliths and regional sandstones into divine sculptures, temple architecture, and architectural elements using hand mallets and steel chisels.";
-  const imageSrc = data.heroImageSrc || "/images/craftsmanship/artisan-hands.png";
+  const imageSrc = data.heroImageSrc || "/images/craftsmanship/artisan-hands.webp";
 
   return (
     <section className={styles.heroSection}>
@@ -25,13 +25,15 @@ export default function AtelierHero({ data = {} }) {
             <ScrollReveal animation="fade-up">
               <span className={styles.eyebrow}>{eyebrow}</span>
               <h1 className={styles.heading}>{heading}</h1>
-              <p className={styles.leadDescription}>
-                {description}
-              </p>
-              
-              <div className={styles.atelierNote}>
-                <span className={styles.noteLine} aria-hidden="true" />
-                <p className={styles.noteText}>
+              <div className={styles.editorialDivider} aria-hidden="true">
+                <div className={styles.dividerLine} />
+                <div className={styles.dividerDiamond}>◆</div>
+                <div className={styles.dividerLine} />
+              </div>
+              <p className={styles.description}>{description}</p>
+              <div className={styles.storyCallout}>
+                <span className={styles.calloutBadge}>TRADITION</span>
+                <p className={styles.calloutText}>
                   Follow the physical journey of stone through raw selection, chalk grid mapping, 
                   generational chiseling, and export packaging.
                 </p>
@@ -47,7 +49,6 @@ export default function AtelierHero({ data = {} }) {
                   src={imageSrc}
                   alt={heading || "Master sculptor hands chiseling white marble in Jaipur Stonecraft workshop"}
                   fill
-                  unoptimized
                   sizes="(max-width: 991px) 100vw, 45vw"
                   className={styles.heroImage}
                   priority

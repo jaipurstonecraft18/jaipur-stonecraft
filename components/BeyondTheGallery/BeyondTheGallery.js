@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Container from "@/components/Container/Container";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
@@ -9,6 +9,8 @@ import styles from "./BeyondTheGallery.module.css";
 
 export default function BeyondTheGallery({ sectionData, globalSocial }) {
   const videoRef = useRef(null);
+  const containerRef = useRef(null);
+  const [inView, setInView] = useState(false);
 
   const data = {
     enabled: true,
@@ -19,13 +21,13 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
     videoMessage: "See the craft come to life.",
     videoDescription: "From raw stone to timeless beauty – watch the hands, tools and traditions behind every creation.",
     videoSrc: "/videos/herovid.webm",
-    videoPoster: "/images/craftsmanship/artisan-hands.png",
+    videoPoster: "/images/craftsmanship/artisan-hands.webp",
     youtubeCtaText: "Watch more on YouTube \u2197",
     instagramCard: {
       title: "Instagram",
       description: "Latest creations &\nstudio moments.",
       ctaText: "Explore Instagram \u2192",
-      imageSrc: "/images/brand/heritage-ganesha.jpg",
+      imageSrc: "/images/brand/heritage-ganesha.webp",
     },
     pinterestCard: {
       title: "Pinterest",
@@ -37,10 +39,31 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
       title: "Facebook",
       description: "Projects, updates &\nour journey together.",
       ctaText: "Visit Facebook \u2192",
-      imageSrc: "/images/craftsmanship/step-02-shape-precision.jpg",
+      imageSrc: "/images/craftsmanship/step-02-shape-precision.webp",
     },
     ...sectionData,
   };
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          if (videoRef.current && videoRef.current.paused) {
+            videoRef.current.play().catch(() => {});
+          }
+        } else {
+          if (videoRef.current && !videoRef.current.paused) {
+            videoRef.current.pause();
+          }
+        }
+      },
+      { rootMargin: "300px 0px" }
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   if (data.enabled === false) return null;
 
@@ -97,7 +120,7 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
 
         {/* Main Feature: Craft in Motion Video Banner */}
         <ScrollReveal animation="fade-up" delay={100}>
-          <div className={styles.featureCard}>
+          <div className={styles.featureCard} ref={containerRef}>
             <video
               ref={videoRef}
               className={styles.video}
@@ -105,6 +128,7 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
               muted
               loop
               playsInline
+              preload="none"
               poster={data.videoPoster}
               aria-hidden="true"
               onEnded={() => {
@@ -114,7 +138,9 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
                 }
               }}
             >
-              {data.videoSrc && <source src={data.videoSrc} type={data.videoSrc.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />}
+              {inView && data.videoSrc && (
+                <source src={data.videoSrc} type={/\.webm($|\?)/i.test(data.videoSrc) ? 'video/webm' : 'video/mp4'} />
+              )}
             </video>
 
             <div className={styles.videoOverlay} />
@@ -137,7 +163,7 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
                     <polygon points="5 3 19 12 5 21 5 3"></polygon>
                   </svg>
                 </span>
-                <span>{data.youtubeCtaText}</span>
+                <span>{data.youtubeCtaText || "Watch more on YouTube ↗"}</span>
               </a>
             </div>
           </div>
@@ -156,10 +182,9 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
             >
               <div className={styles.cardImageWrapper}>
                 <Image
-                  src={data.instagramCard?.imageSrc || "/images/brand/heritage-ganesha.jpg"}
+                  src={data.instagramCard?.imageSrc || "/images/brand/heritage-ganesha.webp"}
                   alt="Jaipur Stonecraft Instagram sculptured creation"
                   fill
-                  unoptimized
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className={styles.cardImage}
                 />
@@ -193,7 +218,6 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
                   src={data.pinterestCard?.imageSrc || "/images/collections/temples-architectural.webp"}
                   alt="Jaipur Stonecraft Pinterest architectural stonework"
                   fill
-                  unoptimized
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className={styles.cardImage}
                 />
@@ -222,10 +246,9 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
             >
               <div className={styles.cardImageWrapper}>
                 <Image
-                  src={data.facebookCard?.imageSrc || "/images/craftsmanship/step-02-shape-precision.jpg"}
+                  src={data.facebookCard?.imageSrc || "/images/craftsmanship/step-02-shape-precision.webp"}
                   alt="Jaipur Stonecraft Facebook workshop and project updates"
                   fill
-                  unoptimized
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className={styles.cardImage}
                 />

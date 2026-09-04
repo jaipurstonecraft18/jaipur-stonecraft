@@ -380,6 +380,9 @@ export default function AdminCataloguePage() {
         </div>
 
         <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+          <Link href="/admin/categories" className={styles.secondaryBtn} style={{ fontSize: "0.82rem", padding: "0.4rem 0.85rem", textDecoration: "none" }}>
+            ↕ Manage Covers & Order
+          </Link>
           {activeTab === "categories" && (
             <button type="button" onClick={() => openAddModal("category")} className={styles.primaryBtn} style={{ fontSize: "0.82rem", padding: "0.4rem 0.85rem" }}>
               + Add Category

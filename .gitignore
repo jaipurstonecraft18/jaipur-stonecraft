@@ -56,5 +56,5 @@ backups/
 # deployment archives
 *.zip
 
-
-
+# image optimization backups
+public/images/.originals/

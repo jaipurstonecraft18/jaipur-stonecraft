@@ -9,35 +9,35 @@ const defaultJourneySteps = [
     step: "01",
     title: "SELECT THE FINEST STONE",
     description: "Handpicked premium marble chosen for its purity, strength, and timeless beauty.",
-    imageSrc: "/images/craftsmanship/step-01-select-stone.jpg",
+    imageSrc: "/images/craftsmanship/step-01-select-stone.webp",
     alt: "Raw white marble stone blocks stacked in quarry",
   },
   {
     step: "02",
     title: "SHAPE WITH PRECISION",
     description: "Artisans carve the form with care, bringing the first life to the stone.",
-    imageSrc: "/images/craftsmanship/step-02-shape-precision.jpg",
+    imageSrc: "/images/craftsmanship/step-02-shape-precision.webp",
     alt: "Artisan hands chiseling initial contours into white marble",
   },
   {
     step: "03",
     title: "REFINE THE DETAILS",
     description: "Every detail is meticulously carved to perfection, giving it character and grace.",
-    imageSrc: "/images/craftsmanship/step-03-refine-details.jpg",
+    imageSrc: "/images/craftsmanship/step-03-refine-details.webp",
     alt: "Master carver chiseling intricate deity facial expressions",
   },
   {
     step: "04",
     title: "POLISH TO PERFECTION",
     description: "Surface is smoothed and polished to enhance the natural beauty of marble.",
-    imageSrc: "/images/craftsmanship/step-04-polish-perfection.jpg",
+    imageSrc: "/images/craftsmanship/step-04-polish-perfection.webp",
     alt: "Hand polishing smooth white marble sculpture surface with water",
   },
   {
     step: "05",
     title: "A MASTERPIECE IS BORN",
     description: "A timeless creation, ready to be cherished for generations.",
-    imageSrc: "/images/brand/heritage-ganesha.jpg",
+    imageSrc: "/images/brand/heritage-ganesha.webp",
     alt: "Completed white marble Ganesha murti masterpiece",
   },
 ];
@@ -142,10 +142,9 @@ export default function CraftProcess({ sectionData, data: propData }) {
             <ScrollReveal animation="fade-up" delay={150}>
               <div className={styles.heroImageWrapper}>
                 <Image
-                  src={data.heroImageSrc || "/images/hero/hero-krishna-artisan.jpg"}
+                  src={data.heroImageSrc || "/images/hero/hero-krishna-artisan.webp"}
                   alt="Master artisan chiseling white marble sculpture in Jaipur workshop"
                   fill
-                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className={styles.heroImage}
                   priority
@@ -177,10 +176,9 @@ export default function CraftProcess({ sectionData, data: propData }) {
                     {/* Arch Framed Image */}
                     <div className={styles.archWrapper}>
                       <Image
-                        src={step.imageSrc || defaultJourneySteps[idx]?.imageSrc || "/images/craftsmanship/step-01-select-stone.jpg"}
+                        src={step.imageSrc || defaultJourneySteps[idx]?.imageSrc || "/images/craftsmanship/step-01-select-stone.webp"}
                         alt={step.title || "Crafting step"}
                         fill
-                        unoptimized
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 20vw"
                         className={styles.archImage}
                         loading="lazy"
@@ -209,7 +207,6 @@ export default function CraftProcess({ sectionData, data: propData }) {
                     src={data.storyImageSrc || "/images/collections/hero-sculptures-group.webp"}
                     alt="White marble goddess facial profile carved by master artisan"
                     fill
-                    unoptimized
                     sizes="(max-width: 1024px) 100vw, 45vw"
                     className={styles.storyImage}
                     loading="lazy"
