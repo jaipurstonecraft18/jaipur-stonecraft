@@ -31,14 +31,18 @@ export const metadata = {
 export default async function OurWorldPage() {
   // Query CMS page_sections with seamless static fallback
   const cmsData = await getPageSection("our_world_page", defaultOurWorldContent);
+  const craftData = await getPageSection("craftsmanship_hero", {});
 
   // Merge CMS with default structure to ensure 100% resilient fallback for all sub-sections
   const pageData = {
     hero: { ...defaultOurWorldContent.hero, ...(cmsData?.hero || {}) },
-    categories: cmsData?.categories || defaultOurWorldContent.categories,
-    gallery: cmsData?.gallery || defaultOurWorldContent.gallery,
-    featuredProjects: cmsData?.featuredProjects || defaultOurWorldContent.featuredProjects,
-    whatWeCreate: cmsData?.whatWeCreate || defaultOurWorldContent.whatWeCreate,
+    categories: Array.isArray(cmsData?.categories) && cmsData.categories.length > 0 ? cmsData.categories : defaultOurWorldContent.categories,
+    galleryHeader: { ...defaultOurWorldContent.galleryHeader, ...(cmsData?.galleryHeader || {}) },
+    gallery: Array.isArray(cmsData?.gallery) && cmsData.gallery.length > 0 ? cmsData.gallery : defaultOurWorldContent.gallery,
+    featuredProjectsHeader: { ...defaultOurWorldContent.featuredProjectsHeader, ...(cmsData?.featuredProjectsHeader || {}) },
+    featuredProjects: Array.isArray(cmsData?.featuredProjects) && cmsData.featuredProjects.length > 0 ? cmsData.featuredProjects : defaultOurWorldContent.featuredProjects,
+    whatWeCreateHeader: { ...defaultOurWorldContent.whatWeCreateHeader, ...(cmsData?.whatWeCreateHeader || {}) },
+    whatWeCreate: Array.isArray(cmsData?.whatWeCreate) && cmsData.whatWeCreate.length > 0 ? cmsData.whatWeCreate : defaultOurWorldContent.whatWeCreate,
     closingCta: { ...defaultOurWorldContent.closingCta, ...(cmsData?.closingCta || {}) }
   };
 
@@ -83,7 +87,7 @@ export default async function OurWorldPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <OurWorldClient initialData={pageData} />
+      <OurWorldClient initialData={pageData} craftsmanshipData={craftData} />
     </>
   );
 }

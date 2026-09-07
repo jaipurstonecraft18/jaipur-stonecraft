@@ -7,8 +7,11 @@ import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
 import styles from "./FeaturedProjects.module.css";
 
-export default function FeaturedProjects({ projects = [] }) {
+export default function FeaturedProjects({ projects = [], header = {} }) {
   if (!projects || projects.length === 0) return null;
+
+  const eyebrow = header.eyebrow || "FEATURED PROJECTS";
+  const heading = header.heading || "Crafted for Timeless Spaces";
 
   return (
     <section className={styles.section} aria-label="Featured Projects Portfolio">
@@ -17,8 +20,8 @@ export default function FeaturedProjects({ projects = [] }) {
         <div className={styles.topRow}>
           <div className={styles.headerText}>
             <ScrollReveal animation="fade-up">
-              <span className={styles.eyebrow}>FEATURED PROJECTS</span>
-              <h2 className={styles.heading}>Crafted for Timeless Spaces</h2>
+              <span className={styles.eyebrow}>{eyebrow}</span>
+              <h2 className={styles.heading}>{heading}</h2>
             </ScrollReveal>
           </div>
 

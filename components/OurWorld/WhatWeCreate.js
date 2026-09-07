@@ -47,8 +47,11 @@ function OfferingIcon({ iconKey }) {
   }
 }
 
-export default function WhatWeCreate({ items = [] }) {
+export default function WhatWeCreate({ items = [], header = {} }) {
   if (!items || items.length === 0) return null;
+
+  const eyebrow = header.eyebrow || "WHAT WE CREATE";
+  const heading = header.heading || "From Vision to Masterpiece";
 
   return (
     <section className={styles.section} aria-label="Our Stonework Capabilities and Categories">
@@ -56,8 +59,8 @@ export default function WhatWeCreate({ items = [] }) {
         {/* Header */}
         <div className={styles.headerWrapper}>
           <ScrollReveal animation="fade-up">
-            <span className={styles.eyebrow}>WHAT WE CREATE</span>
-            <h2 className={styles.heading}>From Vision to Masterpiece</h2>
+            <span className={styles.eyebrow}>{eyebrow}</span>
+            <h2 className={styles.heading}>{heading}</h2>
           </ScrollReveal>
         </div>
 

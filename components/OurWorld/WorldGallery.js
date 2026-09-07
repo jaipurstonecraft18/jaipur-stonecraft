@@ -8,7 +8,13 @@ import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
 import styles from "./WorldGallery.module.css";
 
-export default function WorldGallery({ items = [], activeCategory = "all" }) {
+export default function WorldGallery({ items = [], activeCategory = "all", header = {} }) {
+  const eyebrow = header.eyebrow || "EXPLORE OUR WORLD";
+  const heading = header.heading || "A Glimpse of Our Creations";
+  const subcopy = header.subcopy || "Discover the beauty, detail and diversity of our work across sculptures, architecture and timeless traditions.";
+  const viewAllText = header.viewAllText || "View Full Gallery";
+  const viewAllHref = header.viewAllHref || "/collections";
+
   // Filter items by category
   const filteredItems = useMemo(() => {
     if (activeCategory === "all") return items;
@@ -56,11 +62,9 @@ export default function WorldGallery({ items = [], activeCategory = "all" }) {
         {/* Section Header */}
         <div className={styles.headerWrapper}>
           <ScrollReveal animation="fade-up">
-            <span className={styles.eyebrow}>EXPLORE OUR WORLD</span>
-            <h2 className={styles.heading}>A Glimpse of Our Creations</h2>
-            <p className={styles.subcopy}>
-              Discover the beauty, detail and diversity of our work across sculptures, architecture and timeless traditions.
-            </p>
+            <span className={styles.eyebrow}>{eyebrow}</span>
+            <h2 className={styles.heading}>{heading}</h2>
+            <p className={styles.subcopy}>{subcopy}</p>
           </ScrollReveal>
         </div>
 
@@ -111,8 +115,8 @@ export default function WorldGallery({ items = [], activeCategory = "all" }) {
 
         {/* View Full Gallery CTA */}
         <div className={styles.footerCtaWrapper}>
-          <Link href="/collections" className={styles.viewAllButton}>
-            <span>View Full Gallery</span>
+          <Link href={viewAllHref} className={styles.viewAllButton}>
+            <span>{viewAllText}</span>
             <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>

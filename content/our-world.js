@@ -264,6 +264,21 @@ export const defaultOurWorldContent = {
       iconKey: "custom"
     }
   ],
+  galleryHeader: {
+    eyebrow: "EXPLORE OUR WORLD",
+    heading: "A Glimpse of Our Creations",
+    subcopy: "Discover the beauty, detail and diversity of our work across sculptures, architecture and timeless traditions.",
+    viewAllText: "View Full Gallery",
+    viewAllHref: "/collections"
+  },
+  featuredProjectsHeader: {
+    eyebrow: "FEATURED PROJECTS",
+    heading: "Crafted for Timeless Spaces"
+  },
+  whatWeCreateHeader: {
+    eyebrow: "WHAT WE CREATE",
+    heading: "From Vision to Masterpiece"
+  },
   closingCta: {
     eyebrow: "LET'S CREATE SOMETHING TIMELESS",
     heading: "Have a Vision in Mind?",

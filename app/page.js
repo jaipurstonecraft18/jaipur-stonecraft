@@ -116,6 +116,7 @@ export default async function Home() {
   const craftData = await getPageSection("craftsmanship_hero", {});
   const globalSocialLinks = await getSiteSetting("social_links", siteConfig.social);
 
+  const featuredCreationsData = await getPageSection("homepage_featured_creations", {});
   const collectionsDataList = await getAllCollections();
 
   return (
@@ -136,7 +137,7 @@ export default async function Home() {
       <BeyondTheGallery sectionData={socialData} globalSocial={globalSocialLinks} />
 
       {/* 6. FEATURED CREATIONS MOSAIC (From Our Hands to Your World) */}
-      <FeaturedCreations />
+      <FeaturedCreations sectionData={featuredCreationsData} />
 
       {/* 6. CLIENT REVIEWS (Connected to Page CMS with Dynamic Reviews & Photos) */}
       <ClientReviews reviewsData={reviewsData} />

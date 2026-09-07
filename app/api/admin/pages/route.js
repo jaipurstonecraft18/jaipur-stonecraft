@@ -75,7 +75,7 @@ export async function PUT(request) {
 
     return NextResponse.json({
       success: true,
-      message: `Updated section "${existing.label}"`,
+      message: `Updated section "${existing?.label || keyName}"`,
       keyName
     });
   } catch (error) {

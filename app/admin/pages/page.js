@@ -3,12 +3,14 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "../admin.module.css";
+import { defaultOurWorldContent } from "@/content/our-world.js";
 
 export default function AdminPageCMS() {
   const [activeTab, setActiveTab] = useState("craftsmanship");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState({ type: "", text: "" });
+  const [ourWorldContent, setOurWorldContent] = useState(defaultOurWorldContent);
 
   // Page Sections Data
   const defaultHeroSlides = [
@@ -123,6 +125,114 @@ export default function AdminPageCMS() {
     heading: "Trusted by Devotees. Loved for Generations.",
     reviews: defaultReviews
   });
+
+  const defaultFeaturedCreationsItems = [
+    {
+      id: "1",
+      type: "image",
+      src: "/images/brand/heritage-ganesha.webp",
+      alt: "White Marble Lord Ganesha Statue adorned with marigolds",
+      title: "White Marble Ganesha Murti",
+      gridClass: "tileGanesha",
+      isActive: true
+    },
+    {
+      id: "2",
+      type: "quote",
+      stars: 5,
+      quote: "The detailing, finish and divine presence of the idol is beyond words. Truly exceptional work.",
+      author: "Rajesh S.",
+      location: "Jaipur",
+      gridClass: "tileQuote1",
+      isActive: true
+    },
+    {
+      id: "3",
+      type: "image",
+      src: "/images/creations/sai-baba-seated.webp",
+      alt: "Seated Sai Baba White Marble Sculpture",
+      title: "Sai Baba Devotional Statue",
+      gridClass: "tileSaiBaba",
+      isActive: true
+    },
+    {
+      id: "4",
+      type: "quote",
+      stars: 5,
+      quote: "Beautifully crafted with incredible attention to detail and delivered with care.",
+      author: "Meera K.",
+      location: "Delhi",
+      gridClass: "tileQuote2",
+      isActive: true
+    },
+    {
+      id: "5",
+      type: "image",
+      src: "/images/creations/krishna-alcove.webp",
+      alt: "Lord Krishna Marble Statue in Temple Alcove",
+      title: "Krishna Mandir Alcove Sculpture",
+      gridClass: "tileKrishna",
+      isActive: true
+    },
+    {
+      id: "6",
+      type: "quote",
+      stars: 5,
+      quote: "The portrait statue captured every detail perfectly. We are extremely happy!",
+      author: "Amit P.",
+      location: "Mumbai",
+      gridClass: "tileQuote3",
+      isActive: true
+    },
+    {
+      id: "7",
+      type: "image",
+      src: "/images/collections/hero-sculptures-group.webp",
+      alt: "Hand-Carved Marble Portrait Bust Sculpture",
+      title: "Bespoke Portrait Bust",
+      gridClass: "tileBust",
+      isActive: true
+    },
+    {
+      id: "8",
+      type: "image",
+      src: "/images/creations/marble-home-mandir.webp",
+      alt: "Custom Carved White Marble Home Mandir Temple",
+      title: "Custom Home Mandir Sanctuary",
+      gridClass: "tileMandir",
+      isActive: true
+    },
+    {
+      id: "9",
+      type: "quote",
+      stars: 5,
+      quote: "Our temple is now complete because of your amazing art.",
+      author: "Shyam Family",
+      location: "Bangalore",
+      gridClass: "tileQuote4",
+      isActive: true
+    },
+    {
+      id: "10",
+      type: "image",
+      src: "/images/creations/black-nandi-statue.webp",
+      alt: "Hand-Carved Black Marble Nandi Bull Sculpture",
+      title: "Black Marble Nandi Murti",
+      gridClass: "tileNandi",
+      isActive: true
+    }
+  ];
+
+  const defaultHomepageFeaturedCreations = {
+    eyebrow: "CRAFTED FOR REAL SPACES",
+    heading: "From Our Hands to Your World.",
+    description: "A glimpse of sculptures and creations crafted for our valued clients and the spaces they cherish.",
+    ctaText: "View All Creations",
+    ctaHref: "/projects",
+    items: defaultFeaturedCreationsItems
+  };
+
+  const [homepageFeaturedCreations, setHomepageFeaturedCreations] = useState(defaultHomepageFeaturedCreations);
 
   const defaultHomepageSocial = {
     enabled: true,
@@ -362,7 +472,7 @@ export default function AdminPageCMS() {
     if (typeof window !== "undefined") {
       const p = new URLSearchParams(window.location.search);
       const t = p.get("tab");
-      if (t === "craftsmanship" || t === "story" || t === "homepage") {
+      if (t === "craftsmanship" || t === "story" || t === "homepage" || t === "world") {
         setActiveTab(t);
       }
     }
@@ -392,6 +502,18 @@ export default function AdminPageCMS() {
                 eyebrow: sec.content?.eyebrow || "WHAT OUR CLIENTS SAY",
                 heading: sec.content?.heading || "Trusted by Devotees. Loved for Generations.",
                 reviews: Array.isArray(sec.content?.reviews) && sec.content.reviews.length > 0 ? sec.content.reviews : defaultReviews
+              });
+            }
+            if (sec.keyName === "homepage_featured_creations") {
+              setHomepageFeaturedCreations({
+                eyebrow: sec.content?.eyebrow || defaultHomepageFeaturedCreations.eyebrow,
+                heading: sec.content?.heading || defaultHomepageFeaturedCreations.heading,
+                description: sec.content?.description || defaultHomepageFeaturedCreations.description,
+                ctaText: sec.content?.ctaText || defaultHomepageFeaturedCreations.ctaText,
+                ctaHref: sec.content?.ctaHref || defaultHomepageFeaturedCreations.ctaHref,
+                items: Array.isArray(sec.content?.items) && sec.content.items.length > 0
+                  ? sec.content.items
+                  : defaultHomepageFeaturedCreations.items
               });
             }
             if (sec.keyName === "homepage_social") setHomepageSocial({ ...defaultHomepageSocial, ...sec.content });
@@ -438,6 +560,19 @@ export default function AdminPageCMS() {
                 pageImages: mergedPageImages,
                 stages: mergedStages,
                 closingCta: mergedClosingCta
+              });
+            }
+            if (sec.keyName === "our_world_page") {
+              setOurWorldContent({
+                hero: { ...defaultOurWorldContent.hero, ...(sec.content?.hero || {}) },
+                categories: Array.isArray(sec.content?.categories) && sec.content.categories.length > 0 ? sec.content.categories : defaultOurWorldContent.categories,
+                galleryHeader: { ...defaultOurWorldContent.galleryHeader, ...(sec.content?.galleryHeader || {}) },
+                gallery: Array.isArray(sec.content?.gallery) && sec.content.gallery.length > 0 ? sec.content.gallery : defaultOurWorldContent.gallery,
+                featuredProjectsHeader: { ...defaultOurWorldContent.featuredProjectsHeader, ...(sec.content?.featuredProjectsHeader || {}) },
+                featuredProjects: Array.isArray(sec.content?.featuredProjects) && sec.content.featuredProjects.length > 0 ? sec.content.featuredProjects : defaultOurWorldContent.featuredProjects,
+                whatWeCreateHeader: { ...defaultOurWorldContent.whatWeCreateHeader, ...(sec.content?.whatWeCreateHeader || {}) },
+                whatWeCreate: Array.isArray(sec.content?.whatWeCreate) && sec.content.whatWeCreate.length > 0 ? sec.content.whatWeCreate : defaultOurWorldContent.whatWeCreate,
+                closingCta: { ...defaultOurWorldContent.closingCta, ...(sec.content?.closingCta || {}) }
               });
             }
           });
@@ -501,6 +636,105 @@ export default function AdminPageCMS() {
     } finally {
       setSaving(false);
     }
+  };
+
+  const handleSaveOurWorld = async (updatedContent) => {
+    const payload = updatedContent || ourWorldContent;
+    await handleSaveSection("our_world_page", payload);
+  };
+
+  const updateOurWorldHero = (field, value) => {
+    setOurWorldContent((prev) => ({
+      ...prev,
+      hero: { ...prev.hero, [field]: value }
+    }));
+  };
+
+  const updateOurWorldCategory = (idx, field, value) => {
+    setOurWorldContent((prev) => {
+      const newCats = [...(prev.categories || defaultOurWorldContent.categories)];
+      newCats[idx] = { ...newCats[idx], [field]: value };
+      return { ...prev, categories: newCats };
+    });
+  };
+
+  const updateOurWorldGalleryHeader = (field, value) => {
+    setOurWorldContent((prev) => ({
+      ...prev,
+      galleryHeader: { ...(prev.galleryHeader || defaultOurWorldContent.galleryHeader), [field]: value }
+    }));
+  };
+
+  const updateOurWorldGalleryItem = (idx, field, value) => {
+    setOurWorldContent((prev) => {
+      const newGal = [...(prev.gallery || defaultOurWorldContent.gallery)];
+      newGal[idx] = { ...newGal[idx], [field]: value };
+      return { ...prev, gallery: newGal };
+    });
+  };
+
+  const addOurWorldGalleryItem = () => {
+    setOurWorldContent((prev) => {
+      const newId = `gal-${Date.now()}`;
+      const newItem = {
+        id: newId,
+        title: "New Atelier Creation",
+        category: "sculptures",
+        categoryLabel: "Sculptures",
+        material: "Makrana White Marble",
+        imageSrc: "/images/collections/hero-sculptures-group.webp",
+        altText: "Handcrafted stone creation by Jaipur Stonecraft",
+        aspectRatio: "square",
+        featured: false
+      };
+      return { ...prev, gallery: [newItem, ...(prev.gallery || defaultOurWorldContent.gallery)] };
+    });
+  };
+
+  const removeOurWorldGalleryItem = (idx) => {
+    if (typeof window !== "undefined" && !window.confirm("Are you sure you want to remove this creation from the gallery?")) return;
+    setOurWorldContent((prev) => {
+      const currentGal = prev.gallery || defaultOurWorldContent.gallery;
+      const newGal = currentGal.filter((_, i) => i !== idx);
+      return { ...prev, gallery: newGal };
+    });
+  };
+
+  const updateOurWorldProjectHeader = (field, value) => {
+    setOurWorldContent((prev) => ({
+      ...prev,
+      featuredProjectsHeader: { ...(prev.featuredProjectsHeader || defaultOurWorldContent.featuredProjectsHeader), [field]: value }
+    }));
+  };
+
+  const updateOurWorldProject = (idx, field, value) => {
+    setOurWorldContent((prev) => {
+      const newProjects = [...(prev.featuredProjects || defaultOurWorldContent.featuredProjects)];
+      newProjects[idx] = { ...newProjects[idx], [field]: value };
+      return { ...prev, featuredProjects: newProjects };
+    });
+  };
+
+  const updateOurWorldWhatWeCreateHeader = (field, value) => {
+    setOurWorldContent((prev) => ({
+      ...prev,
+      whatWeCreateHeader: { ...(prev.whatWeCreateHeader || defaultOurWorldContent.whatWeCreateHeader), [field]: value }
+    }));
+  };
+
+  const updateOurWorldWhatWeCreate = (idx, field, value) => {
+    setOurWorldContent((prev) => {
+      const newItems = [...(prev.whatWeCreate || defaultOurWorldContent.whatWeCreate)];
+      newItems[idx] = { ...newItems[idx], [field]: value };
+      return { ...prev, whatWeCreate: newItems };
+    });
+  };
+
+  const updateOurWorldClosingCta = (field, value) => {
+    setOurWorldContent((prev) => ({
+      ...prev,
+      closingCta: { ...(prev.closingCta || defaultOurWorldContent.closingCta), [field]: value }
+    }));
   };
 
   const handleImageUpload = async (e, callback) => {
@@ -635,6 +869,13 @@ export default function AdminPageCMS() {
           onClick={() => setActiveTab("craftsmanship")}
         >
           🗿 Craftsmanship Page
+        </button>
+        <button
+          id="tab-btn-world"
+          className={`${styles.studioTab} ${activeTab === "world" ? styles.studioTabActive : ""}`}
+          onClick={() => setActiveTab("world")}
+        >
+          🌐 Our World Page
         </button>
       </div>
 
@@ -1543,12 +1784,454 @@ export default function AdminPageCMS() {
             </div>
           </div>
 
-          {/* SECTION 5: CLIENT TESTIMONIALS & REVIEWS */}
+          {/* SECTION 5: FEATURED CREATIONS MOSAIC (FROM OUR HANDS TO YOUR WORLD) */}
           <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
               <div>
                 <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
-                  5. Client Testimonials & Reviews
+                  5. Featured Creations & Testimonials Mosaic (From Our Hands to Your World)
+                </h3>
+                <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
+                  📍 Used on Homepage (/)
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => handleSaveSection("homepage_featured_creations", homepageFeaturedCreations)}
+                className={styles.primaryBtn}
+                disabled={saving}
+              >
+                {saving ? "Saving..." : "Save Creations & Testimonials Section"}
+              </button>
+            </div>
+
+            <p style={{ fontSize: "0.85rem", color: "#666", marginBottom: "1.25rem", lineHeight: "1.5" }}>
+              Manage the 10-tile showcase grid on the homepage featuring sculpture creations and authentic client testimonials. Cards can be configured as sculpture showcases (image + title) or client reviews (rating + quote + author + location).
+            </p>
+
+            {/* Section Header Copy */}
+            <div style={{ backgroundColor: "#FAF8F5", border: "1px solid #E2DDD5", borderRadius: "8px", padding: "1.25rem", marginBottom: "1.5rem" }}>
+              <h4 style={{ fontSize: "0.95rem", fontWeight: "600", color: "var(--color-navy)", margin: "0 0 1rem 0" }}>
+                Section Titles & CTA
+              </h4>
+              <div className={styles.formGrid}>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Section Eyebrow Tagline</label>
+                  <input
+                    type="text"
+                    value={homepageFeaturedCreations.eyebrow || ""}
+                    onChange={(e) => setHomepageFeaturedCreations({ ...homepageFeaturedCreations, eyebrow: e.target.value })}
+                    className={styles.input}
+                    placeholder="CRAFTED FOR REAL SPACES"
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Section Heading</label>
+                  <input
+                    type="text"
+                    value={homepageFeaturedCreations.heading || ""}
+                    onChange={(e) => setHomepageFeaturedCreations({ ...homepageFeaturedCreations, heading: e.target.value })}
+                    className={styles.input}
+                    placeholder="From Our Hands to Your World."
+                  />
+                </div>
+
+                <div className={styles.formGroupFull}>
+                  <label className={styles.label}>Section Description Paragraph</label>
+                  <textarea
+                    rows={2}
+                    value={homepageFeaturedCreations.description || ""}
+                    onChange={(e) => setHomepageFeaturedCreations({ ...homepageFeaturedCreations, description: e.target.value })}
+                    className={styles.textarea}
+                    placeholder="A glimpse of sculptures and creations crafted for our valued clients..."
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>CTA Button Label</label>
+                  <input
+                    type="text"
+                    value={homepageFeaturedCreations.ctaText || ""}
+                    onChange={(e) => setHomepageFeaturedCreations({ ...homepageFeaturedCreations, ctaText: e.target.value })}
+                    className={styles.input}
+                    placeholder="View All Creations"
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>CTA Button Link (Href)</label>
+                  <input
+                    type="text"
+                    value={homepageFeaturedCreations.ctaHref || ""}
+                    onChange={(e) => setHomepageFeaturedCreations({ ...homepageFeaturedCreations, ctaHref: e.target.value })}
+                    className={styles.input}
+                    placeholder="/projects"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Mosaic Cards Management */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
+              <div>
+                <h4 style={{ fontSize: "0.95rem", fontWeight: "600", color: "var(--color-navy)", margin: 0 }}>
+                  Mosaic Cards List ({(homepageFeaturedCreations.items || []).length})
+                </h4>
+                <span style={{ fontSize: "0.8rem", color: "#777" }}>
+                  Active items shown on homepage: {(homepageFeaturedCreations.items || []).filter(i => i.isActive !== false).length}
+                </span>
+              </div>
+              <button
+                type="button"
+                className={styles.secondaryBtn}
+                style={{ padding: "0.35rem 0.85rem", fontSize: "0.8rem" }}
+                onClick={() => {
+                  const newCard = {
+                    id: Date.now().toString(),
+                    type: "quote",
+                    stars: 5,
+                    quote: "Exquisite stone sculpture carved to perfection.",
+                    author: "New Client",
+                    location: "Jaipur",
+                    src: "",
+                    alt: "",
+                    title: "",
+                    gridClass: "",
+                    isActive: true
+                  };
+                  setHomepageFeaturedCreations({
+                    ...homepageFeaturedCreations,
+                    items: [...(homepageFeaturedCreations.items || []), newCard]
+                  });
+                }}
+              >
+                ➕ Add New Card
+              </button>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              {(homepageFeaturedCreations.items || []).map((card, idx) => {
+                const isImage = card.type === "image";
+                const isItemActive = card.isActive !== false;
+
+                return (
+                  <div
+                    key={card.id || idx}
+                    style={{
+                      border: "1px solid #E2DDD5",
+                      borderRadius: "8px",
+                      padding: "1rem",
+                      backgroundColor: isItemActive ? "#FAF8F5" : "#F5F3EF",
+                      opacity: isItemActive ? 1 : 0.78
+                    }}
+                  >
+                    {/* Card Header & Toolbar */}
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem", flexWrap: "wrap", gap: "0.5rem" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+                        <span style={{ fontWeight: "700", fontSize: "0.9rem", color: "var(--color-bronze)" }}>
+                          Card #{idx + 1}
+                        </span>
+                        <span
+                          style={{
+                            fontSize: "0.75rem",
+                            padding: "0.15rem 0.5rem",
+                            borderRadius: "12px",
+                            backgroundColor: isImage ? "#EBF3FF" : "#FFF4E5",
+                            color: isImage ? "#1A56DB" : "#B45309",
+                            fontWeight: "600"
+                          }}
+                        >
+                          {isImage ? "🖼️ Sculpture Image" : "💬 Client Testimonial"}
+                        </span>
+                        {!isItemActive && (
+                          <span style={{ fontSize: "0.72rem", backgroundColor: "#E5E7EB", color: "#4B5563", padding: "0.15rem 0.45rem", borderRadius: "10px" }}>
+                            Hidden
+                          </span>
+                        )}
+                      </div>
+
+                      <div style={{ display: "flex", gap: "0.4rem", alignItems: "center" }}>
+                        {/* Active / Hidden Toggle */}
+                        <button
+                          type="button"
+                          className={styles.secondaryBtn}
+                          style={{
+                            padding: "0.2rem 0.55rem",
+                            fontSize: "0.75rem",
+                            backgroundColor: isItemActive ? "#E6F4EA" : "#F1F3F4",
+                            color: isItemActive ? "#137333" : "#5F6368"
+                          }}
+                          onClick={() => {
+                            const updated = [...homepageFeaturedCreations.items];
+                            updated[idx] = { ...updated[idx], isActive: !isItemActive };
+                            setHomepageFeaturedCreations({ ...homepageFeaturedCreations, items: updated });
+                          }}
+                        >
+                          {isItemActive ? "👁️ Visible" : "🙈 Hidden"}
+                        </button>
+
+                        {/* Move Up */}
+                        {idx > 0 && (
+                          <button
+                            type="button"
+                            className={styles.secondaryBtn}
+                            style={{ padding: "0.2rem 0.5rem", fontSize: "0.75rem" }}
+                            onClick={() => {
+                              const updated = [...homepageFeaturedCreations.items];
+                              const temp = updated[idx];
+                              updated[idx] = updated[idx - 1];
+                              updated[idx - 1] = temp;
+                              setHomepageFeaturedCreations({ ...homepageFeaturedCreations, items: updated });
+                            }}
+                            title="Move Card Up"
+                          >
+                            ⬆️ Move Up
+                          </button>
+                        )}
+
+                        {/* Move Down */}
+                        {idx < (homepageFeaturedCreations.items.length - 1) && (
+                          <button
+                            type="button"
+                            className={styles.secondaryBtn}
+                            style={{ padding: "0.2rem 0.5rem", fontSize: "0.75rem" }}
+                            onClick={() => {
+                              const updated = [...homepageFeaturedCreations.items];
+                              const temp = updated[idx];
+                              updated[idx] = updated[idx + 1];
+                              updated[idx + 1] = temp;
+                              setHomepageFeaturedCreations({ ...homepageFeaturedCreations, items: updated });
+                            }}
+                            title="Move Card Down"
+                          >
+                            ⬇️ Move Down
+                          </button>
+                        )}
+
+                        {/* Delete with confirmation */}
+                        <button
+                          type="button"
+                          className={styles.dangerBtn}
+                          style={{ padding: "0.2rem 0.6rem", fontSize: "0.75rem", backgroundColor: "#FFEBEB", color: "#C0392B", border: "1px solid #F5C6CB" }}
+                          onClick={() => {
+                            const cardLabel = isImage ? (card.title || `Card #${idx + 1}`) : (card.author || `Card #${idx + 1}`);
+                            if (window.confirm(`Are you sure you want to delete "${cardLabel}"? This action cannot be undone.`)) {
+                              const updated = homepageFeaturedCreations.items.filter((_, i) => i !== idx);
+                              setHomepageFeaturedCreations({ ...homepageFeaturedCreations, items: updated });
+                            }
+                          }}
+                        >
+                          🗑️ Delete
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Card Fields */}
+                    <div className={styles.formGrid}>
+                      <div className={styles.formGroup}>
+                        <label className={styles.label}>Card Content Type</label>
+                        <select
+                          value={card.type || "image"}
+                          onChange={(e) => {
+                            const updated = [...homepageFeaturedCreations.items];
+                            updated[idx] = { ...updated[idx], type: e.target.value };
+                            setHomepageFeaturedCreations({ ...homepageFeaturedCreations, items: updated });
+                          }}
+                          className={styles.select}
+                        >
+                          <option value="image">🖼️ Sculpture / Creation Image</option>
+                          <option value="quote">💬 Client Testimonial / Quote</option>
+                        </select>
+                      </div>
+
+                      <div className={styles.formGroup}>
+                        <label className={styles.label}>Mosaic Grid Slot</label>
+                        <select
+                          value={card.isCustomSlot ? (card.gridClass || "") : ""}
+                          onChange={(e) => {
+                            const updated = [...homepageFeaturedCreations.items];
+                            const val = e.target.value;
+                            updated[idx] = {
+                              ...updated[idx],
+                              gridClass: val,
+                              isCustomSlot: Boolean(val)
+                            };
+                            setHomepageFeaturedCreations({ ...homepageFeaturedCreations, items: updated });
+                          }}
+                          className={styles.select}
+                        >
+                          <option value="">Auto (Flow with Grid Order - Slot #{idx + 1})</option>
+                          <option value="tileGanesha">Slot 1 (Row 1 Col 1 - Standard)</option>
+                          <option value="tileQuote1">Slot 2 (Row 1 Col 2 - Quote)</option>
+                          <option value="tileSaiBaba">Slot 3 (Row 1 Col 3 - Standard)</option>
+                          <option value="tileQuote2">Slot 4 (Row 1 Col 4 - Quote)</option>
+                          <option value="tileKrishna">Slot 5 (Row 1-2 Col 5 - Tall 2 Rows)</option>
+                          <option value="tileQuote3">Slot 6 (Row 2 Col 1 - Quote)</option>
+                          <option value="tileBust">Slot 7 (Row 2 Col 2 - Standard)</option>
+                          <option value="tileMandir">Slot 8 (Row 2 Col 3 - Standard)</option>
+                          <option value="tileQuote4">Slot 9 (Row 2 Col 4 - Quote)</option>
+                          <option value="tileNandi">Slot 10 (Row 2/3 Col 5 - Standard)</option>
+                        </select>
+                      </div>
+
+                      {/* IMAGE CARD FIELDS */}
+                      {isImage ? (
+                        <>
+                          <div className={styles.formGroup}>
+                            <label className={styles.label}>Sculpture Title / Overlay Caption</label>
+                            <input
+                              type="text"
+                              value={card.title || ""}
+                              onChange={(e) => {
+                                const updated = [...homepageFeaturedCreations.items];
+                                updated[idx] = { ...updated[idx], title: e.target.value };
+                                setHomepageFeaturedCreations({ ...homepageFeaturedCreations, items: updated });
+                              }}
+                              className={styles.input}
+                              placeholder="e.g. White Marble Ganesha Murti"
+                            />
+                          </div>
+
+                          <div className={styles.formGroup}>
+                            <label className={styles.label}>Image Alt Text (Accessibility & SEO)</label>
+                            <input
+                              type="text"
+                              value={card.alt || ""}
+                              onChange={(e) => {
+                                const updated = [...homepageFeaturedCreations.items];
+                                updated[idx] = { ...updated[idx], alt: e.target.value };
+                                setHomepageFeaturedCreations({ ...homepageFeaturedCreations, items: updated });
+                              }}
+                              className={styles.input}
+                              placeholder="e.g. Hand-carved white marble sculpture"
+                            />
+                          </div>
+
+                          <div className={styles.formGroupFull}>
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
+                              <label className={styles.label}>Sculpture Image File</label>
+                              <span className={styles.aspectBadge}>📐 Recommended: High-res WebP/JPG/PNG</span>
+                            </div>
+                            <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem" }}>
+                              {card.src ? (
+                                <img
+                                  src={card.src}
+                                  alt="Preview"
+                                  style={{ width: "64px", height: "64px", borderRadius: "8px", objectFit: "cover", border: "1px solid #B87B31", flexShrink: 0 }}
+                                  onError={(e) => { e.target.style.display = "none"; }}
+                                />
+                              ) : (
+                                <div style={{ width: "64px", height: "64px", borderRadius: "8px", backgroundColor: "#E8E4DF", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.5rem", flexShrink: 0 }}>
+                                  🖼️
+                                </div>
+                              )}
+                              <input
+                                type="text"
+                                value={card.src || ""}
+                                onChange={(e) => {
+                                  const updated = [...homepageFeaturedCreations.items];
+                                  updated[idx] = { ...updated[idx], src: e.target.value };
+                                  setHomepageFeaturedCreations({ ...homepageFeaturedCreations, items: updated });
+                                }}
+                                className={styles.input}
+                                style={{ flex: 1 }}
+                                placeholder="/images/creations/... or upload below"
+                              />
+                              <input
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => handleImageUpload(e, (url) => {
+                                  const updated = [...homepageFeaturedCreations.items];
+                                  updated[idx] = { ...updated[idx], src: url };
+                                  setHomepageFeaturedCreations({ ...homepageFeaturedCreations, items: updated });
+                                })}
+                                style={{ fontSize: "0.85rem" }}
+                              />
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        /* QUOTE CARD FIELDS */
+                        <>
+                          <div className={styles.formGroup}>
+                            <label className={styles.label}>Client Name / Author</label>
+                            <input
+                              type="text"
+                              value={card.author || card.clientName || ""}
+                              onChange={(e) => {
+                                const updated = [...homepageFeaturedCreations.items];
+                                updated[idx] = { ...updated[idx], author: e.target.value };
+                                setHomepageFeaturedCreations({ ...homepageFeaturedCreations, items: updated });
+                              }}
+                              className={styles.input}
+                              placeholder="e.g. Rajesh S."
+                            />
+                          </div>
+
+                          <div className={styles.formGroup}>
+                            <label className={styles.label}>Client Location / City</label>
+                            <input
+                              type="text"
+                              value={card.location || card.clientLocation || ""}
+                              onChange={(e) => {
+                                const updated = [...homepageFeaturedCreations.items];
+                                updated[idx] = { ...updated[idx], location: e.target.value };
+                                setHomepageFeaturedCreations({ ...homepageFeaturedCreations, items: updated });
+                              }}
+                              className={styles.input}
+                              placeholder="e.g. Jaipur"
+                            />
+                          </div>
+
+                          <div className={styles.formGroup}>
+                            <label className={styles.label}>Star Rating</label>
+                            <select
+                              value={card.stars || 5}
+                              onChange={(e) => {
+                                const updated = [...homepageFeaturedCreations.items];
+                                updated[idx] = { ...updated[idx], stars: parseInt(e.target.value, 10) };
+                                setHomepageFeaturedCreations({ ...homepageFeaturedCreations, items: updated });
+                              }}
+                              className={styles.select}
+                            >
+                              <option value={5}>5 Stars ★★★★★</option>
+                              <option value={4}>4 Stars ★★★★☆</option>
+                              <option value={3}>3 Stars ★★★☆☆</option>
+                              <option value={2}>2 Stars ★★☆☆☆</option>
+                              <option value={1}>1 Star ★☆☆☆☆</option>
+                            </select>
+                          </div>
+
+                          <div className={styles.formGroupFull}>
+                            <label className={styles.label}>Testimonial / Quote Copy</label>
+                            <textarea
+                              rows={3}
+                              value={card.quote || ""}
+                              onChange={(e) => {
+                                const updated = [...homepageFeaturedCreations.items];
+                                updated[idx] = { ...updated[idx], quote: e.target.value };
+                                setHomepageFeaturedCreations({ ...homepageFeaturedCreations, items: updated });
+                              }}
+                              className={styles.textarea}
+                              placeholder="Enter testimonial text..."
+                            />
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* SECTION 6: CLIENT TESTIMONIALS & REVIEWS */}
+          <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
+              <div>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
+                  6. Client Testimonials & Reviews
                 </h3>
                 <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
                   📍 Used on Homepage (/)
@@ -2359,7 +3042,7 @@ export default function AdminPageCMS() {
                   1. Craftsmanship Atelier Hero
                 </h3>
                 <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
-                  📍 USED ON / &amp; /CRAFTSMANSHIP
+                  📍 USED ON /, /OUR-WORLD &amp; /CRAFTSMANSHIP
                 </span>
               </div>
               <button
@@ -3394,6 +4077,902 @@ export default function AdminPageCMS() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* TAB 4: OUR WORLD PAGE */}
+      {activeTab === "world" && (
+        <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+          {/* TOP SAVE BAR */}
+          <div style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "1rem 1.5rem",
+            backgroundColor: "#FAF9F6",
+            borderRadius: "8px",
+            border: "1px solid #E8E5DF",
+            flexWrap: "wrap",
+            gap: "1rem"
+          }}>
+            <div>
+              <h2 style={{ fontSize: "1.15rem", fontWeight: "700", color: "var(--color-navy)", margin: 0 }}>
+                🌐 Our World — Visual Portfolio &amp; Editorial Gallery CMS
+              </h2>
+              <p style={{ fontSize: "0.85rem", color: "#666", margin: "0.25rem 0 0" }}>
+                Manage hero storytelling, category filter tabs, asymmetric creation gallery, featured architectural projects, and bespoke inquiry CTA.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => handleSaveOurWorld()}
+              className={styles.primaryBtn}
+              disabled={saving}
+              style={{ padding: "0.6rem 1.4rem", fontSize: "0.95rem" }}
+            >
+              {saving ? "Saving..." : "💾 Save All Our World Changes"}
+            </button>
+          </div>
+
+          {/* ============================================================ */}
+          {/* 1. OUR WORLD HERO BANNER & HEADLINE                          */}
+          {/* ============================================================ */}
+          <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
+              <div>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
+                  1. Editorial Hero Banner &amp; Headline
+                </h3>
+                <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
+                  📍 Used on /our-world (Top)
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => handleSaveOurWorld()}
+                className={styles.primaryBtn}
+                disabled={saving}
+              >
+                {saving ? "Saving..." : "Save Hero Section"}
+              </button>
+            </div>
+
+            <div className={styles.formGrid}>
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Eyebrow Tagline</label>
+                <input
+                  type="text"
+                  value={ourWorldContent.hero?.eyebrow || ""}
+                  onChange={(e) => updateOurWorldHero("eyebrow", e.target.value)}
+                  className={styles.input}
+                  placeholder="THE WORLD OF JAIPUR STONECRAFT"
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Main Hero Heading</label>
+                <input
+                  type="text"
+                  value={ourWorldContent.hero?.heading || ""}
+                  onChange={(e) => updateOurWorldHero("heading", e.target.value)}
+                  className={styles.input}
+                  placeholder="Stone, Culture. Timeless Beauty."
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Hero Description Paragraph</label>
+                <textarea
+                  rows={3}
+                  value={ourWorldContent.hero?.description || ""}
+                  onChange={(e) => updateOurWorldHero("description", e.target.value)}
+                  className={styles.textarea}
+                  placeholder="From sacred sculptures to architectural masterpieces..."
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Primary Button Label</label>
+                <input
+                  type="text"
+                  value={ourWorldContent.hero?.primaryCtaText || ""}
+                  onChange={(e) => updateOurWorldHero("primaryCtaText", e.target.value)}
+                  className={styles.input}
+                  placeholder="DISCOVER OUR WORLD"
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Primary Button Destination (URL or Anchor)</label>
+                <input
+                  type="text"
+                  value={ourWorldContent.hero?.primaryCtaHref || ""}
+                  onChange={(e) => updateOurWorldHero("primaryCtaHref", e.target.value)}
+                  className={styles.input}
+                  placeholder="#gallery-showcase"
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
+                  <label className={styles.label}>Hero Background Image (Cinematic Finished Stonework)</label>
+                  <span className={styles.aspectBadge}>📐 Recommended: 16:9 Landscape (1920 × 1080 px)</span>
+                </div>
+                <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem" }}>
+                  {ourWorldContent.hero?.backgroundImage && (
+                    <img
+                      src={ourWorldContent.hero.backgroundImage}
+                      alt="Hero Background Preview"
+                      style={{ width: "80px", height: "50px", objectFit: "cover", borderRadius: "4px", border: "1px solid #D0E1F9" }}
+                      onError={(e) => { e.target.style.display = "none"; }}
+                    />
+                  )}
+                  <input
+                    type="text"
+                    value={ourWorldContent.hero?.backgroundImage || ""}
+                    onChange={(e) => updateOurWorldHero("backgroundImage", e.target.value)}
+                    className={styles.input}
+                    style={{ flex: 1 }}
+                    placeholder="/images/collections/temples-architectural.webp"
+                  />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => handleImageUpload(e, (url) => updateOurWorldHero("backgroundImage", url))}
+                    style={{ fontSize: "0.85rem" }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ============================================================ */}
+          {/* 2. CATEGORY FILTER BAR TABS                                  */}
+          {/* ============================================================ */}
+          <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
+              <div>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
+                  2. Category Filter Bar Tabs
+                </h3>
+                <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
+                  📍 6 Interactive Filter Pills
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => handleSaveOurWorld()}
+                className={styles.primaryBtn}
+                disabled={saving}
+              >
+                {saving ? "Saving..." : "Save Categories"}
+              </button>
+            </div>
+
+            <p style={{ fontSize: "0.85rem", color: "#666", marginBottom: "1.25rem" }}>
+              Control the human-readable display labels for the 6 category filter pills. When users click a pill, the gallery below dynamically filters in real-time.
+            </p>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1rem" }}>
+              {ourWorldContent.categories?.map((cat, idx) => (
+                <div key={cat.id || idx} style={{ padding: "1rem", backgroundColor: "#FAF9F6", borderRadius: "8px", border: "1px solid #E8E5DF" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
+                    <span style={{ fontSize: "0.75rem", fontWeight: "700", textTransform: "uppercase", color: "var(--color-bronze)" }}>
+                      Key: {cat.id}
+                    </span>
+                    <span style={{ fontSize: "0.7rem", color: "#888" }}>Tab #{idx + 1}</span>
+                  </div>
+                  <label className={styles.label} style={{ fontSize: "0.8rem", marginBottom: "0.25rem" }}>Display Label</label>
+                  <input
+                    type="text"
+                    value={cat.label || ""}
+                    onChange={(e) => updateOurWorldCategory(idx, "label", e.target.value)}
+                    className={styles.input}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ============================================================ */}
+          {/* 3. ASYMMETRIC CREATION GALLERY & HEADER                       */}
+          {/* ============================================================ */}
+          <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
+              <div>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
+                  3. Visual Portfolio &amp; Asymmetric Gallery
+                </h3>
+                <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
+                  📍 {ourWorldContent.gallery?.length || 0} Curated Creations
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => handleSaveOurWorld()}
+                className={styles.primaryBtn}
+                disabled={saving}
+              >
+                {saving ? "Saving..." : "Save Gallery Section"}
+              </button>
+            </div>
+
+            {/* Gallery Section Header Controls */}
+            <div style={{ padding: "1rem", backgroundColor: "#FAF9F6", borderRadius: "8px", border: "1px solid #E8E5DF", marginBottom: "1.5rem" }}>
+              <h4 style={{ fontSize: "0.95rem", fontWeight: "600", color: "var(--color-navy)", marginBottom: "0.75rem" }}>
+                Gallery Section Introduction &amp; CTA
+              </h4>
+              <div className={styles.formGrid}>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Eyebrow</label>
+                  <input
+                    type="text"
+                    value={ourWorldContent.galleryHeader?.eyebrow || ""}
+                    onChange={(e) => updateOurWorldGalleryHeader("eyebrow", e.target.value)}
+                    className={styles.input}
+                    placeholder="EXPLORE OUR WORLD"
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Heading</label>
+                  <input
+                    type="text"
+                    value={ourWorldContent.galleryHeader?.heading || ""}
+                    onChange={(e) => updateOurWorldGalleryHeader("heading", e.target.value)}
+                    className={styles.input}
+                    placeholder="A Glimpse of Our Creations"
+                  />
+                </div>
+                <div className={styles.formGroupFull}>
+                  <label className={styles.label}>Supporting Subcopy</label>
+                  <textarea
+                    rows={2}
+                    value={ourWorldContent.galleryHeader?.subcopy || ""}
+                    onChange={(e) => updateOurWorldGalleryHeader("subcopy", e.target.value)}
+                    className={styles.textarea}
+                    placeholder="Discover the beauty, detail and diversity of our work..."
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Bottom Button Text</label>
+                  <input
+                    type="text"
+                    value={ourWorldContent.galleryHeader?.viewAllText || ""}
+                    onChange={(e) => updateOurWorldGalleryHeader("viewAllText", e.target.value)}
+                    className={styles.input}
+                    placeholder="View Full Gallery"
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Bottom Button Destination (URL)</label>
+                  <input
+                    type="text"
+                    value={ourWorldContent.galleryHeader?.viewAllHref || ""}
+                    onChange={(e) => updateOurWorldGalleryHeader("viewAllHref", e.target.value)}
+                    className={styles.input}
+                    placeholder="/collections"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Gallery Items Controls */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+              <h4 style={{ fontSize: "0.95rem", fontWeight: "600", color: "var(--color-navy)", margin: 0 }}>
+                Individual Creations ({ourWorldContent.gallery?.length || 0})
+              </h4>
+              <button
+                type="button"
+                onClick={addOurWorldGalleryItem}
+                className={styles.secondaryBtn}
+                style={{ fontSize: "0.85rem", padding: "0.35rem 0.85rem" }}
+              >
+                + Add New Creation
+              </button>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              {ourWorldContent.gallery?.map((item, idx) => (
+                <div key={item.id || idx} style={{
+                  padding: "1rem",
+                  backgroundColor: "#FFFFFF",
+                  borderRadius: "8px",
+                  border: "1px solid #E8E5DF",
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.03)"
+                }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem", flexWrap: "wrap", gap: "0.5rem" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                      <span style={{ fontSize: "0.8rem", fontWeight: "700", color: "var(--color-bronze)" }}>
+                        #{idx + 1}
+                      </span>
+                      <strong style={{ fontSize: "0.9rem", color: "var(--color-navy)" }}>{item.title}</strong>
+                      <span className={styles.badge} style={{ fontSize: "0.7rem", padding: "0.15rem 0.4rem" }}>
+                        {item.categoryLabel || item.category}
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => removeOurWorldGalleryItem(idx)}
+                      style={{
+                        background: "none",
+                        border: "none",
+                        color: "#C5221F",
+                        fontSize: "0.8rem",
+                        cursor: "pointer",
+                        textDecoration: "underline"
+                      }}
+                    >
+                      Delete Creation
+                    </button>
+                  </div>
+
+                  <div className={styles.formGrid}>
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Title</label>
+                      <input
+                        type="text"
+                        value={item.title || ""}
+                        onChange={(e) => updateOurWorldGalleryItem(idx, "title", e.target.value)}
+                        className={styles.input}
+                      />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Category</label>
+                      <select
+                        value={item.category || "sculptures"}
+                        onChange={(e) => {
+                          const catVal = e.target.value;
+                          const foundCat = ourWorldContent.categories?.find((c) => c.id === catVal);
+                          updateOurWorldGalleryItem(idx, "category", catVal);
+                          if (foundCat) {
+                            updateOurWorldGalleryItem(idx, "categoryLabel", foundCat.label);
+                          }
+                        }}
+                        className={styles.input}
+                      >
+                        <option value="sculptures">Sculptures</option>
+                        <option value="architectural">Architectural Elements</option>
+                        <option value="jalis">Jalis &amp; Screens</option>
+                        <option value="fountains">Fountains</option>
+                        <option value="custom">Custom Creations</option>
+                      </select>
+                    </div>
+
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Category Display Label</label>
+                      <input
+                        type="text"
+                        value={item.categoryLabel || ""}
+                        onChange={(e) => updateOurWorldGalleryItem(idx, "categoryLabel", e.target.value)}
+                        className={styles.input}
+                      />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Material</label>
+                      <input
+                        type="text"
+                        value={item.material || ""}
+                        onChange={(e) => updateOurWorldGalleryItem(idx, "material", e.target.value)}
+                        className={styles.input}
+                        placeholder="Makrana White Marble"
+                      />
+                    </div>
+
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Grid Card Aspect Ratio</label>
+                      <select
+                        value={item.aspectRatio || "square"}
+                        onChange={(e) => updateOurWorldGalleryItem(idx, "aspectRatio", e.target.value)}
+                        className={styles.input}
+                      >
+                        <option value="square">Square (1:1 standard)</option>
+                        <option value="tall">Tall (Vertical pillar / statue)</option>
+                        <option value="centerpiece">Centerpiece (Dominant focal)</option>
+                        <option value="landscape">Landscape (Wide corridor)</option>
+                      </select>
+                    </div>
+
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Alt Text (SEO &amp; Accessibility)</label>
+                      <input
+                        type="text"
+                        value={item.altText || ""}
+                        onChange={(e) => updateOurWorldGalleryItem(idx, "altText", e.target.value)}
+                        className={styles.input}
+                        placeholder="Hand-carved white marble..."
+                      />
+                    </div>
+
+                    <div className={styles.formGroupFull}>
+                      <label className={styles.label}>Image File</label>
+                      <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem" }}>
+                        {item.imageSrc && (
+                          <img
+                            src={item.imageSrc}
+                            alt="Gallery item preview"
+                            style={{ width: "60px", height: "60px", objectFit: "cover", borderRadius: "4px", border: "1px solid #D0E1F9" }}
+                            onError={(e) => { e.target.style.display = "none"; }}
+                          />
+                        )}
+                        <input
+                          type="text"
+                          value={item.imageSrc || ""}
+                          onChange={(e) => updateOurWorldGalleryItem(idx, "imageSrc", e.target.value)}
+                          className={styles.input}
+                          style={{ flex: 1 }}
+                        />
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => handleImageUpload(e, (url) => updateOurWorldGalleryItem(idx, "imageSrc", url))}
+                          style={{ fontSize: "0.85rem" }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ============================================================ */}
+          {/* 4. FEATURED REAL PROJECTS SHOWCASE                           */}
+          {/* ============================================================ */}
+          <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
+              <div>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
+                  4. Featured Architectural Projects Showcase
+                </h3>
+                <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
+                  📍 4 Landmark Case Studies
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => handleSaveOurWorld()}
+                className={styles.primaryBtn}
+                disabled={saving}
+              >
+                {saving ? "Saving..." : "Save Featured Projects"}
+              </button>
+            </div>
+
+            {/* Header controls */}
+            <div style={{ padding: "1rem", backgroundColor: "#FAF9F6", borderRadius: "8px", border: "1px solid #E8E5DF", marginBottom: "1.5rem" }}>
+              <div className={styles.formGrid}>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Eyebrow</label>
+                  <input
+                    type="text"
+                    value={ourWorldContent.featuredProjectsHeader?.eyebrow || ""}
+                    onChange={(e) => updateOurWorldProjectHeader("eyebrow", e.target.value)}
+                    className={styles.input}
+                    placeholder="FEATURED PROJECTS"
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Heading</label>
+                  <input
+                    type="text"
+                    value={ourWorldContent.featuredProjectsHeader?.heading || ""}
+                    onChange={(e) => updateOurWorldProjectHeader("heading", e.target.value)}
+                    className={styles.input}
+                    placeholder="Crafted for Timeless Spaces"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* 4 Projects */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: "1.25rem" }}>
+              {ourWorldContent.featuredProjects?.map((proj, idx) => (
+                <div key={proj.id || proj.slug || idx} style={{
+                  padding: "1rem",
+                  backgroundColor: "#FFFFFF",
+                  borderRadius: "8px",
+                  border: "1px solid #E8E5DF"
+                }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
+                    <strong style={{ fontSize: "0.95rem", color: "var(--color-navy)" }}>Project #{idx + 1}</strong>
+                    <span className={styles.badge} style={{ fontSize: "0.75rem" }}>{proj.category}</span>
+                  </div>
+
+                  <div className={styles.formGroupFull} style={{ marginBottom: "0.75rem" }}>
+                    <label className={styles.label}>Title</label>
+                    <input
+                      type="text"
+                      value={proj.title || ""}
+                      onChange={(e) => updateOurWorldProject(idx, "title", e.target.value)}
+                      className={styles.input}
+                    />
+                  </div>
+
+                  <div className={styles.formGrid} style={{ marginBottom: "0.75rem" }}>
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Category</label>
+                      <input
+                        type="text"
+                        value={proj.category || ""}
+                        onChange={(e) => updateOurWorldProject(idx, "category", e.target.value)}
+                        className={styles.input}
+                      />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Location</label>
+                      <input
+                        type="text"
+                        value={proj.location || ""}
+                        onChange={(e) => updateOurWorldProject(idx, "location", e.target.value)}
+                        className={styles.input}
+                      />
+                    </div>
+                  </div>
+
+                  <div className={styles.formGroupFull} style={{ marginBottom: "0.75rem" }}>
+                    <label className={styles.label}>Description</label>
+                    <textarea
+                      rows={2}
+                      value={proj.description || ""}
+                      onChange={(e) => updateOurWorldProject(idx, "description", e.target.value)}
+                      className={styles.textarea}
+                    />
+                  </div>
+
+                  <div className={styles.formGroupFull} style={{ marginBottom: "0.75rem" }}>
+                    <label className={styles.label}>Destination Link (Href or /projects/...)</label>
+                    <input
+                      type="text"
+                      value={proj.href || ""}
+                      onChange={(e) => updateOurWorldProject(idx, "href", e.target.value)}
+                      className={styles.input}
+                    />
+                  </div>
+
+                  <div className={styles.formGroupFull}>
+                    <label className={styles.label}>Project Image</label>
+                    <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", marginTop: "0.25rem" }}>
+                      {proj.imageSrc && (
+                        <img
+                          src={proj.imageSrc}
+                          alt="Project preview"
+                          style={{ width: "60px", height: "45px", objectFit: "cover", borderRadius: "4px", border: "1px solid #D0E1F9" }}
+                          onError={(e) => { e.target.style.display = "none"; }}
+                        />
+                      )}
+                      <input
+                        type="text"
+                        value={proj.imageSrc || ""}
+                        onChange={(e) => updateOurWorldProject(idx, "imageSrc", e.target.value)}
+                        className={styles.input}
+                        style={{ flex: 1 }}
+                      />
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload(e, (url) => updateOurWorldProject(idx, "imageSrc", url))}
+                        style={{ fontSize: "0.8rem" }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ============================================================ */}
+          {/* 5. SHARED CRAFTSMANSHIP NOTICE                               */}
+          {/* ============================================================ */}
+          <div className={styles.tableCard} style={{
+            padding: "1.5rem",
+            backgroundColor: "#FAF9F6",
+            borderLeft: "4px solid var(--color-bronze)"
+          }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
+              <div style={{ maxWidth: "750px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
+                  <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", margin: 0 }}>
+                    5. Shared Atelier Craftsmanship Section
+                  </h3>
+                  <span className={styles.badge} style={{ backgroundColor: "#EAE7E1", color: "var(--color-navy)" }}>
+                    🔗 Unified Single CMS Source: craftsmanship_hero
+                  </span>
+                </div>
+                <p style={{ fontSize: "0.875rem", color: "#555", lineHeight: "1.6", margin: 0 }}>
+                  Per project rules, the craftsmanship process section is strictly <strong>ONE shared CMS unit</strong> across Home (<code>/</code>), Our World (<code>/our-world</code>), and Craftsmanship (<code>/craftsmanship</code>). Any changes made in the Craftsmanship tab immediately update all three pages without data duplication.
+                </p>
+                <div style={{ marginTop: "0.75rem", fontSize: "0.825rem", color: "#777" }}>
+                  Current shared headline: <em>&ldquo;{craftsmanshipHero.heading || "From Raw Stone to Finished Art"}&rdquo;</em>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setActiveTab("craftsmanship")}
+                className={styles.secondaryBtn}
+                style={{ whiteSpace: "nowrap" }}
+              >
+                Go to 🗿 Craftsmanship Tab &rarr;
+              </button>
+            </div>
+          </div>
+
+          {/* ============================================================ */}
+          {/* 6. WHAT WE CREATE (4 CAPABILITY OFFERINGS)                    */}
+          {/* ============================================================ */}
+          <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
+              <div>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
+                  6. What We Create (4 Capabilities Cards)
+                </h3>
+                <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
+                  📍 4 Stonework Pillars
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => handleSaveOurWorld()}
+                className={styles.primaryBtn}
+                disabled={saving}
+              >
+                {saving ? "Saving..." : "Save Capabilities"}
+              </button>
+            </div>
+
+            {/* Header controls */}
+            <div style={{ padding: "1rem", backgroundColor: "#FAF9F6", borderRadius: "8px", border: "1px solid #E8E5DF", marginBottom: "1.5rem" }}>
+              <div className={styles.formGrid}>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Eyebrow</label>
+                  <input
+                    type="text"
+                    value={ourWorldContent.whatWeCreateHeader?.eyebrow || ""}
+                    onChange={(e) => updateOurWorldWhatWeCreateHeader("eyebrow", e.target.value)}
+                    className={styles.input}
+                    placeholder="WHAT WE CREATE"
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Heading</label>
+                  <input
+                    type="text"
+                    value={ourWorldContent.whatWeCreateHeader?.heading || ""}
+                    onChange={(e) => updateOurWorldWhatWeCreateHeader("heading", e.target.value)}
+                    className={styles.input}
+                    placeholder="From Vision to Masterpiece"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* 4 Cards */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1.25rem" }}>
+              {ourWorldContent.whatWeCreate?.map((card, idx) => (
+                <div key={card.id || idx} style={{
+                  padding: "1rem",
+                  backgroundColor: "#FFFFFF",
+                  borderRadius: "8px",
+                  border: "1px solid #E8E5DF"
+                }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
+                    <strong style={{ fontSize: "0.95rem", color: "var(--color-navy)" }}>Card #{idx + 1}</strong>
+                    <span className={styles.badge} style={{ fontSize: "0.75rem" }}>Icon: {card.iconKey}</span>
+                  </div>
+
+                  <div className={styles.formGroupFull} style={{ marginBottom: "0.75rem" }}>
+                    <label className={styles.label}>Title</label>
+                    <input
+                      type="text"
+                      value={card.title || ""}
+                      onChange={(e) => updateOurWorldWhatWeCreate(idx, "title", e.target.value)}
+                      className={styles.input}
+                    />
+                  </div>
+
+                  <div className={styles.formGroupFull} style={{ marginBottom: "0.75rem" }}>
+                    <label className={styles.label}>Icon</label>
+                    <select
+                      value={card.iconKey || "sculpture"}
+                      onChange={(e) => updateOurWorldWhatWeCreate(idx, "iconKey", e.target.value)}
+                      className={styles.input}
+                    >
+                      <option value="sculpture">Sculpture (Divine Icon)</option>
+                      <option value="architecture">Architecture (Temple Colonnade)</option>
+                      <option value="fountain">Fountain (Courtyard Lotus)</option>
+                      <option value="custom">Custom (Artisan Chisel)</option>
+                    </select>
+                  </div>
+
+                  <div className={styles.formGroupFull} style={{ marginBottom: "0.75rem" }}>
+                    <label className={styles.label}>Description</label>
+                    <textarea
+                      rows={3}
+                      value={card.description || ""}
+                      onChange={(e) => updateOurWorldWhatWeCreate(idx, "description", e.target.value)}
+                      className={styles.textarea}
+                    />
+                  </div>
+
+                  <div className={styles.formGroupFull} style={{ marginBottom: "0.75rem" }}>
+                    <label className={styles.label}>Link Text</label>
+                    <input
+                      type="text"
+                      value={card.linkText || ""}
+                      onChange={(e) => updateOurWorldWhatWeCreate(idx, "linkText", e.target.value)}
+                      className={styles.input}
+                    />
+                  </div>
+
+                  <div className={styles.formGroupFull}>
+                    <label className={styles.label}>Destination URL</label>
+                    <input
+                      type="text"
+                      value={card.linkHref || ""}
+                      onChange={(e) => updateOurWorldWhatWeCreate(idx, "linkHref", e.target.value)}
+                      className={styles.input}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ============================================================ */}
+          {/* 7. BESPOKE ARCHITECTURAL CTA BANNER                          */}
+          {/* ============================================================ */}
+          <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
+              <div>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
+                  7. Bespoke Architectural CTA Banner
+                </h3>
+                <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
+                  📍 Bottom Inquiry Banner
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => handleSaveOurWorld()}
+                className={styles.primaryBtn}
+                disabled={saving}
+              >
+                {saving ? "Saving..." : "Save Bespoke CTA"}
+              </button>
+            </div>
+
+            <div className={styles.formGrid}>
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Eyebrow Tagline</label>
+                <input
+                  type="text"
+                  value={ourWorldContent.closingCta?.eyebrow || ""}
+                  onChange={(e) => updateOurWorldClosingCta("eyebrow", e.target.value)}
+                  className={styles.input}
+                  placeholder="LET'S CREATE SOMETHING TIMELESS"
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Main Heading</label>
+                <input
+                  type="text"
+                  value={ourWorldContent.closingCta?.heading || ""}
+                  onChange={(e) => updateOurWorldClosingCta("heading", e.target.value)}
+                  className={styles.input}
+                  placeholder="Have a Vision in Mind?"
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Description</label>
+                <textarea
+                  rows={3}
+                  value={ourWorldContent.closingCta?.description || ""}
+                  onChange={(e) => updateOurWorldClosingCta("description", e.target.value)}
+                  className={styles.textarea}
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Primary Button Text</label>
+                <input
+                  type="text"
+                  value={ourWorldContent.closingCta?.primaryCtaText || ""}
+                  onChange={(e) => updateOurWorldClosingCta("primaryCtaText", e.target.value)}
+                  className={styles.input}
+                  placeholder="DISCUSS A BESPOKE PROJECT"
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Primary Button Link</label>
+                <input
+                  type="text"
+                  value={ourWorldContent.closingCta?.primaryCtaHref || ""}
+                  onChange={(e) => updateOurWorldClosingCta("primaryCtaHref", e.target.value)}
+                  className={styles.input}
+                  placeholder="/contact?type=custom"
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Secondary Button Text</label>
+                <input
+                  type="text"
+                  value={ourWorldContent.closingCta?.secondaryCtaText || ""}
+                  onChange={(e) => updateOurWorldClosingCta("secondaryCtaText", e.target.value)}
+                  className={styles.input}
+                  placeholder="VISIT OUR WORKSHOP"
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Secondary Button Link</label>
+                <input
+                  type="text"
+                  value={ourWorldContent.closingCta?.secondaryCtaHref || ""}
+                  onChange={(e) => updateOurWorldClosingCta("secondaryCtaHref", e.target.value)}
+                  className={styles.input}
+                  placeholder="/contact?type=visit"
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
+                  <label className={styles.label}>Artisan Feature Photo (Left Column)</label>
+                  <span className={styles.aspectBadge}>📐 Recommended: Square or 4:5 Portrait</span>
+                </div>
+                <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem" }}>
+                  {ourWorldContent.closingCta?.imageSrc && (
+                    <img
+                      src={ourWorldContent.closingCta.imageSrc}
+                      alt="Artisan CTA Preview"
+                      style={{ width: "60px", height: "60px", objectFit: "cover", borderRadius: "4px", border: "1px solid #D0E1F9" }}
+                      onError={(e) => { e.target.style.display = "none"; }}
+                    />
+                  )}
+                  <input
+                    type="text"
+                    value={ourWorldContent.closingCta?.imageSrc || ""}
+                    onChange={(e) => updateOurWorldClosingCta("imageSrc", e.target.value)}
+                    className={styles.input}
+                    style={{ flex: 1 }}
+                    placeholder="/images/craftsmanship/artisan-hands.png"
+                  />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => handleImageUpload(e, (url) => updateOurWorldClosingCta("imageSrc", url))}
+                    style={{ fontSize: "0.85rem" }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* BOTTOM SAVE BAR */}
+          <div style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            padding: "1.25rem",
+            backgroundColor: "#FAF9F6",
+            borderRadius: "8px",
+            border: "1px solid #E8E5DF",
+            marginBottom: "2rem"
+          }}>
+            <button
+              type="button"
+              onClick={() => handleSaveOurWorld()}
+              className={styles.primaryBtn}
+              disabled={saving}
+              style={{ padding: "0.75rem 1.75rem", fontSize: "1rem" }}
+            >
+              {saving ? "Saving..." : "💾 Save All Our World Changes"}
+            </button>
           </div>
         </div>
       )}

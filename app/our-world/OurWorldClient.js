@@ -5,17 +5,21 @@ import OurWorldHero from "@/components/OurWorld/OurWorldHero";
 import WorldCategoryTabs from "@/components/OurWorld/WorldCategoryTabs";
 import WorldGallery from "@/components/OurWorld/WorldGallery";
 import FeaturedProjects from "@/components/OurWorld/FeaturedProjects";
+import CraftProcess from "@/components/CraftProcess/CraftProcess";
 import WhatWeCreate from "@/components/OurWorld/WhatWeCreate";
 import BespokeCTA from "@/components/OurWorld/BespokeCTA";
 
-export default function OurWorldClient({ initialData = {} }) {
+export default function OurWorldClient({ initialData = {}, craftsmanshipData = {} }) {
   const [activeCategory, setActiveCategory] = useState("all");
 
   const {
     hero = {},
     categories = [],
+    galleryHeader = {},
     gallery = [],
+    featuredProjectsHeader = {},
     featuredProjects = [],
+    whatWeCreateHeader = {},
     whatWeCreate = [],
     closingCta = {}
   } = initialData;
@@ -44,19 +48,25 @@ export default function OurWorldClient({ initialData = {} }) {
       <WorldGallery
         items={gallery}
         activeCategory={activeCategory}
+        header={galleryHeader}
       />
 
       {/* 4. FEATURED REAL PROJECTS */}
       <FeaturedProjects
         projects={featuredProjects}
+        header={featuredProjectsHeader}
       />
 
-      {/* 5. WHAT WE CREATE (4 ARCHITECTURAL CATEGORY CARDS) */}
+      {/* 5. SHARED CRAFTSMANSHIP PROCESS (ONE CMS UNIT ACROSS HOME, OUR WORLD & CRAFTSMANSHIP) */}
+      <CraftProcess sectionData={craftsmanshipData} />
+
+      {/* 6. WHAT WE CREATE (4 ARCHITECTURAL CATEGORY CARDS) */}
       <WhatWeCreate
         items={whatWeCreate}
+        header={whatWeCreateHeader}
       />
 
-      {/* 6. CONVERSION INQUIRY CLOSE */}
+      {/* 7. CONVERSION INQUIRY CLOSE */}
       <BespokeCTA
         data={closingCta}
       />

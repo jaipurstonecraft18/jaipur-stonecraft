@@ -27,10 +27,10 @@ export default function AdminSettingsPage() {
   });
 
   const [social, setSocial] = useState({
-    instagram: "https://instagram.com/jaipurstonecraft",
-    facebook: "https://facebook.com/jaipurstonecraft",
-    pinterest: "https://pinterest.com/jaipurstonecraft",
-    youtube: "https://youtube.com/@jaipurstonecraft"
+    instagram: "",
+    facebook: "",
+    pinterest: "",
+    youtube: ""
   });
 
   useEffect(() => {
@@ -38,9 +38,36 @@ export default function AdminSettingsPage() {
       .then((res) => res.json())
       .then((data) => {
         if (data.settings) {
-          if (data.settings.announcement_bar) setAnnouncement(data.settings.announcement_bar.value);
-          if (data.settings.studio_contact) setContact(data.settings.studio_contact.value);
-          if (data.settings.social_links) setSocial(data.settings.social_links.value);
+          if (data.settings.announcement_bar?.value) {
+            const val = data.settings.announcement_bar.value;
+            setAnnouncement({
+              active: val.active !== undefined ? Boolean(val.active) : true,
+              text: val.text ?? "",
+              linkText: val.linkText ?? "",
+              linkUrl: val.linkUrl ?? ""
+            });
+          }
+          if (data.settings.studio_contact?.value) {
+            const val = data.settings.studio_contact.value;
+            setContact({
+              telephone: val.telephone ?? "",
+              whatsapp: val.whatsapp ?? "",
+              email: val.email ?? "",
+              address: val.address ?? "",
+              city: val.city ?? "",
+              state: val.state ?? "",
+              country: val.country ?? ""
+            });
+          }
+          if (data.settings.social_links?.value) {
+            const val = data.settings.social_links.value;
+            setSocial({
+              instagram: val.instagram ?? "",
+              facebook: val.facebook ?? "",
+              pinterest: val.pinterest ?? "",
+              youtube: val.youtube ?? ""
+            });
+          }
         }
         setLoading(false);
       })
@@ -143,7 +170,7 @@ export default function AdminSettingsPage() {
               <label className={styles.label}>Announcement Text</label>
               <input
                 type="text"
-                value={announcement.text}
+                value={announcement.text ?? ""}
                 onChange={(e) => setAnnouncement({ ...announcement, text: e.target.value })}
                 className={styles.input}
               />
@@ -153,7 +180,7 @@ export default function AdminSettingsPage() {
               <label className={styles.label}>Button Link Text</label>
               <input
                 type="text"
-                value={announcement.linkText}
+                value={announcement.linkText ?? ""}
                 onChange={(e) => setAnnouncement({ ...announcement, linkText: e.target.value })}
                 className={styles.input}
               />
@@ -163,7 +190,7 @@ export default function AdminSettingsPage() {
               <label className={styles.label}>Button Link URL</label>
               <input
                 type="text"
-                value={announcement.linkUrl}
+                value={announcement.linkUrl ?? ""}
                 onChange={(e) => setAnnouncement({ ...announcement, linkUrl: e.target.value })}
                 className={styles.input}
               />
@@ -191,7 +218,7 @@ export default function AdminSettingsPage() {
               <label className={styles.label}>Official Telephone</label>
               <input
                 type="text"
-                value={contact.telephone}
+                value={contact.telephone ?? ""}
                 onChange={(e) => setContact({ ...contact, telephone: e.target.value })}
                 className={styles.input}
               />
@@ -201,7 +228,7 @@ export default function AdminSettingsPage() {
               <label className={styles.label}>WhatsApp Business Number</label>
               <input
                 type="text"
-                value={contact.whatsapp}
+                value={contact.whatsapp ?? ""}
                 onChange={(e) => setContact({ ...contact, whatsapp: e.target.value })}
                 className={styles.input}
               />
@@ -211,7 +238,7 @@ export default function AdminSettingsPage() {
               <label className={styles.label}>Official Email Address</label>
               <input
                 type="email"
-                value={contact.email}
+                value={contact.email ?? ""}
                 onChange={(e) => setContact({ ...contact, email: e.target.value })}
                 className={styles.input}
               />
@@ -221,7 +248,7 @@ export default function AdminSettingsPage() {
               <label className={styles.label}>Showroom & Workshop Address</label>
               <textarea
                 rows={2}
-                value={contact.address}
+                value={contact.address ?? ""}
                 onChange={(e) => setContact({ ...contact, address: e.target.value })}
                 className={styles.textarea}
               />
@@ -231,7 +258,7 @@ export default function AdminSettingsPage() {
               <label className={styles.label}>City</label>
               <input
                 type="text"
-                value={contact.city}
+                value={contact.city ?? ""}
                 onChange={(e) => setContact({ ...contact, city: e.target.value })}
                 className={styles.input}
               />
@@ -241,7 +268,7 @@ export default function AdminSettingsPage() {
               <label className={styles.label}>State</label>
               <input
                 type="text"
-                value={contact.state}
+                value={contact.state ?? ""}
                 onChange={(e) => setContact({ ...contact, state: e.target.value })}
                 className={styles.input}
               />
@@ -269,7 +296,7 @@ export default function AdminSettingsPage() {
               <label className={styles.label}>Instagram Profile URL</label>
               <input
                 type="text"
-                value={social.instagram}
+                value={social.instagram ?? ""}
                 onChange={(e) => setSocial({ ...social, instagram: e.target.value })}
                 className={styles.input}
               />
@@ -279,7 +306,7 @@ export default function AdminSettingsPage() {
               <label className={styles.label}>Facebook Profile URL</label>
               <input
                 type="text"
-                value={social.facebook}
+                value={social.facebook ?? ""}
                 onChange={(e) => setSocial({ ...social, facebook: e.target.value })}
                 className={styles.input}
               />
@@ -289,7 +316,7 @@ export default function AdminSettingsPage() {
               <label className={styles.label}>Pinterest Profile URL</label>
               <input
                 type="text"
-                value={social.pinterest}
+                value={social.pinterest ?? ""}
                 onChange={(e) => setSocial({ ...social, pinterest: e.target.value })}
                 className={styles.input}
               />
@@ -299,7 +326,7 @@ export default function AdminSettingsPage() {
               <label className={styles.label}>YouTube Channel URL</label>
               <input
                 type="text"
-                value={social.youtube}
+                value={social.youtube ?? ""}
                 onChange={(e) => setSocial({ ...social, youtube: e.target.value })}
                 className={styles.input}
               />
