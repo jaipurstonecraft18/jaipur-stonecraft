@@ -395,7 +395,8 @@
     padding: 0.3rem 0.65rem;
   }
 
-  .twoColRow, .threeColRow {
+  .twoColRow,
+  .threeColRow {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem 0.55rem;
@@ -441,4 +442,3 @@
     font-size: 0.74rem;
   }
 }
-

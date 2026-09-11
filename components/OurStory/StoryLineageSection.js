@@ -1,59 +1,108 @@
+import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/Container/Container";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
 import styles from "./OurStory.module.css";
 
+const defaultMilestones = [
+  {
+    tag: "3+ GENERATIONS",
+    title: "Generations of Family Craft",
+    desc: "A family lineage rooted in Rajasthan, working with authentic Makrana white marble and regional sandstones.",
+    imageSrc: "/images/brand/heritage-ganesha.webp"
+  },
+  {
+    tag: "HAND TO HAND",
+    title: "Passed Down Through Hands",
+    desc: "Traditional carving knowledge, sacred stone sculpting, and manual chiseling skills carried forward across generations.",
+    imageSrc: "/images/collections/custom.webp"
+  },
+  {
+    tag: "LIVING ATELIER",
+    title: "The Workshop Today",
+    desc: "Our Jaipur atelier continues this living tradition, carving sacred deity murties, architectural stonework, and custom pieces.",
+    imageSrc: "/images/collections/hero-sculptures-group.webp"
+  }
+];
+
 export default function StoryLineageSection({ data = {} }) {
-  const badge = data.badge || "OUR HERITAGE";
-  const heading = data.heading || "Passing Down the Chisel";
-  const rawImage = data.imageSrc || "/images/craftsmanship/step-02-shape-precision.jpg";
-  const imageSrc = getImageVariantUrl(rawImage, "display") || rawImage;
-  const pullQuote = data.pullQuote || "It never was, nor will be, only about time. It knows not the material gain. Actually, true beauty speaks when a true master crafts every stroke of the hammer.";
-  const p1 = data.paragraph1 || "In the historic stone hubs of Rajasthan, hand carving is far more than an occupation — it is an oral lineage passed down from master to apprentice across generations.";
-  const p2 = data.paragraph2 || "For decades, our family carved sacred deity idols, temple arches, sandstone jali lattices, screens, and palace facades for royal trusts and noble patrons throughout Jaipur, Makrana, and Bharatpur.";
-  const p3 = data.paragraph3 || "This generational foundation taught us how to select stones, how raw blocks are sculpted into human expressions, and everything where marble and bliss converge. The physical mastery of manual chiseling remains the beating heart of our work today.";
+  const chapter = data.chapter || "CHAPTER 02";
+  const heading = data.heading || "A Craft Passed Hand to Hand";
+  const narrative = data.paragraph1 || "For more than three generations, our family and artisans have carried forward the knowledge, skills and values of traditional stonecraft — learning not just techniques, but a way of seeing, feeling and respecting stone.";
+  const linkText = data.linkText || "Our Heritage";
+  const linkHref = data.linkHref || "/craftsmanship";
+  const milestones = Array.isArray(data.milestones) && data.milestones.length > 0 ? data.milestones : defaultMilestones;
 
   return (
-    <section className={styles.lineageSection} aria-label="Our Heritage">
+    <section id="chapter-02" className={styles.lineageSection} aria-label="Chapter 02: A Craft Passed Hand to Hand">
       <Container>
-        <div className={styles.lineageGrid}>
-          {/* Left Image: Artisan Chiseling Stone */}
-          <div className={styles.lineageVisual}>
+        {/* Editorial Story Header */}
+        <div className={styles.lineageHeaderLayout}>
+          <div className={styles.lineageIntroCol}>
             <ScrollReveal animation="fade-up">
-              <div className={styles.lineageImageFrame}>
-                <Image
-                  src={imageSrc}
-                  alt="Master artisan hands chiseling white marble block in Jaipur atelier"
-                  fill
-                  sizes="(max-width: 991px) 100vw, 45vw"
-                  className={styles.lineageImage}
-                />
-              </div>
+              <span className={styles.chapterEyebrow}>{chapter}</span>
+            </ScrollReveal>
+
+            <ScrollReveal animation="fade-up" delay={80}>
+              <h2 className={styles.chapterHeading}>{heading}</h2>
             </ScrollReveal>
           </div>
 
-          {/* Right Editorial Story */}
-          <div className={styles.lineageContent}>
-            <ScrollReveal animation="fade-up" delay={150}>
-              <span className={styles.sectionChapterBadge}>{badge}</span>
-              <h2 className={styles.sectionHeading}>{heading}</h2>
-              
-              <div className={styles.lineageBody}>
-                <p>{p1}</p>
-                <p>{p2}</p>
+          <div className={styles.lineageIntroCol}>
+            <ScrollReveal animation="fade-up" delay={120}>
+              <p className={styles.chapterText}>{narrative}</p>
+            </ScrollReveal>
 
-                {/* Italic Quote Box */}
-                {pullQuote && (
-                  <div className={styles.pullQuoteBox}>
-                    &ldquo;{pullQuote}&rdquo;
+            <ScrollReveal animation="fade-up" delay={160}>
+              <Link href={linkHref} className={styles.editorialLink}>
+                <span>{linkText}</span>
+                <span className={styles.editorialLinkArrow} aria-hidden="true">&rarr;</span>
+              </Link>
+            </ScrollReveal>
+          </div>
+        </div>
+
+        {/* Desktop 3-Pillar Horizontal Heritage Grid */}
+        <div className={styles.lineageCardsGrid}>
+          {milestones.map((item, idx) => {
+            const rawImg = item.imageSrc || defaultMilestones[idx % defaultMilestones.length].imageSrc;
+            const imgSrc = getImageVariantUrl(rawImg, "display") || rawImg;
+
+            return (
+              <ScrollReveal key={item.tag || idx} animation="fade-up" delay={idx * 80}>
+                <div className={styles.lineageCard}>
+                  <div className={styles.lineageCardThumb}>
+                    <Image
+                      src={imgSrc}
+                      alt={item.imageAlt || `${item.tag} - ${item.title}`}
+                      fill
+                      unoptimized
+                      sizes="(max-width: 991px) 100vw, 33vw"
+                      className={styles.lineageCardImage}
+                    />
                   </div>
-                )}
+                  <div className={styles.lineageCardMeta}>
+                    <span className={styles.lineageCardTag}>{item.tag}</span>
+                    <h3 className={styles.lineageCardTitle}>{item.title}</h3>
+                    <p className={styles.lineageCardDesc}>{item.desc}</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            );
+          })}
+        </div>
 
-                <p>{p3}</p>
-              </div>
-            </ScrollReveal>
-          </div>
+        {/* Mobile Vertical Connected Timeline */}
+        <div className={styles.mobileLineageTimeline}>
+          {milestones.map((item, idx) => (
+            <div key={item.tag || idx} className={styles.mobileTimelineNode}>
+              <div className={styles.mobileTimelineDot} aria-hidden="true" />
+              <span className={styles.mobileTimelineTag}>{item.tag}</span>
+              <h3 className={styles.mobileTimelineTitle}>{item.title}</h3>
+              <p className={styles.mobileTimelineDesc}>{item.desc}</p>
+            </div>
+          ))}
         </div>
       </Container>
     </section>

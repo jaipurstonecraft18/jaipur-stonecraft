@@ -268,64 +268,142 @@ export default function AdminPageCMS() {
   const [homepageSocial, setHomepageSocial] = useState(defaultHomepageSocial);
 
   const defaultStoryHeader = {
-    eyebrow: "OUR HERITAGE & VISION",
-    heading: "Generational Hands, Modern Vision",
-    subtitle: "For over three generations, Jaipur Stonecraft has preserved the ancient art of stone carving, shaping sacred deity sculptures, architectural temples, and monumental stone art for sanctuaries worldwide.",
-    imageSrc: "/images/hero/hero-krishna-artisan.jpg"
+    eyebrow: "OUR STORY",
+    heading: "A Story Written in Stone",
+    subtitle: "Built on generations of family craftsmanship. Rooted in Rajasthan. Carried forward for tomorrow.",
+    ctaText: "Our Journey",
+    ctaHref: "#chapter-01",
+    imageSrc: "/images/hero/hero-krishna-artisan.webp",
+    imageAlt: "Jaipur Stonecraft master artisan carving white marble with hammer and chisel"
+  };
+
+  const defaultStoryPlace = {
+    chapter: "CHAPTER 01",
+    heading: "Born in Rajasthan",
+    paragraph1: "Our story is deeply connected to the historic stone hubs of Rajasthan — a land where stone is more than a material; it is a part of culture, architecture and everyday life.",
+    paragraph2: "From the royal monuments of Jaipur to the quiet workshops of generational artisans, this region has nurtured an unbroken stonecraft tradition across centuries.",
+    linkText: "Our Roots in Rajasthan",
+    linkHref: "/craftsmanship",
+    imageSrc: "/images/collections/architectural.webp",
+    imageAlt: "Historic Rajasthan stone architecture and royal temple colonnade",
+    overlayTitle: "Living Heritage of Rajasthan Stone Art"
   };
 
   const defaultStoryLineage = {
-    badge: "OUR HERITAGE",
-    heading: "Passing Down the Chisel",
-    imageSrc: "/images/craftsmanship/step-02-shape-precision.jpg",
-    pullQuote: "It never was, nor will be, only about time. It knows not the material gain. Actually, true beauty speaks when a true master crafts every stroke of the hammer.",
-    paragraph1: "In the historic stone hubs of Rajasthan, hand carving is far more than an occupation — it is an oral lineage passed down from master to apprentice across generations.",
-    paragraph2: "For decades, our family carved sacred deity idols, temple arches, sandstone jali lattices, screens, and palace facades for royal trusts and noble patrons throughout Jaipur, Makrana, and Bharatpur.",
-    paragraph3: "This generational foundation taught us how to select stones, how raw blocks are sculpted into human expressions, and everything where marble and bliss converge. The physical mastery of manual chiseling remains the beating heart of our work today."
+    chapter: "CHAPTER 02",
+    heading: "A Craft Passed Hand to Hand",
+    paragraph1: "For more than three generations, our family and artisans have carried forward the knowledge, skills and values of traditional stonecraft — learning not just techniques, but a way of seeing, feeling and respecting stone.",
+    linkText: "Our Heritage",
+    linkHref: "/craftsmanship",
+    milestones: [
+      {
+        tag: "3+ GENERATIONS",
+        title: "Generations of Family Craft",
+        desc: "A family lineage rooted in Rajasthan, working with authentic Makrana white marble and regional sandstones.",
+        imageSrc: "/images/brand/heritage-ganesha.webp",
+        imageAlt: "Generational hand-carved heritage Ganesha marble murti"
+      },
+      {
+        tag: "HAND TO HAND",
+        title: "Passed Down Through Hands",
+        desc: "Traditional carving knowledge, sacred stone sculpting, and manual chiseling skills carried forward across generations.",
+        imageSrc: "/images/collections/custom.webp",
+        imageAlt: "Artisan hands carving stone with traditional hammer and chisel"
+      },
+      {
+        tag: "LIVING ATELIER",
+        title: "The Workshop Today",
+        desc: "Our Jaipur atelier continues this living tradition, carving sacred deity murties, architectural stonework, and custom pieces.",
+        imageSrc: "/images/collections/hero-sculptures-group.webp",
+        imageAlt: "Master stone sculptures in Jaipur Stonecraft workshop atelier"
+      }
+    ]
+  };
+
+  const defaultStoryPeople = {
+    chapter: "CHAPTER 03",
+    heading: "The People Behind the Name",
+    narrative: "Our strength lies in our people — the master sculptors, generational carvers and dedicated teams who bring this heritage to life every day. Their experience, patience and devotion are at the heart of everything we carve.",
+    linkText: "Meet Our Artisans",
+    linkHref: "/craftsmanship",
+    imageSrc: "/images/craftsmanship/artisan-hands.webp",
+    imageAlt: "Jaipur Stonecraft master artisan hands holding steel chisel",
+    emphasisText: "Generations of devotion, patience, and skilled hands in our Jaipur workshop."
   };
 
   const defaultStoryValues = {
-    eyebrow: "OUR VALUES",
-    heading: "Principles Behind Every Chisel",
+    chapter: "CHAPTER 04",
+    heading: "What We Carry Forward",
     values: [
-      { num: "01", title: "Artisan Dignity", desc: "We support fair compensation, health security, and comfortable workspace conditions in our Jaipur studio." },
-      { num: "02", title: "In-House Production", desc: "Every statue, wall mural, and architectural piece is carved entirely in our owned Jaipur workshop." },
-      { num: "03", title: "Authentic Materials", desc: "We source authentic Makrana white marble, Bansi Paharpur pink sandstone, and Dholpur beige stone directly." },
-      { num: "04", title: "Precision & Tolerance", desc: "We bridge ancient Shilpa Shastra proportions with modern 3D CAD modeling for accuracy and installation perfection." }
+      { num: "01", title: "Respect for the Material", desc: "We work with authentic natural stone — Makrana marble, Bansi Paharpur sandstone, and Dholpur stone — honouring its character and natural durability." },
+      { num: "02", title: "Knowledge in the Hands", desc: "Skills passed through generations of manual chiseling, refined through continuous temple and sculpture practice." },
+      { num: "03", title: "Honest Craft", desc: "Every statue, wall mural, and architectural piece is carved with care, authenticity, and attention to detail." },
+      { num: "04", title: "Precision with Purpose", desc: "Traditional carving skill united with architectural care for sacred sanctuaries and contemporary spaces." }
     ]
   };
 
   const defaultStoryStats = {
+    heading: "A Living Tradition in a Modern World",
+    narrative: "Our heritage is measured not just in years, but in the trust of our clients, the dedication of our master artisans across Rajasthan, and the timeless spaces we help create around the world.",
+    linkText: "Our Impact",
+    linkHref: "/our-world",
+    artworkSrc: "/images/creations/krishna-alcove.webp",
+    artworkAlt: "Lord Krishna Marble Statue in Temple Alcove",
     stats: [
       { value: "3+", label: "Generations of Stone Carving Heritage" },
-      { value: "500+", label: "Skilled Artisans Associated Across Rajasthan" },
+      { value: "500+", label: "Skilled Artisans Across Rajasthan" },
       { value: "25+", label: "Countries Our Sculptures Have Reached" },
       { value: "1000+", label: "Custom Sculptures & Architectural Projects Delivered" }
     ]
   };
 
+  const defaultStoryEvolution = {
+    chapter: "CHAPTER 05",
+    heading: "What We Kept. What We Changed.",
+    narrative: "We remain rooted in traditional handcraftsmanship, while embracing contemporary architectural design, international precision tolerances, and global collaborations. The result is a unique balance — ancestral heritage with a modern vision.",
+    linkText: "Our Evolution",
+    linkHref: "/collections",
+    traditionalLabel: "OUR FOUNDATION",
+    traditionalTitle: "Traditional Craft",
+    traditionalDesc: "Ancestral hand carving, sacred geometry, and devotional stonework.",
+    traditionalImage: "/images/craftsmanship/step-02-shape-precision.webp",
+    traditionalAlt: "Traditional hand chiseling craftsmanship in Jaipur atelier",
+    modernLabel: "NEW POSSIBILITIES",
+    modernTitle: "Contemporary Spaces",
+    modernDesc: "Architectural residences, bespoke temple sanctuaries, and global installations.",
+    modernImage: "/images/collections/architectural.webp",
+    modernAlt: "Contemporary architectural stonework and monumental pavilions"
+  };
+
   const defaultStoryVision = {
-    eyebrow: "OUR VISION",
+    chapter: "CHAPTER 06",
     heading: "Carving Indian Heritage for the World",
+    subcopy: "We envision a future where the timeless stone artistry of Rajasthan continues to inspire architectural, sacred, and cultural spaces across the globe — creating meaningful, enduring monuments in natural stone.",
+    linkText: "Our Vision",
+    linkHref: "/contact?type=custom",
     imageSrc: "/images/collections/temples-architectural.webp",
-    leadQuote: "Our vision is to serve as the global bridge for master Indian stonework — showcasing centuries of hand-carved heritage while creating art that finds its place in spiritual spaces, luxury residences, and public monuments across the world.",
-    subcopy: "We partner with architects, interior designers, temple trusts, and private collectors who value raw material integrity, ancestral craftsmanship, and flawless execution."
+    imageAlt: "Grand hand-carved stone temple architecture and shikhara",
+    visionStatement: "A Global Bridge for Master Indian Stonework"
   };
 
   const defaultStoryCta = {
     eyebrow: "LET'S CREATE TOGETHER",
     heading: "Bring Your Architectural Vision to Stone",
-    desc: "Connect directly with our Jaipur design office to discuss custom commissions, CAD blueprint coordination, or raw stone block selection.",
-    imageSrc: "/images/craftsmanship/artisan-hands.png",
+    desc: "Connect directly with our Jaipur design office to discuss custom commissions, architectural carvings, or natural stone selection.",
+    imageSrc: "/images/collections/wall-art-relief.webp",
+    imageAlt: "Jaipur Stonecraft hand-carved natural stone relief texture in atelier",
     primaryCtaText: "Discuss a Commission",
     primaryCtaHref: "/contact?type=custom",
     secondaryCtaText: "WhatsApp Coordinator"
   };
 
   const [storyHeader, setStoryHeader] = useState(defaultStoryHeader);
+  const [storyPlace, setStoryPlace] = useState(defaultStoryPlace);
   const [storyLineage, setStoryLineage] = useState(defaultStoryLineage);
+  const [storyPeople, setStoryPeople] = useState(defaultStoryPeople);
   const [storyValues, setStoryValues] = useState(defaultStoryValues);
   const [storyStats, setStoryStats] = useState(defaultStoryStats);
+  const [storyEvolution, setStoryEvolution] = useState(defaultStoryEvolution);
   const [storyVision, setStoryVision] = useState(defaultStoryVision);
   const [storyCta, setStoryCta] = useState(defaultStoryCta);
 
@@ -339,6 +417,7 @@ export default function AdminPageCMS() {
 
   const defaultCraftsmanshipPageImages = {
     node02: "/images/hero/hero-krishna-artisan.jpg",
+    stage02_blueprint: "/images/craftsmanship/stage-02-blueprint-grid.jpg",
     stage03_hero: "/images/hero/hero-krishna-artisan.jpg",
     stage03_sub: "/images/craftsmanship/step-02-shape-precision.jpg",
     stage04_facial: "/images/craftsmanship/step-03-refine-details.jpg",
@@ -357,6 +436,7 @@ export default function AdminPageCMS() {
     stage02: {
       eyebrow: "PROPORTION & ANATOMICAL ACCURACY",
       heading: "From CAD Draft to Chalk Grid",
+      imageSrc: "/images/craftsmanship/stage-02-blueprint-grid.jpg",
       narrative: "Before a chisel touches the stone, our master carvers collaborate with client architects and interior design teams. We translate architectural CAD blueprints and hand sketches into full-scale physical grid lines mapped directly across the stone monolith face.\n\nFor complex custom commissions—such as bespoke deity statues, ornate Jali screens, or architectural temple columns—artisans hand-sculpt a full 1:1 clay maquette model first.\n\nThis physical modeling stage allows client approval of subtle facial expressions, crown proportions, and drape folds before stone cutting begins."
     },
     stage03: {
@@ -518,9 +598,39 @@ export default function AdminPageCMS() {
             }
             if (sec.keyName === "homepage_social") setHomepageSocial({ ...defaultHomepageSocial, ...sec.content });
             if (sec.keyName === "story_header") setStoryHeader({ ...defaultStoryHeader, ...sec.content });
-            if (sec.keyName === "story_lineage") setStoryLineage({ ...defaultStoryLineage, ...sec.content });
-            if (sec.keyName === "story_values") setStoryValues({ ...defaultStoryValues, ...sec.content });
-            if (sec.keyName === "story_stats") setStoryStats({ ...defaultStoryStats, ...sec.content });
+            if (sec.keyName === "story_place") setStoryPlace({ ...defaultStoryPlace, ...sec.content });
+            if (sec.keyName === "story_lineage") {
+              const loadedMilestones = Array.isArray(sec.content?.milestones) && sec.content.milestones.length > 0
+                ? sec.content.milestones
+                : defaultStoryLineage.milestones;
+              setStoryLineage({
+                ...defaultStoryLineage,
+                ...sec.content,
+                milestones: loadedMilestones
+              });
+            }
+            if (sec.keyName === "story_people") setStoryPeople({ ...defaultStoryPeople, ...sec.content });
+            if (sec.keyName === "story_values") {
+              const loadedValues = Array.isArray(sec.content?.values) && sec.content.values.length > 0
+                ? sec.content.values
+                : defaultStoryValues.values;
+              setStoryValues({
+                ...defaultStoryValues,
+                ...sec.content,
+                values: loadedValues
+              });
+            }
+            if (sec.keyName === "story_stats") {
+              const loadedStats = Array.isArray(sec.content?.stats) && sec.content.stats.length > 0
+                ? sec.content.stats
+                : defaultStoryStats.stats;
+              setStoryStats({
+                ...defaultStoryStats,
+                ...sec.content,
+                stats: loadedStats
+              });
+            }
+            if (sec.keyName === "story_evolution") setStoryEvolution({ ...defaultStoryEvolution, ...sec.content });
             if (sec.keyName === "story_vision") setStoryVision({ ...defaultStoryVision, ...sec.content });
             if (sec.keyName === "story_cta") setStoryCta({ ...defaultStoryCta, ...sec.content });
             if (sec.keyName === "craftsmanship_hero") {
@@ -2465,16 +2575,16 @@ export default function AdminPageCMS() {
         <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
 
           {/* ============================================================ */}
-          {/* 1. STORY HERO & EDITORIAL HEADER                              */}
+          {/* 01. HERO & EDITORIAL HEADLINE                                */}
           {/* ============================================================ */}
           <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
               <div>
                 <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
-                  1. Story Hero &amp; Editorial Header
+                  01 — Hero &amp; Editorial Headline
                 </h3>
                 <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
-                  📍 Used on /our-story (Top)
+                  📍 Used on /our-story (Top Hero)
                 </span>
               </div>
               <button
@@ -2483,52 +2593,77 @@ export default function AdminPageCMS() {
                 className={styles.primaryBtn}
                 disabled={saving}
               >
-                {saving ? "Saving..." : "Save Story Header"}
+                {saving ? "Saving..." : "Save Hero"}
               </button>
             </div>
 
             <div className={styles.formGrid}>
-              <div className={styles.formGroupFull}>
+              <div className={styles.formGroup}>
                 <label className={styles.label}>Eyebrow Tagline</label>
                 <input
                   type="text"
                   value={storyHeader.eyebrow || ""}
                   onChange={(e) => setStoryHeader({ ...storyHeader, eyebrow: e.target.value })}
                   className={styles.input}
+                  placeholder="e.g. OUR STORY"
                 />
               </div>
 
-              <div className={styles.formGroupFull}>
-                <label className={styles.label}>Main Heading</label>
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Main Headline</label>
                 <input
                   type="text"
                   value={storyHeader.heading || ""}
                   onChange={(e) => setStoryHeader({ ...storyHeader, heading: e.target.value })}
                   className={styles.input}
+                  placeholder="e.g. A Story Written in Stone"
                 />
               </div>
 
               <div className={styles.formGroupFull}>
-                <label className={styles.label}>Subtitle Paragraph</label>
+                <label className={styles.label}>Supporting Description</label>
                 <textarea
                   rows={3}
                   value={storyHeader.subtitle || ""}
                   onChange={(e) => setStoryHeader({ ...storyHeader, subtitle: e.target.value })}
                   className={styles.textarea}
+                  placeholder="Built on generations of family craftsmanship..."
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>CTA Button Label</label>
+                <input
+                  type="text"
+                  value={storyHeader.ctaText || ""}
+                  onChange={(e) => setStoryHeader({ ...storyHeader, ctaText: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. Our Journey"
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>CTA Button Link / Anchor</label>
+                <input
+                  type="text"
+                  value={storyHeader.ctaHref || ""}
+                  onChange={(e) => setStoryHeader({ ...storyHeader, ctaHref: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. #chapter-01"
                 />
               </div>
 
               <div className={styles.formGroupFull}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
                   <label className={styles.label}>Hero Image (Right Column)</label>
-                  <span className={styles.aspectBadge}>📐 Recommended: 16:9 Landscape (1600 × 900 px)</span>
+                  <span className={styles.aspectBadge}>📐 Recommended: 16:9 or Landscape (1600 × 900 px)</span>
                 </div>
-                <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem" }}>
+                <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem", flexWrap: "wrap" }}>
                   {storyHeader.imageSrc && (
                     <img
                       src={storyHeader.imageSrc}
-                      alt="Story Hero Preview"
-                      style={{ width: "60px", height: "45px", objectFit: "cover", borderRadius: "4px", border: "1px solid #D0E1F9" }}
+                      alt="Hero Preview"
+                      style={{ width: "64px", height: "48px", objectFit: "cover", borderRadius: "4px", border: "1px solid #D0E1F9" }}
                       onError={(e) => { e.target.style.display = "none"; }}
                     />
                   )}
@@ -2537,13 +2672,27 @@ export default function AdminPageCMS() {
                     value={storyHeader.imageSrc || ""}
                     onChange={(e) => setStoryHeader({ ...storyHeader, imageSrc: e.target.value })}
                     className={styles.input}
-                    style={{ flex: 1 }}
-                    placeholder="https://... or /images/..."
+                    style={{ flex: 1, minWidth: "220px" }}
+                    placeholder="/images/hero/hero-krishna-artisan.webp"
                   />
+                  <label style={{ display: "inline-flex", alignItems: "center", padding: "0.45rem 0.85rem", backgroundColor: "#FAF0E6", border: "1px solid #D0B48F", borderRadius: "4px", cursor: "pointer", fontSize: "0.85rem", color: "#8C6D3B", fontWeight: "500" }}>
+                    📁 Select / Replace Image
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleImageUpload(e, (url) => setStoryHeader({ ...storyHeader, imageSrc: url }))}
+                      style={{ display: "none" }}
+                    />
+                  </label>
+                </div>
+                <div style={{ marginTop: "0.5rem" }}>
+                  <label className={styles.label} style={{ fontSize: "0.8rem", color: "#666" }}>Image Alt Text</label>
                   <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => handleImageUpload(e, (url) => setStoryHeader({ ...storyHeader, imageSrc: url }))}
+                    type="text"
+                    value={storyHeader.imageAlt || ""}
+                    onChange={(e) => setStoryHeader({ ...storyHeader, imageAlt: e.target.value })}
+                    className={styles.input}
+                    placeholder="Descriptive alt text for accessibility..."
                     style={{ fontSize: "0.85rem" }}
                   />
                 </div>
@@ -2552,16 +2701,164 @@ export default function AdminPageCMS() {
           </div>
 
           {/* ============================================================ */}
-          {/* 2. CHAPTER I: OUR HERITAGE (PASSING DOWN THE CHISEL)          */}
+          {/* 02. CHAPTER 01: ORIGIN / PLACE                               */}
           {/* ============================================================ */}
           <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
               <div>
                 <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
-                  2. Chapter I: Our Heritage (Passing Down the Chisel)
+                  02 — Chapter 01: Origin / Place
                 </h3>
                 <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
-                  📍 Used on /our-story (Heritage Section)
+                  📍 Used on /our-story (The Place: Born in Rajasthan)
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => handleSaveSection("story_place", storyPlace)}
+                className={styles.primaryBtn}
+                disabled={saving}
+              >
+                {saving ? "Saving..." : "Save Chapter 01"}
+              </button>
+            </div>
+
+            <div className={styles.formGrid}>
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Chapter Label</label>
+                <input
+                  type="text"
+                  value={storyPlace.chapter || "CHAPTER 01"}
+                  onChange={(e) => setStoryPlace({ ...storyPlace, chapter: e.target.value })}
+                  className={styles.input}
+                  placeholder="CHAPTER 01"
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Section Heading</label>
+                <input
+                  type="text"
+                  value={storyPlace.heading || ""}
+                  onChange={(e) => setStoryPlace({ ...storyPlace, heading: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. Born in Rajasthan"
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Main Narrative (Paragraph 1)</label>
+                <textarea
+                  rows={3}
+                  value={storyPlace.paragraph1 || ""}
+                  onChange={(e) => setStoryPlace({ ...storyPlace, paragraph1: e.target.value })}
+                  className={styles.textarea}
+                  placeholder="Our story is deeply connected to the historic stone hubs of Rajasthan..."
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Supporting Narrative (Paragraph 2)</label>
+                <textarea
+                  rows={3}
+                  value={storyPlace.paragraph2 || ""}
+                  onChange={(e) => setStoryPlace({ ...storyPlace, paragraph2: e.target.value })}
+                  className={styles.textarea}
+                  placeholder="From the royal monuments of Jaipur to the quiet workshops..."
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Link Label</label>
+                <input
+                  type="text"
+                  value={storyPlace.linkText || ""}
+                  onChange={(e) => setStoryPlace({ ...storyPlace, linkText: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. Our Roots in Rajasthan"
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Link Destination</label>
+                <input
+                  type="text"
+                  value={storyPlace.linkHref || ""}
+                  onChange={(e) => setStoryPlace({ ...storyPlace, linkHref: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. /craftsmanship"
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Editorial Image Overlay / Badge Caption</label>
+                <input
+                  type="text"
+                  value={storyPlace.overlayTitle || ""}
+                  onChange={(e) => setStoryPlace({ ...storyPlace, overlayTitle: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. Living Heritage of Rajasthan Stone Art"
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
+                  <label className={styles.label}>Origin Panorama Image</label>
+                  <span className={styles.aspectBadge}>📐 Recommended: 16:9 Landscape (1600 × 900 px)</span>
+                </div>
+                <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem", flexWrap: "wrap" }}>
+                  {storyPlace.imageSrc && (
+                    <img
+                      src={storyPlace.imageSrc}
+                      alt="Origin Preview"
+                      style={{ width: "64px", height: "48px", objectFit: "cover", borderRadius: "4px", border: "1px solid #D0E1F9" }}
+                      onError={(e) => { e.target.style.display = "none"; }}
+                    />
+                  )}
+                  <input
+                    type="text"
+                    value={storyPlace.imageSrc || ""}
+                    onChange={(e) => setStoryPlace({ ...storyPlace, imageSrc: e.target.value })}
+                    className={styles.input}
+                    style={{ flex: 1, minWidth: "220px" }}
+                    placeholder="/images/collections/architectural.webp"
+                  />
+                  <label style={{ display: "inline-flex", alignItems: "center", padding: "0.45rem 0.85rem", backgroundColor: "#FAF0E6", border: "1px solid #D0B48F", borderRadius: "4px", cursor: "pointer", fontSize: "0.85rem", color: "#8C6D3B", fontWeight: "500" }}>
+                    📁 Select / Replace Image
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleImageUpload(e, (url) => setStoryPlace({ ...storyPlace, imageSrc: url }))}
+                      style={{ display: "none" }}
+                    />
+                  </label>
+                </div>
+                <div style={{ marginTop: "0.5rem" }}>
+                  <label className={styles.label} style={{ fontSize: "0.8rem", color: "#666" }}>Image Alt Text</label>
+                  <input
+                    type="text"
+                    value={storyPlace.imageAlt || ""}
+                    onChange={(e) => setStoryPlace({ ...storyPlace, imageAlt: e.target.value })}
+                    className={styles.input}
+                    placeholder="Historic Rajasthan stone architecture and royal temple colonnade"
+                    style={{ fontSize: "0.85rem" }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ============================================================ */}
+          {/* 03. CHAPTER 02: HERITAGE LINEAGE                             */}
+          {/* ============================================================ */}
+          <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
+              <div>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
+                  03 — Chapter 02: Heritage Lineage
+                </h3>
+                <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
+                  📍 Used on /our-story (3 Generational Milestones)
                 </span>
               </div>
               <button
@@ -2570,19 +2867,23 @@ export default function AdminPageCMS() {
                 className={styles.primaryBtn}
                 disabled={saving}
               >
-                {saving ? "Saving..." : "Save Chapter I"}
+                {saving ? "Saving..." : "Save Chapter 02"}
               </button>
             </div>
 
+            <p style={{ fontSize: "0.85rem", color: "#8C6D3B", backgroundColor: "#FAF0E6", padding: "0.6rem 0.85rem", borderRadius: "4px", marginBottom: "1.25rem" }}>
+              ⚠️ <strong>Note:</strong> These are <strong>3 Heritage / Lineage Items</strong> representing generational family continuity, NOT craftsmanship workshop stages.
+            </p>
+
             <div className={styles.formGrid}>
               <div className={styles.formGroup}>
-                <label className={styles.label}>Chapter Badge</label>
+                <label className={styles.label}>Chapter Label</label>
                 <input
                   type="text"
-                  value={storyLineage.badge || ""}
-                  onChange={(e) => setStoryLineage({ ...storyLineage, badge: e.target.value })}
+                  value={storyLineage.chapter || "CHAPTER 02"}
+                  onChange={(e) => setStoryLineage({ ...storyLineage, chapter: e.target.value })}
                   className={styles.input}
-                  placeholder="e.g. OUR HERITAGE"
+                  placeholder="CHAPTER 02"
                 />
               </div>
 
@@ -2593,95 +2894,314 @@ export default function AdminPageCMS() {
                   value={storyLineage.heading || ""}
                   onChange={(e) => setStoryLineage({ ...storyLineage, heading: e.target.value })}
                   className={styles.input}
-                  placeholder="e.g. Passing Down the Chisel"
+                  placeholder="e.g. A Craft Passed Hand to Hand"
                 />
               </div>
 
               <div className={styles.formGroupFull}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
-                  <label className={styles.label}>Heritage Artisan Visual Image</label>
-                  <span className={styles.aspectBadge}>📐 Recommended: 4:5 or 1:1 Portrait / Square (800 × 1000 px)</span>
-                </div>
-                <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem" }}>
-                  {storyLineage.imageSrc && (
-                    <img
-                      src={storyLineage.imageSrc}
-                      alt="Chapter I Preview"
-                      style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "4px", border: "1px solid #D0E1F9" }}
-                      onError={(e) => { e.target.style.display = "none"; }}
-                    />
-                  )}
-                  <input
-                    type="text"
-                    value={storyLineage.imageSrc || ""}
-                    onChange={(e) => setStoryLineage({ ...storyLineage, imageSrc: e.target.value })}
-                    className={styles.input}
-                    style={{ flex: 1 }}
-                    placeholder="https://... or /images/..."
-                  />
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => handleImageUpload(e, (url) => setStoryLineage({ ...storyLineage, imageSrc: url }))}
-                    style={{ fontSize: "0.85rem" }}
-                  />
-                </div>
-              </div>
-
-              <div className={styles.formGroupFull}>
-                <label className={styles.label}>Italic Pull Quote</label>
-                <textarea
-                  rows={2}
-                  value={storyLineage.pullQuote || ""}
-                  onChange={(e) => setStoryLineage({ ...storyLineage, pullQuote: e.target.value })}
-                  className={styles.textarea}
-                  placeholder="It never was, nor will be, only about time..."
-                />
-              </div>
-
-              <div className={styles.formGroupFull}>
-                <label className={styles.label}>Paragraph 1 (Oral Lineage)</label>
+                <label className={styles.label}>Introduction Narrative</label>
                 <textarea
                   rows={2}
                   value={storyLineage.paragraph1 || ""}
                   onChange={(e) => setStoryLineage({ ...storyLineage, paragraph1: e.target.value })}
                   className={styles.textarea}
+                  placeholder="For more than three generations, our family and artisans..."
                 />
               </div>
 
-              <div className={styles.formGroupFull}>
-                <label className={styles.label}>Paragraph 2 (Royal Trusts &amp; Palaces)</label>
-                <textarea
-                  rows={2}
-                  value={storyLineage.paragraph2 || ""}
-                  onChange={(e) => setStoryLineage({ ...storyLineage, paragraph2: e.target.value })}
-                  className={styles.textarea}
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Link Label</label>
+                <input
+                  type="text"
+                  value={storyLineage.linkText || ""}
+                  onChange={(e) => setStoryLineage({ ...storyLineage, linkText: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. Our Heritage"
                 />
               </div>
 
-              <div className={styles.formGroupFull}>
-                <label className={styles.label}>Paragraph 3 (Manual Chiseling Heart)</label>
-                <textarea
-                  rows={2}
-                  value={storyLineage.paragraph3 || ""}
-                  onChange={(e) => setStoryLineage({ ...storyLineage, paragraph3: e.target.value })}
-                  className={styles.textarea}
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Link Destination</label>
+                <input
+                  type="text"
+                  value={storyLineage.linkHref || ""}
+                  onChange={(e) => setStoryLineage({ ...storyLineage, linkHref: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. /craftsmanship"
                 />
+              </div>
+            </div>
+
+            {/* 3 Heritage Milestone Items */}
+            <div style={{ marginTop: "1.5rem" }}>
+              <h4 style={{ fontSize: "0.95rem", fontWeight: "600", color: "var(--color-navy)", marginBottom: "1rem" }}>
+                🏛️ The 3 Heritage Milestones
+              </h4>
+              <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+                {(storyLineage.milestones || defaultStoryLineage.milestones).map((item, idx) => (
+                  <div key={idx} style={{ backgroundColor: "#F8F9FA", border: "1px solid #E2E8F0", borderRadius: "6px", padding: "1.25rem" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
+                      <span style={{ fontWeight: "600", fontSize: "0.85rem", color: "var(--color-bronze)" }}>
+                        LINEAGE ITEM 0{idx + 1}
+                      </span>
+                    </div>
+
+                    <div className={styles.formGrid}>
+                      <div className={styles.formGroup}>
+                        <label className={styles.label}>Tag / Eyebrow</label>
+                        <input
+                          type="text"
+                          value={item.tag || ""}
+                          onChange={(e) => {
+                            const newM = [...(storyLineage.milestones || defaultStoryLineage.milestones)];
+                            newM[idx] = { ...newM[idx], tag: e.target.value };
+                            setStoryLineage({ ...storyLineage, milestones: newM });
+                          }}
+                          className={styles.input}
+                          placeholder="e.g. 3+ GENERATIONS"
+                        />
+                      </div>
+
+                      <div className={styles.formGroup}>
+                        <label className={styles.label}>Title</label>
+                        <input
+                          type="text"
+                          value={item.title || ""}
+                          onChange={(e) => {
+                            const newM = [...(storyLineage.milestones || defaultStoryLineage.milestones)];
+                            newM[idx] = { ...newM[idx], title: e.target.value };
+                            setStoryLineage({ ...storyLineage, milestones: newM });
+                          }}
+                          className={styles.input}
+                          placeholder="e.g. Generations of Family Craft"
+                        />
+                      </div>
+
+                      <div className={styles.formGroupFull}>
+                        <label className={styles.label}>Description</label>
+                        <textarea
+                          rows={2}
+                          value={item.desc || ""}
+                          onChange={(e) => {
+                            const newM = [...(storyLineage.milestones || defaultStoryLineage.milestones)];
+                            newM[idx] = { ...newM[idx], desc: e.target.value };
+                            setStoryLineage({ ...storyLineage, milestones: newM });
+                          }}
+                          className={styles.textarea}
+                        />
+                      </div>
+
+                      <div className={styles.formGroupFull}>
+                        <label className={styles.label}>Milestone Image</label>
+                        <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem", flexWrap: "wrap" }}>
+                          {item.imageSrc && (
+                            <img
+                              src={item.imageSrc}
+                              alt="Milestone Preview"
+                              style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "4px", border: "1px solid #D0E1F9" }}
+                              onError={(e) => { e.target.style.display = "none"; }}
+                            />
+                          )}
+                          <input
+                            type="text"
+                            value={item.imageSrc || ""}
+                            onChange={(e) => {
+                              const newM = [...(storyLineage.milestones || defaultStoryLineage.milestones)];
+                              newM[idx] = { ...newM[idx], imageSrc: e.target.value };
+                              setStoryLineage({ ...storyLineage, milestones: newM });
+                            }}
+                            className={styles.input}
+                            style={{ flex: 1, minWidth: "200px" }}
+                            placeholder="/images/..."
+                          />
+                          <label style={{ display: "inline-flex", alignItems: "center", padding: "0.45rem 0.85rem", backgroundColor: "#FAF0E6", border: "1px solid #D0B48F", borderRadius: "4px", cursor: "pointer", fontSize: "0.85rem", color: "#8C6D3B", fontWeight: "500" }}>
+                            📁 Replace Image
+                            <input
+                              type="file"
+                              accept="image/*"
+                              onChange={(e) => handleImageUpload(e, (url) => {
+                                const newM = [...(storyLineage.milestones || defaultStoryLineage.milestones)];
+                                newM[idx] = { ...newM[idx], imageSrc: url };
+                                setStoryLineage({ ...storyLineage, milestones: newM });
+                              })}
+                              style={{ display: "none" }}
+                            />
+                          </label>
+                        </div>
+                        <div style={{ marginTop: "0.5rem" }}>
+                          <label className={styles.label} style={{ fontSize: "0.8rem", color: "#666" }}>Alt Text</label>
+                          <input
+                            type="text"
+                            value={item.imageAlt || ""}
+                            onChange={(e) => {
+                              const newM = [...(storyLineage.milestones || defaultStoryLineage.milestones)];
+                              newM[idx] = { ...newM[idx], imageAlt: e.target.value };
+                              setStoryLineage({ ...storyLineage, milestones: newM });
+                            }}
+                            className={styles.input}
+                            placeholder="Descriptive image alt text..."
+                            style={{ fontSize: "0.85rem" }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
           {/* ============================================================ */}
-          {/* 3. CHAPTER II: OUR VALUES (4 CORE PRINCIPLES)                */}
+          {/* 04. CHAPTER 03: THE PEOPLE BEHIND THE NAME                   */}
           {/* ============================================================ */}
           <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
               <div>
                 <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
-                  3. Chapter II: Core Values (4 Principles)
+                  04 — Chapter 03: People Behind the Name
                 </h3>
                 <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
-                  📍 Used on /our-story (Values Grid)
+                  📍 Used on /our-story (Chapter 03: Artisans)
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => handleSaveSection("story_people", storyPeople)}
+                className={styles.primaryBtn}
+                disabled={saving}
+              >
+                {saving ? "Saving..." : "Save Chapter 03"}
+              </button>
+            </div>
+
+            <div className={styles.formGrid}>
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Chapter Label</label>
+                <input
+                  type="text"
+                  value={storyPeople.chapter || "CHAPTER 03"}
+                  onChange={(e) => setStoryPeople({ ...storyPeople, chapter: e.target.value })}
+                  className={styles.input}
+                  placeholder="CHAPTER 03"
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Section Heading</label>
+                <input
+                  type="text"
+                  value={storyPeople.heading || ""}
+                  onChange={(e) => setStoryPeople({ ...storyPeople, heading: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. The People Behind the Name"
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Main People Narrative</label>
+                <textarea
+                  rows={3}
+                  value={storyPeople.narrative || ""}
+                  onChange={(e) => setStoryPeople({ ...storyPeople, narrative: e.target.value })}
+                  className={styles.textarea}
+                  placeholder="Our strength lies in our people — the master sculptors..."
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Supporting Editorial Emphasis Text (Devotion &amp; Pride)</label>
+                <textarea
+                  rows={2}
+                  value={storyPeople.emphasisText || ""}
+                  onChange={(e) => setStoryPeople({ ...storyPeople, emphasisText: e.target.value })}
+                  className={styles.textarea}
+                  placeholder="Generations of devotion, patience, and skilled hands in our Jaipur workshop."
+                />
+                <span style={{ fontSize: "0.75rem", color: "#718096", display: "block", marginTop: "0.25rem" }}>
+                  💡 This is an editorial highlight statement reflecting workshop dedication. No fictional quotations are used.
+                </span>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Link Label</label>
+                <input
+                  type="text"
+                  value={storyPeople.linkText || ""}
+                  onChange={(e) => setStoryPeople({ ...storyPeople, linkText: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. Meet Our Artisans"
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Link Destination</label>
+                <input
+                  type="text"
+                  value={storyPeople.linkHref || ""}
+                  onChange={(e) => setStoryPeople({ ...storyPeople, linkHref: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. /craftsmanship"
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
+                  <label className={styles.label}>Artisan Hands Visual</label>
+                  <span className={styles.aspectBadge}>📐 Recommended: 4:5 or 1:1 Portrait (800 × 1000 px)</span>
+                </div>
+                <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem", flexWrap: "wrap" }}>
+                  {storyPeople.imageSrc && (
+                    <img
+                      src={storyPeople.imageSrc}
+                      alt="People Preview"
+                      style={{ width: "50px", height: "60px", objectFit: "cover", borderRadius: "4px", border: "1px solid #D0E1F9" }}
+                      onError={(e) => { e.target.style.display = "none"; }}
+                    />
+                  )}
+                  <input
+                    type="text"
+                    value={storyPeople.imageSrc || ""}
+                    onChange={(e) => setStoryPeople({ ...storyPeople, imageSrc: e.target.value })}
+                    className={styles.input}
+                    style={{ flex: 1, minWidth: "220px" }}
+                    placeholder="/images/craftsmanship/artisan-hands.webp"
+                  />
+                  <label style={{ display: "inline-flex", alignItems: "center", padding: "0.45rem 0.85rem", backgroundColor: "#FAF0E6", border: "1px solid #D0B48F", borderRadius: "4px", cursor: "pointer", fontSize: "0.85rem", color: "#8C6D3B", fontWeight: "500" }}>
+                    📁 Select / Replace Image
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleImageUpload(e, (url) => setStoryPeople({ ...storyPeople, imageSrc: url }))}
+                      style={{ display: "none" }}
+                    />
+                  </label>
+                </div>
+                <div style={{ marginTop: "0.5rem" }}>
+                  <label className={styles.label} style={{ fontSize: "0.8rem", color: "#666" }}>Image Alt Text</label>
+                  <input
+                    type="text"
+                    value={storyPeople.imageAlt || ""}
+                    onChange={(e) => setStoryPeople({ ...storyPeople, imageAlt: e.target.value })}
+                    className={styles.input}
+                    placeholder="Jaipur Stonecraft master artisan hands holding steel chisel"
+                    style={{ fontSize: "0.85rem" }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ============================================================ */}
+          {/* 05. CHAPTER 04: WHAT WE CARRY FORWARD / VALUES               */}
+          {/* ============================================================ */}
+          <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
+              <div>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
+                  05 — Chapter 04: Principles (What We Carry Forward)
+                </h3>
+                <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
+                  📍 Used on /our-story (4 Core Principles)
                 </span>
               </div>
               <button
@@ -2690,79 +3210,95 @@ export default function AdminPageCMS() {
                 className={styles.primaryBtn}
                 disabled={saving}
               >
-                {saving ? "Saving..." : "Save Values Section"}
+                {saving ? "Saving..." : "Save Chapter 04"}
               </button>
             </div>
 
-            <div className={styles.formGrid} style={{ marginBottom: "1rem" }}>
+            <div className={styles.formGrid}>
               <div className={styles.formGroup}>
-                <label className={styles.label}>Eyebrow</label>
+                <label className={styles.label}>Chapter Label</label>
                 <input
                   type="text"
-                  value={storyValues.eyebrow || ""}
-                  onChange={(e) => setStoryValues({ ...storyValues, eyebrow: e.target.value })}
+                  value={storyValues.chapter || "CHAPTER 04"}
+                  onChange={(e) => setStoryValues({ ...storyValues, chapter: e.target.value })}
                   className={styles.input}
+                  placeholder="CHAPTER 04"
                 />
               </div>
+
               <div className={styles.formGroup}>
-                <label className={styles.label}>Heading</label>
+                <label className={styles.label}>Section Heading</label>
                 <input
                   type="text"
                   value={storyValues.heading || ""}
                   onChange={(e) => setStoryValues({ ...storyValues, heading: e.target.value })}
                   className={styles.input}
+                  placeholder="e.g. What We Carry Forward"
                 />
               </div>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1rem" }}>
-              {(storyValues.values || defaultStoryValues.values).map((val, idx) => (
-                <div key={idx} style={{ padding: "1rem", backgroundColor: "#FAF9F6", borderRadius: "8px", border: "1px solid #E5E1D8" }}>
-                  <span style={{ fontWeight: "700", color: "var(--color-bronze)", fontSize: "0.85rem", display: "block", marginBottom: "0.5rem" }}>
-                    Principle {val.num || `0${idx + 1}`}
-                  </span>
-                  <div style={{ marginBottom: "0.5rem" }}>
-                    <label className={styles.label} style={{ fontSize: "0.75rem" }}>Title</label>
-                    <input
-                      type="text"
-                      value={val.title || ""}
-                      onChange={(e) => {
-                        const updated = [...(storyValues.values || defaultStoryValues.values)];
-                        updated[idx] = { ...updated[idx], title: e.target.value };
-                        setStoryValues({ ...storyValues, values: updated });
-                      }}
-                      className={styles.input}
-                    />
-                  </div>
-                  <div>
-                    <label className={styles.label} style={{ fontSize: "0.75rem" }}>Description</label>
+            {/* 4 Value Items */}
+            <div style={{ marginTop: "1.25rem" }}>
+              <h4 style={{ fontSize: "0.95rem", fontWeight: "600", color: "var(--color-navy)", marginBottom: "0.75rem" }}>
+                ✨ 4 Principles Behind Every Chisel
+              </h4>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1rem" }}>
+                {(storyValues.values || defaultStoryValues.values).map((v, idx) => (
+                  <div key={idx} style={{ backgroundColor: "#F8F9FA", border: "1px solid #E2E8F0", borderRadius: "6px", padding: "1rem" }}>
+                    <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", marginBottom: "0.5rem" }}>
+                      <input
+                        type="text"
+                        value={v.num || `0${idx + 1}`}
+                        onChange={(e) => {
+                          const newV = [...(storyValues.values || defaultStoryValues.values)];
+                          newV[idx] = { ...newV[idx], num: e.target.value };
+                          setStoryValues({ ...storyValues, values: newV });
+                        }}
+                        style={{ width: "45px", fontWeight: "700", color: "var(--color-bronze)", textAlign: "center" }}
+                        className={styles.input}
+                      />
+                      <input
+                        type="text"
+                        value={v.title || ""}
+                        onChange={(e) => {
+                          const newV = [...(storyValues.values || defaultStoryValues.values)];
+                          newV[idx] = { ...newV[idx], title: e.target.value };
+                          setStoryValues({ ...storyValues, values: newV });
+                        }}
+                        placeholder="Principle Title"
+                        style={{ flex: 1, fontWeight: "600" }}
+                        className={styles.input}
+                      />
+                    </div>
                     <textarea
-                      rows={2}
-                      value={val.desc || ""}
+                      rows={3}
+                      value={v.desc || ""}
                       onChange={(e) => {
-                        const updated = [...(storyValues.values || defaultStoryValues.values)];
-                        updated[idx] = { ...updated[idx], desc: e.target.value };
-                        setStoryValues({ ...storyValues, values: updated });
+                        const newV = [...(storyValues.values || defaultStoryValues.values)];
+                        newV[idx] = { ...newV[idx], desc: e.target.value };
+                        setStoryValues({ ...storyValues, values: newV });
                       }}
                       className={styles.textarea}
+                      placeholder="Principle description..."
                     />
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
           {/* ============================================================ */}
-          {/* 4. CHAPTER III: HERITAGE STATS STRIP                         */}
+          {/* 06. HERITAGE & IMPACT SECTION (DARK STATS)                   */}
           {/* ============================================================ */}
           <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
               <div>
                 <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
-                  4. Chapter III: Heritage Stats Strip
+                  06 — Brand Heritage &amp; Impact (Dark Section)
                 </h3>
                 <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
-                  📍 Used on /our-story (Dark Stats Strip)
+                  📍 Used on /our-story (Heritage &amp; Scale)
                 </span>
               </div>
               <button
@@ -2771,57 +3307,388 @@ export default function AdminPageCMS() {
                 className={styles.primaryBtn}
                 disabled={saving}
               >
-                {saving ? "Saving..." : "Save Stats Strip"}
+                {saving ? "Saving..." : "Save Impact Section"}
               </button>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1rem" }}>
-              {(storyStats.stats || defaultStoryStats.stats).map((stat, idx) => (
-                <div key={idx} style={{ padding: "1rem", backgroundColor: "#FAF9F6", borderRadius: "8px", border: "1px solid #E5E1D8" }}>
-                  <div style={{ marginBottom: "0.5rem" }}>
-                    <label className={styles.label} style={{ fontSize: "0.75rem" }}>Stat Metric Value</label>
+            <div className={styles.formGrid}>
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Section Heading</label>
+                <input
+                  type="text"
+                  value={storyStats.heading || ""}
+                  onChange={(e) => setStoryStats({ ...storyStats, heading: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. A Living Tradition in a Modern World"
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Link Label</label>
+                <input
+                  type="text"
+                  value={storyStats.linkText || ""}
+                  onChange={(e) => setStoryStats({ ...storyStats, linkText: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. Our Impact"
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Introductory Narrative</label>
+                <textarea
+                  rows={2}
+                  value={storyStats.narrative || ""}
+                  onChange={(e) => setStoryStats({ ...storyStats, narrative: e.target.value })}
+                  className={styles.textarea}
+                  placeholder="Our heritage is measured not just in years, but in the trust of our clients..."
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Link Destination</label>
+                <input
+                  type="text"
+                  value={storyStats.linkHref || ""}
+                  onChange={(e) => setStoryStats({ ...storyStats, linkHref: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. /our-world"
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
+                  <label className={styles.label}>Illuminated Artwork Image (Right Column)</label>
+                  <span className={styles.aspectBadge}>📐 Recommended: 3:4 Portrait Sculpture (600 × 800 px)</span>
+                </div>
+                <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem", flexWrap: "wrap" }}>
+                  {storyStats.artworkSrc && (
+                    <img
+                      src={storyStats.artworkSrc}
+                      alt="Artwork Preview"
+                      style={{ width: "50px", height: "60px", objectFit: "cover", borderRadius: "4px", border: "1px solid #D0E1F9" }}
+                      onError={(e) => { e.target.style.display = "none"; }}
+                    />
+                  )}
+                  <input
+                    type="text"
+                    value={storyStats.artworkSrc || ""}
+                    onChange={(e) => setStoryStats({ ...storyStats, artworkSrc: e.target.value })}
+                    className={styles.input}
+                    style={{ flex: 1, minWidth: "220px" }}
+                    placeholder="/images/creations/krishna-alcove.webp"
+                  />
+                  <label style={{ display: "inline-flex", alignItems: "center", padding: "0.45rem 0.85rem", backgroundColor: "#FAF0E6", border: "1px solid #D0B48F", borderRadius: "4px", cursor: "pointer", fontSize: "0.85rem", color: "#8C6D3B", fontWeight: "500" }}>
+                    📁 Select / Replace Artwork
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleImageUpload(e, (url) => setStoryStats({ ...storyStats, artworkSrc: url }))}
+                      style={{ display: "none" }}
+                    />
+                  </label>
+                </div>
+                <div style={{ marginTop: "0.5rem" }}>
+                  <label className={styles.label} style={{ fontSize: "0.8rem", color: "#666" }}>Artwork Alt Text</label>
+                  <input
+                    type="text"
+                    value={storyStats.artworkAlt || ""}
+                    onChange={(e) => setStoryStats({ ...storyStats, artworkAlt: e.target.value })}
+                    className={styles.input}
+                    placeholder="Lord Krishna Marble Statue in Temple Alcove"
+                    style={{ fontSize: "0.85rem" }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* 4 Verified Stats */}
+            <div style={{ marginTop: "1.5rem" }}>
+              <h4 style={{ fontSize: "0.95rem", fontWeight: "600", color: "var(--color-navy)", marginBottom: "0.75rem" }}>
+                📊 4 Verified Brand Statistics
+              </h4>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1rem" }}>
+                {(storyStats.stats || defaultStoryStats.stats).map((st, idx) => (
+                  <div key={idx} style={{ backgroundColor: "#F8F9FA", border: "1px solid #E2E8F0", borderRadius: "6px", padding: "1rem" }}>
+                    <label className={styles.label} style={{ color: "var(--color-bronze)", fontWeight: "600" }}>
+                      STATISTIC 0{idx + 1} VALUE
+                    </label>
                     <input
                       type="text"
-                      value={stat.value || ""}
+                      value={st.value || ""}
                       onChange={(e) => {
-                        const updated = [...(storyStats.stats || defaultStoryStats.stats)];
-                        updated[idx] = { ...updated[idx], value: e.target.value };
-                        setStoryStats({ ...storyStats, stats: updated });
+                        const newS = [...(storyStats.stats || defaultStoryStats.stats)];
+                        newS[idx] = { ...newS[idx], value: e.target.value };
+                        setStoryStats({ ...storyStats, stats: newS });
                       }}
                       className={styles.input}
+                      style={{ fontSize: "1.15rem", fontWeight: "700", marginBottom: "0.5rem" }}
                       placeholder="e.g. 3+"
                     />
-                  </div>
-                  <div>
-                    <label className={styles.label} style={{ fontSize: "0.75rem" }}>Stat Label</label>
-                    <input
-                      type="text"
-                      value={stat.label || ""}
+                    <label className={styles.label}>LABEL</label>
+                    <textarea
+                      rows={2}
+                      value={st.label || ""}
                       onChange={(e) => {
-                        const updated = [...(storyStats.stats || defaultStoryStats.stats)];
-                        updated[idx] = { ...updated[idx], label: e.target.value };
-                        setStoryStats({ ...storyStats, stats: updated });
+                        const newS = [...(storyStats.stats || defaultStoryStats.stats)];
+                        newS[idx] = { ...newS[idx], label: e.target.value };
+                        setStoryStats({ ...storyStats, stats: newS });
                       }}
-                      className={styles.input}
+                      className={styles.textarea}
                       placeholder="e.g. Generations of Stone Carving Heritage"
                     />
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
           {/* ============================================================ */}
-          {/* 5. CHAPTER IV: GLOBAL VISION                                  */}
+          {/* 07. CHAPTER 05: TRADITION & EVOLUTION                        */}
           {/* ============================================================ */}
           <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
               <div>
                 <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
-                  5. Chapter IV: Global Vision ("Carving Indian Heritage for the World")
+                  07 — Chapter 05: Evolution (Tradition vs Contemporary)
                 </h3>
                 <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
-                  📍 Used on /our-story (Vision Section)
+                  📍 Used on /our-story (What We Kept / What We Changed)
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => handleSaveSection("story_evolution", storyEvolution)}
+                className={styles.primaryBtn}
+                disabled={saving}
+              >
+                {saving ? "Save Evolution" : "Save Chapter 05"}
+              </button>
+            </div>
+
+            <div className={styles.formGrid}>
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Chapter Label</label>
+                <input
+                  type="text"
+                  value={storyEvolution.chapter || "CHAPTER 05"}
+                  onChange={(e) => setStoryEvolution({ ...storyEvolution, chapter: e.target.value })}
+                  className={styles.input}
+                  placeholder="CHAPTER 05"
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Section Heading</label>
+                <input
+                  type="text"
+                  value={storyEvolution.heading || ""}
+                  onChange={(e) => setStoryEvolution({ ...storyEvolution, heading: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. What We Kept. What We Changed."
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Introductory Narrative</label>
+                <textarea
+                  rows={2}
+                  value={storyEvolution.narrative || ""}
+                  onChange={(e) => setStoryEvolution({ ...storyEvolution, narrative: e.target.value })}
+                  className={styles.textarea}
+                  placeholder="We remain rooted in traditional handcraftsmanship, while embracing contemporary architectural design..."
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Link Label</label>
+                <input
+                  type="text"
+                  value={storyEvolution.linkText || ""}
+                  onChange={(e) => setStoryEvolution({ ...storyEvolution, linkText: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. Our Evolution"
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Link Destination</label>
+                <input
+                  type="text"
+                  value={storyEvolution.linkHref || ""}
+                  onChange={(e) => setStoryEvolution({ ...storyEvolution, linkHref: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. /collections"
+                />
+              </div>
+            </div>
+
+            {/* Comparison Side-by-Side Panels */}
+            <div style={{ marginTop: "1.5rem" }}>
+              <h4 style={{ fontSize: "0.95rem", fontWeight: "600", color: "var(--color-navy)", marginBottom: "1rem" }}>
+                ⚖️ Two Connected Sides of One Story
+              </h4>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "1.5rem" }}>
+                
+                {/* Side A: Tradition */}
+                <div style={{ backgroundColor: "#F8F9FA", border: "1px solid #E2E8F0", borderRadius: "6px", padding: "1.25rem" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
+                    <span style={{ fontWeight: "700", fontSize: "0.85rem", color: "var(--color-bronze)" }}>
+                      🏛️ SIDE A: TRADITION (WHAT WE KEPT)
+                    </span>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                    <div>
+                      <label className={styles.label}>Panel Badge</label>
+                      <input
+                        type="text"
+                        value={storyEvolution.traditionalLabel || "OUR FOUNDATION"}
+                        onChange={(e) => setStoryEvolution({ ...storyEvolution, traditionalLabel: e.target.value })}
+                        className={styles.input}
+                        placeholder="OUR FOUNDATION"
+                      />
+                    </div>
+                    <div>
+                      <label className={styles.label}>Panel Title</label>
+                      <input
+                        type="text"
+                        value={storyEvolution.traditionalTitle || "Traditional Craft"}
+                        onChange={(e) => setStoryEvolution({ ...storyEvolution, traditionalTitle: e.target.value })}
+                        className={styles.input}
+                        placeholder="Traditional Craft"
+                      />
+                    </div>
+                    <div>
+                      <label className={styles.label}>Traditional Image</label>
+                      <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", marginTop: "0.25rem", flexWrap: "wrap" }}>
+                        {storyEvolution.traditionalImage && (
+                          <img
+                            src={storyEvolution.traditionalImage}
+                            alt="Traditional Preview"
+                            style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "4px", border: "1px solid #D0E1F9" }}
+                            onError={(e) => { e.target.style.display = "none"; }}
+                          />
+                        )}
+                        <input
+                          type="text"
+                          value={storyEvolution.traditionalImage || ""}
+                          onChange={(e) => setStoryEvolution({ ...storyEvolution, traditionalImage: e.target.value })}
+                          className={styles.input}
+                          style={{ flex: 1, minWidth: "180px" }}
+                          placeholder="/images/craftsmanship/step-02-shape-precision.webp"
+                        />
+                        <label style={{ display: "inline-flex", alignItems: "center", padding: "0.4rem 0.75rem", backgroundColor: "#FAF0E6", border: "1px solid #D0B48F", borderRadius: "4px", cursor: "pointer", fontSize: "0.8rem", color: "#8C6D3B", fontWeight: "500" }}>
+                          📁 Replace
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => handleImageUpload(e, (url) => setStoryEvolution({ ...storyEvolution, traditionalImage: url }))}
+                            style={{ display: "none" }}
+                          />
+                        </label>
+                      </div>
+                      <div style={{ marginTop: "0.35rem" }}>
+                        <label className={styles.label} style={{ fontSize: "0.75rem", color: "#666" }}>Alt Text</label>
+                        <input
+                          type="text"
+                          value={storyEvolution.traditionalAlt || ""}
+                          onChange={(e) => setStoryEvolution({ ...storyEvolution, traditionalAlt: e.target.value })}
+                          className={styles.input}
+                          placeholder="Traditional hand chiseling craftsmanship in atelier"
+                          style={{ fontSize: "0.8rem" }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Side B: Evolution */}
+                <div style={{ backgroundColor: "#F8F9FA", border: "1px solid #E2E8F0", borderRadius: "6px", padding: "1.25rem" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
+                    <span style={{ fontWeight: "700", fontSize: "0.85rem", color: "var(--color-navy)" }}>
+                      🌐 SIDE B: EVOLUTION (WHAT WE CHANGED)
+                    </span>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                    <div>
+                      <label className={styles.label}>Panel Badge</label>
+                      <input
+                        type="text"
+                        value={storyEvolution.modernLabel || "NEW POSSIBILITIES"}
+                        onChange={(e) => setStoryEvolution({ ...storyEvolution, modernLabel: e.target.value })}
+                        className={styles.input}
+                        placeholder="NEW POSSIBILITIES"
+                      />
+                    </div>
+                    <div>
+                      <label className={styles.label}>Panel Title</label>
+                      <input
+                        type="text"
+                        value={storyEvolution.modernTitle || "Contemporary Spaces"}
+                        onChange={(e) => setStoryEvolution({ ...storyEvolution, modernTitle: e.target.value })}
+                        className={styles.input}
+                        placeholder="Contemporary Spaces"
+                      />
+                    </div>
+                    <div>
+                      <label className={styles.label}>Modern / Architectural Image</label>
+                      <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", marginTop: "0.25rem", flexWrap: "wrap" }}>
+                        {storyEvolution.modernImage && (
+                          <img
+                            src={storyEvolution.modernImage}
+                            alt="Modern Preview"
+                            style={{ width: "50px", height: "50px", objectFit: "cover", borderRadius: "4px", border: "1px solid #D0E1F9" }}
+                            onError={(e) => { e.target.style.display = "none"; }}
+                          />
+                        )}
+                        <input
+                          type="text"
+                          value={storyEvolution.modernImage || ""}
+                          onChange={(e) => setStoryEvolution({ ...storyEvolution, modernImage: e.target.value })}
+                          className={styles.input}
+                          style={{ flex: 1, minWidth: "180px" }}
+                          placeholder="/images/collections/architectural.webp"
+                        />
+                        <label style={{ display: "inline-flex", alignItems: "center", padding: "0.4rem 0.75rem", backgroundColor: "#FAF0E6", border: "1px solid #D0B48F", borderRadius: "4px", cursor: "pointer", fontSize: "0.8rem", color: "#8C6D3B", fontWeight: "500" }}>
+                          📁 Replace
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => handleImageUpload(e, (url) => setStoryEvolution({ ...storyEvolution, modernImage: url }))}
+                            style={{ display: "none" }}
+                          />
+                        </label>
+                      </div>
+                      <div style={{ marginTop: "0.35rem" }}>
+                        <label className={styles.label} style={{ fontSize: "0.75rem", color: "#666" }}>Alt Text</label>
+                        <input
+                          type="text"
+                          value={storyEvolution.modernAlt || ""}
+                          onChange={(e) => setStoryEvolution({ ...storyEvolution, modernAlt: e.target.value })}
+                          className={styles.input}
+                          placeholder="Contemporary architectural stonework and monumental pavilions"
+                          style={{ fontSize: "0.8rem" }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          {/* ============================================================ */}
+          {/* 08. CHAPTER 06: FUTURE VISION                                */}
+          {/* ============================================================ */}
+          <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
+              <div>
+                <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
+                  08 — Chapter 06: Future Vision
+                </h3>
+                <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
+                  📍 Used on /our-story (Carving Indian Heritage for the World)
                 </span>
               </div>
               <button
@@ -2830,42 +3697,88 @@ export default function AdminPageCMS() {
                 className={styles.primaryBtn}
                 disabled={saving}
               >
-                {saving ? "Saving..." : "Save Chapter IV"}
+                {saving ? "Saving..." : "Save Chapter 06"}
               </button>
             </div>
 
             <div className={styles.formGrid}>
               <div className={styles.formGroup}>
-                <label className={styles.label}>Eyebrow</label>
+                <label className={styles.label}>Chapter Label</label>
                 <input
                   type="text"
-                  value={storyVision.eyebrow || ""}
-                  onChange={(e) => setStoryVision({ ...storyVision, eyebrow: e.target.value })}
+                  value={storyVision.chapter || "CHAPTER 06"}
+                  onChange={(e) => setStoryVision({ ...storyVision, chapter: e.target.value })}
                   className={styles.input}
+                  placeholder="CHAPTER 06"
                 />
               </div>
 
               <div className={styles.formGroup}>
-                <label className={styles.label}>Section Title</label>
+                <label className={styles.label}>Section Heading</label>
                 <input
                   type="text"
                   value={storyVision.heading || ""}
                   onChange={(e) => setStoryVision({ ...storyVision, heading: e.target.value })}
                   className={styles.input}
+                  placeholder="e.g. Carving Indian Heritage for the World"
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Vision Narrative</label>
+                <textarea
+                  rows={3}
+                  value={storyVision.subcopy || ""}
+                  onChange={(e) => setStoryVision({ ...storyVision, subcopy: e.target.value })}
+                  className={styles.textarea}
+                  placeholder="We envision a future where the timeless stone artistry of Rajasthan..."
+                />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <label className={styles.label}>Editorial Statement / Overlay Badge Text</label>
+                <input
+                  type="text"
+                  value={storyVision.visionStatement || ""}
+                  onChange={(e) => setStoryVision({ ...storyVision, visionStatement: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. A Global Bridge for Master Indian Stonework"
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Link Label</label>
+                <input
+                  type="text"
+                  value={storyVision.linkText || ""}
+                  onChange={(e) => setStoryVision({ ...storyVision, linkText: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. Our Vision"
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Link Destination</label>
+                <input
+                  type="text"
+                  value={storyVision.linkHref || ""}
+                  onChange={(e) => setStoryVision({ ...storyVision, linkHref: e.target.value })}
+                  className={styles.input}
+                  placeholder="e.g. /contact?type=custom"
                 />
               </div>
 
               <div className={styles.formGroupFull}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
-                  <label className={styles.label}>Vision Architectural Photo</label>
-                  <span className={styles.aspectBadge}>📐 Recommended: 4:5 or 16:9 Landscape / Architecture (1200 × 900 px)</span>
+                  <label className={styles.label}>Monumental Temple Image</label>
+                  <span className={styles.aspectBadge}>📐 Recommended: 16:9 Landscape (1600 × 900 px)</span>
                 </div>
-                <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem" }}>
+                <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem", flexWrap: "wrap" }}>
                   {storyVision.imageSrc && (
                     <img
                       src={storyVision.imageSrc}
                       alt="Vision Preview"
-                      style={{ width: "60px", height: "45px", objectFit: "cover", borderRadius: "4px", border: "1px solid #D0E1F9" }}
+                      style={{ width: "64px", height: "48px", objectFit: "cover", borderRadius: "4px", border: "1px solid #D0E1F9" }}
                       onError={(e) => { e.target.style.display = "none"; }}
                     />
                   )}
@@ -2874,51 +3787,45 @@ export default function AdminPageCMS() {
                     value={storyVision.imageSrc || ""}
                     onChange={(e) => setStoryVision({ ...storyVision, imageSrc: e.target.value })}
                     className={styles.input}
-                    style={{ flex: 1 }}
-                    placeholder="https://... or /images/..."
+                    style={{ flex: 1, minWidth: "220px" }}
+                    placeholder="/images/collections/temples-architectural.webp"
                   />
+                  <label style={{ display: "inline-flex", alignItems: "center", padding: "0.45rem 0.85rem", backgroundColor: "#FAF0E6", border: "1px solid #D0B48F", borderRadius: "4px", cursor: "pointer", fontSize: "0.85rem", color: "#8C6D3B", fontWeight: "500" }}>
+                    📁 Select / Replace Image
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleImageUpload(e, (url) => setStoryVision({ ...storyVision, imageSrc: url }))}
+                      style={{ display: "none" }}
+                    />
+                  </label>
+                </div>
+                <div style={{ marginTop: "0.5rem" }}>
+                  <label className={styles.label} style={{ fontSize: "0.8rem", color: "#666" }}>Image Alt Text</label>
                   <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => handleImageUpload(e, (url) => setStoryVision({ ...storyVision, imageSrc: url }))}
+                    type="text"
+                    value={storyVision.imageAlt || ""}
+                    onChange={(e) => setStoryVision({ ...storyVision, imageAlt: e.target.value })}
+                    className={styles.input}
+                    placeholder="Grand hand-carved stone temple architecture and shikhara"
                     style={{ fontSize: "0.85rem" }}
                   />
                 </div>
-              </div>
-
-              <div className={styles.formGroupFull}>
-                <label className={styles.label}>Lead Quote</label>
-                <textarea
-                  rows={2}
-                  value={storyVision.leadQuote || ""}
-                  onChange={(e) => setStoryVision({ ...storyVision, leadQuote: e.target.value })}
-                  className={styles.textarea}
-                />
-              </div>
-
-              <div className={styles.formGroupFull}>
-                <label className={styles.label}>Partnership Subcopy</label>
-                <textarea
-                  rows={2}
-                  value={storyVision.subcopy || ""}
-                  onChange={(e) => setStoryVision({ ...storyVision, subcopy: e.target.value })}
-                  className={styles.textarea}
-                />
               </div>
             </div>
           </div>
 
           {/* ============================================================ */}
-          {/* 6. CHAPTER V: CLOSING STORY CTA BANNER                       */}
+          {/* 09. FINAL STORY CTA                                          */}
           {/* ============================================================ */}
           <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
               <div>
                 <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
-                  6. Chapter V: Closing Story CTA Card
+                  09 — Final Story Call to Action
                 </h3>
                 <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
-                  📍 Used on /our-story (Bottom Banner)
+                  📍 Used on /our-story (Bottom Action Card)
                 </span>
               </div>
               <button
@@ -2927,7 +3834,7 @@ export default function AdminPageCMS() {
                 className={styles.primaryBtn}
                 disabled={saving}
               >
-                {saving ? "Saving..." : "Save CTA Card"}
+                {saving ? "Saving..." : "Save Final CTA"}
               </button>
             </div>
 
@@ -2939,6 +3846,7 @@ export default function AdminPageCMS() {
                   value={storyCta.eyebrow || ""}
                   onChange={(e) => setStoryCta({ ...storyCta, eyebrow: e.target.value })}
                   className={styles.input}
+                  placeholder="e.g. LET'S CREATE TOGETHER"
                 />
               </div>
 
@@ -2949,6 +3857,7 @@ export default function AdminPageCMS() {
                   value={storyCta.heading || ""}
                   onChange={(e) => setStoryCta({ ...storyCta, heading: e.target.value })}
                   className={styles.input}
+                  placeholder="e.g. Bring Your Architectural Vision to Stone"
                 />
               </div>
 
@@ -2959,38 +3868,8 @@ export default function AdminPageCMS() {
                   value={storyCta.desc || storyCta.description || ""}
                   onChange={(e) => setStoryCta({ ...storyCta, desc: e.target.value, description: e.target.value })}
                   className={styles.textarea}
+                  placeholder="Connect directly with our Jaipur design office..."
                 />
-              </div>
-
-              <div className={styles.formGroupFull}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
-                  <label className={styles.label}>Background Texture Image</label>
-                  <span className={styles.aspectBadge}>📐 Recommended: 16:9 Dark / Stone Texture (1600 × 900 px)</span>
-                </div>
-                <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem" }}>
-                  {storyCta.imageSrc && (
-                    <img
-                      src={storyCta.imageSrc}
-                      alt="CTA Texture Preview"
-                      style={{ width: "60px", height: "45px", objectFit: "cover", borderRadius: "4px", border: "1px solid #D0E1F9" }}
-                      onError={(e) => { e.target.style.display = "none"; }}
-                    />
-                  )}
-                  <input
-                    type="text"
-                    value={storyCta.imageSrc || ""}
-                    onChange={(e) => setStoryCta({ ...storyCta, imageSrc: e.target.value })}
-                    className={styles.input}
-                    style={{ flex: 1 }}
-                    placeholder="https://... or /images/..."
-                  />
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => handleImageUpload(e, (url) => setStoryCta({ ...storyCta, imageSrc: url }))}
-                    style={{ fontSize: "0.85rem" }}
-                  />
-                </div>
               </div>
 
               <div className={styles.formGroup}>
@@ -3000,6 +3879,7 @@ export default function AdminPageCMS() {
                   value={storyCta.primaryCtaText || ""}
                   onChange={(e) => setStoryCta({ ...storyCta, primaryCtaText: e.target.value })}
                   className={styles.input}
+                  placeholder="e.g. Discuss a Commission"
                 />
               </div>
 
@@ -3010,6 +3890,7 @@ export default function AdminPageCMS() {
                   value={storyCta.primaryCtaHref || ""}
                   onChange={(e) => setStoryCta({ ...storyCta, primaryCtaHref: e.target.value })}
                   className={styles.input}
+                  placeholder="e.g. /contact?type=custom"
                 />
               </div>
 
@@ -3020,7 +3901,53 @@ export default function AdminPageCMS() {
                   value={storyCta.secondaryCtaText || ""}
                   onChange={(e) => setStoryCta({ ...storyCta, secondaryCtaText: e.target.value })}
                   className={styles.input}
+                  placeholder="e.g. WhatsApp Coordinator"
                 />
+              </div>
+
+              <div className={styles.formGroupFull}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
+                  <label className={styles.label}>Background Texture Image</label>
+                  <span className={styles.aspectBadge}>📐 Recommended: 16:9 Dark / Stone Texture (1600 × 900 px)</span>
+                </div>
+                <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem", flexWrap: "wrap" }}>
+                  {storyCta.imageSrc && (
+                    <img
+                      src={storyCta.imageSrc}
+                      alt="CTA Texture Preview"
+                      style={{ width: "64px", height: "48px", objectFit: "cover", borderRadius: "4px", border: "1px solid #D0E1F9" }}
+                      onError={(e) => { e.target.style.display = "none"; }}
+                    />
+                  )}
+                  <input
+                    type="text"
+                    value={storyCta.imageSrc || ""}
+                    onChange={(e) => setStoryCta({ ...storyCta, imageSrc: e.target.value })}
+                    className={styles.input}
+                    style={{ flex: 1, minWidth: "220px" }}
+                    placeholder="/images/collections/wall-art-relief.webp"
+                  />
+                  <label style={{ display: "inline-flex", alignItems: "center", padding: "0.45rem 0.85rem", backgroundColor: "#FAF0E6", border: "1px solid #D0B48F", borderRadius: "4px", cursor: "pointer", fontSize: "0.85rem", color: "#8C6D3B", fontWeight: "500" }}>
+                    📁 Select / Replace Image
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleImageUpload(e, (url) => setStoryCta({ ...storyCta, imageSrc: url }))}
+                      style={{ display: "none" }}
+                    />
+                  </label>
+                </div>
+                <div style={{ marginTop: "0.5rem" }}>
+                  <label className={styles.label} style={{ fontSize: "0.8rem", color: "#666" }}>Image Alt Text</label>
+                  <input
+                    type="text"
+                    value={storyCta.imageAlt || ""}
+                    onChange={(e) => setStoryCta({ ...storyCta, imageAlt: e.target.value })}
+                    className={styles.input}
+                    placeholder="Jaipur Stonecraft hand-carved natural stone relief texture in atelier"
+                    style={{ fontSize: "0.85rem" }}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -3417,6 +4344,40 @@ export default function AdminPageCMS() {
                       onChange={(e) => updateStageField("stage02", "narrative", e.target.value)}
                       className={styles.textarea}
                     />
+                  </div>
+                  <div className={styles.formGroupFull} style={{ padding: "0.85rem", backgroundColor: "#FFFFFF", borderRadius: "8px", border: "1px solid #E8E5DF" }}>
+                    <label className={styles.label}>Stage 02 Blueprint &amp; Chalk Grid Photograph (in front of "From CAD Draft to Chalk Grid")</label>
+                    <div style={{ display: "flex", gap: "1rem", alignItems: "center", flexWrap: "wrap", marginTop: "0.25rem" }}>
+                      <div style={{ position: "relative", width: "100px", height: "70px", borderRadius: "6px", overflow: "hidden", backgroundColor: "#EAE7E1", flexShrink: 0 }}>
+                        <img
+                          src={craftsmanshipHero.pageImages?.stage02_blueprint || craftsmanshipHero.stages?.stage02?.imageSrc || defaultCraftsmanshipPageImages.stage02_blueprint}
+                          alt="Stage 02 Blueprint Preview"
+                          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        />
+                      </div>
+                      <div style={{ flex: 1, minWidth: "220px" }}>
+                        <input
+                          type="text"
+                          value={craftsmanshipHero.pageImages?.stage02_blueprint ?? craftsmanshipHero.stages?.stage02?.imageSrc ?? defaultCraftsmanshipPageImages.stage02_blueprint}
+                          onChange={(e) => {
+                            updatePageImage("stage02_blueprint", e.target.value);
+                            updateStageField("stage02", "imageSrc", e.target.value);
+                          }}
+                          className={styles.input}
+                          style={{ marginBottom: "0.4rem" }}
+                          placeholder="e.g. /images/craftsmanship/stage-02-blueprint-grid.jpg"
+                        />
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => handleImageUpload(e, (url) => {
+                            updatePageImage("stage02_blueprint", url);
+                            updateStageField("stage02", "imageSrc", url);
+                          })}
+                          style={{ fontSize: "0.82rem" }}
+                        />
+                      </div>
+                    </div>
                   </div>
                   <div className={styles.formGroupFull} style={{ padding: "0.85rem", backgroundColor: "#FFFFFF", borderRadius: "8px", border: "1px solid #E8E5DF" }}>
                     <label className={styles.label}>Pathway Node 02 Mapping Photograph</label>

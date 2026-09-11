@@ -42,34 +42,63 @@
   margin-bottom: var(--spacing-md);
 }
 
-.leadDescription {
+.description {
   font-family: var(--font-body);
-  font-size: clamp(1.025rem, 1.6vw, 1.2rem);
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
   font-weight: 300;
-  line-height: 1.65;
-  color: rgba(26, 25, 24, 0.84);
-  margin-bottom: var(--spacing-lg);
+  line-height: 1.68;
+  color: rgba(26, 25, 24, 0.82);
+  margin-bottom: var(--spacing-md);
 }
 
-.atelierNote {
+.editorialDivider {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+.dividerLine {
+  height: 1px;
+  width: 42px;
+  background-color: var(--color-bronze);
+  opacity: 0.5;
+}
+
+.dividerDiamond {
+  color: var(--color-bronze);
+  font-size: 0.65rem;
+}
+
+.storyCallout {
   display: flex;
   align-items: flex-start;
   gap: var(--spacing-sm);
-  padding: var(--spacing-md);
+  padding: 1rem 1.25rem;
   background-color: var(--color-cream-secondary);
   border-radius: var(--radius-subtle);
   border-left: 2px solid var(--color-bronze);
+  margin-top: 0.5rem;
 }
 
-.noteLine {
-  display: none;
-}
-
-.noteText {
+.calloutBadge {
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-bronze);
+  padding: 0.2rem 0.45rem;
+  background: rgba(158, 123, 79, 0.12);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.calloutText {
+  font-family: var(--font-body);
+  font-size: 0.84rem;
   line-height: 1.5;
   color: rgba(26, 25, 24, 0.75);
+  margin: 0;
 }
 
 .visualCol {
@@ -139,19 +168,56 @@
 
 @media (max-width: 991px) {
   .heroSection {
-    padding-top: calc(60px + var(--spacing-md));
+    padding-top: calc(60px + 1.25rem);
+    padding-bottom: 2.75rem;
   }
 
   .heroGrid {
     grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
+    gap: 1.75rem;
   }
 
   .contentCol {
     max-width: 100%;
   }
 
+  .heading {
+    font-size: clamp(2.1rem, 7.5vw, 2.75rem);
+    line-height: 1.12;
+    margin-bottom: 0.75rem;
+    text-wrap: balance;
+  }
+
+  .description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  /* Reduce cognitive load on mobile: hide redundant boxed callout to give prominence directly to the craftsmanship visual */
+  .storyCallout {
+    display: none;
+  }
+
   .imageFrame {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 11;
+    border-radius: 18px;
+    box-shadow: 0 16px 42px rgba(26, 25, 24, 0.12);
+    border: 1px solid rgba(184, 123, 49, 0.2);
+  }
+
+  .imageOverlayBadge {
+    bottom: 0.75rem;
+    left: 0.75rem;
+    padding: 0.45rem 0.8rem;
+    border-radius: 8px;
+  }
+
+  .badgeTitle {
+    font-size: 0.65rem;
+  }
+
+  .badgeSub {
+    font-size: 0.85rem;
   }
 }

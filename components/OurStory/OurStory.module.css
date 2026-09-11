@@ -1,462 +1,855 @@
 /* ==========================================================================
-   JAIPUR STONECRAFT — OUR STORY REFERENCE-LED EDITORIAL SYSTEM
+   JAIPUR STONECRAFT — OUR STORY EDITORIAL SYSTEM
+   Primary Visual Source of Truth: Reference Layout
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. EDITORIAL HERO SECTION (Hero Grid Split)
+   SHARED EDITORIAL TOKENS & UTILITIES
    -------------------------------------------------------------------------- */
-.headerSection {
-  background-color: var(--color-cream);
-  padding-top: clamp(140px, 12vw, 165px);
-  padding-bottom: var(--spacing-xxl);
+.chapterEyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-bronze);
+  display: inline-block;
+  margin-bottom: 0.75rem;
 }
 
-.topBar {
-  margin-bottom: var(--spacing-md);
+.chapterHeading {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 3.8vw, 3rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--color-charcoal);
+  letter-spacing: -0.015em;
+  margin-bottom: 1.25rem;
+}
+
+.chapterText {
+  font-family: var(--font-body);
+  font-size: 1.025rem;
+  line-height: 1.7;
+  color: rgba(26, 25, 24, 0.82);
+  margin-bottom: 1.25rem;
+}
+
+.chapterText:last-of-type {
+  margin-bottom: 1.75rem;
+}
+
+.editorialLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-bronze);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+.editorialLink:hover {
+  color: #7D5F3A;
+  border-bottom-color: #7D5F3A;
+  transform: translateX(2px);
+}
+
+.editorialLinkArrow {
+  font-size: 0.95rem;
+  transition: transform 0.2s ease;
+}
+
+.editorialLink:hover .editorialLinkArrow {
+  transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------------
+   1. HERO SECTION (A Story Written in Stone)
+   -------------------------------------------------------------------------- */
+.heroSection {
+  background-color: var(--color-cream);
+  padding-top: clamp(140px, 14vw, 175px);
+  padding-bottom: clamp(3rem, 6vw, 5.5rem);
+  border-bottom: 1px solid rgba(26, 25, 24, 0.08);
 }
 
 .heroGrid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(2.5rem, 6vw, 5rem);
   align-items: center;
 }
 
 .heroContent {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
-.eyebrow {
+.heroEyebrow {
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   color: var(--color-bronze);
-  margin-bottom: 0.35rem;
-  display: block;
+  margin-bottom: 1rem;
 }
 
-.title {
+.heroTitle {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  font-size: clamp(2.75rem, 5.2vw, 4.4rem);
   font-weight: 300;
   line-height: 1.1;
   color: var(--color-charcoal);
-  letter-spacing: -0.01em;
-  margin-bottom: var(--spacing-sm);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
 }
 
-.leadDescription {
+.heroRule {
+  width: 48px;
+  height: 1px;
+  background-color: var(--color-bronze);
+  margin-bottom: 1.5rem;
+}
+
+.heroLead {
   font-family: var(--font-body);
-  font-size: clamp(0.975rem, 1.4vw, 1.1rem);
+  font-size: clamp(1rem, 1.35vw, 1.125rem);
   line-height: 1.7;
   color: rgba(26, 25, 24, 0.82);
+  max-width: 520px;
+  margin-bottom: 2rem;
+}
+
+.heroCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: #61462A;
+  color: #FCFBF9;
+  padding: 0.85rem 1.75rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  border-radius: var(--radius-subtle);
+  transition: all var(--transition-fast);
+}
+
+.heroCta:hover {
+  background-color: #4A331E;
+  color: #FFFFFF;
+  transform: translateY(-1px);
 }
 
 .heroVisual {
   position: relative;
+  width: 100%;
 }
 
 .heroImageFrame {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 3.4;
   border-radius: var(--radius-subtle);
   overflow: hidden;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.1);
-  border: 1px solid var(--color-border-subtle);
-  background-color: #0d0d0d;
+  background-color: #E8E4DF;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
 }
 
 .heroImage {
   object-fit: cover;
+  object-position: 70% 35%;
+  transition: transform 0.6s ease;
 }
 
-/* --------------------------------------------------------------------------
-   2. CHAPTER I: HERITAGE SECTION (Passing Down the Chisel)
-   -------------------------------------------------------------------------- */
-.lineageSection {
-  background-color: var(--color-cream-secondary);
-  padding: var(--spacing-xxl) 0;
-  border-top: 1px solid var(--color-border-subtle);
-  border-bottom: 1px solid var(--color-border-subtle);
+.heroVisual:hover .heroImage {
+  transform: scale(1.02);
 }
 
-.lineageGrid {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
-}
-
-.lineageImageFrame {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  border-radius: var(--radius-subtle);
-  overflow: hidden;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
-  border: 1px solid var(--color-border-subtle);
-  background-color: #0d0d0d;
-}
-
-.lineageImage {
-  object-fit: cover;
-}
-
-.lineageContent {
-  display: flex;
-  flex-direction: column;
-}
-
-.sectionChapterBadge {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--color-bronze);
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
-.sectionHeading {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3.8vw, 3rem);
-  font-weight: 300;
-  color: var(--color-charcoal);
-  line-height: 1.2;
-  margin-bottom: var(--spacing-sm);
-}
-
-.lineageBody {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  line-height: 1.65;
-  color: rgba(26, 25, 24, 0.82);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-}
-
-.pullQuoteBox {
-  border-left: 2px solid var(--color-bronze);
-  padding-left: var(--spacing-md);
-  margin: var(--spacing-xs) 0;
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-style: italic;
-  color: var(--color-charcoal);
-  line-height: 1.45;
-}
-
-/* --------------------------------------------------------------------------
-   3. CHAPTER II: OUR VALUES (Principles Behind Every Chisel)
-   -------------------------------------------------------------------------- */
-.valuesSection {
-  background-color: var(--color-cream);
-  padding: var(--spacing-xxl) 0;
-}
-
-.valuesHeader {
-  text-align: center;
-  margin-bottom: var(--spacing-xl);
-}
-
-.valuesHeading {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3.5vw, 2.75rem);
-  font-weight: 300;
-  color: var(--color-charcoal);
-  line-height: 1.2;
-}
-
-.ornamentDivider {
-  color: var(--color-bronze);
-  font-size: 0.85rem;
-  margin-top: 0.25rem;
-}
-
-.valuesGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-md);
-}
-
-.valueCard {
-  background-color: var(--color-cream-secondary);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-subtle);
-  padding: var(--spacing-lg);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.valueNum {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: var(--color-bronze);
-  margin-bottom: 0.25rem;
-}
-
-.valueIcon {
-  margin-bottom: 0.6rem;
-}
-
-.valueTitle {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 400;
-  color: var(--color-charcoal);
-  margin-bottom: 0.35rem;
-}
-
-.valueDesc {
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  line-height: 1.55;
-  color: rgba(26, 25, 24, 0.78);
-}
-
-/* --------------------------------------------------------------------------
-   4. CHAPTER III: DARK BRAND TRANSITION STRIP (Statistics & Heritage Bar)
-   -------------------------------------------------------------------------- */
-.darkTransitionSection {
-  background-color: #171615;
-  color: var(--color-cream);
-  padding: var(--spacing-xl) 0;
-  border-top: 1px solid rgba(232, 228, 223, 0.1);
-  border-bottom: 1px solid rgba(232, 228, 223, 0.1);
-}
-
-.statsBar {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-md);
-  text-align: center;
-}
-
-.statCol {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 var(--spacing-sm);
-}
-
-.statIcon {
-  margin-bottom: 0.4rem;
-}
-
-.statValue {
-  font-family: var(--font-display);
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  font-weight: 300;
-  color: var(--color-cream);
-  line-height: 1;
-  margin-bottom: 0.35rem;
-}
-
-.statLabel {
-  font-family: var(--font-body);
-  font-size: 0.78rem;
-  line-height: 1.4;
-  color: rgba(252, 251, 249, 0.72);
-}
-
-.statDivider {
+.heroImageOverlayCaption {
   position: absolute;
-  right: 0;
-  top: 15%;
-  bottom: 15%;
-  width: 1px;
-  background-color: rgba(212, 163, 89, 0.25);
+  top: 1.75rem;
+  right: 1.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-style: italic;
+  line-height: 1.3;
+  color: #FFFFFF;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.65);
+  text-align: right;
+  pointer-events: none;
+  z-index: 2;
+  max-width: 180px;
 }
 
 /* --------------------------------------------------------------------------
-   5. CHAPTER IV: OUR VISION (Carving Indian Heritage for the World)
+   2. CHAPTER 01: BORN IN RAJASTHAN
    -------------------------------------------------------------------------- */
-.futureSection {
-  background-color: var(--color-cream);
-  padding: var(--spacing-xxl) 0;
+.placeSection {
+  background-color: #F7F4EE;
+  padding: clamp(3.5rem, 7vw, 6rem) 0;
+  border-bottom: 1px solid rgba(26, 25, 24, 0.08);
 }
 
-.futureGrid {
+.placeGrid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(2.5rem, 6vw, 5rem);
   align-items: center;
 }
 
-.futureContent {
-  display: flex;
-  flex-direction: column;
+.placeVisual {
+  position: relative;
 }
 
-.futureEyebrow {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--color-bronze);
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
-.futureTitle {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3.8vw, 3rem);
-  font-weight: 300;
-  color: var(--color-charcoal);
-  line-height: 1.2;
-}
-
-.ornamentDividerLeft {
-  color: var(--color-bronze);
-  font-size: 0.85rem;
-  margin: 0.25rem 0 1rem 0;
-}
-
-.futureLead {
-  font-family: var(--font-display);
-  font-size: clamp(1.1rem, 2vw, 1.35rem);
-  font-style: italic;
-  line-height: 1.5;
-  color: var(--color-charcoal);
-  margin-bottom: var(--spacing-sm);
-}
-
-.futureSub {
-  font-family: var(--font-body);
-  font-size: 0.925rem;
-  line-height: 1.65;
-  color: rgba(26, 25, 24, 0.78);
-}
-
-.futureImageFrame {
+.placeImageFrame {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
   border-radius: var(--radius-subtle);
   overflow: hidden;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
-  border: 1px solid var(--color-border-subtle);
-  background-color: #0d0d0d;
+  background-color: #E8E4DF;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.07);
+}
+
+.placeImage {
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+.placeQuoteOverlay {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(180deg, rgba(18, 17, 16, 0) 0%, rgba(18, 17, 16, 0.75) 100%);
+  border-radius: var(--radius-subtle);
+  pointer-events: none;
+}
+
+.placeQuoteText {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+  font-style: italic;
+  line-height: 1.35;
+  color: #FFFFFF;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.placeContent {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --------------------------------------------------------------------------
+   3. CHAPTER 02: A CRAFT PASSED HAND TO HAND (Lineage)
+   -------------------------------------------------------------------------- */
+.lineageSection {
+  background-color: var(--color-cream);
+  padding: clamp(4rem, 8vw, 6.5rem) 0;
+  border-bottom: 1px solid rgba(26, 25, 24, 0.08);
+}
+
+.lineageHeaderLayout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: flex-start;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.lineageIntroCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.lineageCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.lineageCard {
+  background: #F7F4EE;
+  border: 1px solid rgba(26, 25, 24, 0.08);
+  border-radius: var(--radius-subtle);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lineageCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+}
+
+.lineageCardThumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 0.95;
+  background-color: #E2DDD5;
+  overflow: hidden;
+}
+
+.lineageCardImage {
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.lineageCard:hover .lineageCardImage {
+  transform: scale(1.04);
+}
+
+.lineageCardMeta {
+  padding: 1.35rem 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.lineageCardTag {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-bronze);
+  margin-bottom: 0.35rem;
+}
+
+.lineageCardTitle {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--color-charcoal);
+  margin-bottom: 0.5rem;
+}
+
+.lineageCardDesc {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: rgba(26, 25, 24, 0.78);
+}
+
+/* Mobile Vertical Timeline (Dual Responsive Architecture) */
+.mobileLineageTimeline {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   4. CHAPTER 03: THE PEOPLE BEHIND THE NAME
+   -------------------------------------------------------------------------- */
+.peopleSection {
+  background-color: #F7F4EE;
+  padding: clamp(4rem, 8vw, 6.5rem) 0;
+  border-bottom: 1px solid rgba(26, 25, 24, 0.08);
+}
+
+.peopleGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr 0.85fr;
+  gap: clamp(1.5rem, 3.5vw, 3rem);
+  align-items: center;
+}
+
+.peopleVisual {
+  position: relative;
+}
+
+.peopleImageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.15;
+  border-radius: var(--radius-subtle);
+  overflow: hidden;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
+  background-color: #E2DDD5;
+}
+
+.peopleImage {
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.peopleContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.peopleQuoteCol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5rem;
+}
+
+.peopleEditorialQuote {
+  border-top: 1px solid rgba(26, 25, 24, 0.18);
+  border-bottom: 1px solid rgba(26, 25, 24, 0.18);
+  padding: 2.25rem 0.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.peopleQuoteText {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--color-charcoal);
+}
+
+/* --------------------------------------------------------------------------
+   5. CHAPTER 04: WHAT WE CARRY FORWARD (Principles)
+   -------------------------------------------------------------------------- */
+.valuesSection {
+  background-color: var(--color-cream);
+  padding: clamp(4.5rem, 8vw, 7rem) 0;
+  border-bottom: 1px solid rgba(26, 25, 24, 0.08);
+}
+
+.valuesHeader {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto clamp(3rem, 6vw, 4.5rem);
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+.valueCol {
+  padding: 0 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.valueCol:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 10%;
+  right: 0;
+  width: 1px;
+  height: 80%;
+  background-color: rgba(26, 25, 24, 0.1);
+}
+
+.valueIconWrap {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.valueNum {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--color-bronze);
+  margin-bottom: 0.65rem;
+}
+
+.valueTitle {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--color-charcoal);
+  margin-bottom: 0.85rem;
+}
+
+.valueDesc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(26, 25, 24, 0.78);
+}
+
+/* --------------------------------------------------------------------------
+   6. DARK SECTION: A LIVING TRADITION IN A MODERN WORLD (Impact Stats)
+   -------------------------------------------------------------------------- */
+.darkImpactSection {
+  background-color: #121110;
+  color: #F7F5F0;
+  padding: clamp(4.5rem, 8vw, 7rem) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.darkImpactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 0.7fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.darkNarrativeCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.darkEyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #C49653;
+  margin-bottom: 0.75rem;
+}
+
+.darkHeading {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 3.8vw, 3.1rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: #FFFFFF;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.015em;
+}
+
+.darkText {
+  font-family: var(--font-body);
+  font-size: 0.975rem;
+  line-height: 1.65;
+  color: rgba(247, 245, 240, 0.82);
+  margin-bottom: 1.75rem;
+}
+
+.darkLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: #C49653;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.darkLink:hover {
+  color: #D4A359;
+  transform: translateX(2px);
+}
+
+.darkStatsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.darkStatItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.darkStatIcon {
+  width: 22px;
+  height: 22px;
+  margin-bottom: 0.65rem;
+  opacity: 0.9;
+}
+
+.darkStatValue {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1;
+  color: #C49653;
+  margin-bottom: 0.45rem;
+}
+
+.darkStatLabel {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: rgba(247, 245, 240, 0.75);
+}
+
+.darkArtworkCol {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  border-radius: var(--radius-subtle);
+  overflow: hidden;
+}
+
+.darkArtworkImage {
+  object-fit: cover;
+  object-position: center center;
+  opacity: 0.75;
+  filter: contrast(1.1);
+  mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+}
+
+/* --------------------------------------------------------------------------
+   7. CHAPTER 05: WHAT WE KEPT. WHAT WE CHANGED. (Evolution)
+   -------------------------------------------------------------------------- */
+.evolutionSection {
+  background-color: var(--color-cream);
+  padding: clamp(4.5rem, 8vw, 7rem) 0;
+  border-bottom: 1px solid rgba(26, 25, 24, 0.08);
+}
+
+.evolutionGrid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.evolutionContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.evolutionPanelsWrapper {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.evolutionPanel {
+  display: flex;
+  flex-direction: column;
+}
+
+.evolutionImageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.05;
+  border-radius: var(--radius-subtle);
+  overflow: hidden;
+  background-color: #E2DDD5;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  margin-bottom: 1rem;
+}
+
+.evolutionImage {
+  object-fit: cover;
+}
+
+.evolutionPanelLabel {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-bronze);
+  margin-bottom: 0.25rem;
+}
+
+.evolutionPanelTitle {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--color-charcoal);
+}
+
+.evolutionArrowCol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-bronze);
+  font-size: 1.4rem;
+  padding: 0 0.5rem;
+  margin-bottom: 2rem;
+}
+
+/* --------------------------------------------------------------------------
+   8. CHAPTER 06: CARVING INDIAN HERITAGE FOR THE WORLD (The Future)
+   -------------------------------------------------------------------------- */
+.futureSection {
+  background-color: var(--color-cream);
+  padding: clamp(4.5rem, 8vw, 7rem) 0;
+  border-bottom: 1px solid rgba(26, 25, 24, 0.08);
+}
+
+.futureGrid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+  align-items: center;
+}
+
+.futureContentCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.futureVisualWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-subtle);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  background-color: #121110;
 }
 
 .futureImage {
   object-fit: cover;
+  object-position: center;
+}
+
+.futureQuoteOverlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 48%;
+  background: linear-gradient(90deg, transparent 0%, rgba(18, 17, 16, 0.35) 30%, rgba(18, 17, 16, 0.78) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 2rem 2.5rem;
+  text-align: right;
+  z-index: 2;
+}
+
+.futureQuoteText {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.3vw, 2rem);
+  font-style: italic;
+  line-height: 1.3;
+  color: #F7F5F0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
 }
 
 /* --------------------------------------------------------------------------
-   6. CHAPTER V: FINAL STORY CTA CARD (Bring Your Vision to Stone)
+   9. FINAL STORY CTA SECTION
    -------------------------------------------------------------------------- */
 .ctaSection {
-  background-color: var(--color-cream);
-  padding-bottom: var(--spacing-xxl);
+  background-color: #121110;
+  padding: clamp(4rem, 8vw, 6.5rem) 0 clamp(4.5rem, 9vw, 7.5rem);
 }
 
 .ctaCard {
   position: relative;
-  background-color: #151413;
-  color: var(--color-cream);
   border-radius: var(--radius-subtle);
-  padding: var(--spacing-xl);
   overflow: hidden;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+  background-color: #1A1918;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: clamp(3rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 4rem);
+  text-align: center;
 }
 
 .ctaBgFrame {
   position: absolute;
   inset: 0;
-  pointer-events: none;
+  z-index: 1;
 }
 
 .ctaBgImage {
   object-fit: cover;
-  opacity: 0.12;
-  filter: grayscale(100%);
+  object-position: center;
+  opacity: 0.35;
 }
 
 .ctaBgOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, #151413 0%, rgba(21, 20, 19, 0.88) 100%);
+  background: radial-gradient(circle at center, rgba(18, 17, 16, 0.6) 0%, rgba(18, 17, 16, 0.88) 100%);
 }
 
-.ctaContentGrid {
+.ctaInnerContent {
   position: relative;
   z-index: 2;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: var(--spacing-xl);
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
 .ctaEyebrow {
   font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--color-bronze);
-  display: block;
-  margin-bottom: 0.25rem;
+  letter-spacing: 0.22em;
+  color: #C49653;
+  margin-bottom: 0.85rem;
 }
 
 .ctaHeading {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
   font-weight: 300;
-  color: var(--color-cream);
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
+  line-height: 1.15;
+  color: #FFFFFF;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.015em;
 }
 
 .ctaDesc {
   font-family: var(--font-body);
-  font-size: 0.925rem;
-  line-height: 1.6;
-  color: rgba(252, 251, 249, 0.78);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(247, 245, 240, 0.82);
+  margin-bottom: 2.25rem;
 }
 
-.ctaActionCol {
+.ctaActions {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .primaryGoldButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.85rem 1.6rem;
-  background-color: #c49653;
-  color: var(--color-charcoal);
+  gap: 0.6rem;
+  padding: 0.95rem 2rem;
+  background: #C49653;
+  color: #1A1918;
   font-family: var(--font-body);
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   border-radius: var(--radius-subtle);
   text-decoration: none;
-  transition: background-color var(--transition-fast);
+  min-height: 50px;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
 }
 
 .primaryGoldButton:hover {
-  background-color: #d4a359;
+  background-color: #D4A359;
+  transform: translateY(-1px);
 }
 
 .secondaryOutlineButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.85rem 1.6rem;
+  padding: 0.95rem 2rem;
   border: 1px solid rgba(252, 251, 249, 0.35);
   color: var(--color-cream);
   font-family: var(--font-body);
@@ -465,46 +858,640 @@
   letter-spacing: 0.04em;
   border-radius: var(--radius-subtle);
   text-decoration: none;
+  min-height: 50px;
   transition: all var(--transition-fast);
 }
 
 .secondaryOutlineButton:hover {
-  border-color: var(--color-cream);
+  border-color: #FCFBF9;
   background-color: rgba(252, 251, 249, 0.08);
 }
 
-/* --------------------------------------------------------------------------
-   7. RESPONSIVE MEDIA QUERIES
-   -------------------------------------------------------------------------- */
+
+/* ==========================================================================
+   10. RESPONSIVE ARCHITECTURE (MOBILE INTENTIONAL LUXURY DESIGN)
+   ========================================================================== */
 @media (max-width: 991px) {
-  .headerSection {
-    padding-top: calc(60px + var(--spacing-md));
+  /* --- Shared Editorial Styles --- */
+  .chapterHeading {
+    font-size: clamp(1.85rem, 6.5vw, 2.35rem);
+    line-height: 1.2;
+    margin-bottom: 0.85rem;
+    letter-spacing: -0.015em;
   }
 
-  .heroGrid,
-  .lineageGrid,
-  .futureGrid,
-  .ctaContentGrid {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
+  .chapterEyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    margin-bottom: 0.5rem;
+  }
+
+  .chapterText {
+    font-size: 1rem;
+    line-height: 1.68;
+    color: rgba(26, 25, 24, 0.82);
+  }
+
+  .editorialLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+  }
+
+  /* --- 1. Hero Mobile --- */
+  .heroSection {
+    padding-top: calc(72px + 1.75rem);
+    padding-bottom: 3.25rem;
+  }
+
+  .heroGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .heroTitle {
+    font-size: clamp(2.35rem, 8.5vw, 3.1rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.85rem;
+  }
+
+  .heroLead {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+    color: rgba(26, 25, 24, 0.82);
+  }
+
+  .heroCta {
+    width: 100%;
+    justify-content: center;
+    min-height: 52px;
+    font-size: 0.925rem;
+    font-weight: 550;
+    border-radius: 4px;
+  }
+
+  .heroVisual {
+    margin-top: 0.5rem;
+  }
+
+  .heroImageFrame {
+    aspect-ratio: 16 / 11;
+    border-radius: var(--radius-subtle);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  .heroImageOverlayCaption {
+    top: auto;
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+  }
+
+  /* --- 2. Chapter 01: The Place Mobile --- */
+  .placeSection {
+    padding: 3.5rem 0;
+  }
+
+  .placeGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .placeVisual {
+    width: 100%;
+  }
+
+  .placeImageFrame {
+    aspect-ratio: 16 / 10.5;
+    border-radius: var(--radius-subtle);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  .placeImageOverlayCaption {
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+    bottom: 1rem;
+    left: 1rem;
+  }
+
+  /* --- 3. Chapter 02: Lineage Mobile (Asymmetric Editorial Sculpture Composition) --- */
+  .lineageSection {
+    padding: clamp(3rem, 7vw, 4.25rem) 0;
+  }
+
+  .lineageHeaderLayout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Hide the text-only connected timeline on mobile */
+  .mobileLineageTimeline {
+    display: none !important;
+  }
+
+  /* Asymmetric sculpture composition: 1 Hero focal piece + 2 supporting vignettes */
+  .lineageCardsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  /* 1. Hero Focal Sculpture (Elephant Murti Masterpiece) */
+  .lineageCardsGrid > div:nth-child(1) .lineageCard {
+    background: #FFFFFF;
+    border: 1px solid rgba(26, 25, 24, 0.09);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  }
+
+  .lineageCardsGrid > div:nth-child(1) .lineageCardThumb {
+    width: 100%;
+    aspect-ratio: 4 / 3.2;
+  }
+
+  .lineageCardsGrid > div:nth-child(1) .lineageCardMeta {
+    padding: 1.35rem 1.25rem 1.45rem;
+  }
+
+  .lineageCardsGrid > div:nth-child(1) .lineageCardTag {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    font-weight: 600;
+    color: var(--color-bronze);
+    margin-bottom: 0.35rem;
+  }
+
+  .lineageCardsGrid > div:nth-child(1) .lineageCardTitle {
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1.25;
+    margin-bottom: 0.45rem;
+    color: var(--color-charcoal);
+  }
+
+  .lineageCardsGrid > div:nth-child(1) .lineageCardDesc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(26, 25, 24, 0.8);
+  }
+
+  /* 2 & 3. Supporting Visual Vignettes (Horizontal Editorial Pairs) */
+  .lineageCardsGrid > div:nth-child(n+2) .lineageCard {
+    background: #FFFFFF;
+    border: 1px solid rgba(26, 25, 24, 0.08);
+    border-radius: 6px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    align-items: center;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.03);
+  }
+
+  .lineageCardsGrid > div:nth-child(n+2) .lineageCardThumb {
+    width: 112px;
+    height: 100%;
+    min-height: 112px;
+    aspect-ratio: 1 / 1;
+  }
+
+  .lineageCardsGrid > div:nth-child(n+2) .lineageCardMeta {
+    padding: 1rem 1.15rem 1rem 0.5rem;
+  }
+
+  .lineageCardsGrid > div:nth-child(n+2) .lineageCardTag {
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    font-weight: 600;
+    color: var(--color-bronze);
+    margin-bottom: 0.2rem;
+    display: block;
+  }
+
+  .lineageCardsGrid > div:nth-child(n+2) .lineageCardTitle {
+    font-size: 1.08rem;
+    font-weight: 500;
+    line-height: 1.25;
+    margin-bottom: 0.25rem;
+    color: var(--color-charcoal);
+  }
+
+  .lineageCardsGrid > div:nth-child(n+2) .lineageCardDesc {
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: rgba(26, 25, 24, 0.72);
+  }
+
+  /* --- 4. Chapter 03: People Mobile (Visual Pause with Master Carver Hands) --- */
+  .peopleSection {
+    padding: clamp(3rem, 7vw, 4.25rem) 0;
+  }
+
+  .peopleGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .peopleVisual {
+    width: 100%;
+  }
+
+  .peopleImageFrame {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-subtle);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  .peopleEditorialQuote {
+    padding: 1.35rem 1.25rem;
+    margin-top: 0.25rem;
+    background: #F4EFEA;
+    border-left: 3px solid var(--color-bronze);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .peopleQuoteText {
+    font-size: 1.22rem;
+    line-height: 1.45;
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--color-charcoal);
+  }
+
+  /* --- 5. Chapter 04: Values Mobile (Spacious & Simple - Whitespace Pause) --- */
+  .valuesSection {
+    padding: clamp(3.25rem, 7vw, 4.5rem) 0;
+  }
+
+  .valuesHeader {
+    margin-bottom: 2rem;
+    text-align: left;
   }
 
   .valuesGrid {
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid rgba(26, 25, 24, 0.1);
   }
 
-  .statsBar {
-    grid-template-columns: repeat(2, 1fr);
+  .valueCol {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(26, 25, 24, 0.1);
+    border-radius: 0;
+    padding: 1.6rem 0;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    column-gap: 1rem;
+    row-gap: 0.35rem;
+    align-items: baseline;
+    text-align: left;
+    box-shadow: none;
   }
 
-  .statDivider {
+  .valueCol::after {
     display: none;
+  }
+
+  .valueIconWrap {
+    display: none;
+  }
+
+  .valueNum {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--color-bronze);
+    margin-bottom: 0;
+  }
+
+  .valueTitle {
+    grid-column: 2;
+    grid-row: 1;
+    font-family: var(--font-display);
+    font-size: 1.22rem;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--color-charcoal);
+    margin-bottom: 0.35rem;
+  }
+
+  .valueDesc {
+    grid-column: 2;
+    grid-row: 2;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: rgba(26, 25, 24, 0.78);
+  }
+
+  /* --- 6. Dark Section: Living Tradition & Heritage Impact Mobile --- */
+  .darkImpactSection {
+    padding: clamp(3.5rem, 8vw, 4.75rem) 0;
+  }
+
+  .darkImpactGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+
+  .darkNarrativeCol {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .darkEyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    margin-bottom: 0.5rem;
+  }
+
+  .darkHeading {
+    font-size: clamp(1.85rem, 6.5vw, 2.35rem);
+    line-height: 1.2;
+    margin-bottom: 0.85rem;
+  }
+
+  .darkText {
+    font-size: 1rem;
+    line-height: 1.68;
+    color: rgba(247, 244, 238, 0.85);
+  }
+
+  .darkLink {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+  }
+
+  /* 2x2 Scannable Restrained Editorial Stats Grid */
+  .darkStatsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .darkStatItem {
+    background-color: #171615;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-subtle);
+    padding: 1.35rem 0.85rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .darkStatIcon {
+    margin-bottom: 0.55rem;
+    opacity: 0.85;
+  }
+
+  .darkStatValue {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 7vw, 2.45rem);
+    font-weight: 300;
+    color: #C49653;
+    line-height: 1.05;
+    margin-bottom: 0.4rem;
+  }
+
+  .darkStatLabel {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 1.45;
+    color: rgba(247, 245, 240, 0.75);
+  }
+
+  /* Integrated Illuminated Sculpture as Dramatic Visual Closing Moment */
+  .darkArtworkCol {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-subtle);
+    overflow: hidden;
+    border: 1px solid rgba(196, 150, 83, 0.28);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6);
+    margin-top: 1rem;
+  }
+
+  /* --- 7. Chapter 05: Evolution Mobile (Substantially Larger Images & Clear Comparison) --- */
+  .evolutionSection {
+    padding: clamp(3.25rem, 7vw, 4.5rem) 0;
+  }
+
+  .evolutionGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .evolutionPanelsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .evolutionPanel {
+    background: #FFFFFF;
+    border: 1px solid rgba(26, 25, 24, 0.09);
+    border-radius: 6px;
+    overflow: hidden;
+    padding: 0;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .evolutionImageFrame {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    border-radius: 0;
+    margin-bottom: 0;
+  }
+
+  .evolutionPanelLabel {
+    display: inline-block;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    font-weight: 600;
+    color: var(--color-bronze);
+    margin-bottom: 0.25rem;
+    padding: 1.15rem 1.25rem 0;
+  }
+
+  .evolutionPanelTitle {
+    font-size: 1.22rem;
+    font-weight: 500;
+    color: var(--color-charcoal);
+    padding: 0 1.25rem 1.25rem;
+    line-height: 1.3;
+  }
+
+  .evolutionArrowCol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    margin: -0.35rem auto;
+    background: #FFFFFF;
+    border: 1px solid rgba(196, 150, 83, 0.35);
+    border-radius: 50%;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    transform: rotate(90deg);
+    font-size: 1.25rem;
+    color: var(--color-bronze);
+    z-index: 2;
+  }
+
+  /* --- 8. Chapter 06: Future / Vision Mobile (Architectural Major Visual Moment) --- */
+  .futureSection {
+    padding: clamp(3.25rem, 7vw, 4.5rem) 0;
+  }
+
+  .futureGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .futureVisualWrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3.4;
+    min-height: 320px;
+    border-radius: var(--radius-subtle);
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  .futureQuoteOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(18, 17, 16, 0.72) 35%, rgba(18, 17, 16, 0.95) 100%);
+    padding: 3rem 1.25rem 1.35rem;
+    text-align: center;
+    justify-content: center;
+    margin-top: 0;
+    border-radius: 0;
+  }
+
+  .futureQuoteText {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.22rem;
+    line-height: 1.4;
+    color: #F7F4EE;
+    text-align: center;
+  }
+
+  /* --- 9. Final CTA Mobile --- */
+  .ctaSection {
+    padding: 3.5rem 0 clamp(3.5rem, 8vw, 5rem);
+  }
+
+  .ctaCard {
+    padding: clamp(2.5rem, 7vw, 3.25rem) clamp(1.25rem, 5vw, 2rem);
+    border-radius: var(--radius-subtle);
+  }
+
+  .ctaHeading {
+    font-size: clamp(1.75rem, 6.8vw, 2.25rem);
+    line-height: 1.2;
+    margin-bottom: 0.85rem;
+  }
+
+  .ctaDesc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.85rem;
+  }
+
+  .ctaActions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.85rem;
+  }
+
+  .primaryGoldButton,
+  .secondaryOutlineButton {
+    width: 100%;
+    min-height: 52px;
+    justify-content: center;
+    font-size: 0.925rem;
+    font-weight: 550;
+    border-radius: 4px;
   }
 }
 
-@media (max-width: 576px) {
-  .valuesGrid,
-  .statsBar {
-    grid-template-columns: 1fr;
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 2.25rem;
+  }
+
+  .lineageCardsGrid > div:nth-child(n+2) .lineageCard {
+    grid-template-columns: 96px 1fr;
+  }
+
+  .lineageCardsGrid > div:nth-child(n+2) .lineageCardThumb {
+    width: 96px;
+    min-height: 96px;
+  }
+
+  .valueCol {
+    grid-template-columns: 36px 1fr;
+    column-gap: 0.85rem;
+    padding: 1.35rem 0;
+  }
+
+  .valueNum {
+    font-size: 1.55rem;
+  }
+
+  .valueTitle {
+    font-size: 1.15rem;
+  }
+
+  .valueDesc {
+    font-size: 0.925rem;
+  }
+
+  .darkStatsGrid {
+    gap: 0.65rem;
+  }
+
+  .darkStatItem {
+    padding: 1.15rem 0.65rem;
+  }
+
+  .darkStatValue {
+    font-size: 1.95rem;
+  }
+
+  .darkStatLabel {
+    font-size: 0.75rem;
   }
 }

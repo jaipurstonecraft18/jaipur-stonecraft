@@ -1,6 +1,5 @@
 import { query } from "@/lib/db/client.js";
 import { getAllKnowledgeArticles } from "@/content/products-db";
-import { marbleHubData } from "@/content/marble";
 import { projectsData } from "@/content/projects";
 
 export default async function sitemap() {
@@ -12,7 +11,6 @@ export default async function sitemap() {
     "/collections",
     "/products",
     "/knowledge",
-    "/marble",
     "/projects",
     "/craftsmanship",
     "/our-story",
@@ -35,14 +33,6 @@ export default async function sitemap() {
     priority: 0.7,
   }));
 
-  // 3. Marble Hub Sub-Pages
-  const marbleRoutes = Object.keys(marbleHubData).map((slug) => ({
-    url: `${baseUrl}/marble/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
-
   let collectionRows = [];
   let subcategoryRows = [];
   let categoryRows = [];
@@ -57,7 +47,7 @@ export default async function sitemap() {
     console.error("[Sitemap DB Query Error]:", e);
   }
 
-  // 4. Dynamic Level 1 Collections Routes
+  // 3. Dynamic Level 1 Collections Routes
   const collectionRoutes = collectionRows.map((col) => ({
     url: `${baseUrl}/collections/${col.slug}`,
     lastModified: new Date(),
@@ -65,7 +55,7 @@ export default async function sitemap() {
     priority: 0.8,
   }));
 
-  // 5. Dynamic Level 2 Subcategory Routes
+  // 4. Dynamic Level 2 Subcategory Routes
   const subcategoryRoutes = subcategoryRows.map((sub) => ({
     url: `${baseUrl}/collections/${sub.parent_collection_slug}/${sub.slug}`,
     lastModified: new Date(),
@@ -73,7 +63,7 @@ export default async function sitemap() {
     priority: 0.7,
   }));
 
-  // 6. Dynamic Level 3 Category Landing Routes
+  // 5. Dynamic Level 3 Category Landing Routes
   const categoryRoutes = categoryRows.map((cat) => ({
     url: `${baseUrl}/collections/${cat.parent_collection_slug}/${cat.parent_subcategory_slug}/${cat.slug}`,
     lastModified: new Date(),
@@ -81,7 +71,7 @@ export default async function sitemap() {
     priority: 0.7,
   }));
 
-  // 7. Dynamic Level 4 Design Detail Routes
+  // 6. Dynamic Level 4 Design Detail Routes
   const designRoutes = productRows.map((p) => ({
     url: `${baseUrl}/designs/${p.parent_category}/${p.slug}`,
     lastModified: p.updated_at ? new Date(p.updated_at) : new Date(),
@@ -89,7 +79,7 @@ export default async function sitemap() {
     priority: 0.6,
   }));
 
-  // 8. Dynamic Projects Routes
+  // 7. Dynamic Projects Routes
   const projectRoutes = Object.keys(projectsData).map((slug) => ({
     url: `${baseUrl}/projects/${slug}`,
     lastModified: new Date(),
@@ -100,7 +90,6 @@ export default async function sitemap() {
   return [
     ...staticRoutes,
     ...knowledgeRoutes,
-    ...marbleRoutes,
     ...collectionRoutes,
     ...subcategoryRoutes,
     ...categoryRoutes,

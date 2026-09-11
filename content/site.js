@@ -34,7 +34,6 @@ export const siteConfig = {
     { label: "Home", href: "/" },
     { label: "Collections", href: "/collections" },
     { label: "Products", href: "/products" },
-    { label: "Marble Hub", href: "/marble" },
     { label: "Projects", href: "/projects" },
     { label: "Craftsmanship", href: "/craftsmanship" },
     { label: "About Us", href: "/our-story" },
@@ -47,7 +46,6 @@ export const siteConfig = {
     { label: "Fountains & Water Features", href: "/collections/fountains-water-features" },
     { label: "Decorative Stone Art", href: "/collections/decorative-stone-art" },
     { label: "Custom & Bespoke Creations", href: "/collections/custom-bespoke-creations" },
-    { label: "Marble Crafts Hub", href: "/marble" },
   ],
   legal: [
     { label: "Privacy Policy", href: "#" },

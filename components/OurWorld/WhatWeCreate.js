@@ -64,13 +64,16 @@ export default function WhatWeCreate({ items = [], header = {} }) {
           </ScrollReveal>
         </div>
 
-        {/* 4 Offering Cards */}
+        {/* 4 Offering Modules / Cards */}
         <div className={styles.cardsGrid}>
           {items.map((item, idx) => (
-            <ScrollReveal key={item.id} animation="fade-up" delay={idx * 100}>
+            <ScrollReveal key={item.id} animation="fade-up" delay={idx * 80}>
               <div className={styles.card}>
-                <div className={styles.iconWrapper}>
-                  <OfferingIcon iconKey={item.iconKey} />
+                <div className={styles.topCardRow}>
+                  <span className={styles.cardIndex}>0{idx + 1}</span>
+                  <div className={styles.iconWrapper}>
+                    <OfferingIcon iconKey={item.iconKey} />
+                  </div>
                 </div>
                 <h3 className={styles.cardTitle}>{item.title}</h3>
                 <p className={styles.cardDescription}>{item.description}</p>

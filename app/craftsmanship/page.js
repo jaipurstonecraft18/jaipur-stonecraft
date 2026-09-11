@@ -75,7 +75,10 @@ export default async function Craftsmanship() {
       />
 
       {/* 5. STAGE 02: BLUEPRINT MAPPING & MODELING (DARK ATELIER) */}
-      <BlueprintModelingStage data={pageStages.stage02} />
+      <BlueprintModelingStage
+        imageSrc={pageImages.stage02_blueprint || pageStages.stage02?.imageSrc}
+        data={pageStages.stage02}
+      />
 
       {/* 6. STAGE 03: GENERATIONAL HAND CARVING (LIGHT) */}
       <HandChiselingStage

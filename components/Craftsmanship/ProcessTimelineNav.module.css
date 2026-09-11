@@ -81,12 +81,66 @@
 
 @media (max-width: 991px) {
   .stickyNav {
-    top: 60px;
+    position: sticky;
+    top: 60px; /* Aligns directly below fixed 60px mobile header */
+    z-index: 990;
+    padding: 0.5rem 0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    background-color: rgba(252, 251, 249, 0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border-subtle);
+    transition: top 0.25s ease, background-color var(--transition-fast);
+  }
+
+  .navWrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0.1rem 0;
+  }
+
+  .navWrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navLabel {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-bronze);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .stageList {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: nowrap;
+    padding-right: 0.5rem;
+  }
+
+  .stageBtn {
+    min-height: 42px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.78rem;
+    flex-shrink: 0;
+  }
+
+  .stageNum {
+    font-size: 0.88rem;
+  }
+
+  .stageName {
+    font-size: 0.75rem;
   }
 }
 
-@media (max-width: 768px) {
-  .navLabel {
-    display: none;
-  }
-}

@@ -208,31 +208,127 @@
 }
 
 @media (max-width: 991px) {
+  .stageSection {
+    padding: clamp(2.5rem, 6vw, 3.5rem) 0;
+  }
+
+  .stageHeader {
+    margin-bottom: 1.25rem;
+  }
+
+  .heading {
+    font-size: clamp(1.75rem, 6vw, 2.25rem);
+    margin-bottom: 0.875rem;
+  }
+
   .mainGrid {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .mainGrid > :last-child {
+    order: -1;
+    margin-bottom: 0.25rem;
+  }
+
+  .narrativeText p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .quoteCard {
+    margin-top: 1.25rem;
+    padding: 1rem 1.15rem 1rem 1.25rem;
+    border-left: 2px solid var(--color-bronze);
+    background-color: rgba(245, 242, 236, 0.85);
+  }
+
+  .quoteMark {
+    font-size: 2.25rem;
+    top: 0.25rem;
+    left: 0.75rem;
+    opacity: 0.25;
+  }
+
+  .quoteText {
+    font-size: 0.98rem;
+    line-height: 1.45;
+    margin-bottom: 0.4rem;
+  }
+
+  .quoteAuthor {
+    font-size: 0.75rem;
   }
 
   .visualCol {
-    min-height: 380px;
+    min-height: auto;
+    width: 100%;
   }
 
   .mainImageFrame {
     width: 100%;
     position: relative;
-    height: 300px;
+    height: auto;
+    aspect-ratio: 16 / 11;
+    border-radius: var(--radius-subtle);
+    box-shadow: 0 10px 24px rgba(26, 25, 24, 0.08);
   }
 
   .staggeredImageFrame {
     display: none;
   }
 
+  .toolsSection {
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .toolsHeading {
+    font-size: 1.25rem;
+    margin-bottom: 0.875rem;
+  }
+
   .toolsGrid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
+  }
+
+  .toolCard {
+    padding: 0.75rem 0.85rem;
+    border-color: rgba(197, 160, 89, 0.2);
+  }
+
+  .toolName {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .toolUse {
+    font-size: 0.78rem;
+    line-height: 1.4;
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 480px) {
   .toolsGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .toolCard {
+    padding: 0.65rem 0.75rem;
+  }
+
+  .toolName {
+    font-size: 0.85rem;
+  }
+
+  .toolUse {
+    font-size: 0.74rem;
+    line-height: 1.35;
   }
 }
+

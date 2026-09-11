@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/Container/Container";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
@@ -5,45 +6,54 @@ import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
 import styles from "./OurStory.module.css";
 
 export default function StoryFutureSection({ data = {} }) {
-  const eyebrow = data.eyebrow || "OUR VISION";
-  const title = data.heading || data.title || "Carving Indian Heritage for the World";
+  const chapter = data.chapter || "CHAPTER 06";
+  const heading = data.heading || "Carving Indian Heritage for the World";
+  const narrative = data.subcopy || "We envision a future where the timeless stone artistry of Rajasthan continues to inspire architectural, sacred, and cultural spaces across the globe — creating meaningful, enduring monuments in natural stone.";
+  const linkText = data.linkText || "Our Vision";
+  const linkHref = data.linkHref || "/contact?type=custom";
   const rawImage = data.imageSrc || "/images/collections/temples-architectural.webp";
   const imageSrc = getImageVariantUrl(rawImage, "display") || rawImage;
-  const lead = data.leadQuote || "Our vision is to serve as the global bridge for master Indian stonework — showcasing centuries of hand-carved heritage while creating art that finds its place in spiritual spaces, luxury residences, and public monuments across the world.";
-  const sub = data.subcopy || "We partner with architects, interior designers, temple trusts, and private collectors who value raw material integrity, ancestral craftsmanship, and flawless execution.";
+  const visionStatement = data.visionStatement || "A Global Bridge for Master Indian Stonework";
 
   return (
-    <section className={styles.futureSection} aria-label="Our Vision">
+    <section id="chapter-06" className={styles.futureSection} aria-label="Chapter 06: Carving Indian Heritage for the World">
       <Container>
         <div className={styles.futureGrid}>
-          {/* Left Vision Content */}
-          <div className={styles.futureContent}>
+          {/* Left Column: Chapter Narrative */}
+          <div className={styles.futureContentCol}>
             <ScrollReveal animation="fade-up">
-              <span className={styles.futureEyebrow}>{eyebrow}</span>
-              <h2 className={styles.futureTitle}>{title}</h2>
-              <div className={styles.ornamentDividerLeft} aria-hidden="true">✦</div>
-              
-              <p className={styles.futureLead}>
-                &ldquo;{lead}&rdquo;
-              </p>
-              
-              <p className={styles.futureSub}>
-                {sub}
-              </p>
+              <span className={styles.chapterEyebrow}>{chapter}</span>
+            </ScrollReveal>
+
+            <ScrollReveal animation="fade-up" delay={80}>
+              <h2 className={styles.chapterHeading}>{heading}</h2>
+            </ScrollReveal>
+
+            <ScrollReveal animation="fade-up" delay={120}>
+              <p className={styles.chapterText}>{narrative}</p>
+            </ScrollReveal>
+
+            <ScrollReveal animation="fade-up" delay={160}>
+              <Link href={linkHref} className={styles.editorialLink}>
+                <span>{linkText}</span>
+                <span className={styles.editorialLinkArrow} aria-hidden="true">&rarr;</span>
+              </Link>
             </ScrollReveal>
           </div>
 
-          {/* Right Heritage Architecture Photo */}
-          <div className={styles.futureVisual}>
-            <ScrollReveal animation="fade-up" delay={150}>
-              <div className={styles.futureImageFrame}>
-                <Image
-                  src={imageSrc}
-                  alt="Carved sandstone chhatri pavilion representing Indian stonecraft heritage"
-                  fill
-                  sizes="(max-width: 991px) 100vw, 45vw"
-                  className={styles.futureImage}
-                />
+          {/* Right Column: Monumental Temple Photo with Vignette Statement */}
+          <div className={styles.futureVisualWrap}>
+            <ScrollReveal animation="fade-up" delay={120}>
+              <Image
+                src={imageSrc}
+                alt={data.imageAlt || "Grand hand-carved stone temple architecture and shikhara"}
+                fill
+                unoptimized
+                sizes="(max-width: 991px) 100vw, 55vw"
+                className={styles.futureImage}
+              />
+              <div className={styles.futureQuoteOverlay}>
+                <p className={styles.futureQuoteText}>{visionStatement}</p>
               </div>
             </ScrollReveal>
           </div>

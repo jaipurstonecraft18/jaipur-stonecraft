@@ -53,76 +53,48 @@
   border: 1px solid rgba(212, 163, 89, 0.25);
   border-radius: var(--radius-subtle);
   overflow: hidden;
-  padding: var(--spacing-lg);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.blueprintImage {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.blueprintFrame:hover .blueprintImage {
+  transform: scale(1.03);
+}
+
+.imageOverlayBadge {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  background-color: rgba(21, 20, 19, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 163, 89, 0.3);
+  padding: 0.65rem 1.15rem;
+  border-radius: var(--radius-subtle);
+  color: var(--color-cream);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-}
-
-.gridOverlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.blueprintInner {
-  position: relative;
   z-index: 2;
 }
 
-.blueprintTag {
-  display: flex;
-  justify-content: space-between;
+.badgeSub {
   font-family: var(--font-body);
   font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.15em;
   color: var(--color-bronze);
-  margin-bottom: var(--spacing-sm);
-  border-bottom: 1px stroke rgba(212, 163, 89, 0.2);
-  padding-bottom: 0.5rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.15rem;
 }
 
-.blueprintTitle {
-  font-family: var(--font-display);
-  font-size: 1.85rem;
-  font-weight: 300;
-  color: var(--color-cream);
-  margin-bottom: 0.5rem;
-}
-
-.blueprintSub {
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: rgba(252, 251, 249, 0.75);
-  margin-bottom: var(--spacing-md);
-}
-
-.specsList {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-xs);
-  margin-top: var(--spacing-md);
-  padding-top: var(--spacing-sm);
-  border-top: 1px solid rgba(212, 163, 89, 0.2);
-}
-
-.specItem {
-  display: flex;
-  flex-direction: column;
-}
-
-.specLabel {
-  font-family: var(--font-body);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  color: rgba(212, 163, 89, 0.8);
-}
-
-.specValue {
+.badgeTitle {
   font-family: var(--font-display);
   font-size: 1.05rem;
+  font-weight: 400;
   color: var(--color-cream);
 }
 
@@ -195,11 +167,104 @@
 }
 
 @media (max-width: 991px) {
+  .stageSection {
+    padding: clamp(2.5rem, 6vw, 3.5rem) 0;
+  }
+
+  .stageHeader {
+    margin-bottom: 1.25rem;
+  }
+
   .mainGrid {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+  }
+
+  .heading {
+    font-size: clamp(1.85rem, 6.5vw, 2.35rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.75rem;
+    text-wrap: balance;
+  }
+
+  .narrativeText p {
+    font-size: 0.9rem;
+    line-height: 1.58;
+    margin-bottom: 0.6rem;
+    color: rgba(252, 251, 249, 0.85);
+  }
+
+  .stepsList {
+    gap: 0.5rem;
+    margin-top: 0.85rem;
+  }
+
+  .stepPoint {
+    padding: 0.65rem 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 163, 89, 0.2);
+    border-radius: 8px;
+    gap: 0.65rem;
+    align-items: center;
+  }
+
+  .stepBullet {
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+  }
+
+  .stepPointTitle {
+    font-size: 0.95rem;
+    line-height: 1.2;
+    margin-bottom: 0.1rem;
+  }
+
+  .stepPointDesc {
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+
+  .blueprintFrame {
+    aspect-ratio: 16 / 12;
+    min-height: 240px;
+    padding: 1.1rem 1rem;
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .blueprintTitle {
+    font-size: 1.35rem;
+    line-height: 1.2;
+    margin-bottom: 0.35rem;
+  }
+
+  .blueprintSub {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
   }
 
   .specsList {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.35rem;
+    padding-top: 0.65rem;
+  }
+
+  .specLabel {
+    font-size: 0.58rem;
+    letter-spacing: 0.05em;
+  }
+
+  .specValue {
+    font-size: 0.85rem;
   }
 }
+

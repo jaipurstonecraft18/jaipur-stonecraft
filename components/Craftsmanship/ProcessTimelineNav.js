@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Container from "@/components/Container/Container";
 import styles from "./ProcessTimelineNav.module.css";
 
@@ -16,10 +16,12 @@ const stages = [
 
 export default function ProcessTimelineNav() {
   const [activeId, setActiveId] = useState("stage-01");
+  const navWrapperRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 200;
+      const isDesktop = typeof window !== "undefined" && window.innerWidth >= 992;
+      const scrollPosition = window.scrollY + (isDesktop ? 220 : 150);
 
       for (let i = stages.length - 1; i >= 0; i--) {
         const stage = stages[i];
@@ -38,11 +40,28 @@ export default function ProcessTimelineNav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Gently scroll active button into view in the horizontal nav
+  useEffect(() => {
+    if (navWrapperRef.current) {
+      const activeBtn = navWrapperRef.current.querySelector(`.${styles.active}`);
+      if (activeBtn) {
+        const container = navWrapperRef.current;
+        const btnLeft = activeBtn.offsetLeft;
+        const btnWidth = activeBtn.offsetWidth;
+        const containerWidth = container.offsetWidth;
+        const scrollTarget = btnLeft - containerWidth / 2 + btnWidth / 2;
+        container.scrollTo({ left: Math.max(0, scrollTarget), behavior: "smooth" });
+      }
+    }
+  }, [activeId]);
+
   const scrollToStage = (id) => {
     const el = document.getElementById(id);
     if (el) {
       const isDesktop = typeof window !== "undefined" && window.innerWidth >= 992;
-      const yOffset = isDesktop ? -170 : -120; // Offset for both fixed header and sticky timeline bar
+      // On desktop: header (105px) + sticky nav (~50px) + 15px margin = -170px
+      // On mobile: fixed header (60px) + sticky nav (~48px) + 12px margin = -120px
+      const yOffset = isDesktop ? -170 : -120;
       const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
@@ -51,7 +70,7 @@ export default function ProcessTimelineNav() {
   return (
     <nav className={styles.stickyNav} aria-label="Atelier Process Stages Navigation">
       <Container>
-        <div className={styles.navWrapper}>
+        <div ref={navWrapperRef} className={styles.navWrapper}>
           <span className={styles.navLabel}>ATELIER PATH:</span>
           <div className={styles.stageList}>
             {stages.map((stage) => {

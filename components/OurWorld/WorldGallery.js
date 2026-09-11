@@ -42,6 +42,36 @@ export default function WorldGallery({ items = [], activeCategory = "all", heade
     return cols;
   }, [items, filteredItems, activeCategory]);
 
+  // Mobile curated visual essay (Hero -> 2 Supporting -> Centerpiece -> 2 Supporting -> Architectural)
+  const mobileCuratedItems = useMemo(() => {
+    if (activeCategory === "all") {
+      const hero = items.find((i) => i.id === "gal-1") || items[0];
+      const supp1 = items.find((i) => i.id === "gal-2") || items[1];
+      const supp2 = items.find((i) => i.id === "gal-3") || items[2];
+      const centerpiece = items.find((i) => i.id === "gal-5") || items[4];
+      const supp3 = items.find((i) => i.id === "gal-4") || items[3];
+      const supp4 = items.find((i) => i.id === "gal-6") || items[5];
+      const wideArch = items.find((i) => i.id === "gal-9") || items[8];
+
+      return [
+        { ...hero, role: "hero" },
+        { ...supp1, role: "supporting" },
+        { ...supp2, role: "supporting" },
+        { ...centerpiece, role: "centerpiece" },
+        { ...supp3, role: "supporting" },
+        { ...supp4, role: "supporting" },
+        { ...wideArch, role: "architectural" },
+      ].filter(Boolean);
+    }
+
+    return filteredItems.slice(0, 5).map((item, idx) => {
+      let role = "supporting";
+      if (idx === 0) role = "hero";
+      else if (idx === 3) role = "centerpiece";
+      return { ...item, role };
+    });
+  }, [items, filteredItems, activeCategory]);
+
   const getAspectClass = (item) => {
     switch (item.aspectRatio) {
       case "tall":
@@ -78,8 +108,8 @@ export default function WorldGallery({ items = [], activeCategory = "all", heade
           </span>
         </div>
 
-        {/* Asymmetric Gallery Grid */}
-        <div id="gallery-grid" className={styles.asymmetricGrid}>
+        {/* Desktop Asymmetric Gallery Grid (> 768px) */}
+        <div id="gallery-grid" className={styles.desktopGrid}>
           {columnsData.map((col, colIdx) => (
             <div key={`col-${colIdx}`} className={styles.gridCol}>
               {col.map((item, itemIdx) => {
@@ -96,7 +126,7 @@ export default function WorldGallery({ items = [], activeCategory = "all", heade
                           src={imgSrc}
                           alt={item.altText || item.title}
                           fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 20vw"
+                          sizes="(max-width: 1200px) 33vw, 20vw"
                           className={styles.image}
                           loading="lazy"
                         />
@@ -111,6 +141,45 @@ export default function WorldGallery({ items = [], activeCategory = "all", heade
               })}
             </div>
           ))}
+        </div>
+
+        {/* Curated Mobile Editorial Gallery (<= 768px) */}
+        <div className={styles.mobileGrid} aria-label="Mobile Curated Gallery Showcase">
+          {mobileCuratedItems.map((item) => {
+            const imgSrc = getImageVariantUrl(item.imageSrc, "display") || item.imageSrc;
+            const isHero = item.role === "hero";
+            const isCenterpiece = item.role === "centerpiece";
+            const isArchitectural = item.role === "architectural";
+            const isFullWidth = isHero || isCenterpiece || isArchitectural;
+
+            return (
+              <div
+                key={`mob-${item.id}`}
+                className={`${styles.mobileCard} ${isFullWidth ? styles.mobileCardFull : styles.mobileCardHalf}`}
+              >
+                <div
+                  className={`${styles.mobileImageFrame} ${
+                    isHero
+                      ? styles.mobileAspectHero
+                      : isArchitectural
+                      ? styles.mobileAspectLandscape
+                      : isCenterpiece
+                      ? styles.mobileAspectCenterpiece
+                      : styles.mobileAspectSquare
+                  }`}
+                >
+                  <Image
+                    src={imgSrc}
+                    alt={item.altText || item.title}
+                    fill
+                    sizes={isFullWidth ? "100vw" : "50vw"}
+                    className={styles.mobileImage}
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         {/* View Full Gallery CTA */}

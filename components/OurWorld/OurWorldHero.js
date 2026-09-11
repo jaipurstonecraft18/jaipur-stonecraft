@@ -44,8 +44,18 @@ export default function OurWorldHero({ data = {} }) {
         <div className={styles.contentWrapper}>
           <ScrollReveal animation="fade-up">
             <span className={styles.eyebrow}>{eyebrow}</span>
-            <h1 className={styles.heading}>{heading}</h1>
-            <p className={styles.description}>{description}</p>
+            <h1 className={styles.heading}>
+              <span className={styles.desktopHeading}>{heading}</span>
+              <span className={styles.mobileHeading}>
+                Stone, Culture.<br />Timeless Beauty.
+              </span>
+            </h1>
+            <p className={styles.description}>
+              <span className={styles.desktopDesc}>{description}</span>
+              <span className={styles.mobileDesc}>
+                Centuries of heritage, master artistry, and an unwavering devotion to stone perfection.
+              </span>
+            </p>
             <a
               href={ctaHref}
               onClick={handleScrollToGallery}

@@ -229,11 +229,106 @@
 }
 
 @media (max-width: 991px) {
+  .stageSection {
+    padding: 3rem 0 3.5rem;
+  }
+
   .mainGrid {
     grid-template-columns: 1fr;
+    gap: 1.75rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+  }
+
+  .heading {
+    font-size: clamp(1.85rem, 6.8vw, 2.35rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.75rem;
+    text-wrap: balance;
+  }
+
+  .narrativeText p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 0.65rem;
+  }
+
+  .technicalBox {
+    margin-top: 1rem;
+    padding: 0.85rem 1rem;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(184, 123, 49, 0.2);
+    border-left: 3px solid var(--color-bronze);
+  }
+
+  .techTitle {
+    font-size: 0.95rem;
+  }
+
+  .techDesc {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  .storyLink {
+    min-height: 44px;
+    font-size: 0.85rem;
+  }
+
+  .imageFrame {
+    aspect-ratio: 16 / 11;
+    border-radius: 18px;
+    box-shadow: 0 14px 36px rgba(26, 25, 24, 0.1);
+  }
+
+  .imageBadge {
+    bottom: 0.75rem;
+    left: 0.75rem;
+    padding: 0.45rem 0.8rem;
+    border-radius: 8px;
+  }
+
+  .imageBadgeLabel {
+    font-size: 0.88rem;
+  }
+
+  .imageBadgeSub {
+    font-size: 0.7rem;
+  }
+
+  .swatchSection {
+    padding-top: 1.75rem;
+  }
+
+  .swatchHeading {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
   }
 
   .swatchGrid {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .swatchCard {
+    padding: 0.85rem 1rem;
+    border-radius: 12px;
+    background-color: #FAF7F2;
+    border: 1px solid rgba(225, 215, 200, 0.75);
+  }
+
+  .swatchName {
+    font-size: 1.05rem;
+  }
+
+  .swatchDesc {
+    font-size: 0.8rem;
+    line-height: 1.45;
   }
 }

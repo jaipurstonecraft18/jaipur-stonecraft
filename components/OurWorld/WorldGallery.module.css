@@ -72,12 +72,17 @@
   color: rgba(26, 25, 24, 0.55);
 }
 
-/* Editorial Asymmetric Photo Grid */
+/* Desktop Asymmetric Photo Grid */
+.desktopGrid,
 .asymmetricGrid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1.25rem;
   align-items: start;
+}
+
+.mobileGrid {
+  display: none;
 }
 
 .gridCol {
@@ -86,7 +91,7 @@
   gap: 1.25rem;
 }
 
-/* Gallery Card */
+/* Gallery Card (Desktop) */
 .galleryCard {
   position: relative;
   width: 100%;
@@ -134,7 +139,7 @@
   transform: scale(1.04);
 }
 
-/* Subtle Hover Overlay */
+/* Subtle Hover Overlay (Desktop) */
 .cardOverlay {
   position: absolute;
   inset: 0;
@@ -210,30 +215,111 @@
 
 /* Responsive Grid Breakpoints */
 @media (max-width: 1200px) {
+  .desktopGrid,
   .asymmetricGrid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
+/* MOBILE CURATED EDITORIAL GRID */
 @media (max-width: 768px) {
+  .desktopGrid,
   .asymmetricGrid {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.85rem;
+    display: none !important;
   }
 
-  .gridCol {
-    gap: 0.85rem;
+  .mobileGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    width: 100%;
   }
 
-  .aspectTall,
-  .aspectCenterpiece {
-    aspect-ratio: 4 / 5;
+  .mobileCard {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+  }
+
+  .mobileCardFull {
+    grid-column: 1 / -1;
+  }
+
+  .mobileCardHalf {
+    grid-column: span 1;
+  }
+
+  .mobileImageFrame {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 6px;
+    background-color: var(--color-stone-grey);
+  }
+
+  .mobileAspectHero {
+    aspect-ratio: 16 / 11;
+  }
+
+  .mobileAspectCenterpiece {
+    aspect-ratio: 4 / 3.2;
+  }
+
+  .mobileAspectLandscape {
+    aspect-ratio: 16 / 9;
+  }
+
+  .mobileAspectSquare {
+    aspect-ratio: 1 / 1;
+  }
+
+  .mobileImage {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .gallerySection {
+    padding-top: 3.5rem;
+    padding-bottom: 4rem;
+  }
+
+  .eyebrow {
+    font-size: 0.76rem;
+    letter-spacing: 0.18em;
+    margin-bottom: 0.75rem;
+  }
+
+  .heading {
+    font-size: clamp(1.8rem, 6.5vw, 2.15rem); /* 28-34px */
+    line-height: 1.15;
+    margin-bottom: 0.85rem;
+  }
+
+  .subcopy {
+    font-size: 1.025rem; /* ~16.5px */
+    line-height: 1.6;
+    max-width: 480px;
+  }
+
+  .filterPillBar {
+    margin-bottom: 1.75rem;
+  }
+
+  .viewAllButton {
+    min-height: 50px;
+    padding: 0.9rem 2rem;
+    font-size: 0.825rem;
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
   }
 }
 
-@media (max-width: 480px) {
-  .asymmetricGrid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+@media (max-width: 360px) {
+  .mobileGrid {
+    gap: 0.4rem;
   }
 }

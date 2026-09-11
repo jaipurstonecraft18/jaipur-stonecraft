@@ -133,7 +133,81 @@
 }
 
 @media (max-width: 991px) {
+  .stageSection {
+    padding: clamp(2.5rem, 6vw, 3.5rem) 0;
+  }
+
+  .stageHeader {
+    margin-bottom: 1.25rem;
+  }
+
+  .topIntro {
+    margin-bottom: 1.5rem;
+  }
+
+  .heading {
+    font-size: clamp(1.75rem, 6vw, 2.25rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .introDesc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
   .editorialGrid {
     grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .card {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  /* Primary Editorial Image: Full-width Sacred Facial Anatomy */
+  .editorialGrid > :first-child .cardImageWrapper {
+    aspect-ratio: 16 / 11;
+    border-radius: 12px;
+    box-shadow: 0 12px 28px rgba(26, 25, 24, 0.08);
+    border: 1px solid rgba(197, 160, 89, 0.2);
+  }
+
+  /* Secondary Editorial Image: Subtle visual offset for gallery rhythm */
+  .editorialGrid > :last-child .card {
+    max-width: 92%;
+    margin-left: auto;
+  }
+
+  .editorialGrid > :last-child .cardImageWrapper {
+    aspect-ratio: 16 / 10;
+    border-radius: 10px;
+    box-shadow: 0 10px 22px rgba(26, 25, 24, 0.06);
+    border: 1px solid rgba(197, 160, 89, 0.18);
+  }
+
+  .cardContent {
+    padding: 0.85rem 0.25rem 0.5rem 0.25rem;
+  }
+
+  .cardTag {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    margin-bottom: 0.25rem;
+  }
+
+  .cardTitle {
+    font-size: 1.22rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .cardDesc {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: rgba(26, 25, 24, 0.8);
   }
 }
+
+

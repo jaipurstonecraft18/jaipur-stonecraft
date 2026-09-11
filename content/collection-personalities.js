@@ -23,26 +23,6 @@ export const collectionPersonalities = {
       { label: "Proportions", value: "Sacred Shilpa Shastra" },
       { label: "Scale Range", value: "1.5ft to 12ft+ Statues" }
     ],
-    materials: [
-      {
-        name: "Makrana White Marble",
-        origin: "Nagaur, Rajasthan",
-        description: "Flawless white calcitic marble renowned for zero water absorption and lifelong sacred radiance.",
-        href: "/marble"
-      },
-      {
-        name: "Bansi Paharpur Sandstone",
-        origin: "Bharatpur, Rajasthan",
-        description: "Blush pink stone ideal for exterior courtyard statuary and architectural relief accents.",
-        href: "/marble"
-      },
-      {
-        name: "Black Rajasthan Marble",
-        origin: "Bhainslana, Rajasthan",
-        description: "Deep dark stone bringing dramatic contrast to contemporary and traditional idols.",
-        href: "/marble"
-      }
-    ],
     processSteps: [
       {
         title: "Block Selection & Blessing",
@@ -101,26 +81,6 @@ export const collectionPersonalities = {
       { label: "Relief Depth", value: "25mm to 100mm Carved Depth" },
       { label: "Panel Format", value: "Seamless Modular Tiles" },
       { label: "Application", value: "Feature Walls & Facades" }
-    ],
-    materials: [
-      {
-        name: "Bansi Paharpur Pink Sandstone",
-        origin: "Bharatpur, Rajasthan",
-        description: "Warm terracotta and blush pink tones creating rich shadows in carved wall murals.",
-        href: "/marble"
-      },
-      {
-        name: "White Makrana Marble",
-        origin: "Nagaur, Rajasthan",
-        description: "Pristine white stone for intricate interior relief panels and spiritual room murals.",
-        href: "/marble"
-      },
-      {
-        name: "Beige Jaisalmer Limestone",
-        origin: "Jaisalmer, Rajasthan",
-        description: "Golden amber stone providing royal warmth for heritage wall art panels.",
-        href: "/marble"
-      }
     ],
     processSteps: [
       {
@@ -181,26 +141,6 @@ export const collectionPersonalities = {
       { label: "Customization", value: "Full CAD Architectural Plans" },
       { label: "Shipment", value: "Numbered ISPM-15 Crates" }
     ],
-    materials: [
-      {
-        name: "Makrana White Marble",
-        origin: "Nagaur, Rajasthan",
-        description: "Premium white calcitic stone used in iconic home mandirs and sacred temple pillars.",
-        href: "/marble"
-      },
-      {
-        name: "Bansi Paharpur Pink Sandstone",
-        origin: "Bharatpur, Rajasthan",
-        description: "Historic temple sandstone used in grand shikhara domes and carved exterior facades.",
-        href: "/marble"
-      },
-      {
-        name: "Dholpur Beige Sandstone",
-        origin: "Dholpur, Rajasthan",
-        description: "Uniform buff sandstone ideal for large architectural columns, arches, and balustrades.",
-        href: "/marble"
-      }
-    ],
     processSteps: [
       {
         title: "3D CAD & Architectural Modeling",
@@ -259,26 +199,6 @@ export const collectionPersonalities = {
       { label: "Waterproofing", value: "Non-Porous Sealed Joints" },
       { label: "Spillway Tuning", value: "Calibrated Sheet Flow" },
       { label: "Application", value: "Courtyards & Poolsides" }
-    ],
-    materials: [
-      {
-        name: "Bansi Pink Sandstone",
-        origin: "Bharatpur, Rajasthan",
-        description: "Weathers gracefully outdoors with running water, developing a rich antique patina.",
-        href: "/marble"
-      },
-      {
-        name: "Makrana White Marble",
-        origin: "Nagaur, Rajasthan",
-        description: "Impervious calcitic marble ensuring zero water absorption and brilliant water reflections.",
-        href: "/marble"
-      },
-      {
-        name: "Black Rajasthan Marble",
-        origin: "Bhainslana, Rajasthan",
-        description: "Creates mirror-like black water reflections for modern cascading waterfalls.",
-        href: "/marble"
-      }
     ],
     processSteps: [
       {
@@ -339,26 +259,6 @@ export const collectionPersonalities = {
       { label: "Application", value: "Luxury Interiors & Gardens" },
       { label: "Craftsmanship", value: "Generational Fine Detailing" }
     ],
-    materials: [
-      {
-        name: "Makrana White Marble",
-        origin: "Nagaur, Rajasthan",
-        description: "Pure calcitic stone ideal for refined interior vases, pedestals, and decor objects.",
-        href: "/marble"
-      },
-      {
-        name: "Pink Sandstone & Onyx",
-        origin: "Rajasthan Bed",
-        description: "Translucent natural stone accents that filter light in sculptural lamps and bowls.",
-        href: "/marble"
-      },
-      {
-        name: "Dholpur Sandstone",
-        origin: "Dholpur, Rajasthan",
-        description: "Durable natural stone for garden lanterns, outdoor planters, and stone benches.",
-        href: "/marble"
-      }
-    ],
     processSteps: [
       {
         title: "Block Selection & Sizing",
@@ -417,26 +317,6 @@ export const collectionPersonalities = {
       { label: "Clay Prototyping", value: "Client Approval Before Carving" },
       { label: "Custom Scaling", value: "Any Architectural CAD Size" },
       { label: "Global Logistics", value: "Fumigated ISPM-15 Crating" }
-    ],
-    materials: [
-      {
-        name: "Makrana White Marble",
-        origin: "Nagaur, Rajasthan",
-        description: "The definitive choice for custom portrait busts, deity idols, and fine monuments.",
-        href: "/marble"
-      },
-      {
-        name: "Bansi Paharpur Sandstone",
-        origin: "Bharatpur, Rajasthan",
-        description: "Royal pink sandstone for custom architectural facades and heritage restorations.",
-        href: "/marble"
-      },
-      {
-        name: "Black & Coloured Marbles",
-        origin: "Rajasthan Quarries",
-        description: "Custom stone color combinations tailored to architect specifications.",
-        href: "/marble"
-      }
     ],
     processSteps: [
       {

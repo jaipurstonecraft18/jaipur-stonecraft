@@ -16,10 +16,20 @@ export default function StoryHeader({ eyebrow, heading, subtitle, imageSrc }) {
           {/* Left Editorial Narrative */}
           <div className={styles.heroContent}>
             <ScrollReveal animation="fade-up">
-              <span className={styles.eyebrow}>{eyebrow || "OUR STORY"}</span>
-              <h1 className={styles.title}>{heading || "Generational Hands, Modern Vision"}</h1>
+              <span className={styles.eyebrow}>{eyebrow || "OUR HERITAGE & VISION"}</span>
+              <h1 className={styles.title}>
+                <span className={styles.desktopTitle}>{heading || "Generational Hands, Modern Vision"}</span>
+                <span className={styles.mobileTitle}>
+                  Generational Hands,<br />Modern Vision
+                </span>
+              </h1>
               <p className={styles.leadDescription}>
-                {subtitle || "From historic stone hubs in Rajasthan to world-class architectural projects, our family's dedication to chiseling raw natural stone spans decades. Today, we bring this generational craft directly to global architects, sacred trusts, and private collectors without middleman distortion."}
+                <span className={styles.desktopDesc}>
+                  {subtitle || "From historic stone hubs in Rajasthan to world-class architectural projects, our family's dedication to chiseling raw natural stone spans decades. Today, we bring this generational craft directly to global architects, sacred trusts, and private collectors without middleman distortion."}
+                </span>
+                <span className={styles.mobileDesc}>
+                  From historic stone hubs in Rajasthan to world-class architectural sanctuaries, our family&apos;s dedication to chiseling raw natural stone spans generations.
+                </span>
               </p>
             </ScrollReveal>
           </div>

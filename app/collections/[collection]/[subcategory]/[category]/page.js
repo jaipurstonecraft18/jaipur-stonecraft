@@ -7,14 +7,12 @@ import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import CategoryCatalogue from "@/components/CategoryCatalogue/CategoryCatalogue";
 import CategoryCard from "@/components/CategoryCard/CategoryCard";
-import MaterialCard from "@/components/MaterialCard/MaterialCard";
 import CTASection from "@/components/CTASection/CTASection";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { getCollection, getSubcategory } from "@/content/collections";
 import { categoriesData, getCategory, getCategoriesBySubcategory } from "@/content/categories";
 import { getDesignsByCategory } from "@/content/designs";
 import { siteConfig } from "@/content/site";
-import { marbleHubData } from "@/content/marble";
 
 const FINAL_CUSTOMER_NAMES = {
   "ganesh-ji": "Ganesh Statues & Murtis",
@@ -368,55 +366,8 @@ export default async function CategoryLandingPage({ params }) {
         </Container>
       </Section>
 
-      {/* 3. MATERIAL INFORMATION SECTION */}
+      {/* 3. CRAFTSMANSHIP & CONFIGURATION */}
       <Section background="light" spacing="standard">
-        <Container>
-          <ScrollReveal animation="fade-up">
-            <SectionHeading
-              eyebrow="Material Options"
-              heading="Select Natural Stones"
-              description="Learn about the primary stone blocks selected for our hand-carved sculptures."
-            />
-          </ScrollReveal>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "var(--spacing-xl)",
-              marginTop: "var(--spacing-xl)"
-            }}
-          >
-            <MaterialCard
-              name="Makrana White Marble"
-              origin="Nagaur, Rajasthan"
-              description="Renowned for its fine calcitic crystalline structure, purity, and zero water absorption, ideal for sacred deity idols."
-              imageSrc="https://placehold.co/800x500/FCFBF9/1A1918?text=Makrana+White+Marble"
-              href="/marble"
-              variant="standard"
-            />
-            <MaterialCard
-              name="Bansi Paharpur Sandstone"
-              origin="Bharatpur, Rajasthan"
-              description="Distinctive warm blush pink hue used traditionally in iconic Indian temple architecture and outdoor relief walls."
-              imageSrc="https://placehold.co/800x500/E8E4DF/9E7B4F?text=Bansi+Pink+Sandstone"
-              href="/marble"
-              variant="standard"
-            />
-            <MaterialCard
-              name="Black Rajasthan Marble"
-              origin="Bhainslana, Rajasthan"
-              description="Deep dark obsidian marble providing high visual contrast for modern statues and dramatic architectural accents."
-              imageSrc="https://placehold.co/800x500/1A1918/FCFBF9?text=Black+Rajasthan+Marble"
-              href="/marble"
-              variant="standard"
-            />
-          </div>
-        </Container>
-      </Section>
-
-      {/* 4. CRAFTSMANSHIP & CONFIGURATION */}
-      <Section background="grey" spacing="standard">
         <Container>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "var(--spacing-xl)" }}>
             <ScrollReveal animation="fade-up">
@@ -436,8 +387,8 @@ export default async function CategoryLandingPage({ params }) {
         </Container>
       </Section>
 
-      {/* 5. FREQUENTLY ASKED QUESTIONS */}
-      <Section background="light" spacing="standard">
+      {/* 4. FREQUENTLY ASKED QUESTIONS */}
+      <Section background="grey" spacing="standard">
         <Container>
           <ScrollReveal animation="fade-up">
             <SectionHeading
@@ -458,9 +409,9 @@ export default async function CategoryLandingPage({ params }) {
         </Container>
       </Section>
 
-      {/* 6. RELATED CATEGORIES & MATERIAL HUB LINK */}
+      {/* 5. RELATED CATEGORIES */}
       {relatedCategories.length > 0 && (
-        <Section background="grey" spacing="standard">
+        <Section background="light" spacing="standard">
           <Container>
             <ScrollReveal animation="fade-up">
               <SectionHeading
@@ -482,15 +433,6 @@ export default async function CategoryLandingPage({ params }) {
                   variant="secondary"
                 />
               ))}
-            </div>
-
-            <div style={{ marginTop: "var(--spacing-xl)", textAlign: "center" }}>
-              <Link
-                href={marbleHubData[category.slug] ? `/marble/${category.slug}` : "/marble"}
-                style={{ fontSize: "0.95rem", color: "var(--color-bronze)", textDecoration: "underline", fontWeight: 500 }}
-              >
-                Learn more about white marble properties & carving in our Marble Crafts Hub &rarr;
-              </Link>
             </div>
           </Container>
         </Section>

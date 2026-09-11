@@ -28,14 +28,21 @@
   --accent: var(--color-bronze);
 
   /* Spacing Scale (Modular & Scalable) */
-  --spacing-xxs: 0.25rem;   /* 4px */
-  --spacing-xs: 0.5rem;     /* 8px */
-  --spacing-sm: 1rem;       /* 16px */
-  --spacing-md: 1.5rem;     /* 24px */
-  --spacing-lg: 2rem;       /* 32px */
-  --spacing-xl: 3rem;       /* 48px */
-  --spacing-xxl: 4.5rem;    /* 72px */
-  
+  --spacing-xxs: 0.25rem;
+  /* 4px */
+  --spacing-xs: 0.5rem;
+  /* 8px */
+  --spacing-sm: 1rem;
+  /* 16px */
+  --spacing-md: 1.5rem;
+  /* 24px */
+  --spacing-lg: 2rem;
+  /* 32px */
+  --spacing-xl: 3rem;
+  /* 48px */
+  --spacing-xxl: 4.5rem;
+  /* 72px */
+
   /* Vertical Section Spacing (Clamp scaling from ~48px on mobile to ~112px on desktop) */
   --spacing-section: clamp(3rem, 8vw, 7rem);
 
@@ -56,7 +63,9 @@
 
 /* 2. Reset & Base Elements
    ========================================================================== */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -80,9 +89,15 @@ body {
 }
 
 /* Typography Scales (DESIGN.md: avoid tight spacing, excessive bold, or heavy weights) */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-cormorant), Georgia, serif;
-  font-weight: 300; /* Luxury serif feels more elegant when light */
+  font-weight: 300;
+  /* Luxury serif feels more elegant when light */
   line-height: 1.25;
   letter-spacing: -0.01em;
   color: var(--color-charcoal);
@@ -114,8 +129,10 @@ h4 {
 p {
   font-size: 1rem;
   line-height: 1.625;
-  font-weight: 300; /* Clean light font weight for body */
-  color: rgba(26, 25, 24, 0.85); /* Slightly softer charcoal for body text readability */
+  font-weight: 300;
+  /* Clean light font weight for body */
+  color: rgba(26, 25, 24, 0.85);
+  /* Slightly softer charcoal for body text readability */
 }
 
 p.large {
@@ -233,6 +250,7 @@ textarea:focus-visible {
 /* 4. Accessibility & Motion Preferences
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -242,5 +260,3 @@ textarea:focus-visible {
     scroll-behavior: auto !important;
   }
 }
-
-

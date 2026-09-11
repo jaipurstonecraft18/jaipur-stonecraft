@@ -110,12 +110,10 @@
 .videoOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(18, 16, 14, 0.88) 0%,
-    rgba(18, 16, 14, 0.62) 48%,
-    rgba(18, 16, 14, 0.15) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(18, 16, 14, 0.88) 0%,
+      rgba(18, 16, 14, 0.62) 48%,
+      rgba(18, 16, 14, 0.15) 100%);
   pointer-events: none;
 }
 
@@ -354,6 +352,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
+
   .cardBody {
     padding: 1.1rem 1rem;
   }
@@ -364,6 +363,7 @@
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
+
   .cardImageWrapper {
     width: 38%;
   }
@@ -373,47 +373,58 @@
   .section {
     padding: 2.25rem 0 2.5rem;
   }
+
   .headerWrapper {
     margin-bottom: 1.75rem;
   }
+
   .heading {
     font-size: clamp(1.85rem, 6.5vw, 2.3rem);
     margin-bottom: 0.65rem;
   }
+
   .description {
     font-size: 0.85rem;
     line-height: 1.5;
   }
+
   .featureCard {
     aspect-ratio: auto;
     min-height: 270px;
     border-radius: 16px;
     margin-bottom: 1.5rem;
   }
+
   .videoContent {
     padding: 1.75rem 1.25rem;
     max-width: 100%;
   }
+
   .cardsGrid {
     grid-template-columns: 1fr;
     gap: 0.85rem;
   }
+
   .socialCard {
     flex-direction: row;
     border-radius: 14px;
   }
+
   .cardImageWrapper {
     width: 110px;
     min-height: 100%;
     flex-shrink: 0;
   }
+
   .cardBody {
     padding: 0.85rem 0.95rem;
   }
+
   .cardTitle {
     font-size: 1.05rem;
     margin-bottom: 0.2rem;
   }
+
   .cardDesc {
     font-size: 0.76rem;
     line-height: 1.35;
@@ -423,6 +434,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
   .bgWatermarkLeft,
   .bgWatermarkRight {
     display: none;
@@ -433,6 +445,7 @@
   .socialCard {
     flex-direction: row;
   }
+
   .cardImageWrapper {
     width: 95px;
     min-height: 100%;

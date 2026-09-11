@@ -26,6 +26,12 @@ export default function MasterpieceBorn({ imageSrc, data = {} }) {
           </div>
         </div>
 
+        {/* Mobile Editorial Heading (hidden on desktop) */}
+        <div className={styles.mobileHeader}>
+          <span className={styles.eyebrow}>{eyebrow}</span>
+          <h2 className={styles.heading}>{heading}</h2>
+        </div>
+
         <div className={styles.mainGrid}>
           {/* Left Masterpiece Image Frame */}
           <ScrollReveal animation="fade-up">

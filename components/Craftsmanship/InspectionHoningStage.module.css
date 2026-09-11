@@ -183,7 +183,94 @@
 }
 
 @media (max-width: 991px) {
+  .stageSection {
+    padding: clamp(2.5rem, 6vw, 3.5rem) 0;
+  }
+
+  .stageHeader {
+    margin-bottom: 1.25rem;
+  }
+
   .mainGrid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .imageFrame {
+    aspect-ratio: 16 / 10.5;
+  }
+
+  .imageBadge {
+    bottom: 0.75rem;
+    left: 0.75rem;
+    padding: 0.45rem 0.75rem;
+  }
+
+  .imageBadgeLabel {
+    font-size: 0.85rem;
+  }
+
+  .imageBadgeSub {
+    font-size: 0.7rem;
+  }
+
+  .heading {
+    font-size: clamp(1.75rem, 6vw, 2.25rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .narrativeText p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .accordionContainer {
+    margin-top: 1.25rem;
+    padding-top: 0.75rem;
+    border-top: none;
+  }
+
+  .accordionTitle {
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .accordionList {
+    gap: 0;
+    border-top: 1px solid rgba(197, 160, 89, 0.25);
+  }
+
+  .accordionItem {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+    border-radius: 0;
+    transition: background-color var(--transition-fast);
+  }
+
+  .accordionItem.open {
+    background-color: rgba(197, 160, 89, 0.06);
+    border-bottom-color: var(--color-bronze);
+  }
+
+  .accordionBtn {
+    min-height: 48px;
+    padding: 0.85rem 0.25rem;
+  }
+
+  .itemTitle {
+    font-size: 0.9rem;
+    padding-right: 0.5rem;
+  }
+
+  .accordionBody {
+    padding: 0 0.25rem 0.85rem 0.25rem;
+  }
+
+  .accordionBody p {
+    font-size: 0.84rem;
+    line-height: 1.5;
   }
 }
+

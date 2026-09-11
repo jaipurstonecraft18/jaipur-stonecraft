@@ -4,7 +4,6 @@ import { getCollectionPersonality } from "@/content/collection-personalities";
 import CollectionDetailHero from "@/components/CollectionDetail/CollectionDetailHero";
 import CollectionMetricsBar from "@/components/CollectionDetail/CollectionMetricsBar";
 import SubcollectionExploration from "@/components/CollectionDetail/SubcollectionExploration";
-import CollectionMaterials from "@/components/CollectionDetail/CollectionMaterials";
 import CollectionCraftProcess from "@/components/CollectionDetail/CollectionCraftProcess";
 import CollectionFeaturedArtworks from "@/components/CollectionDetail/CollectionFeaturedArtworks";
 import CollectionCTA from "@/components/CollectionDetail/CollectionCTA";
@@ -81,13 +80,7 @@ export default async function CollectionPage({ params }) {
       {/* 3. SCALABLE SUB-COLLECTION EXPLORATION (3 to 20+ Categories) */}
       <SubcollectionExploration collection={collection} />
 
-      {/* 4. TAILORED NATURAL STONE MATERIAL PALETTE */}
-      <CollectionMaterials
-        materials={personality.materials}
-        collectionName={collection.name}
-      />
-
-      {/* 5. DARK TRANSITION — ATELIER MASONIC CRAFTSMANSHIP PROCESS */}
+      {/* 4. DARK TRANSITION — ATELIER MASONIC CRAFTSMANSHIP PROCESS */}
       <CollectionCraftProcess
         processSteps={personality.processSteps}
         collectionName={collection.name}

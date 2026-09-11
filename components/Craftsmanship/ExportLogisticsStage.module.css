@@ -131,7 +131,68 @@
 }
 
 @media (max-width: 991px) {
+  .stageSection {
+    padding: clamp(2.5rem, 6vw, 3.5rem) 0;
+  }
+
+  .stageHeader {
+    margin-bottom: 1.25rem;
+  }
+
+  .heading {
+    font-size: clamp(1.75rem, 6vw, 2.25rem);
+    margin-bottom: 0.75rem;
+  }
+
   .mainGrid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .narrativeText p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .ctaGroup {
+    margin-top: 1.25rem;
+  }
+
+  .exportBtn {
+    min-height: 44px;
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .featuresGrid {
+    gap: 0.65rem;
+  }
+
+  .featureCard {
+    padding: 0.85rem 1rem;
+    border-color: rgba(212, 163, 89, 0.22);
+  }
+
+  .featureIcon {
+    margin-bottom: 0.35rem;
+  }
+
+  .featureIcon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .featureTitle {
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .featureDesc {
+    font-size: 0.82rem;
+    line-height: 1.45;
   }
 }
+
