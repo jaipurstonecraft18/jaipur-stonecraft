@@ -67,19 +67,47 @@ app.prepare().then(() => {
       const parsedUrl = parse(req.url, true);
 
 
-      // Direct legacy static asset extension fallback
+      // Direct static asset serving with traversal protection and webp fallback
       if (parsedUrl.pathname && (parsedUrl.pathname.startsWith("/images/") || parsedUrl.pathname.startsWith("/uploads/"))) {
-        const publicPath = path.join(process.cwd(), "public", parsedUrl.pathname);
-        if (!fs.existsSync(publicPath)) {
-          const webpCandidate = parsedUrl.pathname.replace(/\.(jpg|jpeg|png)$/i, ".webp");
+        const safePath = path.normalize(parsedUrl.pathname).replace(/^(\.\.[\/\\])+/, "");
+        const publicPath = path.join(process.cwd(), "public", safePath);
+
+        let targetFile = null;
+        if (fs.existsSync(publicPath)) {
+          try {
+            if (fs.statSync(publicPath).isFile()) targetFile = publicPath;
+          } catch (_) {}
+        }
+        if (!targetFile) {
+          const webpCandidate = safePath.replace(/\.(jpg|jpeg|png)$/i, ".webp");
           const webpPath = path.join(process.cwd(), "public", webpCandidate);
           if (fs.existsSync(webpPath)) {
-            res.writeHead(307, {
-              Location: webpCandidate,
-              "Cache-Control": "public, max-age=31536000, immutable",
-            });
-            return res.end();
+            try {
+              if (fs.statSync(webpPath).isFile()) targetFile = webpPath;
+            } catch (_) {}
           }
+        }
+
+        if (targetFile) {
+          const ext = path.extname(targetFile).toLowerCase();
+          const mimeTypes = {
+            ".webp": "image/webp",
+            ".jpg": "image/jpeg",
+            ".jpeg": "image/jpeg",
+            ".png": "image/png",
+            ".svg": "image/svg+xml",
+            ".avif": "image/avif",
+            ".gif": "image/gif",
+            ".mp4": "video/mp4",
+            ".webm": "video/webm",
+            ".json": "application/json"
+          };
+          const contentType = mimeTypes[ext] || "application/octet-stream";
+          res.writeHead(200, {
+            "Content-Type": contentType,
+            "Cache-Control": "public, max-age=31536000, immutable",
+          });
+          return fs.createReadStream(targetFile).pipe(res);
         }
       }
 

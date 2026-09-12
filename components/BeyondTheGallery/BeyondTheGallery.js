@@ -5,6 +5,7 @@ import Image from "next/image";
 import Container from "@/components/Container/Container";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { siteConfig } from "@/content/site";
+import { getImageVariantUrl } from "@/lib/utils/image-utils";
 import styles from "./BeyondTheGallery.module.css";
 
 export default function BeyondTheGallery({ sectionData, globalSocial }) {
@@ -182,7 +183,7 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
             >
               <div className={styles.cardImageWrapper}>
                 <Image
-                  src={data.instagramCard?.imageSrc || "/images/brand/heritage-ganesha.webp"}
+                  src={getImageVariantUrl(data.instagramCard?.imageSrc || "/images/brand/heritage-ganesha.webp", "card")}
                   alt="Jaipur Stonecraft Instagram sculptured creation"
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -191,10 +192,8 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
               </div>
               <div className={styles.cardBody}>
                 <div className={styles.iconCircle}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.08 3.16 9.42 7.62 11.16-.1-.95-.2-2.4.04-3.44.22-.94 1.4-5.96 1.4-5.96s-.36-.72-.36-1.78c0-1.66.97-2.91 2.17-2.91 1.02 0 1.51.77 1.51 1.69 0 1.03-.65 2.57-1 3.99-.28 1.19.6 2.16 1.78 2.16 2.13 0 3.77-2.25 3.77-5.49 0-2.86-2.06-4.87-5.01-4.87-3.41 0-5.41 2.56-5.41 5.2 0 1.03.39 2.14.89 2.74.1.12.11.23.08.35-.09.37-.29 1.2-.33 1.36-.05.23-.17.27-.4.17-1.5-.69-2.44-2.88-2.44-4.65 0-3.78 2.75-7.25 7.92-7.25 4.16 0 7.39 2.97 7.39 6.92 0 4.14-2.61 7.46-6.23 7.46-1.22 0-2.36-.63-2.76-1.38l-.75 2.85c-.27 1.05-1 2.35-1.5 3.15 1.12.34 2.31.53 3.55.53 6.61 0 11.99-5.37 11.99-12C24 5.37 18.63 0 12 0z"/>
                   </svg>
                 </div>
                 <h4 className={styles.cardTitle}>{data.instagramCard?.title || "Instagram"}</h4>
@@ -215,7 +214,7 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
             >
               <div className={styles.cardImageWrapper}>
                 <Image
-                  src={data.pinterestCard?.imageSrc || "/images/collections/temples-architectural.webp"}
+                  src={getImageVariantUrl(data.pinterestCard?.imageSrc || "/images/collections/temples-architectural.webp", "card")}
                   alt="Jaipur Stonecraft Pinterest architectural stonework"
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -246,7 +245,7 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
             >
               <div className={styles.cardImageWrapper}>
                 <Image
-                  src={data.facebookCard?.imageSrc || "/images/craftsmanship/step-02-shape-precision.webp"}
+                  src={getImageVariantUrl(data.facebookCard?.imageSrc || "/images/craftsmanship/step-02-shape-precision.webp", "card")}
                   alt="Jaipur Stonecraft Facebook workshop and project updates"
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"

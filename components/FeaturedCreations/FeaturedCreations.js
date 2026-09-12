@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/Container/Container";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
+import { getImageVariantUrl } from "@/lib/utils/image-utils";
 import styles from "./FeaturedCreations.module.css";
 
 export const DEFAULT_GRID_CLASSES = [
@@ -161,7 +162,7 @@ export default function FeaturedCreations({ sectionData = null }) {
                   <div className={styles.imageCard}>
                     {item.src && (
                       <Image
-                        src={item.src}
+                        src={getImageVariantUrl(item.src, "card")}
                         alt={item.alt || item.title || "Jaipur Stonecraft creation"}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
