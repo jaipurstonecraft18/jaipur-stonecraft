@@ -327,14 +327,12 @@
   z-index: 1200;
   opacity: 0;
   visibility: hidden;
-  pointer-events: none;
   transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
 }
 
 .dropdownPanel.show {
   opacity: 1;
   visibility: visible;
-  pointer-events: auto;
   transform: translateX(-50%) translateY(0);
 }
 

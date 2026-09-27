@@ -5,7 +5,6 @@ import CollectionDetailHero from "@/components/CollectionDetail/CollectionDetail
 import CollectionMetricsBar from "@/components/CollectionDetail/CollectionMetricsBar";
 import SubcollectionExploration from "@/components/CollectionDetail/SubcollectionExploration";
 import CollectionCraftProcess from "@/components/CollectionDetail/CollectionCraftProcess";
-import CollectionFeaturedArtworks from "@/components/CollectionDetail/CollectionFeaturedArtworks";
 import CollectionCTA from "@/components/CollectionDetail/CollectionCTA";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -86,13 +85,7 @@ export default async function CollectionPage({ params }) {
         collectionName={collection.name}
       />
 
-      {/* 6. CURATED FEATURED CREATIONS / ARTWORKS */}
-      <CollectionFeaturedArtworks
-        artworks={personality.artworks}
-        collectionName={collection.name}
-      />
-
-      {/* 7. COMPACT CLOSING CONVERSION CTA */}
+      {/* 5. COMPACT CLOSING CONVERSION CTA */}
       <CollectionCTA
         ctaData={personality.cta}
         collectionSlug={collection.slug}

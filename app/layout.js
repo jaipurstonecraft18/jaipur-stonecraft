@@ -29,8 +29,8 @@ export default function RootLayout({ children }) {
   const orgSchema = generateOrganizationSchema();
 
   return (
-    <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
-      <body>
+    <html lang="en" className={`${cormorant.variable} ${inter.variable}`} suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}

@@ -263,9 +263,10 @@ export default function Header({ theme }) {
                           href={sub.href}
                           className={styles.dropdownItem}
                           onClick={() => setActiveDropdown(null)}
+                          suppressHydrationWarning
                         >
-                          <span className={styles.dropdownItemTitle}>{sub.title}</span>
-                          <span className={styles.dropdownItemDesc}>{sub.description}</span>
+                          <span className={styles.dropdownItemTitle} suppressHydrationWarning>{sub.title}</span>
+                          <span className={styles.dropdownItemDesc} suppressHydrationWarning>{sub.description}</span>
                         </Link>
                       ))}
                     </div>
