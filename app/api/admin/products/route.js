@@ -13,7 +13,7 @@ export async function GET(request) {
   const status = searchParams.get("status") || "all";
   const healthFilter = searchParams.get("health") || "all";
   const issueFilter = searchParams.get("issue") || "all";
-  const sortBy = searchParams.get("sort") || "health_priority";
+  const sortBy = searchParams.get("sort") || "recent";
   const search = searchParams.get("search") || "";
   const category = searchParams.get("category") || "";
   const page = parseInt(searchParams.get("page") || "1", 10);
@@ -38,7 +38,17 @@ export async function GET(request) {
     params.push(term, term, term);
   }
 
-  sql += " ORDER BY updated_at DESC";
+  // Base SQL ordering: recency added by default
+  if (sortBy === "updated") {
+    sql += " ORDER BY updated_at DESC, created_at DESC";
+  } else if (sortBy === "name") {
+    sql += " ORDER BY name ASC";
+  } else if (sortBy === "health_priority") {
+    sql += " ORDER BY created_at DESC, updated_at DESC";
+  } else {
+    // Default: "recent" -> recency they were added (newest added first)
+    sql += " ORDER BY created_at DESC, updated_at DESC, id DESC";
+  }
 
   const rows = await query(sql, params);
   const allFormattedProducts = await Promise.all(rows.map(formatProductFromRow));
@@ -96,6 +106,24 @@ export async function GET(request) {
       const weightDiff = (healthWeight[b.health.status] || 0) - (healthWeight[a.health.status] || 0);
       if (weightDiff !== 0) return weightDiff;
       return b.health.issueCount - a.health.issueCount;
+    });
+  } else if (sortBy === "updated") {
+    filteredProducts.sort((a, b) => {
+      const dateA = a.updatedAt ? new Date(a.updatedAt).getTime() : 0;
+      const dateB = b.updatedAt ? new Date(b.updatedAt).getTime() : 0;
+      return dateB - dateA;
+    });
+  } else if (sortBy === "name") {
+    filteredProducts.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+  } else {
+    // Default: Sort by recency they were added (created_at descending)
+    filteredProducts.sort((a, b) => {
+      const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+      const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+      if (dateB !== dateA) return dateB - dateA;
+      const updA = a.updatedAt ? new Date(a.updatedAt).getTime() : 0;
+      const updB = b.updatedAt ? new Date(b.updatedAt).getTime() : 0;
+      return updB - updA;
     });
   }
 
@@ -187,11 +215,14 @@ export async function POST(request) {
     }
 
     if (Array.isArray(body.imageGallery)) {
+      const insertedUrls = new Set(body.imageSrc ? [body.imageSrc.trim()] : []);
       for (let idx = 0; idx < body.imageGallery.length; idx++) {
         const item = body.imageGallery[idx];
-        const url = typeof item === "string" ? item : item?.src || item?.url || "";
+        const rawUrl = typeof item === "string" ? item : item?.src || item?.url || "";
+        const url = typeof rawUrl === "string" ? rawUrl.trim() : "";
         const alt = typeof item === "object" ? (item.altText || item.alt_text || item.alt || `${name} detail view ${idx + 1}`) : `${name} detail view ${idx + 1}`;
-        if (url && url !== body.imageSrc) {
+        if (url && !insertedUrls.has(url)) {
+          insertedUrls.add(url);
           await execute(`
             INSERT INTO product_images (product_slug, url, alt_text, role, sort_order, is_primary)
             VALUES (?, ?, ?, 'gallery', ?, 0)

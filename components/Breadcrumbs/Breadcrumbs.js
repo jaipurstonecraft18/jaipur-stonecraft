@@ -29,25 +29,30 @@ export default function Breadcrumbs({ items = [], theme = "light" }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        suppressHydrationWarning
       />
-      <nav className={`${styles.breadcrumbsNav} ${theme === "dark" ? styles.darkTheme : ""}`} aria-label="Breadcrumb">
-        <ul className={styles.breadcrumbs}>
-          <li>
-            <Link href="/" className={styles.link}>
+      <nav
+        className={`${styles.breadcrumbsNav} ${theme === "dark" ? styles.darkTheme : ""}`}
+        aria-label="Breadcrumb"
+        suppressHydrationWarning
+      >
+        <ul className={styles.breadcrumbs} suppressHydrationWarning>
+          <li suppressHydrationWarning>
+            <Link href="/" className={styles.link} suppressHydrationWarning>
               Home
             </Link>
           </li>
           {items.map((item, index) => {
             const isLast = index === items.length - 1;
             return (
-              <li key={`${item.label}-${index}`} className={styles.item}>
-                <span className={styles.separator} aria-hidden="true">/</span>
+              <li key={`${item.label}-${index}`} className={styles.item} suppressHydrationWarning>
+                <span className={styles.separator} aria-hidden="true" suppressHydrationWarning>/</span>
                 {isLast || !item.href ? (
-                  <span className={styles.current} aria-current="page">
+                  <span className={styles.current} aria-current="page" suppressHydrationWarning>
                     {item.label}
                   </span>
                 ) : (
-                  <Link href={item.href} className={styles.link}>
+                  <Link href={item.href} className={styles.link} suppressHydrationWarning>
                     {item.label}
                   </Link>
                 )}
@@ -59,3 +64,4 @@ export default function Breadcrumbs({ items = [], theme = "light" }) {
     </>
   );
 }
+

@@ -72,24 +72,23 @@ export default function ProductStructuredInfo({ design }) {
 
             {activeTab === "custom" && (
               <div className={styles.panelContent}>
-                <h3 className={styles.panelTitle}>Custom Dimensions & Scale Model</h3>
+                <h3 className={styles.panelTitle}>Custom Sizing & Scale</h3>
                 <p className={styles.panelText}>
-                  Jaipur Stonecraft produces each artwork custom to order. We do not restrict sculptures to a single fixed height or weight. 
-                  Whether you require a compact 2-foot home shrine murti or an imposing 8-foot architectural entrance sculpture, 
-                  our artisans carve the piece to your exact blueprints. Total structural weight varies proportionally based on final dimensions.
+                  Jaipur Stonecraft sculpts each artwork to order. We do not restrict creations to fixed inventory dimensions. 
+                  Whether for a private sanctuary or an architectural installation, our master artisans carve each piece to your exact blueprints and proportions.
                 </p>
                 <div className={styles.gridList}>
                   <div className={styles.gridItem}>
-                    <span className={styles.itemLabel}>Height Range</span>
-                    <span className={styles.itemVal}>Custom (12 inches to 12+ feet)</span>
+                    <span className={styles.itemLabel}>Size</span>
+                    <span className={styles.itemVal}>Custom sizes available</span>
                   </div>
                   <div className={styles.gridItem}>
                     <span className={styles.itemLabel}>Proportion Mapping</span>
                     <span className={styles.itemVal}>1:1 Chalk Grid & Clay Maquette</span>
                   </div>
                   <div className={styles.gridItem}>
-                    <span className={styles.itemLabel}>Weight</span>
-                    <span className={styles.itemVal}>Calculated per custom size & stone density</span>
+                    <span className={styles.itemLabel}>Customization</span>
+                    <span className={styles.itemVal}>Bespoke to Client Specifications</span>
                   </div>
                   <div className={styles.gridItem}>
                     <span className={styles.itemLabel}>Blueprint Matching</span>

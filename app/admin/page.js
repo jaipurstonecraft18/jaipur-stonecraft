@@ -131,54 +131,56 @@ export default async function AdminDashboardPage() {
           </Link>
         </div>
 
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th style={{ width: "60px" }}>Cover</th>
-              <th>Product Name</th>
-              <th>SKU</th>
-              <th>Category</th>
-              <th>Material</th>
-              <th>Status</th>
-              <th style={{ textAlign: "right" }}>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {recentProducts.map((p) => (
-              <tr key={p.id}>
-                <td>
-                  <img
-                    src={p.imageSrc}
-                    alt={p.name}
-                    className={styles.thumbImg}
-                  />
-                </td>
-                <td style={{ fontWeight: "600" }}>
-                  <Link href={`/admin/products/${p.slug}`} style={{ color: "inherit", textDecoration: "none" }}>
-                    {p.name}
-                  </Link>
-                </td>
-                <td><code style={{ fontSize: "0.8rem", color: "#555" }}>{p.sku}</code></td>
-                <td>{p.parentCategory}</td>
-                <td>{p.primaryMaterial?.name || p.primaryMaterialId}</td>
-                <td>
-                  <span className={`${styles.badge} ${p.status === "published" ? styles.badgePublished : p.status === "draft" ? styles.badgeDraft : styles.badgeArchived}`}>
-                    {p.status}
-                  </span>
-                </td>
-                <td style={{ textAlign: "right" }}>
-                  <Link
-                    href={`/admin/products/${p.slug}`}
-                    className={styles.secondaryBtn}
-                    style={{ padding: "0.3rem 0.65rem", fontSize: "0.75rem" }}
-                  >
-                    Edit
-                  </Link>
-                </td>
+        <div className={styles.tableResponsive}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th style={{ width: "60px" }}>Cover</th>
+                <th>Product Name</th>
+                <th>SKU</th>
+                <th>Category</th>
+                <th>Material</th>
+                <th>Status</th>
+                <th style={{ textAlign: "right" }}>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {recentProducts.map((p) => (
+                <tr key={p.id}>
+                  <td>
+                    <img
+                      src={p.imageSrc}
+                      alt={p.name}
+                      className={styles.thumbImg}
+                    />
+                  </td>
+                  <td style={{ fontWeight: "600" }}>
+                    <Link href={`/admin/products/${p.slug}`} style={{ color: "inherit", textDecoration: "none" }}>
+                      {p.name}
+                    </Link>
+                  </td>
+                  <td><code style={{ fontSize: "0.8rem", color: "#555" }}>{p.sku}</code></td>
+                  <td>{p.parentCategory}</td>
+                  <td>{p.primaryMaterial?.name || p.primaryMaterialId}</td>
+                  <td>
+                    <span className={`${styles.badge} ${p.status === "published" ? styles.badgePublished : p.status === "draft" ? styles.badgeDraft : styles.badgeArchived}`}>
+                      {p.status}
+                    </span>
+                  </td>
+                  <td style={{ textAlign: "right" }}>
+                    <Link
+                      href={`/admin/products/${p.slug}`}
+                      className={styles.secondaryBtn}
+                      style={{ padding: "0.3rem 0.65rem", fontSize: "0.75rem" }}
+                    >
+                      Edit
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

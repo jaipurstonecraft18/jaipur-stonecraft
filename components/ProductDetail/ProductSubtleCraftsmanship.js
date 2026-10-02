@@ -72,7 +72,7 @@ export default function ProductSubtleCraftsmanship({ design }) {
     },
     {
       title: "Customization",
-      sub: "Made to Your Size",
+      sub: "Custom sizes available",
       desc: "We create statues in any size as per your exact requirements.",
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-bronze)" strokeWidth="1.5">

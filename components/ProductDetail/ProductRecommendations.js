@@ -53,12 +53,12 @@ export default function ProductRecommendations({ relatedProducts = [], categoryN
                     </h3>
                     
                     <span className={styles.priceTag}>
-                      {rel.price ? `from ₹ ${rel.price}` : "Custom Made to Order"}
+                      Custom sizes available
                     </span>
 
                     <div className={styles.cardFooter}>
                       <Link href={relHref} className={styles.viewLink}>
-                        View Details
+                        Enquire &rarr;
                       </Link>
                     </div>
                   </div>

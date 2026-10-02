@@ -6,11 +6,22 @@ import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import styles from "./ProductPerspectiveGallery.module.css";
 
 export default function ProductPerspectiveGallery({ design }) {
-  const gallery = Array.isArray(design?.imageGallery) ? design.imageGallery : [];
   const [activeModalImage, setActiveModalImage] = useState(null);
 
-  // If no gallery images, show primary image + variants or fallback
-  const displayImages = gallery.length > 0 ? gallery : [design.imageSrc];
+  // Deduplicate perspective images
+  const seenUrls = new Set();
+  const rawList = Array.isArray(design?.imageGallery) && design.imageGallery.length > 0
+    ? design.imageGallery
+    : (design?.imageSrc ? [{ src: design.imageSrc, url: design.imageSrc }] : []);
+
+  const displayImages = rawList.filter((img) => {
+    const url = typeof img === "string" ? img : (img?.url || img?.src);
+    if (!url || typeof url !== "string") return false;
+    const clean = url.trim().replace(/^["']|["']$/g, "");
+    if (!clean || seenUrls.has(clean)) return false;
+    seenUrls.add(clean);
+    return true;
+  });
 
   return (
     <section className={styles.gallerySection} aria-label="Multiple Perspectives">

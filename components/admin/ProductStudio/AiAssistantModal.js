@@ -288,14 +288,14 @@ export default function AiAssistantModal({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      padding: "1rem"
+      padding: "0.5rem"
     }}>
       <div style={{
         backgroundColor: "#FFFFFF",
         borderRadius: "8px",
         width: "100%",
         maxWidth: "960px",
-        maxHeight: "90vh",
+        maxHeight: "92vh",
         display: "flex",
         flexDirection: "column",
         boxShadow: "0 20px 50px rgba(0, 0, 0, 0.3)",
@@ -304,41 +304,44 @@ export default function AiAssistantModal({
       }}>
         {/* Modal Header */}
         <div style={{
-          padding: "1rem 1.5rem",
+          padding: "0.85rem 1rem",
           backgroundColor: "#111110",
           color: "#FAF8F5",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          borderBottom: "1px solid #222220"
+          borderBottom: "1px solid #222220",
+          flexWrap: "wrap",
+          gap: "0.6rem"
         }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
             <span style={{ fontSize: "1.25rem" }}>✨</span>
             <div>
-              <h2 style={{ fontSize: "1.1rem", fontWeight: "600", fontFamily: "var(--font-display)", color: "#FAF8F5", margin: 0 }}>
+              <h2 style={{ fontSize: "1rem", fontWeight: "600", fontFamily: "var(--font-display)", color: "#FAF8F5", margin: 0 }}>
                 AI Content Intelligence & SEO Assistant
               </h2>
-              <p style={{ fontSize: "0.78rem", color: "#A09D98", margin: 0 }}>
+              <p style={{ fontSize: "0.75rem", color: "#A09D98", margin: 0 }}>
                  Jaipur Stonecraft • Preview & Review Draft
               </p>
             </div>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
             {status === "review" && (
               <button
                 type="button"
                 onClick={handleAcceptAll}
                 className={styles.primaryBtn}
-                style={{ fontSize: "0.82rem", padding: "0.4rem 0.85rem", backgroundColor: "var(--color-bronze)", color: "#FFF" }}
+                style={{ fontSize: "0.8rem", padding: "0.35rem 0.75rem", backgroundColor: "var(--color-bronze)", color: "#FFF", minHeight: "36px" }}
               >
-                ✓ Accept All Suggestions
+                ✓ Accept All
               </button>
             )}
             <button
               type="button"
               onClick={onClose}
               style={{ background: "none", border: "none", color: "#A09D98", fontSize: "1.5rem", cursor: "pointer", padding: "0 0.5rem" }}
+              aria-label="Close modal"
             >
               ×
             </button>
@@ -346,7 +349,7 @@ export default function AiAssistantModal({
         </div>
 
         {/* Modal Content Body */}
-        <div style={{ padding: "1.5rem", overflowY: "auto", flex: 1, backgroundColor: "#F8F6F2" }}>
+        <div style={{ padding: "1rem", overflowY: "auto", flex: 1, backgroundColor: "#F8F6F2" }}>
 
           {/* STATE 1: ANALYZING */}
           {status === "analyzing" && (

@@ -112,7 +112,8 @@ export default function AdminHealthPage() {
           </span>
         </div>
 
-        <table className={styles.table}>
+        <div className={styles.tableResponsive}>
+          <table className={styles.table}>
           <thead>
             <tr>
               <th style={{ width: "60px" }}>Cover</th>
@@ -164,6 +165,7 @@ export default function AdminHealthPage() {
             )}
           </tbody>
         </table>
+      </div>
       </div>
     </div>
   );

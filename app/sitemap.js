@@ -10,6 +10,7 @@ export default async function sitemap() {
     "",
     "/collections",
     "/products",
+    "/our-world",
     "/knowledge",
     "/projects",
     "/craftsmanship",
@@ -22,8 +23,9 @@ export default async function sitemap() {
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: "monthly",
-    priority: route === "" ? 1.0 : route === "/products" || route === "/collections" ? 0.9 : 0.8,
+    priority: route === "" ? 1.0 : route === "/products" || route === "/collections" || route === "/our-world" ? 0.9 : 0.8,
   }));
+
 
   // 2. Knowledge Article Routes
   const knowledgeRoutes = getAllKnowledgeArticles().map((art) => ({

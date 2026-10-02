@@ -9,6 +9,7 @@ import MobileStickyBar from "@/components/admin/ProductStudio/MobileStickyBar";
 import AiAssistantModal from "@/components/admin/ProductStudio/AiAssistantModal";
 import FieldAiActions from "@/components/admin/ProductStudio/FieldAiActions";
 import SeoReadinessPanel from "@/components/admin/ProductStudio/SeoReadinessPanel";
+import CategorySearchSelect from "@/components/admin/CategorySearchSelect/CategorySearchSelect";
 import styles from "@/app/admin/admin.module.css";
 
 const DEFAULT_PRODUCT_TYPES = [
@@ -62,7 +63,7 @@ function normalizeKnowledgeLayer(kl) {
   return { sections, faqs };
 }
 
-export default function ProductStudio({ initialProduct, isNew = false }) {
+export default function ProductStudio({ initialProduct, isNew = false, onSwitchToQuick }) {
   const router = useRouter();
 
   // Dynamic Catalogue lists fetched from DB
@@ -71,6 +72,10 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
   const [productTypesList, setProductTypesList] = useState(DEFAULT_PRODUCT_TYPES);
   const [attributesList, setAttributesList] = useState([]);
   const [categoriesList, setCategoriesList] = useState([]);
+
+  // AI Jobs Tracking State
+  const [aiJobs, setAiJobs] = useState([]);
+  const [triggeringJob, setTriggeringJob] = useState(false);
 
   // QuickAddModal State
   const [quickAddModal, setQuickAddModal] = useState({
@@ -406,13 +411,91 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
     }
   };
 
+  // Reconciled Dimension Attributes Filter
+  const DIMENSION_ATTR_IDS = useMemo(() => [
+    "dimensions_height_inches",
+    "dimensions_width_inches",
+    "dimensions_depth_inches",
+    "approximate_weight_kg"
+  ], []);
+
   const applicableAttributes = useMemo(() => {
     const type = formData.productType;
     return attributesList.filter((att) => {
+      if (DIMENSION_ATTR_IDS.includes(att.id)) return false;
       if (!att.appliesToProductTypes || att.appliesToProductTypes.length === 0) return true;
       return att.appliesToProductTypes.includes(type);
     });
-  }, [attributesList, formData.productType]);
+  }, [attributesList, formData.productType, DIMENSION_ATTR_IDS]);
+
+  const handleDimensionChange = (dimKey, val) => {
+    setFormData((prev) => {
+      const attrs = { ...(prev.attributes || {}) };
+      const dims = { ...(attrs.dimensions || {}) };
+
+      if (dimKey === "height") {
+        attrs.dimensions_height_inches = val;
+        dims.heightInches = val ? Number(val) : "";
+      } else if (dimKey === "width") {
+        attrs.dimensions_width_inches = val;
+        dims.widthInches = val ? Number(val) : "";
+      } else if (dimKey === "depth") {
+        attrs.dimensions_depth_inches = val;
+        dims.depthInches = val ? Number(val) : "";
+      } else if (dimKey === "weight") {
+        attrs.approximate_weight_kg = val;
+        dims.weightKg = val ? Number(val) : "";
+      }
+
+      attrs.dimensions = dims;
+      return { ...prev, attributes: attrs };
+    });
+    setIsDirty(true);
+    setSaveStatus("dirty");
+  };
+
+  // Fetch AI Jobs for existing product
+  useEffect(() => {
+    if (formData.slug && !isNew) {
+      fetch(`/api/admin/ai/jobs?productSlug=${encodeURIComponent(formData.slug)}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.jobs) setAiJobs(data.jobs);
+        })
+        .catch(() => {});
+    }
+  }, [formData.slug, isNew]);
+
+  const handleTriggerBackgroundEnrichment = async () => {
+    if (!formData.slug) return;
+    setTriggeringJob(true);
+    try {
+      const res = await fetch("/api/admin/ai/jobs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          productSlug: formData.slug,
+          facts: {
+            subject: formData.subjectObj?.primaryName || "",
+            material: primaryMatObj?.name || "",
+            productType: formData.productType,
+            suggestedTitle: formData.name
+          }
+        })
+      });
+      const data = await res.json();
+      if (data.success && data.job) {
+        setAiJobs((prev) => [data.job, ...prev]);
+        setMessage({ type: "success", text: "Background AI enrichment job queued!" });
+      } else {
+        setMessage({ type: "error", text: data.error || "Failed to queue enrichment job." });
+      }
+    } catch {
+      setMessage({ type: "error", text: "Network error queueing AI enrichment job." });
+    } finally {
+      setTriggeringJob(false);
+    }
+  };
 
   return (
     <div>
@@ -435,6 +518,61 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
           <h1 className={styles.pageTitle}>
             {isNew ? "Create New Product Draft" : `Edit: ${formData.name || initialProduct.name}`}
           </h1>
+
+          {/* MOBILE ACTION CONTROLS (<= 991px) */}
+          <div className={styles.mobileOnly} style={{ display: "flex", gap: "0.5rem", marginTop: "0.75rem", flexWrap: "wrap", width: "100%" }}>
+            <button
+              type="button"
+              onClick={() => setIsAiModalOpen(true)}
+              className={styles.secondaryBtn}
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                borderColor: "var(--color-bronze)",
+                color: "var(--color-navy)",
+                fontWeight: "600",
+                minHeight: "44px"
+              }}
+            >
+              ✨ AI Assistant
+            </button>
+
+            {!isNew && (
+              <button
+                type="button"
+                onClick={handleDuplicate}
+                className={styles.secondaryBtn}
+                style={{ minHeight: "44px", padding: "0.4rem 0.75rem" }}
+                title="Duplicate draft"
+              >
+                📋 Duplicate
+              </button>
+            )}
+
+            {!isNew && formData.status === "published" && (
+              <Link
+                href={`/products/${formData.slug}`}
+                target="_blank"
+                className={styles.secondaryBtn}
+                style={{ minHeight: "44px", padding: "0.4rem 0.75rem" }}
+                title="Preview Live Page"
+              >
+                ↗ Live
+              </Link>
+            )}
+
+            {onSwitchToQuick && (
+              <button
+                type="button"
+                onClick={onSwitchToQuick}
+                className={styles.secondaryBtn}
+                style={{ minHeight: "44px", padding: "0.4rem 0.75rem", color: "var(--color-bronze)" }}
+                title="Switch to Mobile Quick Add"
+              >
+                ⚡ Quick
+              </button>
+            )}
+          </div>
         </div>
 
         <div className={styles.desktopOnly} style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
@@ -482,6 +620,17 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
           {!isNew && (
             <button onClick={handleDuplicate} className={styles.secondaryBtn} disabled={saving}>
               📋 Duplicate Draft
+            </button>
+          )}
+
+          {onSwitchToQuick && (
+            <button
+              type="button"
+              onClick={onSwitchToQuick}
+              className={styles.secondaryBtn}
+              style={{ color: "var(--color-bronze)", fontWeight: "600" }}
+            >
+              ⚡ Mobile Quick Add
             </button>
           )}
 
@@ -538,6 +687,47 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
         }}
       />
 
+      {/* Background AI Enrichment Status Banner */}
+      {aiJobs.length > 0 && (
+        <div style={{
+          backgroundColor: aiJobs[0].status === "completed" ? "#E6F4EA" : aiJobs[0].status === "processing" ? "#FEF7E0" : "#FAF9F6",
+          border: `1px solid ${aiJobs[0].status === "completed" ? "#CEEAD6" : aiJobs[0].status === "processing" ? "#FEEFC3" : "#E2DDD5"}`,
+          borderRadius: "6px",
+          padding: "0.75rem 0.85rem",
+          marginBottom: "1rem",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: "0.6rem",
+          maxWidth: "100%",
+          boxSizing: "border-box"
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", minWidth: 0, flex: "1 1 240px" }}>
+            <span style={{ fontSize: "1.1rem", flexShrink: 0 }}>
+              {aiJobs[0].status === "completed" ? "✓" : aiJobs[0].status === "processing" ? "⌛" : "✨"}
+            </span>
+            <div style={{ minWidth: 0, flex: 1 }}>
+              <div style={{ fontSize: "0.85rem", fontWeight: "700", color: "#1A1918", wordBreak: "break-word" }}>
+                Background AI Enrichment: {aiJobs[0].status.toUpperCase()}
+              </div>
+              <div style={{ fontSize: "0.78rem", color: "#666", wordBreak: "break-word", marginTop: "0.15rem" }}>
+                {aiJobs[0].status === "completed" ? "Descriptions, craftsmanship details, and SEO generated." : aiJobs[0].status === "processing" ? "Grok is currently generating copy..." : aiJobs[0].errorMessage || "Enrichment ready."}
+              </div>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={handleTriggerBackgroundEnrichment}
+            disabled={triggeringJob || aiJobs[0].status === "processing"}
+            className={styles.secondaryBtn}
+            style={{ fontSize: "0.75rem", padding: "0.3rem 0.7rem", minHeight: "34px", flexShrink: 0 }}
+          >
+            {triggeringJob ? "Queueing..." : "🔄 Re-run AI Enrichment"}
+          </button>
+        </div>
+      )}
+
       {/* Tabbed Navigation Interface */}
       <div className={styles.studioTabs}>
         <button
@@ -574,7 +764,7 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
 
       {/* TAB 1: BASIC DETAILS */}
       {activeTab === "basic" && (
-        <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
+        <div className={styles.tabContentCard}>
           <div className={styles.formGrid}>
             <div className={styles.formGroupFull}>
               <label className={styles.label}>Product Name *</label>
@@ -660,8 +850,8 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
             </div>
 
             <div className={styles.formGroupFull}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.25rem" }}>
-                <label className={styles.label} style={{ margin: 0 }}>Short Summary Description</label>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.35rem", flexWrap: "wrap", gap: "0.4rem", minWidth: 0 }}>
+                <label className={styles.label} style={{ margin: 0, flex: "1 1 auto" }}>Short Summary Description</label>
                 <FieldAiActions
                   fieldLabel="Short Description"
                   currentValue={formData.shortDescription}
@@ -675,12 +865,13 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
                 onChange={(e) => updateField("shortDescription", e.target.value)}
                 placeholder="Hand-carved Lord Ganesha statue crafted from solid Makrana white marble block..."
                 className={styles.textarea}
+                style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
               />
             </div>
 
             <div className={styles.formGroupFull}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.25rem" }}>
-                <label className={styles.label} style={{ margin: 0 }}>Detailed Description & Carving Overview</label>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.35rem", flexWrap: "wrap", gap: "0.4rem", minWidth: 0 }}>
+                <label className={styles.label} style={{ margin: 0, flex: "1 1 auto" }}>Detailed Description & Carving Overview</label>
                 <FieldAiActions
                   fieldLabel="Detailed Description"
                   currentValue={formData.detailedDescription}
@@ -694,13 +885,14 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
                 onChange={(e) => updateField("detailedDescription", e.target.value)}
                 placeholder="Full artistic details, facial chiseling techniques, and proportion standards..."
                 className={styles.textarea}
+                style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
               />
             </div>
 
             {/* PRODUCT KNOWLEDGE & DETAILS SECTION */}
             <div className={styles.formGroupFull} style={{ marginTop: "1rem", paddingTop: "1rem", borderTop: "1px solid #E2DDD5" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem", flexWrap: "wrap", gap: "0.5rem" }}>
-                <div>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem", flexWrap: "wrap", gap: "0.5rem", minWidth: 0 }}>
+                <div style={{ minWidth: 0, flex: "1 1 220px" }}>
                   <h3 style={{ fontSize: "0.95rem", fontWeight: "600", color: "var(--color-navy)" }}>
                     📜 Product Knowledge & Details
                   </h3>
@@ -717,7 +909,7 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
                       type="button"
                       onClick={() => handleAddKnowledgeSection(tmpl)}
                       className={styles.secondaryBtn}
-                      style={{ padding: "0.25rem 0.5rem", fontSize: "0.72rem", minHeight: "30px" }}
+                      style={{ padding: "0.25rem 0.5rem", fontSize: "0.72rem", minHeight: "30px", flexShrink: 0 }}
                     >
                       + {tmpl}
                     </button>
@@ -728,21 +920,21 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
               {/* Dynamic List of Information Blocks */}
               <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
                 {normalizeKnowledgeLayer(formData.knowledgeLayer).sections.map((sec, idx) => (
-                  <div key={idx} style={{ border: "1px solid #E2DDD5", borderRadius: "6px", padding: "0.85rem", backgroundColor: "#FFF" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem", gap: "0.5rem" }}>
+                  <div key={idx} style={{ border: "1px solid #E2DDD5", borderRadius: "6px", padding: "0.85rem", backgroundColor: "#FFF", maxWidth: "100%", boxSizing: "border-box" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem", gap: "0.5rem", flexWrap: "wrap", minWidth: 0 }}>
                       <input
                         type="text"
                         value={sec.title || ""}
                         onChange={(e) => handleUpdateKnowledgeSection(idx, "title", e.target.value)}
                         placeholder="Section Title (e.g. Craftsmanship & Technique)"
                         className={styles.input}
-                        style={{ fontWeight: "600", fontSize: "0.85rem", flex: 1, padding: "0.35rem 0.6rem" }}
+                        style={{ fontWeight: "600", fontSize: "0.85rem", flex: "1 1 180px", minWidth: 0, padding: "0.45rem 0.6rem" }}
                       />
                       <button
                         type="button"
                         onClick={() => handleRemoveKnowledgeSection(idx)}
                         className={styles.secondaryBtn}
-                        style={{ color: "#C5221F", borderColor: "#FCE8E6", fontSize: "0.75rem", padding: "0.25rem 0.55rem", minHeight: "32px" }}
+                        style={{ color: "#C5221F", borderColor: "#FCE8E6", fontSize: "0.75rem", padding: "0.35rem 0.65rem", minHeight: "36px", flexShrink: 0 }}
                       >
                         🗑 Remove
                       </button>
@@ -754,7 +946,7 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
                       onChange={(e) => handleUpdateKnowledgeSection(idx, "content", e.target.value)}
                       placeholder={`Enter details for ${sec.title || "this section"}...`}
                       className={styles.textarea}
-                      style={{ width: "100%", fontSize: "0.85rem", padding: "0.45rem 0.6rem" }}
+                      style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box", fontSize: "0.85rem", padding: "0.45rem 0.6rem" }}
                     />
                   </div>
                 ))}
@@ -764,7 +956,7 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
                 type="button"
                 onClick={() => handleAddKnowledgeSection("")}
                 className={styles.secondaryBtn}
-                style={{ marginTop: "0.85rem", width: "100%", justifyContent: "center", borderStyle: "dashed", fontSize: "0.82rem" }}
+                style={{ marginTop: "0.85rem", width: "100%", justifyContent: "center", borderStyle: "dashed", fontSize: "0.82rem", minHeight: "42px" }}
               >
                 + Add Information Section
               </button>
@@ -772,8 +964,8 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
 
             {/* DYNAMIC PRODUCT Q&A / FAQS SECTION */}
             <div className={styles.formGroupFull} style={{ marginTop: "1.5rem", paddingTop: "1rem", borderTop: "1px solid #E2DDD5" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
-                <div>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem", flexWrap: "wrap", gap: "0.5rem", minWidth: 0 }}>
+                <div style={{ minWidth: 0, flex: "1 1 220px" }}>
                   <h3 style={{ fontSize: "0.95rem", fontWeight: "600", color: "var(--color-navy)" }}>
                     ❓ Product FAQs & Dynamic Q&A
                   </h3>
@@ -785,7 +977,7 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
                   type="button"
                   onClick={() => handleAddFaq("", "")}
                   className={styles.secondaryBtn}
-                  style={{ fontSize: "0.78rem", padding: "0.3rem 0.65rem", borderColor: "var(--color-bronze)", color: "var(--color-navy)" }}
+                  style={{ fontSize: "0.78rem", padding: "0.3rem 0.65rem", borderColor: "var(--color-bronze)", color: "var(--color-navy)", minHeight: "36px", flexShrink: 0 }}
                 >
                   + Add Product Question
                 </button>
@@ -793,23 +985,23 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
 
               <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
                 {normalizeKnowledgeLayer(formData.knowledgeLayer).faqs.map((faq, idx) => (
-                  <div key={idx} style={{ border: "1px solid #E2DDD5", borderRadius: "6px", padding: "0.85rem", backgroundColor: "#FAF9F6" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem", gap: "0.5rem" }}>
+                  <div key={idx} style={{ border: "1px solid #E2DDD5", borderRadius: "6px", padding: "0.85rem", backgroundColor: "#FAF9F6", maxWidth: "100%", boxSizing: "border-box" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem", gap: "0.5rem", flexWrap: "wrap", minWidth: 0 }}>
                       <input
                         type="text"
                         value={faq.question || ""}
                         onChange={(e) => handleUpdateFaq(idx, "question", e.target.value)}
                         placeholder="Question (e.g. Can this sculpture be customized in height?)"
                         className={styles.input}
-                        style={{ fontWeight: "600", fontSize: "0.85rem", flex: 1, padding: "0.35rem 0.6rem" }}
+                        style={{ fontWeight: "600", fontSize: "0.85rem", flex: "1 1 180px", minWidth: 0, padding: "0.45rem 0.6rem" }}
                       />
-                      <div style={{ display: "flex", gap: "0.35rem" }}>
+                      <div style={{ display: "flex", gap: "0.35rem", flexShrink: 0, alignItems: "center" }}>
                         <button
                           type="button"
                           disabled={idx === 0}
                           onClick={() => handleMoveFaq(idx, -1)}
                           className={styles.secondaryBtn}
-                          style={{ fontSize: "0.75rem", padding: "0.2rem 0.45rem", minHeight: "32px" }}
+                          style={{ fontSize: "0.75rem", padding: "0.25rem 0.5rem", minHeight: "36px" }}
                           title="Move Up"
                         >
                           ↑
@@ -819,7 +1011,7 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
                           disabled={idx === normalizeKnowledgeLayer(formData.knowledgeLayer).faqs.length - 1}
                           onClick={() => handleMoveFaq(idx, 1)}
                           className={styles.secondaryBtn}
-                          style={{ fontSize: "0.75rem", padding: "0.2rem 0.45rem", minHeight: "32px" }}
+                          style={{ fontSize: "0.75rem", padding: "0.25rem 0.5rem", minHeight: "36px" }}
                           title="Move Down"
                         >
                           ↓
@@ -828,9 +1020,9 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
                           type="button"
                           onClick={() => handleRemoveFaq(idx)}
                           className={styles.secondaryBtn}
-                          style={{ color: "#C5221F", borderColor: "#FCE8E6", fontSize: "0.75rem", padding: "0.25rem 0.55rem", minHeight: "32px" }}
+                          style={{ color: "#C5221F", borderColor: "#FCE8E6", fontSize: "0.75rem", padding: "0.35rem 0.65rem", minHeight: "36px" }}
                         >
-                          🗑 Remove
+                          🗑
                         </button>
                       </div>
                     </div>
@@ -841,7 +1033,7 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
                       onChange={(e) => handleUpdateFaq(idx, "answer", e.target.value)}
                       placeholder="Answer (e.g. Yes, our Jaipur studio carves this piece in custom dimensions ranging from 12 inches to 10 feet...)"
                       className={styles.textarea}
-                      style={{ width: "100%", fontSize: "0.85rem", padding: "0.45rem 0.6rem" }}
+                      style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box", fontSize: "0.85rem", padding: "0.45rem 0.6rem" }}
                     />
                   </div>
                 ))}
@@ -879,7 +1071,7 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
 
       {/* TAB 3: TAXONOMY & CLASSIFICATION */}
       {activeTab === "taxonomy" && (
-        <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
+        <div className={styles.tabContentCard}>
           <div className={styles.formGrid}>
             <div className={styles.formGroup}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -946,21 +1138,10 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
             </div>
 
             <div className={styles.formGroup}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <label className={styles.label}>Parent Category *</label>
-                <button
-                  type="button"
-                  onClick={() => setQuickAddModal({ isOpen: true, targetField: "parentCategory", fieldLabel: "Category" })}
-                  style={{ background: "none", border: "none", color: "var(--color-bronze)", fontWeight: "600", fontSize: "0.8rem", cursor: "pointer", minHeight: "44px" }}
-                >
-                  + Quick Add
-                </button>
-              </div>
-              <select
+              <CategorySearchSelect
+                categories={categoriesList}
                 value={formData.parentCategory}
-                onChange={(e) => {
-                  const selectedSlug = e.target.value;
-                  const catObj = categoriesList.find((c) => c.slug === selectedSlug);
+                onChange={(selectedSlug, catObj) => {
                   if (catObj) {
                     setFormData((prev) => ({
                       ...prev,
@@ -974,14 +1155,11 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
                     updateField("parentCategory", selectedSlug);
                   }
                 }}
-                className={styles.select}
-              >
-                {categoriesList.map((cat) => (
-                  <option key={cat.slug} value={cat.slug}>
-                    {cat.name} ({cat.slug})
-                  </option>
-                ))}
-              </select>
+                label="Parent Category"
+                required
+                onQuickAdd={() => setQuickAddModal({ isOpen: true, targetField: "parentCategory", fieldLabel: "Category" })}
+                helperText="Search by deity or category name (e.g. Ganesh, Mandir, Jali, Fountain) without scrolling"
+              />
             </div>
 
             <div className={styles.formGroup}>
@@ -1050,7 +1228,7 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
 
       {/* TAB 4: SPECIFICATIONS & DYNAMIC ATTRIBUTES */}
       {activeTab === "specs" && (
-        <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
+        <div className={styles.tabContentCard}>
           <div className={styles.formGrid}>
             <div className={styles.formGroup}>
               <label className={styles.label}>Color Family</label>
@@ -1092,6 +1270,62 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
                 placeholder="e.g. Indoor Sanctuary & Exterior Landscape"
                 className={styles.input}
               />
+            </div>
+
+            {/* Unified Reconciled Dimensions & Weight */}
+            <div className={styles.formGroupFull} style={{ marginTop: "0.5rem", marginBottom: "1rem", padding: "1rem 0.85rem", backgroundColor: "#FAF9F6", borderRadius: "8px", border: "1px solid #E2DDD5", maxWidth: "100%", boxSizing: "border-box" }}>
+              <h3 style={{ fontSize: "0.95rem", fontWeight: "600", color: "var(--color-navy)", marginBottom: "0.35rem" }}>
+                📐 Dimensions & Weight Specifications
+              </h3>
+              <p style={{ fontSize: "0.78rem", color: "#666", marginBottom: "0.85rem" }}>
+                Standard physical carving bounds. Custom dimensions can be commissioned by clients.
+              </p>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(120px, 100%), 1fr))", gap: "0.75rem" }}>
+                <div>
+                  <label className={styles.label} style={{ fontSize: "0.82rem" }}>Height (Inches)</label>
+                  <input
+                    type="number"
+                    step="any"
+                    value={formData.attributes?.dimensions_height_inches ?? formData.attributes?.dimensions?.heightInches ?? ""}
+                    onChange={(e) => handleDimensionChange("height", e.target.value)}
+                    placeholder="e.g. 24"
+                    className={styles.input}
+                  />
+                </div>
+                <div>
+                  <label className={styles.label} style={{ fontSize: "0.82rem" }}>Width (Inches)</label>
+                  <input
+                    type="number"
+                    step="any"
+                    value={formData.attributes?.dimensions_width_inches ?? formData.attributes?.dimensions?.widthInches ?? ""}
+                    onChange={(e) => handleDimensionChange("width", e.target.value)}
+                    placeholder="e.g. 16"
+                    className={styles.input}
+                  />
+                </div>
+                <div>
+                  <label className={styles.label} style={{ fontSize: "0.82rem" }}>Depth (Inches)</label>
+                  <input
+                    type="number"
+                    step="any"
+                    value={formData.attributes?.dimensions_depth_inches ?? formData.attributes?.dimensions?.depthInches ?? ""}
+                    onChange={(e) => handleDimensionChange("depth", e.target.value)}
+                    placeholder="e.g. 10"
+                    className={styles.input}
+                  />
+                </div>
+                <div>
+                  <label className={styles.label} style={{ fontSize: "0.82rem" }}>Approx Weight (KG)</label>
+                  <input
+                    type="number"
+                    step="any"
+                    value={formData.attributes?.approximate_weight_kg ?? formData.attributes?.dimensions?.weightKg ?? ""}
+                    onChange={(e) => handleDimensionChange("weight", e.target.value)}
+                    placeholder="e.g. 45"
+                    className={styles.input}
+                  />
+                </div>
+              </div>
             </div>
 
             {applicableAttributes.map((att) => (
@@ -1145,17 +1379,15 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
         </div>
       )}
 
-
-
-      {/* TAB 6: SEO & METADATA */}
+      {/* TAB 5: SEO & METADATA */}
       {activeTab === "seo" && (
-        <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem", paddingBottom: "0.75rem", borderBottom: "1px solid #E2DDD5" }}>
-            <div>
-              <h3 style={{ fontSize: "1rem", fontWeight: "600", color: "var(--color-navy)", margin: 0 }}>
+        <div className={styles.tabContentCard}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem", paddingBottom: "0.75rem", borderBottom: "1px solid #E2DDD5", flexWrap: "wrap", gap: "0.75rem", minWidth: 0 }}>
+            <div style={{ minWidth: 0, flex: "1 1 240px" }}>
+              <h3 style={{ fontSize: "1rem", fontWeight: "600", color: "var(--color-navy)", margin: 0, wordBreak: "break-word" }}>
                 🔍 Search Engine Optimization (SEO) & Metadata
               </h3>
-              <p style={{ fontSize: "0.8rem", color: "#666", margin: "0.25rem 0 0" }}>
+              <p style={{ fontSize: "0.8rem", color: "#666", margin: "0.25rem 0 0", wordBreak: "break-word" }}>
                 Configure search snippet titles, descriptions, and discovery keywords.
               </p>
             </div>
@@ -1163,9 +1395,9 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
               type="button"
               onClick={() => setIsAiModalOpen(true)}
               className={styles.primaryBtn}
-              style={{ fontSize: "0.82rem" }}
+              style={{ fontSize: "0.82rem", minHeight: "38px", flexShrink: 0 }}
             >
-              ✨ Generate SEO & Content Intelligence
+              ✨ Generate SEO Intelligence
             </button>
           </div>
 
@@ -1222,44 +1454,44 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
 
       {/* STICKY ACTION FOOTER BAR */}
       <div className={styles.stickyFooterBar}>
-        <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-          <span style={{ fontSize: "0.8rem", fontWeight: "600", color: saveStatus === "saved" ? "#137333" : "#B06000" }}>
-            {saveStatus === "saved" ? "✓ Saved" : "● Unsaved changes"}
-          </span>
-          {!isNew && (
+        <div className={styles.stickyFooterInner}>
+          <div className={styles.stickyFooterStatus}>
+            <span style={{ fontSize: "0.8rem", fontWeight: "600", color: saveStatus === "saved" ? "#137333" : saveStatus === "saving" ? "var(--color-bronze)" : "#B06000" }}>
+              {saveStatus === "saving" ? "⌛ Saving..." : saveStatus === "saved" ? "✓ Saved" : "● Unsaved changes"}
+            </span>
+            {!isNew && (
+              <button
+                type="button"
+                onClick={() => setShowDeleteModal(true)}
+                className={styles.secondaryBtn}
+                style={{ color: "#C5221F", borderColor: "#FCE8E6", fontSize: "0.78rem", padding: "0.35rem 0.65rem", minHeight: "36px" }}
+              >
+                🗑 Delete
+              </button>
+            )}
+          </div>
+
+          <div className={styles.stickyFooterBtns}>
+            <Link href="/admin/products" className={styles.secondaryBtn}>
+              Cancel
+            </Link>
             <button
               type="button"
-              onClick={() => setShowDeleteModal(true)}
+              disabled={saving}
+              onClick={() => handleSave("draft")}
               className={styles.secondaryBtn}
-              style={{ color: "#C5221F", borderColor: "#FCE8E6", fontSize: "0.78rem", padding: "0.35rem 0.65rem", minHeight: "36px" }}
             >
-              🗑 Delete
+              {saving ? "Saving..." : "Save Draft"}
             </button>
-          )}
-        </div>
-
-        <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-          <Link href="/admin/products" className={styles.secondaryBtn} style={{ padding: "0.4rem 0.75rem", fontSize: "0.8rem", minHeight: "36px" }}>
-            Cancel
-          </Link>
-          <button
-            type="button"
-            disabled={saving}
-            onClick={() => handleSave("draft")}
-            className={styles.secondaryBtn}
-            style={{ padding: "0.4rem 0.85rem", fontSize: "0.8rem", minHeight: "36px" }}
-          >
-            {saving ? "Saving..." : "Save Draft"}
-          </button>
-          <button
-            type="button"
-            disabled={saving}
-            onClick={() => handleSave(formData.status === "published" ? "draft" : "published")}
-            className={styles.primaryBtn}
-            style={{ padding: "0.4rem 1rem", fontSize: "0.8rem", minHeight: "36px" }}
-          >
-            {saving ? "Saving..." : formData.status === "published" ? "Unpublish to Draft" : "⚡ Publish Product"}
-          </button>
+            <button
+              type="button"
+              disabled={saving}
+              onClick={() => handleSave(formData.status === "published" ? "draft" : "published")}
+              className={styles.primaryBtn}
+            >
+              {saving ? "Saving..." : formData.status === "published" ? "Unpublish to Draft" : "⚡ Publish"}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -1300,7 +1532,10 @@ export default function ProductStudio({ initialProduct, isNew = false }) {
         productData={formData}
         selectedImages={
           formData.imageSrc && !formData.imageSrc.includes("placehold.co")
-            ? [formData.imageSrc, ...(Array.isArray(formData.imageGallery) ? formData.imageGallery.map(i => typeof i === "string" ? i : i?.src) : [])].filter(Boolean)
+            ? Array.from(new Set([
+                formData.imageSrc,
+                ...(Array.isArray(formData.imageGallery) ? formData.imageGallery.map(i => typeof i === "string" ? i : (i?.src || i?.url)) : [])
+              ].filter(Boolean).map(u => typeof u === "string" ? u.trim() : "").filter(Boolean)))
             : []
         }
         onAcceptSuggestions={handleAcceptAiSuggestions}

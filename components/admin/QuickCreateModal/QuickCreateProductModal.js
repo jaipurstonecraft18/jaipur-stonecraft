@@ -1,17 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import CategorySearchSelect from "@/components/admin/CategorySearchSelect/CategorySearchSelect";
 import styles from "@/app/admin/admin.module.css";
 
 export default function QuickCreateProductModal({ isOpen, onClose }) {
   const router = useRouter();
   const [name, setName] = useState("");
   const [parentCategory, setParentCategory] = useState("ganesh-ji");
+  const [parentSubcategory, setParentSubcategory] = useState("hindu-sculptures");
+  const [parentCollection, setParentCollection] = useState("sculptures-statues");
+  const [categoriesList, setCategoriesList] = useState([]);
   const [productType, setProductType] = useState("statue");
   const [primaryMaterialId, setPrimaryMaterialId] = useState("makrana-pure-white");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    fetch("/api/admin/categories")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.categories) setCategoriesList(data.categories.filter((c) => c.isActive !== false));
+      })
+      .catch(() => {});
+  }, []);
 
   if (!isOpen) return null;
 
@@ -34,8 +47,8 @@ export default function QuickCreateProductModal({ isOpen, onClose }) {
       isFeatured: false,
       isNewArrival: true,
       productType,
-      parentCollection: "sculptures-statues",
-      parentSubcategory: "hindu-sculptures",
+      parentCollection: parentCollection || "sculptures-statues",
+      parentSubcategory: parentSubcategory || "hindu-sculptures",
       parentCategory,
       primaryMaterialId,
       shortDescription: `Hand-carved ${name.trim()} sculpted in Jaipur stonecraft atelier.`,
@@ -66,30 +79,11 @@ export default function QuickCreateProductModal({ isOpen, onClose }) {
   };
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: "rgba(0,0,0,0.65)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 9999,
-        padding: "1rem"
-      }}
-    >
+    <div className={styles.modalOverlay} onClick={onClose}>
       <div
-        className={styles.tableCard}
-        style={{
-          width: "100%",
-          maxWidth: "480px",
-          padding: "2rem",
-          backgroundColor: "#FFF",
-          boxShadow: "0 20px 40px rgba(0,0,0,0.3)"
-        }}
+        className={styles.modalContent}
+        style={{ maxWidth: "480px" }}
+        onClick={(e) => e.stopPropagation()}
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
           <h3 style={{ fontSize: "1.15rem", fontWeight: "600" }}>
@@ -152,14 +146,23 @@ export default function QuickCreateProductModal({ isOpen, onClose }) {
           </div>
 
           <div className={styles.formGroup} style={{ marginBottom: "1.25rem" }}>
-            <label className={styles.label}>Parent Category Slug</label>
-            <input
-              type="text"
+            <CategorySearchSelect
+              categories={categoriesList}
               value={parentCategory}
-              onChange={(e) => setParentCategory(e.target.value)}
-              placeholder="e.g. ganesh-ji, shiva-ji, home-mandirs"
-              className={styles.input}
+              onChange={(selectedSlug, catObj) => {
+                setParentCategory(selectedSlug);
+                if (catObj) {
+                  if (catObj.parentSubcategory || catObj.parent_subcategory_slug) {
+                    setParentSubcategory(catObj.parentSubcategory || catObj.parent_subcategory_slug);
+                  }
+                  if (catObj.parentCollection || catObj.parent_collection_slug) {
+                    setParentCollection(catObj.parentCollection || catObj.parent_collection_slug);
+                  }
+                }
+              }}
+              label="Product Category"
               required
+              helperText="Search by deity or category name (e.g. Ganesh, Shiva, Mandir, Jali)"
             />
           </div>
 

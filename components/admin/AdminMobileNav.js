@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LogoutButton from "@/components/admin/LogoutButton";
@@ -10,7 +10,29 @@ export default function AdminMobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  const toggleDrawer = () => setIsOpen(!isOpen);
+  const toggleDrawer = () => setIsOpen((prev) => !prev);
+
+  // Auto-close drawer whenever pathname changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
+  // Lock body scrolling when drawer is open and close on Escape
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e) => {
+        if (e.key === "Escape") setIsOpen(false);
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [isOpen]);
 
   return (
     <>

@@ -137,8 +137,8 @@ export default function AdminSettingsPage() {
 
       <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
         {/* 1. HEADER ANNOUNCEMENT BAR */}
-        <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+        <div className={styles.tabContentCard}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.75rem" }}>
             <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)" }}>
               1. Header Announcement Bar
             </h3>
@@ -146,6 +146,7 @@ export default function AdminSettingsPage() {
               onClick={() => handleSaveSetting("announcement_bar", announcement)}
               className={styles.primaryBtn}
               disabled={saving}
+              style={{ minHeight: "44px" }}
             >
               Save Announcement
             </button>
@@ -199,8 +200,8 @@ export default function AdminSettingsPage() {
         </div>
 
         {/* 2. STUDIO CONTACT INFORMATION */}
-        <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+        <div className={styles.tabContentCard}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.75rem" }}>
             <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)" }}>
               2. Studio Contact Information
             </h3>
@@ -208,6 +209,7 @@ export default function AdminSettingsPage() {
               onClick={() => handleSaveSetting("studio_contact", contact)}
               className={styles.primaryBtn}
               disabled={saving}
+              style={{ minHeight: "44px" }}
             >
               Save Contact Details
             </button>
@@ -277,8 +279,8 @@ export default function AdminSettingsPage() {
         </div>
 
         {/* 3. SOCIAL MEDIA CHANNELS */}
-        <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+        <div className={styles.tabContentCard}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.75rem" }}>
             <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)" }}>
               3. Social Media Channels
             </h3>
@@ -286,6 +288,7 @@ export default function AdminSettingsPage() {
               onClick={() => handleSaveSetting("social_links", social)}
               className={styles.primaryBtn}
               disabled={saving}
+              style={{ minHeight: "44px" }}
             >
               Save Social Links
             </button>

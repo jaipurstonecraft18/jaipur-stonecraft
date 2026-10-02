@@ -1,4 +1,4 @@
-import { redirect, notFound } from "next/navigation";
+import { permanentRedirect, notFound } from "next/navigation";
 import { categoriesData } from "@/content/categories";
 import { getProductFromDB, getAllProductsFromDB } from "@/content/products-db";
 
@@ -33,13 +33,14 @@ export default async function LegacyProductRedirect({ params }) {
 
   const category = categoriesData[slug];
   if (category) {
-    redirect(`/collections/${category.parentCollection}/${category.parentSubcategory}/${category.slug}`);
+    permanentRedirect(`/collections/${category.parentCollection}/${category.parentSubcategory}/${category.slug}`);
   }
 
   const product = await getProductFromDB(slug);
   if (product) {
-    redirect(`/designs/${product.parentCategory}/${product.slug}`);
+    permanentRedirect(`/designs/${product.parentCategory}/${product.slug}`);
   }
 
   notFound();
 }
+

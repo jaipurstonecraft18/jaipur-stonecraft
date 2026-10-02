@@ -59,9 +59,43 @@ export default async function CollectionPage({ params }) {
 
   const personality = getCollectionPersonality(collectionSlug);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jaipurstonecraft.com" },
+          { "@type": "ListItem", "position": 2, "name": "Collections", "item": "https://jaipurstonecraft.com/collections" },
+          { "@type": "ListItem", "position": 3, "name": collection.name, "item": `https://jaipurstonecraft.com/collections/${collection.slug}` },
+        ],
+      },
+      {
+        "@type": "CollectionPage",
+        "name": `${collection.name} — Jaipur Stonecraft Atelier`,
+        "description": collection.description,
+        "url": `https://jaipurstonecraft.com/collections/${collection.slug}`,
+        "mainEntity": {
+          "@type": "ItemList",
+          "itemListElement": (collection.subcategories || []).map((sub, idx) => ({
+            "@type": "ListItem",
+            "position": idx + 1,
+            "name": sub.name,
+            "url": `https://jaipurstonecraft.com/collections/${collection.slug}/${sub.slug}`
+          }))
+        }
+      }
+    ],
+  };
+
   return (
     <main style={{ minHeight: "100vh", backgroundColor: "var(--color-cream)" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* 1. REFINED COLLECTION INTRO HERO */}
+
       <CollectionDetailHero
         collection={collection}
         heroData={{

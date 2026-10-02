@@ -63,10 +63,45 @@ export default async function SubcategoryPage({ params }) {
     ? categories.filter((c) => c.slug !== primaryFeatured.slug)
     : categories;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jaipurstonecraft.com" },
+          { "@type": "ListItem", "position": 2, "name": "Collections", "item": "https://jaipurstonecraft.com/collections" },
+          { "@type": "ListItem", "position": 3, "name": collection.name, "item": `https://jaipurstonecraft.com/collections/${collection.slug}` },
+          { "@type": "ListItem", "position": 4, "name": subcategory.name, "item": `https://jaipurstonecraft.com/collections/${collection.slug}/${subcategory.slug}` },
+        ],
+      },
+      {
+        "@type": "CollectionPage",
+        "name": `${subcategory.name} — Jaipur Stonecraft`,
+        "description": subcategory.description,
+        "url": `https://jaipurstonecraft.com/collections/${collection.slug}/${subcategory.slug}`,
+        "mainEntity": {
+          "@type": "ItemList",
+          "itemListElement": categories.map((cat, idx) => ({
+            "@type": "ListItem",
+            "position": idx + 1,
+            "name": cat.name,
+            "url": `https://jaipurstonecraft.com/collections/${collection.slug}/${subcategory.slug}/${cat.slug}`
+          }))
+        }
+      }
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* 1. BREADCRUMBS & HERO INTRO BANNER */}
       <div style={{
+
         position: "relative",
         minHeight: "420px",
         display: "flex",

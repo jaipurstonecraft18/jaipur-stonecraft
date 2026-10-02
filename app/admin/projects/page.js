@@ -190,7 +190,8 @@ export default function AdminProjectsPage() {
         {loading ? (
           <div style={{ padding: "2rem", textAlign: "center" }}>Loading projects...</div>
         ) : filteredProjects.length > 0 ? (
-          <table className={styles.table}>
+          <div className={styles.tableResponsive}>
+            <table className={styles.table}>
             <thead>
               <tr>
                 <th>Cover</th>
@@ -254,6 +255,7 @@ export default function AdminProjectsPage() {
               ))}
             </tbody>
           </table>
+        </div>
         ) : (
           <div style={{ padding: "3rem", textAlign: "center", color: "#888" }}>
             No projects found under category &ldquo;{activeType}&rdquo;.
@@ -263,29 +265,12 @@ export default function AdminProjectsPage() {
 
       {/* CREATE / EDIT MODAL */}
       {isModalOpen && (
-        <div style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: "rgba(0, 0, 0, 0.6)",
-          zIndex: 99999,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "1.5rem"
-        }}>
-          <div style={{
-            backgroundColor: "#FFF",
-            borderRadius: "8px",
-            width: "100%",
-            maxWidth: "680px",
-            maxHeight: "90vh",
-            overflowY: "auto",
-            padding: "1.5rem",
-            boxShadow: "0 20px 40px rgba(0,0,0,0.3)"
-          }}>
+        <div className={styles.modalOverlay} onClick={() => setIsModalOpen(false)}>
+          <div
+            className={styles.modalContent}
+            style={{ maxWidth: "680px" }}
+            onClick={(e) => e.stopPropagation()}
+          >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem", borderBottom: "1px solid #E2DDD5", paddingBottom: "0.75rem" }}>
               <h2 style={{ fontSize: "1.15rem", fontWeight: "600", color: "var(--color-navy)" }}>
                 {editItem ? `Edit Project: ${editItem.name}` : "Create New Project Case Study"}

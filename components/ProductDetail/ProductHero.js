@@ -9,17 +9,42 @@ import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import styles from "./ProductHero.module.css";
 
 export default function ProductHero({ design, category, collection, subcategory }) {
-  // Gallery images array: main image + gallery images
-  const allImages = [
-    { src: design.imageSrc, alt: design.imageAlt || `${design.name} — Main View` },
-    ...(Array.isArray(design.imageGallery)
-      ? design.imageGallery.map((img, idx) =>
-          typeof img === "string"
-            ? { src: img, alt: `${design.name} — View ${idx + 2}` }
-            : { src: img.url || img.src, alt: img.alt || `${design.name} — View ${idx + 2}` }
-        )
-      : []),
-  ];
+  // Assemble unique gallery images: ensure primary image is first, followed by unique perspective views
+  const seenUrls = new Set();
+  const allImages = [];
+
+  const addUniqueImage = (src, alt) => {
+    if (!src || typeof src !== "string") return;
+    const cleanUrl = src.trim().replace(/^["']|["']$/g, "");
+    if (!cleanUrl || seenUrls.has(cleanUrl)) return;
+    seenUrls.add(cleanUrl);
+    allImages.push({
+      src: cleanUrl,
+      alt: alt || `${design.name} — Stonecraft View`
+    });
+  };
+
+  // 1. Primary main image
+  if (design.imageSrc) {
+    addUniqueImage(design.imageSrc, design.imageAlt || `${design.name} — Main View`);
+  }
+
+  // 2. Additional gallery perspectives (deduped)
+  if (Array.isArray(design.imageGallery)) {
+    design.imageGallery.forEach((img, idx) => {
+      const src = typeof img === "string" ? img : (img?.url || img?.src);
+      const alt = typeof img === "object" ? (img?.altText || img?.alt_text || img?.alt) : null;
+      addUniqueImage(src, alt || `${design.name} — View ${allImages.length + 1}`);
+    });
+  }
+
+  // Fallback if no images found
+  if (allImages.length === 0) {
+    allImages.push({
+      src: "https://placehold.co/800x600/E8E4DF/1A1918?text=Product+Photo",
+      alt: `${design.name} — Main View`
+    });
+  }
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -31,7 +56,7 @@ export default function ProductHero({ design, category, collection, subcategory 
   const whatsappUrl = `https://wa.me/${siteConfig.contact.whatsapp}?text=${whatsappMessage}`;
 
   return (
-    <div className={styles.heroWrapper}>
+    <div className={styles.heroWrapper} suppressHydrationWarning>
       {/* Top Breadcrumb Navigation */}
       <Breadcrumbs
         items={[
@@ -112,23 +137,23 @@ export default function ProductHero({ design, category, collection, subcategory 
         <div className={styles.infoContainer}>
           <ScrollReveal animation="fade-up">
             {/* Eyebrow & Name */}
-            <span className={styles.eyebrow}>
+            <span className={styles.eyebrow} suppressHydrationWarning>
               {category ? category.name.toUpperCase() : "HINDU SCULPTURE"}
             </span>
-            <h1 className={styles.productTitle}>{design.name}</h1>
-            <p className={styles.subtitle}>
+            <h1 className={styles.productTitle} suppressHydrationWarning>{design.name}</h1>
+            <p className={styles.subtitle} suppressHydrationWarning>
               Hand-Carved {design.primaryMaterial ? design.primaryMaterial.name : "Marble Statue"}
             </p>
 
-            {/* Product Status & Stone Origin Badge */}
+            {/* Stone Origin & Sizing Badge */}
             <div className={styles.ratingBar} style={{ color: "var(--color-bronze)", fontWeight: "600", fontSize: "0.85rem" }}>
               <span>📍 Handcrafted in Jaipur Studio</span>
               <span style={{ margin: "0 0.5rem", opacity: 0.5 }}>|</span>
-              <span>{design.attributes?.availabilityStatus === "made_to_order" ? "Made to Order" : "Ready for Atelier Order"}</span>
+              <span>Custom sizes available</span>
             </div>
 
             {/* Product Description */}
-            <p className={styles.description}>
+            <p className={styles.description} suppressHydrationWarning>
               {design.shortDescription || design.detailedDescription}
             </p>
 
@@ -159,7 +184,7 @@ export default function ProductHero({ design, category, collection, subcategory 
                     <path d="M21 3H3v18h18V3zM9 3v18M15 3v18" />
                   </svg>
                 </div>
-                <span className={styles.badgeLabel}>Custom Size Available</span>
+                <span className={styles.badgeLabel}>Custom sizes available</span>
               </div>
 
               <div className={styles.badgeItem}>
@@ -173,19 +198,18 @@ export default function ProductHero({ design, category, collection, subcategory 
               </div>
             </div>
 
-            {/* Reference-Style Custom Size Available Box */}
+            {/* Custom Sizes Available Box */}
             <div className={styles.customSizeBox}>
-              <h3 className={styles.customSizeTitle}>CUSTOM SIZE AVAILABLE</h3>
+              <h3 className={styles.customSizeTitle}>CUSTOM SIZES AVAILABLE</h3>
               <p className={styles.customSizeText}>
-                We create statues according to your required dimensions. 
-                The final weight varies based on the size and stone.
+                Every piece is individually handcrafted to your required size and space specifications.
               </p>
             </div>
 
             {/* Action Buttons Row */}
             <div className={styles.actionRow}>
               <Link href={`/contact?type=quote&design=${design.slug}`} className={styles.primaryActionBtn}>
-                Request a Quote
+                Enquire / Request a Quote
               </Link>
               
               <a

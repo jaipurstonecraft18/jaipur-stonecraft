@@ -410,7 +410,8 @@ export default function AdminCataloguePage() {
         </div>
       ) : activeTab === "categories" ? (
         <div className={styles.tableCard}>
-          <table className={styles.table}>
+          <div className={styles.tableResponsive}>
+            <table className={styles.table}>
             <thead>
               <tr>
                 <th style={{ width: "70px" }}>Cover</th>
@@ -479,9 +480,11 @@ export default function AdminCataloguePage() {
             </tbody>
           </table>
         </div>
+        </div>
       ) : activeTab === "collections" ? (
         <div className={styles.tableCard}>
-          <table className={styles.table}>
+          <div className={styles.tableResponsive}>
+            <table className={styles.table}>
             <thead>
               <tr>
                 <th style={{ width: "70px" }}>Cover</th>
@@ -547,6 +550,7 @@ export default function AdminCataloguePage() {
             </tbody>
           </table>
         </div>
+      </div>
       ) : activeTab === "materials" ? (
         <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5rem" }}>
           {/* Add / Edit Form */}

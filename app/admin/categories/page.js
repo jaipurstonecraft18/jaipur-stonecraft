@@ -366,7 +366,8 @@ export default function AdminCategoriesCoverPage() {
 
           {/* Subcategories Table with Drag-and-Drop */}
           <div className={styles.tableCard}>
-            <table className={styles.table}>
+            <div className={styles.tableResponsive}>
+              <table className={styles.table}>
               <thead>
                 <tr>
                   <th style={{ width: "40px", textAlign: "center" }}>↕</th>
@@ -518,6 +519,7 @@ export default function AdminCategoriesCoverPage() {
             </table>
           </div>
         </div>
+        </div>
       ) : activeTab === "categories" ? (
         /* ========================================================================= */
         /* TAB 2: CATEGORIES (NESTED IN SUBCATEGORIES)                              */
@@ -598,7 +600,8 @@ export default function AdminCategoriesCoverPage() {
 
           {/* Categories Table with Drag-and-Drop */}
           <div className={styles.tableCard}>
-            <table className={styles.table}>
+            <div className={styles.tableResponsive}>
+              <table className={styles.table}>
               <thead>
                 <tr>
                   <th style={{ width: "40px", textAlign: "center" }}>↕</th>
@@ -750,12 +753,14 @@ export default function AdminCategoriesCoverPage() {
             </table>
           </div>
         </div>
+        </div>
       ) : (
         /* ========================================================================= */
         /* TAB 3: TOP COLLECTIONS                                                   */
         /* ========================================================================= */
         <div className={styles.tableCard}>
-          <table className={styles.table}>
+          <div className={styles.tableResponsive}>
+            <table className={styles.table}>
             <thead>
               <tr>
                 <th style={{ width: "90px" }}>Cover</th>
@@ -834,6 +839,7 @@ export default function AdminCategoriesCoverPage() {
             </tbody>
           </table>
         </div>
+      </div>
       )}
     </div>
   );

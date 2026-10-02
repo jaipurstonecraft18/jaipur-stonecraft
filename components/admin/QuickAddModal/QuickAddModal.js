@@ -54,30 +54,11 @@ export default function QuickAddModal({
   };
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: "rgba(0,0,0,0.6)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 9999,
-        padding: "1rem"
-      }}
-    >
+    <div className={styles.modalOverlay} onClick={onClose}>
       <div
-        className={styles.tableCard}
-        style={{
-          width: "100%",
-          maxWidth: "460px",
-          padding: "2rem",
-          backgroundColor: "#FFF",
-          boxShadow: "0 20px 40px rgba(0,0,0,0.3)"
-        }}
+        className={styles.modalContent}
+        style={{ maxWidth: "460px" }}
+        onClick={(e) => e.stopPropagation()}
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
           <h3 style={{ fontSize: "1.1rem", fontWeight: "600" }}>

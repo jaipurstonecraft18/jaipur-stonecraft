@@ -23,6 +23,7 @@ export default function AdminProductsListPage() {
   const statusFilter = searchParams.get("status") || "all";
   const healthFilter = searchParams.get("health") || "all";
   const issueFilter = searchParams.get("issue") || "all";
+  const sortFilter = searchParams.get("sort") || "recent";
   const searchQuery = searchParams.get("search") || "";
   const categoryFilter = searchParams.get("category") || "";
   const page = parseInt(searchParams.get("page") || "1", 10);
@@ -36,6 +37,7 @@ export default function AdminProductsListPage() {
         status: statusFilter,
         health: healthFilter,
         issue: issueFilter,
+        sort: sortFilter,
         search: searchQuery,
         category: categoryFilter,
         page: page.toString(),
@@ -58,7 +60,7 @@ export default function AdminProductsListPage() {
     } finally {
       setLoading(false);
     }
-  }, [statusFilter, healthFilter, searchQuery, categoryFilter, page]);
+  }, [statusFilter, healthFilter, issueFilter, sortFilter, searchQuery, categoryFilter, page]);
 
   useEffect(() => {
     let active = true;
@@ -150,10 +152,10 @@ export default function AdminProductsListPage() {
           </p>
         </div>
         <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", width: "100%", maxWidth: "340px" }}>
-          <button onClick={() => setIsQuickCreateOpen(true)} className={styles.primaryBtn} style={{ flex: 1, justifyContent: "center" }}>
-            ⚡ + Fast Draft
-          </button>
-          <Link href="/admin/products/new" className={styles.secondaryBtn} style={{ flex: 1, justifyContent: "center" }}>
+          <Link href="/admin/products/quick-add" className={styles.primaryBtn} style={{ flex: 1, justifyContent: "center", textDecoration: "none" }}>
+            ⚡ + Quick Add
+          </Link>
+          <Link href="/admin/products/new" className={styles.secondaryBtn} style={{ flex: 1, justifyContent: "center", textDecoration: "none" }}>
             + Full Studio
           </Link>
         </div>
@@ -327,7 +329,7 @@ export default function AdminProductsListPage() {
               value={issueFilter}
               onChange={(e) => updateFilters({ issue: e.target.value, page: 1 })}
               className={styles.select}
-              style={{ fontSize: "0.8rem", padding: "0.35rem 0.65rem", minWidth: "180px", cursor: "pointer" }}
+              style={{ fontSize: "0.8rem", padding: "0.35rem 0.65rem", minWidth: "170px", cursor: "pointer" }}
             >
               <option value="all">Filter by Issue (All)</option>
               <option value="primary_image">📷 Missing Primary Image</option>
@@ -340,6 +342,22 @@ export default function AdminProductsListPage() {
               <option value="seo_title">🏷 Suboptimal SEO Title</option>
               <option value="category">📁 Missing Category Placement</option>
               <option value="primary_material">🪨 Missing Primary Material</option>
+            </select>
+          </div>
+
+          {/* Sort By Select Dropdown (Default: Recency Added) */}
+          <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+            <select
+              value={sortFilter}
+              onChange={(e) => updateFilters({ sort: e.target.value, page: 1 })}
+              className={styles.select}
+              style={{ fontSize: "0.8rem", padding: "0.35rem 0.65rem", minWidth: "160px", cursor: "pointer", fontWeight: "600", color: "#8C6D46" }}
+              title="Sort products"
+            >
+              <option value="recent">🕒 Recently Added</option>
+              <option value="updated">🔄 Recently Updated</option>
+              <option value="name">🔤 Name (A–Z)</option>
+              <option value="health_priority">⚠ Health Priority</option>
             </select>
           </div>
 
@@ -420,6 +438,11 @@ export default function AdminProductsListPage() {
                     <td>
                       <code style={{ fontSize: "0.78rem", color: "#555" }}>{p.sku}</code>
                       <div style={{ fontSize: "0.75rem", color: "#888" }}>/{p.slug}</div>
+                      {p.createdAt && (
+                        <div style={{ fontSize: "0.71rem", color: "#777", marginTop: "3px" }}>
+                          🕒 Added {new Date(p.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
+                        </div>
+                      )}
                     </td>
                     <td>{p.parentCategory}</td>
                     <td>
@@ -513,6 +536,12 @@ export default function AdminProductsListPage() {
                       <code>{p.sku}</code>
                       <span>•</span>
                       <span>{p.parentCategory}</span>
+                      {p.createdAt && (
+                        <>
+                          <span>•</span>
+                          <span>Added {new Date(p.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}</span>
+                        </>
+                      )}
                     </div>
 
                     <div style={{ marginTop: "0.4rem", display: "flex", alignItems: "center", gap: "0.4rem" }}>
@@ -623,6 +652,22 @@ export default function AdminProductsListPage() {
               <button onClick={() => setIsFilterSheetOpen(false)} style={{ background: "none", border: "none", fontSize: "1.5rem" }}>
                 &times;
               </button>
+            </div>
+
+            {/* Mobile Sort Dropdown */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.35rem" }}>
+              <label style={{ fontSize: "0.82rem", fontWeight: "600", color: "#666" }}>Sort Order</label>
+              <select
+                value={sortFilter}
+                onChange={(e) => { updateFilters({ sort: e.target.value, page: 1 }); setIsFilterSheetOpen(false); }}
+                className={styles.select}
+                style={{ width: "100%", minHeight: "44px", fontSize: "0.9rem" }}
+              >
+                <option value="recent">🕒 Recently Added (Newest First)</option>
+                <option value="updated">🔄 Recently Updated</option>
+                <option value="name">🔤 Name (A–Z)</option>
+                <option value="health_priority">⚠ Health Priority</option>
+              </select>
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "0.65rem" }}>

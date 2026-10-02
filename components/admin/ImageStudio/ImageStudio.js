@@ -84,8 +84,10 @@ export default function ImageStudio({
           role: idx === 0 && (!imageSrc || imageSrc.includes("placehold.co")) ? "cover" : "gallery"
         }));
 
-        const updatedGallery = [...normalizedGallery, ...newImages];
-        const newCoverSrc = imageSrc && !imageSrc.includes("placehold.co") ? imageSrc : newImages[0]?.src || imageSrc;
+        const existingUrls = new Set(normalizedGallery.map((g) => g.src));
+        const uniqueNew = newImages.filter((img) => !existingUrls.has(img.src));
+        const updatedGallery = [...normalizedGallery, ...uniqueNew];
+        const newCoverSrc = imageSrc && !imageSrc.includes("placehold.co") ? imageSrc : (uniqueNew[0]?.src || imageSrc);
 
         onChange({
           imageSrc: newCoverSrc,

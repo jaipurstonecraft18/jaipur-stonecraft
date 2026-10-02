@@ -50,8 +50,40 @@ export default async function CollectionsPage() {
   const trioTwo = colMap["decorative-stone-art"] || allCollectionsList[4];
   const trioThree = colMap["custom-bespoke-creations"] || allCollectionsList[5];
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jaipurstonecraft.com" },
+          { "@type": "ListItem", "position": 2, "name": "Collections", "item": "https://jaipurstonecraft.com/collections" },
+        ],
+      },
+      {
+        "@type": "CollectionPage",
+        "name": "Bespoke Stonecraft Collections — Jaipur Stonecraft Atelier",
+        "description": "Explore the 6 main stonecraft collections carved in white marble, sandstone & limestone by master sculptors in Jaipur, India.",
+        "url": "https://jaipurstonecraft.com/collections",
+        "mainEntity": {
+          "@type": "ItemList",
+          "itemListElement": allCollectionsList.map((col, idx) => ({
+            "@type": "ListItem",
+            "position": idx + 1,
+            "name": col.name,
+            "url": `https://jaipurstonecraft.com/collections/${col.slug}`
+          }))
+        }
+      }
+    ],
+  };
+
   return (
     <div className={styles.pageWrapper}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* 1. ELEGANT INTRO SECTION */}
       <section className={styles.introSection}>
         <Container>
@@ -59,6 +91,7 @@ export default async function CollectionsPage() {
             <div className={styles.breadcrumbWrapper}>
               <Breadcrumbs items={[{ label: "Collections" }]} />
             </div>
+
 
             <ScrollReveal animation="fade-up">
               <span className={styles.eyebrow}>CURATED ATELIER PORTFOLIO</span>

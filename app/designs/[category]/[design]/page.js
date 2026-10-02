@@ -70,6 +70,12 @@ export async function generateMetadata({ params }) {
         },
       ],
     },
+    twitter: {
+      card: "summary_large_image",
+      title: pageTitle,
+      description: metaDesc,
+      images: [design.imageSrc],
+    },
   };
 }
 
@@ -95,6 +101,27 @@ export default async function DesignDetailPage({ params }) {
     ? "https://schema.org/PreOrder"
     : "https://schema.org/InStock";
 
+  const canonicalUrl = `https://jaipurstonecraft.com/designs/${categorySlug}/${designSlug}`;
+
+  // Image perspectives array for schema (deduplicated)
+  const allImageUrls = Array.from(
+    new Set(
+      [
+        design.imageSrc,
+        ...(Array.isArray(design.imageGallery)
+          ? design.imageGallery.map((img) => (typeof img === "string" ? img : (img.url || img.src))).filter(Boolean)
+          : []),
+      ]
+        .filter(Boolean)
+        .map((u) => (typeof u === "string" ? u.trim().replace(/^["']|["']$/g, "") : ""))
+        .filter(Boolean)
+    )
+  );
+
+  // Extract structured FAQs from knowledge layer
+  const klFaqs = design.knowledgeLayer?.faqs || design.faqs || [];
+  const validFaqs = Array.isArray(klFaqs) ? klFaqs.filter((f) => (f.question || f.q) && (f.answer || f.a)) : [];
+
   const jsonLdGraph = [
     {
       "@type": "BreadcrumbList",
@@ -104,36 +131,56 @@ export default async function DesignDetailPage({ params }) {
         ...(collection ? [{ "@type": "ListItem", "position": 3, "name": collection.name, "item": `https://jaipurstonecraft.com/collections/${collection.slug}` }] : []),
         ...(subcategory ? [{ "@type": "ListItem", "position": 4, "name": subcategory.name, "item": `https://jaipurstonecraft.com/collections/${collection?.slug}/${subcategory.slug}` }] : []),
         ...(category ? [{ "@type": "ListItem", "position": 5, "name": category.name, "item": `https://jaipurstonecraft.com/collections/${collection?.slug}/${subcategory?.slug}/${category.slug}` }] : []),
-        { "@type": "ListItem", "position": 6, "name": design.name, "item": `https://jaipurstonecraft.com/designs/${categorySlug}/${designSlug}` },
+        { "@type": "ListItem", "position": 6, "name": design.name, "item": canonicalUrl },
       ],
     },
     {
       "@type": "Product",
       "name": design.name,
       "description": design.shortDescription || design.detailedDescription,
-      "image": design.imageSrc,
+      "image": allImageUrls.length > 1 ? allImageUrls : design.imageSrc,
+      "sku": design.sku || design.slug,
+      "url": canonicalUrl,
       "category": category ? category.name : undefined,
       "brand": {
         "@type": "Brand",
         "name": "Jaipur Stonecraft",
       },
       "material": design.primaryMaterial ? design.primaryMaterial.name : (design.attributes?.stoneVariety || "White Makrana Marble"),
+      "countryOfOrigin": "India",
       "offers": {
         "@type": "Offer",
+        "url": canonicalUrl,
+        "priceCurrency": "INR",
+        "price": "0",
+        "priceValidUntil": "2028-12-31",
         "availability": availabilitySchema,
         "itemCondition": "https://schema.org/NewCondition",
         "seller": {
           "@type": "Organization",
-          "name": "Jaipur Stonecraft"
+          "name": "Jaipur Stonecraft",
+          "url": "https://jaipurstonecraft.com"
         }
       }
     },
+    ...(validFaqs.length > 0 ? [{
+      "@type": "FAQPage",
+      "mainEntity": validFaqs.map((f) => ({
+        "@type": "Question",
+        "name": f.question || f.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": f.answer || f.a,
+        },
+      })),
+    }] : []),
   ];
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": jsonLdGraph,
   };
+
 
   return (
     <main style={{ minHeight: "100vh", backgroundColor: "var(--color-cream)" }}>

@@ -51,7 +51,7 @@ export default function FieldAiActions({
   };
 
   return (
-    <div style={{ display: "inline-flex", gap: "0.4rem", alignItems: "center", position: "relative" }}>
+    <div style={{ display: "inline-flex", gap: "0.35rem", alignItems: "center", flexWrap: "wrap", position: "relative", maxWidth: "100%" }}>
       <button
         type="button"
         onClick={() => handleTriggerAction("Improve Writing")}
@@ -59,14 +59,16 @@ export default function FieldAiActions({
           background: "none",
           border: "1px solid #E2DDD5",
           borderRadius: "12px",
-          padding: "0.15rem 0.5rem",
+          padding: "0.2rem 0.55rem",
           fontSize: "0.72rem",
           fontWeight: "600",
           color: "var(--color-bronze)",
           cursor: "pointer",
-          display: "flex",
+          display: "inline-flex",
           alignItems: "center",
-          gap: "0.25rem"
+          gap: "0.25rem",
+          flexShrink: 0,
+          minHeight: "30px"
         }}
       >
         ✨ Improve Writing
@@ -79,14 +81,16 @@ export default function FieldAiActions({
           background: "none",
           border: "1px solid #E2DDD5",
           borderRadius: "12px",
-          padding: "0.15rem 0.5rem",
+          padding: "0.2rem 0.55rem",
           fontSize: "0.72rem",
           fontWeight: "600",
           color: "var(--color-navy)",
           cursor: "pointer",
-          display: "flex",
+          display: "inline-flex",
           alignItems: "center",
-          gap: "0.25rem"
+          gap: "0.25rem",
+          flexShrink: 0,
+          minHeight: "30px"
         }}
       >
         ✨ Enhance SEO Wording
@@ -97,15 +101,18 @@ export default function FieldAiActions({
         <div style={{
           position: "absolute",
           top: "100%",
-          left: 0,
+          right: 0,
+          left: "auto",
           zIndex: 100,
           marginTop: "0.35rem",
           backgroundColor: "#FFFFFF",
           border: "1px solid #9E7B4F",
           borderRadius: "6px",
           padding: "0.85rem",
-          width: "340px",
-          boxShadow: "0 10px 25px rgba(0,0,0,0.2)"
+          width: "320px",
+          maxWidth: "min(320px, calc(100vw - 2rem))",
+          boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
+          boxSizing: "border-box"
         }}>
           <div style={{ fontSize: "0.75rem", fontWeight: "700", color: "var(--color-navy)", marginBottom: "0.35rem" }}>
             ✨ AI Refined {fieldLabel} Suggestion
