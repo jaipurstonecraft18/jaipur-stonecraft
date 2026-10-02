@@ -6,20 +6,35 @@
  */
 
 import { NextResponse } from "next/server";
-import { isAuthorizedAdminRequest } from "@/lib/admin/auth";
+import crypto from "crypto";
+import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
 import { runFullBackup, listLocalBackups } from "@/lib/backup/backup-engine";
 
 function isAuthorizedCronOrAdmin(req) {
   if (isAuthorizedAdminRequest(req)) return true;
 
-  // Check BACKUP_SECRET_KEY or ADMIN_SECRET_KEY query param or header
-  const url = new URL(req.url);
-  const keyParam = url.searchParams.get("key");
-  const authHeader = req.headers.get("x-backup-secret");
+  const validSecret = (process.env.BACKUP_SECRET_KEY || process.env.ADMIN_SECRET_KEY || "").trim().replace(/^['"]|['"]$/g, "");
+  if (!validSecret) return false;
 
-  const validSecret = process.env.BACKUP_SECRET_KEY || process.env.ADMIN_SECRET_KEY;
-  if (validSecret && ((keyParam && keyParam === validSecret) || (authHeader && authHeader === validSecret))) {
-    return true;
+  const expectedBuf = Buffer.from(validSecret);
+
+  // Check x-backup-secret header
+  const authHeader = req.headers.get("x-backup-secret");
+  if (authHeader) {
+    const headerBuf = Buffer.from(authHeader.trim());
+    if (headerBuf.length === expectedBuf.length && crypto.timingSafeEqual(headerBuf, expectedBuf)) {
+      return true;
+    }
+  }
+
+  // Check Authorization: Bearer <secret>
+  const bearerHeader = req.headers.get("authorization");
+  if (bearerHeader && bearerHeader.startsWith("Bearer ")) {
+    const token = bearerHeader.substring(7).trim();
+    const tokenBuf = Buffer.from(token);
+    if (tokenBuf.length === expectedBuf.length && crypto.timingSafeEqual(tokenBuf, expectedBuf)) {
+      return true;
+    }
   }
 
   return false;
@@ -38,7 +53,8 @@ export async function GET(req) {
       backups: backupList
     });
   } catch (error) {
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    console.error("[Backup API GET Error]:", error);
+    return NextResponse.json({ success: false, error: "Failed to list backups" }, { status: 500 });
   }
 }
 
@@ -55,6 +71,7 @@ export async function POST(req) {
       result
     });
   } catch (error) {
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    console.error("[Backup API POST Error]:", error);
+    return NextResponse.json({ success: false, error: "Backup execution failed" }, { status: 500 });
   }
 }

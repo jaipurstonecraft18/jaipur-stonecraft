@@ -11,7 +11,7 @@ This document provides complete operational procedures for creating, storing, ve
   - **Node.js Runtime**: Supported via API routes, npm scripts, and scheduled node processes.
   - **Pure Node.js Database Dumper**: The backup engine exports MySQL data using `mysql2` metadata and DDL/DML serialization. It does **not** rely on external binary `mysqldump` (which is often restricted or unavailable in shared hosting environments).
   - **Google Drive v3 REST Integration**: Uses Service Account JWT assertions (RSA-SHA256) via native Node `crypto` & `fetch` API.
-  - **Scheduled Execution**: Can be triggered automatically via Hostinger hPanel Cron, GitHub Actions, or external cron services (`cron-job.org`) calling `POST /api/admin/backup?key=BACKUP_SECRET_KEY`.
+  - **Scheduled Execution**: Can be triggered automatically via Hostinger hPanel Cron, GitHub Actions, or external cron services (`cron-job.org`) calling `POST /api/admin/backup` with header `x-backup-secret: YOUR_BACKUP_SECRET_KEY`.
   - **Off-Site & Local Fallback**: Backups are archived locally under `backups/` and pushed to off-site Google Drive cloud storage.
 
 - **Constraints & Prohibitions**:
@@ -44,9 +44,9 @@ npm run backup
 node scripts/backup-runner.js
 ```
 
-### Option B: HTTP API Endpoint / Automated Cron Trigger
+### Option B: HTTP API Endpoint / Automated Cron Trigger (Secure Header)
 ```bash
-curl -X POST "http://localhost:3000/api/admin/backup?key=YOUR_BACKUP_SECRET_KEY"
+curl -X POST "http://localhost:3000/api/admin/backup" -H "x-backup-secret: YOUR_BACKUP_SECRET_KEY"
 ```
 
 ---
