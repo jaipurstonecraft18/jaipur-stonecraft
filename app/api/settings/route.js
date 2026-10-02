@@ -20,6 +20,7 @@ export async function GET() {
 
     return NextResponse.json({ success: true, settings });
   } catch (error) {
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    console.error("[Public Settings API Error]:", error);
+    return NextResponse.json({ success: false, error: "Failed to load site settings" }, { status: 500 });
   }
 }
