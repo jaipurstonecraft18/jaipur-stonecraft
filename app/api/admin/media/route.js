@@ -123,8 +123,28 @@ export async function DELETE(request) {
     const { searchParams } = new URL(request.url);
     const mediaUrl = searchParams.get("url");
 
-    if (!mediaUrl || !mediaUrl.startsWith("/uploads/")) {
-      return NextResponse.json({ error: "Valid media URL is required" }, { status: 400 });
+    if (!mediaUrl || typeof mediaUrl !== "string" || !mediaUrl.startsWith("/uploads/")) {
+      return NextResponse.json({ error: "Valid media URL is required (must start with /uploads/)" }, { status: 400 });
+    }
+
+    // Strict path traversal prevention: reject .. , backslashes, and null bytes
+    if (mediaUrl.includes("..") || mediaUrl.includes("\\") || mediaUrl.includes("\0") || /%2e|%2f|%5c/i.test(mediaUrl)) {
+      return NextResponse.json({ error: "Invalid media URL: path traversal patterns are strictly forbidden" }, { status: 400 });
+    }
+
+    const allowedBaseDir = path.resolve(process.cwd(), "public", "uploads");
+    const baseDiskPath = path.resolve(process.cwd(), "public", mediaUrl.replace(/^\/+/, ""));
+
+    // Ensure resolved path is strictly within the allowed uploads directory
+    if (!baseDiskPath.startsWith(allowedBaseDir + path.sep)) {
+      return NextResponse.json({ error: "Access denied: destination outside allowed uploads directory" }, { status: 403 });
+    }
+
+    // Only allow deletion of valid media file extensions
+    const ext = path.extname(baseDiskPath).toLowerCase();
+    const ALLOWED_DELETE_EXTS = [".webp", ".png", ".jpg", ".jpeg", ".avif", ".mp4", ".webm"];
+    if (!ALLOWED_DELETE_EXTS.includes(ext)) {
+      return NextResponse.json({ error: "Invalid media file extension" }, { status: 400 });
     }
 
     // Check if actively referenced in DB
@@ -140,14 +160,16 @@ export async function DELETE(request) {
     }
 
     // Unlink display, raw, card, and thumb files safely from local disk
-    const baseDiskPath = path.join(process.cwd(), "public", mediaUrl.replace(/^\//, ""));
-    const rawDiskPath = baseDiskPath.replace("/display/", "/raw/").replace(/\.webp$/, ".png");
-    const cardDiskPath = baseDiskPath.replace("/display/", "/card/");
-    const thumbDiskPath = baseDiskPath.replace("/display/", "/thumb/");
+    const rawDiskPath = baseDiskPath.replace(/[/\\]display[/\\]/, `${path.sep}raw${path.sep}`).replace(/\.webp$/, ".png");
+    const cardDiskPath = baseDiskPath.replace(/[/\\]display[/\\]/, `${path.sep}card${path.sep}`);
+    const thumbDiskPath = baseDiskPath.replace(/[/\\]display[/\\]/, `${path.sep}thumb${path.sep}`);
 
     const safeUnlink = (fp) => {
       try {
-        if (fsSync.existsSync(fp)) fsSync.unlinkSync(fp);
+        const resolved = path.resolve(fp);
+        if (resolved.startsWith(allowedBaseDir + path.sep) && fsSync.existsSync(resolved)) {
+          fsSync.unlinkSync(resolved);
+        }
       } catch (e) {}
     };
 
@@ -158,7 +180,8 @@ export async function DELETE(request) {
 
     return NextResponse.json({ success: true, message: "Media file deleted safely from disk." });
   } catch (error) {
-    return NextResponse.json({ error: error.message || "Failed to delete media" }, { status: 500 });
+    console.error("[Admin Media DELETE Error]:", error);
+    return NextResponse.json({ error: "Failed to delete media file safely." }, { status: 500 });
   }
 }
 
