@@ -13,17 +13,34 @@ export async function POST(request) {
   // 1. Check Rate Limit
   const rateLimitStatus = checkRateLimit(clientIp);
   if (rateLimitStatus.isRateLimited) {
-    const minutesLeft = Math.ceil(rateLimitStatus.resetSeconds / 60);
-    return NextResponse.json(
-      {
-        success: false,
-        error: `Too many failed login attempts. Account locked for security. Please try again in ${minutesLeft} minutes.`
-      },
-      {
-        status: 429,
-        headers: { "Retry-After": String(rateLimitStatus.resetSeconds) }
-      }
-    );
+    if (rateLimitStatus.lockType === "short") {
+      return NextResponse.json(
+        {
+          success: false,
+          error: `Too many failed attempts (10 failed). Please wait ${rateLimitStatus.resetSeconds} second(s) before trying again.`,
+          retryAfter: rateLimitStatus.resetSeconds,
+          lockType: "short"
+        },
+        {
+          status: 429,
+          headers: { "Retry-After": String(rateLimitStatus.resetSeconds) }
+        }
+      );
+    } else {
+      const minutesLeft = Math.ceil(rateLimitStatus.resetSeconds / 60);
+      return NextResponse.json(
+        {
+          success: false,
+          error: `All trials failed. Account locked for security. Please try again in ${minutesLeft} minute(s).`,
+          retryAfter: rateLimitStatus.resetSeconds,
+          lockType: "long"
+        },
+        {
+          status: 429,
+          headers: { "Retry-After": String(rateLimitStatus.resetSeconds) }
+        }
+      );
+    }
   }
 
   try {
@@ -34,11 +51,47 @@ export async function POST(request) {
     if (!validateAdminCredentials(password)) {
       recordFailedAttempt(clientIp);
       const updatedStatus = checkRateLimit(clientIp);
+
+      if (updatedStatus.isRateLimited) {
+        if (updatedStatus.lockType === "short") {
+          return NextResponse.json(
+            {
+              success: false,
+              error: `10 failed attempts reached. Please wait ${updatedStatus.resetSeconds} second(s) before trying again.`,
+              retryAfter: updatedStatus.resetSeconds,
+              lockType: "short",
+              remainingAttempts: 0
+            },
+            { status: 429, headers: { "Retry-After": String(updatedStatus.resetSeconds) } }
+          );
+        } else {
+          const minutesLeft = Math.ceil(updatedStatus.resetSeconds / 60);
+          return NextResponse.json(
+            {
+              success: false,
+              error: `All 3 trials failed. Account locked for security. Please try again in ${minutesLeft} minute(s).`,
+              retryAfter: updatedStatus.resetSeconds,
+              lockType: "long",
+              remainingAttempts: 0
+            },
+            { status: 429, headers: { "Retry-After": String(updatedStatus.resetSeconds) } }
+          );
+        }
+      }
+
+      let errorMsg = "Invalid admin password.";
+      if (updatedStatus.stage === 1) {
+        errorMsg = `Invalid admin password. ${updatedStatus.remainingAttempts} attempt(s) remaining before a 30-second cooldown.`;
+      } else if (updatedStatus.stage === 2) {
+        errorMsg = `Invalid admin password. ${updatedStatus.remainingAttempts} trial(s) remaining before a 15-minute security lockout.`;
+      }
+
       return NextResponse.json(
         {
           success: false,
-          error: "Invalid admin password",
-          remainingAttempts: updatedStatus.remainingAttempts
+          error: errorMsg,
+          remainingAttempts: updatedStatus.remainingAttempts,
+          stage: updatedStatus.stage
         },
         { status: 401 }
       );
