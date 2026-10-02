@@ -5,6 +5,10 @@ import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
 import { seedCMSFoundation } from "@/lib/db/seeders.js";
 
 export async function GET(request) {
+  if (!isAuthorizedAdminRequest(request)) {
+    return NextResponse.json({ error: "Unauthorized access" }, { status: 401 });
+  }
+
   try {
     await seedCMSFoundation();
     const { searchParams } = new URL(request.url);
@@ -28,7 +32,8 @@ export async function GET(request) {
 
     return NextResponse.json({ sections });
   } catch (error) {
-    return NextResponse.json({ error: error.message || "Failed to fetch page sections" }, { status: 500 });
+    console.error("[Admin Pages GET Error]:", error);
+    return NextResponse.json({ error: "Failed to fetch page sections" }, { status: 500 });
   }
 }
 

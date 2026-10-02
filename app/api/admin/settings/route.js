@@ -4,6 +4,10 @@ import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
 import { seedCMSFoundation } from "@/lib/db/seeders.js";
 
 export async function GET(request) {
+  if (!isAuthorizedAdminRequest(request)) {
+    return NextResponse.json({ error: "Unauthorized access" }, { status: 401 });
+  }
+
   try {
     await seedCMSFoundation();
     const rows = await query("SELECT * FROM site_settings ORDER BY category ASC, key_name ASC");
@@ -21,7 +25,8 @@ export async function GET(request) {
 
     return NextResponse.json({ settings, raw: rows });
   } catch (error) {
-    return NextResponse.json({ error: error.message || "Failed to fetch site settings" }, { status: 500 });
+    console.error("[Admin Settings Error]:", error);
+    return NextResponse.json({ error: "Failed to fetch site settings" }, { status: 500 });
   }
 }
 
@@ -52,6 +57,7 @@ export async function PUT(request) {
 
     return NextResponse.json({ success: true, message: `Updated setting "${existing.label}"`, keyName });
   } catch (error) {
-    return NextResponse.json({ error: error.message || "Failed to update setting" }, { status: 500 });
+    console.error("[Admin Settings PUT Error]:", error);
+    return NextResponse.json({ error: "Failed to update setting" }, { status: 500 });
   }
 }
