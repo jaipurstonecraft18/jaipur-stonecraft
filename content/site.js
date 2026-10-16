@@ -2,10 +2,10 @@ export const siteConfig = {
   name: "Jaipur Stonecraft",
   description: "Built on generations of family craftsmanship in Jaipur, creating premium marble deity statues, custom sacred art, luxury stone objects, and architectural masonry.",
   contact: {
-    phone: "+91 70147 53278",
+    phone: "+91 9664388920",
     email: "Jaipurstonecraft18@gmail.com",
-    whatsapp: "+917014753278",
-    whatsappLink: "https://wa.me/917014753278",
+    whatsapp: "+91 9664388920",
+    whatsappLink: "https://wa.me/919664388920",
     address: "30, Industrial Area, Krisna Nagar a, Kartarpura, Gopal Pura Mode, Jaipur, Rajasthan 302015",
     instagram: "https://instagram.com/jaipurstonecraft",
     facebook: "https://facebook.com/jaipurstonecraft",
@@ -20,7 +20,7 @@ export const siteConfig = {
   },
   utility: {
     announcements: ["Handcrafted in Jaipur, India", "Generational Craftsmanship", "Worldwide Delivery"],
-    phone: "+91 70147 53278",
+    phone: "+91 9664388920",
     email: "Jaipurstonecraft18@gmail.com",
   },
   navigation: [

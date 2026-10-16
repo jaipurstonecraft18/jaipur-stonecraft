@@ -158,7 +158,7 @@ export default function Header({ theme }) {
             </div>
 
             <div className={styles.utilityRight}>
-              <a href={`tel:${siteConfig.contact.phone}`} className={styles.utilityLink} aria-label={`Call us at ${siteConfig.contact.phone}`}>
+              <a href={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`} className={styles.utilityLink} aria-label={`Call us at ${siteConfig.contact.phone}`}>
                 {siteConfig.contact.phone}
               </a>
               <span className={styles.utilityDot}>•</span>

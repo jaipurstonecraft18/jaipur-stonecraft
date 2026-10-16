@@ -1,0 +1,489 @@
+/* ==========================================================================
+   JAIPUR STONECRAFT — DUAL DISCOVERY SLIDERS SECTION
+   Curated Luxury Stone-Art Gallery with Continuous Linear Discovery Rails
+   ========================================================================== */
+
+.discoverySection {
+  position: relative;
+  overflow: hidden;
+  background-color: #F7F2EB;
+  color: #221F1B;
+  padding-top: 6.5rem;
+  padding-bottom: 4.5rem;
+}
+
+/* 1. Subtle Ornamental Background Linework
+   ========================================================================== */
+.ornamentBackground {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bgSvgTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0.85;
+}
+
+.watermarkRosette {
+  position: absolute;
+  top: 35%;
+  right: -80px;
+  opacity: 0.75;
+}
+
+/* 2. Section Header Hierarchy
+   ========================================================================== */
+.sectionHeader {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2.25rem;
+  padding: 0 1rem;
+}
+
+.eyebrow {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #B87B31;
+  margin-bottom: 0.65rem;
+}
+
+.heading {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(2.2rem, 3.6vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: #221F1B;
+  margin-bottom: 0.65rem;
+  letter-spacing: -0.01em;
+}
+
+.supportingText {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.98rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #554D45;
+  max-width: 540px;
+  margin: 0 auto 1.15rem;
+}
+
+.exploreLinkRow {
+  display: flex;
+  justify-content: center;
+}
+
+.exploreLink {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #B87B31;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.25rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.exploreLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(184, 123, 49, 0.4);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.exploreLink:hover {
+  color: #8C5B1F;
+}
+
+.exploreLink:hover::after {
+  background-color: #8C5B1F;
+}
+
+.exploreArrow {
+  font-size: 0.95rem;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.exploreLink:hover .exploreArrow {
+  transform: translateX(4px);
+}
+
+/* 3. Slider Container & Infinite Gallery Rail
+   ========================================================================== */
+.sliderContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.railWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.scrollTrack {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  padding: 1rem 0 2rem;
+  /* Smooth luxury edge fade */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 50px, black calc(100% - 50px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 50px, black calc(100% - 50px), transparent 100%);
+}
+
+.scrollTrack:active {
+  cursor: grabbing;
+}
+
+.scrollTrack::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+.scrollTrack:focus-visible {
+  outline: 2px solid #B87B31;
+  outline-offset: -2px;
+}
+
+.railInner {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0 1.5rem;
+  flex-shrink: 0;
+  width: max-content;
+}
+
+/* 4. Outer Edge Navigation Buttons
+   ========================================================================== */
+.edgeNavButton {
+  position: absolute;
+  top: calc(50% - 0.5rem);
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #FAF7F2;
+  border: 1px solid rgba(184, 123, 49, 0.35);
+  box-shadow: 0 8px 24px rgba(28, 24, 20, 0.12), 0 2px 6px rgba(28, 24, 20, 0.04);
+  color: #221F1B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.92;
+}
+
+.edgeNavPrev {
+  left: 1.25rem;
+}
+
+.edgeNavNext {
+  right: 1.25rem;
+}
+
+.edgeNavButton:hover {
+  background: #FFFFFF;
+  color: #B87B31;
+  border-color: #B87B31;
+  opacity: 1;
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 12px 28px rgba(184, 123, 49, 0.22);
+}
+
+.edgeNavButton:active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+.edgeNavButton:focus-visible {
+  outline: 2px solid #B87B31;
+  outline-offset: 2px;
+}
+
+/* 5. Gallery Card Architecture
+   ========================================================================== */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #FAF7F2;
+  border-radius: 20px;
+  border: 1px solid rgba(220, 208, 192, 0.75);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 10px 28px rgba(28, 24, 20, 0.05), 0 2px 6px rgba(28, 24, 20, 0.02);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.45s ease;
+  user-select: none;
+}
+
+/* Portrait Card: Popular Marble Statues */
+.cardPortrait {
+  width: 250px;
+  flex-shrink: 0;
+}
+
+/* Landscape Card: Murals, Jalis & Architectural Art */
+.cardLandscape {
+  width: 360px;
+  flex-shrink: 0;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(184, 123, 49, 0.55);
+  box-shadow: 0 18px 42px rgba(28, 24, 20, 0.1), 0 4px 12px rgba(28, 24, 20, 0.04);
+}
+
+.card:focus-visible {
+  outline: 2px solid #B87B31;
+  outline-offset: 2px;
+}
+
+/* Image Presentation Box */
+.imageBox {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #EAE4DC;
+}
+
+.imageBoxPortrait {
+  aspect-ratio: 3 / 3.8;
+}
+
+.imageBoxLandscape {
+  aspect-ratio: 16 / 10.5;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .cardImage {
+  transform: scale(1.05);
+}
+
+.imageWarmGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(28, 24, 20, 0.12) 0%, transparent 35%);
+  pointer-events: none;
+}
+
+/* Card Body & Typography */
+.cardBody {
+  padding: 1.15rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: #FAF7F2;
+}
+
+.cardTitle {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #221F1B;
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card:hover .cardTitle {
+  color: #B87B31;
+}
+
+.cardMetaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.cardCategory {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8A8177;
+}
+
+.cardArrow {
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #B87B31;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .cardArrow {
+  transform: translateX(4px);
+}
+
+/* 6. Central Atelier Ornamental Divider
+   ========================================================================== */
+.centralOrnament {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 0;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+}
+
+/* 7. Tablet Responsiveness
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .discoverySection {
+    padding-top: 5.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .scrollTrack {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 28px, black calc(100% - 28px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 28px, black calc(100% - 28px), transparent 100%);
+  }
+
+  .cardPortrait {
+    width: 225px;
+  }
+
+  .cardLandscape {
+    width: 320px;
+  }
+
+  .edgeNavPrev {
+    left: 0.75rem;
+  }
+
+  .edgeNavNext {
+    right: 0.75rem;
+  }
+
+  .centralOrnament {
+    padding: 2.25rem 0;
+  }
+}
+
+/* 8. Mobile Responsiveness
+   ========================================================================== */
+@media (max-width: 640px) {
+  .discoverySection {
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+  }
+
+  .sectionHeader {
+    margin-bottom: 1.75rem;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+  }
+
+  .heading {
+    font-size: 1.95rem;
+  }
+
+  .supportingText {
+    font-size: 0.9rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .scrollTrack {
+    /* Remove edge mask on mobile so full card is immediately clear */
+    -webkit-mask-image: none;
+    mask-image: none;
+    padding: 0.75rem 0 1.5rem;
+  }
+
+  .railInner {
+    gap: 1.15rem;
+    padding: 0 1.25rem;
+  }
+
+  .cardPortrait {
+    width: 205px;
+    border-radius: 16px;
+  }
+
+  .cardLandscape {
+    width: 275px;
+    border-radius: 16px;
+  }
+
+  .cardBody {
+    padding: 0.95rem 1.05rem 1.1rem;
+  }
+
+  .cardTitle {
+    font-size: 1.12rem;
+  }
+
+  .cardCategory {
+    font-size: 0.68rem;
+  }
+
+  /* Hide edge nav buttons on small mobile to give finger full surface for touch swipe */
+  .edgeNavButton {
+    display: none;
+  }
+
+  .centralOrnament {
+    padding: 1.75rem 0;
+  }
+}
+
+/* 9. Accessibility: Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .cardImage,
+  .card,
+  .cardArrow,
+  .edgeNavButton {
+    transition: none !important;
+  }
+
+  .scrollTrack {
+    scroll-behavior: smooth !important;
+  }
+}

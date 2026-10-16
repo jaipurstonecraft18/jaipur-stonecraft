@@ -41,9 +41,15 @@ export default async function sitemap() {
   let productRows = [];
 
   try {
-    collectionRows = await query("SELECT slug FROM collections");
-    subcategoryRows = await query("SELECT slug, parent_collection_slug FROM subcategories");
-    categoryRows = await query("SELECT slug, parent_collection_slug, parent_subcategory_slug FROM categories");
+    collectionRows = await query("SELECT slug FROM collections WHERE is_active = 1");
+    subcategoryRows = await query("SELECT slug, parent_collection_slug FROM subcategories WHERE is_active = 1");
+    categoryRows = await query(`
+      SELECT c.slug, c.parent_collection_slug, c.parent_subcategory_slug 
+      FROM categories c
+      INNER JOIN subcategories s ON c.parent_subcategory_slug = s.slug
+      INNER JOIN collections col ON c.parent_collection_slug = col.slug
+      WHERE c.is_active = 1 AND s.is_active = 1 AND col.is_active = 1
+    `);
     productRows = await query("SELECT slug, parent_category, updated_at FROM products WHERE status = 'published'");
   } catch (e) {
     console.error("[Sitemap DB Query Error]:", e);

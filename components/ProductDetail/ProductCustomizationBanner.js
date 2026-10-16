@@ -9,7 +9,8 @@ export default function ProductCustomizationBanner({ design }) {
   const whatsappMessage = encodeURIComponent(
     `Hello Jaipur Stonecraft, I would like to discuss a custom dimension or custom version of "${productName}".`
   );
-  const whatsappUrl = `https://wa.me/${siteConfig.contact.whatsapp}?text=${whatsappMessage}`;
+  const whatsappNumber = (siteConfig.contact.whatsappNumber || siteConfig.contact.whatsapp || "919664388920").replace(/\D/g, "");
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   return (
     <section className={styles.bannerSection} aria-label="Custom Order Consultation">

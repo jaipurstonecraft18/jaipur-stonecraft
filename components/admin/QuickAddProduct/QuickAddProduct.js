@@ -4,7 +4,9 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import CategorySearchSelect from "@/components/admin/CategorySearchSelect/CategorySearchSelect";
+import { categoriesData } from "@/content/categories-data.js";
 import QuickAddModal from "@/components/admin/QuickAddModal/QuickAddModal";
+import MobileImageStudio from "./MobileImageStudio/MobileImageStudio";
 import styles from "./QuickAddProduct.module.css";
 
 const STONE_MATERIALS = [
@@ -35,9 +37,17 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
   const [step, setStep] = useState(1);
 
   // Media state
-  const [images, setImages] = useState([]); // [{ url, displayUrl, altText, isPrimary }]
+  const [images, setImages] = useState([]); // [{ url, rawUrl, displayUrl, altText, isPrimary, metadata }]
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState("");
+
+  // Mobile-First Product Image Studio queue state
+  const [studioQueue, setStudioQueue] = useState([]); // Array of File objects selected by user
+  const [studioQueueIndex, setStudioQueueIndex] = useState(0);
+  const [isStudioOpen, setIsStudioOpen] = useState(false);
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [editingFile, setEditingFile] = useState(null);
+  const [editingMetadata, setEditingMetadata] = useState(null);
 
   // AI & Vision analysis state
   const [analyzingVision, setAnalyzingVision] = useState(false);
@@ -56,7 +66,7 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
   const [targetStatus, setTargetStatus] = useState("published"); // 'published' | 'draft'
 
   // Dynamic catalogue list from server
-  const [categoriesList, setCategoriesList] = useState([]);
+  const [categoriesList, setCategoriesList] = useState(() => Object.values(categoriesData));
   const [subjectsList, setSubjectsList] = useState([]);
 
   // Save / Submit state
@@ -88,17 +98,30 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
       .catch(() => {});
   }, []);
 
-  // Handle Photo Selection & Upload
-  const handlePhotoSelect = async (e) => {
+  // Handle Photo Selection — Automatically launch Mobile Product Image Studio
+  const handlePhotoSelect = (e) => {
     const files = Array.from(e.target.files || []);
     if (files.length === 0) return;
 
+    // Queue selected files and launch Mobile Image Studio automatically
+    setStudioQueue(files);
+    setStudioQueueIndex(0);
+    setIsStudioOpen(true);
+    setUploadError("");
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
+  // Studio Save or Skip handler: Uploads both the processed image and original camera file
+  const handleStudioSaveOrSkip = async ({ processedFile, originalFile, metadata }) => {
     setUploading(true);
     setUploadError("");
 
     try {
       const formData = new FormData();
-      files.forEach((file) => formData.append("files", file));
+      formData.append("files", processedFile);
+      if (originalFile) {
+        formData.append("originalFile", originalFile);
+      }
       formData.append("folder", "products");
       formData.append("productSlug", "quick-add");
 
@@ -109,32 +132,119 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
 
       const data = await res.json();
 
-      if (res.ok && data.success && Array.isArray(data.images)) {
-        const newImages = data.images.map((img, idx) => ({
-          url: img.url,
-          displayUrl: img.displayUrl || img.url,
-          altText: img.altText || "Product photo",
-          isPrimary: images.length === 0 && idx === 0
-        }));
+      if (res.ok && data.success && Array.isArray(data.images) && data.images.length > 0) {
+        const uploadedImg = data.images[0];
+        const newImageObj = {
+          url: uploadedImg.url,
+          rawUrl: uploadedImg.rawUrl || uploadedImg.url,
+          displayUrl: uploadedImg.displayUrl || uploadedImg.url,
+          cardUrl: uploadedImg.cardUrl || uploadedImg.url,
+          thumbUrl: uploadedImg.thumbUrl || uploadedImg.url,
+          altText: uploadedImg.altText || "Product photo hand-carved in Jaipur atelier",
+          isPrimary: images.length === 0,
+          metadata,
+          originalFile: originalFile || null
+        };
 
-        setImages((prev) => {
-          const existingUrls = new Set(prev.map((p) => p.url));
-          const uniqueNew = newImages.filter((img) => !existingUrls.has(img.url));
-          const combined = [...prev, ...uniqueNew];
-          // Ensure first image is marked primary
-          if (!combined.some((img) => img.isPrimary) && combined.length > 0) {
-            combined[0].isPrimary = true;
+        if (editingIndex !== null) {
+          setImages((prev) => {
+            const updated = [...prev];
+            updated[editingIndex] = {
+              ...newImageObj,
+              isPrimary: prev[editingIndex]?.isPrimary ?? (editingIndex === 0)
+            };
+            return updated;
+          });
+          setEditingIndex(null);
+          setEditingFile(null);
+          setEditingMetadata(null);
+          setIsStudioOpen(false);
+        } else {
+          setImages((prev) => {
+            const combined = [...prev, newImageObj];
+            if (!combined.some((img) => img.isPrimary) && combined.length > 0) {
+              combined[0].isPrimary = true;
+            }
+            return combined;
+          });
+
+          // Advance to next image in queue or close
+          if (studioQueueIndex + 1 < studioQueue.length) {
+            setStudioQueueIndex((prev) => prev + 1);
+          } else {
+            setIsStudioOpen(false);
+            setStudioQueue([]);
+            setStudioQueueIndex(0);
           }
-          return combined;
-        });
+        }
       } else {
         setUploadError(data.error || "Photo couldn't be uploaded. Check your connection and try again.");
       }
     } catch (err) {
+      console.error("[Studio Upload Error]:", err);
       setUploadError("Photo couldn't be uploaded. Check your connection and try again.");
     } finally {
       setUploading(false);
-      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  };
+
+  // Reopen and edit existing photo using untouched camera file
+  const handleEditPhoto = async (index) => {
+    const target = images[index];
+    if (!target) return;
+
+    setUploading(true);
+    setUploadError("");
+    try {
+      let fileToEdit = target.originalFile;
+      if (!fileToEdit && target.rawUrl) {
+        const res = await fetch(target.rawUrl);
+        if (!res.ok) throw new Error("Could not fetch raw image source");
+        const blob = await res.blob();
+        fileToEdit = new File([blob], `edit-${Date.now()}.jpg`, { type: blob.type || "image/jpeg" });
+      } else if (!fileToEdit && target.url) {
+        const res = await fetch(target.url);
+        if (!res.ok) throw new Error("Could not fetch image source");
+        const blob = await res.blob();
+        fileToEdit = new File([blob], `edit-${Date.now()}.jpg`, { type: blob.type || "image/jpeg" });
+      }
+
+      if (fileToEdit) {
+        setEditingIndex(index);
+        setEditingFile(fileToEdit);
+        setEditingMetadata(target.metadata || null);
+        setIsStudioOpen(true);
+      }
+    } catch (err) {
+      console.error("[Reopen Photo Error]:", err);
+      setUploadError("Could not open photo for editing.");
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  // Studio Cancel handler
+  const handleStudioCancel = () => {
+    if (editingIndex !== null) {
+      setEditingIndex(null);
+      setEditingFile(null);
+      setEditingMetadata(null);
+      setIsStudioOpen(false);
+      return;
+    }
+    if (studioQueueIndex + 1 < studioQueue.length) {
+      const advance = window.confirm("Discard current photo and exit photo editor?");
+      if (advance) {
+        setIsStudioOpen(false);
+        setStudioQueue([]);
+        setStudioQueueIndex(0);
+      } else {
+        setStudioQueueIndex((prev) => prev + 1);
+      }
+    } else {
+      setIsStudioOpen(false);
+      setStudioQueue([]);
+      setStudioQueueIndex(0);
     }
   };
 
@@ -266,8 +376,10 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
       imageSrc: primaryImg ? primaryImg.url : "https://placehold.co/800x600/E8E4DF/1A1918?text=Product+Photo",
       imageGallery: images.map((img, idx) => ({
         url: img.url,
+        rawUrl: img.rawUrl || img.url,
         altText: img.altText || `${finalName} view ${idx + 1}`,
-        isPrimary: img.isPrimary
+        isPrimary: img.isPrimary,
+        metadata: img.metadata || {}
       })),
       attributes: {
         dimensions: { heightInches: 24, widthInches: 16, depthInches: 10 },
@@ -468,6 +580,14 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
                     >
                       ✕
                     </button>
+                    <button
+                      type="button"
+                      onClick={() => handleEditPhoto(idx)}
+                      className={styles.editPhotoBtn}
+                      title="Edit & Crop Photo"
+                    >
+                      ✎
+                    </button>
                     {!img.isPrimary && (
                       <button
                         type="button"
@@ -521,7 +641,7 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
               <li className={styles.guidanceItem}>
                 <span className={styles.guidanceIcon}>📸</span>
                 <div>
-                  <strong>Straight Eye/Chest Level:</strong> Hold camera level with the statue's chest rather than angling down from above, ensuring true divine proportions.
+                  <strong>Straight Eye/Chest Level:</strong> Hold camera level with the statue&apos;s chest rather than angling down from above, ensuring true divine proportions.
                 </div>
               </li>
               <li className={styles.guidanceItem}>
@@ -533,7 +653,7 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
               <li className={styles.guidanceItem}>
                 <span className={styles.guidanceIcon}>⭐</span>
                 <div>
-                  <strong>Set Best View as "Main":</strong> Your full front view should be set as <strong>Main</strong> (first image). Use extra photos for 45° angle, side profile, and carving close-ups.
+                  <strong>Set Best View as &quot;Main&quot;:</strong> Your full front view should be set as <strong>Main</strong> (first image). Use extra photos for 45° angle, side profile, and carving close-ups.
                 </div>
               </li>
             </ul>
@@ -1016,6 +1136,19 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
           }
         }}
       />
+
+      {/* Mobile-First Product Image Studio */}
+      {isStudioOpen && (editingFile || studioQueue[studioQueueIndex]) && (
+        <MobileImageStudio
+          file={editingFile || studioQueue[studioQueueIndex]}
+          imageIndex={editingIndex !== null ? editingIndex : studioQueueIndex}
+          totalImages={editingIndex !== null ? 1 : studioQueue.length}
+          initialMetadata={editingMetadata}
+          onSave={handleStudioSaveOrSkip}
+          onSkip={handleStudioSaveOrSkip}
+          onCancel={handleStudioCancel}
+        />
+      )}
     </div>
   );
 }

@@ -53,7 +53,8 @@ export default function ProductHero({ design, category, collection, subcategory 
   const whatsappMessage = encodeURIComponent(
     `Hello Jaipur Stonecraft, I am interested in custom ordering the "${design.name}". Please provide details on sizing, pricing, and turnaround.`
   );
-  const whatsappUrl = `https://wa.me/${siteConfig.contact.whatsapp}?text=${whatsappMessage}`;
+  const whatsappNumber = (siteConfig.contact.whatsappNumber || siteConfig.contact.whatsapp || "919664388920").replace(/\D/g, "");
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   return (
     <div className={styles.heroWrapper} suppressHydrationWarning>

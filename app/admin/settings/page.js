@@ -17,8 +17,8 @@ export default function AdminSettingsPage() {
   });
 
   const [contact, setContact] = useState({
-    telephone: "+91 70147 53278",
-    whatsapp: "+91 70147 53278",
+    telephone: "+91 9664388920",
+    whatsapp: "+91 9664388920",
     email: "Jaipurstonecraft18@gmail.com",
     address: "30, Industrial Area, Krisna Nagar a, Kartarpura, Gopal Pura Mode, Jaipur, Rajasthan 302015",
     city: "Jaipur",

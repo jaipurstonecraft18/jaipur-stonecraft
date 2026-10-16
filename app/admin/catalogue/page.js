@@ -7,6 +7,7 @@ import styles from "../admin.module.css";
 export default function AdminCataloguePage() {
   const [activeTab, setActiveTab] = useState("categories");
   const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState("active"); // 'active' | 'archived' | 'all'
 
   const [categories, setCategories] = useState([]);
   const [collections, setCollections] = useState([]);
@@ -54,7 +55,7 @@ export default function AdminCataloguePage() {
     try {
       const [catRes, categoryRes] = await Promise.all([
         fetch("/api/admin/catalogue"),
-        fetch("/api/admin/categories")
+        fetch("/api/admin/categories?includeInactive=true")
       ]);
 
       const catData = await catRes.json();
@@ -299,11 +300,17 @@ export default function AdminCataloguePage() {
     }
   };
 
-  // Filtered Lists based on Search Query
+  // Filtered Lists based on Search Query and Status
   const filterBySearch = (list, nameKey = "name") => {
-    if (!searchQuery.trim()) return list;
+    let result = list;
+    if (statusFilter === "active") {
+      result = result.filter((item) => item.isActive !== false);
+    } else if (statusFilter === "archived") {
+      result = result.filter((item) => item.isActive === false);
+    }
+    if (!searchQuery.trim()) return result;
     const q = searchQuery.toLowerCase().trim();
-    return list.filter((item) => {
+    return result.filter((item) => {
       const nameVal = (item[nameKey] || item.primaryName || "").toLowerCase();
       const slugVal = (item.slug || item.id || "").toLowerCase();
       return nameVal.includes(q) || slugVal.includes(q);
@@ -393,13 +400,63 @@ export default function AdminCataloguePage() {
               + Add Collection
             </button>
           )}
+          <div style={{ display: "flex", gap: "0.25rem", backgroundColor: "#EDE8E1", padding: "0.2rem", borderRadius: "6px" }}>
+            <button
+              type="button"
+              onClick={() => setStatusFilter("active")}
+              style={{
+                border: "none",
+                background: statusFilter === "active" ? "#FFF" : "transparent",
+                color: statusFilter === "active" ? "#1A1918" : "#666",
+                fontWeight: "600",
+                fontSize: "0.78rem",
+                padding: "0.3rem 0.6rem",
+                borderRadius: "4px",
+                cursor: "pointer"
+              }}
+            >
+              Active
+            </button>
+            <button
+              type="button"
+              onClick={() => setStatusFilter("archived")}
+              style={{
+                border: "none",
+                background: statusFilter === "archived" ? "#FFF" : "transparent",
+                color: statusFilter === "archived" ? "#1A1918" : "#666",
+                fontWeight: "600",
+                fontSize: "0.78rem",
+                padding: "0.3rem 0.6rem",
+                borderRadius: "4px",
+                cursor: "pointer"
+              }}
+            >
+              Archived
+            </button>
+            <button
+              type="button"
+              onClick={() => setStatusFilter("all")}
+              style={{
+                border: "none",
+                background: statusFilter === "all" ? "#FFF" : "transparent",
+                color: statusFilter === "all" ? "#1A1918" : "#666",
+                fontWeight: "600",
+                fontSize: "0.78rem",
+                padding: "0.3rem 0.6rem",
+                borderRadius: "4px",
+                cursor: "pointer"
+              }}
+            >
+              All
+            </button>
+          </div>
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={`Search ${activeTab}...`}
             className={styles.input}
-            style={{ maxWidth: "200px", fontSize: "0.85rem", padding: "0.4rem 0.75rem" }}
+            style={{ maxWidth: "160px", fontSize: "0.85rem", padding: "0.4rem 0.75rem" }}
           />
         </div>
       </div>
@@ -879,18 +936,33 @@ export default function AdminCataloguePage() {
               {modalType === "category" && (
                 <>
                   <div className={styles.formGroup}>
-                    <label className={styles.label}>Parent Collection *</label>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <label className={styles.label}>Parent Collection *</label>
+                      {editingItem && (editingItem.parentCollection === "sculptures-statues" || editingItem.parent_collection_slug === "sculptures-statues") && (
+                        <span style={{ fontSize: "0.75rem", color: "#666", fontWeight: "600" }}>
+                          🔒 Protected Collection (Read-Only)
+                        </span>
+                      )}
+                    </div>
                     <select
                       value={catFormData.parentCollection}
+                      disabled={editingItem && (editingItem.parentCollection === "sculptures-statues" || editingItem.parent_collection_slug === "sculptures-statues")}
                       onChange={(e) => {
                         const colSlug = e.target.value;
-                        setCatFormData({ ...catFormData, parentCollection: colSlug, parentSubcategory: `${colSlug}-general` });
+                        const validSubs = subcategories.filter((s) => (s.parent_collection_slug || s.parentCollection) === colSlug);
+                        setCatFormData({
+                          ...catFormData,
+                          parentCollection: colSlug,
+                          parentSubcategory: validSubs[0]?.slug || `${colSlug}-general`
+                        });
                       }}
                       className={styles.select}
                     >
-                      {collections.map((col) => (
-                        <option key={col.slug} value={col.slug}>{col.name} ({col.slug})</option>
-                      ))}
+                      {collections
+                        .filter((col) => editingItem ? true : col.slug !== "sculptures-statues")
+                        .map((col) => (
+                          <option key={col.slug} value={col.slug}>{col.name} ({col.slug})</option>
+                        ))}
                     </select>
                   </div>
 
@@ -898,13 +970,15 @@ export default function AdminCataloguePage() {
                     <label className={styles.label}>Parent Subcategory</label>
                     <select
                       value={catFormData.parentSubcategory}
+                      disabled={editingItem && (editingItem.parentCollection === "sculptures-statues" || editingItem.parent_collection_slug === "sculptures-statues")}
                       onChange={(e) => setCatFormData({ ...catFormData, parentSubcategory: e.target.value })}
                       className={styles.select}
                     >
-                      {subcategories.filter((s) => s.parent_collection_slug === catFormData.parentCollection || s.parentCollection === catFormData.parentCollection).map((sub) => (
-                        <option key={sub.slug} value={sub.slug}>{sub.name} ({sub.slug})</option>
-                      ))}
-                      <option value={`${catFormData.parentCollection}-general`}>General {catFormData.parentCollection} Items</option>
+                      {subcategories
+                        .filter((s) => (s.parent_collection_slug || s.parentCollection) === catFormData.parentCollection)
+                        .map((sub) => (
+                          <option key={sub.slug} value={sub.slug}>{sub.name} ({sub.slug})</option>
+                        ))}
                     </select>
                   </div>
                 </>

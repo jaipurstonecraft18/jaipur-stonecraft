@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { permanentRedirect, notFound } from "next/navigation";
 import Container from "@/components/Container/Container";
 import Section from "@/components/Section/Section";
 import ProductHero from "@/components/ProductDetail/ProductHero";
@@ -24,7 +24,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const { category: categorySlug, design: designSlug } = resolvedParams;
-  const design = await getProductFromDB(categorySlug, designSlug);
+  let design = await getProductFromDB(categorySlug, designSlug);
+  if (!design) {
+    design = await getProductFromDB(designSlug);
+  }
 
   if (!design) return {};
 
@@ -83,8 +86,12 @@ export default async function DesignDetailPage({ params }) {
   const resolvedParams = await params;
   const { category: categorySlug, design: designSlug } = resolvedParams;
 
-  const design = await getProductFromDB(categorySlug, designSlug);
+  let design = await getProductFromDB(categorySlug, designSlug);
   if (!design) {
+    const singleProduct = await getProductFromDB(designSlug);
+    if (singleProduct && singleProduct.parentCategory && singleProduct.parentCategory !== categorySlug) {
+      permanentRedirect(`/designs/${singleProduct.parentCategory}/${singleProduct.slug}`);
+    }
     notFound();
   }
 
@@ -152,8 +159,7 @@ export default async function DesignDetailPage({ params }) {
         "@type": "Offer",
         "url": canonicalUrl,
         "priceCurrency": "INR",
-        "price": "0",
-        "priceValidUntil": "2028-12-31",
+        ...(design.price && Number(design.price) > 0 ? { "price": String(design.price) } : {}),
         "availability": availabilitySchema,
         "itemCondition": "https://schema.org/NewCondition",
         "seller": {

@@ -27,9 +27,16 @@ export default function AiAssistantModal({
     altTexts: false
   });
 
+  // Track accepted/rejected recommendations
+  const [acceptedRecs, setAcceptedRecs] = useState({});
+  const [rejectedRecs, setRejectedRecs] = useState({});
+  const [editingRecId, setEditingRecId] = useState(null);
+  const [previewDiffId, setPreviewDiffId] = useState(null);
+
   const [selectedMode, setSelectedMode] = useState("TEXT_OPTIMIZATION");
   const [activeReviewTab, setActiveReviewTab] = useState("descriptions");
   const [warningMessage, setWarningMessage] = useState("");
+
 
   const [analysisMeta, setAnalysisMeta] = useState({ fromCache: false, imagesAnalyzedCount: 0, modelUsed: "", provider: "" });
 
@@ -202,6 +209,44 @@ export default function AiAssistantModal({
     onAcceptSuggestions({ imageGallery: updatedGallery });
     setAcceptedState(prev => ({ ...prev, altTexts: true }));
   };
+
+  // Accept specific single recommendation
+  const handleAcceptRecommendation = (rec) => {
+    const field = rec.affected_field;
+    let updates = {};
+
+    if (field === "shortDescription") {
+      updates.shortDescription = aiDraft.short_description;
+    } else if (field === "detailedDescription") {
+      updates.detailedDescription = aiDraft.detailed_description;
+    } else if (field === "seo.title") {
+      updates.seo = {
+        ...(productData.seo || {}),
+        title: aiDraft.seo_title
+      };
+    } else if (field === "seo.primaryKeyword") {
+      updates.seo = {
+        ...(productData.seo || {}),
+        primaryKeyword: aiDraft.primary_keyword
+      };
+    } else if (field === "seo.description") {
+      updates.seo = {
+        ...(productData.seo || {}),
+        description: aiDraft.meta_description
+      };
+    } else {
+      // General field update
+      updates[field] = rec.recommended_action;
+    }
+
+    onAcceptSuggestions(updates);
+    setAcceptedRecs(prev => ({ ...prev, [rec.issue_id]: true }));
+  };
+
+  const handleRejectRecommendation = (rec) => {
+    setRejectedRecs(prev => ({ ...prev, [rec.issue_id]: true }));
+  };
+
 
   // Accept All Verified Suggestions
   const handleAcceptAll = () => {
@@ -583,7 +628,24 @@ export default function AiAssistantModal({
                   >
                     🔍 SEO & Alt Texts
                   </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveReviewTab("recommendations")}
+                    style={{
+                      padding: "0.45rem 0.85rem",
+                      borderRadius: "4px",
+                      border: "none",
+                      fontSize: "0.85rem",
+                      fontWeight: "600",
+                      cursor: "pointer",
+                      backgroundColor: activeReviewTab === "recommendations" ? "var(--color-navy)" : "transparent",
+                      color: activeReviewTab === "recommendations" ? "#FFF" : "#666"
+                    }}
+                  >
+                    💡 Recommendations ({(aiDraft?.recommendations || []).length})
+                  </button>
                 </div>
+
 
                 {/* Section-specific targeted regeneration */}
                 {activeReviewTab === "descriptions" && (
@@ -842,8 +904,210 @@ export default function AiAssistantModal({
                 </div>
               )}
 
+              {/* TAB 4: STRATEGIC RECOMMENDATIONS */}
+              {activeReviewTab === "recommendations" && (
+                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                  <div style={{
+                    padding: "0.75rem 1rem",
+                    backgroundColor: "#FAF9F6",
+                    border: "1px solid #ECE7E1",
+                    borderRadius: "6px",
+                    fontSize: "0.8rem",
+                    color: "#555"
+                  }}>
+                    Actionable, evidence-based improvements ranked by business priority and search engine intent. Review, preview diff, edit, or apply suggestions individually.
+                  </div>
+
+                  {(!aiDraft.recommendations || aiDraft.recommendations.length === 0) ? (
+                    <div style={{ textAlign: "center", padding: "2rem", color: "#666", fontSize: "0.85rem" }}>
+                      ✓ No outstanding quality or SEO recommendations found for this product.
+                    </div>
+                  ) : (
+                    aiDraft.recommendations.map((rec) => {
+                      const isAccepted = Boolean(acceptedRecs[rec.issue_id]);
+                      const isRejected = Boolean(rejectedRecs[rec.issue_id]);
+                      const isEditing = editingRecId === rec.issue_id;
+                      const isPreviewingDiff = previewDiffId === rec.issue_id;
+
+                      const priorityStyle = rec.priority === "HIGH"
+                        ? { bg: "#FCE8E6", color: "#C5221F", border: "#FAD2CF" }
+                        : rec.priority === "MEDIUM"
+                        ? { bg: "#FEF7E0", color: "#B06000", border: "#FEEFC3" }
+                        : { bg: "#E8F0FE", color: "#1A73E8", border: "#D2E3FC" };
+
+                      return (
+                        <div
+                          key={rec.issue_id}
+                          style={{
+                            backgroundColor: isRejected ? "#F5F5F5" : "#FFFFFF",
+                            border: `1px solid ${isAccepted ? "#CEEAD6" : isRejected ? "#E0E0E0" : "#E2DDD5"}`,
+                            borderRadius: "6px",
+                            padding: "1rem",
+                            opacity: isRejected ? 0.6 : 1,
+                            transition: "all 0.15s ease"
+                          }}
+                        >
+                          {/* Header: Priority, Issue ID, Field, and Status */}
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "0.5rem", marginBottom: "0.5rem" }}>
+                            <div style={{ display: "flex", alignItems: "center", gap: "0.45rem", flexWrap: "wrap" }}>
+                              <span style={{
+                                fontSize: "0.7rem",
+                                fontWeight: "800",
+                                padding: "0.15rem 0.45rem",
+                                borderRadius: "4px",
+                                backgroundColor: priorityStyle.bg,
+                                color: priorityStyle.color,
+                                border: `1px solid ${priorityStyle.border}`
+                              }}>
+                                {rec.priority} PRIORITY
+                              </span>
+                              <span style={{ fontSize: "0.78rem", fontWeight: "700", color: "var(--color-navy)" }}>
+                                {rec.issue_id}: {rec.affected_field}
+                              </span>
+                              {rec.requires_human_verification && (
+                                <span style={{ fontSize: "0.68rem", backgroundColor: "#FFF8E1", color: "#B06000", padding: "0.1rem 0.4rem", borderRadius: "3px", border: "1px solid #FFE082" }}>
+                                  ⚠️ Requires Verification
+                                </span>
+                              )}
+                            </div>
+
+                            <span style={{ fontSize: "0.72rem", color: "#777" }}>
+                              {rec.evidence_source} • {Math.round(rec.confidence * 100)}% Confidence
+                            </span>
+                          </div>
+
+                          {/* Problem Description */}
+                          <div style={{ fontSize: "0.84rem", fontWeight: "600", color: "#222", marginBottom: "0.35rem" }}>
+                            {rec.observed_problem}
+                          </div>
+
+                          {/* Why It Matters */}
+                          <div style={{ fontSize: "0.78rem", color: "#666", marginBottom: "0.65rem", lineHeight: "1.4" }}>
+                            <strong>Why it matters:</strong> {rec.why_it_matters}
+                          </div>
+
+                          {/* Recommended Action / Diff Box */}
+                          <div style={{
+                            backgroundColor: "#FAF9F6",
+                            border: "1px solid #EAE6DF",
+                            borderRadius: "4px",
+                            padding: "0.65rem 0.75rem",
+                            fontSize: "0.8rem",
+                            color: "#333",
+                            marginBottom: "0.75rem"
+                          }}>
+                            <div style={{ fontSize: "0.72rem", fontWeight: "700", color: "var(--color-bronze)", marginBottom: "0.25rem" }}>
+                              PROPOSED CORRECTION:
+                            </div>
+                            {isEditing ? (
+                              <textarea
+                                rows={2}
+                                value={rec.recommended_action}
+                                onChange={(e) => {
+                                  const updated = rec.recommended_action;
+                                  rec.recommended_action = e.target.value;
+                                  setAiDraft({ ...aiDraft });
+                                }}
+                                className={styles.textarea}
+                                style={{ fontSize: "0.8rem", width: "100%" }}
+                              />
+                            ) : (
+                              <div>{rec.recommended_action}</div>
+                            )}
+
+                            {rec.expected_benefit && (
+                              <div style={{ fontSize: "0.74rem", color: "#137333", marginTop: "0.35rem", fontWeight: "600" }}>
+                                ✦ Expected Benefit: {rec.expected_benefit}
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Preview Diff Toggle Box */}
+                          {isPreviewingDiff && (
+                            <div style={{
+                              backgroundColor: "#F0F4F8",
+                              border: "1px solid #D2E3FC",
+                              borderRadius: "4px",
+                              padding: "0.65rem 0.75rem",
+                              marginBottom: "0.75rem",
+                              fontSize: "0.78rem"
+                            }}>
+                              <div style={{ fontWeight: "700", color: "#1A73E8", marginBottom: "0.3rem" }}>
+                                Field Diff Preview ({rec.affected_field}):
+                              </div>
+                              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem" }}>
+                                <div style={{ backgroundColor: "#FFF", padding: "0.4rem", borderRadius: "3px", border: "1px solid #E0E0E0" }}>
+                                  <div style={{ fontSize: "0.68rem", fontWeight: "700", color: "#888" }}>CURRENT:</div>
+                                  <div style={{ color: "#C5221F" }}>{String(productData[rec.affected_field] || "(Empty)")}</div>
+                                </div>
+                                <div style={{ backgroundColor: "#FFF", padding: "0.4rem", borderRadius: "3px", border: "1px solid #E0E0E0" }}>
+                                  <div style={{ fontSize: "0.68rem", fontWeight: "700", color: "var(--color-bronze)" }}>PROPOSED:</div>
+                                  <div style={{ color: "#137333" }}>{rec.recommended_action}</div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Actions: Preview Diff, Edit, Reject, Accept */}
+                          <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", gap: "0.5rem" }}>
+                            <button
+                              type="button"
+                              onClick={() => setPreviewDiffId(isPreviewingDiff ? null : rec.issue_id)}
+                              className={styles.secondaryBtn}
+                              style={{ fontSize: "0.74rem", padding: "0.25rem 0.55rem" }}
+                            >
+                              {isPreviewingDiff ? "Hide Diff" : "🔍 Preview Diff"}
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => setEditingRecId(isEditing ? null : rec.issue_id)}
+                              className={styles.secondaryBtn}
+                              style={{ fontSize: "0.74rem", padding: "0.25rem 0.55rem" }}
+                            >
+                              {isEditing ? "Done Editing" : "✏️ Edit"}
+                            </button>
+
+                            {!isAccepted && !isRejected && (
+                              <button
+                                type="button"
+                                onClick={() => handleRejectRecommendation(rec)}
+                                className={styles.secondaryBtn}
+                                style={{ fontSize: "0.74rem", color: "#C5221F", borderColor: "#FAD2CF", padding: "0.25rem 0.55rem" }}
+                              >
+                                Reject
+                              </button>
+                            )}
+
+                            {isRejected ? (
+                              <span style={{ fontSize: "0.74rem", color: "#888", fontWeight: "600", padding: "0.25rem 0.55rem" }}>
+                                ✗ Rejected
+                              </span>
+                            ) : isAccepted ? (
+                              <span style={{ fontSize: "0.74rem", color: "#137333", fontWeight: "700", padding: "0.25rem 0.55rem" }}>
+                                ✓ Accepted & Applied
+                              </span>
+                            ) : (
+                              <button
+                                type="button"
+                                onClick={() => handleAcceptRecommendation(rec)}
+                                className={styles.primaryBtn}
+                                style={{ fontSize: "0.76rem", padding: "0.25rem 0.65rem" }}
+                              >
+                                + Accept Recommendation
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })
+                  )}
+                </div>
+              )}
+
             </div>
           )}
+
 
         </div>
       </div>

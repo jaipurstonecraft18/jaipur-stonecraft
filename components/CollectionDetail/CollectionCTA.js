@@ -12,7 +12,7 @@ export default function CollectionCTA({ ctaData = {}, collectionSlug = "" }) {
     primaryCtaText = "Discuss Your Project",
     primaryCtaHref = `/contact?type=custom&collection=${collectionSlug}`,
     secondaryCtaText = "WhatsApp Designer",
-    secondaryCtaHref = siteConfig?.contact?.whatsappLink || "https://wa.me/917014753278"
+    secondaryCtaHref = siteConfig?.contact?.whatsappLink || "https://wa.me/919664388920"
   } = ctaData;
 
   return (

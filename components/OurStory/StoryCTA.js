@@ -19,7 +19,8 @@ export default function StoryCTA({ data = {} }) {
   const whatsappMessage = encodeURIComponent(
     "Hello Jaipur Stonecraft, I have reviewed your story and would like to discuss an architectural commission or custom sculpture project."
   );
-  const whatsappUrl = `https://wa.me/${siteConfig.contact.whatsapp}?text=${whatsappMessage}`;
+  const whatsappNumber = (siteConfig.contact.whatsappNumber || siteConfig.contact.whatsapp || "919664388920").replace(/\D/g, "");
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   return (
     <section className={styles.ctaSection} aria-label="Brand Story Call to Action">

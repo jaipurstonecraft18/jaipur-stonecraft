@@ -27,9 +27,16 @@ export async function GET(request) {
     params.push(status);
   }
 
-  if (category) {
-    sql += " AND (parent_category = ? OR parent_collection = ?)";
-    params.push(category, category);
+  const collection = searchParams.get("collection") || "";
+
+  if (collection && collection !== "all") {
+    sql += " AND parent_collection = ?";
+    params.push(collection);
+  }
+
+  if (category && category !== "all") {
+    sql += " AND parent_category = ?";
+    params.push(category);
   }
 
   if (search.trim()) {
@@ -167,6 +174,42 @@ export async function POST(request) {
     const status = body.status || "draft";
     const primaryMaterialId = body.primaryMaterialId || "makrana-pure-white";
 
+    // STRICT RULE: Granite is strictly excluded
+    if (
+      name.toLowerCase().includes("granite") ||
+      slug.toLowerCase().includes("granite") ||
+      primaryMaterialId.toLowerCase().includes("granite") ||
+      (body.shortDescription && body.shortDescription.toLowerCase().includes("granite"))
+    ) {
+      return NextResponse.json({ error: "Granite is strictly excluded from Jaipur Stonecraft." }, { status: 400 });
+    }
+
+    const APPROVED_COLLECTIONS = [
+      "sculptures-statues",
+      "wall-art-reliefs",
+      "temples-architectural-stonework",
+      "fountains-water-features",
+      "decorative-stone-art",
+      "custom-bespoke-creations"
+    ];
+
+    const parentCollection = body.parentCollection || "sculptures-statues";
+    if (!APPROVED_COLLECTIONS.includes(parentCollection)) {
+      return NextResponse.json({ error: `Invalid parent collection "${parentCollection}". Must be one of the 6 approved collections.` }, { status: 400 });
+    }
+
+    const parentCategory = body.parentCategory || "ganesh-ji";
+    const catRow = await getOne("SELECT parent_collection_slug, parent_subcategory_slug FROM categories WHERE slug = ?", [parentCategory]);
+    if (!catRow) {
+      return NextResponse.json({ error: `Category "${parentCategory}" does not exist in catalogue.` }, { status: 400 });
+    }
+    if (catRow.parent_collection_slug !== parentCollection) {
+      return NextResponse.json({
+        error: `Category "${parentCategory}" belongs to collection "${catRow.parent_collection_slug}", not "${parentCollection}". Invalid collection/category combination.`
+      }, { status: 400 });
+    }
+    const parentSubcategory = catRow.parent_subcategory_slug || body.parentSubcategory || "hindu-sculptures";
+
     const result = await execute(`
       INSERT INTO products (
         id, sku, slug, name, status, is_featured, is_new_arrival, is_custom_only,
@@ -184,9 +227,9 @@ export async function POST(request) {
       body.isNewArrival ? 1 : 0,
       body.isCustomOnly ? 1 : 0,
       body.productType || "sculpture",
-      body.parentCollection || "sculptures-statues",
-      body.parentSubcategory || "hindu-sculptures",
-      body.parentCategory || "ganesh-ji",
+      parentCollection,
+      parentSubcategory,
+      parentCategory,
       body.subjectId || null,
       primaryMaterialId,
       body.shortDescription || "",

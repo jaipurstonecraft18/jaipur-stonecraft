@@ -10,6 +10,7 @@ import AiAssistantModal from "@/components/admin/ProductStudio/AiAssistantModal"
 import FieldAiActions from "@/components/admin/ProductStudio/FieldAiActions";
 import SeoReadinessPanel from "@/components/admin/ProductStudio/SeoReadinessPanel";
 import CategorySearchSelect from "@/components/admin/CategorySearchSelect/CategorySearchSelect";
+import { categoriesData } from "@/content/categories-data.js";
 import styles from "@/app/admin/admin.module.css";
 
 const DEFAULT_PRODUCT_TYPES = [
@@ -71,7 +72,7 @@ export default function ProductStudio({ initialProduct, isNew = false, onSwitchT
   const [subjectsList, setSubjectsList] = useState([]);
   const [productTypesList, setProductTypesList] = useState(DEFAULT_PRODUCT_TYPES);
   const [attributesList, setAttributesList] = useState([]);
-  const [categoriesList, setCategoriesList] = useState([]);
+  const [categoriesList, setCategoriesList] = useState(() => Object.values(categoriesData));
 
   // AI Jobs Tracking State
   const [aiJobs, setAiJobs] = useState([]);
@@ -299,24 +300,6 @@ export default function ProductStudio({ initialProduct, isNew = false, onSwitchT
     setSaveStatus("dirty");
   };
 
-  // Readiness / Completeness Score Calculation
-  const readiness = useMemo(() => {
-    const checks = [
-      { label: "Product Name", ok: Boolean(formData.name.trim()) },
-      { label: "Valid Slug", ok: Boolean(formData.slug.trim()) },
-      { label: "Short Description", ok: Boolean(formData.shortDescription?.trim()) },
-      { label: "Primary Material", ok: Boolean(formData.primaryMaterialId) },
-      { label: "Product Category", ok: Boolean(formData.parentCategory) },
-      { label: "Cover Image", ok: Boolean(formData.imageSrc && !formData.imageSrc.includes("placehold.co")) },
-      { label: "SEO Title Tag", ok: Boolean(formData.seo?.title?.trim()) }
-    ];
-
-    const completed = checks.filter((c) => c.ok).length;
-    const percentage = Math.round((completed / checks.length) * 100);
-
-    return { percentage, checks };
-  }, [formData]);
-
   // Submit Handler (Save Draft / Publish)
   const handleSave = async (targetStatus, isAutosave = false) => {
     if (isAutosave && (!formData.name || !formData.slug)) return;
@@ -427,6 +410,38 @@ export default function ProductStudio({ initialProduct, isNew = false, onSwitchT
       return att.appliesToProductTypes.includes(type);
     });
   }, [attributesList, formData.productType, DIMENSION_ATTR_IDS]);
+
+  // Dynamically filter categories to only those belonging to the currently selected collection
+  const availableCategoriesForCollection = useMemo(() => {
+    return categoriesList.filter((cat) => {
+      const col = cat.parent_collection_slug || cat.parentCollection;
+      return col === formData.parentCollection;
+    });
+  }, [categoriesList, formData.parentCollection]);
+
+  // Handle Parent Collection Change safely without silent invalid assignments
+  const handleCollectionChange = (newCol) => {
+    if (initialProduct?.parentCollection === "sculptures-statues" && !isNew && newCol !== "sculptures-statues") {
+      alert("Sculptures & Statues is a strictly protected collection. Products in this collection cannot be moved to another collection.");
+      return;
+    }
+
+    const validCats = categoriesList.filter(
+      (c) => (c.parent_collection_slug || c.parentCollection) === newCol
+    );
+    const isCurrentCatValid = validCats.some((c) => c.slug === formData.parentCategory);
+    const defaultCat = isCurrentCatValid ? formData.parentCategory : (validCats[0]?.slug || "");
+    const defaultCatObj = validCats.find((c) => c.slug === defaultCat);
+
+    setFormData((prev) => ({
+      ...prev,
+      parentCollection: newCol,
+      parentCategory: defaultCat,
+      parentSubcategory: defaultCatObj?.parent_subcategory_slug || defaultCatObj?.parentSubcategory || prev.parentSubcategory
+    }));
+    setIsDirty(true);
+    setSaveStatus("dirty");
+  };
 
   const handleDimensionChange = (dimKey, val) => {
     setFormData((prev) => {
@@ -678,6 +693,7 @@ export default function ProductStudio({ initialProduct, isNew = false, onSwitchT
       {/* Actionable SEO & Product Readiness Panel */}
       <SeoReadinessPanel
         productData={formData}
+        categories={categoriesList}
         onTriggerAiFix={(actionKey) => {
           if (actionKey === "generate_image_alts" && activeTab !== "media") {
             setActiveTab("media");
@@ -1122,24 +1138,32 @@ export default function ProductStudio({ initialProduct, isNew = false, onSwitchT
             </div>
 
             <div className={styles.formGroup}>
-              <label className={styles.label}>Parent Collection *</label>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <label className={styles.label}>Parent Collection *</label>
+                {initialProduct?.parentCollection === "sculptures-statues" && !isNew && (
+                  <span style={{ fontSize: "0.75rem", color: "#666", fontWeight: "600" }}>
+                    🔒 Protected Collection
+                  </span>
+                )}
+              </div>
               <select
                 value={formData.parentCollection}
-                onChange={(e) => updateField("parentCollection", e.target.value)}
+                onChange={(e) => handleCollectionChange(e.target.value)}
                 className={styles.select}
+                disabled={initialProduct?.parentCollection === "sculptures-statues" && !isNew}
               >
                 <option value="sculptures-statues">Sculptures & Statues</option>
                 <option value="wall-art-reliefs">Wall Art & Reliefs</option>
                 <option value="temples-architectural-stonework">Temples & Architectural Stonework</option>
-                <option value="garden-fountains-water-features">Garden Fountains & Water Features</option>
-                <option value="decorative-home-accents">Decorative & Home Accents</option>
-                <option value="custom-bespoke-creations">Custom Bespoke Creations</option>
+                <option value="fountains-water-features">Fountains & Water Features</option>
+                <option value="decorative-stone-art">Decorative Stone Art</option>
+                <option value="custom-bespoke-creations">Custom & Bespoke Creations</option>
               </select>
             </div>
 
             <div className={styles.formGroup}>
               <CategorySearchSelect
-                categories={categoriesList}
+                categories={availableCategoriesForCollection}
                 value={formData.parentCategory}
                 onChange={(selectedSlug, catObj) => {
                   if (catObj) {
@@ -1158,8 +1182,34 @@ export default function ProductStudio({ initialProduct, isNew = false, onSwitchT
                 label="Parent Category"
                 required
                 onQuickAdd={() => setQuickAddModal({ isOpen: true, targetField: "parentCategory", fieldLabel: "Category" })}
-                helperText="Search by deity or category name (e.g. Ganesh, Mandir, Jali, Fountain) without scrolling"
+                helperText={`Showing categories for ${formData.parentCollection.replace(/-/g, " ")}`}
               />
+
+              {/* Canonical Taxonomy Hierarchy Indicator */}
+              <div style={{
+                marginTop: "0.5rem",
+                padding: "0.5rem 0.75rem",
+                backgroundColor: "#FAF9F6",
+                border: "1px solid #ECE7E1",
+                borderRadius: "6px",
+                fontSize: "0.78rem",
+                color: "#555"
+              }}>
+                <span style={{ fontWeight: "600", color: "var(--color-navy)", marginRight: "0.35rem" }}>
+                  Canonical Hierarchy:
+                </span>
+                <span style={{ color: "#8C6D46", fontWeight: "600" }}>
+                  {formData.parentCollection || "collection"}
+                </span>
+                <span style={{ margin: "0 0.35rem", color: "#999" }}>›</span>
+                <span style={{ color: "#333", fontWeight: "500" }}>
+                  {formData.parentSubcategory || "subcategory"}
+                </span>
+                <span style={{ margin: "0 0.35rem", color: "#999" }}>›</span>
+                <span style={{ color: "var(--color-navy)", fontWeight: "700" }}>
+                  {formData.parentCategory || "category"}
+                </span>
+              </div>
             </div>
 
             <div className={styles.formGroup}>
@@ -1210,17 +1260,6 @@ export default function ProductStudio({ initialProduct, isNew = false, onSwitchT
                   </option>
                 ))}
               </select>
-            </div>
-
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Cover Image URL</label>
-              <input
-                type="text"
-                value={formData.imageSrc}
-                onChange={(e) => updateField("imageSrc", e.target.value)}
-                placeholder="https://..."
-                className={styles.input}
-              />
             </div>
           </div>
         </div>

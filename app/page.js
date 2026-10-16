@@ -1,7 +1,8 @@
 import Hero from "@/components/Hero/Hero";
 import TrustStrip from "@/components/TrustStrip/TrustStrip";
 import HomeCollections from "@/components/HomeCollections/HomeCollections";
-import HeritageStory from "@/components/HeritageStory/HeritageStory";
+import DiscoverySliders from "@/components/DiscoverySliders/DiscoverySliders";
+import { popularStatuesData, architecturalArtData } from "@/content/discovery-sliders";
 import FeaturedCreations from "@/components/FeaturedCreations/FeaturedCreations";
 import BeyondTheGallery from "@/components/BeyondTheGallery/BeyondTheGallery";
 import ClientReviews from "@/components/ClientReviews/ClientReviews";
@@ -90,12 +91,8 @@ export default async function Home() {
     ]
   });
 
-  const storyData = await getPageSection("homepage_story", {
-    eyebrow: "ABOUT JAIPUR STONECRAFT",
-    heading: "Heritage of Indian Stone Art",
-    paragraph1: "Jaipur Stonecraft brings together tradition, devotion and artistic excellence. For over four decades, we have been crafting exquisite marble and stone sculptures, temple art, fountains and custom creations that stand as symbols of faith, beauty and timeless craftsmanship.",
-    imageSrc: "/images/brand/heritage-ganesha.jpg"
-  });
+  const statuesData = await getPageSection("homepage_discovery_statues", popularStatuesData);
+  const archData = await getPageSection("homepage_discovery_arch", architecturalArtData);
 
   const ctaData = await getPageSection("homepage_cta", {
     heading: "Have a Vision in Mind?",
@@ -127,8 +124,8 @@ export default async function Home() {
       {/* 2. FLOATING ACHIEVEMENT / STATISTICS BAR (Connected to Page CMS with Fallback) */}
       <TrustStrip stats={trustData?.stats} />
 
-      {/* 3. HERITAGE & BRAND STORY SECTION (Connected to Page CMS with Fallback) */}
-      <HeritageStory storyData={storyData} />
+      {/* 3. DUAL HORIZONTAL DISCOVERY SLIDERS (Popular Statues & Architectural Art) */}
+      <DiscoverySliders statuesConfig={statuesData} archConfig={archData} />
 
       {/* 4. EDITORIAL COLLECTIONS SHOWCASE (Single Source of Truth DB-driven) */}
       <HomeCollections collections={collectionsDataList} />
@@ -164,7 +161,7 @@ export default async function Home() {
             name: "Jaipur Stonecraft",
             url: "https://jaipurstonecraft.com",
             logo: "https://jaipurstonecraft.com/images/hero/homepage-hero.png",
-            telephone: "+91 70147 53278",
+            telephone: "+91 9664388920",
             email: "Jaipurstonecraft18@gmail.com",
             address: {
               "@type": "PostalAddress",

@@ -3,11 +3,12 @@ import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
 import { query, getOne } from "@/lib/db/client.js";
 import { formatProductFromRow } from "@/lib/db/products.js";
 import { isAiAvailable } from "@/lib/ai/config.js";
-import { executeDualModeAiAnalysis } from "@/lib/ai/ai-service-router.js";
+import { executeDualModeAiAnalysis, executePieAction } from "@/lib/ai/ai-service-router.js";
 
 /**
  * POST /api/admin/ai/analyze-product
  * Protected admin route for Dual-Mode AI Product SEO & Content Intelligence.
+ * Supports full analysis as well as targeted single-field PIE actions.
  * PREVIEW-ONLY: Does not save or overwrite database contents.
  */
 export async function POST(request) {
@@ -31,6 +32,7 @@ export async function POST(request) {
     const manualNotes = body.manualNotes || "";
     const mode = body.mode || "TEXT_OPTIMIZATION";
     const fieldTarget = body.fieldTarget || null;
+    const action = body.action || null;
     const skipCache = Boolean(body.skipCache);
     let selectedImages = Array.isArray(body.selectedImages) ? body.selectedImages : [];
 
@@ -59,6 +61,33 @@ export async function POST(request) {
       }, { status: 400 });
     }
 
+    // Targeted PIE Action Handler (fast single-field execution)
+    if (action) {
+      const pieResult = await executePieAction(action, productData, {
+        selectedImages,
+        manualNotes
+      });
+
+      if (!pieResult.success) {
+        return NextResponse.json({
+          success: false,
+          errorCode: pieResult.errorCode || "SERVER_ERROR",
+          error: pieResult.error
+        }, { status: 500 });
+      }
+
+      return NextResponse.json({
+        success: true,
+        isAiAvailable: true,
+        action: pieResult.action,
+        version: pieResult.version,
+        fieldTarget: pieResult.fieldTarget,
+        modelUsed: pieResult.modelUsed,
+        provider: pieResult.provider,
+        data: pieResult.data
+      });
+    }
+
     const aiResult = await executeDualModeAiAnalysis(productData, {
       selectedImages,
       manualNotes,
@@ -66,6 +95,7 @@ export async function POST(request) {
       fieldTarget,
       skipCache
     });
+
 
     if (!aiResult.success) {
       let statusCode = 500;

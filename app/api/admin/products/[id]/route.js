@@ -34,13 +34,72 @@ export async function PUT(request, { params }) {
     }
 
     // STRICT RULE: Granite is strictly excluded
-    const primaryMaterialId = body.primaryMaterialId || existingRow.primary_material_id;
+    const primaryMaterialId = body.primaryMaterialId || existingRow.primary_material_id || "";
     if (primaryMaterialId.toLowerCase().includes("granite")) {
       return NextResponse.json({ error: "Granite is strictly excluded from Jaipur Stonecraft materials." }, { status: 400 });
     }
 
+    const APPROVED_COLLECTIONS = [
+      "sculptures-statues",
+      "wall-art-reliefs",
+      "temples-architectural-stonework",
+      "fountains-water-features",
+      "decorative-stone-art",
+      "custom-bespoke-creations"
+    ];
+
+    const targetCollection = body.parentCollection || existingRow.parent_collection;
+    const targetCategory = body.parentCategory || existingRow.parent_category;
+
+    if (!APPROVED_COLLECTIONS.includes(targetCollection)) {
+      return NextResponse.json({ error: `Invalid collection "${targetCollection}". Must be one of the 6 approved collections.` }, { status: 400 });
+    }
+
+    // PROTECTED COLLECTION RESTRICTION: Absolutely no taxonomy alterations for Sculptures & Statues
+    if (existingRow.parent_collection === "sculptures-statues") {
+      if (body.parentCollection && body.parentCollection !== "sculptures-statues") {
+        return NextResponse.json({
+          error: "Sculptures & Statues taxonomy is strictly protected. Products belonging to this collection cannot be moved to another collection."
+        }, { status: 403 });
+      }
+      if (body.parentCategory && body.parentCategory !== existingRow.parent_category) {
+        return NextResponse.json({
+          error: "Sculptures & Statues taxonomy is strictly protected. Product category assignments in this collection cannot be changed."
+        }, { status: 403 });
+      }
+    } else {
+      if (body.parentCollection === "sculptures-statues") {
+        return NextResponse.json({
+          error: "Sculptures & Statues collection is strictly protected. Non-statue products cannot be reassigned into this collection."
+        }, { status: 403 });
+      }
+    }
+
+    // Validate category relationship
+    let targetSubcategory = body.parentSubcategory || existingRow.parent_subcategory;
+    if (body.parentCategory || body.parentCollection) {
+      const catRow = await getOne("SELECT parent_collection_slug, parent_subcategory_slug FROM categories WHERE slug = ?", [targetCategory]);
+      if (!catRow) {
+        return NextResponse.json({ error: `Category "${targetCategory}" does not exist in catalogue.` }, { status: 400 });
+      }
+      if (catRow.parent_collection_slug !== targetCollection) {
+        return NextResponse.json({
+          error: `Category "${targetCategory}" belongs to collection "${catRow.parent_collection_slug}", not "${targetCollection}". Invalid collection/category combination.`
+        }, { status: 400 });
+      }
+      targetSubcategory = catRow.parent_subcategory_slug || targetSubcategory;
+    }
+
     const name = body.name || existingRow.name;
     const slug = body.slug || existingRow.slug;
+
+    if (
+      name.toLowerCase().includes("granite") ||
+      slug.toLowerCase().includes("granite") ||
+      (body.shortDescription && body.shortDescription.toLowerCase().includes("granite"))
+    ) {
+      return NextResponse.json({ error: "Granite is strictly excluded from Jaipur Stonecraft." }, { status: 400 });
+    }
 
     if (slug !== existingRow.slug) {
       const slugCollision = await getOne("SELECT id FROM products WHERE slug = ? AND id != ?", [slug, existingRow.id]);
@@ -81,9 +140,9 @@ export async function PUT(request, { params }) {
       body.isNewArrival !== undefined ? (body.isNewArrival ? 1 : 0) : existingRow.is_new_arrival,
       body.isCustomOnly !== undefined ? (body.isCustomOnly ? 1 : 0) : existingRow.is_custom_only,
       body.productType || existingRow.product_type,
-      body.parentCollection || existingRow.parent_collection,
-      body.parentSubcategory || existingRow.parent_subcategory,
-      body.parentCategory || existingRow.parent_category,
+      targetCollection,
+      targetSubcategory,
+      targetCategory,
       body.subjectId !== undefined ? body.subjectId : existingRow.subject_id,
       primaryMaterialId,
       body.shortDescription !== undefined ? body.shortDescription : existingRow.short_description,

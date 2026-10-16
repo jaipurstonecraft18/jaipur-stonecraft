@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { permanentRedirect, notFound } from "next/navigation";
 import Image from "next/image";
 import Container from "@/components/Container/Container";
 import Section from "@/components/Section/Section";
@@ -9,26 +9,11 @@ import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { collectionsData, getCollection, getSubcategory } from "@/content/collections";
 import { getCategoriesBySubcategory } from "@/content/categories";
 export const dynamic = "force-dynamic";
-export const revalidate = 0;
-
-export async function generateStaticParams() {
-  const params = [];
-  Object.values(collectionsData).forEach((collection) => {
-    collection.subcategories.forEach((sub) => {
-      params.push({
-        collection: collection.slug,
-        subcategory: sub.slug,
-      });
-    });
-  });
-  return params;
-}
-
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const { collection: collectionSlug, subcategory: subcategorySlug } = resolvedParams;
-  const subcategory = getSubcategory(collectionSlug, subcategorySlug);
 
+  const subcategory = await getSubcategory(collectionSlug, subcategorySlug);
   if (!subcategory) return {};
 
   return {

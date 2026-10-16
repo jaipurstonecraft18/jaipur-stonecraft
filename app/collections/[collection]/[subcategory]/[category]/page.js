@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { permanentRedirect, notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/Container/Container";
@@ -14,7 +14,88 @@ import { categoriesData, getCategory, getCategoriesBySubcategory } from "@/conte
 import { getDesignsByCategory } from "@/content/designs";
 import { siteConfig } from "@/content/site";
 
+const LEGACY_CATEGORY_REDIRECTS = {
+  "compact-wall-mandirs": "/collections/temples-architectural-stonework/mandirs-temples/small-marble-mandir-for-home",
+  "pooja-room-panels": "/collections/temples-architectural-stonework/mandirs-temples/temple-parts-designs",
+  "marble-home-temples": "/collections/temples-architectural-stonework/mandirs-temples/small-marble-mandir-for-home",
+  "carved-mandir-arches": "/collections/temples-architectural-stonework/pillars-columns/stone-arches-door-frames",
+  "shikhara-domes": "/collections/temples-architectural-stonework/mandirs-temples/temple-parts-designs",
+  "garbhagriha-architecture": "/collections/temples-architectural-stonework/mandirs-temples/temple-parts-designs",
+  "pillared-mandapas": "/collections/temples-architectural-stonework/mandirs-temples/temple-parts-designs",
+  "intricate-torans": "/collections/temples-architectural-stonework/pillars-columns/stone-arches-door-frames",
+  "portico-carvings": "/collections/temples-architectural-stonework/pillars-columns/stone-arches-door-frames",
+  "carved-pillars-columns": "/collections/temples-architectural-stonework/pillars-columns/stone-arches-door-frames",
+  "custom-heritage-columns": "/collections/temples-architectural-stonework/pillars-columns/stone-arches-door-frames",
+  "stone-door-frames": "/collections/temples-architectural-stonework/pillars-columns/stone-arches-door-frames",
+  "stone-balustrades": "/collections/temples-architectural-stonework/jali-designs/balcony-staircase-jali",
+  "jali-screens": "/collections/temples-architectural-stonework/jali-designs/marble-jali-designs",
+  "temple-wall-murals": "/collections/wall-art-reliefs/wall-murals/religious-wall-murals",
+  "devotional-relief-panels": "/collections/wall-art-reliefs/religious-reliefs/devotional-relief-panels",
+  "mandala-wall-art": "/collections/wall-art-reliefs/stone-relief-panels/stone-relief-panels",
+  "tree-of-life-relief": "/collections/wall-art-reliefs/stone-relief-panels/floral-nature-wall-panels",
+  "floral-pattern-panels": "/collections/wall-art-reliefs/stone-relief-panels/floral-nature-wall-panels",
+  "botanical-reliefs": "/collections/wall-art-reliefs/stone-relief-panels/floral-nature-wall-panels",
+  "geometric-carved-walls": "/collections/wall-art-reliefs/stone-relief-panels/stone-relief-panels",
+  "modern-textured-stone-walls": "/collections/wall-art-reliefs/stone-relief-panels/stone-relief-panels",
+  "royal-court-panels": "/collections/wall-art-reliefs/stone-relief-panels/stone-relief-panels",
+  "traditional-procession-murals": "/collections/wall-art-reliefs/stone-relief-panels/stone-relief-panels",
+  "rajasthani-heritage-scenes": "/collections/wall-art-reliefs/stone-relief-panels/stone-relief-panels",
+  "jharokha-relief-panels": "/collections/wall-art-reliefs/stone-relief-panels/stone-relief-panels",
+  "bespoke-feature-walls": "/collections/wall-art-reliefs/stone-relief-panels/stone-relief-panels",
+  "architectural-accent-murals": "/collections/wall-art-reliefs/stone-relief-panels/stone-relief-panels",
+  "custom-crests-logos": "/collections/wall-art-reliefs/stone-relief-panels/stone-relief-panels",
+  "tiered-water-fountains": "/collections/fountains-water-features/tiered-fountains/tiered-fountains",
+  "central-courtyard-fountains": "/collections/fountains-water-features/freestanding-fountains/freestanding-fountains",
+  "lotus-basin-fountains": "/collections/fountains-water-features/freestanding-fountains/freestanding-fountains",
+  "pedestal-fountains": "/collections/fountains-water-features/tiered-fountains/tiered-fountains",
+  "figurative-water-sculptures": "/collections/fountains-water-features/freestanding-fountains/freestanding-fountains",
+  "cascading-water-walls": "/collections/fountains-water-features/wall-fountains/wall-fountains",
+  "abstract-water-sculptures": "/collections/fountains-water-features/freestanding-fountains/freestanding-fountains",
+  "poolside-stone-waterfalls": "/collections/fountains-water-features/wall-fountains/wall-fountains",
+  "spout-fountains": "/collections/fountains-water-features/wall-fountains/wall-fountains",
+  "heritage-palace-water-features": "/collections/fountains-water-features/freestanding-fountains/freestanding-fountains",
+  "garden-fountains": "/collections/fountains-water-features/freestanding-fountains/freestanding-fountains",
+  "stone-planters": "/collections/decorative-stone-art/planters/marble-stone-planters",
+  "benches-seating": "/collections/decorative-stone-art",
+  "garden-lanterns-lamps": "/collections/decorative-stone-art",
+  "pedestals-plinths": "/collections/decorative-stone-art/pedestals-stands/marble-pedestals-stands",
+  "carved-stone-vases": "/collections/decorative-stone-art",
+  "decorative-bowls": "/collections/decorative-stone-art",
+  "marble-urns": "/collections/decorative-stone-art",
+  "tabletop-statuettes": "/collections/decorative-stone-art",
+  "artisan-accessories": "/collections/decorative-stone-art",
+  "floor-standing-marble-mandir": "/collections/temples-architectural-stonework/mandirs-temples/small-marble-mandir-for-home",
+  "large-marble-temple": "/collections/temples-architectural-stonework/mandirs-temples/temple-parts-designs",
+  "window-jali": "/collections/temples-architectural-stonework/jali-designs/marble-jali-designs",
+  "ancestral-portrait-carvings": "/collections/custom-bespoke-creations",
+  "lifesize-memorial-busts": "/collections/custom-bespoke-creations",
+  "bespoke-deity-statues": "/collections/custom-bespoke-creations/custom-architectural-stonework/full-temple-construction",
+  "commissioned-statuary": "/collections/custom-bespoke-creations/custom-architectural-stonework/full-temple-construction",
+  "custom-monumental-sculptures": "/collections/custom-bespoke-creations/custom-architectural-stonework/full-temple-construction"
+};
+
 const FINAL_CUSTOMER_NAMES = {
+  "small-marble-mandir-for-home": "Small Marble Mandir for Home",
+  "floor-standing-marble-mandir": "Floor-Standing Marble Mandir",
+  "large-marble-temple": "Large Marble Temple",
+  "temple-parts-designs": "Temple Parts & Designs",
+  "marble-jali-designs": "Marble Jali Designs",
+  "balcony-staircase-jali": "Balcony & Staircase Jali",
+  "jali-for-partitions": "Jali for Partitions",
+  "window-jali": "Window Jali",
+  "marble-pillars": "Marble Pillars",
+  "stone-pillars": "Stone Pillars",
+  "decorative-pillars": "Decorative Pillars",
+  "stone-arches-door-frames": "Stone Arches & Door Frames",
+  "religious-wall-murals": "Religious Wall Murals",
+  "stone-relief-panels": "Stone Relief Panels",
+  "floral-nature-wall-panels": "Floral & Nature Wall Panels",
+  "tiered-fountains": "Tiered Fountains",
+  "garden-fountains": "Garden Fountains",
+  "wall-fountains": "Wall Fountains",
+  "marble-stone-planters": "Marble & Stone Planters",
+  "marble-tulsi-pots": "Marble Tulsi Pots",
+  "marble-pedestals-stands": "Marble Pedestals & Stands",
   "ganesh-ji": "Ganesh Statues & Murtis",
   "shiva-ji": "Shiva Statues & Idols",
   "krishna-ji": "Krishna Statues & Murtis",
@@ -127,6 +208,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const { collection, subcategory, category: categorySlug } = resolvedParams;
+
+  if (LEGACY_CATEGORY_REDIRECTS[categorySlug]) {
+    return {};
+  }
+
   const category = await getCategory(collection, subcategory, categorySlug);
 
   if (!category) return {};
@@ -163,6 +249,10 @@ export async function generateMetadata({ params }) {
 export default async function CategoryLandingPage({ params }) {
   const resolvedParams = await params;
   const { collection: collectionSlug, subcategory: subcategorySlug, category: categorySlug } = resolvedParams;
+
+  if (LEGACY_CATEGORY_REDIRECTS[categorySlug]) {
+    permanentRedirect(LEGACY_CATEGORY_REDIRECTS[categorySlug]);
+  }
 
   const collection = await getCollection(collectionSlug);
   const subcategory = await getSubcategory(collectionSlug, subcategorySlug);

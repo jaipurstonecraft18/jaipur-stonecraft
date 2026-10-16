@@ -1,0 +1,818 @@
+/* Jaipur Stonecraft — Mobile-First Product Image Studio */
+
+.studioOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background-color: #12100E;
+  color: #F5EFEB;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ========================================================================= */
+/* 1. TOP BAR */
+/* ========================================================================= */
+.topBar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(0.6rem + env(safe-area-inset-top, 0px)) 1rem 0.6rem;
+  background: rgba(22, 19, 16, 0.96);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 54px;
+}
+
+.topBarLeft,
+.topBarRight {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.topBarCenter {
+  text-align: center;
+  flex: 1;
+  padding: 0 0.5rem;
+}
+
+.studioTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #FFF;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.imageCounterBadge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #D4AF37;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 0.1rem 0.45rem;
+  border-radius: 12px;
+  margin-top: 0.15rem;
+}
+
+.iconBtn {
+  background: transparent;
+  border: none;
+  color: #E0D8CE;
+  font-size: 1rem;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 8px;
+  touch-action: manipulation;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.iconBtn:hover,
+.iconBtn:active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFF;
+}
+
+.resetBtn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #D4C9BD;
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 0.4rem 0.65rem;
+  border-radius: 6px;
+  min-height: 40px;
+  cursor: pointer;
+}
+
+.resetBtn:hover,
+.resetBtn:active {
+  background: rgba(255, 255, 255, 0.16);
+  color: #FFF;
+}
+
+/* ========================================================================= */
+/* 2. MAIN PREVIEW AREA */
+/* ========================================================================= */
+.mainPreviewArea {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #0A0908;
+  touch-action: none; /* Prevents scroll interference while touching canvas */
+}
+
+.cropperContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.cropperSourceImg {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* ========================================================================= */
+/* CROPPER.JS HERITAGE MARBLE THEME */
+/* ========================================================================= */
+.cropperContainer :global(.cropper-container) {
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+.cropperContainer :global(.cropper-view-box) {
+  outline: 2px solid #D4AF37 !important;
+  outline-color: #D4AF37 !important;
+}
+
+.cropperContainer :global(.cropper-dashed) {
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+.cropperContainer :global(.cropper-modal) {
+  background-color: rgba(10, 9, 8, 0.75) !important;
+  opacity: 0.8 !important;
+}
+
+.cropperContainer :global(.cropper-line) {
+  background-color: transparent !important;
+}
+
+/* Corner Handles: large, prominent, touch-friendly 24x24px targets */
+.cropperContainer :global(.cropper-point.point-nw),
+.cropperContainer :global(.cropper-point.point-ne),
+.cropperContainer :global(.cropper-point.point-sw),
+.cropperContainer :global(.cropper-point.point-se) {
+  width: 22px !important;
+  height: 22px !important;
+  background-color: #FFFFFF !important;
+  border: 2.5px solid #D4AF37 !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7) !important;
+  opacity: 1 !important;
+  z-index: 20 !important;
+}
+
+.cropperContainer :global(.cropper-point.point-nw) {
+  top: -11px !important;
+  left: -11px !important;
+}
+
+.cropperContainer :global(.cropper-point.point-ne) {
+  top: -11px !important;
+  right: -11px !important;
+}
+
+.cropperContainer :global(.cropper-point.point-sw) {
+  bottom: -11px !important;
+  left: -11px !important;
+}
+
+.cropperContainer :global(.cropper-point.point-se) {
+  bottom: -11px !important;
+  right: -11px !important;
+}
+
+/* Edge Handles: visible drag bars for free-crop adjustment */
+.cropperContainer :global(.cropper-point.point-n),
+.cropperContainer :global(.cropper-point.point-s) {
+  width: 32px !important;
+  height: 8px !important;
+  background-color: #FFFFFF !important;
+  border: 1.5px solid #D4AF37 !important;
+  border-radius: 4px !important;
+  margin-left: -16px !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6) !important;
+  opacity: 0.9 !important;
+}
+
+.cropperContainer :global(.cropper-point.point-n) {
+  top: -4px !important;
+}
+
+.cropperContainer :global(.cropper-point.point-s) {
+  bottom: -4px !important;
+}
+
+.cropperContainer :global(.cropper-point.point-e),
+.cropperContainer :global(.cropper-point.point-w) {
+  width: 8px !important;
+  height: 32px !important;
+  background-color: #FFFFFF !important;
+  border: 1.5px solid #D4AF37 !important;
+  border-radius: 4px !important;
+  margin-top: -16px !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6) !important;
+  opacity: 0.9 !important;
+}
+
+.cropperContainer :global(.cropper-point.point-e) {
+  right: -4px !important;
+}
+
+.cropperContainer :global(.cropper-point.point-w) {
+  left: -4px !important;
+}
+
+/* In Watermark Mode: disable cropper handles so gestures smoothly control watermark */
+.watermarkMode :global(.cropper-point),
+.watermarkMode :global(.cropper-line),
+.watermarkMode :global(.cropper-face) {
+  pointer-events: none !important;
+}
+
+/* ========================================================================= */
+/* WATERMARK SYNCHRONIZED OVERLAY */
+/* ========================================================================= */
+.watermarkOverlay {
+  position: absolute;
+  pointer-events: none;
+  z-index: 25;
+  overflow: hidden;
+}
+
+.watermarkOverlayInteractive {
+  pointer-events: auto;
+  cursor: move;
+  touch-action: none;
+}
+
+.watermarkBadge {
+  position: absolute;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.watermarkBadgeActive {
+  cursor: grab;
+}
+
+.watermarkBadgeActive:active {
+  cursor: grabbing;
+}
+
+.watermarkImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.75));
+}
+
+.watermarkActiveRing {
+  position: absolute;
+  inset: -6px;
+  border: 1.5px dashed #D4AF37;
+  border-radius: 6px;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+  animation: pulseGold 2s infinite ease-in-out;
+}
+
+@keyframes pulseGold {
+  0%, 100% {
+    border-color: #D4AF37;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+  }
+  50% {
+    border-color: #FFDF78;
+    box-shadow: 0 0 16px rgba(255, 223, 120, 0.6);
+  }
+}
+
+.watermarkMoveDot {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  width: 14px;
+  height: 14px;
+  background: #D4AF37;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Touch hint pill */
+.touchHintPill {
+  position: absolute;
+  top: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #E2DDD5;
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  pointer-events: none;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+/* Processing Overlay */
+.processingOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 9, 8, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 100;
+}
+
+.spinner {
+  width: 44px;
+  height: 44px;
+  border: 3.5px solid rgba(212, 175, 55, 0.2);
+  border-top-color: #D4AF37;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.processingText {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #F0E8DF;
+  letter-spacing: 0.02em;
+}
+
+/* ========================================================================= */
+/* 3. TOOL TABS & CONTROLS */
+/* ========================================================================= */
+.toolPanel {
+  flex-shrink: 0;
+  background: #1A1613;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  max-height: 45vh;
+  overflow: hidden;
+}
+
+/* Navigation tabs between tools */
+.toolTabs {
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #151210;
+}
+
+.toolTab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.7rem 0.4rem;
+  background: transparent;
+  border: none;
+  color: #A39688;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  min-height: 44px;
+  touch-action: manipulation;
+  transition: all 0.15s ease;
+}
+
+.toolTabActive {
+  color: #D4AF37;
+  border-bottom-color: #D4AF37;
+  background: rgba(212, 175, 55, 0.06);
+}
+
+/* Tool content area */
+.toolBody {
+  padding: 0.85rem 1rem;
+  overflow-y: auto;
+  max-height: 28vh;
+  box-sizing: border-box;
+}
+
+/* Crop Tool Controls */
+.buttonRow {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.4rem;
+  scrollbar-width: none;
+}
+
+.buttonRow::-webkit-scrollbar {
+  display: none;
+}
+
+.pillBtn {
+  flex: 1;
+  min-width: 78px;
+  min-height: 42px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #D0C6B8;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.45rem 0.6rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.pillBtnActive {
+  background: #D4AF37;
+  color: #12100E;
+  border-color: #D4AF37;
+  font-weight: 700;
+}
+
+.pillSub {
+  font-size: 0.65rem;
+  opacity: 0.8;
+}
+
+/* Sliders */
+.sliderGroup {
+  margin-bottom: 0.75rem;
+}
+
+.sliderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+
+.sliderLabel {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #C8BFB2;
+}
+
+.sliderValue {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #D4AF37;
+  min-width: 38px;
+  text-align: right;
+}
+
+.sliderInput {
+  width: 100%;
+  height: 36px; /* Touch target */
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+  margin: 0;
+}
+
+.sliderInput:focus {
+  outline: none;
+}
+
+.sliderInput::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 3px;
+}
+
+.sliderInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #D4AF37;
+  cursor: pointer;
+  margin-top: -9px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.sliderInput::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 3px;
+}
+
+.sliderInput::-moz-range-thumb {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #D4AF37;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Watermark switch & options */
+.switchRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 0.75rem;
+}
+
+.switchLabel {
+  display: flex;
+  flex-direction: column;
+}
+
+.switchTitle {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #FFF;
+}
+
+.switchDesc {
+  font-size: 0.7rem;
+  color: #9C8E80;
+}
+
+.toggleSwitch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.toggleSwitch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggleSlider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: 0.2s;
+  border-radius: 28px;
+}
+
+.toggleSlider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.2s;
+  border-radius: 50%;
+}
+
+.toggleSwitch input:checked + .toggleSlider {
+  background-color: #D4AF37;
+}
+
+.toggleSwitch input:checked + .toggleSlider:before {
+  transform: translateX(20px);
+}
+
+.cornerPresets {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.cornerBtn {
+  min-height: 40px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #D0C6B8;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 0.35rem 0.2rem;
+  cursor: pointer;
+  touch-action: manipulation;
+  text-align: center;
+}
+
+.cornerBtnActive {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: #D4AF37;
+  color: #D4AF37;
+  font-weight: 700;
+}
+
+/* Watermark Source Selector Tabs */
+.watermarkSourceTabs {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.watermarkSourceBtn {
+  flex: 1;
+  min-height: 40px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #D4C9BD;
+  font-size: 0.76rem;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 0.4rem 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  touch-action: manipulation;
+}
+
+.watermarkSourceBtnActive {
+  background: rgba(212, 175, 55, 0.18);
+  border-color: #D4AF37;
+  color: #FFDF78;
+  font-weight: 700;
+}
+
+/* Custom Watermark Upload Box */
+.customUploadBox {
+  border: 1.5px dashed rgba(212, 175, 55, 0.5);
+  border-radius: 8px;
+  background: rgba(212, 175, 55, 0.04);
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+  margin-bottom: 0.85rem;
+  cursor: pointer;
+}
+
+.customUploadBox:hover,
+.customUploadBox:active {
+  background: rgba(212, 175, 55, 0.08);
+  border-color: #D4AF37;
+}
+
+.customPreviewRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.customThumb {
+  width: 50px;
+  height: 36px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sizePresetsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.sizePresetBtn {
+  min-height: 36px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #C8BFB2;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 0.25rem 0.2rem;
+  cursor: pointer;
+  text-align: center;
+  touch-action: manipulation;
+}
+
+.sizePresetBtnActive {
+  background: #D4AF37;
+  color: #12100E;
+  border-color: #D4AF37;
+  font-weight: 700;
+}
+
+/* ========================================================================= */
+/* 4. BOTTOM ACTION AREA */
+/* ========================================================================= */
+.bottomActionArea {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  background: #14110F;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.skipBtn {
+  flex: 1;
+  min-height: 48px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #D0C6B8;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  transition: all 0.15s ease;
+}
+
+.skipBtn:hover,
+.skipBtn:active {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFF;
+}
+
+.saveBtn {
+  flex: 2;
+  min-height: 48px;
+  background: linear-gradient(135deg, #E6C875 0%, #C5A059 100%);
+  border: none;
+  color: #12100E;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-radius: 10px;
+  padding: 0.5rem 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
+  touch-action: manipulation;
+  transition: transform 0.1s ease, filter 0.15s ease;
+}
+
+.saveBtn:hover {
+  filter: brightness(1.05);
+}
+
+.saveBtn:active {
+  transform: scale(0.98);
+}
+
+.saveBtn:disabled,
+.skipBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}

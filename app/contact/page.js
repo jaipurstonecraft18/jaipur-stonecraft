@@ -67,7 +67,7 @@ export default function Contact() {
                 <span className={styles.icon}>📞</span>
                 <div>
                   <span className={styles.label}>Phone Number</span>
-                  <a href={`tel:${phone}`} className={styles.link}>
+                  <a href={`tel:${phone.replace(/\s+/g, "")}`} className={styles.link}>
                     {phone}
                   </a>
                 </div>

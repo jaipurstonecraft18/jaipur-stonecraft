@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "../admin.module.css";
 import { defaultOurWorldContent } from "@/content/our-world.js";
+import DiscoverySectionsManager from "@/components/admin/DiscoverySectionsManager";
+import { popularStatuesData, architecturalArtData } from "@/content/discovery-sliders";
 
 export default function AdminPageCMS() {
   const [activeTab, setActiveTab] = useState("craftsmanship");
@@ -62,6 +64,9 @@ export default function AdminPageCMS() {
       { label: "Bespoke Commissions Delivered", value: "1000+" }
     ]
   });
+
+  const [homepageDiscoveryStatues, setHomepageDiscoveryStatues] = useState(popularStatuesData);
+  const [homepageDiscoveryArch, setHomepageDiscoveryArch] = useState(architecturalArtData);
 
   const [homepageStory, setHomepageStory] = useState({
     eyebrow: "",
@@ -575,6 +580,20 @@ export default function AdminPageCMS() {
               setHomepageHero({ slides: slidesList });
             }
             if (sec.keyName === "homepage_trust_strip") setHomepageTrustStrip(sec.content);
+            if (sec.keyName === "homepage_discovery_statues" && sec.content) {
+              setHomepageDiscoveryStatues({
+                ...popularStatuesData,
+                ...sec.content,
+                items: Array.isArray(sec.content.items) ? sec.content.items : popularStatuesData.items
+              });
+            }
+            if (sec.keyName === "homepage_discovery_arch" && sec.content) {
+              setHomepageDiscoveryArch({
+                ...architecturalArtData,
+                ...sec.content,
+                items: Array.isArray(sec.content.items) ? sec.content.items : architecturalArtData.items
+              });
+            }
             if (sec.keyName === "homepage_story") setHomepageStory(sec.content);
             if (sec.keyName === "homepage_cta") setHomepageCta(sec.content);
             if (sec.keyName === "homepage_reviews") {
@@ -1206,107 +1225,131 @@ export default function AdminPageCMS() {
             </div>
           </div>
 
-          {/* SECTION 3: HERITAGE STORY */}
-          <div className={styles.tableCard} style={{ padding: "1.5rem" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
-              <div>
-                <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)", display: "inline-block", marginRight: "0.75rem" }}>
-                  3. Heritage & Lineage Story Section
-                </h3>
-                <span className={styles.badge} style={{ backgroundColor: "#FAF0E6", color: "var(--color-bronze)" }}>
-                  📍 Used on Homepage Story Block
-                </span>
-              </div>
-              <button
-                onClick={() => handleSaveSection("homepage_story", homepageStory)}
-                className={styles.primaryBtn}
-                disabled={saving}
-              >
-                {saving ? "Saving..." : "Save Heritage Story"}
-              </button>
-            </div>
+          {/* ============================================================== */}
+          {/* 3. HOMEPAGE DISCOVERY SECTIONS (Statues & Architectural Art)  */}
+          {/* ============================================================== */}
+          <DiscoverySectionsManager
+            statuesSection={homepageDiscoveryStatues}
+            setStatuesSection={setHomepageDiscoveryStatues}
+            archSection={homepageDiscoveryArch}
+            setArchSection={setHomepageDiscoveryArch}
+            onSave={handleSaveSection}
+            saving={saving}
+            handleImageUpload={handleImageUpload}
+          />
 
-            <div className={styles.formGrid}>
-              <div className={styles.formGroup}>
-                <label className={styles.label}>Eyebrow</label>
-                <input
-                  type="text"
-                  value={homepageStory.eyebrow}
-                  onChange={(e) => setHomepageStory({ ...homepageStory, eyebrow: e.target.value })}
-                  className={styles.input}
-                />
+          {/* ============================================================== */}
+          {/* ARCHIVED / HISTORICAL STORY SECTION (Preserved in Database)   */}
+          {/* ============================================================== */}
+          <details className={styles.tableCard} style={{ padding: "1.25rem 1.5rem", borderLeft: "4px solid #B87B31", marginBottom: "1.75rem", backgroundColor: "#FAF9F6" }}>
+            <summary style={{ cursor: "pointer", fontWeight: "600", color: "#4A423A", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <span style={{ fontSize: "1.1rem" }}>📦</span>
+                <span>Archived Generational / Heritage Story (Preserved in Database)</span>
               </div>
+              <span className={styles.badge} style={{ backgroundColor: "#F0EAE1", color: "var(--color-bronze)" }}>
+                Not shown publicly &bull; Click to Expand
+              </span>
+            </summary>
 
-              <div className={styles.formGroup}>
-                <label className={styles.label}>Heading</label>
-                <input
-                  type="text"
-                  value={homepageStory.heading}
-                  onChange={(e) => setHomepageStory({ ...homepageStory, heading: e.target.value })}
-                  className={styles.input}
-                />
-              </div>
-
-              <div className={styles.formGroupFull}>
-                <label className={styles.label}>Paragraph 1</label>
-                <textarea
-                  rows={3}
-                  value={homepageStory.paragraph1}
-                  onChange={(e) => setHomepageStory({ ...homepageStory, paragraph1: e.target.value })}
-                  className={styles.textarea}
-                />
+            <div style={{ marginTop: "1.25rem", borderTop: "1px solid #E5E0D7", paddingTop: "1rem" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.5rem" }}>
+                <p style={{ fontSize: "0.85rem", color: "#6B6258", margin: 0 }}>
+                  This content is safely preserved in the database for historical and recovery purposes.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => handleSaveSection("homepage_story", homepageStory)}
+                  className={styles.secondaryBtn}
+                  disabled={saving}
+                  style={{ fontSize: "0.82rem", padding: "0.4rem 0.85rem" }}
+                >
+                  {saving ? "Saving..." : "Save Historical Record"}
+                </button>
               </div>
 
-              <div className={styles.formGroupFull}>
-                <label className={styles.label}>Paragraph 2</label>
-                <textarea
-                  rows={3}
-                  value={homepageStory.paragraph2}
-                  onChange={(e) => setHomepageStory({ ...homepageStory, paragraph2: e.target.value })}
-                  className={styles.textarea}
-                />
-              </div>
-
-              <div className={styles.formGroupFull}>
-                <label className={styles.label}>Italic Pull-Quote</label>
-                <input
-                  type="text"
-                  value={homepageStory.quote}
-                  onChange={(e) => setHomepageStory({ ...homepageStory, quote: e.target.value })}
-                  className={styles.input}
-                />
-              </div>
-
-              <div className={styles.formGroupFull}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
-                  <label className={styles.label}>Heritage Story Side Image</label>
-                  <span className={styles.aspectBadge}>📐 Recommended Aspect Ratio: 4:3 Standard (1200 × 900 px)</span>
-                </div>
-                <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem" }}>
-                  <img
-                    src={homepageStory.imageSrc || "/images/brand/heritage-ganesha.jpg"}
-                    alt="Preview"
-                    style={{ width: "80px", height: "60px", objectFit: "cover", borderRadius: "6px", backgroundColor: "#E8E4DF", border: "1px solid #D8CFC2" }}
-                    onError={(e) => { e.target.src = "https://placehold.co/160x120/E8E4DF/1A1918?text=Story"; }}
-                  />
+              <div className={styles.formGrid}>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Eyebrow</label>
                   <input
                     type="text"
-                    value={homepageStory.imageSrc || ""}
-                    onChange={(e) => setHomepageStory({ ...homepageStory, imageSrc: e.target.value })}
+                    value={homepageStory.eyebrow}
+                    onChange={(e) => setHomepageStory({ ...homepageStory, eyebrow: e.target.value })}
                     className={styles.input}
-                    style={{ flex: 1 }}
-                    placeholder="https://... or upload image"
                   />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Heading</label>
                   <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => handleImageUpload(e, (url) => setHomepageStory({ ...homepageStory, imageSrc: url }))}
-                    style={{ fontSize: "0.85rem" }}
+                    type="text"
+                    value={homepageStory.heading}
+                    onChange={(e) => setHomepageStory({ ...homepageStory, heading: e.target.value })}
+                    className={styles.input}
                   />
+                </div>
+
+                <div className={styles.formGroupFull}>
+                  <label className={styles.label}>Paragraph 1</label>
+                  <textarea
+                    rows={3}
+                    value={homepageStory.paragraph1}
+                    onChange={(e) => setHomepageStory({ ...homepageStory, paragraph1: e.target.value })}
+                    className={styles.textarea}
+                  />
+                </div>
+
+                <div className={styles.formGroupFull}>
+                  <label className={styles.label}>Paragraph 2</label>
+                  <textarea
+                    rows={3}
+                    value={homepageStory.paragraph2}
+                    onChange={(e) => setHomepageStory({ ...homepageStory, paragraph2: e.target.value })}
+                    className={styles.textarea}
+                  />
+                </div>
+
+                <div className={styles.formGroupFull}>
+                  <label className={styles.label}>Italic Pull-Quote</label>
+                  <input
+                    type="text"
+                    value={homepageStory.quote}
+                    onChange={(e) => setHomepageStory({ ...homepageStory, quote: e.target.value })}
+                    className={styles.input}
+                  />
+                </div>
+
+                <div className={styles.formGroupFull}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
+                    <label className={styles.label}>Heritage Story Side Image</label>
+                    <span className={styles.aspectBadge}>📐 Recommended: 4:3 Standard</span>
+                  </div>
+                  <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginTop: "0.25rem" }}>
+                    <img
+                      src={homepageStory.imageSrc || "/images/brand/heritage-ganesha.jpg"}
+                      alt="Preview"
+                      style={{ width: "80px", height: "60px", objectFit: "cover", borderRadius: "6px", backgroundColor: "#E8E4DF", border: "1px solid #D8CFC2" }}
+                      onError={(e) => { e.target.src = "https://placehold.co/160x120/E8E4DF/1A1918?text=Story"; }}
+                    />
+                    <input
+                      type="text"
+                      value={homepageStory.imageSrc || ""}
+                      onChange={(e) => setHomepageStory({ ...homepageStory, imageSrc: e.target.value })}
+                      className={styles.input}
+                      style={{ flex: 1 }}
+                      placeholder="https://... or upload image"
+                    />
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleImageUpload(e, (url) => setHomepageStory({ ...homepageStory, imageSrc: url }))}
+                      style={{ fontSize: "0.85rem" }}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </details>
 
           {/* SECTION 4: CLOSING CONVERSION CTA */}
           <div className={styles.tableCard} style={{ padding: "1.5rem" }}>

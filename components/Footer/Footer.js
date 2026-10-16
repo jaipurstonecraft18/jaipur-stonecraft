@@ -60,7 +60,7 @@ export default function Footer() {
               </li>
               <li>
                 <span className={styles.contactLabel}>Phone:</span>{" "}
-                <a href={`tel:${siteConfig.contact.phone}`} className={styles.link}>
+                <a href={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`} className={styles.link}>
                   {siteConfig.contact.phone}
                 </a>
               </li>

@@ -69,12 +69,25 @@ export async function POST(request) {
       const rawExt = path.extname(file.name).toLowerCase() || `.${metadata.format}`;
       const baseFilename = `${cleanSlug}-${timestamp}-${Math.random().toString(36).substring(2, 7)}`;
 
-      const rawFilename = `${baseFilename}${rawExt}`;
+      // Check if a byte-for-byte original camera file was provided alongside this processed image
+      const rawOriginalFile = formData.get("originalFile");
+      let rawBuffer = buffer;
+      let rawFileExt = rawExt;
+      if (rawOriginalFile && typeof rawOriginalFile !== "string" && rawOriginalFile.size > 0) {
+        try {
+          rawBuffer = Buffer.from(await rawOriginalFile.arrayBuffer());
+          rawFileExt = path.extname(rawOriginalFile.name).toLowerCase() || rawExt;
+        } catch {
+          rawBuffer = buffer;
+        }
+      }
+
+      const rawFilename = `${baseFilename}${rawFileExt}`;
       const webpFilename = `${baseFilename}.webp`;
 
-      // 1. Save Unprocessed Raw Original File locally
+      // 1. Save Unprocessed Raw Original File locally (preserving original camera image byte-for-byte)
       const rawPath = path.join(rawDir, rawFilename);
-      await fs.writeFile(rawPath, buffer);
+      await fs.writeFile(rawPath, rawBuffer);
 
       // 2. Process Sharp WebP Variants with EXIF Auto-Orientation & Metadata Stripping
       const baseSharp = () => sharp(buffer).rotate();

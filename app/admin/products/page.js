@@ -25,10 +25,21 @@ export default function AdminProductsListPage() {
   const issueFilter = searchParams.get("issue") || "all";
   const sortFilter = searchParams.get("sort") || "recent";
   const searchQuery = searchParams.get("search") || "";
+  const collectionFilter = searchParams.get("collection") || "all";
   const categoryFilter = searchParams.get("category") || "";
   const page = parseInt(searchParams.get("page") || "1", 10);
 
+  const [categoriesList, setCategoriesList] = useState([]);
   const [searchInput, setSearchInput] = useState(searchQuery);
+
+  useEffect(() => {
+    fetch("/api/admin/categories")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.categories) setCategoriesList(data.categories);
+      })
+      .catch(() => {});
+  }, []);
 
   const fetchProducts = useCallback(async () => {
     setLoading(true);
@@ -39,6 +50,7 @@ export default function AdminProductsListPage() {
         issue: issueFilter,
         sort: sortFilter,
         search: searchQuery,
+        collection: collectionFilter,
         category: categoryFilter,
         page: page.toString(),
         pageSize: "16"
@@ -323,6 +335,45 @@ export default function AdminProductsListPage() {
             ⚙️ Filter: {statusFilter.toUpperCase()}
           </button>
 
+          {/* Collection Filter Dropdown */}
+          <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+            <select
+              value={collectionFilter}
+              onChange={(e) => updateFilters({ collection: e.target.value, category: "all", page: 1 })}
+              className={styles.select}
+              style={{ fontSize: "0.8rem", padding: "0.35rem 0.65rem", minWidth: "165px", cursor: "pointer", fontWeight: "500" }}
+              title="Filter by Top-Level Collection"
+            >
+              <option value="all">All Collections (6)</option>
+              <option value="sculptures-statues">Sculptures & Statues (Protected)</option>
+              <option value="wall-art-reliefs">Wall Art & Reliefs</option>
+              <option value="temples-architectural-stonework">Temples & Architectural</option>
+              <option value="fountains-water-features">Fountains & Water Features</option>
+              <option value="decorative-stone-art">Decorative Stone Art</option>
+              <option value="custom-bespoke-creations">Custom & Bespoke</option>
+            </select>
+          </div>
+
+          {/* Category Filter Dropdown (Cascading) */}
+          <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+            <select
+              value={categoryFilter || "all"}
+              onChange={(e) => updateFilters({ category: e.target.value, page: 1 })}
+              className={styles.select}
+              style={{ fontSize: "0.8rem", padding: "0.35rem 0.65rem", minWidth: "160px", cursor: "pointer" }}
+              title="Filter by Category"
+            >
+              <option value="all">All Categories</option>
+              {categoriesList
+                .filter((c) => collectionFilter === "all" || (c.parent_collection_slug || c.parentCollection) === collectionFilter)
+                .map((c) => (
+                  <option key={c.slug} value={c.slug}>
+                    {c.name}
+                  </option>
+                ))}
+            </select>
+          </div>
+
           {/* Issue Category Select Dropdown */}
           <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
             <select
@@ -444,7 +495,13 @@ export default function AdminProductsListPage() {
                         </div>
                       )}
                     </td>
-                    <td>{p.parentCategory}</td>
+                    <td>
+                      <div style={{ fontWeight: "600", fontSize: "0.82rem" }}>{p.parentCategory}</div>
+                      <div style={{ fontSize: "0.72rem", color: "#666", marginTop: "2px" }}>
+                        {p.parentCollection?.replace(/-/g, " ")}
+                        {p.parentSubcategory ? ` › ${p.parentSubcategory.replace(/-/g, " ")}` : ""}
+                      </div>
+                    </td>
                     <td>
                       <span className={`${styles.badge} ${p.status === "published" ? styles.badgePublished : p.status === "draft" ? styles.badgeDraft : styles.badgeArchived}`}>
                         {p.status}
