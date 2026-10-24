@@ -936,17 +936,9 @@ export default function AdminCataloguePage() {
               {modalType === "category" && (
                 <>
                   <div className={styles.formGroup}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                      <label className={styles.label}>Parent Collection *</label>
-                      {editingItem && (editingItem.parentCollection === "sculptures-statues" || editingItem.parent_collection_slug === "sculptures-statues") && (
-                        <span style={{ fontSize: "0.75rem", color: "#666", fontWeight: "600" }}>
-                          🔒 Protected Collection (Read-Only)
-                        </span>
-                      )}
-                    </div>
+                    <label className={styles.label}>Parent Collection *</label>
                     <select
                       value={catFormData.parentCollection}
-                      disabled={editingItem && (editingItem.parentCollection === "sculptures-statues" || editingItem.parent_collection_slug === "sculptures-statues")}
                       onChange={(e) => {
                         const colSlug = e.target.value;
                         const validSubs = subcategories.filter((s) => (s.parent_collection_slug || s.parentCollection) === colSlug);
@@ -958,11 +950,9 @@ export default function AdminCataloguePage() {
                       }}
                       className={styles.select}
                     >
-                      {collections
-                        .filter((col) => editingItem ? true : col.slug !== "sculptures-statues")
-                        .map((col) => (
-                          <option key={col.slug} value={col.slug}>{col.name} ({col.slug})</option>
-                        ))}
+                      {collections.map((col) => (
+                        <option key={col.slug} value={col.slug}>{col.name} ({col.slug})</option>
+                      ))}
                     </select>
                   </div>
 
@@ -970,7 +960,6 @@ export default function AdminCataloguePage() {
                     <label className={styles.label}>Parent Subcategory</label>
                     <select
                       value={catFormData.parentSubcategory}
-                      disabled={editingItem && (editingItem.parentCollection === "sculptures-statues" || editingItem.parent_collection_slug === "sculptures-statues")}
                       onChange={(e) => setCatFormData({ ...catFormData, parentSubcategory: e.target.value })}
                       className={styles.select}
                     >

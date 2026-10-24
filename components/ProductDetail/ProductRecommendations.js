@@ -1,18 +1,39 @@
 import Image from "next/image";
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
+import { categoriesData } from "@/content/categories-data.js";
 import styles from "./ProductRecommendations.module.css";
 
-export default function ProductRecommendations({ relatedProducts = [], categoryName = "", collectionSlug = "", categorySlug = "" }) {
+export default function ProductRecommendations({ 
+  relatedProducts = [], 
+  categoryName = "", 
+  collectionSlug = "", 
+  subcategorySlug = "",
+  categorySlug = "",
+  categoryHref = ""
+}) {
   if (!relatedProducts || relatedProducts.length === 0) return null;
 
   const headingText = categoryName
     ? `More from the ${categoryName} Collection`
     : "More Related Atelier Creations";
 
-  const viewAllHref = collectionSlug && categorySlug 
-    ? `/collections/${collectionSlug}/${categorySlug}` 
-    : "/collections";
+  // Resolve canonical 3-level category URL dynamically
+  let viewAllHref = categoryHref;
+  if (!viewAllHref) {
+    if (collectionSlug && subcategorySlug && categorySlug) {
+      viewAllHref = `/collections/${collectionSlug}/${subcategorySlug}/${categorySlug}`;
+    } else if (categorySlug && categoriesData[categorySlug]) {
+      const cat = categoriesData[categorySlug];
+      viewAllHref = `/collections/${cat.parentCollection}/${cat.parentSubcategory}/${cat.slug}`;
+    } else if (collectionSlug && subcategorySlug) {
+      viewAllHref = `/collections/${collectionSlug}/${subcategorySlug}`;
+    } else if (collectionSlug) {
+      viewAllHref = `/collections/${collectionSlug}`;
+    } else {
+      viewAllHref = "/collections";
+    }
+  }
 
   return (
     <section className={styles.recommendSection} aria-label="Related Product Recommendations">

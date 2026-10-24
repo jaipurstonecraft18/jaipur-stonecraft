@@ -343,15 +343,10 @@ export default function AdminCategoriesCoverPage() {
               >
                 {collections.map((col) => (
                   <option key={col.slug} value={col.slug}>
-                    {col.name} ({col.slug}){col.slug === "sculptures-statues" ? " [Protected]" : ""}
+                    {col.name} ({col.slug})
                   </option>
                 ))}
               </select>
-              {selectedCollection === "sculptures-statues" && (
-                <span style={{ backgroundColor: "#EFEBE6", color: "#665C54", padding: "0.3rem 0.6rem", borderRadius: "4px", fontSize: "0.75rem", fontWeight: "600", display: "inline-flex", alignItems: "center", gap: "0.3rem" }}>
-                  🔒 Protected Collection (Hierarchy Locked)
-                </span>
-              )}
             </div>
 
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>

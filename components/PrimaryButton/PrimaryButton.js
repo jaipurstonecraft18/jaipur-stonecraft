@@ -14,6 +14,13 @@ export default function PrimaryButton({
   const btnClass = `${styles.button} ${styles[variant]} ${className}`;
 
   if (href) {
+    if (href.startsWith("tel:") || href.startsWith("mailto:") || href.startsWith("http")) {
+      return (
+        <a href={href} className={btnClass} {...props}>
+          {children}
+        </a>
+      );
+    }
     return (
       <Link href={href} className={btnClass} {...props}>
         {children}

@@ -58,8 +58,8 @@ export default async function Home() {
       description: "Pure Makrana white marble mandirs, hand-carved stone pillars, and grand temple arches built to traditional iconographic standards.",
       primaryCtaText: "View Temples",
       primaryCtaHref: "/collections/temples-architectural-stonework",
-      secondaryCtaText: "Consult Artisan",
-      secondaryCtaHref: "/contact?type=quote",
+      secondaryCtaText: "Call Now",
+      secondaryCtaHref: `tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`,
       imageSrc: "/images/collections/temples-architectural.webp"
     },
     {
@@ -99,8 +99,8 @@ export default async function Home() {
     description: "Whether you have a hand sketch, architectural CAD blueprint, or a reference photo, our atelier team will guide your custom stone creation from block selection to global delivery.",
     primaryCtaText: "Discuss Your Project",
     primaryCtaHref: "/contact?type=custom",
-    secondaryCtaText: "Request a Quote",
-    secondaryCtaHref: "/contact?type=quote"
+    secondaryCtaText: "Call Now",
+    secondaryCtaHref: `tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`
   });
 
   const reviewsData = await getPageSection("homepage_reviews", {

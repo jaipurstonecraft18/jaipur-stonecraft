@@ -40,9 +40,13 @@ export default function ProductCustomizationBanner({ design }) {
               </p>
 
               <div className={styles.actionRow}>
-                <Link href={`/contact?type=custom&design=${design?.slug || ""}`} className={styles.goldBtn}>
-                  Request a Custom Quote
-                </Link>
+                <a
+                  href={`tel:${(siteConfig.contact?.phone || "+91 9664388920").replace(/\s+/g, "")}`}
+                  className={styles.goldBtn}
+                  aria-label="Call now to discuss custom sizes and designs"
+                >
+                  Call Now
+                </a>
                 <a
                   href={whatsappUrl}
                   target="_blank"

@@ -6,6 +6,7 @@ import Image from "next/image";
 import Container from "@/components/Container/Container";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { getImageVariantUrl } from "@/lib/utils/image-utils";
+import { siteConfig } from "@/content/site";
 import styles from "./Hero.module.css";
 
 const heroSlides = [
@@ -28,8 +29,8 @@ const heroSlides = [
     description: "Pure Makrana white marble mandirs, hand-carved stone pillars, and grand temple arches built to traditional iconographic standards.",
     primaryCtaText: "View Temples",
     primaryCtaHref: "/collections/temples-architectural-stonework",
-    secondaryCtaText: "Consult Artisan",
-    secondaryCtaHref: "/contact?type=quote",
+    secondaryCtaText: "Call Now",
+    secondaryCtaHref: `tel:${(siteConfig?.contact?.phone || "+91 9664388920").replace(/\s+/g, "")}`,
     imageSrc: "/images/collections/temples-architectural.webp",
     imageAlt: "Intricately carved stone temple architecture",
   },
@@ -124,9 +125,29 @@ export default function Hero(props) {
                 <span className={styles.ctaArrow} aria-hidden="true">&rarr;</span>
               </Link>
 
-              <Link href={slide.secondaryCtaHref || "/contact?type=custom"} className={styles.secondaryCta}>
-                <span>{slide.secondaryCtaText || "Start a Custom Project"}</span>
-              </Link>
+              {(() => {
+                const secHref = slide.secondaryCtaHref || "/contact?type=custom";
+                const isQuote = String(slide.secondaryCtaText || "").toLowerCase().includes("quote") || String(secHref).includes("type=quote");
+                const finalHref = isQuote ? `tel:${(siteConfig?.contact?.phone || "+91 9664388920").replace(/\s+/g, "")}` : secHref;
+                const finalText = isQuote ? "Call Now" : (slide.secondaryCtaText || "Start a Custom Project");
+
+                if (finalHref.startsWith("tel:")) {
+                  return (
+                    <a
+                      href={finalHref}
+                      className={styles.secondaryCta}
+                      aria-label={`Call Jaipur Stonecraft at ${siteConfig.contact.phone}`}
+                    >
+                      <span>{finalText}</span>
+                    </a>
+                  );
+                }
+                return (
+                  <Link href={finalHref} className={styles.secondaryCta}>
+                    <span>{finalText}</span>
+                  </Link>
+                );
+              })()}
             </div>
           </ScrollReveal>
 

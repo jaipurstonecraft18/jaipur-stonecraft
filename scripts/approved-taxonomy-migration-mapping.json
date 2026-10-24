@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "title": "Jaipur Stonecraft — Approved Product Taxonomy Consolidation Mapping",
+    "timestamp": "2026-10-22T11:49:16.652Z",
+    "protectedCollection": "sculptures-statues",
+    "targetMainCategoriesCount": 15,
+    "collectionsAffected": 5
+  },
+  "targetSubcategories": [
+    {
+      "collection": "temples-architectural-stonework",
+      "slug": "mandirs-temples",
+      "name": "Mandirs & Temples",
+      "description": "Handcrafted marble home mandirs, temple architecture, and sacred pooja room stonework.",
+      "imageSrc": "/images/creations/marble-home-mandir.jpg",
+      "sortOrder": 1,
+      "action": "RETAINED",
+      "reason": "Core mandir and temple category approved in Section 3.A.1"
+    },
+    {
+      "collection": "temples-architectural-stonework",
+      "slug": "jali-designs",
+      "name": "Jali & Stone Screens",
+      "description": "Perforated stone lattice screens for partitions, balconies, facades, and windows.",
+      "imageSrc": "/images/collections/architectural.webp",
+      "sortOrder": 2,
+      "action": "RENAMED",
+      "reason": "Approved in Section 3.A.2. Slug preserved for SEO stability."
+    },
+    {
+      "collection": "temples-architectural-stonework",
+      "slug": "pillars-columns",
+      "name": "Pillars, Arches & Architectural Elements",
+      "description": "Hand-carved marble pillars, structural stone columns, torans, and architectural arches.",
+      "imageSrc": "/images/collections/temples-architectural.webp",
+      "sortOrder": 3,
+      "action": "RENAMED",
+      "reason": "Approved in Section 3.A.3. Slug preserved for SEO stability."
+    },
+    {
+      "collection": "temples-architectural-stonework",
+      "slug": "architectural-components",
+      "name": "Jharokhas & Heritage Stonework",
+      "description": "Traditional stone jharokhas, heritage balconies, chhatri gazebos, and structural components.",
+      "imageSrc": "/images/collections/architectural.webp",
+      "sortOrder": 4,
+      "action": "RENAMED",
+      "reason": "Approved in Section 3.A.4. Slug preserved for SEO stability."
+    },
+    {
+      "collection": "wall-art-reliefs",
+      "slug": "religious-spiritual-wall-art",
+      "name": "Religious & Spiritual Wall Art",
+      "description": "Sacred stone wall murals, deity reliefs, and devotional stone narrative relief panels.",
+      "imageSrc": "/images/collections/wall-art-relief.webp",
+      "sortOrder": 1,
+      "action": "MERGED_CONSOLIDATION",
+      "reason": "Consolidates overlapping religious-reliefs and wall-murals into Section 3.B.1"
+    },
+    {
+      "collection": "wall-art-reliefs",
+      "slug": "heritage-decorative-wall-art",
+      "name": "Heritage & Decorative Wall Art",
+      "description": "Intricately carved stone relief panels, Rajasthani heritage scenes, floral motifs, and geometric wall carvings.",
+      "imageSrc": "/images/collections/luxury.webp",
+      "sortOrder": 2,
+      "action": "RENAMED_CONSOLIDATION",
+      "reason": "Replaces duplicate stone-relief-panels subcategory naming per Section 3.B.2"
+    },
+    {
+      "collection": "wall-art-reliefs",
+      "slug": "custom-wall-art-reliefs",
+      "name": "Custom Wall Art & Reliefs",
+      "description": "Commissioned architectural feature walls, commemorative reliefs, and bespoke stone murals.",
+      "imageSrc": "/images/collections/custom.webp",
+      "sortOrder": 3,
+      "action": "REPARENTED_CONSOLIDATION",
+      "reason": "Approved in Section 3.B.3. Relocated to Wall Art & Reliefs where relief panels belong."
+    },
+    {
+      "collection": "fountains-water-features",
+      "slug": "tiered-classical-fountains",
+      "name": "Tiered & Classical Fountains",
+      "description": "Classical multi-tier marble and stone water fountains, courtyard centerpieces, and lotus basins.",
+      "imageSrc": "/images/collections/luxury.webp",
+      "sortOrder": 1,
+      "action": "MERGED_CONSOLIDATION",
+      "reason": "Consolidates tiered fountains, courtyard fountains, and lotus basins per Section 3.C.1"
+    },
+    {
+      "collection": "fountains-water-features",
+      "slug": "wall-freestanding-fountains",
+      "name": "Wall & Freestanding Fountains",
+      "description": "Architectural wall fountains, freestanding garden water features, and stone spouts.",
+      "imageSrc": "/images/collections/wall-art-relief.webp",
+      "sortOrder": 2,
+      "action": "MERGED_CONSOLIDATION",
+      "reason": "Consolidates wall and freestanding fountains per Section 3.C.2"
+    },
+    {
+      "collection": "fountains-water-features",
+      "slug": "sculptural-water-features",
+      "name": "Sculptural Water Features",
+      "description": "Cascading stone water walls, poolside waterfalls, and figurative water sculptures.",
+      "imageSrc": "/images/collections/hero-sculptures-group.webp",
+      "sortOrder": 3,
+      "action": "ACTIVATED_CONSOLIDATION",
+      "reason": "Approved in Section 3.C.3. Houses cascading water walls, stone waterfalls, and sculptural fountains."
+    },
+    {
+      "collection": "decorative-stone-art",
+      "slug": "planters-tulsi-pots",
+      "name": "Planters & Tulsi Pots",
+      "description": "Hand-carved marble and sandstone planters, garden urns, and sacred stone Tulsi pots.",
+      "imageSrc": "/images/collections/sacred.webp",
+      "sortOrder": 1,
+      "action": "MERGED_CONSOLIDATION",
+      "reason": "Merges separate planters and tulsi-pots subcategories into Section 3.D.1"
+    },
+    {
+      "collection": "decorative-stone-art",
+      "slug": "pedestals-stands",
+      "name": "Pedestals, Plinths & Stands",
+      "description": "Architectural display pedestals, statue plinths, and carved stone bases.",
+      "imageSrc": "/images/collections/temples-architectural.webp",
+      "sortOrder": 2,
+      "action": "RENAMED",
+      "reason": "Approved in Section 3.D.2. Expanded display name."
+    },
+    {
+      "collection": "decorative-stone-art",
+      "slug": "decorative-garden-stone-art",
+      "name": "Decorative & Garden Stone Art",
+      "description": "Stone vases, marble urns, decorative bowls, tabletop statuettes, garden lanterns, and stone benches.",
+      "imageSrc": "/images/collections/luxury.webp",
+      "sortOrder": 3,
+      "action": "ACTIVATED_CONSOLIDATION",
+      "reason": "Approved in Section 3.D.3. Houses the 28 products previously parked in review-pending."
+    },
+    {
+      "collection": "custom-bespoke-creations",
+      "slug": "custom-architectural-stonework",
+      "name": "Custom Architectural Stonework",
+      "description": "Full temple design and construction, luxury estate stonework, and heritage restoration.",
+      "imageSrc": "/images/collections/architectural.webp",
+      "sortOrder": 1,
+      "action": "RETAINED",
+      "reason": "Approved in Section 3.E.1. Retained as primary architectural bespoke category."
+    },
+    {
+      "collection": "custom-bespoke-creations",
+      "slug": "custom-sculptures-portraits-reliefs",
+      "name": "Custom Sculptures, Portraits & Reliefs",
+      "description": "Commissioned monumental sculptures, ancestral portraits, and memorial busts.",
+      "imageSrc": "/images/collections/custom.webp",
+      "sortOrder": 2,
+      "action": "ACTIVATED_CONSOLIDATION",
+      "reason": "Approved in Section 3.E.2. Houses the 12 products previously parked in review-pending."
+    }
+  ]
+}

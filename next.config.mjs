@@ -32,7 +32,10 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      // Temples & Architectural Stonework
+      // ==========================================
+      // A. Temples & Architectural Stonework (4 main categories)
+      // Active: mandirs-temples, jali-designs, pillars-columns, architectural-components
+      // ==========================================
       {
         source: "/collections/temples-architectural-stonework/mandir-temple",
         destination: "/collections/temples-architectural-stonework/mandirs-temples",
@@ -49,8 +52,18 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/collections/temples-architectural-stonework/home-mandirs/:category",
+        destination: "/collections/temples-architectural-stonework/mandirs-temples/:category",
+        permanent: true,
+      },
+      {
         source: "/collections/temples-architectural-stonework/temple-architecture",
         destination: "/collections/temples-architectural-stonework/mandirs-temples",
+        permanent: true,
+      },
+      {
+        source: "/collections/temples-architectural-stonework/temple-architecture/:category",
+        destination: "/collections/temples-architectural-stonework/mandirs-temples/:category",
         permanent: true,
       },
       {
@@ -65,7 +78,12 @@ const nextConfig = {
       },
       {
         source: "/collections/temples-architectural-stonework/architectural-elements",
-        destination: "/collections/temples-architectural-stonework/architectural-components",
+        destination: "/collections/temples-architectural-stonework/pillars-columns",
+        permanent: true,
+      },
+      {
+        source: "/collections/temples-architectural-stonework/architectural-elements/:category",
+        destination: "/collections/temples-architectural-stonework/pillars-columns/:category",
         permanent: true,
       },
       {
@@ -84,133 +102,250 @@ const nextConfig = {
         permanent: true,
       },
 
-      // Wall Art & Reliefs
+      // ==========================================
+      // B. Wall Art & Reliefs (3 main categories)
+      // Active: religious-spiritual-wall-art, heritage-decorative-wall-art, custom-wall-art-reliefs
+      // ==========================================
       {
-        source: "/collections/wall-art-reliefs/relief-panels",
-        destination: "/collections/wall-art-reliefs/stone-relief-panels",
+        source: "/collections/wall-art-reliefs/religious-reliefs",
+        destination: "/collections/wall-art-reliefs/religious-spiritual-wall-art",
         permanent: true,
       },
       {
-        source: "/collections/wall-art-reliefs/relief-panels/:category",
-        destination: "/collections/wall-art-reliefs/stone-relief-panels/:category",
+        source: "/collections/wall-art-reliefs/religious-reliefs/:category",
+        destination: "/collections/wall-art-reliefs/religious-spiritual-wall-art/:category",
+        permanent: true,
+      },
+      {
+        source: "/collections/wall-art-reliefs/wall-murals",
+        destination: "/collections/wall-art-reliefs/religious-spiritual-wall-art",
+        permanent: true,
+      },
+      {
+        source: "/collections/wall-art-reliefs/wall-murals/:category",
+        destination: "/collections/wall-art-reliefs/religious-spiritual-wall-art/:category",
         permanent: true,
       },
       {
         source: "/collections/wall-art-reliefs/religious-spiritual-reliefs",
-        destination: "/collections/wall-art-reliefs/religious-reliefs",
+        destination: "/collections/wall-art-reliefs/religious-spiritual-wall-art",
+        permanent: true,
+      },
+      {
+        source: "/collections/wall-art-reliefs/religious-spiritual-reliefs/:category",
+        destination: "/collections/wall-art-reliefs/religious-spiritual-wall-art/:category",
+        permanent: true,
+      },
+      {
+        source: "/collections/wall-art-reliefs/stone-relief-panels",
+        destination: "/collections/wall-art-reliefs/heritage-decorative-wall-art",
+        permanent: true,
+      },
+      {
+        source: "/collections/wall-art-reliefs/stone-relief-panels/:category",
+        destination: "/collections/wall-art-reliefs/heritage-decorative-wall-art/:category",
+        permanent: true,
+      },
+      {
+        source: "/collections/wall-art-reliefs/relief-panels",
+        destination: "/collections/wall-art-reliefs/heritage-decorative-wall-art",
+        permanent: true,
+      },
+      {
+        source: "/collections/wall-art-reliefs/relief-panels/:category",
+        destination: "/collections/wall-art-reliefs/heritage-decorative-wall-art/:category",
         permanent: true,
       },
       {
         source: "/collections/wall-art-reliefs/decorative-reliefs",
-        destination: "/collections/wall-art-reliefs/stone-relief-panels",
+        destination: "/collections/wall-art-reliefs/heritage-decorative-wall-art",
+        permanent: true,
+      },
+      {
+        source: "/collections/wall-art-reliefs/decorative-reliefs/:category",
+        destination: "/collections/wall-art-reliefs/heritage-decorative-wall-art/:category",
         permanent: true,
       },
       {
         source: "/collections/wall-art-reliefs/indian-heritage-cultural-murals",
-        destination: "/collections/wall-art-reliefs/stone-relief-panels",
+        destination: "/collections/wall-art-reliefs/heritage-decorative-wall-art",
+        permanent: true,
+      },
+      {
+        source: "/collections/wall-art-reliefs/indian-heritage-cultural-murals/:category",
+        destination: "/collections/wall-art-reliefs/heritage-decorative-wall-art/:category",
         permanent: true,
       },
       {
         source: "/collections/wall-art-reliefs/custom-wall-art",
-        destination: "/collections/wall-art-reliefs/stone-relief-panels",
+        destination: "/collections/wall-art-reliefs/custom-wall-art-reliefs",
+        permanent: true,
+      },
+      {
+        source: "/collections/wall-art-reliefs/custom-wall-art/:category",
+        destination: "/collections/wall-art-reliefs/custom-wall-art-reliefs/:category",
+        permanent: true,
+      },
+      {
+        source: "/collections/custom-bespoke-creations/custom-wall-art-reliefs",
+        destination: "/collections/wall-art-reliefs/custom-wall-art-reliefs",
+        permanent: true,
+      },
+      {
+        source: "/collections/custom-bespoke-creations/custom-wall-art-reliefs/:category",
+        destination: "/collections/wall-art-reliefs/custom-wall-art-reliefs/:category",
         permanent: true,
       },
 
-      // Fountains & Water Features
+      // ==========================================
+      // C. Fountains & Water Features (3 main categories)
+      // Active: tiered-classical-fountains, wall-freestanding-fountains, sculptural-water-features
+      // ==========================================
       {
-        source: "/collections/fountains-water-features/garden-fountains",
-        destination: "/collections/fountains-water-features/freestanding-fountains",
+        source: "/collections/fountains-water-features/tiered-fountains",
+        destination: "/collections/fountains-water-features/tiered-classical-fountains",
         permanent: true,
       },
       {
-        source: "/collections/fountains-water-features/garden-fountains/:category",
-        destination: "/collections/fountains-water-features/freestanding-fountains/:category",
+        source: "/collections/fountains-water-features/tiered-fountains/:category",
+        destination: "/collections/fountains-water-features/tiered-classical-fountains/:category",
         permanent: true,
       },
       {
         source: "/collections/fountains-water-features/classical-fountains",
-        destination: "/collections/fountains-water-features/freestanding-fountains",
+        destination: "/collections/fountains-water-features/tiered-classical-fountains",
+        permanent: true,
+      },
+      {
+        source: "/collections/fountains-water-features/classical-fountains/:category",
+        destination: "/collections/fountains-water-features/tiered-classical-fountains/:category",
+        permanent: true,
+      },
+      {
+        source: "/collections/fountains-water-features/wall-fountains",
+        destination: "/collections/fountains-water-features/wall-freestanding-fountains",
+        permanent: true,
+      },
+      {
+        source: "/collections/fountains-water-features/wall-fountains/:category",
+        destination: "/collections/fountains-water-features/wall-freestanding-fountains/:category",
+        permanent: true,
+      },
+      {
+        source: "/collections/fountains-water-features/freestanding-fountains",
+        destination: "/collections/fountains-water-features/wall-freestanding-fountains",
+        permanent: true,
+      },
+      {
+        source: "/collections/fountains-water-features/freestanding-fountains/:category",
+        destination: "/collections/fountains-water-features/wall-freestanding-fountains/:category",
+        permanent: true,
+      },
+      {
+        source: "/collections/fountains-water-features/garden-fountains",
+        destination: "/collections/fountains-water-features/wall-freestanding-fountains",
+        permanent: true,
+      },
+      {
+        source: "/collections/fountains-water-features/garden-fountains/:category",
+        destination: "/collections/fountains-water-features/wall-freestanding-fountains/:category",
         permanent: true,
       },
       {
         source: "/collections/fountains-water-features/sculptural-fountains",
-        destination: "/collections/fountains-water-features/freestanding-fountains",
+        destination: "/collections/fountains-water-features/sculptural-water-features",
+        permanent: true,
+      },
+      {
+        source: "/collections/fountains-water-features/sculptural-fountains/:category",
+        destination: "/collections/fountains-water-features/sculptural-water-features/:category",
         permanent: true,
       },
       {
         source: "/collections/fountains-water-features/architectural-water-features",
-        destination: "/collections/fountains-water-features/wall-fountains",
+        destination: "/collections/fountains-water-features/sculptural-water-features",
+        permanent: true,
+      },
+      {
+        source: "/collections/fountains-water-features/architectural-water-features/:category",
+        destination: "/collections/fountains-water-features/sculptural-water-features/:category",
         permanent: true,
       },
 
-      // Decorative Stone Art
+      // ==========================================
+      // D. Decorative Stone Art (3 main categories)
+      // Active: planters-tulsi-pots, pedestals-stands, decorative-garden-stone-art
+      // ==========================================
       {
-        source: "/collections/decorative-stone-art/planters-tulsi-pots",
-        destination: "/collections/decorative-stone-art/planters",
+        source: "/collections/decorative-stone-art/planters",
+        destination: "/collections/decorative-stone-art/planters-tulsi-pots",
         permanent: true,
       },
       {
-        source: "/collections/decorative-stone-art/planters-tulsi-pots/:category",
-        destination: "/collections/decorative-stone-art/planters/:category",
+        source: "/collections/decorative-stone-art/planters/:category",
+        destination: "/collections/decorative-stone-art/planters-tulsi-pots/:category",
         permanent: true,
       },
       {
-        source: "/collections/decorative-stone-art/garden-outdoor-stone-art/benches-seating",
-        destination: "/collections/decorative-stone-art",
+        source: "/collections/decorative-stone-art/tulsi-pots",
+        destination: "/collections/decorative-stone-art/planters-tulsi-pots",
         permanent: true,
       },
       {
-        source: "/collections/decorative-stone-art/garden-outdoor-stone-art/garden-lanterns-lamps",
-        destination: "/collections/decorative-stone-art",
+        source: "/collections/decorative-stone-art/tulsi-pots/:category",
+        destination: "/collections/decorative-stone-art/planters-tulsi-pots/:category",
         permanent: true,
       },
       {
-        source: "/collections/decorative-stone-art/interior-stone-decor/carved-stone-vases",
-        destination: "/collections/decorative-stone-art",
-        permanent: true,
-      },
-      {
-        source: "/collections/decorative-stone-art/interior-stone-decor/decorative-bowls",
-        destination: "/collections/decorative-stone-art",
-        permanent: true,
-      },
-      {
-        source: "/collections/decorative-stone-art/interior-stone-decor/marble-urns",
-        destination: "/collections/decorative-stone-art",
-        permanent: true,
-      },
-      {
-        source: "/collections/decorative-stone-art/small-sculptural-art/artisan-accessories",
-        destination: "/collections/decorative-stone-art",
-        permanent: true,
-      },
-      {
-        source: "/collections/decorative-stone-art/small-sculptural-art/tabletop-statuettes",
-        destination: "/collections/decorative-stone-art",
+        source: "/collections/decorative-stone-art/pedestals-plinths-stands",
+        destination: "/collections/decorative-stone-art/pedestals-stands",
         permanent: true,
       },
       {
         source: "/collections/decorative-stone-art/garden-outdoor-stone-art",
-        destination: "/collections/decorative-stone-art/planters",
+        destination: "/collections/decorative-stone-art/decorative-garden-stone-art",
+        permanent: true,
+      },
+      {
+        source: "/collections/decorative-stone-art/garden-outdoor-stone-art/:category",
+        destination: "/collections/decorative-stone-art/decorative-garden-stone-art/:category",
         permanent: true,
       },
       {
         source: "/collections/decorative-stone-art/interior-stone-decor",
-        destination: "/collections/decorative-stone-art/pedestals-stands",
+        destination: "/collections/decorative-stone-art/decorative-garden-stone-art",
+        permanent: true,
+      },
+      {
+        source: "/collections/decorative-stone-art/interior-stone-decor/:category",
+        destination: "/collections/decorative-stone-art/decorative-garden-stone-art/:category",
         permanent: true,
       },
       {
         source: "/collections/decorative-stone-art/small-sculptural-art",
-        destination: "/collections/decorative-stone-art/pedestals-stands",
+        destination: "/collections/decorative-stone-art/decorative-garden-stone-art",
+        permanent: true,
+      },
+      {
+        source: "/collections/decorative-stone-art/small-sculptural-art/:category",
+        destination: "/collections/decorative-stone-art/decorative-garden-stone-art/:category",
         permanent: true,
       },
       {
         source: "/collections/decorative-stone-art/decorative-accents",
-        destination: "/collections/decorative-stone-art/pedestals-stands",
+        destination: "/collections/decorative-stone-art/decorative-garden-stone-art",
+        permanent: true,
+      },
+      {
+        source: "/collections/decorative-stone-art/decorative-accents/:category",
+        destination: "/collections/decorative-stone-art/decorative-garden-stone-art/:category",
         permanent: true,
       },
 
-      // Custom & Bespoke Creations
+      // ==========================================
+      // E. Custom & Bespoke Creations (2 main categories)
+      // Active: custom-architectural-stonework, custom-sculptures-portraits-reliefs
+      // ==========================================
       {
         source: "/collections/custom-bespoke-creations/custom-architectural-projects",
         destination: "/collections/custom-bespoke-creations/custom-architectural-stonework",
@@ -222,28 +357,23 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/collections/custom-bespoke-creations/custom-portraits/ancestral-portrait-carvings",
-        destination: "/collections/custom-bespoke-creations",
+        source: "/collections/custom-bespoke-creations/custom-sculptures",
+        destination: "/collections/custom-bespoke-creations/custom-sculptures-portraits-reliefs",
         permanent: true,
       },
       {
-        source: "/collections/custom-bespoke-creations/custom-portraits/lifesize-memorial-busts",
-        destination: "/collections/custom-bespoke-creations",
+        source: "/collections/custom-bespoke-creations/custom-sculptures/:category",
+        destination: "/collections/custom-bespoke-creations/custom-sculptures-portraits-reliefs/:category",
         permanent: true,
       },
       {
         source: "/collections/custom-bespoke-creations/custom-portraits",
-        destination: "/collections/custom-bespoke-creations/custom-wall-art-reliefs",
+        destination: "/collections/custom-bespoke-creations/custom-sculptures-portraits-reliefs",
         permanent: true,
       },
       {
         source: "/collections/custom-bespoke-creations/custom-portraits/:category",
-        destination: "/collections/custom-bespoke-creations/custom-wall-art-reliefs/:category",
-        permanent: true,
-      },
-      {
-        source: "/collections/custom-bespoke-creations/custom-sculptures",
-        destination: "/collections/custom-bespoke-creations/custom-architectural-stonework",
+        destination: "/collections/custom-bespoke-creations/custom-sculptures-portraits-reliefs/:category",
         permanent: true,
       },
     ];

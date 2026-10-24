@@ -125,10 +125,10 @@ export default function ProductSubtleCraftsmanship({ design }) {
               <div className={styles.imageCol}>
                 <div className={styles.imageFrame}>
                   <Image
-                    src="/images/craftsmanship/step-02-shape-precision.jpg"
-                    alt="Master carver hand chiseling marble sculpture in Jaipur workshop"
+                    src="/images/craftsmanship/artisan-hand-carving-sculpture.webp"
+                    alt="Master artisan meticulously hand-carving and shaping marble sculpture in Jaipur Stonecraft workshop"
                     fill
-                    sizes="(max-width: 991px) 100vw, 40vw"
+                    sizes="(max-width: 991px) 100vw, 45vw"
                     className={styles.bannerImage}
                   />
                 </div>
@@ -136,13 +136,20 @@ export default function ProductSubtleCraftsmanship({ design }) {
 
               {/* Right Story & 4-Step Sequence */}
               <div className={styles.contentCol}>
+                <span className={styles.bannerEyebrow}>JAIPUR STONECRAFT</span>
                 <h2 className={styles.bannerHeading}>
-                  Crafted with Devotion. Carved to Perfection.
+                  Crafted by Tradition. Defined by Excellence
                 </h2>
                 <p className={styles.bannerDesc}>
-                  Each sculpture is hand-carved by skilled artisans using traditional techniques passed down 
-                  through generations. Time, patience and precision bring divine forms to life in marble.
+                  Every creation reflects a respect for natural stone, generations of craftsmanship, and a commitment to lasting quality.
                 </p>
+                <div className={styles.bannerPillars} aria-label="Brand Pillars">
+                  <span>Heritage</span>
+                  <span className={styles.pillarDot}>·</span>
+                  <span>Precision</span>
+                  <span className={styles.pillarDot}>·</span>
+                  <span>Lasting Quality</span>
+                </div>
 
                 {/* 4-Step Linear Sequence */}
                 <div className={styles.sequenceTrack}>
@@ -172,6 +179,11 @@ export default function ProductSubtleCraftsmanship({ design }) {
             <div className={styles.detailsHeader}>
               <h2 className={styles.sectionTitle}>Product Details</h2>
               <div className={styles.ornamentDivider} aria-hidden="true">✦</div>
+              {design?.detailedDescription && (
+                <p className={styles.narrativeStory}>
+                  {design.detailedDescription}
+                </p>
+              )}
             </div>
           </ScrollReveal>
 

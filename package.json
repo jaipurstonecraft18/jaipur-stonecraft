@@ -15,6 +15,7 @@
     "sync:push": "node --env-file=.env scripts/sync-runner.mjs push",
     "sync:pull": "node --env-file=.env scripts/sync-runner.mjs pull",
     "sync:prod": "node --env-file=.env scripts/sync-runner.mjs pull",
+    "sync:media": "node --env-file=.env scripts/sync-missing-media.mjs",
     "preflight:hostinger": "node --env-file=.env scripts/hostinger-preflight.mjs",
     "verify:migration": "node --env-file=.env scripts/verify-hostinger-migration.mjs",
     "package:hostinger": "node --env-file=.env scripts/package-hostinger-deployment.mjs",

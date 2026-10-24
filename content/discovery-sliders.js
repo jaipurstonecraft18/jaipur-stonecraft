@@ -164,35 +164,35 @@ export const architecturalArtData = {
     {
       id: "arch-jali-screens",
       entityType: "category",
-      entitySlug: "jali-screens",
+      entitySlug: "marble-jali-designs",
       title: "Marble Jali Screens",
       category: "Lattice Architecture",
       imageSrc: "/images/collections/architectural.webp",
       imageAlt: "Intricately carved marble jali screens and ornamental lattice panels",
-      href: "/collections/temples-architectural-stonework/architectural-elements/jali-screens",
+      href: "/collections/temples-architectural-stonework/jali-designs/marble-jali-designs",
       isActive: true
     },
     {
       id: "arch-mandirs",
       entityType: "subcategory",
-      entitySlug: "home-mandirs",
+      entitySlug: "mandirs-temples",
       title: "Marble Mandirs",
       category: "Sacred Sanctuaries",
       imageSrc: "/images/creations/marble-home-mandir.jpg",
       imageAlt: "Bespoke hand-carved white marble home mandir temple with pillared arch",
-      href: "/collections/temples-architectural-stonework/home-mandirs",
+      href: "/collections/temples-architectural-stonework/mandirs-temples",
       isActive: true
     },
     {
       id: "arch-temple-architecture",
-      entityType: "subcategory",
-      entitySlug: "temple-architecture",
+      entityType: "category",
+      entitySlug: "temple-parts-designs",
       title: "Temple Architecture",
       category: "Shikharas & Pillars",
       imageSrc: "/uploads/categories/display/temples-architectural-stonework-1787907938061-ica6c.webp",
       fallbackImage: "/images/collections/temples-architectural.webp",
       imageAlt: "Traditional marble temple architecture, structural domes and mandapas",
-      href: "/collections/temples-architectural-stonework/temple-architecture",
+      href: "/collections/temples-architectural-stonework/mandirs-temples/temple-parts-designs",
       isActive: true
     },
     {
@@ -210,23 +210,23 @@ export const architecturalArtData = {
     {
       id: "arch-decorative-panels",
       entityType: "subcategory",
-      entitySlug: "decorative-reliefs",
+      entitySlug: "heritage-decorative-wall-art",
       title: "Decorative Relief Panels",
       category: "Heritage Patterns",
       imageSrc: "/images/collections/luxury.webp",
       imageAlt: "Floral and geometric hand-carved decorative stone wall panels",
-      href: "/collections/wall-art-reliefs/decorative-reliefs",
+      href: "/collections/wall-art-reliefs/heritage-decorative-wall-art",
       isActive: true
     },
     {
       id: "arch-elements",
       entityType: "subcategory",
-      entitySlug: "architectural-elements",
+      entitySlug: "pillars-columns",
       title: "Architectural Elements",
       category: "Columns & Facades",
       imageSrc: "/images/collections/custom.webp",
       imageAlt: "Carved stone columns, balustrades, jharokha windows and door frames",
-      href: "/collections/temples-architectural-stonework/architectural-elements",
+      href: "/collections/temples-architectural-stonework/pillars-columns",
       isActive: true
     }
   ]

@@ -123,12 +123,12 @@ export default function Export() {
         </Container>
       </Section>
 
-      {/* 5. INQUIRY CTA */}
+      {/* 5. DIRECT CALL CTA */}
       <CTASection
         heading="Discuss International Shipping"
         description="Connect with our Jaipur design office to discuss shipping options, request material samples, or coordinate a freight estimate."
-        primaryCtaText="Request a Shipping Quote"
-        primaryCtaHref="/contact?type=quote&subject=export"
+        primaryCtaText="Call Now"
+        primaryCtaHref={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`}
         secondaryCtaText="WhatsApp Coordinator"
         secondaryCtaHref={siteConfig.contact.whatsappLink}
         background="dark"

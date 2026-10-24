@@ -138,12 +138,6 @@ export async function POST(request) {
         }, { status: 400 });
       }
 
-      if (slug === "sculptures-statues") {
-        return NextResponse.json({
-          error: "Sculptures & Statues collection is strictly protected and cannot be modified."
-        }, { status: 403 });
-      }
-
       const existing = await getOne("SELECT * FROM collections WHERE slug = ?", [slug]);
       if (existing) {
         await execute(`
@@ -194,13 +188,6 @@ export async function POST(request) {
       }, { status: 400 });
     }
 
-    // PROTECTED COLLECTION RESTRICTION: Absolutely no modifications to Sculptures & Statues taxonomy
-    if (parentCollectionSlug === "sculptures-statues") {
-      return NextResponse.json({
-        error: "Sculptures & Statues taxonomy is strictly protected. Categories in this collection cannot be added, edited, or moved."
-      }, { status: 403 });
-    }
-
     const parentSubcategorySlug = payload.parentSubcategory;
     if (!parentSubcategorySlug) {
       return NextResponse.json({ error: "Parent subcategory is required." }, { status: 400 });
@@ -219,11 +206,6 @@ export async function POST(request) {
 
     const existing = await getOne("SELECT * FROM categories WHERE slug = ?", [slug]);
     if (existing) {
-      if (existing.parent_collection_slug === "sculptures-statues") {
-        return NextResponse.json({
-          error: "Sculptures & Statues categories are protected and cannot be edited."
-        }, { status: 403 });
-      }
 
       await execute(`
         UPDATE categories SET
@@ -265,6 +247,8 @@ export async function POST(request) {
         payload.imageSrc || "https://placehold.co/800x500/E8E4DF/1A1918?text=Category+Cover",
         payload.imageAlt || `${trimmedName} hand-carved stone art in Jaipur`
       ]);
+
+      revalidateTaxonomyRoutes(slug);
 
       return NextResponse.json({
         success: true,
@@ -312,22 +296,6 @@ export async function PUT(request) {
 
     if (!slug) {
       return NextResponse.json({ error: "Slug is required" }, { status: 400 });
-    }
-
-    // PROTECTED COLLECTION RESTRICTION: Block altering Sculptures & Statues in PUT
-    if (slug === "sculptures-statues") {
-      return NextResponse.json({ error: "Sculptures & Statues collection is strictly protected." }, { status: 403 });
-    }
-    if (type === "subcategory") {
-      const sub = await getOne("SELECT parent_collection_slug FROM subcategories WHERE slug = ?", [slug]);
-      if (sub?.parent_collection_slug === "sculptures-statues") {
-        return NextResponse.json({ error: "Sculptures & Statues subcategories are strictly protected and cannot be modified." }, { status: 403 });
-      }
-    } else if (type === "category") {
-      const cat = await getOne("SELECT parent_collection_slug FROM categories WHERE slug = ?", [slug]);
-      if (cat?.parent_collection_slug === "sculptures-statues") {
-        return NextResponse.json({ error: "Sculptures & Statues categories are strictly protected and cannot be modified." }, { status: 403 });
-      }
     }
 
     revalidateTaxonomyRoutes(slug);
@@ -396,21 +364,7 @@ export async function DELETE(request) {
       return NextResponse.json({ error: "Slug is required" }, { status: 400 });
     }
 
-    // PROTECTED COLLECTION RESTRICTION: Block deleting or archiving Sculptures & Statues
-    if (slug === "sculptures-statues") {
-      return NextResponse.json({ error: "Sculptures & Statues collection is strictly protected and cannot be deleted or archived." }, { status: 403 });
-    }
-    if (type === "subcategory") {
-      const sub = await getOne("SELECT parent_collection_slug FROM subcategories WHERE slug = ?", [slug]);
-      if (sub?.parent_collection_slug === "sculptures-statues") {
-        return NextResponse.json({ error: "Sculptures & Statues subcategories are strictly protected and cannot be deleted or archived." }, { status: 403 });
-      }
-    } else if (type === "category") {
-      const cat = await getOne("SELECT parent_collection_slug FROM categories WHERE slug = ?", [slug]);
-      if (cat?.parent_collection_slug === "sculptures-statues") {
-        return NextResponse.json({ error: "Sculptures & Statues categories are strictly protected and cannot be deleted or archived." }, { status: 403 });
-      }
-    }
+    revalidateTaxonomyRoutes(slug);
 
     if (type === "collection") {
       // Check product and category references

@@ -33,11 +33,22 @@
 }
 
 .logo {
-  font-family: var(--font-cormorant), Georgia, serif;
-  font-size: 1.25rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  color: var(--color-cream);
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.footerLogoImg {
+  height: 30px;
+  width: auto;
+  max-width: 275px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.logo:hover .footerLogoImg {
+  transform: translateY(-1px) scale(1.02);
 }
 
 .brandDesc {
@@ -158,8 +169,12 @@
   }
 
   .logo {
-    font-size: 1.25rem;
-    letter-spacing: 0.14em;
+    display: inline-flex;
+  }
+
+  .footerLogoImg {
+    height: 24px;
+    max-width: 215px;
   }
 
   .colBrand .brandDesc {

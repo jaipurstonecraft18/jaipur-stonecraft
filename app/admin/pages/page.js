@@ -34,8 +34,8 @@ export default function AdminPageCMS() {
       description: "Pure Makrana white marble mandirs, hand-carved stone pillars, and grand temple arches built to traditional iconographic standards.",
       primaryCtaText: "View Temples",
       primaryCtaHref: "/collections/temples-architectural-stonework",
-      secondaryCtaText: "Consult Artisan",
-      secondaryCtaHref: "/contact?type=quote",
+      secondaryCtaText: "Call Now",
+      secondaryCtaHref: "tel:+919664388920",
       imageSrc: "/images/collections/temples-architectural.jpg"
     },
     {
@@ -371,8 +371,8 @@ export default function AdminPageCMS() {
     traditionalLabel: "OUR FOUNDATION",
     traditionalTitle: "Traditional Craft",
     traditionalDesc: "Ancestral hand carving, sacred geometry, and devotional stonework.",
-    traditionalImage: "/images/craftsmanship/step-02-shape-precision.webp",
-    traditionalAlt: "Traditional hand chiseling craftsmanship in Jaipur atelier",
+    traditionalImage: "/images/craftsmanship/traditional-craft-artisan.webp",
+    traditionalAlt: "Master artisan sculpting marble portrait statue in Jaipur studio",
     modernLabel: "NEW POSSIBILITIES",
     modernTitle: "Contemporary Spaces",
     modernDesc: "Architectural residences, bespoke temple sanctuaries, and global installations.",
@@ -478,8 +478,8 @@ export default function AdminPageCMS() {
   const defaultClosingCta = {
     heading: "Bring Jaipur Stonecraft to Your Project",
     description: "Collaborate with our master masons to custom-carve white marble deity statues, temple architecture, garden fountains, fireplace mantels, or bespoke stone friezes.",
-    primaryCtaText: "Request a Quote",
-    primaryCtaHref: "/contact?type=quote",
+    primaryCtaText: "Call Now",
+    primaryCtaHref: "tel:+919664388920",
     secondaryCtaText: "Start Custom Project",
     secondaryCtaHref: "/contact?type=custom"
   };

@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import { query, getOne, execute } from "@/lib/db/client.js";
 import { formatProductFromRow } from "@/lib/db/products.js";
 import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
-import { evaluateSeoReadiness } from "@/lib/seo/readiness-checker.js";
+import { evaluateSeoReadiness, DEFAULT_SEO_AUDIT_CONFIG } from "@/lib/seo/readiness-checker.js";
+import { getSiteSetting } from "@/lib/db/content.js";
 
 export async function GET(request) {
   if (!isAuthorizedAdminRequest(request)) {
@@ -59,13 +60,14 @@ export async function GET(request) {
 
   const rows = await query(sql, params);
   const allFormattedProducts = await Promise.all(rows.map(formatProductFromRow));
+  const auditSettings = await getSiteSetting("seo_audit_settings", DEFAULT_SEO_AUDIT_CONFIG);
 
   let healthyCount = 0;
   let needsAttentionCount = 0;
   let incompleteCount = 0;
 
   const productsWithHealth = allFormattedProducts.map((p) => {
-    const readiness = evaluateSeoReadiness(p);
+    const readiness = evaluateSeoReadiness(p, { seoConfig: auditSettings });
     const statusKey = readiness.overallStatus || readiness.healthStatus || "ready";
 
     if (statusKey === "ready") healthyCount++;
@@ -174,14 +176,11 @@ export async function POST(request) {
     const status = body.status || "draft";
     const primaryMaterialId = body.primaryMaterialId || "makrana-pure-white";
 
-    // STRICT RULE: Granite is strictly excluded
-    if (
-      name.toLowerCase().includes("granite") ||
-      slug.toLowerCase().includes("granite") ||
-      primaryMaterialId.toLowerCase().includes("granite") ||
-      (body.shortDescription && body.shortDescription.toLowerCase().includes("granite"))
-    ) {
-      return NextResponse.json({ error: "Granite is strictly excluded from Jaipur Stonecraft." }, { status: 400 });
+    // Synthetic composites check (natural stone including marble, sandstone, granite are approved)
+    const SYNTHETIC_STONES = ["synthetic marble", "cultured marble", "resin cast", "bonded marble"];
+    const textToCheck = `${name} ${slug} ${primaryMaterialId} ${body.shortDescription || ""}`.toLowerCase();
+    if (SYNTHETIC_STONES.some(s => textToCheck.includes(s))) {
+      return NextResponse.json({ error: "Synthetic resin and cultured stone composites are strictly excluded from Jaipur Stonecraft." }, { status: 400 });
     }
 
     const APPROVED_COLLECTIONS = [

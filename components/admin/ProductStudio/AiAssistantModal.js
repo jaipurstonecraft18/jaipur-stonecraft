@@ -13,6 +13,7 @@ export default function AiAssistantModal({
   const [status, setStatus] = useState("idle"); // 'idle' | 'analyzing' | 'review' | 'error'
   const [analysisProgress, setAnalysisProgress] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [warningMessage, setWarningMessage] = useState("");
   
   // AI Output Draft state for editing inside modal before acceptance
   const [aiDraft, setAiDraft] = useState(null);
@@ -21,36 +22,27 @@ export default function AiAssistantModal({
   const [acceptedState, setAcceptedState] = useState({
     shortDescription: false,
     detailedDescription: false,
-    knowledgeSections: [], // array of booleans per section
-    seoTitle: false,
-    metaDescription: false,
-    altTexts: false
+    seo: false,
+    aeo: false,
+    attributes: false,
+    slug: false
   });
 
-  // Track accepted/rejected recommendations
-  const [acceptedRecs, setAcceptedRecs] = useState({});
-  const [rejectedRecs, setRejectedRecs] = useState({});
-  const [editingRecId, setEditingRecId] = useState(null);
-  const [previewDiffId, setPreviewDiffId] = useState(null);
-
-  const [selectedMode, setSelectedMode] = useState("TEXT_OPTIMIZATION");
-  const [activeReviewTab, setActiveReviewTab] = useState("descriptions");
-  const [warningMessage, setWarningMessage] = useState("");
-
-
+  const [selectedMode, setSelectedMode] = useState("TEXT_OPTIMIZATION"); // "TEXT_OPTIMIZATION" | "FULL_ANALYSIS"
+  const [activeReviewTab, setActiveReviewTab] = useState("descriptions"); // "descriptions" | "seo" | "aeo"
   const [analysisMeta, setAnalysisMeta] = useState({ fromCache: false, imagesAnalyzedCount: 0, modelUsed: "", provider: "" });
 
   const runAnalysis = async (skipCache = false, targetMode = selectedMode) => {
     setStatus("analyzing");
     setErrorMessage("");
     setWarningMessage("");
-    setAnalysisProgress("Preparing Product Context...");
+    setAnalysisProgress("Preparing confirmed product facts...");
 
     const timers = [
-      setTimeout(() => setAnalysisProgress("Optimizing Product Text & SEO..."), 2500),
-      setTimeout(() => setAnalysisProgress("Generating Search Intent Phrases & Discovery Tags..."), 6000),
-      setTimeout(() => setAnalysisProgress("Analyzing Product Cover Image..."), 12000),
-      setTimeout(() => setAnalysisProgress("Finalizing AI Suggestions..."), 22000)
+      setTimeout(() => setAnalysisProgress("Analyzing stone material provenance & craft details..."), 1200),
+      setTimeout(() => setAnalysisProgress("Generating publication descriptions & high-CTR SEO..."), 2800),
+      setTimeout(() => setAnalysisProgress("Structuring AEO entity summary and search phrases..."), 5000),
+      setTimeout(() => setAnalysisProgress("Finalizing suggestions..."), 8000)
     ];
 
     const clearTimers = () => timers.forEach(t => clearTimeout(t));
@@ -93,7 +85,7 @@ export default function AiAssistantModal({
       setAnalysisMeta({
         fromCache: Boolean(json.fromCache),
         imagesAnalyzedCount: json.imagesAnalyzedCount || 0,
-        modelUsed: json.modelUsed || (targetMode === "TEXT_OPTIMIZATION" ? "Groq (llama-3.3-70b)" : "Gemini 3.6 Flash"),
+        modelUsed: json.modelUsed || (targetMode === "TEXT_OPTIMIZATION" ? "Groq (Fast Text)" : "Gemini Vision"),
         provider: json.provider || (targetMode === "TEXT_OPTIMIZATION" ? "groq" : "gemini")
       });
       setStatus("review");
@@ -108,13 +100,9 @@ export default function AiAssistantModal({
   // Trigger analysis when modal opens
   useEffect(() => {
     if (isOpen && status === "idle") {
-      const timer = setTimeout(() => {
-        runAnalysis(false, selectedMode);
-      }, 0);
-      return () => clearTimeout(timer);
+      runAnalysis(false, selectedMode);
     }
-  }, [isOpen, status, selectedMode]);
-
+  }, [isOpen, status]);
 
   if (!isOpen) return null;
 
@@ -125,203 +113,136 @@ export default function AiAssistantModal({
     }));
   };
 
-  const handleUpdateKnowledgeSection = (index, key, value) => {
-    setAiDraft(prev => {
-      const updated = [...(prev.suggested_knowledge_sections || [])];
-      updated[index] = { ...updated[index], [key]: value };
-      return { ...prev, suggested_knowledge_sections: updated };
-    });
+  const handleUpdateNestedDraft = (parent, field, value) => {
+    setAiDraft(prev => ({
+      ...prev,
+      [parent]: {
+        ...(prev[parent] || {}),
+        [field]: value
+      }
+    }));
   };
 
-  const handleRemoveKnowledgeSection = (index) => {
-    setAiDraft(prev => {
-      const updated = [...(prev.suggested_knowledge_sections || [])];
-      updated.splice(index, 1);
-      return { ...prev, suggested_knowledge_sections: updated };
-    });
-  };
-
-  // Accept specific single section or field
+  // Accept specific single field
   const handleApplySingleField = (fieldName, dataValue) => {
     onAcceptSuggestions({ [fieldName]: dataValue });
     setAcceptedState(prev => ({ ...prev, [fieldName]: true }));
   };
 
-  // Accept Knowledge Sections
-  const handleApplyKnowledgeSection = (index) => {
-    const sec = aiDraft.suggested_knowledge_sections[index];
-    if (!sec) return;
+  // Accept SEO block
+  const handleApplySeo = () => {
+    if (!aiDraft) return;
+    const seoUpdates = {
+      ...(productData.seo || {}),
+      title: aiDraft.seo_title || productData.seo?.title || "",
+      description: aiDraft.meta_description || productData.seo?.description || "",
+      primaryKeyword: aiDraft.primary_keyword || productData.seo?.primaryKeyword || "",
+      secondaryKeywords: aiDraft.secondary_keywords?.length > 0 
+        ? aiDraft.secondary_keywords 
+        : (productData.seo?.secondaryKeywords || []),
+      longTailKeywords: aiDraft.long_tail_keywords?.length > 0
+        ? aiDraft.long_tail_keywords
+        : (productData.seo?.longTailKeywords || []),
+      keywords: aiDraft.search_intent_keywords || productData.seo?.keywords || []
+    };
 
-    let kl = productData.knowledgeLayer;
-    let sections = Array.isArray(kl) ? [...kl] : (Array.isArray(kl?.sections) ? [...kl.sections] : []);
-    let faqs = Array.isArray(kl?.faqs) ? [...kl.faqs] : [];
-
-    const existingIdx = sections.findIndex(k => k.title.toLowerCase() === sec.title.toLowerCase());
-    if (existingIdx >= 0) {
-      sections[existingIdx] = { ...sec };
-    } else {
-      sections.push({ ...sec });
+    const updates = { seo: seoUpdates };
+    if (Array.isArray(aiDraft.discovery_tags) && aiDraft.discovery_tags.length > 0) {
+      updates.tags = aiDraft.discovery_tags;
     }
-
-    onAcceptSuggestions({ knowledgeLayer: { sections, faqs } });
-    setAcceptedState(prev => {
-      const updatedKs = [...prev.knowledgeSections];
-      updatedKs[index] = true;
-      return { ...prev, knowledgeSections: updatedKs };
-    });
-  };
-
-  const handleApplyFaq = (index) => {
-    const faq = aiDraft.suggested_faqs?.[index];
-    if (!faq) return;
-
-    let kl = productData.knowledgeLayer;
-    let sections = Array.isArray(kl) ? [...kl] : (Array.isArray(kl?.sections) ? [...kl.sections] : []);
-    let faqs = Array.isArray(kl?.faqs) ? [...kl.faqs] : [];
-
-    const existingIdx = faqs.findIndex(f => f.question.toLowerCase() === faq.question.toLowerCase());
-    if (existingIdx >= 0) {
-      faqs[existingIdx] = { ...faq };
-    } else {
-      faqs.push({ ...faq });
-    }
-
-    onAcceptSuggestions({ knowledgeLayer: { sections, faqs } });
-  };
-
-  const handleApplyAltTexts = () => {
-    if (!aiDraft || !Array.isArray(aiDraft.image_alt_texts)) return;
-    const currentGallery = Array.isArray(productData.imageGallery) ? [...productData.imageGallery] : [];
-    const updatedGallery = currentGallery.map((img, idx) => {
-      const src = typeof img === "string" ? img : img?.src || img?.url;
-      const match = aiDraft.image_alt_texts.find(a => a.image_url === src) || aiDraft.image_alt_texts[idx];
-      const altText = match?.suggested_alt || (typeof img === "object" ? img.altText || img.alt_text : "");
-      return {
-        src,
-        url: src,
-        altText,
-        alt_text: altText,
-        role: typeof img === "object" ? img.role : (src === productData.imageSrc ? "cover" : "gallery"),
-        sortOrder: idx + 1
-      };
-    });
-
-    onAcceptSuggestions({ imageGallery: updatedGallery });
-    setAcceptedState(prev => ({ ...prev, altTexts: true }));
-  };
-
-  // Accept specific single recommendation
-  const handleAcceptRecommendation = (rec) => {
-    const field = rec.affected_field;
-    let updates = {};
-
-    if (field === "shortDescription") {
-      updates.shortDescription = aiDraft.short_description;
-    } else if (field === "detailedDescription") {
-      updates.detailedDescription = aiDraft.detailed_description;
-    } else if (field === "seo.title") {
-      updates.seo = {
-        ...(productData.seo || {}),
-        title: aiDraft.seo_title
-      };
-    } else if (field === "seo.primaryKeyword") {
-      updates.seo = {
-        ...(productData.seo || {}),
-        primaryKeyword: aiDraft.primary_keyword
-      };
-    } else if (field === "seo.description") {
-      updates.seo = {
-        ...(productData.seo || {}),
-        description: aiDraft.meta_description
-      };
-    } else {
-      // General field update
-      updates[field] = rec.recommended_action;
-    }
-
     onAcceptSuggestions(updates);
-    setAcceptedRecs(prev => ({ ...prev, [rec.issue_id]: true }));
+    setAcceptedState(prev => ({ ...prev, seo: true }));
   };
 
-  const handleRejectRecommendation = (rec) => {
-    setRejectedRecs(prev => ({ ...prev, [rec.issue_id]: true }));
+  // Accept AEO block
+  const handleApplyAeo = () => {
+    if (!aiDraft) return;
+    const existingKl = productData.knowledgeLayer || {};
+    const updates = {
+      knowledgeLayer: {
+        ...existingKl,
+        aeoSummary: aiDraft.aeo_summary || existingKl.aeoSummary || ""
+      }
+    };
+    onAcceptSuggestions(updates);
+    setAcceptedState(prev => ({ ...prev, aeo: true }));
   };
 
+  // Accept Attributes block
+  const handleApplyAttributes = () => {
+    if (!aiDraft || !aiDraft.factual_attributes) return;
+    const existingAttrs = productData.attributes || {};
+    const mergedAttrs = {
+      ...existingAttrs,
+      stoneVariety: aiDraft.factual_attributes.stoneVariety || existingAttrs.stoneVariety,
+      finish: aiDraft.factual_attributes.finish || existingAttrs.finish,
+      intendedApplication: aiDraft.factual_attributes.intendedApplication || existingAttrs.intendedApplication
+    };
+    onAcceptSuggestions({ attributes: mergedAttrs });
+    setAcceptedState(prev => ({ ...prev, attributes: true }));
+  };
 
-  // Accept All Verified Suggestions
+  // Apply suggested URL slug
+  const handleApplySlug = () => {
+    if (!aiDraft?.suggested_slug) return;
+    onAcceptSuggestions({ slug: aiDraft.suggested_slug });
+    setAcceptedState(prev => ({ ...prev, slug: true }));
+  };
+
+  // Accept All Suggestions
   const handleAcceptAll = () => {
     if (!aiDraft) return;
 
     const updates = {};
     if (aiDraft.short_description) updates.shortDescription = aiDraft.short_description;
-    if (aiDraft.detailed_description) updates.detailedDescription = aiDraft.detailed_description;
-    
-    let kl = productData.knowledgeLayer;
-    let sections = Array.isArray(kl) ? [...kl] : (Array.isArray(kl?.sections) ? [...kl.sections] : []);
-    let faqs = Array.isArray(kl?.faqs) ? [...kl.faqs] : [];
-
-    if (Array.isArray(aiDraft.suggested_knowledge_sections) && aiDraft.suggested_knowledge_sections.length > 0) {
-      aiDraft.suggested_knowledge_sections.forEach(sec => {
-        const idx = sections.findIndex(k => k.title.toLowerCase() === sec.title.toLowerCase());
-        if (idx >= 0) {
-          sections[idx] = { ...sec };
-        } else {
-          sections.push({ ...sec });
-        }
-      });
+    if (aiDraft.long_description || aiDraft.detailed_description) {
+      updates.detailedDescription = aiDraft.long_description || aiDraft.detailed_description;
     }
 
-    if (Array.isArray(aiDraft.suggested_faqs) && aiDraft.suggested_faqs.length > 0) {
-      aiDraft.suggested_faqs.forEach(faq => {
-        const idx = faqs.findIndex(f => f.question.toLowerCase() === faq.question.toLowerCase());
-        if (idx >= 0) {
-          faqs[idx] = { ...faq };
-        } else {
-          faqs.push({ ...faq });
-        }
-      });
-    }
-
-    updates.knowledgeLayer = { sections, faqs };
-
-    if (Array.isArray(aiDraft.image_alt_texts) && aiDraft.image_alt_texts.length > 0) {
-      const currentGallery = Array.isArray(productData.imageGallery) ? [...productData.imageGallery] : [];
-      const updatedGallery = currentGallery.map((img, idx) => {
-        const src = typeof img === "string" ? img : img?.src || img?.url;
-        const match = aiDraft.image_alt_texts.find(a => a.image_url === src) || aiDraft.image_alt_texts[idx];
-        const altText = match?.suggested_alt || (typeof img === "object" ? img.altText || img.alt_text : "");
-        return {
-          src,
-          url: src,
-          altText,
-          alt_text: altText,
-          role: typeof img === "object" ? img.role : (src === productData.imageSrc ? "cover" : "gallery"),
-          sortOrder: idx + 1
-        };
-      });
-      updates.imageGallery = updatedGallery;
-    }
-
-    if (aiDraft.seo_title || aiDraft.meta_description || aiDraft.primary_keyword) {
-      updates.seo = {
-        ...(productData.seo || {}),
-        title: aiDraft.seo_title || productData.seo?.title || "",
-        description: aiDraft.meta_description || productData.seo?.description || "",
-        primaryKeyword: aiDraft.primary_keyword || productData.seo?.primaryKeyword || "",
-        secondaryKeywords: aiDraft.secondary_keywords?.length > 0 
-          ? aiDraft.secondary_keywords 
-          : (aiDraft.search_intent_keywords || productData.seo?.secondaryKeywords || []),
-        keywords: aiDraft.search_intent_keywords || productData.seo?.keywords || []
-      };
-    }
+    // SEO updates
+    updates.seo = {
+      ...(productData.seo || {}),
+      title: aiDraft.seo_title || productData.seo?.title || "",
+      description: aiDraft.meta_description || productData.seo?.description || "",
+      primaryKeyword: aiDraft.primary_keyword || productData.seo?.primaryKeyword || "",
+      secondaryKeywords: aiDraft.secondary_keywords?.length > 0 
+        ? aiDraft.secondary_keywords 
+        : (productData.seo?.secondaryKeywords || []),
+      longTailKeywords: aiDraft.long_tail_keywords?.length > 0
+        ? aiDraft.long_tail_keywords
+        : (productData.seo?.longTailKeywords || []),
+      keywords: aiDraft.search_intent_keywords || productData.seo?.keywords || []
+    };
 
     if (Array.isArray(aiDraft.discovery_tags) && aiDraft.discovery_tags.length > 0) {
       updates.tags = aiDraft.discovery_tags;
     }
 
+    // Knowledge Layer (AEO summary + preserve existing sections and faqs)
+    const existingKl = productData.knowledgeLayer || {};
+    updates.knowledgeLayer = {
+      ...existingKl,
+      aeoSummary: aiDraft.aeo_summary || existingKl.aeoSummary || "",
+      sections: Array.isArray(existingKl.sections) ? existingKl.sections : [],
+      faqs: Array.isArray(existingKl.faqs) ? existingKl.faqs : (Array.isArray(productData.faqs) ? productData.faqs : [])
+    };
+
+    // Factual attributes
+    if (aiDraft.factual_attributes) {
+      const existingAttrs = productData.attributes || {};
+      updates.attributes = {
+        ...existingAttrs,
+        stoneVariety: aiDraft.factual_attributes.stoneVariety || existingAttrs.stoneVariety,
+        finish: aiDraft.factual_attributes.finish || existingAttrs.finish,
+        intendedApplication: aiDraft.factual_attributes.intendedApplication || existingAttrs.intendedApplication
+      };
+    }
+
     onAcceptSuggestions(updates);
     onClose();
   };
+
+  const primaryMat = productData.primaryMaterial?.name || productData.materialName || "Natural Stone";
 
   return (
     <div style={{
@@ -333,13 +254,13 @@ export default function AiAssistantModal({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      padding: "0.5rem"
+      padding: "0.75rem"
     }}>
       <div style={{
         backgroundColor: "#FFFFFF",
         borderRadius: "8px",
         width: "100%",
-        maxWidth: "960px",
+        maxWidth: "980px",
         maxHeight: "92vh",
         display: "flex",
         flexDirection: "column",
@@ -349,358 +270,327 @@ export default function AiAssistantModal({
       }}>
         {/* Modal Header */}
         <div style={{
-          padding: "0.85rem 1rem",
-          backgroundColor: "#111110",
-          color: "#FAF8F5",
+          backgroundColor: "var(--color-cream)",
+          padding: "0.85rem 1.25rem",
+          borderBottom: "1px solid #E2DDD5",
           display: "flex",
-          alignItems: "center",
           justifyContent: "space-between",
-          borderBottom: "1px solid #222220",
+          alignItems: "center",
           flexWrap: "wrap",
-          gap: "0.6rem"
+          gap: "0.75rem"
         }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-            <span style={{ fontSize: "1.25rem" }}>✨</span>
-            <div>
-              <h2 style={{ fontSize: "1rem", fontWeight: "600", fontFamily: "var(--font-display)", color: "#FAF8F5", margin: 0 }}>
-                AI Content Intelligence & SEO Assistant
-              </h2>
-              <p style={{ fontSize: "0.75rem", color: "#A09D98", margin: 0 }}>
-                 Jaipur Stonecraft • Preview & Review Draft
-              </p>
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              <span style={{ fontSize: "1.2rem" }}>✨</span>
+              <h3 style={{ margin: 0, fontSize: "1.05rem", fontWeight: "700", color: "var(--color-navy)" }}>
+                AI Product Enhancement Studio
+              </h3>
+              <span style={{
+                fontSize: "0.7rem",
+                padding: "0.15rem 0.5rem",
+                borderRadius: "12px",
+                backgroundColor: "#E6F4EA",
+                color: "#137333",
+                fontWeight: "600"
+              }}>
+                Natural Stone Guaranteed
+              </span>
+            </div>
+            <div style={{ fontSize: "0.8rem", color: "#666", marginTop: "0.2rem" }}>
+              Product: <strong>{productData.name || "Untitled Product"}</strong> &bull; Material: <strong>{primaryMat}</strong>
             </div>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-            {status === "review" && (
+          {/* Mode Switcher */}
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <div style={{
+              display: "flex",
+              backgroundColor: "#FFF",
+              border: "1px solid #E2DDD5",
+              borderRadius: "4px",
+              padding: "2px"
+            }}>
               <button
                 type="button"
-                onClick={handleAcceptAll}
-                className={styles.primaryBtn}
-                style={{ fontSize: "0.8rem", padding: "0.35rem 0.75rem", backgroundColor: "var(--color-bronze)", color: "#FFF", minHeight: "36px" }}
+                onClick={() => {
+                  setSelectedMode("TEXT_OPTIMIZATION");
+                  if (status === "review") runAnalysis(false, "TEXT_OPTIMIZATION");
+                }}
+                disabled={status === "analyzing"}
+                style={{
+                  padding: "0.25rem 0.65rem",
+                  fontSize: "0.75rem",
+                  fontWeight: "600",
+                  border: "none",
+                  borderRadius: "3px",
+                  cursor: "pointer",
+                  backgroundColor: selectedMode === "TEXT_OPTIMIZATION" ? "var(--color-navy)" : "transparent",
+                  color: selectedMode === "TEXT_OPTIMIZATION" ? "#FFF" : "#666"
+                }}
               >
-                ✓ Accept All
+                ⚡ Fast Text (Groq)
               </button>
-            )}
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedMode("FULL_ANALYSIS");
+                  if (status === "review") runAnalysis(false, "FULL_ANALYSIS");
+                }}
+                disabled={status === "analyzing"}
+                style={{
+                  padding: "0.25rem 0.65rem",
+                  fontSize: "0.75rem",
+                  fontWeight: "600",
+                  border: "none",
+                  borderRadius: "3px",
+                  cursor: "pointer",
+                  backgroundColor: selectedMode === "FULL_ANALYSIS" ? "var(--color-navy)" : "transparent",
+                  color: selectedMode === "FULL_ANALYSIS" ? "#FFF" : "#666"
+                }}
+              >
+                👁️ Vision & Multimodal (Gemini)
+              </button>
+            </div>
+
             <button
               type="button"
               onClick={onClose}
-              style={{ background: "none", border: "none", color: "#A09D98", fontSize: "1.5rem", cursor: "pointer", padding: "0 0.5rem" }}
-              aria-label="Close modal"
+              disabled={status === "analyzing"}
+              style={{
+                background: "none",
+                border: "none",
+                fontSize: "1.4rem",
+                color: "#666",
+                cursor: "pointer",
+                padding: "0 0.25rem"
+              }}
+              aria-label="Close"
             >
-              ×
+              &times;
             </button>
           </div>
         </div>
 
         {/* Modal Content Body */}
-        <div style={{ padding: "1rem", overflowY: "auto", flex: 1, backgroundColor: "#F8F6F2" }}>
-
-          {/* STATE 1: ANALYZING */}
+        <div style={{ flex: 1, overflowY: "auto", padding: "1.25rem" }}>
+          {/* ANALYZING / LOADING STATE */}
           {status === "analyzing" && (
             <div style={{ textAlign: "center", padding: "3rem 1.5rem" }}>
-              <div style={{ fontSize: "2.5rem", marginBottom: "1rem", animation: "pulse 1.5s infinite" }}>✨</div>
-              <h3 style={{ fontSize: "1.2rem", fontWeight: "600", color: "var(--color-navy)", marginBottom: "0.5rem" }}>
-                Analyzing Product & Generating Intelligence
-              </h3>
-              <p style={{ fontSize: "0.88rem", color: "#666", maxWidth: "500px", margin: "0 auto 1.5rem" }}>
+              <div className={styles.spinner} style={{ margin: "0 auto 1.25rem", width: "40px", height: "40px" }} />
+              <h4 style={{ color: "var(--color-navy)", fontSize: "1.05rem", fontWeight: "700", marginBottom: "0.4rem" }}>
+                Analyzing Product & Generating Content
+              </h4>
+              <p style={{ color: "var(--color-bronze)", fontWeight: "600", fontSize: "0.9rem" }}>
                 {analysisProgress}
               </p>
-              <div style={{
-                width: "240px",
-                height: "6px",
-                backgroundColor: "#E2DDD5",
-                borderRadius: "3px",
-                margin: "0 auto",
-                overflow: "hidden",
-                position: "relative"
-              }}>
-                <div style={{
-                  position: "absolute",
-                  left: 0,
-                  top: 0,
-                  bottom: 0,
-                  width: "60%",
-                  backgroundColor: "var(--color-bronze)",
-                  borderRadius: "3px",
-                  animation: "shimmer 1.5s infinite linear"
-                }} />
-              </div>
+              <p style={{ color: "#888", fontSize: "0.78rem", maxWidth: "440px", margin: "1rem auto 0" }}>
+                Writing compelling descriptions, high-intent Google search keywords, and Answer Engine Optimization (AEO) data specifically for <strong>{primaryMat}</strong>.
+              </p>
             </div>
           )}
 
-          {/* STATE 2: ERROR */}
+          {/* ERROR STATE */}
           {status === "error" && (
-            <div style={{ textAlign: "center", padding: "2.5rem 1.5rem" }}>
-              <div style={{ fontSize: "2.5rem", marginBottom: "0.75rem" }}>⚠️</div>
-              <h3 style={{ fontSize: "1.1rem", fontWeight: "600", color: "#C5221F", marginBottom: "0.5rem" }}>
-                AI Analysis Request Failed
-              </h3>
-              <p style={{ fontSize: "0.85rem", color: "#555", maxWidth: "550px", margin: "0 auto 1.5rem", backgroundColor: "#FCE8E6", padding: "0.85rem", borderRadius: "6px" }}>
-                {errorMessage}
-              </p>
+            <div style={{ padding: "2rem", textAlign: "center" }}>
+              <div style={{
+                backgroundColor: "#FCE8E6",
+                border: "1px solid #FAD2CF",
+                borderRadius: "6px",
+                padding: "1.25rem",
+                color: "#C5221F",
+                marginBottom: "1.5rem"
+              }}>
+                <div style={{ fontSize: "1.1rem", fontWeight: "700", marginBottom: "0.25rem" }}>
+                  Generation Encountered an Issue
+                </div>
+                <div style={{ fontSize: "0.85rem" }}>
+                  {errorMessage}
+                </div>
+              </div>
               <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center" }}>
                 <button
                   type="button"
-                  onClick={() => runAnalysis(true)}
+                  onClick={() => runAnalysis(true, selectedMode)}
                   className={styles.primaryBtn}
-                  style={{ fontSize: "0.85rem" }}
                 >
                   🔄 Retry Analysis
                 </button>
                 <button
                   type="button"
+                  onClick={() => {
+                    setSelectedMode("TEXT_OPTIMIZATION");
+                    runAnalysis(true, "TEXT_OPTIMIZATION");
+                  }}
+                  className={styles.secondaryBtn}
+                >
+                  ⚡ Try Fast Text Mode (Groq)
+                </button>
+                <button
+                  type="button"
                   onClick={onClose}
                   className={styles.secondaryBtn}
-                  style={{ fontSize: "0.85rem" }}
                 >
-                  Close Assistant
+                  Cancel
                 </button>
               </div>
             </div>
           )}
 
-          {/* STATE 3: REVIEW DRAFT */}
+          {/* REVIEW STATE */}
           {status === "review" && aiDraft && (
-            <div>
-              {/* DUAL-MODE SELECTION CONTROL BAR */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              {/* Status Meta Banner */}
               <div style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "0.75rem",
-                marginBottom: "1.25rem"
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: "0.5rem",
+                padding: "0.6rem 0.85rem",
+                backgroundColor: "#FAF9F6",
+                border: "1px solid #E2DDD5",
+                borderRadius: "6px",
+                fontSize: "0.8rem",
+                color: "#555"
               }}>
-                <button
-                  type="button"
-                  onClick={() => { setSelectedMode("TEXT_OPTIMIZATION"); runAnalysis(true, "TEXT_OPTIMIZATION"); }}
-                  style={{
-                    padding: "0.85rem 1rem",
-                    borderRadius: "6px",
-                    border: selectedMode === "TEXT_OPTIMIZATION" ? "2px solid var(--color-navy)" : "1px solid #E2DDD5",
-                    backgroundColor: selectedMode === "TEXT_OPTIMIZATION" ? "#FFFFFF" : "#FAF9F6",
-                    textAlign: "left",
-                    cursor: "pointer",
-                    boxShadow: selectedMode === "TEXT_OPTIMIZATION" ? "0 2px 8px rgba(0,0,0,0.08)" : "none"
-                  }}
-                >
-                  <div style={{ fontSize: "0.88rem", fontWeight: "700", color: "var(--color-navy)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <span>⚡ Optimize Text & SEO</span>
-                    {selectedMode === "TEXT_OPTIMIZATION" && <span style={{ fontSize: "0.72rem", backgroundColor: "var(--color-navy)", color: "#FFF", padding: "0.1rem 0.4rem", borderRadius: "10px" }}>Active Mode</span>}
-                  </div>
-                  <div style={{ fontSize: "0.75rem", color: "#666", marginTop: "0.25rem", lineHeight: "1.3" }}>
-                    Uses product information entered in the form to improve content and SEO. Does not analyze images.
-                  </div>
-                </button>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span style={{
+                    display: "inline-block",
+                    width: "8px",
+                    height: "8px",
+                    borderRadius: "50%",
+                    backgroundColor: "#137333"
+                  }} />
+                  <span>Model: <strong>{analysisMeta.modelUsed}</strong></span>
+                  {analysisMeta.imagesAnalyzedCount > 0 && (
+                    <span>&bull; Analyzed cover image for visual carving details</span>
+                  )}
+                  {analysisMeta.fromCache && (
+                    <span style={{ color: "var(--color-bronze)", fontWeight: "600" }}>&bull; Cached Result</span>
+                  )}
+                </div>
 
                 <button
                   type="button"
-                  onClick={() => { setSelectedMode("FULL_ANALYSIS"); runAnalysis(true, "FULL_ANALYSIS"); }}
-                  style={{
-                    padding: "0.85rem 1rem",
-                    borderRadius: "6px",
-                    border: selectedMode === "FULL_ANALYSIS" ? "2px solid var(--color-navy)" : "1px solid #E2DDD5",
-                    backgroundColor: selectedMode === "FULL_ANALYSIS" ? "#FFFFFF" : "#FAF9F6",
-                    textAlign: "left",
-                    cursor: "pointer",
-                    boxShadow: selectedMode === "FULL_ANALYSIS" ? "0 2px 8px rgba(0,0,0,0.08)" : "none"
-                  }}
+                  onClick={() => runAnalysis(true, selectedMode)}
+                  className={styles.secondaryBtn}
+                  style={{ fontSize: "0.75rem", padding: "0.2rem 0.55rem" }}
+                  title="Force re-generation bypassing cache"
                 >
-                  <div style={{ fontSize: "0.88rem", fontWeight: "700", color: "var(--color-navy)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <span>📷 Full AI Analysis</span>
-                    {selectedMode === "FULL_ANALYSIS" && <span style={{ fontSize: "0.72rem", backgroundColor: "var(--color-navy)", color: "#FFF", padding: "0.1rem 0.4rem", borderRadius: "10px" }}>Active Mode</span>}
-                  </div>
-                  <div style={{ fontSize: "0.75rem", color: "#666", marginTop: "0.25rem", lineHeight: "1.3" }}>
-                    Uses product information and selected cover photo for deeper analysis and image-aware suggestions.
-                  </div>
+                  🔄 Regenerate
                 </button>
               </div>
 
-              {/* WARNING BANNER FOR IMAGE FALLBACK */}
               {warningMessage && (
                 <div style={{
-                  backgroundColor: "#FFF3CD",
-                  border: "1px solid #FFEEBA",
+                  padding: "0.6rem 0.85rem",
+                  backgroundColor: "#FEF7E0",
+                  border: "1px solid #FEEFC3",
                   borderRadius: "6px",
-                  padding: "0.75rem 1rem",
-                  color: "#856404",
-                  fontSize: "0.82rem",
-                  fontWeight: "600",
-                  marginBottom: "1rem"
+                  fontSize: "0.8rem",
+                  color: "#B06000"
                 }}>
                   ⚠️ {warningMessage}
                 </div>
               )}
 
-              {/* Readiness Banner & Inconsistency Alerts */}
+              {/* Review Tabs */}
               <div style={{
-                backgroundColor: "#FFFFFF",
-                borderRadius: "6px",
-                padding: "1rem 1.25rem",
-                border: "1px solid #E2DDD5",
-                marginBottom: "1.25rem",
                 display: "flex",
-                flexWrap: "wrap",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: "1rem"
+                gap: "0.4rem",
+                borderBottom: "2px solid #E2DDD5",
+                paddingBottom: "0.4rem"
               }}>
-                <div>
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-                    <span style={{
-                      display: "inline-block",
-                      padding: "0.2rem 0.6rem",
-                      borderRadius: "12px",
-                      fontSize: "0.78rem",
-                      fontWeight: "700",
-                      backgroundColor: aiDraft.content_readiness.score >= 80 ? "#E6F4EA" : "#FEF7E0",
-                      color: aiDraft.content_readiness.score >= 80 ? "#137333" : "#B06000"
-                    }}>
-                      Readiness Score: {aiDraft.content_readiness.score}/100 ({aiDraft.content_readiness.status})
-                    </span>
-                    <span style={{ fontSize: "0.8rem", color: "#666" }}>
-                      {aiDraft.product_summary}
-                    </span>
-                  </div>
-                </div>
-
-                {aiDraft.possible_inconsistencies && aiDraft.possible_inconsistencies.length > 0 && (
-                  <div style={{ width: "100%", backgroundColor: "#FFF8E1", border: "1px solid #FFE082", borderRadius: "4px", padding: "0.65rem 0.85rem", marginTop: "0.5rem" }}>
-                    <div style={{ fontSize: "0.8rem", fontWeight: "700", color: "#B06000", marginBottom: "0.25rem" }}>
-                      ⚠️ Verification Items Flagged for Human Review ({aiDraft.possible_inconsistencies.length}):
-                    </div>
-                    <ul style={{ margin: 0, paddingLeft: "1.2rem", fontSize: "0.78rem", color: "#555" }}>
-                      {aiDraft.possible_inconsistencies.map((inc, i) => (
-                        <li key={i}>{inc}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-
-              {/* Review Tabs & Section-level Regeneration */}
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", borderBottom: "1px solid #E2DDD5", paddingBottom: "0.5rem" }}>
-                <div style={{ display: "flex", gap: "0.5rem" }}>
-                  <button
-                    type="button"
-                    onClick={() => setActiveReviewTab("descriptions")}
-                    style={{
-                      padding: "0.45rem 0.85rem",
-                      borderRadius: "4px",
-                      border: "none",
-                      fontSize: "0.85rem",
-                      fontWeight: "600",
-                      cursor: "pointer",
-                      backgroundColor: activeReviewTab === "descriptions" ? "var(--color-navy)" : "transparent",
-                      color: activeReviewTab === "descriptions" ? "#FFF" : "#666"
-                    }}
-                  >
-                    📝 Descriptions & Copy
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setActiveReviewTab("knowledge")}
-                    style={{
-                      padding: "0.45rem 0.85rem",
-                      borderRadius: "4px",
-                      border: "none",
-                      fontSize: "0.85rem",
-                      fontWeight: "600",
-                      cursor: "pointer",
-                      backgroundColor: activeReviewTab === "knowledge" ? "var(--color-navy)" : "transparent",
-                      color: activeReviewTab === "knowledge" ? "#FFF" : "#666"
-                    }}
-                  >
-                    📜 Knowledge Sections ({(aiDraft.suggested_knowledge_sections || []).length})
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setActiveReviewTab("seo")}
-                    style={{
-                      padding: "0.45rem 0.85rem",
-                      borderRadius: "4px",
-                      border: "none",
-                      fontSize: "0.85rem",
-                      fontWeight: "600",
-                      cursor: "pointer",
-                      backgroundColor: activeReviewTab === "seo" ? "var(--color-navy)" : "transparent",
-                      color: activeReviewTab === "seo" ? "#FFF" : "#666"
-                    }}
-                  >
-                    🔍 SEO & Alt Texts
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setActiveReviewTab("recommendations")}
-                    style={{
-                      padding: "0.45rem 0.85rem",
-                      borderRadius: "4px",
-                      border: "none",
-                      fontSize: "0.85rem",
-                      fontWeight: "600",
-                      cursor: "pointer",
-                      backgroundColor: activeReviewTab === "recommendations" ? "var(--color-navy)" : "transparent",
-                      color: activeReviewTab === "recommendations" ? "#FFF" : "#666"
-                    }}
-                  >
-                    💡 Recommendations ({(aiDraft?.recommendations || []).length})
-                  </button>
-                </div>
-
-
-                {/* Section-specific targeted regeneration */}
-                {activeReviewTab === "descriptions" && (
-                  <button
-                    type="button"
-                    onClick={() => runAnalysis(true, "descriptions")}
-                    className={styles.secondaryBtn}
-                    style={{ fontSize: "0.75rem", padding: "0.25rem 0.6rem" }}
-                  >
-                    🔄 Regenerate Descriptions Only
-                  </button>
-                )}
-                {activeReviewTab === "seo" && (
-                  <button
-                    type="button"
-                    onClick={() => runAnalysis(true, "seo")}
-                    className={styles.secondaryBtn}
-                    style={{ fontSize: "0.75rem", padding: "0.25rem 0.6rem" }}
-                  >
-                    🔍 Regenerate SEO Tags Only
-                  </button>
-                )}
+                <button
+                  type="button"
+                  onClick={() => setActiveReviewTab("descriptions")}
+                  style={{
+                    padding: "0.45rem 0.85rem",
+                    borderRadius: "4px",
+                    border: "none",
+                    fontSize: "0.85rem",
+                    fontWeight: "600",
+                    cursor: "pointer",
+                    backgroundColor: activeReviewTab === "descriptions" ? "var(--color-navy)" : "transparent",
+                    color: activeReviewTab === "descriptions" ? "#FFF" : "#666"
+                  }}
+                >
+                  📝 Descriptions (Short & Long)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveReviewTab("seo")}
+                  style={{
+                    padding: "0.45rem 0.85rem",
+                    borderRadius: "4px",
+                    border: "none",
+                    fontSize: "0.85rem",
+                    fontWeight: "600",
+                    cursor: "pointer",
+                    backgroundColor: activeReviewTab === "seo" ? "var(--color-navy)" : "transparent",
+                    color: activeReviewTab === "seo" ? "#FFF" : "#666"
+                  }}
+                >
+                  🔍 SEO & Search Metadata
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveReviewTab("aeo")}
+                  style={{
+                    padding: "0.45rem 0.85rem",
+                    borderRadius: "4px",
+                    border: "none",
+                    fontSize: "0.85rem",
+                    fontWeight: "600",
+                    cursor: "pointer",
+                    backgroundColor: activeReviewTab === "aeo" ? "var(--color-navy)" : "transparent",
+                    color: activeReviewTab === "aeo" ? "#FFF" : "#666"
+                  }}
+                >
+                  🤖 AEO & Specifications
+                </button>
               </div>
 
               {/* TAB 1: DESCRIPTIONS */}
               {activeReviewTab === "descriptions" && (
                 <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-                  {/* Short Description Block */}
+                  {/* Short Description */}
                   <div style={{ backgroundColor: "#FFF", border: "1px solid #E2DDD5", borderRadius: "6px", padding: "1rem" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
-                      <h4 style={{ fontSize: "0.9rem", fontWeight: "700", color: "var(--color-navy)", margin: 0 }}>
-                        Short Product Description
-                      </h4>
+                      <div>
+                        <h4 style={{ fontSize: "0.9rem", fontWeight: "700", color: "var(--color-navy)", margin: 0 }}>
+                          Short Product Description
+                        </h4>
+                        <span style={{ fontSize: "0.72rem", color: "#666" }}>
+                          Used in product preview cards, mobile headers, and search snippets ({aiDraft?.short_description?.length || 0} chars, target: 150-220)
+                        </span>
+                      </div>
                       <button
                         type="button"
-                        onClick={() => handleApplySingleField("shortDescription", aiDraft.short_description)}
+                        onClick={() => handleApplySingleField("shortDescription", aiDraft?.short_description)}
                         className={acceptedState.shortDescription ? styles.secondaryBtn : styles.primaryBtn}
-                        style={{ fontSize: "0.78rem", padding: "0.25rem 0.65rem" }}
+                        style={{ fontSize: "0.78rem", padding: "0.3rem 0.7rem" }}
                       >
-                        {acceptedState.shortDescription ? "✓ Applied" : "+ Accept Short Description"}
+                        {acceptedState.shortDescription ? "✓ Short Desc Applied" : "+ Accept Short Description"}
                       </button>
                     </div>
 
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.85rem" }}>
                       <div>
-                        <div style={{ fontSize: "0.75rem", fontWeight: "600", color: "#888", marginBottom: "0.25rem" }}>CURRENT VERSION</div>
+                        <div style={{ fontSize: "0.75rem", fontWeight: "600", color: "#888", marginBottom: "0.25rem" }}>
+                          ORIGINAL SHORT DESCRIPTION
+                        </div>
                         <div style={{ fontSize: "0.82rem", color: "#555", backgroundColor: "#F8F6F2", padding: "0.6rem", borderRadius: "4px", minHeight: "60px" }}>
                           {productData.shortDescription || "(Empty)"}
                         </div>
                       </div>
                       <div>
-                        <div style={{ fontSize: "0.75rem", fontWeight: "600", color: "var(--color-bronze)", marginBottom: "0.25rem" }}>AI ENHANCED SUGGESTION (Editable)</div>
+                        <div style={{ fontSize: "0.75rem", fontWeight: "600", color: "var(--color-bronze)", marginBottom: "0.25rem" }}>
+                          IMPROVED SHORT DESCRIPTION (Editable)
+                        </div>
                         <textarea
                           rows={3}
-                          value={aiDraft.short_description}
+                          value={aiDraft?.short_description || ""}
                           onChange={(e) => handleUpdateDraftField("short_description", e.target.value)}
                           className={styles.textarea}
                           style={{ fontSize: "0.82rem", width: "100%", borderColor: "var(--color-bronze)" }}
@@ -709,35 +599,47 @@ export default function AiAssistantModal({
                     </div>
                   </div>
 
-                  {/* Detailed Description Block */}
+                  {/* Complete Long Description */}
                   <div style={{ backgroundColor: "#FFF", border: "1px solid #E2DDD5", borderRadius: "6px", padding: "1rem" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
-                      <h4 style={{ fontSize: "0.9rem", fontWeight: "700", color: "var(--color-navy)", margin: 0 }}>
-                        Detailed Product Description & Heritage Copy
-                      </h4>
+                      <div>
+                        <h4 style={{ fontSize: "0.9rem", fontWeight: "700", color: "var(--color-navy)", margin: 0 }}>
+                          Complete Long Description (Publication-Ready)
+                        </h4>
+                        <span style={{ fontSize: "0.72rem", color: "#666" }}>
+                          Full sculpture narrative covering identity, material grain, hand-chiseling craft, and sanctum placement ({(aiDraft?.long_description || aiDraft?.detailed_description || "").split(/\s+/).filter(Boolean).length} words)
+                        </span>
+                      </div>
                       <button
                         type="button"
-                        onClick={() => handleApplySingleField("detailedDescription", aiDraft.detailed_description)}
+                        onClick={() => handleApplySingleField("detailedDescription", aiDraft?.long_description || aiDraft?.detailed_description)}
                         className={acceptedState.detailedDescription ? styles.secondaryBtn : styles.primaryBtn}
-                        style={{ fontSize: "0.78rem", padding: "0.25rem 0.65rem" }}
+                        style={{ fontSize: "0.78rem", padding: "0.3rem 0.7rem" }}
                       >
-                        {acceptedState.detailedDescription ? "✓ Applied" : "+ Accept Detailed Description"}
+                        {acceptedState.detailedDescription ? "✓ Long Desc Applied" : "+ Accept Long Description"}
                       </button>
                     </div>
 
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.85rem" }}>
                       <div>
-                        <div style={{ fontSize: "0.75rem", fontWeight: "600", color: "#888", marginBottom: "0.25rem" }}>CURRENT VERSION</div>
-                        <div style={{ fontSize: "0.82rem", color: "#555", backgroundColor: "#F8F6F2", padding: "0.6rem", borderRadius: "4px", minHeight: "120px", whiteSpace: "pre-wrap" }}>
+                        <div style={{ fontSize: "0.75rem", fontWeight: "600", color: "#888", marginBottom: "0.25rem" }}>
+                          ORIGINAL LONG DESCRIPTION
+                        </div>
+                        <div style={{ fontSize: "0.82rem", color: "#555", backgroundColor: "#F8F6F2", padding: "0.6rem", borderRadius: "4px", minHeight: "140px", whiteSpace: "pre-wrap" }}>
                           {productData.detailedDescription || "(Empty)"}
                         </div>
                       </div>
                       <div>
-                        <div style={{ fontSize: "0.75rem", fontWeight: "600", color: "var(--color-bronze)", marginBottom: "0.25rem" }}>AI ENHANCED SUGGESTION (Editable)</div>
+                        <div style={{ fontSize: "0.75rem", fontWeight: "600", color: "var(--color-bronze)", marginBottom: "0.25rem" }}>
+                          AI COMPLETE LONG DESCRIPTION (Editable)
+                        </div>
                         <textarea
-                          rows={6}
-                          value={aiDraft.detailed_description}
-                          onChange={(e) => handleUpdateDraftField("detailed_description", e.target.value)}
+                          rows={8}
+                          value={aiDraft?.long_description || aiDraft?.detailed_description || ""}
+                          onChange={(e) => {
+                            handleUpdateDraftField("long_description", e.target.value);
+                            handleUpdateDraftField("detailed_description", e.target.value);
+                          }}
                           className={styles.textarea}
                           style={{ fontSize: "0.82rem", width: "100%", borderColor: "var(--color-bronze)" }}
                         />
@@ -747,155 +649,148 @@ export default function AiAssistantModal({
                 </div>
               )}
 
-              {/* TAB 2: KNOWLEDGE SECTIONS */}
-              {activeReviewTab === "knowledge" && (
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
-                  {aiDraft.suggested_knowledge_sections.map((sec, idx) => (
-                    <div key={idx} style={{ backgroundColor: "#FFF", border: "1px solid #E2DDD5", borderRadius: "6px", padding: "1rem" }}>
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
-                        <input
-                          type="text"
-                          value={sec.title}
-                          onChange={(e) => handleUpdateKnowledgeSection(idx, "title", e.target.value)}
-                          style={{ fontSize: "0.88rem", fontWeight: "700", color: "var(--color-navy)", border: "1px solid #E2DDD5", borderRadius: "4px", padding: "0.25rem 0.5rem", width: "60%" }}
-                        />
-                        <div style={{ display: "flex", gap: "0.5rem" }}>
-                          <button
-                            type="button"
-                            onClick={() => handleRemoveKnowledgeSection(idx)}
-                            className={styles.secondaryBtn}
-                            style={{ fontSize: "0.75rem", color: "#C5221F", padding: "0.25rem 0.55rem" }}
-                          >
-                            Reject
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => handleApplyKnowledgeSection(idx)}
-                            className={acceptedState.knowledgeSections[idx] ? styles.secondaryBtn : styles.primaryBtn}
-                            style={{ fontSize: "0.78rem", padding: "0.25rem 0.65rem" }}
-                          >
-                            {acceptedState.knowledgeSections[idx] ? "✓ Section Applied" : "+ Accept Section"}
-                          </button>
-                        </div>
-                      </div>
-
-                      <textarea
-                        rows={3}
-                        value={sec.content}
-                        onChange={(e) => handleUpdateKnowledgeSection(idx, "content", e.target.value)}
-                        className={styles.textarea}
-                        style={{ fontSize: "0.82rem", width: "100%" }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* TAB 3: SEO & ALT TEXTS */}
+              {/* TAB 2: SEO & SEARCH METADATA */}
               {activeReviewTab === "seo" && (
                 <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                   <div style={{ backgroundColor: "#FFF", border: "1px solid #E2DDD5", borderRadius: "6px", padding: "1rem" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
                       <h4 style={{ fontSize: "0.9rem", fontWeight: "700", color: "var(--color-navy)", margin: 0 }}>
-                        SEO Meta Tags, Primary & Secondary Search Phrases & Tags
+                        SEO Title, Meta Description & High-Intent Search Phrases
                       </h4>
                       <button
                         type="button"
-                        onClick={() => {
-                          const seoUpdates = {
-                            ...(productData.seo || {}),
-                            title: aiDraft.seo_title || productData.seo?.title || "",
-                            description: aiDraft.meta_description || productData.seo?.description || "",
-                            primaryKeyword: aiDraft.primary_keyword || productData.seo?.primaryKeyword || "",
-                            secondaryKeywords: aiDraft.secondary_keywords?.length > 0 
-                              ? aiDraft.secondary_keywords 
-                              : (aiDraft.search_intent_keywords || productData.seo?.secondaryKeywords || []),
-                            keywords: aiDraft.search_intent_keywords || productData.seo?.keywords || []
-                          };
-                          const updates = { seo: seoUpdates };
-                          if (Array.isArray(aiDraft.discovery_tags) && aiDraft.discovery_tags.length > 0) {
-                            updates.tags = aiDraft.discovery_tags;
-                          }
-                          onAcceptSuggestions(updates);
-                          setAcceptedState(prev => ({ ...prev, seoTitle: true, metaDescription: true }));
-                        }}
-                        className={acceptedState.seoTitle ? styles.secondaryBtn : styles.primaryBtn}
-                        style={{ fontSize: "0.78rem", padding: "0.25rem 0.65rem" }}
+                        onClick={handleApplySeo}
+                        className={acceptedState.seo ? styles.secondaryBtn : styles.primaryBtn}
+                        style={{ fontSize: "0.78rem", padding: "0.3rem 0.7rem" }}
                       >
-                        {acceptedState.seoTitle ? "✓ SEO Fields Applied" : "+ Accept All SEO Fields"}
+                        {acceptedState.seo ? "✓ SEO Fields Applied" : "+ Accept All SEO Fields"}
                       </button>
                     </div>
 
                     <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
                       <div>
-                        <label style={{ fontSize: "0.78rem", fontWeight: "600", color: "#555" }}>SEO Title Tag ({aiDraft.seo_title.length} chars):</label>
+                        <div style={{ display: "flex", justifyContent: "space-between" }}>
+                          <label style={{ fontSize: "0.78rem", fontWeight: "600", color: "#555" }}>
+                            SEO Title Tag (Optimal: up to 120 chars, snippet display: 30-65 chars)
+                          </label>
+                          <span style={{ fontSize: "0.72rem", color: (aiDraft?.seo_title?.length || 0) > 120 ? "#C5221F" : "#137333", fontWeight: "600" }}>
+                            {aiDraft?.seo_title?.length || 0} characters
+                          </span>
+                        </div>
                         <input
                           type="text"
-                          value={aiDraft.seo_title}
+                          value={aiDraft?.seo_title || ""}
                           onChange={(e) => handleUpdateDraftField("seo_title", e.target.value)}
                           className={styles.input}
-                          style={{ fontSize: "0.85rem" }}
+                          style={{ fontSize: "0.85rem", marginTop: "0.2rem" }}
                         />
                       </div>
 
                       <div>
-                        <label style={{ fontSize: "0.78rem", fontWeight: "600", color: "#555" }}>Meta Description Tag ({aiDraft.meta_description.length} chars):</label>
+                        <div style={{ display: "flex", justifyContent: "space-between" }}>
+                          <label style={{ fontSize: "0.78rem", fontWeight: "600", color: "#555" }}>
+                            Meta Description Tag (Optimal: 140-160 chars)
+                          </label>
+                          <span style={{ fontSize: "0.72rem", color: (aiDraft?.meta_description?.length || 0) > 165 ? "#C5221F" : "#137333", fontWeight: "600" }}>
+                            {aiDraft?.meta_description?.length || 0} characters
+                          </span>
+                        </div>
                         <textarea
                           rows={2}
-                          value={aiDraft.meta_description}
+                          value={aiDraft?.meta_description || ""}
                           onChange={(e) => handleUpdateDraftField("meta_description", e.target.value)}
                           className={styles.textarea}
-                          style={{ fontSize: "0.85rem" }}
+                          style={{ fontSize: "0.85rem", marginTop: "0.2rem" }}
                         />
                       </div>
 
                       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.85rem" }}>
                         <div>
-                          <label style={{ fontSize: "0.78rem", fontWeight: "600", color: "#555" }}>Primary Search Phrase:</label>
+                          <label style={{ fontSize: "0.78rem", fontWeight: "600", color: "#555" }}>
+                            Primary Search Keyword:
+                          </label>
                           <input
                             type="text"
-                            value={aiDraft.primary_keyword}
+                            value={aiDraft?.primary_keyword || ""}
                             onChange={(e) => handleUpdateDraftField("primary_keyword", e.target.value)}
                             className={styles.input}
-                            style={{ fontSize: "0.85rem", fontWeight: "600" }}
+                            style={{ fontSize: "0.85rem", fontWeight: "600", marginTop: "0.2rem" }}
                           />
                         </div>
 
                         <div>
-                          <label style={{ fontSize: "0.78rem", fontWeight: "600", color: "#555" }}>Discovery Tags:</label>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                            <label style={{ fontSize: "0.78rem", fontWeight: "600", color: "#555" }}>
+                              Suggested URL Slug:
+                            </label>
+                            <button
+                              type="button"
+                              onClick={handleApplySlug}
+                              style={{
+                                fontSize: "0.72rem",
+                                padding: "0.15rem 0.45rem",
+                                borderRadius: "4px",
+                                border: "1px solid #E2DDD5",
+                                backgroundColor: acceptedState.slug ? "#E6F4EA" : "#FFF",
+                                cursor: "pointer",
+                                color: acceptedState.slug ? "#137333" : "var(--color-navy)"
+                              }}
+                            >
+                              {acceptedState.slug ? "✓ Slug Applied" : "Apply Slug"}
+                            </button>
+                          </div>
+                          <input
+                            type="text"
+                            value={aiDraft?.suggested_slug || ""}
+                            onChange={(e) => handleUpdateDraftField("suggested_slug", e.target.value)}
+                            className={styles.input}
+                            style={{ fontSize: "0.85rem", marginTop: "0.2rem" }}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Secondary & Long-tail Keywords */}
+                      <div>
+                        <label style={{ fontSize: "0.78rem", fontWeight: "600", color: "#555" }}>
+                          Secondary Keywords & Long-Tail Search Queries:
+                        </label>
+                        <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", marginTop: "0.3rem" }}>
+                          {[...(aiDraft?.secondary_keywords || []), ...(aiDraft?.long_tail_keywords || [])].map((kw, i) => (
+                            <span key={i} style={{ backgroundColor: "#F0EBE1", color: "var(--color-navy)", padding: "0.25rem 0.55rem", borderRadius: "12px", fontSize: "0.75rem", fontWeight: "500" }}>
+                              {kw}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Discovery Tags */}
+                      {Array.isArray(aiDraft?.discovery_tags) && aiDraft.discovery_tags.length > 0 && (
+                        <div>
+                          <label style={{ fontSize: "0.78rem", fontWeight: "600", color: "#555" }}>
+                            Discovery Tags:
+                          </label>
                           <div style={{ display: "flex", gap: "0.35rem", flexWrap: "wrap", marginTop: "0.25rem" }}>
-                            {(aiDraft.discovery_tags || []).map((tag, i) => (
+                            {aiDraft.discovery_tags.map((tag, i) => (
                               <span key={i} style={{ backgroundColor: "#E6F4EA", color: "#137333", padding: "0.15rem 0.5rem", borderRadius: "12px", fontSize: "0.75rem", fontWeight: "600" }}>
                                 #{tag}
                               </span>
                             ))}
                           </div>
                         </div>
-                      </div>
-
-                      <div>
-                        <label style={{ fontSize: "0.78rem", fontWeight: "600", color: "#555" }}>Secondary Search Phrases & Search Intent Terms:</label>
-                        <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", marginTop: "0.25rem" }}>
-                          {aiDraft.search_intent_keywords.map((kw, i) => (
-                            <span key={i} style={{ backgroundColor: "#F0EBE1", color: "var(--color-navy)", padding: "0.2rem 0.5rem", borderRadius: "12px", fontSize: "0.75rem", fontWeight: "600" }}>
-                              {kw}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
+                      )}
                     </div>
                   </div>
 
                   {/* Image Alt Texts */}
-                  {aiDraft.image_alt_texts && aiDraft.image_alt_texts.length > 0 && (
+                  {Array.isArray(aiDraft?.image_alt_texts) && aiDraft.image_alt_texts.length > 0 && (
                     <div style={{ backgroundColor: "#FFF", border: "1px solid #E2DDD5", borderRadius: "6px", padding: "1rem" }}>
                       <h4 style={{ fontSize: "0.9rem", fontWeight: "700", color: "var(--color-navy)", marginBottom: "0.5rem" }}>
-                        📸 Image Alt Text Suggestions
+                        📸 Image Alt Text Recommendations
                       </h4>
-                      <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
                         {aiDraft.image_alt_texts.map((altItem, i) => (
                           <div key={i} style={{ fontSize: "0.8rem", color: "#555", backgroundColor: "#F8F6F2", padding: "0.5rem", borderRadius: "4px" }}>
-                            <strong>Image {i + 1}:</strong> {altItem.suggested_alt}
+                            <strong>View {i + 1}:</strong> {altItem.suggested_alt}
                           </div>
                         ))}
                       </div>
@@ -904,211 +799,160 @@ export default function AiAssistantModal({
                 </div>
               )}
 
-              {/* TAB 4: STRATEGIC RECOMMENDATIONS */}
-              {activeReviewTab === "recommendations" && (
+              {/* TAB 3: AEO & SPECIFICATIONS */}
+              {activeReviewTab === "aeo" && (
                 <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                  <div style={{
-                    padding: "0.75rem 1rem",
-                    backgroundColor: "#FAF9F6",
-                    border: "1px solid #ECE7E1",
-                    borderRadius: "6px",
-                    fontSize: "0.8rem",
-                    color: "#555"
-                  }}>
-                    Actionable, evidence-based improvements ranked by business priority and search engine intent. Review, preview diff, edit, or apply suggestions individually.
+                  {/* AEO Summary */}
+                  <div style={{ backgroundColor: "#FFF", border: "1px solid #E2DDD5", borderRadius: "6px", padding: "1rem" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
+                      <div>
+                        <h4 style={{ fontSize: "0.9rem", fontWeight: "700", color: "var(--color-navy)", margin: 0 }}>
+                          Answer Engine Optimization (AEO) Factual Summary
+                        </h4>
+                        <span style={{ fontSize: "0.72rem", color: "#666" }}>
+                          Entity-dense product definition designed for Google AI Overviews, Perplexity, and AI search engines
+                        </span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleApplyAeo}
+                        className={acceptedState.aeo ? styles.secondaryBtn : styles.primaryBtn}
+                        style={{ fontSize: "0.78rem", padding: "0.3rem 0.7rem" }}
+                      >
+                        {acceptedState.aeo ? "✓ AEO Summary Applied" : "+ Accept AEO Summary"}
+                      </button>
+                    </div>
+
+                    <textarea
+                      rows={3}
+                      value={aiDraft?.aeo_summary || ""}
+                      onChange={(e) => handleUpdateDraftField("aeo_summary", e.target.value)}
+                      className={styles.textarea}
+                      style={{ fontSize: "0.85rem", width: "100%", borderColor: "var(--color-bronze)" }}
+                    />
                   </div>
 
-                  {(!aiDraft.recommendations || aiDraft.recommendations.length === 0) ? (
-                    <div style={{ textAlign: "center", padding: "2rem", color: "#666", fontSize: "0.85rem" }}>
-                      ✓ No outstanding quality or SEO recommendations found for this product.
-                    </div>
-                  ) : (
-                    aiDraft.recommendations.map((rec) => {
-                      const isAccepted = Boolean(acceptedRecs[rec.issue_id]);
-                      const isRejected = Boolean(rejectedRecs[rec.issue_id]);
-                      const isEditing = editingRecId === rec.issue_id;
-                      const isPreviewingDiff = previewDiffId === rec.issue_id;
-
-                      const priorityStyle = rec.priority === "HIGH"
-                        ? { bg: "#FCE8E6", color: "#C5221F", border: "#FAD2CF" }
-                        : rec.priority === "MEDIUM"
-                        ? { bg: "#FEF7E0", color: "#B06000", border: "#FEEFC3" }
-                        : { bg: "#E8F0FE", color: "#1A73E8", border: "#D2E3FC" };
-
-                      return (
-                        <div
-                          key={rec.issue_id}
-                          style={{
-                            backgroundColor: isRejected ? "#F5F5F5" : "#FFFFFF",
-                            border: `1px solid ${isAccepted ? "#CEEAD6" : isRejected ? "#E0E0E0" : "#E2DDD5"}`,
-                            borderRadius: "6px",
-                            padding: "1rem",
-                            opacity: isRejected ? 0.6 : 1,
-                            transition: "all 0.15s ease"
-                          }}
-                        >
-                          {/* Header: Priority, Issue ID, Field, and Status */}
-                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "0.5rem", marginBottom: "0.5rem" }}>
-                            <div style={{ display: "flex", alignItems: "center", gap: "0.45rem", flexWrap: "wrap" }}>
-                              <span style={{
-                                fontSize: "0.7rem",
-                                fontWeight: "800",
-                                padding: "0.15rem 0.45rem",
-                                borderRadius: "4px",
-                                backgroundColor: priorityStyle.bg,
-                                color: priorityStyle.color,
-                                border: `1px solid ${priorityStyle.border}`
-                              }}>
-                                {rec.priority} PRIORITY
-                              </span>
-                              <span style={{ fontSize: "0.78rem", fontWeight: "700", color: "var(--color-navy)" }}>
-                                {rec.issue_id}: {rec.affected_field}
-                              </span>
-                              {rec.requires_human_verification && (
-                                <span style={{ fontSize: "0.68rem", backgroundColor: "#FFF8E1", color: "#B06000", padding: "0.1rem 0.4rem", borderRadius: "3px", border: "1px solid #FFE082" }}>
-                                  ⚠️ Requires Verification
-                                </span>
-                              )}
-                            </div>
-
-                            <span style={{ fontSize: "0.72rem", color: "#777" }}>
-                              {rec.evidence_source} • {Math.round(rec.confidence * 100)}% Confidence
-                            </span>
-                          </div>
-
-                          {/* Problem Description */}
-                          <div style={{ fontSize: "0.84rem", fontWeight: "600", color: "#222", marginBottom: "0.35rem" }}>
-                            {rec.observed_problem}
-                          </div>
-
-                          {/* Why It Matters */}
-                          <div style={{ fontSize: "0.78rem", color: "#666", marginBottom: "0.65rem", lineHeight: "1.4" }}>
-                            <strong>Why it matters:</strong> {rec.why_it_matters}
-                          </div>
-
-                          {/* Recommended Action / Diff Box */}
-                          <div style={{
-                            backgroundColor: "#FAF9F6",
-                            border: "1px solid #EAE6DF",
-                            borderRadius: "4px",
-                            padding: "0.65rem 0.75rem",
-                            fontSize: "0.8rem",
-                            color: "#333",
-                            marginBottom: "0.75rem"
-                          }}>
-                            <div style={{ fontSize: "0.72rem", fontWeight: "700", color: "var(--color-bronze)", marginBottom: "0.25rem" }}>
-                              PROPOSED CORRECTION:
-                            </div>
-                            {isEditing ? (
-                              <textarea
-                                rows={2}
-                                value={rec.recommended_action}
-                                onChange={(e) => {
-                                  const updated = rec.recommended_action;
-                                  rec.recommended_action = e.target.value;
-                                  setAiDraft({ ...aiDraft });
-                                }}
-                                className={styles.textarea}
-                                style={{ fontSize: "0.8rem", width: "100%" }}
-                              />
-                            ) : (
-                              <div>{rec.recommended_action}</div>
-                            )}
-
-                            {rec.expected_benefit && (
-                              <div style={{ fontSize: "0.74rem", color: "#137333", marginTop: "0.35rem", fontWeight: "600" }}>
-                                ✦ Expected Benefit: {rec.expected_benefit}
-                              </div>
-                            )}
-                          </div>
-
-                          {/* Preview Diff Toggle Box */}
-                          {isPreviewingDiff && (
-                            <div style={{
-                              backgroundColor: "#F0F4F8",
-                              border: "1px solid #D2E3FC",
-                              borderRadius: "4px",
-                              padding: "0.65rem 0.75rem",
-                              marginBottom: "0.75rem",
-                              fontSize: "0.78rem"
-                            }}>
-                              <div style={{ fontWeight: "700", color: "#1A73E8", marginBottom: "0.3rem" }}>
-                                Field Diff Preview ({rec.affected_field}):
-                              </div>
-                              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem" }}>
-                                <div style={{ backgroundColor: "#FFF", padding: "0.4rem", borderRadius: "3px", border: "1px solid #E0E0E0" }}>
-                                  <div style={{ fontSize: "0.68rem", fontWeight: "700", color: "#888" }}>CURRENT:</div>
-                                  <div style={{ color: "#C5221F" }}>{String(productData[rec.affected_field] || "(Empty)")}</div>
-                                </div>
-                                <div style={{ backgroundColor: "#FFF", padding: "0.4rem", borderRadius: "3px", border: "1px solid #E0E0E0" }}>
-                                  <div style={{ fontSize: "0.68rem", fontWeight: "700", color: "var(--color-bronze)" }}>PROPOSED:</div>
-                                  <div style={{ color: "#137333" }}>{rec.recommended_action}</div>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-
-                          {/* Actions: Preview Diff, Edit, Reject, Accept */}
-                          <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", gap: "0.5rem" }}>
-                            <button
-                              type="button"
-                              onClick={() => setPreviewDiffId(isPreviewingDiff ? null : rec.issue_id)}
-                              className={styles.secondaryBtn}
-                              style={{ fontSize: "0.74rem", padding: "0.25rem 0.55rem" }}
-                            >
-                              {isPreviewingDiff ? "Hide Diff" : "🔍 Preview Diff"}
-                            </button>
-
-                            <button
-                              type="button"
-                              onClick={() => setEditingRecId(isEditing ? null : rec.issue_id)}
-                              className={styles.secondaryBtn}
-                              style={{ fontSize: "0.74rem", padding: "0.25rem 0.55rem" }}
-                            >
-                              {isEditing ? "Done Editing" : "✏️ Edit"}
-                            </button>
-
-                            {!isAccepted && !isRejected && (
-                              <button
-                                type="button"
-                                onClick={() => handleRejectRecommendation(rec)}
-                                className={styles.secondaryBtn}
-                                style={{ fontSize: "0.74rem", color: "#C5221F", borderColor: "#FAD2CF", padding: "0.25rem 0.55rem" }}
-                              >
-                                Reject
-                              </button>
-                            )}
-
-                            {isRejected ? (
-                              <span style={{ fontSize: "0.74rem", color: "#888", fontWeight: "600", padding: "0.25rem 0.55rem" }}>
-                                ✗ Rejected
-                              </span>
-                            ) : isAccepted ? (
-                              <span style={{ fontSize: "0.74rem", color: "#137333", fontWeight: "700", padding: "0.25rem 0.55rem" }}>
-                                ✓ Accepted & Applied
-                              </span>
-                            ) : (
-                              <button
-                                type="button"
-                                onClick={() => handleAcceptRecommendation(rec)}
-                                className={styles.primaryBtn}
-                                style={{ fontSize: "0.76rem", padding: "0.25rem 0.65rem" }}
-                              >
-                                + Accept Recommendation
-                              </button>
-                            )}
-                          </div>
+                  {/* Factual Attributes */}
+                  {aiDraft?.factual_attributes && (
+                    <div style={{ backgroundColor: "#FFF", border: "1px solid #E2DDD5", borderRadius: "6px", padding: "1rem" }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
+                        <div>
+                          <h4 style={{ fontSize: "0.9rem", fontWeight: "700", color: "var(--color-navy)", margin: 0 }}>
+                            Factual Stonecraft Attributes
+                          </h4>
+                          <span style={{ fontSize: "0.72rem", color: "#666" }}>
+                            Verified physical and craft specifications mapped to product attributes
+                          </span>
                         </div>
-                      );
-                    })
+                        <button
+                          type="button"
+                          onClick={handleApplyAttributes}
+                          className={acceptedState.attributes ? styles.secondaryBtn : styles.primaryBtn}
+                          style={{ fontSize: "0.78rem", padding: "0.3rem 0.7rem" }}
+                        >
+                          {acceptedState.attributes ? "✓ Attributes Applied" : "+ Accept Attributes"}
+                        </button>
+                      </div>
+
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.85rem" }}>
+                        <div>
+                          <label style={{ fontSize: "0.78rem", fontWeight: "600", color: "#555" }}>Stone Variety:</label>
+                          <input
+                            type="text"
+                            value={aiDraft?.factual_attributes?.stoneVariety || ""}
+                            onChange={(e) => handleUpdateNestedDraft("factual_attributes", "stoneVariety", e.target.value)}
+                            className={styles.input}
+                            style={{ fontSize: "0.85rem", marginTop: "0.2rem" }}
+                          />
+                        </div>
+                        <div>
+                          <label style={{ fontSize: "0.78rem", fontWeight: "600", color: "#555" }}>Surface Finish:</label>
+                          <input
+                            type="text"
+                            value={aiDraft?.factual_attributes?.finish || ""}
+                            onChange={(e) => handleUpdateNestedDraft("factual_attributes", "finish", e.target.value)}
+                            className={styles.input}
+                            style={{ fontSize: "0.85rem", marginTop: "0.2rem" }}
+                          />
+                        </div>
+                        <div>
+                          <label style={{ fontSize: "0.78rem", fontWeight: "600", color: "#555" }}>Craftsmanship Method:</label>
+                          <input
+                            type="text"
+                            value={aiDraft?.factual_attributes?.craftsmanship || ""}
+                            onChange={(e) => handleUpdateNestedDraft("factual_attributes", "craftsmanship", e.target.value)}
+                            className={styles.input}
+                            style={{ fontSize: "0.85rem", marginTop: "0.2rem" }}
+                          />
+                        </div>
+                        <div>
+                          <label style={{ fontSize: "0.78rem", fontWeight: "600", color: "#555" }}>Intended Placement:</label>
+                          <input
+                            type="text"
+                            value={aiDraft?.factual_attributes?.intendedApplication || ""}
+                            onChange={(e) => handleUpdateNestedDraft("factual_attributes", "intendedApplication", e.target.value)}
+                            className={styles.input}
+                            style={{ fontSize: "0.85rem", marginTop: "0.2rem" }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Observable Visual Features (from Image analysis) */}
+                  {aiDraft?.image_visual_notes && (
+                    <div style={{ backgroundColor: "#FAF9F6", border: "1px solid #ECE7E1", borderRadius: "6px", padding: "0.85rem" }}>
+                      <div style={{ fontSize: "0.82rem", fontWeight: "700", color: "var(--color-navy)", marginBottom: "0.25rem" }}>
+                        👁️ Observable Visual Notes (from Product Cover Image)
+                      </div>
+                      <div style={{ fontSize: "0.8rem", color: "#555", lineHeight: 1.5 }}>
+                        {aiDraft.image_visual_notes}
+                      </div>
+                    </div>
                   )}
                 </div>
               )}
-
             </div>
           )}
+        </div>
 
+        {/* Modal Sticky Footer Actions */}
+        <div style={{
+          backgroundColor: "var(--color-cream)",
+          padding: "0.85rem 1.25rem",
+          borderTop: "1px solid #E2DDD5",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: "0.75rem"
+        }}>
+          <button
+            type="button"
+            onClick={onClose}
+            className={styles.secondaryBtn}
+            style={{ minHeight: "38px" }}
+          >
+            Dismiss
+          </button>
 
+          {status === "review" && (
+            <div style={{ display: "flex", gap: "0.6rem" }}>
+              <button
+                type="button"
+                onClick={handleAcceptAll}
+                className={styles.primaryBtn}
+                style={{
+                  minHeight: "38px",
+                  padding: "0.45rem 1.25rem",
+                  fontSize: "0.88rem",
+                  fontWeight: "700"
+                }}
+              >
+                🚀 Accept All AI Enhancements
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

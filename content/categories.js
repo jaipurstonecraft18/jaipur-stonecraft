@@ -39,3 +39,20 @@ export async function getCategoriesBySubcategory(collectionSlug, subcategorySlug
     (cat) => cat.parentCollection === collectionSlug && cat.parentSubcategory === subcategorySlug
   );
 }
+
+export { LEGACY_CATEGORY_REDIRECTS, resolveCanonicalCategoryUrl } from "@/lib/taxonomy/legacy-redirects.js";
+
+export function getCategoryCanonicalUrl(catOrSlug, fallbackCollection, fallbackSubcategory) {
+  if (!catOrSlug) return "/collections";
+  const cat = typeof catOrSlug === "object" ? catOrSlug : categoriesData[catOrSlug];
+  if (cat && cat.parentCollection && cat.parentSubcategory) {
+    return `/collections/${cat.parentCollection}/${cat.parentSubcategory}/${cat.slug}`;
+  }
+  if (typeof catOrSlug === "string") {
+    if (fallbackCollection && fallbackSubcategory) {
+      return `/collections/${fallbackCollection}/${fallbackSubcategory}/${catOrSlug}`;
+    }
+  }
+  return cat?.slug ? `/collections/${cat.slug}` : "/collections";
+}
+

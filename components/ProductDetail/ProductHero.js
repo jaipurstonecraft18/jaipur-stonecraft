@@ -209,9 +209,13 @@ export default function ProductHero({ design, category, collection, subcategory 
 
             {/* Action Buttons Row */}
             <div className={styles.actionRow}>
-              <Link href={`/contact?type=quote&design=${design.slug}`} className={styles.primaryActionBtn}>
-                Enquire / Request a Quote
-              </Link>
+              <a
+                href={`tel:${(siteConfig.contact?.phone || "+91 9664388920").replace(/\s+/g, "")}`}
+                className={styles.primaryActionBtn}
+                aria-label={`Call now to inquire about ${design.name}`}
+              >
+                Call Now
+              </a>
               
               <a
                 href={whatsappUrl}

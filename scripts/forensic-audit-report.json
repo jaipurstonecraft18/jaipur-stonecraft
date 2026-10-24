@@ -1,0 +1,4313 @@
+{
+  "totalCollections": 6,
+  "activeCollections": 6,
+  "collections": [
+    {
+      "id": "custom-bespoke-creations",
+      "slug": "custom-bespoke-creations",
+      "name": "Custom & Bespoke Creations",
+      "description": "Commissioned deity statues, memorial portrait busts, and full-scale custom architectural stone projects.",
+      "image_src": "/uploads/categories/display/custom-bespoke-creations-1787913596749-e84w4.webp",
+      "is_active": 1,
+      "created_at": "2026-08-13T19:24:54.000Z"
+    },
+    {
+      "id": "decorative-stone-art",
+      "slug": "decorative-stone-art",
+      "name": "Decorative Stone Art",
+      "description": "Interior marble accents, carved stone vases, pedestals, tabletop statuettes, and outdoor garden art.",
+      "image_src": "/uploads/categories/display/decorative-stone-art-1787912473079-vlzqp.webp",
+      "is_active": 1,
+      "created_at": "2026-08-13T19:24:54.000Z"
+    },
+    {
+      "id": "fountains-water-features",
+      "slug": "fountains-water-features",
+      "name": "Fountains & Water Features",
+      "description": "Tiered courtyard fountains, sculptural water features, cascading stone walls, and poolside waterfalls.",
+      "image_src": "/uploads/categories/display/fountains-water-features-1787911434282-6jjjs.webp",
+      "is_active": 1,
+      "created_at": "2026-08-13T19:24:54.000Z"
+    },
+    {
+      "id": "sculptures-statues",
+      "slug": "sculptures-statues",
+      "name": "Sculptures & Statues",
+      "description": "Hand-carved deity statues, spiritual figures, human portraits, and animal sculptures.",
+      "image_src": "/uploads/categories/display/sculptures-statues-1787843536254-elr53.webp",
+      "is_active": 1,
+      "created_at": "2026-08-13T19:24:54.000Z"
+    },
+    {
+      "id": "temples-architectural-stonework",
+      "slug": "temples-architectural-stonework",
+      "name": "Temples & Architectural Stonework",
+      "description": "Bespoke marble home mandirs, temple architecture, carved pillars, jali screens, and stone structural elements.",
+      "image_src": "/uploads/categories/display/temples-architectural-stonework-1787907938061-ica6c.webp",
+      "is_active": 1,
+      "created_at": "2026-08-13T19:24:54.000Z"
+    },
+    {
+      "id": "wall-art-reliefs",
+      "slug": "wall-art-reliefs",
+      "name": "Wall Art & Reliefs",
+      "description": "Spiritual relief panels, cultural heritage murals, decorative stone wall art, and custom feature walls.",
+      "image_src": "/uploads/categories/display/wall-art-reliefs-1787907673529-6puo6.webp",
+      "is_active": 1,
+      "created_at": "2026-08-13T19:24:54.000Z"
+    }
+  ],
+  "totalSubcategories": 43,
+  "activeSubcategories": 20,
+  "inactiveSubcategories": 23,
+  "subcategories": [
+    {
+      "id": "custom-bespoke-creations-custom-sculptures",
+      "slug": "custom-sculptures",
+      "parent_collection_slug": "custom-bespoke-creations",
+      "name": "Custom Sculptures",
+      "description": "Bespoke deity statues, monumental stone sculptures, and commissioned artwork.",
+      "image_src": "https://placehold.co/800x600/E8E4DF/1A1918?text=Custom+Sculptures",
+      "is_active": 0,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 1
+    },
+    {
+      "id": "temples-architectural-stonework-custom-architectural-stonework",
+      "slug": "custom-architectural-stonework",
+      "parent_collection_slug": "custom-bespoke-creations",
+      "name": "Custom Architectural Stonework",
+      "description": "Full temple design and carving, luxury estate stonework, and heritage restoration.",
+      "image_src": "/images/collections/architectural.webp",
+      "is_active": 1,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 1
+    },
+    {
+      "id": "custom-bespoke-creations-custom-portraits",
+      "slug": "custom-portraits",
+      "parent_collection_slug": "custom-bespoke-creations",
+      "name": "Custom Portraits",
+      "description": "Lifesize memorial portrait busts, ancestral stone portrait carvings, and commemorative reliefs.",
+      "image_src": "https://placehold.co/800x600/E8E4DF/1A1918?text=Custom+Portraits",
+      "is_active": 0,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 2
+    },
+    {
+      "id": "custom-bespoke-creations-custom-wall-art-reliefs",
+      "slug": "custom-wall-art-reliefs",
+      "parent_collection_slug": "custom-bespoke-creations",
+      "name": "Custom Wall Art & Reliefs",
+      "description": "Commissioned architectural feature walls, commemorative reliefs, and bespoke stone murals.",
+      "image_src": "/images/collections/wall-art-relief.webp",
+      "is_active": 1,
+      "created_at": "2026-10-12T10:46:09.000Z",
+      "sort_order": 2
+    },
+    {
+      "id": "custom-bespoke-creations-custom-architectural-projects",
+      "slug": "custom-architectural-projects",
+      "parent_collection_slug": "custom-bespoke-creations",
+      "name": "Custom Architectural Projects",
+      "description": "Full temple design and carving, luxury estate stonework, and heritage restoration.",
+      "image_src": "https://placehold.co/800x600/E8E4DF/1A1918?text=Custom+Architectural+Projects",
+      "is_active": 0,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 3
+    },
+    {
+      "id": "decorative-stone-art-interior-stone-decor",
+      "slug": "interior-stone-decor",
+      "parent_collection_slug": "decorative-stone-art",
+      "name": "Interior Stone Décor",
+      "description": "Carved marble vases, pedestals, plinths, decorative bowls, and interior stone urns.",
+      "image_src": "https://placehold.co/800x600/E8E4DF/1A1918?text=Interior+Stone+Decor",
+      "is_active": 0,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 1
+    },
+    {
+      "id": "decorative-stone-art-planters",
+      "slug": "planters",
+      "parent_collection_slug": "decorative-stone-art",
+      "name": "Planters",
+      "description": "Hand-carved marble and sandstone planters, garden urns, and landscape stone vessels.",
+      "image_src": "/images/collections/sacred.webp",
+      "is_active": 1,
+      "created_at": "2026-10-12T10:46:09.000Z",
+      "sort_order": 1
+    },
+    {
+      "id": "decorative-stone-art-planters-tulsi-pots",
+      "slug": "planters-tulsi-pots",
+      "parent_collection_slug": "decorative-stone-art",
+      "name": "Marble & Stone Planters & Tulsi Pots",
+      "description": "Hand-carved marble and sandstone planters, garden urns, and sacred Tulsi pots.",
+      "image_src": "/images/collections/sacred.webp",
+      "is_active": 0,
+      "created_at": "2026-10-12T09:48:29.000Z",
+      "sort_order": 1
+    },
+    {
+      "id": "decorative-stone-art-small-sculptural-art",
+      "slug": "small-sculptural-art",
+      "parent_collection_slug": "decorative-stone-art",
+      "name": "Small Sculptural Art",
+      "description": "Tabletop marble statuettes, miniature stone reliefs, and handcrafted artisan accents.",
+      "image_src": "https://placehold.co/800x600/E8E4DF/1A1918?text=Small+Sculptural+Art",
+      "is_active": 0,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 2
+    },
+    {
+      "id": "decorative-stone-art-tulsi-pots",
+      "slug": "tulsi-pots",
+      "parent_collection_slug": "decorative-stone-art",
+      "name": "Tulsi Pots",
+      "description": "Sacred white marble and natural sandstone carved Tulsi pots for devotional home mandirs.",
+      "image_src": "/images/collections/sacred.webp",
+      "is_active": 1,
+      "created_at": "2026-10-12T10:46:09.000Z",
+      "sort_order": 2
+    },
+    {
+      "id": "decorative-stone-art-decorative-accents",
+      "slug": "decorative-accents",
+      "parent_collection_slug": "decorative-stone-art",
+      "name": "Decorative Accents",
+      "description": "Stone decorative items and outdoor artistic elements awaiting catalogue review.",
+      "image_src": "/images/collections/hero-sculptures-group.webp",
+      "is_active": 0,
+      "created_at": "2026-10-12T09:48:29.000Z",
+      "sort_order": 3
+    },
+    {
+      "id": "decorative-stone-art-garden-outdoor-stone-art",
+      "slug": "garden-outdoor-stone-art",
+      "parent_collection_slug": "decorative-stone-art",
+      "name": "Garden & Outdoor Stone Art",
+      "description": "Hand-carved stone planters, garden lanterns, benches, and outdoor landscape accents.",
+      "image_src": "https://placehold.co/800x600/E8E4DF/1A1918?text=Garden+%26+Outdoor+Stone+Art",
+      "is_active": 0,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 3
+    },
+    {
+      "id": "decorative-stone-art-pedestals-stands",
+      "slug": "pedestals-stands",
+      "parent_collection_slug": "decorative-stone-art",
+      "name": "Pedestals & Stands",
+      "description": "Architectural display pedestals, statue plinths, and carved stone bases.",
+      "image_src": "/images/collections/temples-architectural.webp",
+      "is_active": 1,
+      "created_at": "2026-10-12T09:48:29.000Z",
+      "sort_order": 3
+    },
+    {
+      "id": "fountains-water-features-classical-fountains",
+      "slug": "classical-fountains",
+      "parent_collection_slug": "fountains-water-features",
+      "name": "Classical Fountains",
+      "description": "Tiered marble and sandstone fountains, lotus basin fountains, and courtyard water features.",
+      "image_src": "https://placehold.co/800x600/E8E4DF/1A1918?text=Classical+Fountains",
+      "is_active": 0,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 1
+    },
+    {
+      "id": "fountains-water-features-tiered-fountains",
+      "slug": "tiered-fountains",
+      "parent_collection_slug": "fountains-water-features",
+      "name": "Tiered Fountains",
+      "description": "Classical multi-tier marble and stone water fountains for gardens and courtyards.",
+      "image_src": "/images/collections/luxury.webp",
+      "is_active": 1,
+      "created_at": "2026-10-12T09:48:29.000Z",
+      "sort_order": 1
+    },
+    {
+      "id": "fountains-water-features-garden-fountains",
+      "slug": "garden-fountains",
+      "parent_collection_slug": "fountains-water-features",
+      "name": "Garden Fountains",
+      "description": "Freestanding courtyard stone fountains, lotus basins, and sculptural water features.",
+      "image_src": "/images/collections/hero-sculptures-group.webp",
+      "is_active": 0,
+      "created_at": "2026-10-12T09:48:29.000Z",
+      "sort_order": 2
+    },
+    {
+      "id": "fountains-water-features-sculptural-fountains",
+      "slug": "sculptural-fountains",
+      "parent_collection_slug": "fountains-water-features",
+      "name": "Sculptural Fountains",
+      "description": "Figurative stone water sculptures, abstract water features, and cascading water walls.",
+      "image_src": "https://placehold.co/800x600/E8E4DF/1A1918?text=Sculptural+Fountains",
+      "is_active": 0,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 2
+    },
+    {
+      "id": "fountains-water-features-wall-fountains",
+      "slug": "wall-fountains",
+      "parent_collection_slug": "fountains-water-features",
+      "name": "Wall Fountains",
+      "description": "Stone water walls, spout fountains, and poolside waterfalls for architectural installations.",
+      "image_src": "/images/collections/wall-art-relief.webp",
+      "is_active": 1,
+      "created_at": "2026-10-12T09:48:29.000Z",
+      "sort_order": 2
+    },
+    {
+      "id": "fountains-water-features-architectural-water-features",
+      "slug": "architectural-water-features",
+      "parent_collection_slug": "fountains-water-features",
+      "name": "Architectural Water Features",
+      "description": "Poolside stone waterfalls, heritage palace spouts, and large-scale water features.",
+      "image_src": "https://placehold.co/800x600/E8E4DF/1A1918?text=Architectural+Water+Features",
+      "is_active": 0,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 3
+    },
+    {
+      "id": "fountains-water-features-freestanding-fountains",
+      "slug": "freestanding-fountains",
+      "parent_collection_slug": "fountains-water-features",
+      "name": "Freestanding Fountains",
+      "description": "Freestanding courtyard stone fountains, lotus basins, and sculptural water features.",
+      "image_src": "/images/collections/hero-sculptures-group.webp",
+      "is_active": 1,
+      "created_at": "2026-10-12T10:46:09.000Z",
+      "sort_order": 3
+    },
+    {
+      "id": "sculptures-statues-hindu-sculptures",
+      "slug": "hindu-sculptures",
+      "parent_collection_slug": "sculptures-statues",
+      "name": "Hindu Sculptures",
+      "description": "Devotional marble statues of Hindu deities crafted according to sacred iconography.",
+      "image_src": "/uploads/categories/display/hindu-sculptures-1788525769997-5t51n.webp",
+      "is_active": 1,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 1
+    },
+    {
+      "id": "sculptures-statues-buddhist-jain-sculptures",
+      "slug": "buddhist-jain-sculptures",
+      "parent_collection_slug": "sculptures-statues",
+      "name": "Buddhist & Jain Sculptures",
+      "description": "Serene Buddha and Jain Tirthankara statues carved from white marble and stone.",
+      "image_src": "/uploads/categories/display/buddhist-jain-sculptures-1788526584415-u4fwg.webp",
+      "is_active": 1,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 2
+    },
+    {
+      "id": "sculptures-statues-human-portrait-sculptures",
+      "slug": "human-portrait-sculptures",
+      "parent_collection_slug": "sculptures-statues",
+      "name": "Human & Portrait Sculptures",
+      "description": "Custom portrait busts, figurative statues, and cultural human sculptures.",
+      "image_src": "/uploads/categories/display/human-portrait-sculptures-1788527675376-eplb8.webp",
+      "is_active": 1,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 3
+    },
+    {
+      "id": "sculptures-statues-classical-artistic-sculptures",
+      "slug": "classical-artistic-sculptures",
+      "parent_collection_slug": "sculptures-statues",
+      "name": "Classical & Artistic Sculptures",
+      "description": "Abstract forms, modernist carvings, and classical Western figure sculptures.",
+      "image_src": "/uploads/categories/display/classical-artistic-sculptures-1788528610677-4gvth.webp",
+      "is_active": 1,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 4
+    },
+    {
+      "id": "sculptures-statues-animal-bird-sculptures",
+      "slug": "animal-bird-sculptures",
+      "parent_collection_slug": "sculptures-statues",
+      "name": "Animal & Bird Sculptures",
+      "description": "Hand-carved stone elephants, lions, peacocks, horses, and wildlife statuary.",
+      "image_src": "/uploads/categories/display/animal-bird-sculptures-1788532715981-j01hg.webp",
+      "is_active": 1,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 5
+    },
+    {
+      "id": "temples-architectural-stonework-home-mandirs",
+      "slug": "home-mandirs",
+      "parent_collection_slug": "temples-architectural-stonework",
+      "name": "Home Mandirs",
+      "description": "Bespoke white marble home temples, mandir arches, and pooja room stonework.",
+      "image_src": "https://placehold.co/800x600/E8E4DF/1A1918?text=Home+Mandirs",
+      "is_active": 0,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 1
+    },
+    {
+      "id": "temples-architectural-stonework-mandir-temple",
+      "slug": "mandir-temple",
+      "parent_collection_slug": "temples-architectural-stonework",
+      "name": "Mandir & Temple",
+      "description": "Handcrafted marble home mandirs, temple architecture, and sacred pooja room stonework.",
+      "image_src": "/images/creations/marble-home-mandir.jpg",
+      "is_active": 0,
+      "created_at": "2026-10-12T09:48:29.000Z",
+      "sort_order": 1
+    },
+    {
+      "id": "temples-architectural-stonework-mandirs-temples",
+      "slug": "mandirs-temples",
+      "parent_collection_slug": "temples-architectural-stonework",
+      "name": "Mandirs & Temples",
+      "description": "Handcrafted marble home mandirs, temple architecture, and sacred pooja room stonework.",
+      "image_src": "/images/creations/marble-home-mandir.jpg",
+      "is_active": 1,
+      "created_at": "2026-10-12T10:46:09.000Z",
+      "sort_order": 1
+    },
+    {
+      "id": "temples-architectural-stonework-jali",
+      "slug": "jali",
+      "parent_collection_slug": "temples-architectural-stonework",
+      "name": "Jali",
+      "description": "Perforated stone lattice screens for partitions, balconies, facades, and windows.",
+      "image_src": "/images/collections/architectural.webp",
+      "is_active": 0,
+      "created_at": "2026-10-12T09:48:29.000Z",
+      "sort_order": 2
+    },
+    {
+      "id": "temples-architectural-stonework-jali-designs",
+      "slug": "jali-designs",
+      "parent_collection_slug": "temples-architectural-stonework",
+      "name": "Jali Designs",
+      "description": "Perforated stone lattice screens for partitions, balconies, facades, and windows.",
+      "image_src": "/images/collections/architectural.webp",
+      "is_active": 1,
+      "created_at": "2026-10-12T10:46:09.000Z",
+      "sort_order": 2
+    },
+    {
+      "id": "temples-architectural-stonework-temple-architecture",
+      "slug": "temple-architecture",
+      "parent_collection_slug": "temples-architectural-stonework",
+      "name": "Temple Architecture",
+      "description": "Structural shikhara domes, garbhagriha designs, and pillared mandapas for public and private temples.",
+      "image_src": "https://placehold.co/800x600/E8E4DF/1A1918?text=Temple+Architecture",
+      "is_active": 0,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 2
+    },
+    {
+      "id": "temples-architectural-stonework-architectural-elements",
+      "slug": "architectural-elements",
+      "parent_collection_slug": "temples-architectural-stonework",
+      "name": "Architectural Elements",
+      "description": "Carved stone columns, lattice jali screens, balustrades, jharokha windows, and door frames.",
+      "image_src": "https://placehold.co/800x600/E8E4DF/1A1918?text=Architectural+Elements",
+      "is_active": 0,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 3
+    },
+    {
+      "id": "temples-architectural-stonework-pillars-columns",
+      "slug": "pillars-columns",
+      "parent_collection_slug": "temples-architectural-stonework",
+      "name": "Pillars & Columns",
+      "description": "Hand-carved marble pillars, structural stone columns, torans, and architectural arches.",
+      "image_src": "/images/collections/temples-architectural.webp",
+      "is_active": 1,
+      "created_at": "2026-10-12T09:48:29.000Z",
+      "sort_order": 3
+    },
+    {
+      "id": "temples-architectural-stonework-architectural-components",
+      "slug": "architectural-components",
+      "parent_collection_slug": "temples-architectural-stonework",
+      "name": "Architectural Components",
+      "description": "Traditional stone jharokhas, heritage balconies, chhatri gazebos, and structural components.",
+      "image_src": "/images/collections/architectural.webp",
+      "is_active": 1,
+      "created_at": "2026-10-12T10:46:09.000Z",
+      "sort_order": 4
+    },
+    {
+      "id": "temples-architectural-stonework-other-temple-stone-parts",
+      "slug": "other-temple-stone-parts",
+      "parent_collection_slug": "temples-architectural-stonework",
+      "name": "Other Temple & Stone Parts",
+      "description": "Traditional stone jharokhas, heritage balconies, chhatri pavilions, and architectural stonework.",
+      "image_src": "/images/collections/architectural.webp",
+      "is_active": 0,
+      "created_at": "2026-10-12T09:48:29.000Z",
+      "sort_order": 4
+    },
+    {
+      "id": "wall-art-reliefs-religious-spiritual-reliefs",
+      "slug": "religious-spiritual-reliefs",
+      "parent_collection_slug": "wall-art-reliefs",
+      "name": "Religious & Spiritual Reliefs",
+      "description": "Hand-carved temple wall murals and devotional stone relief panels.",
+      "image_src": "https://placehold.co/800x600/E8E4DF/1A1918?text=Religious+%26+Spiritual+Reliefs",
+      "is_active": 0,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 1
+    },
+    {
+      "id": "wall-art-reliefs-wall-murals",
+      "slug": "wall-murals",
+      "parent_collection_slug": "wall-art-reliefs",
+      "name": "Wall Murals",
+      "description": "Grand spiritual and devotional stone wall murals hand-carved in high relief.",
+      "image_src": "/images/collections/wall-art-relief.webp",
+      "is_active": 1,
+      "created_at": "2026-10-12T09:48:29.000Z",
+      "sort_order": 1
+    },
+    {
+      "id": "wall-art-reliefs-indian-heritage-cultural-murals",
+      "slug": "indian-heritage-cultural-murals",
+      "parent_collection_slug": "wall-art-reliefs",
+      "name": "Indian Heritage & Cultural Murals",
+      "description": "Traditional Rajasthani court scenes, royal processions, and heritage stone murals.",
+      "image_src": "https://placehold.co/800x600/E8E4DF/1A1918?text=Indian+Heritage+%26+Cultural+Murals",
+      "is_active": 0,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 2
+    },
+    {
+      "id": "wall-art-reliefs-relief-panels",
+      "slug": "relief-panels",
+      "parent_collection_slug": "wall-art-reliefs",
+      "name": "Stone Relief Panels",
+      "description": "Intricately carved stone relief panels, botanical carvings, and decorative wall art.",
+      "image_src": "/images/collections/luxury.webp",
+      "is_active": 0,
+      "created_at": "2026-10-12T09:48:29.000Z",
+      "sort_order": 2
+    },
+    {
+      "id": "wall-art-reliefs-religious-reliefs",
+      "slug": "religious-reliefs",
+      "parent_collection_slug": "wall-art-reliefs",
+      "name": "Religious Reliefs",
+      "description": "Carved religious wall artwork, deity-themed reliefs, and devotional stone narrative relief panels.",
+      "image_src": "/images/collections/wall-art-relief.webp",
+      "is_active": 1,
+      "created_at": "2026-10-12T10:46:09.000Z",
+      "sort_order": 2
+    },
+    {
+      "id": "wall-art-reliefs-custom-wall-art",
+      "slug": "custom-wall-art",
+      "parent_collection_slug": "wall-art-reliefs",
+      "name": "Custom Wall Art",
+      "description": "Bespoke architectural feature walls, custom crests, and commission murals.",
+      "image_src": "https://placehold.co/800x600/E8E4DF/1A1918?text=Custom+Wall+Art",
+      "is_active": 0,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 3
+    },
+    {
+      "id": "wall-art-reliefs-decorative-reliefs",
+      "slug": "decorative-reliefs",
+      "parent_collection_slug": "wall-art-reliefs",
+      "name": "Decorative Reliefs",
+      "description": "Floral patterns, geometric carved stone panels, and botanical relief walls.",
+      "image_src": "https://placehold.co/800x600/E8E4DF/1A1918?text=Decorative+Reliefs",
+      "is_active": 0,
+      "created_at": "2026-08-13T19:24:54.000Z",
+      "sort_order": 3
+    },
+    {
+      "id": "wall-art-reliefs-stone-relief-panels",
+      "slug": "stone-relief-panels",
+      "parent_collection_slug": "wall-art-reliefs",
+      "name": "Stone Relief Panels",
+      "description": "Intricately carved stone relief panels, botanical carvings, geometric walls, and heritage art.",
+      "image_src": "/images/collections/luxury.webp",
+      "is_active": 1,
+      "created_at": "2026-10-12T10:46:09.000Z",
+      "sort_order": 3
+    }
+  ],
+  "totalCategories": 120,
+  "activeCategories": 79,
+  "inactiveCategories": 41,
+  "emptyCategories": [
+    {
+      "id": "lifesize-memorial-busts",
+      "slug": "lifesize-memorial-busts",
+      "name": "Lifesize Memorial Busts",
+      "parent_col": "custom-bespoke-creations",
+      "parent_sub": "custom-portraits",
+      "is_active": 1
+    },
+    {
+      "id": "ancestral-portrait-carvings",
+      "slug": "ancestral-portrait-carvings",
+      "name": "Ancestral Portrait Carvings",
+      "parent_col": "custom-bespoke-creations",
+      "parent_sub": "custom-portraits",
+      "is_active": 1
+    },
+    {
+      "id": "bespoke-deity-statues",
+      "slug": "bespoke-deity-statues",
+      "name": "Bespoke Deity Statues",
+      "parent_col": "custom-bespoke-creations",
+      "parent_sub": "custom-sculptures",
+      "is_active": 1
+    },
+    {
+      "id": "custom-monumental-sculptures",
+      "slug": "custom-monumental-sculptures",
+      "name": "Custom Monumental Sculptures",
+      "parent_col": "custom-bespoke-creations",
+      "parent_sub": "custom-sculptures",
+      "is_active": 1
+    },
+    {
+      "id": "commissioned-statuary",
+      "slug": "commissioned-statuary",
+      "name": "Commissioned Statuary",
+      "parent_col": "custom-bespoke-creations",
+      "parent_sub": "custom-sculptures",
+      "is_active": 1
+    },
+    {
+      "id": "stone-planters",
+      "slug": "stone-planters",
+      "name": "Stone Planters",
+      "parent_col": "decorative-stone-art",
+      "parent_sub": "garden-outdoor-stone-art",
+      "is_active": 0
+    },
+    {
+      "id": "garden-lanterns-lamps",
+      "slug": "garden-lanterns-lamps",
+      "name": "Garden Lanterns & Lamps",
+      "parent_col": "decorative-stone-art",
+      "parent_sub": "garden-outdoor-stone-art",
+      "is_active": 1
+    },
+    {
+      "id": "benches-seating",
+      "slug": "benches-seating",
+      "name": "Benches & Seating",
+      "parent_col": "decorative-stone-art",
+      "parent_sub": "garden-outdoor-stone-art",
+      "is_active": 1
+    },
+    {
+      "id": "carved-stone-vases",
+      "slug": "carved-stone-vases",
+      "name": "Carved Stone Vases",
+      "parent_col": "decorative-stone-art",
+      "parent_sub": "interior-stone-decor",
+      "is_active": 1
+    },
+    {
+      "id": "pedestals-plinths",
+      "slug": "pedestals-plinths",
+      "name": "Pedestals & Plinths",
+      "parent_col": "decorative-stone-art",
+      "parent_sub": "interior-stone-decor",
+      "is_active": 0
+    },
+    {
+      "id": "marble-urns",
+      "slug": "marble-urns",
+      "name": "Marble Urns",
+      "parent_col": "decorative-stone-art",
+      "parent_sub": "interior-stone-decor",
+      "is_active": 1
+    },
+    {
+      "id": "decorative-bowls",
+      "slug": "decorative-bowls",
+      "name": "Decorative Bowls",
+      "parent_col": "decorative-stone-art",
+      "parent_sub": "interior-stone-decor",
+      "is_active": 1
+    },
+    {
+      "id": "tabletop-statuettes",
+      "slug": "tabletop-statuettes",
+      "name": "Tabletop Statuettes",
+      "parent_col": "decorative-stone-art",
+      "parent_sub": "small-sculptural-art",
+      "is_active": 1
+    },
+    {
+      "id": "miniature-reliefs",
+      "slug": "miniature-reliefs",
+      "name": "Miniature Reliefs",
+      "parent_col": "decorative-stone-art",
+      "parent_sub": "small-sculptural-art",
+      "is_active": 0
+    },
+    {
+      "id": "artisan-accessories",
+      "slug": "artisan-accessories",
+      "name": "Artisan Accessories",
+      "parent_col": "decorative-stone-art",
+      "parent_sub": "small-sculptural-art",
+      "is_active": 1
+    },
+    {
+      "id": "marble-tulsi-pots",
+      "slug": "marble-tulsi-pots",
+      "name": "Marble Tulsi Pots",
+      "parent_col": "decorative-stone-art",
+      "parent_sub": "tulsi-pots",
+      "is_active": 1
+    },
+    {
+      "id": "poolside-stone-waterfalls",
+      "slug": "poolside-stone-waterfalls",
+      "name": "Poolside Stone Waterfalls",
+      "parent_col": "fountains-water-features",
+      "parent_sub": "architectural-water-features",
+      "is_active": 0
+    },
+    {
+      "id": "spout-fountains",
+      "slug": "spout-fountains",
+      "name": "Spout Fountains",
+      "parent_col": "fountains-water-features",
+      "parent_sub": "architectural-water-features",
+      "is_active": 0
+    },
+    {
+      "id": "heritage-palace-water-features",
+      "slug": "heritage-palace-water-features",
+      "name": "Heritage Palace Water Features",
+      "parent_col": "fountains-water-features",
+      "parent_sub": "architectural-water-features",
+      "is_active": 0
+    },
+    {
+      "id": "tiered-water-fountains",
+      "slug": "tiered-water-fountains",
+      "name": "Tiered Water Fountains",
+      "parent_col": "fountains-water-features",
+      "parent_sub": "classical-fountains",
+      "is_active": 0
+    },
+    {
+      "id": "central-courtyard-fountains",
+      "slug": "central-courtyard-fountains",
+      "name": "Central Courtyard Fountains",
+      "parent_col": "fountains-water-features",
+      "parent_sub": "classical-fountains",
+      "is_active": 0
+    },
+    {
+      "id": "lotus-basin-fountains",
+      "slug": "lotus-basin-fountains",
+      "name": "Lotus Basin Fountains",
+      "parent_col": "fountains-water-features",
+      "parent_sub": "classical-fountains",
+      "is_active": 0
+    },
+    {
+      "id": "pedestal-fountains",
+      "slug": "pedestal-fountains",
+      "name": "Pedestal Fountains",
+      "parent_col": "fountains-water-features",
+      "parent_sub": "classical-fountains",
+      "is_active": 0
+    },
+    {
+      "id": "garden-fountains",
+      "slug": "garden-fountains",
+      "name": "Garden Fountains",
+      "parent_col": "fountains-water-features",
+      "parent_sub": "garden-fountains",
+      "is_active": 1
+    },
+    {
+      "id": "figurative-water-sculptures",
+      "slug": "figurative-water-sculptures",
+      "name": "Figurative Water Sculptures",
+      "parent_col": "fountains-water-features",
+      "parent_sub": "sculptural-fountains",
+      "is_active": 0
+    },
+    {
+      "id": "cascading-water-walls",
+      "slug": "cascading-water-walls",
+      "name": "Cascading Water Walls",
+      "parent_col": "fountains-water-features",
+      "parent_sub": "sculptural-fountains",
+      "is_active": 0
+    },
+    {
+      "id": "abstract-water-sculptures",
+      "slug": "abstract-water-sculptures",
+      "name": "Abstract Water Sculptures",
+      "parent_col": "fountains-water-features",
+      "parent_sub": "sculptural-fountains",
+      "is_active": 0
+    },
+    {
+      "id": "custom-animal-figures",
+      "slug": "custom-animal-figures",
+      "name": "Custom Animal Figures",
+      "parent_col": "sculptures-statues",
+      "parent_sub": "animal-bird-sculptures",
+      "is_active": 1
+    },
+    {
+      "id": "abstract-form-sculptures",
+      "slug": "abstract-form-sculptures",
+      "name": "Abstract Form Sculptures",
+      "parent_col": "sculptures-statues",
+      "parent_sub": "classical-artistic-sculptures",
+      "is_active": 1
+    },
+    {
+      "id": "modernist-carvings",
+      "slug": "modernist-carvings",
+      "name": "Modernist Carvings",
+      "parent_col": "sculptures-statues",
+      "parent_sub": "classical-artistic-sculptures",
+      "is_active": 1
+    },
+    {
+      "id": "lakshmi-ji",
+      "slug": "lakshmi-ji",
+      "name": "Lakshmi Ji",
+      "parent_col": "sculptures-statues",
+      "parent_sub": "hindu-sculptures",
+      "is_active": 1
+    },
+    {
+      "id": "bespoke-portrait-busts",
+      "slug": "bespoke-portrait-busts",
+      "name": "Bespoke Portrait Busts",
+      "parent_col": "sculptures-statues",
+      "parent_sub": "human-portrait-sculptures",
+      "is_active": 1
+    },
+    {
+      "id": "full-body-figures",
+      "slug": "full-body-figures",
+      "name": "Full Body Figures",
+      "parent_col": "sculptures-statues",
+      "parent_sub": "human-portrait-sculptures",
+      "is_active": 1
+    },
+    {
+      "id": "artisan-figures",
+      "slug": "artisan-figures",
+      "name": "Artisan Figures",
+      "parent_col": "sculptures-statues",
+      "parent_sub": "human-portrait-sculptures",
+      "is_active": 1
+    },
+    {
+      "id": "carved-pillars-columns",
+      "slug": "carved-pillars-columns",
+      "name": "Carved Pillars & Columns",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "architectural-elements",
+      "is_active": 0
+    },
+    {
+      "id": "jali-screens",
+      "slug": "jali-screens",
+      "name": "Jali Screens",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "architectural-elements",
+      "is_active": 0
+    },
+    {
+      "id": "stone-balustrades",
+      "slug": "stone-balustrades",
+      "name": "Stone Balustrades",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "architectural-elements",
+      "is_active": 0
+    },
+    {
+      "id": "stone-door-frames",
+      "slug": "stone-door-frames",
+      "name": "Stone Door Frames",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "architectural-elements",
+      "is_active": 0
+    },
+    {
+      "id": "bespoke-facade-elements",
+      "slug": "bespoke-facade-elements",
+      "name": "Bespoke Facade Elements",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "custom-architectural-stonework",
+      "is_active": 0
+    },
+    {
+      "id": "custom-heritage-columns",
+      "slug": "custom-heritage-columns",
+      "name": "Custom Heritage Columns",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "custom-architectural-stonework",
+      "is_active": 0
+    },
+    {
+      "id": "portico-carvings",
+      "slug": "portico-carvings",
+      "name": "Portico Carvings",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "custom-architectural-stonework",
+      "is_active": 0
+    },
+    {
+      "id": "marble-home-temples",
+      "slug": "marble-home-temples",
+      "name": "Marble Home Temples",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "home-mandirs",
+      "is_active": 0
+    },
+    {
+      "id": "carved-mandir-arches",
+      "slug": "carved-mandir-arches",
+      "name": "Carved Mandir Arches",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "home-mandirs",
+      "is_active": 0
+    },
+    {
+      "id": "pooja-room-panels",
+      "slug": "pooja-room-panels",
+      "name": "Pooja Room Panels",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "home-mandirs",
+      "is_active": 0
+    },
+    {
+      "id": "compact-wall-mandirs",
+      "slug": "compact-wall-mandirs",
+      "name": "Compact Wall Mandirs",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "home-mandirs",
+      "is_active": 0
+    },
+    {
+      "id": "window-jali",
+      "slug": "window-jali",
+      "name": "Window Jali",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "jali",
+      "is_active": 1
+    },
+    {
+      "id": "floor-standing-marble-mandir",
+      "slug": "floor-standing-marble-mandir",
+      "name": "Floor-Standing Marble Mandir",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "mandir-temple",
+      "is_active": 1
+    },
+    {
+      "id": "large-marble-temple",
+      "slug": "large-marble-temple",
+      "name": "Large Marble Temple",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "mandir-temple",
+      "is_active": 1
+    },
+    {
+      "id": "marble-pillars",
+      "slug": "marble-pillars",
+      "name": "Marble Pillars",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "pillars-columns",
+      "is_active": 1
+    },
+    {
+      "id": "stone-pillars",
+      "slug": "stone-pillars",
+      "name": "Stone Pillars",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "pillars-columns",
+      "is_active": 1
+    },
+    {
+      "id": "decorative-pillars",
+      "slug": "decorative-pillars",
+      "name": "Decorative Pillars",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "pillars-columns",
+      "is_active": 1
+    },
+    {
+      "id": "shikhara-domes",
+      "slug": "shikhara-domes",
+      "name": "Shikhara & Domes",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "temple-architecture",
+      "is_active": 0
+    },
+    {
+      "id": "garbhagriha-architecture",
+      "slug": "garbhagriha-architecture",
+      "name": "Garbhagriha Architecture",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "temple-architecture",
+      "is_active": 0
+    },
+    {
+      "id": "pillared-mandapas",
+      "slug": "pillared-mandapas",
+      "name": "Pillared Mandapas",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "temple-architecture",
+      "is_active": 0
+    },
+    {
+      "id": "intricate-torans",
+      "slug": "intricate-torans",
+      "name": "Intricate Torans",
+      "parent_col": "temples-architectural-stonework",
+      "parent_sub": "temple-architecture",
+      "is_active": 0
+    },
+    {
+      "id": "architectural-accent-murals",
+      "slug": "architectural-accent-murals",
+      "name": "Architectural Accent Murals",
+      "parent_col": "wall-art-reliefs",
+      "parent_sub": "custom-wall-art",
+      "is_active": 1
+    },
+    {
+      "id": "bespoke-feature-walls",
+      "slug": "bespoke-feature-walls",
+      "name": "Bespoke Feature Walls",
+      "parent_col": "wall-art-reliefs",
+      "parent_sub": "custom-wall-art",
+      "is_active": 0
+    },
+    {
+      "id": "custom-crests-logos",
+      "slug": "custom-crests-logos",
+      "name": "Custom Crests & Logos",
+      "parent_col": "wall-art-reliefs",
+      "parent_sub": "custom-wall-art",
+      "is_active": 0
+    },
+    {
+      "id": "floral-pattern-panels",
+      "slug": "floral-pattern-panels",
+      "name": "Floral Pattern Panels",
+      "parent_col": "wall-art-reliefs",
+      "parent_sub": "decorative-reliefs",
+      "is_active": 0
+    },
+    {
+      "id": "geometric-carved-walls",
+      "slug": "geometric-carved-walls",
+      "name": "Geometric Carved Walls",
+      "parent_col": "wall-art-reliefs",
+      "parent_sub": "decorative-reliefs",
+      "is_active": 0
+    },
+    {
+      "id": "botanical-reliefs",
+      "slug": "botanical-reliefs",
+      "name": "Botanical Reliefs",
+      "parent_col": "wall-art-reliefs",
+      "parent_sub": "decorative-reliefs",
+      "is_active": 0
+    },
+    {
+      "id": "modern-textured-stone-walls",
+      "slug": "modern-textured-stone-walls",
+      "name": "Modern Textured Stone Walls",
+      "parent_col": "wall-art-reliefs",
+      "parent_sub": "decorative-reliefs",
+      "is_active": 0
+    },
+    {
+      "id": "royal-court-panels",
+      "slug": "royal-court-panels",
+      "name": "Royal Court Panels",
+      "parent_col": "wall-art-reliefs",
+      "parent_sub": "indian-heritage-cultural-murals",
+      "is_active": 0
+    },
+    {
+      "id": "traditional-procession-murals",
+      "slug": "traditional-procession-murals",
+      "name": "Traditional Procession Murals",
+      "parent_col": "wall-art-reliefs",
+      "parent_sub": "indian-heritage-cultural-murals",
+      "is_active": 0
+    },
+    {
+      "id": "rajasthani-heritage-scenes",
+      "slug": "rajasthani-heritage-scenes",
+      "name": "Rajasthani Heritage Scenes",
+      "parent_col": "wall-art-reliefs",
+      "parent_sub": "indian-heritage-cultural-murals",
+      "is_active": 0
+    },
+    {
+      "id": "jharokha-relief-panels",
+      "slug": "jharokha-relief-panels",
+      "name": "Jharokha Relief Panels",
+      "parent_col": "wall-art-reliefs",
+      "parent_sub": "indian-heritage-cultural-murals",
+      "is_active": 0
+    },
+    {
+      "id": "temple-wall-murals",
+      "slug": "temple-wall-murals",
+      "name": "Temple Wall Murals",
+      "parent_col": "wall-art-reliefs",
+      "parent_sub": "religious-spiritual-reliefs",
+      "is_active": 0
+    },
+    {
+      "id": "mandala-wall-art",
+      "slug": "mandala-wall-art",
+      "name": "Mandala Wall Art",
+      "parent_col": "wall-art-reliefs",
+      "parent_sub": "religious-spiritual-reliefs",
+      "is_active": 0
+    },
+    {
+      "id": "tree-of-life-relief",
+      "slug": "tree-of-life-relief",
+      "name": "Tree of Life Relief",
+      "parent_col": "wall-art-reliefs",
+      "parent_sub": "religious-spiritual-reliefs",
+      "is_active": 0
+    }
+  ],
+  "emptySubcategories": [
+    {
+      "id": "custom-bespoke-creations-custom-sculptures",
+      "slug": "custom-sculptures",
+      "name": "Custom Sculptures",
+      "parent_col": "custom-bespoke-creations",
+      "is_active": 0,
+      "childCategoryCount": 3
+    },
+    {
+      "id": "custom-bespoke-creations-custom-portraits",
+      "slug": "custom-portraits",
+      "name": "Custom Portraits",
+      "parent_col": "custom-bespoke-creations",
+      "is_active": 0,
+      "childCategoryCount": 2
+    },
+    {
+      "id": "custom-bespoke-creations-custom-architectural-projects",
+      "slug": "custom-architectural-projects",
+      "name": "Custom Architectural Projects",
+      "parent_col": "custom-bespoke-creations",
+      "is_active": 0,
+      "childCategoryCount": 0
+    },
+    {
+      "id": "decorative-stone-art-interior-stone-decor",
+      "slug": "interior-stone-decor",
+      "name": "Interior Stone Décor",
+      "parent_col": "decorative-stone-art",
+      "is_active": 0,
+      "childCategoryCount": 4
+    },
+    {
+      "id": "decorative-stone-art-planters-tulsi-pots",
+      "slug": "planters-tulsi-pots",
+      "name": "Marble & Stone Planters & Tulsi Pots",
+      "parent_col": "decorative-stone-art",
+      "is_active": 0,
+      "childCategoryCount": 0
+    },
+    {
+      "id": "decorative-stone-art-small-sculptural-art",
+      "slug": "small-sculptural-art",
+      "name": "Small Sculptural Art",
+      "parent_col": "decorative-stone-art",
+      "is_active": 0,
+      "childCategoryCount": 3
+    },
+    {
+      "id": "decorative-stone-art-tulsi-pots",
+      "slug": "tulsi-pots",
+      "name": "Tulsi Pots",
+      "parent_col": "decorative-stone-art",
+      "is_active": 1,
+      "childCategoryCount": 1
+    },
+    {
+      "id": "decorative-stone-art-decorative-accents",
+      "slug": "decorative-accents",
+      "name": "Decorative Accents",
+      "parent_col": "decorative-stone-art",
+      "is_active": 0,
+      "childCategoryCount": 0
+    },
+    {
+      "id": "decorative-stone-art-garden-outdoor-stone-art",
+      "slug": "garden-outdoor-stone-art",
+      "name": "Garden & Outdoor Stone Art",
+      "parent_col": "decorative-stone-art",
+      "is_active": 0,
+      "childCategoryCount": 3
+    },
+    {
+      "id": "fountains-water-features-classical-fountains",
+      "slug": "classical-fountains",
+      "name": "Classical Fountains",
+      "parent_col": "fountains-water-features",
+      "is_active": 0,
+      "childCategoryCount": 4
+    },
+    {
+      "id": "fountains-water-features-garden-fountains",
+      "slug": "garden-fountains",
+      "name": "Garden Fountains",
+      "parent_col": "fountains-water-features",
+      "is_active": 0,
+      "childCategoryCount": 1
+    },
+    {
+      "id": "fountains-water-features-sculptural-fountains",
+      "slug": "sculptural-fountains",
+      "name": "Sculptural Fountains",
+      "parent_col": "fountains-water-features",
+      "is_active": 0,
+      "childCategoryCount": 3
+    },
+    {
+      "id": "fountains-water-features-architectural-water-features",
+      "slug": "architectural-water-features",
+      "name": "Architectural Water Features",
+      "parent_col": "fountains-water-features",
+      "is_active": 0,
+      "childCategoryCount": 3
+    },
+    {
+      "id": "temples-architectural-stonework-home-mandirs",
+      "slug": "home-mandirs",
+      "name": "Home Mandirs",
+      "parent_col": "temples-architectural-stonework",
+      "is_active": 0,
+      "childCategoryCount": 4
+    },
+    {
+      "id": "temples-architectural-stonework-mandir-temple",
+      "slug": "mandir-temple",
+      "name": "Mandir & Temple",
+      "parent_col": "temples-architectural-stonework",
+      "is_active": 0,
+      "childCategoryCount": 2
+    },
+    {
+      "id": "temples-architectural-stonework-jali",
+      "slug": "jali",
+      "name": "Jali",
+      "parent_col": "temples-architectural-stonework",
+      "is_active": 0,
+      "childCategoryCount": 1
+    },
+    {
+      "id": "temples-architectural-stonework-temple-architecture",
+      "slug": "temple-architecture",
+      "name": "Temple Architecture",
+      "parent_col": "temples-architectural-stonework",
+      "is_active": 0,
+      "childCategoryCount": 4
+    },
+    {
+      "id": "temples-architectural-stonework-architectural-elements",
+      "slug": "architectural-elements",
+      "name": "Architectural Elements",
+      "parent_col": "temples-architectural-stonework",
+      "is_active": 0,
+      "childCategoryCount": 4
+    },
+    {
+      "id": "temples-architectural-stonework-other-temple-stone-parts",
+      "slug": "other-temple-stone-parts",
+      "name": "Other Temple & Stone Parts",
+      "parent_col": "temples-architectural-stonework",
+      "is_active": 0,
+      "childCategoryCount": 0
+    },
+    {
+      "id": "wall-art-reliefs-religious-spiritual-reliefs",
+      "slug": "religious-spiritual-reliefs",
+      "name": "Religious & Spiritual Reliefs",
+      "parent_col": "wall-art-reliefs",
+      "is_active": 0,
+      "childCategoryCount": 3
+    },
+    {
+      "id": "wall-art-reliefs-indian-heritage-cultural-murals",
+      "slug": "indian-heritage-cultural-murals",
+      "name": "Indian Heritage & Cultural Murals",
+      "parent_col": "wall-art-reliefs",
+      "is_active": 0,
+      "childCategoryCount": 4
+    },
+    {
+      "id": "wall-art-reliefs-relief-panels",
+      "slug": "relief-panels",
+      "name": "Stone Relief Panels",
+      "parent_col": "wall-art-reliefs",
+      "is_active": 0,
+      "childCategoryCount": 0
+    },
+    {
+      "id": "wall-art-reliefs-custom-wall-art",
+      "slug": "custom-wall-art",
+      "name": "Custom Wall Art",
+      "parent_col": "wall-art-reliefs",
+      "is_active": 0,
+      "childCategoryCount": 3
+    },
+    {
+      "id": "wall-art-reliefs-decorative-reliefs",
+      "slug": "decorative-reliefs",
+      "name": "Decorative Reliefs",
+      "parent_col": "wall-art-reliefs",
+      "is_active": 0,
+      "childCategoryCount": 4
+    }
+  ],
+  "totalProducts": 320,
+  "productStatusCounts": {
+    "published": 277,
+    "draft": 41,
+    "archived": 2
+  },
+  "unlinkedProducts": [
+    {
+      "id": "bespoke-ancestral-portrait-carvings-sculpture",
+      "slug": "bespoke-ancestral-portrait-carvings-sculpture",
+      "name": "Bespoke Ancestral Portrait Carvings Sculpture",
+      "status": "draft",
+      "parent_collection": "custom-bespoke-creations",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "bespoke-artisan-accessories-sculpture",
+      "slug": "bespoke-artisan-accessories-sculpture",
+      "name": "Bespoke Artisan Accessories Sculpture",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "bespoke-benches-seating-sculpture",
+      "slug": "bespoke-benches-seating-sculpture",
+      "name": "Bespoke Benches & Seating Sculpture",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "bespoke-carved-stone-vases-sculpture",
+      "slug": "bespoke-carved-stone-vases-sculpture",
+      "name": "Bespoke Carved Stone Vases Sculpture",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "bespoke-custom-monumental-sculptures-sculpture",
+      "slug": "bespoke-custom-monumental-sculptures-sculpture",
+      "name": "Bespoke Custom Monumental Sculptures Sculpture",
+      "status": "draft",
+      "parent_collection": "custom-bespoke-creations",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "bespoke-decorative-bowls-sculpture",
+      "slug": "bespoke-decorative-bowls-sculpture",
+      "name": "Bespoke Decorative Bowls Sculpture",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "bespoke-garden-lanterns-lamps-sculpture",
+      "slug": "bespoke-garden-lanterns-lamps-sculpture",
+      "name": "Bespoke Garden Lanterns & Lamps Sculpture",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "bespoke-lifesize-memorial-busts-sculpture",
+      "slug": "bespoke-lifesize-memorial-busts-sculpture",
+      "name": "Bespoke Lifesize Memorial Busts Sculpture",
+      "status": "draft",
+      "parent_collection": "custom-bespoke-creations",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "bespoke-marble-urns-sculpture",
+      "slug": "bespoke-marble-urns-sculpture",
+      "name": "Bespoke Marble Urns Sculpture",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "bespoke-tabletop-statuettes-sculpture",
+      "slug": "bespoke-tabletop-statuettes-sculpture",
+      "name": "Bespoke Tabletop Statuettes Sculpture",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "heritage-ancestral-portrait-carvings-design",
+      "slug": "heritage-ancestral-portrait-carvings-design",
+      "name": "Heritage Ancestral Portrait Carvings Design",
+      "status": "draft",
+      "parent_collection": "custom-bespoke-creations",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "heritage-artisan-accessories-design",
+      "slug": "heritage-artisan-accessories-design",
+      "name": "Heritage Artisan Accessories Design",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "heritage-benches-seating-design",
+      "slug": "heritage-benches-seating-design",
+      "name": "Heritage Benches & Seating Design",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "heritage-carved-stone-vases-design",
+      "slug": "heritage-carved-stone-vases-design",
+      "name": "Heritage Carved Stone Vases Design",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "heritage-custom-monumental-sculptures-design",
+      "slug": "heritage-custom-monumental-sculptures-design",
+      "name": "Heritage Custom Monumental Sculptures Design",
+      "status": "draft",
+      "parent_collection": "custom-bespoke-creations",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "heritage-decorative-bowls-design",
+      "slug": "heritage-decorative-bowls-design",
+      "name": "Heritage Decorative Bowls Design",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "heritage-garden-lanterns-lamps-design",
+      "slug": "heritage-garden-lanterns-lamps-design",
+      "name": "Heritage Garden Lanterns & Lamps Design",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "heritage-lifesize-memorial-busts-design",
+      "slug": "heritage-lifesize-memorial-busts-design",
+      "name": "Heritage Lifesize Memorial Busts Design",
+      "status": "draft",
+      "parent_collection": "custom-bespoke-creations",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "heritage-marble-urns-design",
+      "slug": "heritage-marble-urns-design",
+      "name": "Heritage Marble Urns Design",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "heritage-tabletop-statuettes-design",
+      "slug": "heritage-tabletop-statuettes-design",
+      "name": "Heritage Tabletop Statuettes Design",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "royal-carved-ancestral-portrait-carvings",
+      "slug": "royal-carved-ancestral-portrait-carvings",
+      "name": "Royal Carved Ancestral Portrait Carvings",
+      "status": "draft",
+      "parent_collection": "custom-bespoke-creations",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "royal-carved-artisan-accessories",
+      "slug": "royal-carved-artisan-accessories",
+      "name": "Royal Carved Artisan Accessories",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "royal-carved-benches-seating",
+      "slug": "royal-carved-benches-seating",
+      "name": "Royal Carved Benches & Seating",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "royal-carved-carved-stone-vases",
+      "slug": "royal-carved-carved-stone-vases",
+      "name": "Royal Carved Carved Stone Vases",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "royal-carved-custom-monumental-sculptures",
+      "slug": "royal-carved-custom-monumental-sculptures",
+      "name": "Royal Carved Custom Monumental Sculptures",
+      "status": "draft",
+      "parent_collection": "custom-bespoke-creations",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "royal-carved-decorative-bowls",
+      "slug": "royal-carved-decorative-bowls",
+      "name": "Royal Carved Decorative Bowls",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "royal-carved-garden-lanterns-lamps",
+      "slug": "royal-carved-garden-lanterns-lamps",
+      "name": "Royal Carved Garden Lanterns & Lamps",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "royal-carved-lifesize-memorial-busts",
+      "slug": "royal-carved-lifesize-memorial-busts",
+      "name": "Royal Carved Lifesize Memorial Busts",
+      "status": "draft",
+      "parent_collection": "custom-bespoke-creations",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "royal-carved-marble-urns",
+      "slug": "royal-carved-marble-urns",
+      "name": "Royal Carved Marble Urns",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "royal-carved-tabletop-statuettes",
+      "slug": "royal-carved-tabletop-statuettes",
+      "name": "Royal Carved Tabletop Statuettes",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "traditional-ancestral-portrait-carvings",
+      "slug": "traditional-ancestral-portrait-carvings",
+      "name": "Traditional Ancestral Portrait Carvings",
+      "status": "draft",
+      "parent_collection": "custom-bespoke-creations",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "traditional-artisan-accessories",
+      "slug": "traditional-artisan-accessories",
+      "name": "Traditional Artisan Accessories",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "traditional-benches-seating",
+      "slug": "traditional-benches-seating",
+      "name": "Traditional Benches & Seating",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "traditional-carved-stone-vases",
+      "slug": "traditional-carved-stone-vases",
+      "name": "Traditional Carved Stone Vases",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "traditional-custom-monumental-sculptures",
+      "slug": "traditional-custom-monumental-sculptures",
+      "name": "Traditional Custom Monumental Sculptures",
+      "status": "draft",
+      "parent_collection": "custom-bespoke-creations",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "traditional-decorative-bowls",
+      "slug": "traditional-decorative-bowls",
+      "name": "Traditional Decorative Bowls",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "traditional-garden-lanterns-lamps",
+      "slug": "traditional-garden-lanterns-lamps",
+      "name": "Traditional Garden Lanterns & Lamps",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "traditional-lifesize-memorial-busts",
+      "slug": "traditional-lifesize-memorial-busts",
+      "name": "Traditional Lifesize Memorial Busts",
+      "status": "draft",
+      "parent_collection": "custom-bespoke-creations",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "traditional-marble-urns",
+      "slug": "traditional-marble-urns",
+      "name": "Traditional Marble Urns",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    },
+    {
+      "id": "traditional-tabletop-statuettes",
+      "slug": "traditional-tabletop-statuettes",
+      "name": "Traditional Tabletop Statuettes",
+      "status": "draft",
+      "parent_collection": "decorative-stone-art",
+      "parent_subcategory": "review-pending",
+      "parent_category": "review-pending"
+    }
+  ],
+  "productTaxonomyCounts": {
+    "fountains-water-features -> freestanding-fountains -> freestanding-fountains": {
+      "total": 20,
+      "published": 20,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-abstract-water-sculptures-sculpture",
+          "slug": "bespoke-abstract-water-sculptures-sculpture",
+          "name": "Bespoke Abstract Water Sculptures Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-central-courtyard-fountains-sculpture",
+          "slug": "bespoke-central-courtyard-fountains-sculpture",
+          "name": "Bespoke Central Courtyard Fountains Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-figurative-water-sculptures-sculpture",
+          "slug": "bespoke-figurative-water-sculptures-sculpture",
+          "name": "Bespoke Figurative Water Sculptures Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-heritage-palace-water-features-sculpture",
+          "slug": "bespoke-heritage-palace-water-features-sculpture",
+          "name": "Bespoke Heritage Palace Water Features Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-lotus-basin-fountains-sculpture",
+          "slug": "bespoke-lotus-basin-fountains-sculpture",
+          "name": "Bespoke Lotus Basin Fountains Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-abstract-water-sculptures-design",
+          "slug": "heritage-abstract-water-sculptures-design",
+          "name": "Heritage Abstract Water Sculptures Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-central-courtyard-fountains-design",
+          "slug": "heritage-central-courtyard-fountains-design",
+          "name": "Heritage Central Courtyard Fountains Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-figurative-water-sculptures-design",
+          "slug": "heritage-figurative-water-sculptures-design",
+          "name": "Heritage Figurative Water Sculptures Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-heritage-palace-water-features-design",
+          "slug": "heritage-heritage-palace-water-features-design",
+          "name": "Heritage Heritage Palace Water Features Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-lotus-basin-fountains-design",
+          "slug": "heritage-lotus-basin-fountains-design",
+          "name": "Heritage Lotus Basin Fountains Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-abstract-water-sculptures",
+          "slug": "royal-carved-abstract-water-sculptures",
+          "name": "Royal Carved Abstract Water Sculptures",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-central-courtyard-fountains",
+          "slug": "royal-carved-central-courtyard-fountains",
+          "name": "Royal Carved Central Courtyard Fountains",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-figurative-water-sculptures",
+          "slug": "royal-carved-figurative-water-sculptures",
+          "name": "Royal Carved Figurative Water Sculptures",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-heritage-palace-water-features",
+          "slug": "royal-carved-heritage-palace-water-features",
+          "name": "Royal Carved Heritage Palace Water Features",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-lotus-basin-fountains",
+          "slug": "royal-carved-lotus-basin-fountains",
+          "name": "Royal Carved Lotus Basin Fountains",
+          "status": "published"
+        },
+        {
+          "id": "traditional-abstract-water-sculptures",
+          "slug": "traditional-abstract-water-sculptures",
+          "name": "Traditional Abstract Water Sculptures",
+          "status": "published"
+        },
+        {
+          "id": "traditional-central-courtyard-fountains",
+          "slug": "traditional-central-courtyard-fountains",
+          "name": "Traditional Central Courtyard Fountains",
+          "status": "published"
+        },
+        {
+          "id": "traditional-figurative-water-sculptures",
+          "slug": "traditional-figurative-water-sculptures",
+          "name": "Traditional Figurative Water Sculptures",
+          "status": "published"
+        },
+        {
+          "id": "traditional-heritage-palace-water-features",
+          "slug": "traditional-heritage-palace-water-features",
+          "name": "Traditional Heritage Palace Water Features",
+          "status": "published"
+        },
+        {
+          "id": "traditional-lotus-basin-fountains",
+          "slug": "traditional-lotus-basin-fountains",
+          "name": "Traditional Lotus Basin Fountains",
+          "status": "published"
+        }
+      ]
+    },
+    "custom-bespoke-creations -> review-pending -> review-pending": {
+      "total": 12,
+      "published": 0,
+      "draft": 12,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-ancestral-portrait-carvings-sculpture",
+          "slug": "bespoke-ancestral-portrait-carvings-sculpture",
+          "name": "Bespoke Ancestral Portrait Carvings Sculpture",
+          "status": "draft"
+        },
+        {
+          "id": "bespoke-custom-monumental-sculptures-sculpture",
+          "slug": "bespoke-custom-monumental-sculptures-sculpture",
+          "name": "Bespoke Custom Monumental Sculptures Sculpture",
+          "status": "draft"
+        },
+        {
+          "id": "bespoke-lifesize-memorial-busts-sculpture",
+          "slug": "bespoke-lifesize-memorial-busts-sculpture",
+          "name": "Bespoke Lifesize Memorial Busts Sculpture",
+          "status": "draft"
+        },
+        {
+          "id": "heritage-ancestral-portrait-carvings-design",
+          "slug": "heritage-ancestral-portrait-carvings-design",
+          "name": "Heritage Ancestral Portrait Carvings Design",
+          "status": "draft"
+        },
+        {
+          "id": "heritage-custom-monumental-sculptures-design",
+          "slug": "heritage-custom-monumental-sculptures-design",
+          "name": "Heritage Custom Monumental Sculptures Design",
+          "status": "draft"
+        },
+        {
+          "id": "heritage-lifesize-memorial-busts-design",
+          "slug": "heritage-lifesize-memorial-busts-design",
+          "name": "Heritage Lifesize Memorial Busts Design",
+          "status": "draft"
+        },
+        {
+          "id": "royal-carved-ancestral-portrait-carvings",
+          "slug": "royal-carved-ancestral-portrait-carvings",
+          "name": "Royal Carved Ancestral Portrait Carvings",
+          "status": "draft"
+        },
+        {
+          "id": "royal-carved-custom-monumental-sculptures",
+          "slug": "royal-carved-custom-monumental-sculptures",
+          "name": "Royal Carved Custom Monumental Sculptures",
+          "status": "draft"
+        },
+        {
+          "id": "royal-carved-lifesize-memorial-busts",
+          "slug": "royal-carved-lifesize-memorial-busts",
+          "name": "Royal Carved Lifesize Memorial Busts",
+          "status": "draft"
+        },
+        {
+          "id": "traditional-ancestral-portrait-carvings",
+          "slug": "traditional-ancestral-portrait-carvings",
+          "name": "Traditional Ancestral Portrait Carvings",
+          "status": "draft"
+        },
+        {
+          "id": "traditional-custom-monumental-sculptures",
+          "slug": "traditional-custom-monumental-sculptures",
+          "name": "Traditional Custom Monumental Sculptures",
+          "status": "draft"
+        },
+        {
+          "id": "traditional-lifesize-memorial-busts",
+          "slug": "traditional-lifesize-memorial-busts",
+          "name": "Traditional Lifesize Memorial Busts",
+          "status": "draft"
+        }
+      ]
+    },
+    "wall-art-reliefs -> stone-relief-panels -> stone-relief-panels": {
+      "total": 32,
+      "published": 32,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-architectural-accent-murals-sculpture",
+          "slug": "bespoke-architectural-accent-murals-sculpture",
+          "name": "Bespoke Architectural Accent Murals Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-geometric-carved-walls-sculpture",
+          "slug": "bespoke-geometric-carved-walls-sculpture",
+          "name": "Bespoke Geometric Carved Walls Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-mandala-wall-art-sculpture",
+          "slug": "bespoke-mandala-wall-art-sculpture",
+          "name": "Bespoke Mandala Wall Art Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-miniature-reliefs-sculpture",
+          "slug": "bespoke-miniature-reliefs-sculpture",
+          "name": "Bespoke Miniature Reliefs Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-modern-textured-stone-walls-sculpture",
+          "slug": "bespoke-modern-textured-stone-walls-sculpture",
+          "name": "Bespoke Modern Textured Stone Walls Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-rajasthani-heritage-scenes-sculpture",
+          "slug": "bespoke-rajasthani-heritage-scenes-sculpture",
+          "name": "Bespoke Rajasthani Heritage Scenes Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-royal-court-panels-sculpture",
+          "slug": "bespoke-royal-court-panels-sculpture",
+          "name": "Bespoke Royal Court Panels Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-traditional-procession-murals-sculpture",
+          "slug": "bespoke-traditional-procession-murals-sculpture",
+          "name": "Bespoke Traditional Procession Murals Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-architectural-accent-murals-design",
+          "slug": "heritage-architectural-accent-murals-design",
+          "name": "Heritage Architectural Accent Murals Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-geometric-carved-walls-design",
+          "slug": "heritage-geometric-carved-walls-design",
+          "name": "Heritage Geometric Carved Walls Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-mandala-wall-art-design",
+          "slug": "heritage-mandala-wall-art-design",
+          "name": "Heritage Mandala Wall Art Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-miniature-reliefs-design",
+          "slug": "heritage-miniature-reliefs-design",
+          "name": "Heritage Miniature Reliefs Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-modern-textured-stone-walls-design",
+          "slug": "heritage-modern-textured-stone-walls-design",
+          "name": "Heritage Modern Textured Stone Walls Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-rajasthani-heritage-scenes-design",
+          "slug": "heritage-rajasthani-heritage-scenes-design",
+          "name": "Heritage Rajasthani Heritage Scenes Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-royal-court-panels-design",
+          "slug": "heritage-royal-court-panels-design",
+          "name": "Heritage Royal Court Panels Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-traditional-procession-murals-design",
+          "slug": "heritage-traditional-procession-murals-design",
+          "name": "Heritage Traditional Procession Murals Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-architectural-accent-murals",
+          "slug": "royal-carved-architectural-accent-murals",
+          "name": "Royal Carved Architectural Accent Murals",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-geometric-carved-walls",
+          "slug": "royal-carved-geometric-carved-walls",
+          "name": "Royal Carved Geometric Carved Walls",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-mandala-wall-art",
+          "slug": "royal-carved-mandala-wall-art",
+          "name": "Royal Carved Mandala Wall Art",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-miniature-reliefs",
+          "slug": "royal-carved-miniature-reliefs",
+          "name": "Royal Carved Miniature Reliefs",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-modern-textured-stone-walls",
+          "slug": "royal-carved-modern-textured-stone-walls",
+          "name": "Royal Carved Modern Textured Stone Walls",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-rajasthani-heritage-scenes",
+          "slug": "royal-carved-rajasthani-heritage-scenes",
+          "name": "Royal Carved Rajasthani Heritage Scenes",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-royal-court-panels",
+          "slug": "royal-carved-royal-court-panels",
+          "name": "Royal Carved Royal Court Panels",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-traditional-procession-murals",
+          "slug": "royal-carved-traditional-procession-murals",
+          "name": "Royal Carved Traditional Procession Murals",
+          "status": "published"
+        },
+        {
+          "id": "traditional-architectural-accent-murals",
+          "slug": "traditional-architectural-accent-murals",
+          "name": "Traditional Architectural Accent Murals",
+          "status": "published"
+        },
+        {
+          "id": "traditional-geometric-carved-walls",
+          "slug": "traditional-geometric-carved-walls",
+          "name": "Traditional Geometric Carved Walls",
+          "status": "published"
+        },
+        {
+          "id": "traditional-mandala-wall-art",
+          "slug": "traditional-mandala-wall-art",
+          "name": "Traditional Mandala Wall Art",
+          "status": "published"
+        },
+        {
+          "id": "traditional-miniature-reliefs",
+          "slug": "traditional-miniature-reliefs",
+          "name": "Traditional Miniature Reliefs",
+          "status": "published"
+        },
+        {
+          "id": "traditional-modern-textured-stone-walls",
+          "slug": "traditional-modern-textured-stone-walls",
+          "name": "Traditional Modern Textured Stone Walls",
+          "status": "published"
+        },
+        {
+          "id": "traditional-rajasthani-heritage-scenes",
+          "slug": "traditional-rajasthani-heritage-scenes",
+          "name": "Traditional Rajasthani Heritage Scenes",
+          "status": "published"
+        },
+        {
+          "id": "traditional-royal-court-panels",
+          "slug": "traditional-royal-court-panels",
+          "name": "Traditional Royal Court Panels",
+          "status": "published"
+        },
+        {
+          "id": "traditional-traditional-procession-murals",
+          "slug": "traditional-traditional-procession-murals",
+          "name": "Traditional Traditional Procession Murals",
+          "status": "published"
+        }
+      ]
+    },
+    "decorative-stone-art -> review-pending -> review-pending": {
+      "total": 28,
+      "published": 0,
+      "draft": 28,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-artisan-accessories-sculpture",
+          "slug": "bespoke-artisan-accessories-sculpture",
+          "name": "Bespoke Artisan Accessories Sculpture",
+          "status": "draft"
+        },
+        {
+          "id": "bespoke-benches-seating-sculpture",
+          "slug": "bespoke-benches-seating-sculpture",
+          "name": "Bespoke Benches & Seating Sculpture",
+          "status": "draft"
+        },
+        {
+          "id": "bespoke-carved-stone-vases-sculpture",
+          "slug": "bespoke-carved-stone-vases-sculpture",
+          "name": "Bespoke Carved Stone Vases Sculpture",
+          "status": "draft"
+        },
+        {
+          "id": "bespoke-decorative-bowls-sculpture",
+          "slug": "bespoke-decorative-bowls-sculpture",
+          "name": "Bespoke Decorative Bowls Sculpture",
+          "status": "draft"
+        },
+        {
+          "id": "bespoke-garden-lanterns-lamps-sculpture",
+          "slug": "bespoke-garden-lanterns-lamps-sculpture",
+          "name": "Bespoke Garden Lanterns & Lamps Sculpture",
+          "status": "draft"
+        },
+        {
+          "id": "bespoke-marble-urns-sculpture",
+          "slug": "bespoke-marble-urns-sculpture",
+          "name": "Bespoke Marble Urns Sculpture",
+          "status": "draft"
+        },
+        {
+          "id": "bespoke-tabletop-statuettes-sculpture",
+          "slug": "bespoke-tabletop-statuettes-sculpture",
+          "name": "Bespoke Tabletop Statuettes Sculpture",
+          "status": "draft"
+        },
+        {
+          "id": "heritage-artisan-accessories-design",
+          "slug": "heritage-artisan-accessories-design",
+          "name": "Heritage Artisan Accessories Design",
+          "status": "draft"
+        },
+        {
+          "id": "heritage-benches-seating-design",
+          "slug": "heritage-benches-seating-design",
+          "name": "Heritage Benches & Seating Design",
+          "status": "draft"
+        },
+        {
+          "id": "heritage-carved-stone-vases-design",
+          "slug": "heritage-carved-stone-vases-design",
+          "name": "Heritage Carved Stone Vases Design",
+          "status": "draft"
+        },
+        {
+          "id": "heritage-decorative-bowls-design",
+          "slug": "heritage-decorative-bowls-design",
+          "name": "Heritage Decorative Bowls Design",
+          "status": "draft"
+        },
+        {
+          "id": "heritage-garden-lanterns-lamps-design",
+          "slug": "heritage-garden-lanterns-lamps-design",
+          "name": "Heritage Garden Lanterns & Lamps Design",
+          "status": "draft"
+        },
+        {
+          "id": "heritage-marble-urns-design",
+          "slug": "heritage-marble-urns-design",
+          "name": "Heritage Marble Urns Design",
+          "status": "draft"
+        },
+        {
+          "id": "heritage-tabletop-statuettes-design",
+          "slug": "heritage-tabletop-statuettes-design",
+          "name": "Heritage Tabletop Statuettes Design",
+          "status": "draft"
+        },
+        {
+          "id": "royal-carved-artisan-accessories",
+          "slug": "royal-carved-artisan-accessories",
+          "name": "Royal Carved Artisan Accessories",
+          "status": "draft"
+        },
+        {
+          "id": "royal-carved-benches-seating",
+          "slug": "royal-carved-benches-seating",
+          "name": "Royal Carved Benches & Seating",
+          "status": "draft"
+        },
+        {
+          "id": "royal-carved-carved-stone-vases",
+          "slug": "royal-carved-carved-stone-vases",
+          "name": "Royal Carved Carved Stone Vases",
+          "status": "draft"
+        },
+        {
+          "id": "royal-carved-decorative-bowls",
+          "slug": "royal-carved-decorative-bowls",
+          "name": "Royal Carved Decorative Bowls",
+          "status": "draft"
+        },
+        {
+          "id": "royal-carved-garden-lanterns-lamps",
+          "slug": "royal-carved-garden-lanterns-lamps",
+          "name": "Royal Carved Garden Lanterns & Lamps",
+          "status": "draft"
+        },
+        {
+          "id": "royal-carved-marble-urns",
+          "slug": "royal-carved-marble-urns",
+          "name": "Royal Carved Marble Urns",
+          "status": "draft"
+        },
+        {
+          "id": "royal-carved-tabletop-statuettes",
+          "slug": "royal-carved-tabletop-statuettes",
+          "name": "Royal Carved Tabletop Statuettes",
+          "status": "draft"
+        },
+        {
+          "id": "traditional-artisan-accessories",
+          "slug": "traditional-artisan-accessories",
+          "name": "Traditional Artisan Accessories",
+          "status": "draft"
+        },
+        {
+          "id": "traditional-benches-seating",
+          "slug": "traditional-benches-seating",
+          "name": "Traditional Benches & Seating",
+          "status": "draft"
+        },
+        {
+          "id": "traditional-carved-stone-vases",
+          "slug": "traditional-carved-stone-vases",
+          "name": "Traditional Carved Stone Vases",
+          "status": "draft"
+        },
+        {
+          "id": "traditional-decorative-bowls",
+          "slug": "traditional-decorative-bowls",
+          "name": "Traditional Decorative Bowls",
+          "status": "draft"
+        },
+        {
+          "id": "traditional-garden-lanterns-lamps",
+          "slug": "traditional-garden-lanterns-lamps",
+          "name": "Traditional Garden Lanterns & Lamps",
+          "status": "draft"
+        },
+        {
+          "id": "traditional-marble-urns",
+          "slug": "traditional-marble-urns",
+          "name": "Traditional Marble Urns",
+          "status": "draft"
+        },
+        {
+          "id": "traditional-tabletop-statuettes",
+          "slug": "traditional-tabletop-statuettes",
+          "name": "Traditional Tabletop Statuettes",
+          "status": "draft"
+        }
+      ]
+    },
+    "custom-bespoke-creations -> custom-architectural-stonework -> bespoke-heritage-restoration": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-bespoke-heritage-restoration-sculpture",
+          "slug": "bespoke-bespoke-heritage-restoration-sculpture",
+          "name": "Bespoke Bespoke Heritage Restoration Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-bespoke-heritage-restoration-design",
+          "slug": "heritage-bespoke-heritage-restoration-design",
+          "name": "Heritage Bespoke Heritage Restoration Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-bespoke-heritage-restoration",
+          "slug": "royal-carved-bespoke-heritage-restoration",
+          "name": "Royal Carved Bespoke Heritage Restoration",
+          "status": "published"
+        },
+        {
+          "id": "traditional-bespoke-heritage-restoration",
+          "slug": "traditional-bespoke-heritage-restoration",
+          "name": "Traditional Bespoke Heritage Restoration",
+          "status": "published"
+        }
+      ]
+    },
+    "wall-art-reliefs -> stone-relief-panels -> floral-nature-wall-panels": {
+      "total": 12,
+      "published": 12,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-botanical-reliefs-sculpture",
+          "slug": "bespoke-botanical-reliefs-sculpture",
+          "name": "Bespoke Botanical Reliefs Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-floral-pattern-panels-sculpture",
+          "slug": "bespoke-floral-pattern-panels-sculpture",
+          "name": "Bespoke Floral Pattern Panels Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-tree-of-life-relief-sculpture",
+          "slug": "bespoke-tree-of-life-relief-sculpture",
+          "name": "Bespoke Tree of Life Relief Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-botanical-reliefs-design",
+          "slug": "heritage-botanical-reliefs-design",
+          "name": "Heritage Botanical Reliefs Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-floral-pattern-panels-design",
+          "slug": "heritage-floral-pattern-panels-design",
+          "name": "Heritage Floral Pattern Panels Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-tree-of-life-relief-design",
+          "slug": "heritage-tree-of-life-relief-design",
+          "name": "Heritage Tree of Life Relief Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-botanical-reliefs",
+          "slug": "royal-carved-botanical-reliefs",
+          "name": "Royal Carved Botanical Reliefs",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-floral-pattern-panels",
+          "slug": "royal-carved-floral-pattern-panels",
+          "name": "Royal Carved Floral Pattern Panels",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-tree-of-life-relief",
+          "slug": "royal-carved-tree-of-life-relief",
+          "name": "Royal Carved Tree of Life Relief",
+          "status": "published"
+        },
+        {
+          "id": "traditional-botanical-reliefs",
+          "slug": "traditional-botanical-reliefs",
+          "name": "Traditional Botanical Reliefs",
+          "status": "published"
+        },
+        {
+          "id": "traditional-floral-pattern-panels",
+          "slug": "traditional-floral-pattern-panels",
+          "name": "Traditional Floral Pattern Panels",
+          "status": "published"
+        },
+        {
+          "id": "traditional-tree-of-life-relief",
+          "slug": "traditional-tree-of-life-relief",
+          "name": "Traditional Tree of Life Relief",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> buddhist-jain-sculptures -> buddha-statues": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-buddha-statues-sculpture",
+          "slug": "bespoke-buddha-statues-sculpture",
+          "name": "Bespoke Buddha Statues Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-buddha-statues-design",
+          "slug": "heritage-buddha-statues-design",
+          "name": "Heritage Buddha Statues Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-buddha-statues",
+          "slug": "royal-carved-buddha-statues",
+          "name": "Royal Carved Buddha Statues",
+          "status": "published"
+        },
+        {
+          "id": "traditional-buddha-statues",
+          "slug": "traditional-buddha-statues",
+          "name": "Traditional Buddha Statues",
+          "status": "published"
+        }
+      ]
+    },
+    "fountains-water-features -> wall-fountains -> wall-fountains": {
+      "total": 12,
+      "published": 12,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-cascading-water-walls-sculpture",
+          "slug": "bespoke-cascading-water-walls-sculpture",
+          "name": "Bespoke Cascading Water Walls Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-poolside-stone-waterfalls-sculpture",
+          "slug": "bespoke-poolside-stone-waterfalls-sculpture",
+          "name": "Bespoke Poolside Stone Waterfalls Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-spout-fountains-sculpture",
+          "slug": "bespoke-spout-fountains-sculpture",
+          "name": "Bespoke Spout Fountains Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-cascading-water-walls-design",
+          "slug": "heritage-cascading-water-walls-design",
+          "name": "Heritage Cascading Water Walls Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-poolside-stone-waterfalls-design",
+          "slug": "heritage-poolside-stone-waterfalls-design",
+          "name": "Heritage Poolside Stone Waterfalls Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-spout-fountains-design",
+          "slug": "heritage-spout-fountains-design",
+          "name": "Heritage Spout Fountains Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-cascading-water-walls",
+          "slug": "royal-carved-cascading-water-walls",
+          "name": "Royal Carved Cascading Water Walls",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-poolside-stone-waterfalls",
+          "slug": "royal-carved-poolside-stone-waterfalls",
+          "name": "Royal Carved Poolside Stone Waterfalls",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-spout-fountains",
+          "slug": "royal-carved-spout-fountains",
+          "name": "Royal Carved Spout Fountains",
+          "status": "published"
+        },
+        {
+          "id": "traditional-cascading-water-walls",
+          "slug": "traditional-cascading-water-walls",
+          "name": "Traditional Cascading Water Walls",
+          "status": "published"
+        },
+        {
+          "id": "traditional-poolside-stone-waterfalls",
+          "slug": "traditional-poolside-stone-waterfalls",
+          "name": "Traditional Poolside Stone Waterfalls",
+          "status": "published"
+        },
+        {
+          "id": "traditional-spout-fountains",
+          "slug": "traditional-spout-fountains",
+          "name": "Traditional Spout Fountains",
+          "status": "published"
+        }
+      ]
+    },
+    "custom-bespoke-creations -> custom-wall-art-reliefs -> commemorative-reliefs": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-commemorative-reliefs-sculpture",
+          "slug": "bespoke-commemorative-reliefs-sculpture",
+          "name": "Bespoke Commemorative Reliefs Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-commemorative-reliefs-design",
+          "slug": "heritage-commemorative-reliefs-design",
+          "name": "Heritage Commemorative Reliefs Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-commemorative-reliefs",
+          "slug": "royal-carved-commemorative-reliefs",
+          "name": "Royal Carved Commemorative Reliefs",
+          "status": "published"
+        },
+        {
+          "id": "traditional-commemorative-reliefs",
+          "slug": "traditional-commemorative-reliefs",
+          "name": "Traditional Commemorative Reliefs",
+          "status": "published"
+        }
+      ]
+    },
+    "temples-architectural-stonework -> mandirs-temples -> small-marble-mandir-for-home": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-compact-wall-mandirs-sculpture",
+          "slug": "bespoke-compact-wall-mandirs-sculpture",
+          "name": "Bespoke Compact Wall Mandirs Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-compact-wall-mandirs-design",
+          "slug": "heritage-compact-wall-mandirs-design",
+          "name": "Heritage Compact Wall Mandirs Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-compact-wall-mandirs",
+          "slug": "royal-carved-compact-wall-mandirs",
+          "name": "Royal Carved Compact Wall Mandirs",
+          "status": "published"
+        },
+        {
+          "id": "traditional-compact-wall-mandirs",
+          "slug": "traditional-compact-wall-mandirs",
+          "name": "Traditional Compact Wall Mandirs",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> classical-artistic-sculptures -> contemporary-stone-art": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-contemporary-stone-art-sculpture",
+          "slug": "bespoke-contemporary-stone-art-sculpture",
+          "name": "Bespoke Contemporary Stone Art Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-contemporary-stone-art-design",
+          "slug": "heritage-contemporary-stone-art-design",
+          "name": "Heritage Contemporary Stone Art Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-contemporary-stone-art",
+          "slug": "royal-carved-contemporary-stone-art",
+          "name": "Royal Carved Contemporary Stone Art",
+          "status": "published"
+        },
+        {
+          "id": "traditional-contemporary-stone-art",
+          "slug": "traditional-contemporary-stone-art",
+          "name": "Traditional Contemporary Stone Art",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> human-portrait-sculptures -> cultural-tribal-figures": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-cultural-tribal-figures-sculpture",
+          "slug": "bespoke-cultural-tribal-figures-sculpture",
+          "name": "Bespoke Cultural & Tribal Figures Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-cultural-tribal-figures-design",
+          "slug": "heritage-cultural-tribal-figures-design",
+          "name": "Heritage Cultural & Tribal Figures Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-cultural-tribal-figures",
+          "slug": "royal-carved-cultural-tribal-figures",
+          "name": "Royal Carved Cultural & Tribal Figures",
+          "status": "published"
+        },
+        {
+          "id": "traditional-cultural-tribal-figures",
+          "slug": "traditional-cultural-tribal-figures",
+          "name": "Traditional Cultural & Tribal Figures",
+          "status": "published"
+        }
+      ]
+    },
+    "wall-art-reliefs -> religious-reliefs -> devotional-relief-panels": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-devotional-relief-panels-sculpture",
+          "slug": "bespoke-devotional-relief-panels-sculpture",
+          "name": "Bespoke Devotional Relief Panels Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-devotional-relief-panels-design",
+          "slug": "heritage-devotional-relief-panels-design",
+          "name": "Heritage Devotional Relief Panels Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-devotional-relief-panels",
+          "slug": "royal-carved-devotional-relief-panels",
+          "name": "Royal Carved Devotional Relief Panels",
+          "status": "published"
+        },
+        {
+          "id": "traditional-devotional-relief-panels",
+          "slug": "traditional-devotional-relief-panels",
+          "name": "Traditional Devotional Relief Panels",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> hindu-sculptures -> durga-ji": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-durga-ji-sculpture",
+          "slug": "bespoke-durga-ji-sculpture",
+          "name": "Bespoke Durga Ji Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-durga-ji-design",
+          "slug": "heritage-durga-ji-design",
+          "name": "Heritage Durga Ji Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-durga-ji",
+          "slug": "royal-carved-durga-ji",
+          "name": "Royal Carved Durga Ji",
+          "status": "published"
+        },
+        {
+          "id": "traditional-durga-ji",
+          "slug": "traditional-durga-ji",
+          "name": "Traditional Durga Ji",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> animal-bird-sculptures -> elephants": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-elephants-sculpture",
+          "slug": "bespoke-elephants-sculpture",
+          "name": "Bespoke Elephants Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-elephants-design",
+          "slug": "heritage-elephants-design",
+          "name": "Heritage Elephants Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-elephants",
+          "slug": "royal-carved-elephants",
+          "name": "Royal Carved Elephants",
+          "status": "published"
+        },
+        {
+          "id": "traditional-elephants",
+          "slug": "traditional-elephants",
+          "name": "Traditional Elephants",
+          "status": "published"
+        }
+      ]
+    },
+    "custom-bespoke-creations -> custom-architectural-stonework -> full-temple-construction": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-full-temple-construction-sculpture",
+          "slug": "bespoke-full-temple-construction-sculpture",
+          "name": "Bespoke Full Temple Construction Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-full-temple-construction-design",
+          "slug": "heritage-full-temple-construction-design",
+          "name": "Heritage Full Temple Construction Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-full-temple-construction",
+          "slug": "royal-carved-full-temple-construction",
+          "name": "Royal Carved Full Temple Construction",
+          "status": "published"
+        },
+        {
+          "id": "traditional-full-temple-construction",
+          "slug": "traditional-full-temple-construction",
+          "name": "Traditional Full Temple Construction",
+          "status": "published"
+        }
+      ]
+    },
+    "temples-architectural-stonework -> mandirs-temples -> temple-parts-designs": {
+      "total": 16,
+      "published": 16,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-garbhagriha-architecture-sculpture",
+          "slug": "bespoke-garbhagriha-architecture-sculpture",
+          "name": "Bespoke Garbhagriha Architecture Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-pillared-mandapas-sculpture",
+          "slug": "bespoke-pillared-mandapas-sculpture",
+          "name": "Bespoke Pillared Mandapas Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-pooja-room-panels-sculpture",
+          "slug": "bespoke-pooja-room-panels-sculpture",
+          "name": "Bespoke Pooja Room Panels Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-shikhara-domes-sculpture",
+          "slug": "bespoke-shikhara-domes-sculpture",
+          "name": "Bespoke Shikhara & Domes Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-garbhagriha-architecture-design",
+          "slug": "heritage-garbhagriha-architecture-design",
+          "name": "Heritage Garbhagriha Architecture Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-pillared-mandapas-design",
+          "slug": "heritage-pillared-mandapas-design",
+          "name": "Heritage Pillared Mandapas Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-pooja-room-panels-design",
+          "slug": "heritage-pooja-room-panels-design",
+          "name": "Heritage Pooja Room Panels Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-shikhara-domes-design",
+          "slug": "heritage-shikhara-domes-design",
+          "name": "Heritage Shikhara & Domes Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-garbhagriha-architecture",
+          "slug": "royal-carved-garbhagriha-architecture",
+          "name": "Royal Carved Garbhagriha Architecture",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-pillared-mandapas",
+          "slug": "royal-carved-pillared-mandapas",
+          "name": "Royal Carved Pillared Mandapas",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-pooja-room-panels",
+          "slug": "royal-carved-pooja-room-panels",
+          "name": "Royal Carved Pooja Room Panels",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-shikhara-domes",
+          "slug": "royal-carved-shikhara-domes",
+          "name": "Royal Carved Shikhara & Domes",
+          "status": "published"
+        },
+        {
+          "id": "traditional-garbhagriha-architecture",
+          "slug": "traditional-garbhagriha-architecture",
+          "name": "Traditional Garbhagriha Architecture",
+          "status": "published"
+        },
+        {
+          "id": "traditional-pillared-mandapas",
+          "slug": "traditional-pillared-mandapas",
+          "name": "Traditional Pillared Mandapas",
+          "status": "published"
+        },
+        {
+          "id": "traditional-pooja-room-panels",
+          "slug": "traditional-pooja-room-panels",
+          "name": "Traditional Pooja Room Panels",
+          "status": "published"
+        },
+        {
+          "id": "traditional-shikhara-domes",
+          "slug": "traditional-shikhara-domes",
+          "name": "Traditional Shikhara & Domes",
+          "status": "published"
+        }
+      ]
+    },
+    "temples-architectural-stonework -> architectural-components -> gazebo-sculptural-elements": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-gazebo-sculptural-elements-sculpture",
+          "slug": "bespoke-gazebo-sculptural-elements-sculpture",
+          "name": "Bespoke Gazebo Sculptural Elements Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-gazebo-sculptural-elements-design",
+          "slug": "heritage-gazebo-sculptural-elements-design",
+          "name": "Heritage Gazebo Sculptural Elements Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-gazebo-sculptural-elements",
+          "slug": "royal-carved-gazebo-sculptural-elements",
+          "name": "Royal Carved Gazebo Sculptural Elements",
+          "status": "published"
+        },
+        {
+          "id": "traditional-gazebo-sculptural-elements",
+          "slug": "traditional-gazebo-sculptural-elements",
+          "name": "Traditional Gazebo Sculptural Elements",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> hindu-sculptures -> hanuman-ji": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-hanuman-ji-sculpture",
+          "slug": "bespoke-hanuman-ji-sculpture",
+          "name": "Bespoke Hanuman Ji Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-hanuman-ji-design",
+          "slug": "heritage-hanuman-ji-design",
+          "name": "Heritage Hanuman Ji Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-hanuman-ji",
+          "slug": "royal-carved-hanuman-ji",
+          "name": "Royal Carved Hanuman Ji",
+          "status": "published"
+        },
+        {
+          "id": "traditional-hanuman-ji",
+          "slug": "traditional-hanuman-ji",
+          "name": "Traditional Hanuman Ji",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> animal-bird-sculptures -> horses": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-horses-sculpture",
+          "slug": "bespoke-horses-sculpture",
+          "name": "Bespoke Horses Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-horses-design",
+          "slug": "heritage-horses-design",
+          "name": "Heritage Horses Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-horses",
+          "slug": "royal-carved-horses",
+          "name": "Royal Carved Horses",
+          "status": "published"
+        },
+        {
+          "id": "traditional-horses",
+          "slug": "traditional-horses",
+          "name": "Traditional Horses",
+          "status": "published"
+        }
+      ]
+    },
+    "temples-architectural-stonework -> pillars-columns -> stone-arches-door-frames": {
+      "total": 8,
+      "published": 8,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-intricate-torans-sculpture",
+          "slug": "bespoke-intricate-torans-sculpture",
+          "name": "Bespoke Intricate Torans Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "bespoke-portico-carvings-sculpture",
+          "slug": "bespoke-portico-carvings-sculpture",
+          "name": "Bespoke Portico Carvings Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-intricate-torans-design",
+          "slug": "heritage-intricate-torans-design",
+          "name": "Heritage Intricate Torans Design",
+          "status": "published"
+        },
+        {
+          "id": "heritage-portico-carvings-design",
+          "slug": "heritage-portico-carvings-design",
+          "name": "Heritage Portico Carvings Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-intricate-torans",
+          "slug": "royal-carved-intricate-torans",
+          "name": "Royal Carved Intricate Torans",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-portico-carvings",
+          "slug": "royal-carved-portico-carvings",
+          "name": "Royal Carved Portico Carvings",
+          "status": "published"
+        },
+        {
+          "id": "traditional-intricate-torans",
+          "slug": "traditional-intricate-torans",
+          "name": "Traditional Intricate Torans",
+          "status": "published"
+        },
+        {
+          "id": "traditional-portico-carvings",
+          "slug": "traditional-portico-carvings",
+          "name": "Traditional Portico Carvings",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> hindu-sculptures -> jagannath": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-jagannath-sculpture",
+          "slug": "bespoke-jagannath-sculpture",
+          "name": "Bespoke Jagannath Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-jagannath-design",
+          "slug": "heritage-jagannath-design",
+          "name": "Heritage Jagannath Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-jagannath",
+          "slug": "royal-carved-jagannath",
+          "name": "Royal Carved Jagannath",
+          "status": "published"
+        },
+        {
+          "id": "traditional-jagannath",
+          "slug": "traditional-jagannath",
+          "name": "Traditional Jagannath",
+          "status": "published"
+        }
+      ]
+    },
+    "temples-architectural-stonework -> architectural-components -> jharokhas-windows": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-jharokhas-windows-sculpture",
+          "slug": "bespoke-jharokhas-windows-sculpture",
+          "name": "Bespoke Jharokhas & Windows Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-jharokhas-windows-design",
+          "slug": "heritage-jharokhas-windows-design",
+          "name": "Heritage Jharokhas & Windows Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-jharokhas-windows",
+          "slug": "royal-carved-jharokhas-windows",
+          "name": "Royal Carved Jharokhas & Windows",
+          "status": "published"
+        },
+        {
+          "id": "traditional-jharokhas-windows",
+          "slug": "traditional-jharokhas-windows",
+          "name": "Traditional Jharokhas & Windows",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> hindu-sculptures -> kartikeya": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-kartikeya-sculpture",
+          "slug": "bespoke-kartikeya-sculpture",
+          "name": "Bespoke Kartikeya Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-kartikeya-design",
+          "slug": "heritage-kartikeya-design",
+          "name": "Heritage Kartikeya Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-kartikeya",
+          "slug": "royal-carved-kartikeya",
+          "name": "Royal Carved Kartikeya",
+          "status": "published"
+        },
+        {
+          "id": "traditional-kartikeya",
+          "slug": "traditional-kartikeya",
+          "name": "Traditional Kartikeya",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> hindu-sculptures -> lakshmi-narayan": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-lakshmi-narayan-sculpture",
+          "slug": "bespoke-lakshmi-narayan-sculpture",
+          "name": "Bespoke Lakshmi Narayan Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-lakshmi-narayan-design",
+          "slug": "heritage-lakshmi-narayan-design",
+          "name": "Heritage Lakshmi Narayan Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-lakshmi-narayan",
+          "slug": "royal-carved-lakshmi-narayan",
+          "name": "Royal Carved Lakshmi Narayan",
+          "status": "published"
+        },
+        {
+          "id": "traditional-lakshmi-narayan",
+          "slug": "traditional-lakshmi-narayan",
+          "name": "Traditional Lakshmi Narayan",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> animal-bird-sculptures -> lions": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-lions-sculpture",
+          "slug": "bespoke-lions-sculpture",
+          "name": "Bespoke Lions Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-lions-design",
+          "slug": "heritage-lions-design",
+          "name": "Heritage Lions Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-lions",
+          "slug": "royal-carved-lions",
+          "name": "Royal Carved Lions",
+          "status": "published"
+        },
+        {
+          "id": "traditional-lions",
+          "slug": "traditional-lions",
+          "name": "Traditional Lions",
+          "status": "published"
+        }
+      ]
+    },
+    "custom-bespoke-creations -> custom-architectural-stonework -> luxury-estate-stonework": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-luxury-estate-stonework-sculpture",
+          "slug": "bespoke-luxury-estate-stonework-sculpture",
+          "name": "Bespoke Luxury Estate Stonework Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-luxury-estate-stonework-design",
+          "slug": "heritage-luxury-estate-stonework-design",
+          "name": "Heritage Luxury Estate Stonework Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-luxury-estate-stonework",
+          "slug": "royal-carved-luxury-estate-stonework",
+          "name": "Royal Carved Luxury Estate Stonework",
+          "status": "published"
+        },
+        {
+          "id": "traditional-luxury-estate-stonework",
+          "slug": "traditional-luxury-estate-stonework",
+          "name": "Traditional Luxury Estate Stonework",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> buddhist-jain-sculptures -> mahavira-statues": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-mahavira-statues-sculpture",
+          "slug": "bespoke-mahavira-statues-sculpture",
+          "name": "Bespoke Mahavira Statues Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-mahavira-statues-design",
+          "slug": "heritage-mahavira-statues-design",
+          "name": "Heritage Mahavira Statues Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-mahavira-statues",
+          "slug": "royal-carved-mahavira-statues",
+          "name": "Royal Carved Mahavira Statues",
+          "status": "published"
+        },
+        {
+          "id": "traditional-mahavira-statues",
+          "slug": "traditional-mahavira-statues",
+          "name": "Traditional Mahavira Statues",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> buddhist-jain-sculptures -> meditating-buddha": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-meditating-buddha-sculpture",
+          "slug": "bespoke-meditating-buddha-sculpture",
+          "name": "Bespoke Meditating Buddha Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-meditating-buddha-design",
+          "slug": "heritage-meditating-buddha-design",
+          "name": "Heritage Meditating Buddha Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-meditating-buddha",
+          "slug": "royal-carved-meditating-buddha",
+          "name": "Royal Carved Meditating Buddha",
+          "status": "published"
+        },
+        {
+          "id": "traditional-meditating-buddha",
+          "slug": "traditional-meditating-buddha",
+          "name": "Traditional Meditating Buddha",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> hindu-sculptures -> nandi": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-nandi-sculpture",
+          "slug": "bespoke-nandi-sculpture",
+          "name": "Bespoke Nandi Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-nandi-design",
+          "slug": "heritage-nandi-design",
+          "name": "Heritage Nandi Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-nandi",
+          "slug": "royal-carved-nandi",
+          "name": "Royal Carved Nandi",
+          "status": "published"
+        },
+        {
+          "id": "traditional-nandi",
+          "slug": "traditional-nandi",
+          "name": "Traditional Nandi",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> hindu-sculptures -> other-deities": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-other-deities-sculpture",
+          "slug": "bespoke-other-deities-sculpture",
+          "name": "Bespoke Other Deities Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-other-deities-design",
+          "slug": "heritage-other-deities-design",
+          "name": "Heritage Other Deities Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-other-deities",
+          "slug": "royal-carved-other-deities",
+          "name": "Royal Carved Other Deities",
+          "status": "published"
+        },
+        {
+          "id": "traditional-other-deities",
+          "slug": "traditional-other-deities",
+          "name": "Traditional Other Deities",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> hindu-sculptures -> parvati-ji": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-parvati-ji-sculpture",
+          "slug": "bespoke-parvati-ji-sculpture",
+          "name": "Bespoke Parvati Ji Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-parvati-ji-design",
+          "slug": "heritage-parvati-ji-design",
+          "name": "Heritage Parvati Ji Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-parvati-ji",
+          "slug": "royal-carved-parvati-ji",
+          "name": "Royal Carved Parvati Ji",
+          "status": "published"
+        },
+        {
+          "id": "traditional-parvati-ji",
+          "slug": "traditional-parvati-ji",
+          "name": "Traditional Parvati Ji",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> animal-bird-sculptures -> peacocks": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-peacocks-sculpture",
+          "slug": "bespoke-peacocks-sculpture",
+          "name": "Bespoke Peacocks Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-peacocks-design",
+          "slug": "heritage-peacocks-design",
+          "name": "Heritage Peacocks Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-peacocks",
+          "slug": "royal-carved-peacocks",
+          "name": "Royal Carved Peacocks",
+          "status": "published"
+        },
+        {
+          "id": "traditional-peacocks",
+          "slug": "traditional-peacocks",
+          "name": "Traditional Peacocks",
+          "status": "published"
+        }
+      ]
+    },
+    "decorative-stone-art -> pedestals-stands -> marble-pedestals-stands": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-pedestals-plinths-sculpture",
+          "slug": "bespoke-pedestals-plinths-sculpture",
+          "name": "Bespoke Pedestals & Plinths Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-pedestals-plinths-design",
+          "slug": "heritage-pedestals-plinths-design",
+          "name": "Heritage Pedestals & Plinths Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-pedestals-plinths",
+          "slug": "royal-carved-pedestals-plinths",
+          "name": "Royal Carved Pedestals & Plinths",
+          "status": "published"
+        },
+        {
+          "id": "traditional-pedestals-plinths",
+          "slug": "traditional-pedestals-plinths",
+          "name": "Traditional Pedestals & Plinths",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> hindu-sculptures -> radha-krishna": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-radha-krishna-sculpture",
+          "slug": "bespoke-radha-krishna-sculpture",
+          "name": "Bespoke Radha Krishna Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-radha-krishna-design",
+          "slug": "heritage-radha-krishna-design",
+          "name": "Heritage Radha Krishna Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-radha-krishna",
+          "slug": "royal-carved-radha-krishna",
+          "name": "Royal Carved Radha Krishna",
+          "status": "published"
+        },
+        {
+          "id": "traditional-radha-krishna",
+          "slug": "traditional-radha-krishna",
+          "name": "Traditional Radha Krishna",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> hindu-sculptures -> ram-darbar": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-ram-darbar-sculpture",
+          "slug": "bespoke-ram-darbar-sculpture",
+          "name": "Bespoke Ram Darbar Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-ram-darbar-design",
+          "slug": "heritage-ram-darbar-design",
+          "name": "Heritage Ram Darbar Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-ram-darbar",
+          "slug": "royal-carved-ram-darbar",
+          "name": "Royal Carved Ram Darbar",
+          "status": "published"
+        },
+        {
+          "id": "traditional-ram-darbar",
+          "slug": "traditional-ram-darbar",
+          "name": "Traditional Ram Darbar",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> buddhist-jain-sculptures -> reclining-buddha": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-reclining-buddha-sculpture",
+          "slug": "bespoke-reclining-buddha-sculpture",
+          "name": "Bespoke Reclining Buddha Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-reclining-buddha-design",
+          "slug": "heritage-reclining-buddha-design",
+          "name": "Heritage Reclining Buddha Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-reclining-buddha",
+          "slug": "royal-carved-reclining-buddha",
+          "name": "Royal Carved Reclining Buddha",
+          "status": "published"
+        },
+        {
+          "id": "traditional-reclining-buddha",
+          "slug": "traditional-reclining-buddha",
+          "name": "Traditional Reclining Buddha",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> classical-artistic-sculptures -> roman-greek-figures": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-roman-greek-figures-sculpture",
+          "slug": "bespoke-roman-greek-figures-sculpture",
+          "name": "Bespoke Roman & Greek Figures Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-roman-greek-figures-design",
+          "slug": "heritage-roman-greek-figures-design",
+          "name": "Heritage Roman & Greek Figures Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-roman-greek-figures",
+          "slug": "royal-carved-roman-greek-figures",
+          "name": "Royal Carved Roman & Greek Figures",
+          "status": "published"
+        },
+        {
+          "id": "traditional-roman-greek-figures",
+          "slug": "traditional-roman-greek-figures",
+          "name": "Traditional Roman & Greek Figures",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> hindu-sculptures -> saraswati-ji": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-saraswati-ji-sculpture",
+          "slug": "bespoke-saraswati-ji-sculpture",
+          "name": "Bespoke Saraswati Ji Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-saraswati-ji-design",
+          "slug": "heritage-saraswati-ji-design",
+          "name": "Heritage Saraswati Ji Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-saraswati-ji",
+          "slug": "royal-carved-saraswati-ji",
+          "name": "Royal Carved Saraswati Ji",
+          "status": "published"
+        },
+        {
+          "id": "traditional-saraswati-ji",
+          "slug": "traditional-saraswati-ji",
+          "name": "Traditional Saraswati Ji",
+          "status": "published"
+        }
+      ]
+    },
+    "decorative-stone-art -> planters -> marble-stone-planters": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-stone-planters-sculpture",
+          "slug": "bespoke-stone-planters-sculpture",
+          "name": "Bespoke Stone Planters Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-stone-planters-design",
+          "slug": "heritage-stone-planters-design",
+          "name": "Heritage Stone Planters Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-stone-planters",
+          "slug": "royal-carved-stone-planters",
+          "name": "Royal Carved Stone Planters",
+          "status": "published"
+        },
+        {
+          "id": "traditional-stone-planters",
+          "slug": "traditional-stone-planters",
+          "name": "Traditional Stone Planters",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> animal-bird-sculptures -> swans": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-swans-sculpture",
+          "slug": "bespoke-swans-sculpture",
+          "name": "Bespoke Swans Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-swans-design",
+          "slug": "heritage-swans-design",
+          "name": "Heritage Swans Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-swans",
+          "slug": "royal-carved-swans",
+          "name": "Royal Carved Swans",
+          "status": "published"
+        },
+        {
+          "id": "traditional-swans",
+          "slug": "traditional-swans",
+          "name": "Traditional Swans",
+          "status": "published"
+        }
+      ]
+    },
+    "wall-art-reliefs -> wall-murals -> religious-wall-murals": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-temple-wall-murals-sculpture",
+          "slug": "bespoke-temple-wall-murals-sculpture",
+          "name": "Bespoke Temple Wall Murals Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-temple-wall-murals-design",
+          "slug": "heritage-temple-wall-murals-design",
+          "name": "Heritage Temple Wall Murals Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-temple-wall-murals",
+          "slug": "royal-carved-temple-wall-murals",
+          "name": "Royal Carved Temple Wall Murals",
+          "status": "published"
+        },
+        {
+          "id": "traditional-temple-wall-murals",
+          "slug": "traditional-temple-wall-murals",
+          "name": "Traditional Temple Wall Murals",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> buddhist-jain-sculptures -> tirthankara-sculptures": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-tirthankara-sculptures-sculpture",
+          "slug": "bespoke-tirthankara-sculptures-sculpture",
+          "name": "Bespoke Tirthankara Sculptures Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-tirthankara-sculptures-design",
+          "slug": "heritage-tirthankara-sculptures-design",
+          "name": "Heritage Tirthankara Sculptures Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-tirthankara-sculptures",
+          "slug": "royal-carved-tirthankara-sculptures",
+          "name": "Royal Carved Tirthankara Sculptures",
+          "status": "published"
+        },
+        {
+          "id": "traditional-tirthankara-sculptures",
+          "slug": "traditional-tirthankara-sculptures",
+          "name": "Traditional Tirthankara Sculptures",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> hindu-sculptures -> vishnu-ji": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "bespoke-vishnu-ji-sculpture",
+          "slug": "bespoke-vishnu-ji-sculpture",
+          "name": "Bespoke Vishnu Ji Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "heritage-vishnu-ji-design",
+          "slug": "heritage-vishnu-ji-design",
+          "name": "Heritage Vishnu Ji Design",
+          "status": "published"
+        },
+        {
+          "id": "royal-carved-vishnu-ji",
+          "slug": "royal-carved-vishnu-ji",
+          "name": "Royal Carved Vishnu Ji",
+          "status": "published"
+        },
+        {
+          "id": "traditional-vishnu-ji",
+          "slug": "traditional-vishnu-ji",
+          "name": "Traditional Vishnu Ji",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> hindu-sculptures -> ganesh-ji": {
+      "total": 12,
+      "published": 9,
+      "draft": 1,
+      "archived": 2,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "blessing-ganesh-statue",
+          "slug": "blessing-ganesh-statue",
+          "name": "White Makrana Marble Blessing Ganesha Statue",
+          "status": "published"
+        },
+        {
+          "id": "dancing-ganesh-statue",
+          "slug": "dancing-ganesh-statue",
+          "name": "Dancing Ganesh Statue",
+          "status": "published"
+        },
+        {
+          "id": "ganesh-ji",
+          "slug": "ganesh-ji",
+          "name": "ganesh ji",
+          "status": "published"
+        },
+        {
+          "id": "http-test-product-1787044914657",
+          "slug": "http-test-product-1787044914657",
+          "name": "HTTP Test Statue 4657 (Updated)",
+          "status": "archived"
+        },
+        {
+          "id": "marble-ganesh-ji-seated-on-lotus",
+          "slug": "marble-ganesh-ji-seated-on-lotus",
+          "name": "Marble Ganesh ji seated on lotus",
+          "status": "published"
+        },
+        {
+          "id": "marble-ganesh-on-choki",
+          "slug": "marble-ganesh-on-choki",
+          "name": "Marble Ganesh on choki",
+          "status": "published"
+        },
+        {
+          "id": "phase9-crud-test-1787046726785",
+          "slug": "phase9-crud-test-1787046726785",
+          "name": "Phase 9 Audit Statue 6785 (Updated in Phase 9)",
+          "status": "archived"
+        },
+        {
+          "id": "royal-ganesh-sculpture",
+          "slug": "royal-ganesh-sculpture",
+          "name": "Royal Ganesh Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "seated-ganesh-with-modak",
+          "slug": "seated-ganesh-with-modak",
+          "name": "Seated Ganesh with Modak Edited",
+          "status": "draft"
+        },
+        {
+          "id": "standing-ganesh-statue",
+          "slug": "standing-ganesh-statue",
+          "name": "Standing Ganesh Statue",
+          "status": "published"
+        },
+        {
+          "id": "test-maruti-29431",
+          "slug": "test-maruti-29431",
+          "name": "Test Maruti Idol",
+          "status": "published"
+        },
+        {
+          "id": "traditional-seated-ganesh",
+          "slug": "traditional-seated-ganesh",
+          "name": "Classic Seated Ganesha in Bansi Paharpur Pink Sandstone",
+          "status": "published"
+        }
+      ]
+    },
+    "temples-architectural-stonework -> jali-designs -> marble-jali-designs": {
+      "total": 2,
+      "published": 2,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "botanical-lotus-lattice-screen",
+          "slug": "botanical-lotus-lattice-screen",
+          "name": "White Marble Floral Lotus Jali Panel",
+          "status": "published"
+        },
+        {
+          "id": "stones-jali",
+          "slug": "stones-jali",
+          "name": "Stones Jali",
+          "status": "published"
+        }
+      ]
+    },
+    "fountains-water-features -> tiered-fountains -> tiered-fountains": {
+      "total": 4,
+      "published": 4,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "carved-scalloped-tier-fountain",
+          "slug": "carved-scalloped-tier-fountain",
+          "name": "Carved Scalloped Tier Fountain",
+          "status": "published"
+        },
+        {
+          "id": "classical-pedestal-water-fountain",
+          "slug": "classical-pedestal-water-fountain",
+          "name": "Classical Pedestal Water Fountain",
+          "status": "published"
+        },
+        {
+          "id": "royal-courtyard-tiered-fountain",
+          "slug": "royal-courtyard-tiered-fountain",
+          "name": "Royal Courtyard Tiered Fountain",
+          "status": "published"
+        },
+        {
+          "id": "three-tier-lotus-fountain",
+          "slug": "three-tier-lotus-fountain",
+          "name": "Three-Tier Lotus Fountain",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> hindu-sculptures -> krishna-ji": {
+      "total": 6,
+      "published": 6,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "flute-playing-krishna",
+          "slug": "flute-playing-krishna",
+          "name": "Radha Krishna Jugal Jodi White Marble Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "krishna-ji",
+          "slug": "krishna-ji",
+          "name": "krishna ji ",
+          "status": "published"
+        },
+        {
+          "id": "krishna-with-sacred-cow",
+          "slug": "krishna-with-sacred-cow",
+          "name": "Krishna with Sacred Cow",
+          "status": "published"
+        },
+        {
+          "id": "radha-krishna-pair-sculpture",
+          "slug": "radha-krishna-pair-sculpture",
+          "name": "Radha Krishna Pair Sculpture",
+          "status": "published"
+        },
+        {
+          "id": "standing-bal-krishna",
+          "slug": "standing-bal-krishna",
+          "name": "Standing Bal Krishna Idol",
+          "status": "published"
+        },
+        {
+          "id": "white-marble-shree-krishna-with-chakra",
+          "slug": "white-marble-shree-krishna-with-chakra",
+          "name": "White marble Shree Krishna with chakra",
+          "status": "published"
+        }
+      ]
+    },
+    "temples-architectural-stonework -> jali-designs -> jali-for-partitions": {
+      "total": 2,
+      "published": 2,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "geometric-star-pattern-jali",
+          "slug": "geometric-star-pattern-jali",
+          "name": "Hand-Carved Stone Jali & Lattice Architectural Screen",
+          "status": "published"
+        },
+        {
+          "id": "modern-slatted-stone-screen",
+          "slug": "modern-slatted-stone-screen",
+          "name": "Modern Slatted Stone Screen",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> hindu-sculptures -> shiva-ji": {
+      "total": 6,
+      "published": 6,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "hand-carved-shiva-lingam",
+          "slug": "hand-carved-shiva-lingam",
+          "name": "Hand-Carved Shiva Lingam & Yoni",
+          "status": "published"
+        },
+        {
+          "id": "mahadev-ji-with-4-hands",
+          "slug": "mahadev-ji-with-4-hands",
+          "name": "Mahadev ji with 4 hands",
+          "status": "published"
+        },
+        {
+          "id": "meditating-shiva-statue",
+          "slug": "meditating-shiva-statue",
+          "name": "Meditating Shiva Statue",
+          "status": "published"
+        },
+        {
+          "id": "nataraja-cosmic-dancer",
+          "slug": "nataraja-cosmic-dancer",
+          "name": "Nataraja Cosmic Dancer Statue",
+          "status": "published"
+        },
+        {
+          "id": "shiv-pariwar",
+          "slug": "shiv-pariwar",
+          "name": "Shiv pariwar",
+          "status": "published"
+        },
+        {
+          "id": "shiva-parvati-family-statue",
+          "slug": "shiva-parvati-family-statue",
+          "name": "Shiva Parvati Family Statue",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> hindu-sculptures -> sai-baba": {
+      "total": 2,
+      "published": 2,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "hand-carved-white-marble-sai-baba-idol",
+          "slug": "hand-carved-white-marble-sai-baba-idol",
+          "name": "Hand-Carved White Marble Sai Baba Idol",
+          "status": "published"
+        },
+        {
+          "id": "white-marble-sai-baba-statue",
+          "slug": "white-marble-sai-baba-statue",
+          "name": "White Marble Sai Baba Statue",
+          "status": "published"
+        }
+      ]
+    },
+    "sculptures-statues -> hindu-sculptures -> modi-ji": {
+      "total": 1,
+      "published": 1,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "modi-ji",
+          "slug": "modi-ji",
+          "name": "modi ji",
+          "status": "published"
+        }
+      ]
+    },
+    "temples-architectural-stonework -> jali-designs -> balcony-staircase-jali": {
+      "total": 1,
+      "published": 1,
+      "draft": 0,
+      "archived": 0,
+      "under_review": 0,
+      "products": [
+        {
+          "id": "traditional-rajasthani-arch-jali",
+          "slug": "traditional-rajasthani-arch-jali",
+          "name": "Traditional Rajasthani Arch Jali",
+          "status": "published"
+        }
+      ]
+    }
+  },
+  "staticColKeys": [
+    "sculptures-statues",
+    "wall-art-reliefs",
+    "temples-architectural-stonework",
+    "fountains-water-features",
+    "decorative-stone-art",
+    "custom-bespoke-creations"
+  ],
+  "dbColSlugs": [
+    "custom-bespoke-creations",
+    "decorative-stone-art",
+    "fountains-water-features",
+    "sculptures-statues",
+    "temples-architectural-stonework",
+    "wall-art-reliefs"
+  ],
+  "staticCatKeys": [
+    "ganesh-ji",
+    "krishna-ji",
+    "shiva-ji",
+    "hanuman-ji",
+    "radha-krishna",
+    "durga-ji",
+    "lakshmi-ji",
+    "saraswati-ji",
+    "ram-darbar",
+    "vishnu-ji",
+    "lakshmi-narayan",
+    "jagannath",
+    "kartikeya",
+    "parvati-ji",
+    "nandi",
+    "other-deities",
+    "buddha-statues",
+    "mahavira-statues",
+    "tirthankara-sculptures",
+    "meditating-buddha",
+    "reclining-buddha",
+    "bespoke-portrait-busts",
+    "full-body-figures",
+    "cultural-tribal-figures",
+    "artisan-figures",
+    "abstract-form-sculptures",
+    "contemporary-stone-art",
+    "roman-greek-figures",
+    "modernist-carvings",
+    "elephants",
+    "lions",
+    "peacocks",
+    "horses",
+    "swans",
+    "custom-animal-figures",
+    "temple-wall-murals",
+    "devotional-relief-panels",
+    "mandala-wall-art",
+    "tree-of-life-relief",
+    "royal-court-panels",
+    "traditional-procession-murals",
+    "rajasthani-heritage-scenes",
+    "jharokha-relief-panels",
+    "floral-pattern-panels",
+    "geometric-carved-walls",
+    "botanical-reliefs",
+    "modern-textured-stone-walls",
+    "bespoke-feature-walls",
+    "custom-crests-logos",
+    "architectural-accent-murals",
+    "marble-home-temples",
+    "carved-mandir-arches",
+    "pooja-room-panels",
+    "compact-wall-mandirs",
+    "shikhara-domes",
+    "garbhagriha-architecture",
+    "pillared-mandapas",
+    "intricate-torans",
+    "carved-pillars-columns",
+    "jali-screens",
+    "stone-balustrades",
+    "jharokhas-windows",
+    "stone-door-frames",
+    "bespoke-facade-elements",
+    "custom-heritage-columns",
+    "portico-carvings",
+    "tiered-water-fountains",
+    "central-courtyard-fountains",
+    "lotus-basin-fountains",
+    "pedestal-fountains",
+    "figurative-water-sculptures",
+    "cascading-water-walls",
+    "abstract-water-sculptures",
+    "poolside-stone-waterfalls",
+    "spout-fountains",
+    "heritage-palace-water-features",
+    "carved-stone-vases",
+    "pedestals-plinths",
+    "marble-urns",
+    "decorative-bowls",
+    "tabletop-statuettes",
+    "miniature-reliefs",
+    "artisan-accessories",
+    "stone-planters",
+    "garden-lanterns-lamps",
+    "benches-seating",
+    "gazebo-sculptural-elements",
+    "bespoke-deity-statues",
+    "custom-monumental-sculptures",
+    "commissioned-statuary",
+    "lifesize-memorial-busts",
+    "ancestral-portrait-carvings",
+    "commemorative-reliefs",
+    "full-temple-construction",
+    "luxury-estate-stonework",
+    "bespoke-heritage-restoration",
+    "small-marble-mandir-for-home",
+    "floor-standing-marble-mandir",
+    "large-marble-temple",
+    "temple-parts-designs",
+    "marble-jali-designs",
+    "balcony-staircase-jali",
+    "jali-for-partitions",
+    "window-jali",
+    "marble-pillars",
+    "stone-pillars",
+    "decorative-pillars",
+    "stone-arches-door-frames",
+    "religious-wall-murals",
+    "stone-relief-panels",
+    "floral-nature-wall-panels",
+    "tiered-fountains",
+    "garden-fountains",
+    "wall-fountains",
+    "marble-stone-planters",
+    "marble-tulsi-pots",
+    "marble-pedestals-stands"
+  ],
+  "dbCatSlugs": [
+    "full-temple-construction",
+    "luxury-estate-stonework",
+    "bespoke-heritage-restoration",
+    "lifesize-memorial-busts",
+    "ancestral-portrait-carvings",
+    "bespoke-deity-statues",
+    "custom-monumental-sculptures",
+    "commissioned-statuary",
+    "commemorative-reliefs",
+    "stone-planters",
+    "garden-lanterns-lamps",
+    "benches-seating",
+    "carved-stone-vases",
+    "pedestals-plinths",
+    "marble-urns",
+    "decorative-bowls",
+    "marble-pedestals-stands",
+    "marble-stone-planters",
+    "tabletop-statuettes",
+    "miniature-reliefs",
+    "artisan-accessories",
+    "marble-tulsi-pots",
+    "poolside-stone-waterfalls",
+    "spout-fountains",
+    "heritage-palace-water-features",
+    "tiered-water-fountains",
+    "central-courtyard-fountains",
+    "lotus-basin-fountains",
+    "pedestal-fountains",
+    "freestanding-fountains",
+    "garden-fountains",
+    "figurative-water-sculptures",
+    "cascading-water-walls",
+    "abstract-water-sculptures",
+    "tiered-fountains",
+    "wall-fountains",
+    "elephants",
+    "lions",
+    "peacocks",
+    "horses",
+    "swans",
+    "custom-animal-figures",
+    "buddha-statues",
+    "mahavira-statues",
+    "tirthankara-sculptures",
+    "meditating-buddha",
+    "reclining-buddha",
+    "abstract-form-sculptures",
+    "contemporary-stone-art",
+    "roman-greek-figures",
+    "modernist-carvings",
+    "sai-baba",
+    "ganesh-ji",
+    "krishna-ji",
+    "shiva-ji",
+    "hanuman-ji",
+    "radha-krishna",
+    "durga-ji",
+    "lakshmi-ji",
+    "saraswati-ji",
+    "ram-darbar",
+    "vishnu-ji",
+    "lakshmi-narayan",
+    "jagannath",
+    "kartikeya",
+    "parvati-ji",
+    "nandi",
+    "other-deities",
+    "modi-ji",
+    "bespoke-portrait-busts",
+    "full-body-figures",
+    "cultural-tribal-figures",
+    "artisan-figures",
+    "jharokhas-windows",
+    "gazebo-sculptural-elements",
+    "carved-pillars-columns",
+    "jali-screens",
+    "stone-balustrades",
+    "stone-door-frames",
+    "bespoke-facade-elements",
+    "custom-heritage-columns",
+    "portico-carvings",
+    "marble-home-temples",
+    "carved-mandir-arches",
+    "pooja-room-panels",
+    "compact-wall-mandirs",
+    "window-jali",
+    "marble-jali-designs",
+    "jali-for-partitions",
+    "balcony-staircase-jali",
+    "floor-standing-marble-mandir",
+    "large-marble-temple",
+    "small-marble-mandir-for-home",
+    "temple-parts-designs",
+    "marble-pillars",
+    "stone-arches-door-frames",
+    "stone-pillars",
+    "decorative-pillars",
+    "shikhara-domes",
+    "garbhagriha-architecture",
+    "pillared-mandapas",
+    "intricate-torans",
+    "architectural-accent-murals",
+    "bespoke-feature-walls",
+    "custom-crests-logos",
+    "floral-pattern-panels",
+    "geometric-carved-walls",
+    "botanical-reliefs",
+    "modern-textured-stone-walls",
+    "royal-court-panels",
+    "traditional-procession-murals",
+    "rajasthani-heritage-scenes",
+    "jharokha-relief-panels",
+    "devotional-relief-panels",
+    "temple-wall-murals",
+    "mandala-wall-art",
+    "tree-of-life-relief",
+    "stone-relief-panels",
+    "floral-nature-wall-panels",
+    "religious-wall-murals"
+  ]
+}

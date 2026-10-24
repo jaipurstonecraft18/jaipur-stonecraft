@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Container from "@/components/Container/Container";
 import { siteConfig } from "@/content/site";
 import styles from "./Footer.module.css";
@@ -13,7 +14,14 @@ export default function Footer() {
           {/* Column 1: Brand Info */}
           <div className={styles.colBrand}>
             <Link href="/" className={styles.logo} aria-label="Jaipur Stonecraft Home">
-              JAIPUR STONECRAFT
+              <Image
+                src="/images/brand/logo-v3-light.webp"
+                alt="Jaipur Stonecraft"
+                width={263}
+                height={30}
+                style={{ width: "auto" }}
+                className={styles.footerLogoImg}
+              />
             </Link>
             <p className={styles.brandDesc}>
               {siteConfig.description}

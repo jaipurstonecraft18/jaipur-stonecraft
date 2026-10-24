@@ -22,7 +22,7 @@
 .imageFrame {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3.8;
   border-radius: var(--radius-subtle);
   overflow: hidden;
   border: 1px solid rgba(212, 163, 89, 0.25);
@@ -31,12 +31,24 @@
 
 .bannerImage {
   object-fit: cover;
+  object-position: center 25%;
+}
+
+.bannerEyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-bronze);
+  margin-bottom: var(--spacing-xs);
 }
 
 .bannerHeading {
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 3.2vw, 2.75rem);
-  font-weight: 300;
+  font-weight: 400;
   color: var(--color-cream);
   line-height: 1.25;
   margin-bottom: var(--spacing-sm);
@@ -47,7 +59,26 @@
   font-size: 0.95rem;
   line-height: 1.65;
   color: rgba(252, 251, 249, 0.78);
+  margin-bottom: var(--spacing-sm);
+}
+
+.bannerPillars {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-xs) var(--spacing-sm);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-bronze);
   margin-bottom: var(--spacing-xl);
+}
+
+.pillarDot {
+  opacity: 0.55;
+  color: var(--color-bronze);
 }
 
 .sequenceTrack {
@@ -127,6 +158,17 @@
   color: var(--color-bronze);
   font-size: 0.85rem;
   margin-top: 0.25rem;
+}
+
+.narrativeStory {
+  max-width: 840px;
+  margin: var(--spacing-md) auto 0;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #4A4642;
+  text-align: center;
+  white-space: pre-line;
 }
 
 .cardsGrid {

@@ -7,14 +7,26 @@ import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import CategoryCard from "@/components/CategoryCard/CategoryCard";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { collectionsData, getCollection, getSubcategory } from "@/content/collections";
-import { getCategoriesBySubcategory } from "@/content/categories";
+import { getCategoriesBySubcategory, getCategory } from "@/content/categories";
+import { LEGACY_CATEGORY_REDIRECTS, resolveCanonicalCategoryUrl } from "@/lib/taxonomy/legacy-redirects";
+import styles from "./SubcategoryPage.module.css";
 export const dynamic = "force-dynamic";
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const { collection: collectionSlug, subcategory: subcategorySlug } = resolvedParams;
 
   const subcategory = await getSubcategory(collectionSlug, subcategorySlug);
-  if (!subcategory) return {};
+  if (!subcategory) {
+    const redirectUrl = resolveCanonicalCategoryUrl(subcategorySlug);
+    if (redirectUrl) {
+      return {
+        alternates: {
+          canonical: `https://jaipurstonecraft.com${redirectUrl}`,
+        },
+      };
+    }
+    return {};
+  }
 
   return {
     title: `${subcategory.name} — Jaipur Stonecraft`,
@@ -32,18 +44,42 @@ export default async function SubcategoryPage({ params }) {
   const collection = await getCollection(collectionSlug);
   const subcategory = await getSubcategory(collectionSlug, subcategorySlug);
 
+  if (!subcategory) {
+    // 1. Root cause defense: Check if subcategorySlug is actually an active category slug (2-segment category URL)
+    const categoryMatch = await getCategory(collectionSlug, null, subcategorySlug);
+    if (categoryMatch && categoryMatch.parentCollection && categoryMatch.parentSubcategory) {
+      permanentRedirect(`/collections/${categoryMatch.parentCollection}/${categoryMatch.parentSubcategory}/${categoryMatch.slug}`);
+    }
+
+    // 2. Check if subcategorySlug is in legacy retired category redirects
+    if (LEGACY_CATEGORY_REDIRECTS[subcategorySlug]) {
+      permanentRedirect(LEGACY_CATEGORY_REDIRECTS[subcategorySlug]);
+    }
+
+    // 3. Check generic canonical category resolver
+    const canonicalRedirect = resolveCanonicalCategoryUrl(subcategorySlug);
+    if (canonicalRedirect) {
+      permanentRedirect(canonicalRedirect);
+    }
+  }
+
   if (!collection || !subcategory) {
     notFound();
   }
 
   const categories = await getCategoriesBySubcategory(collectionSlug, subcategorySlug);
 
+  const isTwoCategories = categories.length === 2;
+
   // Data-driven visual hierarchy: separate featured vs standard categories
   const featuredCategories = categories.filter((c) => c.featured);
   const standardCategories = categories.filter((c) => !c.featured);
 
   // Fallback: If no category is explicitly marked featured, treat the first category as featured
-  const primaryFeatured = featuredCategories.length > 0 ? featuredCategories[0] : (categories[0] || null);
+  // BUT if exactly two categories exist, make both cards equal in size and symmetrically aligned
+  const primaryFeatured = isTwoCategories
+    ? null
+    : (featuredCategories.length > 0 ? featuredCategories[0] : (categories[0] || null));
   const remainingCategories = primaryFeatured
     ? categories.filter((c) => c.slug !== primaryFeatured.slug)
     : categories;
@@ -183,11 +219,11 @@ export default async function SubcategoryPage({ params }) {
 
       <Section background="light" spacing="standard">
         <Container>
-          <div style={{ marginTop: "var(--spacing-md)" }}>
-          {/* 1. FEATURED PROMINENT CATEGORY */}
+          <div className={styles.categoriesContainer}>
+          {/* 1. FEATURED PROMINENT CATEGORY (Shown when not exactly 2 cards) */}
           {primaryFeatured && (
             <ScrollReveal animation="fade-up">
-              <div style={{ marginBottom: "var(--spacing-xl)" }}>
+              <div className={styles.featuredWrapper}>
                 <CategoryCard
                   name={primaryFeatured.name}
                   description={primaryFeatured.description}
@@ -200,17 +236,20 @@ export default async function SubcategoryPage({ params }) {
             </ScrollReveal>
           )}
 
-          {/* 2. STANDARD CATEGORIES GRID */}
+          {/* 2. CATEGORIES GRID (Equal 2-card symmetrical grid if exactly 2, or adaptive grid) */}
           {remainingCategories.length > 0 && (
             <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-                gap: "var(--spacing-xl)",
-              }}
+              className={`${styles.categoriesGrid} ${
+                isTwoCategories ? styles.categoriesGridTwo : ""
+              }`}
             >
               {remainingCategories.map((cat, idx) => (
-                <ScrollReveal key={cat.slug} animation="fade-up" delay={idx * 50}>
+                <ScrollReveal
+                  key={cat.slug}
+                  animation="fade-up"
+                  delay={idx * 50}
+                  className={styles.cardReveal}
+                >
                   <CategoryCard
                     name={cat.name}
                     description={cat.description}

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Container from "@/components/Container/Container";
 import HeaderSearchDropdown from "@/components/Search/HeaderSearchDropdown";
@@ -219,11 +220,15 @@ export default function Header({ theme }) {
           <Container className={styles.navContainer}>
             {/* ZONE 1: Left - Brand Logo */}
             <Link href="/" className={styles.logo} aria-label="Jaipur Stonecraft Home">
-              <svg className={styles.logoIcon} width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z" fill="var(--color-bronze)" fillOpacity="0.25" stroke="var(--color-bronze)"/>
-                <circle cx="12" cy="12" r="3" fill="var(--color-bronze)"/>
-              </svg>
-              <span>JAIPUR STONECRAFT</span>
+              <Image
+                src={headerTheme === "light" ? "/images/brand/logo-v3-dark.webp" : "/images/brand/logo-v3-light.webp"}
+                alt="Jaipur Stonecraft"
+                width={263}
+                height={30}
+                priority
+                style={{ width: "auto" }}
+                className={styles.logoImg}
+              />
             </Link>
 
             {/* ZONE 2: Center - Main Navigation (Exactly 5 Items) */}
@@ -296,7 +301,7 @@ export default function Header({ theme }) {
               </ul>
             </nav>
 
-            {/* ZONE 3: Right - Action Area (Search Icon + Get a Quote CTA) */}
+            {/* ZONE 3: Right - Action Area (Search Icon + Call Now CTA) */}
             <div className={styles.navActions} style={{ position: "relative" }}>
               <button
                 className={styles.actionIconButton}
@@ -315,13 +320,14 @@ export default function Header({ theme }) {
                 onClose={() => setIsSearchOpen(false)}
               />
 
-              {/* Refined Golden Pill "Get a Quote" Button */}
-              <Link
-                href="/contact?type=quote"
+              {/* Refined Golden Pill "Call Now" Button */}
+              <a
+                href={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`}
                 className={styles.goldenQuoteButton}
+                aria-label={`Call Jaipur Stonecraft at ${siteConfig.contact.phone}`}
               >
-                Get a Quote
-              </Link>
+                Call Now
+              </a>
 
               {/* Mobile Hamburger Button */}
               <button
@@ -348,7 +354,16 @@ export default function Header({ theme }) {
         {/* Mobile Navigation Drawer */}
         <div className={styles.mobileDrawer} aria-hidden={!isOpen}>
           <div className={styles.mobileDrawerHeader}>
-            <span className={styles.mobileDrawerTitle}>JAIPUR STONECRAFT</span>
+            <Link href="/" onClick={() => setIsOpen(false)} className={styles.mobileDrawerLogoLink} aria-label="Jaipur Stonecraft Home">
+              <Image
+                src="/images/brand/logo-v3-light.webp"
+                alt="Jaipur Stonecraft"
+                width={202}
+                height={23}
+                style={{ width: "auto" }}
+                className={styles.mobileDrawerLogo}
+              />
+            </Link>
             <button
               className={styles.mobileCloseButton}
               onClick={() => setIsOpen(false)}
@@ -431,14 +446,14 @@ export default function Header({ theme }) {
           </ul>
 
           <div style={{ marginTop: "1.5rem", paddingTop: "0.5rem", paddingBottom: "1.5rem" }}>
-            <Link
-              href="/contact?type=quote"
+            <a
+              href={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`}
               className={styles.goldenQuoteButton}
               style={{ display: "flex", width: "100%", textAlign: "center", justifyContent: "center", padding: "0.8rem", minHeight: "44px" }}
-              onClick={() => setIsOpen(false)}
+              aria-label={`Call Jaipur Stonecraft at ${siteConfig.contact.phone}`}
             >
-              Get a Quote
-            </Link>
+              Call Now
+            </a>
 
             {/* Mobile Navigation CONNECT WITH US Social Area */}
             <div className={styles.mobileSocialSection}>

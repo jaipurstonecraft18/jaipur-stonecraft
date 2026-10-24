@@ -15,6 +15,17 @@ export default function CollectionCTA({ ctaData = {}, collectionSlug = "" }) {
     secondaryCtaHref = siteConfig?.contact?.whatsappLink || "https://wa.me/919664388920"
   } = ctaData;
 
+  const directPhoneHref = `tel:${(siteConfig?.contact?.phone || "+91 9664388920").replace(/\s+/g, "")}`;
+  const isQuoteOrInquiry = (text = "", href = "") => {
+    const t = String(text || "").toLowerCase();
+    const h = String(href || "").toLowerCase();
+    return t.includes("quote") || t.includes("inquire") || t.includes("enquire") || h.includes("type=quote");
+  };
+
+  const finalPrimaryText = isQuoteOrInquiry(primaryCtaText, primaryCtaHref) ? "Call Now" : primaryCtaText;
+  const finalPrimaryHref = isQuoteOrInquiry(primaryCtaText, primaryCtaHref) ? directPhoneHref : primaryCtaHref;
+  const isDirectPhone = finalPrimaryHref.startsWith("tel:");
+
   return (
     <section className={styles.ctaSection} aria-label="Commission CTA">
       <Container>
@@ -25,10 +36,21 @@ export default function CollectionCTA({ ctaData = {}, collectionSlug = "" }) {
             <p className={styles.ctaDesc}>{description}</p>
 
             <div className={styles.ctaButtonGroup}>
-              <Link href={primaryCtaHref} className={styles.primaryGoldButton}>
-                <span>{primaryCtaText}</span>
-                <span aria-hidden="true">&rarr;</span>
-              </Link>
+              {isDirectPhone ? (
+                <a
+                  href={finalPrimaryHref}
+                  className={styles.primaryGoldButton}
+                  aria-label={`Call Jaipur Stonecraft at ${siteConfig.contact.phone}`}
+                >
+                  <span>{finalPrimaryText}</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              ) : (
+                <Link href={finalPrimaryHref} className={styles.primaryGoldButton}>
+                  <span>{finalPrimaryText}</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
+              )}
               <a
                 href={secondaryCtaHref}
                 target="_blank"

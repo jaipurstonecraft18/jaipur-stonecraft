@@ -84,5 +84,45 @@ export const materialsDB = [
     durability: "Indoor Sanctuary",
     isSacredGrade: false,
     description: "Translucent natural stone ideal for backlit wall relief panels and luxury interior objects."
+  },
+  {
+    id: "black-granite",
+    name: "Natural Black Granite",
+    category: "Granite",
+    origin: "Rajasthan / South India Quarries",
+    colorFamily: "Jet Black",
+    durability: "All-Weather Exterior Landscape & Sacred Sanctuary",
+    isSacredGrade: true,
+    description: "Monolithic fine-grained natural black granite renowned for high compressive strength and extreme weather longevity."
+  },
+  {
+    id: "vietnam-pure-white",
+    name: "Vietnam Pure White Marble",
+    category: "Marble",
+    origin: "Yen Bai, Vietnam",
+    colorFamily: "Pure White",
+    durability: "All-Weather Exterior Landscape & Sacred Sanctuary",
+    isSacredGrade: true,
+    description: "Flawless fine-grained white marble with brilliant crystalline luster, ideal for grand contemporary deity sculptures."
+  },
+  {
+    id: "soapstone-natural",
+    name: "Natural Soapstone (Steatite)",
+    category: "Soapstone",
+    origin: "Rajasthan, India",
+    colorFamily: "Charcoal / Greenish Black",
+    durability: "Indoor Sacred Sanctuary",
+    isSacredGrade: true,
+    description: "Traditional soft carving stone capable of microscopic steel chisel detailing for temple abhishek idols."
+  },
+  {
+    id: "italian-carrara-marble",
+    name: "Italian Carrara Marble",
+    category: "Marble",
+    origin: "Carrara, Italy",
+    colorFamily: "White with Grey Veining",
+    durability: "Interior Classical Art",
+    isSacredGrade: false,
+    description: "Renowned classical European marble featuring delicate smoke-grey feather veining."
   }
 ];

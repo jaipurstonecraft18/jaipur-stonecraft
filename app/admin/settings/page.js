@@ -33,6 +33,14 @@ export default function AdminSettingsPage() {
     youtube: ""
   });
 
+  const [seoAudit, setSeoAudit] = useState({
+    requireExactPrimarySearchPhrasePlacement: false,
+    minTitleLength: 20,
+    maxTitleLength: 120,
+    recommendedSnippetDisplayMin: 30,
+    recommendedSnippetDisplayMax: 65
+  });
+
   useEffect(() => {
     fetch("/api/admin/settings")
       .then((res) => res.json())
@@ -66,6 +74,16 @@ export default function AdminSettingsPage() {
               facebook: val.facebook ?? "",
               pinterest: val.pinterest ?? "",
               youtube: val.youtube ?? ""
+            });
+          }
+          if (data.settings.seo_audit_settings?.value) {
+            const val = data.settings.seo_audit_settings.value;
+            setSeoAudit({
+              requireExactPrimarySearchPhrasePlacement: Boolean(val.requireExactPrimarySearchPhrasePlacement),
+              minTitleLength: val.minTitleLength !== undefined ? Number(val.minTitleLength) : 20,
+              maxTitleLength: val.maxTitleLength !== undefined ? Number(val.maxTitleLength) : 120,
+              recommendedSnippetDisplayMin: val.recommendedSnippetDisplayMin !== undefined ? Number(val.recommendedSnippetDisplayMin) : 30,
+              recommendedSnippetDisplayMax: val.recommendedSnippetDisplayMax !== undefined ? Number(val.recommendedSnippetDisplayMax) : 65
             });
           }
         }
@@ -333,6 +351,77 @@ export default function AdminSettingsPage() {
                 onChange={(e) => setSocial({ ...social, youtube: e.target.value })}
                 className={styles.input}
               />
+            </div>
+          </div>
+        </div>
+
+        {/* 4. SEO QUALITY & AUDIT CONFIGURATION */}
+        <div className={styles.tabContentCard}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem", flexWrap: "wrap", gap: "0.75rem" }}>
+            <div>
+              <h3 style={{ fontSize: "1.05rem", fontWeight: "600", color: "var(--color-navy)" }}>
+                4. SEO Quality & Audit Configuration
+              </h3>
+              <p style={{ fontSize: "0.8rem", color: "#666", margin: "0.2rem 0 0" }}>
+                Configure validation rules, character thresholds, and primary search phrase enforcement for catalogue SEO audits.
+              </p>
+            </div>
+            <button
+              onClick={() => handleSaveSetting("seo_audit_settings", seoAudit)}
+              className={styles.primaryBtn}
+              disabled={saving}
+              style={{ minHeight: "44px" }}
+            >
+              Save SEO Settings
+            </button>
+          </div>
+
+          <div className={styles.formGrid}>
+            <div className={styles.formGroupFull}>
+              <div className={styles.checkboxGroup}>
+                <input
+                  type="checkbox"
+                  id="requireExactPlacement"
+                  checked={seoAudit.requireExactPrimarySearchPhrasePlacement}
+                  onChange={(e) => setSeoAudit({ ...seoAudit, requireExactPrimarySearchPhrasePlacement: e.target.checked })}
+                />
+                <label htmlFor="requireExactPlacement" className={styles.label}>
+                  Require Exact Primary Search Phrase Placement
+                </label>
+              </div>
+              <p style={{ fontSize: "0.78rem", color: "#666", margin: "0.3rem 0 0 1.6rem" }}>
+                When disabled (recommended), the primary search phrase serves as a valuable semantic reference for AI content generation and search intent without penalizing the product score or generating warnings when not placed verbatim in product title, summary, or name.
+              </p>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Maximum SEO Title Length (Characters)</label>
+              <input
+                type="number"
+                min="50"
+                max="250"
+                value={seoAudit.maxTitleLength ?? 120}
+                onChange={(e) => setSeoAudit({ ...seoAudit, maxTitleLength: parseInt(e.target.value, 10) || 120 })}
+                className={styles.input}
+              />
+              <p style={{ fontSize: "0.75rem", color: "#777", marginTop: "0.25rem" }}>
+                Titles up to this limit remain valid descriptive metadata (recommended: 120 chars). Search engine snippets typically display 30–65 characters.
+              </p>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Minimum SEO Title Length (Characters)</label>
+              <input
+                type="number"
+                min="10"
+                max="60"
+                value={seoAudit.minTitleLength ?? 20}
+                onChange={(e) => setSeoAudit({ ...seoAudit, minTitleLength: parseInt(e.target.value, 10) || 20 })}
+                className={styles.input}
+              />
+              <p style={{ fontSize: "0.75rem", color: "#777", marginTop: "0.25rem" }}>
+                Titles shorter than this threshold will be flagged as insufficiently descriptive (recommended: 20 chars).
+              </p>
             </div>
           </div>
         </div>

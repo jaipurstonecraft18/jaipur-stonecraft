@@ -170,25 +170,27 @@
   position: relative;
 }
 
-/* 1. LEFT ZONE: Brand Logo (Shifted left with generous space to Home) */
+/* 1. LEFT ZONE: Brand Logo */
 .logo {
-  font-family: var(--font-cormorant), Georgia, serif;
-  font-size: clamp(1.1rem, 1.4vw, 1.35rem);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  color: inherit;
-  white-space: nowrap;
-  margin-right: clamp(2rem, 3.5vw, 4.25rem);
-  flex-shrink: 0;
-  z-index: 1001;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  margin-right: clamp(1.75rem, 3.2vw, 3.75rem);
+  flex-shrink: 0;
+  z-index: 1001;
   text-decoration: none;
 }
 
-.logoIcon {
-  flex-shrink: 0;
+.logoImg {
+  height: 30px;
+  width: auto;
+  max-width: 275px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.logo:hover .logoImg {
+  transform: translateY(-1px) scale(1.02);
 }
 
 /* 3. RIGHT ZONE: Action Area (Shifted right with symmetrical space to Our Story) */
@@ -484,12 +486,18 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.mobileDrawerTitle {
-  font-family: var(--font-cormorant), Georgia, serif;
-  font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  color: var(--color-bronze);
+.mobileDrawerLogoLink {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.mobileDrawerLogo {
+  height: 23px;
+  width: auto;
+  max-width: 205px;
+  object-fit: contain;
+  display: block;
 }
 
 .mobileCloseButton {
@@ -609,16 +617,13 @@
 
   .logo {
     margin-right: 0 !important;
-    font-size: 0.92rem !important;
-    letter-spacing: 0.06em !important;
-    gap: 0.35rem !important;
     flex-shrink: 1 !important;
     min-width: 0 !important;
   }
 
-  .logo span {
-    font-size: 0.88rem !important;
-    letter-spacing: 0.05em !important;
+  .logoImg {
+    height: 24px !important;
+    max-width: 215px !important;
   }
 
   .navActions {

@@ -238,12 +238,12 @@ export default async function ProjectDetail({ params }) {
         </Section>
       )}
 
-      {/* 7. FINAL CTA INQUIRY */}
+      {/* 7. FINAL DIRECT CALL CTA */}
       <CTASection
-        heading={`Inquire About ${project.name}`}
+        heading={`Connect Directly About ${project.name}`}
         description="Discuss site blueprint scaling, request custom stone layout plans, or receive estimated shipping quotes."
-        primaryCtaText="Request a Quote"
-        primaryCtaHref={`/contact?type=quote&project=${slug}`}
+        primaryCtaText="Call Now"
+        primaryCtaHref={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`}
         secondaryCtaText="WhatsApp Coordinator"
         secondaryCtaHref={siteConfig.contact.whatsappLink}
         background="dark"

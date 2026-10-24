@@ -12,7 +12,7 @@ export default function StoryEvolutionSection({ data = {} }) {
   const linkText = data.linkText || "Our Evolution";
   const linkHref = data.linkHref || "/collections";
 
-  const rawTraditional = data.traditionalImage || "/images/craftsmanship/step-02-shape-precision.webp";
+  const rawTraditional = data.traditionalImage || "/images/craftsmanship/traditional-craft-artisan.webp";
   const traditionalSrc = getImageVariantUrl(rawTraditional, "display") || rawTraditional;
 
   const rawModern = data.modernImage || "/images/collections/architectural.webp";

@@ -33,10 +33,11 @@ export async function PUT(request, { params }) {
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
     }
 
-    // STRICT RULE: Granite is strictly excluded
+    // Synthetic composites check (natural stone including marble, sandstone, granite are approved)
+    const SYNTHETIC_STONES = ["synthetic marble", "cultured marble", "resin cast", "bonded marble"];
     const primaryMaterialId = body.primaryMaterialId || existingRow.primary_material_id || "";
-    if (primaryMaterialId.toLowerCase().includes("granite")) {
-      return NextResponse.json({ error: "Granite is strictly excluded from Jaipur Stonecraft materials." }, { status: 400 });
+    if (SYNTHETIC_STONES.some(s => primaryMaterialId.toLowerCase().includes(s))) {
+      return NextResponse.json({ error: "Synthetic resin and cultured stone composites are strictly excluded from Jaipur Stonecraft." }, { status: 400 });
     }
 
     const APPROVED_COLLECTIONS = [
@@ -53,26 +54,6 @@ export async function PUT(request, { params }) {
 
     if (!APPROVED_COLLECTIONS.includes(targetCollection)) {
       return NextResponse.json({ error: `Invalid collection "${targetCollection}". Must be one of the 6 approved collections.` }, { status: 400 });
-    }
-
-    // PROTECTED COLLECTION RESTRICTION: Absolutely no taxonomy alterations for Sculptures & Statues
-    if (existingRow.parent_collection === "sculptures-statues") {
-      if (body.parentCollection && body.parentCollection !== "sculptures-statues") {
-        return NextResponse.json({
-          error: "Sculptures & Statues taxonomy is strictly protected. Products belonging to this collection cannot be moved to another collection."
-        }, { status: 403 });
-      }
-      if (body.parentCategory && body.parentCategory !== existingRow.parent_category) {
-        return NextResponse.json({
-          error: "Sculptures & Statues taxonomy is strictly protected. Product category assignments in this collection cannot be changed."
-        }, { status: 403 });
-      }
-    } else {
-      if (body.parentCollection === "sculptures-statues") {
-        return NextResponse.json({
-          error: "Sculptures & Statues collection is strictly protected. Non-statue products cannot be reassigned into this collection."
-        }, { status: 403 });
-      }
     }
 
     // Validate category relationship
@@ -93,12 +74,9 @@ export async function PUT(request, { params }) {
     const name = body.name || existingRow.name;
     const slug = body.slug || existingRow.slug;
 
-    if (
-      name.toLowerCase().includes("granite") ||
-      slug.toLowerCase().includes("granite") ||
-      (body.shortDescription && body.shortDescription.toLowerCase().includes("granite"))
-    ) {
-      return NextResponse.json({ error: "Granite is strictly excluded from Jaipur Stonecraft." }, { status: 400 });
+    const textToCheck = `${name} ${slug} ${(body.shortDescription || existingRow.short_description || "")}`.toLowerCase();
+    if (SYNTHETIC_STONES.some(s => textToCheck.includes(s))) {
+      return NextResponse.json({ error: "Synthetic resin and cultured stone composites are strictly excluded from Jaipur Stonecraft." }, { status: 400 });
     }
 
     if (slug !== existingRow.slug) {

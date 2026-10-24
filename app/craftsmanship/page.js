@@ -9,6 +9,7 @@ import InspectionHoningStage from "@/components/Craftsmanship/InspectionHoningSt
 import ExportLogisticsStage from "@/components/Craftsmanship/ExportLogisticsStage";
 import MasterpieceBorn from "@/components/Craftsmanship/MasterpieceBorn";
 import CTASection from "@/components/CTASection/CTASection";
+import { siteConfig } from "@/content/site";
 import { getPageSection } from "@/lib/db/content.js";
 
 export const dynamic = "force-dynamic";
@@ -109,12 +110,12 @@ export default async function Craftsmanship() {
         data={pageStages.stage07}
       />
 
-      {/* 11. CLOSING INQUIRY CTA SECTION (DARK) */}
+      {/* 11. CLOSING DIRECT CALL CTA SECTION (DARK) */}
       <CTASection
         heading={closingCta.heading || "Bring Jaipur Stonecraft to Your Project"}
         description={closingCta.description || "Collaborate with our master masons to custom-carve white marble deity statues, temple architecture, garden fountains, fireplace mantels, or bespoke stone friezes."}
-        primaryCtaText={closingCta.primaryCtaText || "Request a Quote"}
-        primaryCtaHref={closingCta.primaryCtaHref || "/contact?type=quote"}
+        primaryCtaText={closingCta.primaryCtaText === "Request a Quote" ? "Call Now" : (closingCta.primaryCtaText || "Call Now")}
+        primaryCtaHref={closingCta.primaryCtaHref?.includes("type=quote") ? `tel:${siteConfig.contact.phone.replace(/\s+/g, "")}` : (closingCta.primaryCtaHref || `tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`)}
         secondaryCtaText={closingCta.secondaryCtaText || "Start Custom Project"}
         secondaryCtaHref={closingCta.secondaryCtaHref || "/contact?type=custom"}
         background="dark"

@@ -19,8 +19,9 @@ export default function SubcollectionExploration({ collection }) {
   const subcategories = collection.subcategories || [];
   if (subcategories.length === 0) return null;
 
-  const featuredSub = subcategories[0];
-  const remainingSubs = subcategories.slice(1);
+  const isTwoCards = subcategories.length === 2;
+  const featuredSub = isTwoCards ? null : subcategories[0];
+  const remainingSubs = isTwoCards ? subcategories : subcategories.slice(1);
 
   return (
     <section className={styles.subcollectionsSection} aria-label="Explore Collection Categories">
@@ -35,7 +36,7 @@ export default function SubcollectionExploration({ collection }) {
           </div>
         </ScrollReveal>
 
-        {/* 1. FEATURED SUB-COLLECTION (Item #01 - Big Banner Card) */}
+        {/* 1. FEATURED SUB-COLLECTION (Item #01 - Big Banner Card, shown when not exactly 2 cards) */}
         {featuredSub && (
           <ScrollReveal animation="fade-up" delay={100}>
             <div className={styles.featuredSubCard}>
@@ -68,13 +69,18 @@ export default function SubcollectionExploration({ collection }) {
           </ScrollReveal>
         )}
 
-        {/* 2. REMAINING SUB-COLLECTIONS (Items #02+ - Adaptive Grid) */}
+        {/* 2. SUB-COLLECTIONS GRID (Equal 2-card symmetrical grid if exactly 2, or adaptive grid for #02+) */}
         {remainingSubs.length > 0 && (
-          <div className={styles.subGrid}>
+          <div className={`${styles.subGrid} ${isTwoCards ? styles.subGridTwo : ""}`}>
             {remainingSubs.map((sub, idx) => {
-              const indexStr = String(idx + 2).padStart(2, "0");
+              const indexStr = String(isTwoCards ? idx + 1 : idx + 2).padStart(2, "0");
               return (
-                <ScrollReveal key={sub.slug} animation="fade-up" delay={idx * 60}>
+                <ScrollReveal
+                  key={sub.slug}
+                  animation="fade-up"
+                  delay={idx * 60}
+                  className={styles.subCardReveal}
+                >
                   <div className={styles.subCard}>
                     <Link
                       href={`/collections/${collection.slug}/${sub.slug}`}
@@ -86,7 +92,11 @@ export default function SubcollectionExploration({ collection }) {
                         src={getSubCoverImage(sub, collection, "card")}
                         alt={sub.name}
                         fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
+                        sizes={
+                          isTwoCards
+                            ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                            : "(max-width: 768px) 100vw, 33vw"
+                        }
                         className={styles.subImage}
                       />
                     </div>

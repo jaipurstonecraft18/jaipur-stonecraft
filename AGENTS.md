@@ -9,5 +9,5 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 <!-- END:nextjs-agent-rules -->
 
 # Running the Web Application Rule
-- When asked to run the website, ensure the server is accessible on network interface binding (`-H 0.0.0.0`) so it is accessible at `http://192.168.29.37:3000/`.
+- When asked to run the website, ensure the server is accessible on network interface binding (`-H 0.0.0.0`) so it is accessible at the current Wi-Fi address `http://192.168.29.36:3000/` (or `http://localhost:3000/`).
 

@@ -169,26 +169,7 @@ export const categoriesData = {
     "imageAlt": "Khatu Shyam ji hand-carved in pure marble in Jaipur",
     "featured": false
   },
-  "modi-ji": {
-    "slug": "modi-ji",
-    "name": "Modi ji",
-    "parentCollection": "sculptures-statues",
-    "parentSubcategory": "hindu-sculptures",
-    "description": "Custom artisan portrait statues and marble busts of Narendra Modi hand-carved in Jaipur.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Modi+Ji+Sculpture",
-    "imageAlt": "Modi ji hand-carved portrait statue in Jaipur",
-    "featured": false
-  },
-  "other-deities": {
-    "slug": "other-deities",
-    "name": "Other Deities",
-    "parentCollection": "sculptures-statues",
-    "parentSubcategory": "hindu-sculptures",
-    "description": "Bespoke sacred icons of traditional Hindu pantheon figures.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Other+Deities",
-    "imageAlt": "Bespoke Hindu deity marble statue sculpted to client specification",
-    "featured": false
-  },
+
   "buddha-statues": {
     "slug": "buddha-statues",
     "name": "Buddha Statues",
@@ -379,194 +360,14 @@ export const categoriesData = {
     "imageAlt": "Bespoke wildlife animal stone sculpture carved to order",
     "featured": false
   },
-  "religious-wall-murals": {
-    "slug": "religious-wall-murals",
-    "name": "Religious Wall Murals",
-    "parentCollection": "wall-art-reliefs",
-    "parentSubcategory": "wall-murals",
-    "description": "Monumental devotional wall murals depicting temple deities, sacred narratives, and spiritual symbology.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Religious+Wall+Murals",
-    "imageAlt": "Religious Wall Murals hand-carved in Rajasthan stone",
-    "featured": true
-  },
-  "devotional-relief-panels": {
-    "slug": "devotional-relief-panels",
-    "name": "Devotional Relief Panels",
-    "parentCollection": "wall-art-reliefs",
-    "parentSubcategory": "religious-reliefs",
-    "description": "Framed religious stone relief panels.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Devotional+Reliefs",
-    "imageAlt": "Framed religious stone relief panel in white marble",
-    "featured": false
-  },
-  "stone-relief-panels": {
-    "slug": "stone-relief-panels",
-    "name": "Stone Relief Panels",
-    "parentCollection": "wall-art-reliefs",
-    "parentSubcategory": "stone-relief-panels",
-    "description": "Deep carved stone relief panels including heritage Rajasthani court scenes, mandalas, geometric, and textured feature walls.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Stone+Relief+Panels",
-    "imageAlt": "Carved Stone Relief Panels sculpted in Jaipur atelier",
-    "featured": true
-  },
-  "floral-nature-wall-panels": {
-    "slug": "floral-nature-wall-panels",
-    "name": "Floral & Nature Wall Panels",
-    "parentCollection": "wall-art-reliefs",
-    "parentSubcategory": "stone-relief-panels",
-    "description": "Botanical and natural stone wall carvings featuring the sacred Tree of Life, lotus blossoms, and delicate floral relief patterns.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Floral+Wall+Panels",
-    "imageAlt": "Floral and Nature Stone Wall Panels in high relief",
-    "featured": true
-  },
-  "small-marble-mandir-for-home": {
-    "slug": "small-marble-mandir-for-home",
-    "name": "Small Marble Mandir for Home",
-    "parentCollection": "temples-architectural-stonework",
-    "parentSubcategory": "mandirs-temples",
-    "description": "Hand-carved compact and wall-mounted white marble temples designed for home pooja rooms.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Small+Marble+Mandir",
-    "imageAlt": "Small Marble Mandir for Home hand-carved in Makrana marble",
-    "featured": true
-  },
-  "temple-parts-designs": {
-    "slug": "temple-parts-designs",
-    "name": "Temple Parts & Designs",
-    "parentCollection": "temples-architectural-stonework",
-    "parentSubcategory": "mandirs-temples",
-    "description": "Individual architectural temple components including shikharas, garbhagriha designs, mandapa pillars, and pooja room panels.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Temple+Parts",
-    "imageAlt": "Temple Parts and Architectural Designs hand-carved in Jaipur",
-    "featured": false
-  },
-  "marble-jali-designs": {
-    "slug": "marble-jali-designs",
-    "name": "Marble Jali Designs",
-    "parentCollection": "temples-architectural-stonework",
-    "parentSubcategory": "jali-designs",
-    "description": "Intricately perforated white marble jali panels hand-pierced by master artisans for sacred and architectural installations.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Marble+Jali+Designs",
-    "imageAlt": "Marble Jali Designs carved in Makrana white marble",
-    "featured": true
-  },
-  "jali-for-partitions": {
-    "slug": "jali-for-partitions",
-    "name": "Jali for Partitions",
-    "parentCollection": "temples-architectural-stonework",
-    "parentSubcategory": "jali-designs",
-    "description": "Freestanding and floor-to-ceiling stone jali screens designed for room dividers and ventilation walls.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Jali+Partitions",
-    "imageAlt": "Stone Jali for Partitions and Space Dividers",
-    "featured": true
-  },
-  "balcony-staircase-jali": {
-    "slug": "balcony-staircase-jali",
-    "name": "Balcony & Staircase Jali",
-    "parentCollection": "temples-architectural-stonework",
-    "parentSubcategory": "jali-designs",
-    "description": "Architectural stone lattice screens engineered for balcony railings, staircase balustrades, and parapets.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Balcony+Jali",
-    "imageAlt": "Balcony and Staircase Jali architectural screen",
-    "featured": false
-  },
-  "stone-arches-door-frames": {
-    "slug": "stone-arches-door-frames",
-    "name": "Stone Arches & Door Frames",
-    "parentCollection": "temples-architectural-stonework",
-    "parentSubcategory": "pillars-columns",
-    "description": "Carved stone torans, entrance archways, portico carvings, and ornamental temple door frames.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Stone+Arches",
-    "imageAlt": "Stone Arches and Door Frames hand-carved in Rajasthan stone",
-    "featured": true
-  },
-  "jharokhas-windows": {
-    "slug": "jharokhas-windows",
-    "name": "Jharokhas & Windows",
-    "parentCollection": "temples-architectural-stonework",
-    "parentSubcategory": "architectural-components",
-    "description": "Heritage Rajasthani stone jharokhas.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Stone+Jharokhas",
-    "imageAlt": "Heritage Rajasthani carved stone jharokha window structure",
-    "featured": false
-  },
-  "gazebo-sculptural-elements": {
-    "slug": "gazebo-sculptural-elements",
-    "name": "Chhatri & Gazebo Elements",
-    "parentCollection": "temples-architectural-stonework",
-    "parentSubcategory": "architectural-components",
-    "description": "Handcrafted stone chhatris, pavilions, domed canopies, and gazebo structural elements.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Gazebo+Elements",
-    "imageAlt": "Carved stone chhatri and gazebo architectural elements",
-    "featured": false
-  },
-  "tiered-fountains": {
-    "slug": "tiered-fountains",
-    "name": "Tiered Fountains",
-    "parentCollection": "fountains-water-features",
-    "parentSubcategory": "tiered-fountains",
-    "description": "Multi-tiered hand-carved marble and sandstone fountains with scalloped bowls, water spouts, and pedestal bases.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Tiered+Fountains",
-    "imageAlt": "Multi-Tiered Marble Water Fountains",
-    "featured": true
-  },
-  "wall-fountains": {
-    "slug": "wall-fountains",
-    "name": "Wall Fountains",
-    "parentCollection": "fountains-water-features",
-    "parentSubcategory": "wall-fountains",
-    "description": "Architectural stone water walls, cascading stone waterfalls, and lion-head spouts for wall installations.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Wall+Fountains",
-    "imageAlt": "Carved Stone Wall Fountains and Cascades",
-    "featured": true
-  },
-  "freestanding-fountains": {
-    "slug": "freestanding-fountains",
-    "name": "Freestanding Fountains",
-    "parentCollection": "fountains-water-features",
-    "parentSubcategory": "freestanding-fountains",
-    "description": "Freestanding courtyard stone fountains, lotus basins, and sculptural water features.",
-    "imageSrc": "/images/collections/hero-sculptures-group.webp",
-    "imageAlt": "Freestanding courtyard stone fountain hand-carved in Jaipur",
-    "featured": true
-  },
-  "marble-stone-planters": {
-    "slug": "marble-stone-planters",
-    "name": "Marble & Stone Planters",
-    "parentCollection": "decorative-stone-art",
-    "parentSubcategory": "planters",
-    "description": "Hand-carved marble and sandstone planters, fluted pots, and horticultural stone urns for interior and landscape design.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Stone+Planters",
-    "imageAlt": "Hand-carved Marble and Stone Planters",
-    "featured": true
-  },
-  "marble-tulsi-pots": {
-    "slug": "marble-tulsi-pots",
-    "name": "Marble Tulsi Pots",
-    "parentCollection": "decorative-stone-art",
-    "parentSubcategory": "tulsi-pots",
-    "description": "Traditional sacred white marble Tulsi Kyaras and Mandap planters intricately carved for home courtyards and terraces.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Marble+Tulsi+Pots",
-    "imageAlt": "Sacred Marble Tulsi Pots and Kyaras in Makrana marble",
-    "featured": true
-  },
-  "marble-pedestals-stands": {
-    "slug": "marble-pedestals-stands",
-    "name": "Marble Pedestals & Stands",
-    "parentCollection": "decorative-stone-art",
-    "parentSubcategory": "pedestals-stands",
-    "description": "Fluted, square, and octagonal display pedestals, statue plinths, and carved stone display stands.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Marble+Pedestals",
-    "imageAlt": "Hand-carved Marble Pedestals and Display Stands",
-    "featured": true
-  },
   "full-temple-construction": {
     "slug": "full-temple-construction",
     "name": "Full Temple Construction",
     "parentCollection": "custom-bespoke-creations",
     "parentSubcategory": "custom-architectural-stonework",
-    "description": "Complete masonic temple construction.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Temple+Construction",
-    "imageAlt": "Complete masonic marble temple construction project",
+    "description": "Bespoke full-scale marble and stone temple design, carving, and installation.",
+    "imageSrc": "/images/collections/architectural.webp",
+    "imageAlt": "Full-scale stone temple construction",
     "featured": true
   },
   "luxury-estate-stonework": {
@@ -574,9 +375,9 @@ export const categoriesData = {
     "name": "Luxury Estate Stonework",
     "parentCollection": "custom-bespoke-creations",
     "parentSubcategory": "custom-architectural-stonework",
-    "description": "Bespoke stone facades for private estates.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Estate+Stonework",
-    "imageAlt": "Bespoke carved stone facade for private luxury estate",
+    "description": "Custom architectural stonework for private estates, palaces, and luxury villas.",
+    "imageSrc": "/images/collections/architectural.webp",
+    "imageAlt": "Bespoke estate stonework",
     "featured": false
   },
   "bespoke-heritage-restoration": {
@@ -584,19 +385,359 @@ export const categoriesData = {
     "name": "Bespoke Heritage Restoration",
     "parentCollection": "custom-bespoke-creations",
     "parentSubcategory": "custom-architectural-stonework",
-    "description": "Historical stone carving restoration.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Heritage+Restoration",
-    "imageAlt": "Historical stone carving restoration in Rajasthan temple",
+    "description": "Historical stone conservation and restoration of heritage architecture.",
+    "imageSrc": "/images/collections/architectural.webp",
+    "imageAlt": "Heritage stone restoration carving",
     "featured": false
+  },
+  "custom-monumental-sculptures": {
+    "slug": "custom-monumental-sculptures",
+    "name": "Custom Monumental Sculptures",
+    "parentCollection": "custom-bespoke-creations",
+    "parentSubcategory": "custom-sculptures-portraits-reliefs",
+    "description": "Large-scale commissioned monumental statues and civic stone sculptures.",
+    "imageSrc": "/images/collections/custom.webp",
+    "imageAlt": "Custom monumental stone sculpture",
+    "featured": false
+  },
+  "ancestral-portrait-carvings": {
+    "slug": "ancestral-portrait-carvings",
+    "name": "Ancestral Portrait Carvings",
+    "parentCollection": "custom-bespoke-creations",
+    "parentSubcategory": "custom-sculptures-portraits-reliefs",
+    "description": "Custom hand-carved stone and marble ancestral portraits from photographs.",
+    "imageSrc": "/images/collections/custom.webp",
+    "imageAlt": "Hand-carved ancestral stone portrait",
+    "featured": false
+  },
+  "lifesize-memorial-busts": {
+    "slug": "lifesize-memorial-busts",
+    "name": "Lifesize Memorial Busts",
+    "parentCollection": "custom-bespoke-creations",
+    "parentSubcategory": "custom-sculptures-portraits-reliefs",
+    "description": "Lifesize marble memorial busts and portrait head carvings.",
+    "imageSrc": "/images/collections/custom.webp",
+    "imageAlt": "Lifesize marble memorial portrait bust",
+    "featured": true
+  },
+  "carved-stone-vases": {
+    "slug": "carved-stone-vases",
+    "name": "Carved Stone Vases",
+    "parentCollection": "decorative-stone-art",
+    "parentSubcategory": "decorative-garden-stone-art",
+    "description": "Handcrafted marble and stone flower vases with intricate floral carvings.",
+    "imageSrc": "/images/collections/luxury.webp",
+    "imageAlt": "Hand-carved stone vase",
+    "featured": true
+  },
+  "marble-urns": {
+    "slug": "marble-urns",
+    "name": "Marble Urns",
+    "parentCollection": "decorative-stone-art",
+    "parentSubcategory": "decorative-garden-stone-art",
+    "description": "Classical ornamental marble urns with traditional fluting and handles.",
+    "imageSrc": "/images/collections/luxury.webp",
+    "imageAlt": "Carved marble ornamental urn",
+    "featured": false
+  },
+  "decorative-bowls": {
+    "slug": "decorative-bowls",
+    "name": "Decorative Bowls",
+    "parentCollection": "decorative-stone-art",
+    "parentSubcategory": "decorative-garden-stone-art",
+    "description": "Carved marble urli bowls and tabletop water floating flower vessels.",
+    "imageSrc": "/images/collections/luxury.webp",
+    "imageAlt": "Carved marble decorative bowl",
+    "featured": false
+  },
+  "tabletop-statuettes": {
+    "slug": "tabletop-statuettes",
+    "name": "Tabletop Statuettes",
+    "parentCollection": "decorative-stone-art",
+    "parentSubcategory": "decorative-garden-stone-art",
+    "description": "Compact handcrafted stone figurines and tabletop artistic statuettes.",
+    "imageSrc": "/images/collections/luxury.webp",
+    "imageAlt": "Tabletop stone statuette",
+    "featured": true
+  },
+  "artisan-accessories": {
+    "slug": "artisan-accessories",
+    "name": "Artisan Accessories",
+    "parentCollection": "decorative-stone-art",
+    "parentSubcategory": "decorative-garden-stone-art",
+    "description": "Handcrafted stone home decor accents, coasters, candle holders, and desk art.",
+    "imageSrc": "/images/collections/luxury.webp",
+    "imageAlt": "Handcrafted stone artisan accessories",
+    "featured": false
+  },
+  "garden-lanterns-lamps": {
+    "slug": "garden-lanterns-lamps",
+    "name": "Garden Lanterns & Lamps",
+    "parentCollection": "decorative-stone-art",
+    "parentSubcategory": "decorative-garden-stone-art",
+    "description": "Traditional carved stone pagodas, outdoor garden lanterns, and pathway lamps.",
+    "imageSrc": "/images/collections/garden.webp",
+    "imageAlt": "Carved stone garden lantern",
+    "featured": false
+  },
+  "benches-seating": {
+    "slug": "benches-seating",
+    "name": "Benches & Seating",
+    "parentCollection": "decorative-stone-art",
+    "parentSubcategory": "decorative-garden-stone-art",
+    "description": "Solid hand-carved stone benches and architectural garden seating.",
+    "imageSrc": "/images/collections/garden.webp",
+    "imageAlt": "Hand-carved stone garden bench",
+    "featured": false
+  },
+  "marble-pedestals-stands": {
+    "slug": "marble-pedestals-stands",
+    "name": "Marble Pedestals & Stands",
+    "parentCollection": "decorative-stone-art",
+    "parentSubcategory": "pedestals-stands",
+    "description": "Carved stone display plinths and statue pedestals.",
+    "imageSrc": "/images/collections/temples-architectural.webp",
+    "imageAlt": "Carved marble display pedestal",
+    "featured": true
+  },
+  "marble-stone-planters": {
+    "slug": "marble-stone-planters",
+    "name": "Marble & Stone Planters",
+    "parentCollection": "decorative-stone-art",
+    "parentSubcategory": "planters-tulsi-pots",
+    "description": "Hand-carved marble and sandstone planters and outdoor garden urns.",
+    "imageSrc": "/images/collections/sacred.webp",
+    "imageAlt": "Hand-carved marble stone planter",
+    "featured": true
+  },
+  "marble-tulsi-pots": {
+    "slug": "marble-tulsi-pots",
+    "name": "Marble Tulsi Pots",
+    "parentCollection": "decorative-stone-art",
+    "parentSubcategory": "planters-tulsi-pots",
+    "description": "Sacred carved marble Tulsi pots for devotional gardens and courtyards.",
+    "imageSrc": "/images/collections/sacred.webp",
+    "imageAlt": "Sacred white marble Tulsi pot",
+    "featured": true
+  },
+  "cascading-water-walls": {
+    "slug": "cascading-water-walls",
+    "name": "Cascading Water Walls",
+    "parentCollection": "fountains-water-features",
+    "parentSubcategory": "sculptural-water-features",
+    "description": "Multi-tier stone water walls with gentle cascading flows for luxury installations.",
+    "imageSrc": "/images/collections/wall-art-relief.webp",
+    "imageAlt": "Cascading stone water wall",
+    "featured": false
+  },
+  "poolside-stone-waterfalls": {
+    "slug": "poolside-stone-waterfalls",
+    "name": "Poolside Stone Waterfalls",
+    "parentCollection": "fountains-water-features",
+    "parentSubcategory": "sculptural-water-features",
+    "description": "Carved stone waterfalls and sheer descent spouts for luxury pools and landscape gardens.",
+    "imageSrc": "/images/collections/garden.webp",
+    "imageAlt": "Poolside stone waterfall feature",
+    "featured": true
+  },
+  "figurative-water-sculptures": {
+    "slug": "figurative-water-sculptures",
+    "name": "Figurative Water Sculptures",
+    "parentCollection": "fountains-water-features",
+    "parentSubcategory": "sculptural-water-features",
+    "description": "Hand-carved figurative and animal stone sculptures integrated with water fountains.",
+    "imageSrc": "/images/collections/hero-sculptures-group.webp",
+    "imageAlt": "Figurative stone water sculpture",
+    "featured": true
+  },
+  "abstract-water-sculptures": {
+    "slug": "abstract-water-sculptures",
+    "name": "Abstract Water Sculptures",
+    "parentCollection": "fountains-water-features",
+    "parentSubcategory": "sculptural-water-features",
+    "description": "Modernist and geometric stone water sculptures for contemporary spaces.",
+    "imageSrc": "/images/collections/hero-sculptures-group.webp",
+    "imageAlt": "Abstract stone water sculpture",
+    "featured": false
+  },
+  "tiered-fountains": {
+    "slug": "tiered-fountains",
+    "name": "Tiered Fountains",
+    "parentCollection": "fountains-water-features",
+    "parentSubcategory": "tiered-classical-fountains",
+    "description": "Multi-tier classical stone water fountains for gardens and courtyards.",
+    "imageSrc": "/images/collections/luxury.webp",
+    "imageAlt": "Multi-tiered marble water fountain",
+    "featured": true
+  },
+  "central-courtyard-fountains": {
+    "slug": "central-courtyard-fountains",
+    "name": "Central Courtyard Fountains",
+    "parentCollection": "fountains-water-features",
+    "parentSubcategory": "tiered-classical-fountains",
+    "description": "Grand central stone courtyard fountains and architectural centerpiece water features.",
+    "imageSrc": "/images/collections/luxury.webp",
+    "imageAlt": "Central courtyard stone fountain",
+    "featured": false
+  },
+  "lotus-basin-fountains": {
+    "slug": "lotus-basin-fountains",
+    "name": "Lotus Basin Fountains",
+    "parentCollection": "fountains-water-features",
+    "parentSubcategory": "tiered-classical-fountains",
+    "description": "Intricately carved stone lotus basins and low-profile courtyard water fountains.",
+    "imageSrc": "/images/collections/hero-sculptures-group.webp",
+    "imageAlt": "Lotus basin stone water fountain",
+    "featured": false
+  },
+  "wall-fountains": {
+    "slug": "wall-fountains",
+    "name": "Wall Fountains",
+    "parentCollection": "fountains-water-features",
+    "parentSubcategory": "wall-freestanding-fountains",
+    "description": "Architectural wall-mounted fountains, water spouts, and vertical stone water elements.",
+    "imageSrc": "/images/collections/wall-art-relief.webp",
+    "imageAlt": "Architectural stone wall fountain",
+    "featured": true
+  },
+  "freestanding-fountains": {
+    "slug": "freestanding-fountains",
+    "name": "Freestanding Fountains",
+    "parentCollection": "fountains-water-features",
+    "parentSubcategory": "wall-freestanding-fountains",
+    "description": "Freestanding garden and patio stone water fountains.",
+    "imageSrc": "/images/collections/hero-sculptures-group.webp",
+    "imageAlt": "Freestanding courtyard stone fountain",
+    "featured": true
+  },
+  "jharokhas-windows": {
+    "slug": "jharokhas-windows",
+    "name": "Jharokhas & Traditional Windows",
+    "parentCollection": "temples-architectural-stonework",
+    "parentSubcategory": "architectural-components",
+    "description": "Traditional Rajasthani stone jharokha balconies and ornamental windows.",
+    "imageSrc": "/images/collections/architectural.webp",
+    "imageAlt": "Traditional Rajasthani stone jharokha balcony",
+    "featured": true
+  },
+  "gazebo-sculptural-elements": {
+    "slug": "gazebo-sculptural-elements",
+    "name": "Chhatri & Gazebo Elements",
+    "parentCollection": "temples-architectural-stonework",
+    "parentSubcategory": "architectural-components",
+    "description": "Carved stone chhatri pavilions, domed cupolas, and garden gazebos.",
+    "imageSrc": "/images/collections/architectural.webp",
+    "imageAlt": "Carved stone garden pavilion and chhatri",
+    "featured": false
+  },
+  "marble-jali-designs": {
+    "slug": "marble-jali-designs",
+    "name": "Marble Jali Designs",
+    "parentCollection": "temples-architectural-stonework",
+    "parentSubcategory": "jali-designs",
+    "description": "Hand-carved geometric and floral marble lattice screens for interior accents.",
+    "imageSrc": "/images/collections/architectural.webp",
+    "imageAlt": "Intricate marble jali screen panel",
+    "featured": true
+  },
+  "jali-for-partitions": {
+    "slug": "jali-for-partitions",
+    "name": "Jali for Partitions",
+    "parentCollection": "temples-architectural-stonework",
+    "parentSubcategory": "jali-designs",
+    "description": "Architectural stone partition screens for elegant residential and temple dividers.",
+    "imageSrc": "/images/collections/architectural.webp",
+    "imageAlt": "Stone partition jali screen",
+    "featured": true
+  },
+  "balcony-staircase-jali": {
+    "slug": "balcony-staircase-jali",
+    "name": "Balcony & Staircase Jali",
+    "parentCollection": "temples-architectural-stonework",
+    "parentSubcategory": "jali-designs",
+    "description": "Durable natural stone lattice balustrades and staircase railings.",
+    "imageSrc": "/images/collections/architectural.webp",
+    "imageAlt": "Stone balustrade and staircase jali",
+    "featured": false
+  },
+  "small-marble-mandir-for-home": {
+    "slug": "small-marble-mandir-for-home",
+    "name": "Small Marble Mandir for Home",
+    "parentCollection": "temples-architectural-stonework",
+    "parentSubcategory": "mandirs-temples",
+    "description": "Handcrafted compact and wall-mounted white marble temples designed for home pooja rooms.",
+    "imageSrc": "/images/creations/marble-home-mandir.jpg",
+    "imageAlt": "Small Marble Mandir for Home in Makrana white marble",
+    "featured": true
+  },
+  "temple-parts-designs": {
+    "slug": "temple-parts-designs",
+    "name": "Temple Architecture & Parts",
+    "parentCollection": "temples-architectural-stonework",
+    "parentSubcategory": "mandirs-temples",
+    "description": "Shikharas, domes, sanctum doorways, and sacred architectural components.",
+    "imageSrc": "/images/collections/temples-architectural.webp",
+    "imageAlt": "Temple architectural stone elements hand-carved in Jaipur",
+    "featured": false
+  },
+  "stone-arches-door-frames": {
+    "slug": "stone-arches-door-frames",
+    "name": "Stone Arches & Columns",
+    "parentCollection": "temples-architectural-stonework",
+    "parentSubcategory": "pillars-columns",
+    "description": "Hand-carved marble pillars, structural stone columns, and entrance arches.",
+    "imageSrc": "/images/collections/temples-architectural.webp",
+    "imageAlt": "Carved stone columns and arches",
+    "featured": true
   },
   "commemorative-reliefs": {
     "slug": "commemorative-reliefs",
     "name": "Commemorative Reliefs",
-    "parentCollection": "custom-bespoke-creations",
+    "parentCollection": "wall-art-reliefs",
     "parentSubcategory": "custom-wall-art-reliefs",
-    "description": "Custom commemorative stone wall plaques.",
-    "imageSrc": "https://placehold.co/800x500/E8E4DF/1A1918?text=Commemorative+Reliefs",
-    "imageAlt": "Custom commemorative stone wall plaque with carved lettering",
+    "description": "Bespoke commissioned memorial plaques, family crests, and narrative relief art.",
+    "imageSrc": "/images/collections/custom.webp",
+    "imageAlt": "Commemorative relief stone panel",
     "featured": false
+  },
+  "stone-relief-panels": {
+    "slug": "stone-relief-panels",
+    "name": "Stone Relief Panels",
+    "parentCollection": "wall-art-reliefs",
+    "parentSubcategory": "heritage-decorative-wall-art",
+    "description": "Decorative, geometric, and heritage carved stone relief panels.",
+    "imageSrc": "/images/collections/luxury.webp",
+    "imageAlt": "Stone relief panels handcrafted by master carvers",
+    "featured": true
+  },
+  "floral-nature-wall-panels": {
+    "slug": "floral-nature-wall-panels",
+    "name": "Floral & Nature Relief Panels",
+    "parentCollection": "wall-art-reliefs",
+    "parentSubcategory": "heritage-decorative-wall-art",
+    "description": "Intricately carved botanical patterns, lotuses, and tree of life panels.",
+    "imageSrc": "/images/collections/luxury.webp",
+    "imageAlt": "Floral and nature relief panels in marble and sandstone",
+    "featured": true
+  },
+  "devotional-relief-panels": {
+    "slug": "devotional-relief-panels",
+    "name": "Devotional Relief Panels",
+    "parentCollection": "wall-art-reliefs",
+    "parentSubcategory": "religious-spiritual-wall-art",
+    "description": "Hand-carved deity relief panels and sacred spiritual wall carvings.",
+    "imageSrc": "/images/collections/wall-art-relief.webp",
+    "imageAlt": "Devotional relief panels carved in natural stone",
+    "featured": false
+  },
+  "religious-wall-murals": {
+    "slug": "religious-wall-murals",
+    "name": "Religious Wall Murals",
+    "parentCollection": "wall-art-reliefs",
+    "parentSubcategory": "religious-spiritual-wall-art",
+    "description": "Devotional stone wall murals depicting sacred narratives and temples.",
+    "imageSrc": "/images/collections/wall-art-relief.webp",
+    "imageAlt": "Religious stone wall murals carved in Jaipur",
+    "featured": true
   }
 };

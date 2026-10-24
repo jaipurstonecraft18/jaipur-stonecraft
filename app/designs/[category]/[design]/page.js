@@ -47,8 +47,9 @@ export async function generateMetadata({ params }) {
   
   const primaryKw = (seoObj.primaryKeyword || "").trim();
   const secondaryKws = Array.isArray(seoObj.secondaryKeywords) ? seoObj.secondaryKeywords : [];
+  const longTailKws = Array.isArray(seoObj.longTailKeywords) ? seoObj.longTailKeywords : [];
   const baseKws = Array.isArray(seoObj.keywords) ? seoObj.keywords : (typeof seoObj.keywords === "string" ? seoObj.keywords.split(",") : []);
-  const combinedKeywordsList = Array.from(new Set([primaryKw, ...secondaryKws, ...baseKws])).map(k => String(k).trim()).filter(Boolean);
+  const combinedKeywordsList = Array.from(new Set([primaryKw, ...secondaryKws, ...longTailKws, ...baseKws])).map(k => String(k).trim()).filter(Boolean);
 
   return {
     title: pageTitle,
@@ -145,6 +146,7 @@ export default async function DesignDetailPage({ params }) {
       "@type": "Product",
       "name": design.name,
       "description": design.shortDescription || design.detailedDescription,
+      ...(design.knowledgeLayer?.aeoSummary ? { "disambiguatingDescription": design.knowledgeLayer.aeoSummary } : {}),
       "image": allImageUrls.length > 1 ? allImageUrls : design.imageSrc,
       "sku": design.sku || design.slug,
       "url": canonicalUrl,
@@ -218,6 +220,7 @@ export default async function DesignDetailPage({ params }) {
         relatedProducts={relatedDesigns}
         categoryName={category ? category.name : ""}
         collectionSlug={collection ? collection.slug : ""}
+        subcategorySlug={subcategory ? subcategory.slug : ""}
         categorySlug={category ? category.slug : ""}
       />
 

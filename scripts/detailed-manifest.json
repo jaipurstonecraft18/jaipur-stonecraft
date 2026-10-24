@@ -1,0 +1,3168 @@
+{
+  "collectionsSummary": [
+    {
+      "slug": "custom-bespoke-creations",
+      "name": "Custom & Bespoke Creations",
+      "isActive": true,
+      "isApproved": true,
+      "products": {
+        "total": 28,
+        "published": 16,
+        "draft": 12,
+        "archived": 0
+      }
+    },
+    {
+      "slug": "decorative-stone-art",
+      "name": "Decorative Stone Art",
+      "isActive": true,
+      "isApproved": true,
+      "products": {
+        "total": 36,
+        "published": 8,
+        "draft": 28,
+        "archived": 0
+      }
+    },
+    {
+      "slug": "fountains-water-features",
+      "name": "Fountains & Water Features",
+      "isActive": true,
+      "isApproved": true,
+      "products": {
+        "total": 36,
+        "published": 36,
+        "draft": 0,
+        "archived": 0
+      }
+    },
+    {
+      "slug": "sculptures-statues",
+      "name": "Sculptures & Statues",
+      "isActive": true,
+      "isApproved": true,
+      "products": {
+        "total": 127,
+        "published": 124,
+        "draft": 1,
+        "archived": 2
+      }
+    },
+    {
+      "slug": "temples-architectural-stonework",
+      "name": "Temples & Architectural Stonework",
+      "isActive": true,
+      "isApproved": true,
+      "products": {
+        "total": 41,
+        "published": 41,
+        "draft": 0,
+        "archived": 0
+      }
+    },
+    {
+      "slug": "wall-art-reliefs",
+      "name": "Wall Art & Reliefs",
+      "isActive": true,
+      "isApproved": true,
+      "products": {
+        "total": 52,
+        "published": 52,
+        "draft": 0,
+        "archived": 0
+      }
+    }
+  ],
+  "subcategoriesSummary": [
+    {
+      "id": "custom-bespoke-creations-custom-sculptures",
+      "slug": "custom-sculptures",
+      "name": "Custom Sculptures",
+      "parentCollection": "custom-bespoke-creations",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 3
+    },
+    {
+      "id": "temples-architectural-stonework-custom-architectural-stonework",
+      "slug": "custom-architectural-stonework",
+      "name": "Custom Architectural Stonework",
+      "parentCollection": "custom-bespoke-creations",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": false,
+      "products": {
+        "total": 12,
+        "published": 12,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 6
+    },
+    {
+      "id": "custom-bespoke-creations-custom-portraits",
+      "slug": "custom-portraits",
+      "name": "Custom Portraits",
+      "parentCollection": "custom-bespoke-creations",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 2
+    },
+    {
+      "id": "custom-bespoke-creations-custom-wall-art-reliefs",
+      "slug": "custom-wall-art-reliefs",
+      "name": "Custom Wall Art & Reliefs",
+      "parentCollection": "custom-bespoke-creations",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": false,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 1
+    },
+    {
+      "id": "custom-bespoke-creations-custom-architectural-projects",
+      "slug": "custom-architectural-projects",
+      "name": "Custom Architectural Projects",
+      "parentCollection": "custom-bespoke-creations",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 0
+    },
+    {
+      "id": "decorative-stone-art-interior-stone-decor",
+      "slug": "interior-stone-decor",
+      "name": "Interior Stone Décor",
+      "parentCollection": "decorative-stone-art",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 4
+    },
+    {
+      "id": "decorative-stone-art-planters",
+      "slug": "planters",
+      "name": "Planters",
+      "parentCollection": "decorative-stone-art",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": false,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 1
+    },
+    {
+      "id": "decorative-stone-art-planters-tulsi-pots",
+      "slug": "planters-tulsi-pots",
+      "name": "Marble & Stone Planters & Tulsi Pots",
+      "parentCollection": "decorative-stone-art",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 0
+    },
+    {
+      "id": "decorative-stone-art-small-sculptural-art",
+      "slug": "small-sculptural-art",
+      "name": "Small Sculptural Art",
+      "parentCollection": "decorative-stone-art",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 3
+    },
+    {
+      "id": "decorative-stone-art-tulsi-pots",
+      "slug": "tulsi-pots",
+      "name": "Tulsi Pots",
+      "parentCollection": "decorative-stone-art",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 1
+    },
+    {
+      "id": "decorative-stone-art-decorative-accents",
+      "slug": "decorative-accents",
+      "name": "Decorative Accents",
+      "parentCollection": "decorative-stone-art",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 0
+    },
+    {
+      "id": "decorative-stone-art-garden-outdoor-stone-art",
+      "slug": "garden-outdoor-stone-art",
+      "name": "Garden & Outdoor Stone Art",
+      "parentCollection": "decorative-stone-art",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 3
+    },
+    {
+      "id": "decorative-stone-art-pedestals-stands",
+      "slug": "pedestals-stands",
+      "name": "Pedestals & Stands",
+      "parentCollection": "decorative-stone-art",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": false,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 1
+    },
+    {
+      "id": "fountains-water-features-classical-fountains",
+      "slug": "classical-fountains",
+      "name": "Classical Fountains",
+      "parentCollection": "fountains-water-features",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 4
+    },
+    {
+      "id": "fountains-water-features-tiered-fountains",
+      "slug": "tiered-fountains",
+      "name": "Tiered Fountains",
+      "parentCollection": "fountains-water-features",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": false,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 1
+    },
+    {
+      "id": "fountains-water-features-garden-fountains",
+      "slug": "garden-fountains",
+      "name": "Garden Fountains",
+      "parentCollection": "fountains-water-features",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 1
+    },
+    {
+      "id": "fountains-water-features-sculptural-fountains",
+      "slug": "sculptural-fountains",
+      "name": "Sculptural Fountains",
+      "parentCollection": "fountains-water-features",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 3
+    },
+    {
+      "id": "fountains-water-features-wall-fountains",
+      "slug": "wall-fountains",
+      "name": "Wall Fountains",
+      "parentCollection": "fountains-water-features",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": false,
+      "products": {
+        "total": 12,
+        "published": 12,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 1
+    },
+    {
+      "id": "fountains-water-features-architectural-water-features",
+      "slug": "architectural-water-features",
+      "name": "Architectural Water Features",
+      "parentCollection": "fountains-water-features",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 3
+    },
+    {
+      "id": "fountains-water-features-freestanding-fountains",
+      "slug": "freestanding-fountains",
+      "name": "Freestanding Fountains",
+      "parentCollection": "fountains-water-features",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": false,
+      "products": {
+        "total": 20,
+        "published": 20,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 1
+    },
+    {
+      "id": "sculptures-statues-hindu-sculptures",
+      "slug": "hindu-sculptures",
+      "name": "Hindu Sculptures",
+      "parentCollection": "sculptures-statues",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": true,
+      "products": {
+        "total": 75,
+        "published": 72,
+        "draft": 1,
+        "archived": 2
+      },
+      "childCategoriesCount": 18
+    },
+    {
+      "id": "sculptures-statues-buddhist-jain-sculptures",
+      "slug": "buddhist-jain-sculptures",
+      "name": "Buddhist & Jain Sculptures",
+      "parentCollection": "sculptures-statues",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": true,
+      "products": {
+        "total": 20,
+        "published": 20,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 5
+    },
+    {
+      "id": "sculptures-statues-human-portrait-sculptures",
+      "slug": "human-portrait-sculptures",
+      "name": "Human & Portrait Sculptures",
+      "parentCollection": "sculptures-statues",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 4
+    },
+    {
+      "id": "sculptures-statues-classical-artistic-sculptures",
+      "slug": "classical-artistic-sculptures",
+      "name": "Classical & Artistic Sculptures",
+      "parentCollection": "sculptures-statues",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": true,
+      "products": {
+        "total": 8,
+        "published": 8,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 4
+    },
+    {
+      "id": "sculptures-statues-animal-bird-sculptures",
+      "slug": "animal-bird-sculptures",
+      "name": "Animal & Bird Sculptures",
+      "parentCollection": "sculptures-statues",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": true,
+      "products": {
+        "total": 20,
+        "published": 20,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 6
+    },
+    {
+      "id": "temples-architectural-stonework-home-mandirs",
+      "slug": "home-mandirs",
+      "name": "Home Mandirs",
+      "parentCollection": "temples-architectural-stonework",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 4
+    },
+    {
+      "id": "temples-architectural-stonework-mandir-temple",
+      "slug": "mandir-temple",
+      "name": "Mandir & Temple",
+      "parentCollection": "temples-architectural-stonework",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 2
+    },
+    {
+      "id": "temples-architectural-stonework-mandirs-temples",
+      "slug": "mandirs-temples",
+      "name": "Mandirs & Temples",
+      "parentCollection": "temples-architectural-stonework",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": false,
+      "products": {
+        "total": 20,
+        "published": 20,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 2
+    },
+    {
+      "id": "temples-architectural-stonework-jali",
+      "slug": "jali",
+      "name": "Jali",
+      "parentCollection": "temples-architectural-stonework",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 1
+    },
+    {
+      "id": "temples-architectural-stonework-jali-designs",
+      "slug": "jali-designs",
+      "name": "Jali Designs",
+      "parentCollection": "temples-architectural-stonework",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": false,
+      "products": {
+        "total": 5,
+        "published": 5,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 3
+    },
+    {
+      "id": "temples-architectural-stonework-temple-architecture",
+      "slug": "temple-architecture",
+      "name": "Temple Architecture",
+      "parentCollection": "temples-architectural-stonework",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 4
+    },
+    {
+      "id": "temples-architectural-stonework-architectural-elements",
+      "slug": "architectural-elements",
+      "name": "Architectural Elements",
+      "parentCollection": "temples-architectural-stonework",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 4
+    },
+    {
+      "id": "temples-architectural-stonework-pillars-columns",
+      "slug": "pillars-columns",
+      "name": "Pillars & Columns",
+      "parentCollection": "temples-architectural-stonework",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": false,
+      "products": {
+        "total": 8,
+        "published": 8,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 4
+    },
+    {
+      "id": "temples-architectural-stonework-architectural-components",
+      "slug": "architectural-components",
+      "name": "Architectural Components",
+      "parentCollection": "temples-architectural-stonework",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": false,
+      "products": {
+        "total": 8,
+        "published": 8,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 2
+    },
+    {
+      "id": "temples-architectural-stonework-other-temple-stone-parts",
+      "slug": "other-temple-stone-parts",
+      "name": "Other Temple & Stone Parts",
+      "parentCollection": "temples-architectural-stonework",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 0
+    },
+    {
+      "id": "wall-art-reliefs-religious-spiritual-reliefs",
+      "slug": "religious-spiritual-reliefs",
+      "name": "Religious & Spiritual Reliefs",
+      "parentCollection": "wall-art-reliefs",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 3
+    },
+    {
+      "id": "wall-art-reliefs-wall-murals",
+      "slug": "wall-murals",
+      "name": "Wall Murals",
+      "parentCollection": "wall-art-reliefs",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": false,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 1
+    },
+    {
+      "id": "wall-art-reliefs-indian-heritage-cultural-murals",
+      "slug": "indian-heritage-cultural-murals",
+      "name": "Indian Heritage & Cultural Murals",
+      "parentCollection": "wall-art-reliefs",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 4
+    },
+    {
+      "id": "wall-art-reliefs-relief-panels",
+      "slug": "relief-panels",
+      "name": "Stone Relief Panels",
+      "parentCollection": "wall-art-reliefs",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 0
+    },
+    {
+      "id": "wall-art-reliefs-religious-reliefs",
+      "slug": "religious-reliefs",
+      "name": "Religious Reliefs",
+      "parentCollection": "wall-art-reliefs",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": false,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 1
+    },
+    {
+      "id": "wall-art-reliefs-custom-wall-art",
+      "slug": "custom-wall-art",
+      "name": "Custom Wall Art",
+      "parentCollection": "wall-art-reliefs",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 3
+    },
+    {
+      "id": "wall-art-reliefs-decorative-reliefs",
+      "slug": "decorative-reliefs",
+      "name": "Decorative Reliefs",
+      "parentCollection": "wall-art-reliefs",
+      "isActive": false,
+      "isApproved": false,
+      "isProtected": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 4
+    },
+    {
+      "id": "wall-art-reliefs-stone-relief-panels",
+      "slug": "stone-relief-panels",
+      "name": "Stone Relief Panels",
+      "parentCollection": "wall-art-reliefs",
+      "isActive": true,
+      "isApproved": true,
+      "isProtected": false,
+      "products": {
+        "total": 44,
+        "published": 44,
+        "draft": 0,
+        "archived": 0
+      },
+      "childCategoriesCount": 2
+    }
+  ],
+  "categoriesClassification": [
+    {
+      "id": "full-temple-construction",
+      "slug": "full-temple-construction",
+      "name": "Full Temple Construction",
+      "parentCollection": "custom-bespoke-creations",
+      "parentSubcategory": "custom-architectural-stonework",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 4 products (4 published)"
+    },
+    {
+      "id": "luxury-estate-stonework",
+      "slug": "luxury-estate-stonework",
+      "name": "Luxury Estate Stonework",
+      "parentCollection": "custom-bespoke-creations",
+      "parentSubcategory": "custom-architectural-stonework",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 4 products (4 published)"
+    },
+    {
+      "id": "bespoke-heritage-restoration",
+      "slug": "bespoke-heritage-restoration",
+      "name": "Bespoke Heritage Restoration",
+      "parentCollection": "custom-bespoke-creations",
+      "parentSubcategory": "custom-architectural-stonework",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 4 products (4 published)"
+    },
+    {
+      "id": "lifesize-memorial-busts",
+      "slug": "lifesize-memorial-busts",
+      "name": "Lifesize Memorial Busts",
+      "parentCollection": "custom-bespoke-creations",
+      "parentSubcategory": "custom-portraits",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 1 / Group 2: Orphaned/Obsolete Category with Inactive Parent",
+      "proposedAction": "Deactivate (is_active = 0) and preserve redirects",
+      "reason": "Parent subcategory 'custom-portraits' is inactive/obsolete, category has 0 products but was left active"
+    },
+    {
+      "id": "ancestral-portrait-carvings",
+      "slug": "ancestral-portrait-carvings",
+      "name": "Ancestral Portrait Carvings",
+      "parentCollection": "custom-bespoke-creations",
+      "parentSubcategory": "custom-portraits",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 1 / Group 2: Orphaned/Obsolete Category with Inactive Parent",
+      "proposedAction": "Deactivate (is_active = 0) and preserve redirects",
+      "reason": "Parent subcategory 'custom-portraits' is inactive/obsolete, category has 0 products but was left active"
+    },
+    {
+      "id": "bespoke-deity-statues",
+      "slug": "bespoke-deity-statues",
+      "name": "Bespoke Deity Statues",
+      "parentCollection": "custom-bespoke-creations",
+      "parentSubcategory": "custom-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 1 / Group 2: Orphaned/Obsolete Category with Inactive Parent",
+      "proposedAction": "Deactivate (is_active = 0) and preserve redirects",
+      "reason": "Parent subcategory 'custom-sculptures' is inactive/obsolete, category has 0 products but was left active"
+    },
+    {
+      "id": "custom-monumental-sculptures",
+      "slug": "custom-monumental-sculptures",
+      "name": "Custom Monumental Sculptures",
+      "parentCollection": "custom-bespoke-creations",
+      "parentSubcategory": "custom-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 1 / Group 2: Orphaned/Obsolete Category with Inactive Parent",
+      "proposedAction": "Deactivate (is_active = 0) and preserve redirects",
+      "reason": "Parent subcategory 'custom-sculptures' is inactive/obsolete, category has 0 products but was left active"
+    },
+    {
+      "id": "commissioned-statuary",
+      "slug": "commissioned-statuary",
+      "name": "Commissioned Statuary",
+      "parentCollection": "custom-bespoke-creations",
+      "parentSubcategory": "custom-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 1 / Group 2: Orphaned/Obsolete Category with Inactive Parent",
+      "proposedAction": "Deactivate (is_active = 0) and preserve redirects",
+      "reason": "Parent subcategory 'custom-sculptures' is inactive/obsolete, category has 0 products but was left active"
+    },
+    {
+      "id": "commemorative-reliefs",
+      "slug": "commemorative-reliefs",
+      "name": "Commemorative Reliefs",
+      "parentCollection": "custom-bespoke-creations",
+      "parentSubcategory": "custom-wall-art-reliefs",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 4 products (4 published)"
+    },
+    {
+      "id": "stone-planters",
+      "slug": "stone-planters",
+      "name": "Stone Planters",
+      "parentCollection": "decorative-stone-art",
+      "parentSubcategory": "garden-outdoor-stone-art",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "garden-lanterns-lamps",
+      "slug": "garden-lanterns-lamps",
+      "name": "Garden Lanterns & Lamps",
+      "parentCollection": "decorative-stone-art",
+      "parentSubcategory": "garden-outdoor-stone-art",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 1 / Group 2: Orphaned/Obsolete Category with Inactive Parent",
+      "proposedAction": "Deactivate (is_active = 0) and preserve redirects",
+      "reason": "Parent subcategory 'garden-outdoor-stone-art' is inactive/obsolete, category has 0 products but was left active"
+    },
+    {
+      "id": "benches-seating",
+      "slug": "benches-seating",
+      "name": "Benches & Seating",
+      "parentCollection": "decorative-stone-art",
+      "parentSubcategory": "garden-outdoor-stone-art",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 1 / Group 2: Orphaned/Obsolete Category with Inactive Parent",
+      "proposedAction": "Deactivate (is_active = 0) and preserve redirects",
+      "reason": "Parent subcategory 'garden-outdoor-stone-art' is inactive/obsolete, category has 0 products but was left active"
+    },
+    {
+      "id": "carved-stone-vases",
+      "slug": "carved-stone-vases",
+      "name": "Carved Stone Vases",
+      "parentCollection": "decorative-stone-art",
+      "parentSubcategory": "interior-stone-decor",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 1 / Group 2: Orphaned/Obsolete Category with Inactive Parent",
+      "proposedAction": "Deactivate (is_active = 0) and preserve redirects",
+      "reason": "Parent subcategory 'interior-stone-decor' is inactive/obsolete, category has 0 products but was left active"
+    },
+    {
+      "id": "pedestals-plinths",
+      "slug": "pedestals-plinths",
+      "name": "Pedestals & Plinths",
+      "parentCollection": "decorative-stone-art",
+      "parentSubcategory": "interior-stone-decor",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "marble-urns",
+      "slug": "marble-urns",
+      "name": "Marble Urns",
+      "parentCollection": "decorative-stone-art",
+      "parentSubcategory": "interior-stone-decor",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 1 / Group 2: Orphaned/Obsolete Category with Inactive Parent",
+      "proposedAction": "Deactivate (is_active = 0) and preserve redirects",
+      "reason": "Parent subcategory 'interior-stone-decor' is inactive/obsolete, category has 0 products but was left active"
+    },
+    {
+      "id": "decorative-bowls",
+      "slug": "decorative-bowls",
+      "name": "Decorative Bowls",
+      "parentCollection": "decorative-stone-art",
+      "parentSubcategory": "interior-stone-decor",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 1 / Group 2: Orphaned/Obsolete Category with Inactive Parent",
+      "proposedAction": "Deactivate (is_active = 0) and preserve redirects",
+      "reason": "Parent subcategory 'interior-stone-decor' is inactive/obsolete, category has 0 products but was left active"
+    },
+    {
+      "id": "marble-pedestals-stands",
+      "slug": "marble-pedestals-stands",
+      "name": "Marble Pedestals & Stands",
+      "parentCollection": "decorative-stone-art",
+      "parentSubcategory": "pedestals-stands",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 4 products (4 published)"
+    },
+    {
+      "id": "marble-stone-planters",
+      "slug": "marble-stone-planters",
+      "name": "Marble & Stone Planters",
+      "parentCollection": "decorative-stone-art",
+      "parentSubcategory": "planters",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 4 products (4 published)"
+    },
+    {
+      "id": "tabletop-statuettes",
+      "slug": "tabletop-statuettes",
+      "name": "Tabletop Statuettes",
+      "parentCollection": "decorative-stone-art",
+      "parentSubcategory": "small-sculptural-art",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 1 / Group 2: Orphaned/Obsolete Category with Inactive Parent",
+      "proposedAction": "Deactivate (is_active = 0) and preserve redirects",
+      "reason": "Parent subcategory 'small-sculptural-art' is inactive/obsolete, category has 0 products but was left active"
+    },
+    {
+      "id": "miniature-reliefs",
+      "slug": "miniature-reliefs",
+      "name": "Miniature Reliefs",
+      "parentCollection": "decorative-stone-art",
+      "parentSubcategory": "small-sculptural-art",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "artisan-accessories",
+      "slug": "artisan-accessories",
+      "name": "Artisan Accessories",
+      "parentCollection": "decorative-stone-art",
+      "parentSubcategory": "small-sculptural-art",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 1 / Group 2: Orphaned/Obsolete Category with Inactive Parent",
+      "proposedAction": "Deactivate (is_active = 0) and preserve redirects",
+      "reason": "Parent subcategory 'small-sculptural-art' is inactive/obsolete, category has 0 products but was left active"
+    },
+    {
+      "id": "marble-tulsi-pots",
+      "slug": "marble-tulsi-pots",
+      "name": "Marble Tulsi Pots",
+      "parentCollection": "decorative-stone-art",
+      "parentSubcategory": "tulsi-pots",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Group 3: Empty but potentially useful category",
+      "proposedAction": "Retain (active or inactive per business readiness)",
+      "reason": "Approved product family under Tulsi Pots in Decorative Stone Art"
+    },
+    {
+      "id": "poolside-stone-waterfalls",
+      "slug": "poolside-stone-waterfalls",
+      "name": "Poolside Stone Waterfalls",
+      "parentCollection": "fountains-water-features",
+      "parentSubcategory": "architectural-water-features",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "spout-fountains",
+      "slug": "spout-fountains",
+      "name": "Spout Fountains",
+      "parentCollection": "fountains-water-features",
+      "parentSubcategory": "architectural-water-features",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "heritage-palace-water-features",
+      "slug": "heritage-palace-water-features",
+      "name": "Heritage Palace Water Features",
+      "parentCollection": "fountains-water-features",
+      "parentSubcategory": "architectural-water-features",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "tiered-water-fountains",
+      "slug": "tiered-water-fountains",
+      "name": "Tiered Water Fountains",
+      "parentCollection": "fountains-water-features",
+      "parentSubcategory": "classical-fountains",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "central-courtyard-fountains",
+      "slug": "central-courtyard-fountains",
+      "name": "Central Courtyard Fountains",
+      "parentCollection": "fountains-water-features",
+      "parentSubcategory": "classical-fountains",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "lotus-basin-fountains",
+      "slug": "lotus-basin-fountains",
+      "name": "Lotus Basin Fountains",
+      "parentCollection": "fountains-water-features",
+      "parentSubcategory": "classical-fountains",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "pedestal-fountains",
+      "slug": "pedestal-fountains",
+      "name": "Pedestal Fountains",
+      "parentCollection": "fountains-water-features",
+      "parentSubcategory": "classical-fountains",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "freestanding-fountains",
+      "slug": "freestanding-fountains",
+      "name": "Freestanding Fountains",
+      "parentCollection": "fountains-water-features",
+      "parentSubcategory": "freestanding-fountains",
+      "isActive": true,
+      "products": {
+        "total": 20,
+        "published": 20,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 20 products (20 published)"
+    },
+    {
+      "id": "garden-fountains",
+      "slug": "garden-fountains",
+      "name": "Garden Fountains",
+      "parentCollection": "fountains-water-features",
+      "parentSubcategory": "garden-fountains",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 1 / Group 2: Orphaned/Obsolete Category with Inactive Parent",
+      "proposedAction": "Deactivate (is_active = 0) and preserve redirects",
+      "reason": "Parent subcategory 'garden-fountains' is inactive/obsolete, category has 0 products but was left active"
+    },
+    {
+      "id": "figurative-water-sculptures",
+      "slug": "figurative-water-sculptures",
+      "name": "Figurative Water Sculptures",
+      "parentCollection": "fountains-water-features",
+      "parentSubcategory": "sculptural-fountains",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "cascading-water-walls",
+      "slug": "cascading-water-walls",
+      "name": "Cascading Water Walls",
+      "parentCollection": "fountains-water-features",
+      "parentSubcategory": "sculptural-fountains",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "abstract-water-sculptures",
+      "slug": "abstract-water-sculptures",
+      "name": "Abstract Water Sculptures",
+      "parentCollection": "fountains-water-features",
+      "parentSubcategory": "sculptural-fountains",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "tiered-fountains",
+      "slug": "tiered-fountains",
+      "name": "Tiered Fountains",
+      "parentCollection": "fountains-water-features",
+      "parentSubcategory": "tiered-fountains",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 4 products (4 published)"
+    },
+    {
+      "id": "wall-fountains",
+      "slug": "wall-fountains",
+      "name": "Wall Fountains",
+      "parentCollection": "fountains-water-features",
+      "parentSubcategory": "wall-fountains",
+      "isActive": true,
+      "products": {
+        "total": 12,
+        "published": 12,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 12 products (12 published)"
+    },
+    {
+      "id": "elephants",
+      "slug": "elephants",
+      "name": "Elephants",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "animal-bird-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "lions",
+      "slug": "lions",
+      "name": "Lions",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "animal-bird-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "peacocks",
+      "slug": "peacocks",
+      "name": "Peacocks",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "animal-bird-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "horses",
+      "slug": "horses",
+      "name": "Horses",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "animal-bird-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "swans",
+      "slug": "swans",
+      "name": "Swans",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "animal-bird-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "custom-animal-figures",
+      "slug": "custom-animal-figures",
+      "name": "Custom Animal Figures",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "animal-bird-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "buddha-statues",
+      "slug": "buddha-statues",
+      "name": "Buddha Statues",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "buddhist-jain-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "mahavira-statues",
+      "slug": "mahavira-statues",
+      "name": "Mahavira Statues",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "buddhist-jain-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "tirthankara-sculptures",
+      "slug": "tirthankara-sculptures",
+      "name": "Tirthankara Sculptures",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "buddhist-jain-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "meditating-buddha",
+      "slug": "meditating-buddha",
+      "name": "Meditating Buddha",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "buddhist-jain-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "reclining-buddha",
+      "slug": "reclining-buddha",
+      "name": "Reclining Buddha",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "buddhist-jain-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "abstract-form-sculptures",
+      "slug": "abstract-form-sculptures",
+      "name": "Abstract Form Sculptures",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "classical-artistic-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "contemporary-stone-art",
+      "slug": "contemporary-stone-art",
+      "name": "Contemporary Stone Art",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "classical-artistic-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "roman-greek-figures",
+      "slug": "roman-greek-figures",
+      "name": "Roman & Greek Figures",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "classical-artistic-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "modernist-carvings",
+      "slug": "modernist-carvings",
+      "name": "Modernist Carvings",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "classical-artistic-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "sai-baba",
+      "slug": "sai-baba",
+      "name": "Sai Baba",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "hindu-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 2,
+        "published": 2,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "ganesh-ji",
+      "slug": "ganesh-ji",
+      "name": "Ganesh Ji",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "hindu-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 12,
+        "published": 9,
+        "draft": 1,
+        "archived": 2
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "krishna-ji",
+      "slug": "krishna-ji",
+      "name": "Krishna Ji",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "hindu-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 6,
+        "published": 6,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "shiva-ji",
+      "slug": "shiva-ji",
+      "name": "Shiva Ji",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "hindu-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 6,
+        "published": 6,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "hanuman-ji",
+      "slug": "hanuman-ji",
+      "name": "Hanuman Ji",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "hindu-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "radha-krishna",
+      "slug": "radha-krishna",
+      "name": "Radha Krishna",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "hindu-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "durga-ji",
+      "slug": "durga-ji",
+      "name": "Durga Ji",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "hindu-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "lakshmi-ji",
+      "slug": "lakshmi-ji",
+      "name": "Lakshmi Ji",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "hindu-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "saraswati-ji",
+      "slug": "saraswati-ji",
+      "name": "Saraswati Ji",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "hindu-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "ram-darbar",
+      "slug": "ram-darbar",
+      "name": "Ram Darbar",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "hindu-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "vishnu-ji",
+      "slug": "vishnu-ji",
+      "name": "Vishnu Ji",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "hindu-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "lakshmi-narayan",
+      "slug": "lakshmi-narayan",
+      "name": "Lakshmi Narayan",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "hindu-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "jagannath",
+      "slug": "jagannath",
+      "name": "Jagannath",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "hindu-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "kartikeya",
+      "slug": "kartikeya",
+      "name": "Kartikeya(Murugan)",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "hindu-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "parvati-ji",
+      "slug": "parvati-ji",
+      "name": "Parvati Ji",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "hindu-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "nandi",
+      "slug": "nandi",
+      "name": "Nandi",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "hindu-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "other-deities",
+      "slug": "other-deities",
+      "name": "Other Deities",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "hindu-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "modi-ji",
+      "slug": "modi-ji",
+      "name": "Modi ji",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "hindu-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 1,
+        "published": 1,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "bespoke-portrait-busts",
+      "slug": "bespoke-portrait-busts",
+      "name": "Bespoke Portrait Busts",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "human-portrait-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "full-body-figures",
+      "slug": "full-body-figures",
+      "name": "Full Body Figures",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "human-portrait-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "cultural-tribal-figures",
+      "slug": "cultural-tribal-figures",
+      "name": "Cultural & Tribal Figures",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "human-portrait-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "artisan-figures",
+      "slug": "artisan-figures",
+      "name": "Artisan Figures",
+      "parentCollection": "sculptures-statues",
+      "parentSubcategory": "human-portrait-sculptures",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": true,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Protected",
+      "proposedAction": "Retain strictly without modification",
+      "reason": "Sculptures & Statues is strictly protected by non-negotiable safeguard"
+    },
+    {
+      "id": "jharokhas-windows",
+      "slug": "jharokhas-windows",
+      "name": "Jharokhas & Traditional Windows",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "architectural-components",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 4 products (4 published)"
+    },
+    {
+      "id": "gazebo-sculptural-elements",
+      "slug": "gazebo-sculptural-elements",
+      "name": "Chhatri & Gazebo Elements",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "architectural-components",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 4 products (4 published)"
+    },
+    {
+      "id": "carved-pillars-columns",
+      "slug": "carved-pillars-columns",
+      "name": "Carved Pillars & Columns",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "architectural-elements",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "jali-screens",
+      "slug": "jali-screens",
+      "name": "Jali Screens",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "architectural-elements",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "stone-balustrades",
+      "slug": "stone-balustrades",
+      "name": "Stone Balustrades",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "architectural-elements",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "stone-door-frames",
+      "slug": "stone-door-frames",
+      "name": "Stone Door Frames",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "architectural-elements",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "bespoke-facade-elements",
+      "slug": "bespoke-facade-elements",
+      "name": "Bespoke Facade Elements",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "custom-architectural-stonework",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": true,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "custom-heritage-columns",
+      "slug": "custom-heritage-columns",
+      "name": "Custom Heritage Columns",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "custom-architectural-stonework",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": true,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "portico-carvings",
+      "slug": "portico-carvings",
+      "name": "Portico Carvings",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "custom-architectural-stonework",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": true,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "marble-home-temples",
+      "slug": "marble-home-temples",
+      "name": "Marble Home Temples",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "home-mandirs",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "carved-mandir-arches",
+      "slug": "carved-mandir-arches",
+      "name": "Carved Mandir Arches",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "home-mandirs",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "pooja-room-panels",
+      "slug": "pooja-room-panels",
+      "name": "Pooja Room Panels",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "home-mandirs",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "compact-wall-mandirs",
+      "slug": "compact-wall-mandirs",
+      "name": "Compact Wall Mandirs",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "home-mandirs",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "window-jali",
+      "slug": "window-jali",
+      "name": "Window Jali",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "jali",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 1 / Group 2: Orphaned/Obsolete Category with Inactive Parent",
+      "proposedAction": "Deactivate (is_active = 0) and preserve redirects",
+      "reason": "Parent subcategory 'jali' is inactive/obsolete, category has 0 products but was left active"
+    },
+    {
+      "id": "marble-jali-designs",
+      "slug": "marble-jali-designs",
+      "name": "Marble Jali Designs",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "jali-designs",
+      "isActive": true,
+      "products": {
+        "total": 2,
+        "published": 2,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 2 products (2 published)"
+    },
+    {
+      "id": "jali-for-partitions",
+      "slug": "jali-for-partitions",
+      "name": "Jali for Partitions",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "jali-designs",
+      "isActive": true,
+      "products": {
+        "total": 2,
+        "published": 2,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 2 products (2 published)"
+    },
+    {
+      "id": "balcony-staircase-jali",
+      "slug": "balcony-staircase-jali",
+      "name": "Balcony & Staircase Jali",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "jali-designs",
+      "isActive": true,
+      "products": {
+        "total": 1,
+        "published": 1,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 1 products (1 published)"
+    },
+    {
+      "id": "floor-standing-marble-mandir",
+      "slug": "floor-standing-marble-mandir",
+      "name": "Floor-Standing Marble Mandir",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "mandir-temple",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 1 / Group 2: Orphaned/Obsolete Category with Inactive Parent",
+      "proposedAction": "Deactivate (is_active = 0) and preserve redirects",
+      "reason": "Parent subcategory 'mandir-temple' is inactive/obsolete, category has 0 products but was left active"
+    },
+    {
+      "id": "large-marble-temple",
+      "slug": "large-marble-temple",
+      "name": "Large Marble Temple",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "mandir-temple",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 1 / Group 2: Orphaned/Obsolete Category with Inactive Parent",
+      "proposedAction": "Deactivate (is_active = 0) and preserve redirects",
+      "reason": "Parent subcategory 'mandir-temple' is inactive/obsolete, category has 0 products but was left active"
+    },
+    {
+      "id": "small-marble-mandir-for-home",
+      "slug": "small-marble-mandir-for-home",
+      "name": "Small Marble Mandir for Home",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "mandirs-temples",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 4 products (4 published)"
+    },
+    {
+      "id": "temple-parts-designs",
+      "slug": "temple-parts-designs",
+      "name": "Temple Architecture & Parts",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "mandirs-temples",
+      "isActive": true,
+      "products": {
+        "total": 16,
+        "published": 16,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 16 products (16 published)"
+    },
+    {
+      "id": "marble-pillars",
+      "slug": "marble-pillars",
+      "name": "Marble Pillars",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "pillars-columns",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Group 1: Near-duplicate empty pillar categories",
+      "proposedAction": "Retain stone-arches-door-frames as canonical active category, deactivate redundant empty pillar sub-types",
+      "reason": "Near-duplicate pillar category variations with 0 products"
+    },
+    {
+      "id": "stone-arches-door-frames",
+      "slug": "stone-arches-door-frames",
+      "name": "Stone Arches & Columns",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "pillars-columns",
+      "isActive": true,
+      "products": {
+        "total": 8,
+        "published": 8,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 8 products (8 published)"
+    },
+    {
+      "id": "stone-pillars",
+      "slug": "stone-pillars",
+      "name": "Stone Pillars",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "pillars-columns",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Group 1: Near-duplicate empty pillar categories",
+      "proposedAction": "Retain stone-arches-door-frames as canonical active category, deactivate redundant empty pillar sub-types",
+      "reason": "Near-duplicate pillar category variations with 0 products"
+    },
+    {
+      "id": "decorative-pillars",
+      "slug": "decorative-pillars",
+      "name": "Decorative Pillars",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "pillars-columns",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Group 1: Near-duplicate empty pillar categories",
+      "proposedAction": "Retain stone-arches-door-frames as canonical active category, deactivate redundant empty pillar sub-types",
+      "reason": "Near-duplicate pillar category variations with 0 products"
+    },
+    {
+      "id": "shikhara-domes",
+      "slug": "shikhara-domes",
+      "name": "Shikhara & Domes",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "temple-architecture",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "garbhagriha-architecture",
+      "slug": "garbhagriha-architecture",
+      "name": "Garbhagriha Architecture",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "temple-architecture",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "pillared-mandapas",
+      "slug": "pillared-mandapas",
+      "name": "Pillared Mandapas",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "temple-architecture",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "intricate-torans",
+      "slug": "intricate-torans",
+      "name": "Intricate Torans",
+      "parentCollection": "temples-architectural-stonework",
+      "parentSubcategory": "temple-architecture",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "architectural-accent-murals",
+      "slug": "architectural-accent-murals",
+      "name": "Architectural Accent Murals",
+      "parentCollection": "wall-art-reliefs",
+      "parentSubcategory": "custom-wall-art",
+      "isActive": true,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 1 / Group 2: Orphaned/Obsolete Category with Inactive Parent",
+      "proposedAction": "Deactivate (is_active = 0) and preserve redirects",
+      "reason": "Parent subcategory 'custom-wall-art' is inactive/obsolete, category has 0 products but was left active"
+    },
+    {
+      "id": "bespoke-feature-walls",
+      "slug": "bespoke-feature-walls",
+      "name": "Bespoke Feature Walls",
+      "parentCollection": "wall-art-reliefs",
+      "parentSubcategory": "custom-wall-art",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "custom-crests-logos",
+      "slug": "custom-crests-logos",
+      "name": "Custom Crests & Logos",
+      "parentCollection": "wall-art-reliefs",
+      "parentSubcategory": "custom-wall-art",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "floral-pattern-panels",
+      "slug": "floral-pattern-panels",
+      "name": "Floral Pattern Panels",
+      "parentCollection": "wall-art-reliefs",
+      "parentSubcategory": "decorative-reliefs",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "geometric-carved-walls",
+      "slug": "geometric-carved-walls",
+      "name": "Geometric Carved Walls",
+      "parentCollection": "wall-art-reliefs",
+      "parentSubcategory": "decorative-reliefs",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "botanical-reliefs",
+      "slug": "botanical-reliefs",
+      "name": "Botanical Reliefs",
+      "parentCollection": "wall-art-reliefs",
+      "parentSubcategory": "decorative-reliefs",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "modern-textured-stone-walls",
+      "slug": "modern-textured-stone-walls",
+      "name": "Modern Textured Stone Walls",
+      "parentCollection": "wall-art-reliefs",
+      "parentSubcategory": "decorative-reliefs",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "royal-court-panels",
+      "slug": "royal-court-panels",
+      "name": "Royal Court Panels",
+      "parentCollection": "wall-art-reliefs",
+      "parentSubcategory": "indian-heritage-cultural-murals",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "traditional-procession-murals",
+      "slug": "traditional-procession-murals",
+      "name": "Traditional Procession Murals",
+      "parentCollection": "wall-art-reliefs",
+      "parentSubcategory": "indian-heritage-cultural-murals",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "rajasthani-heritage-scenes",
+      "slug": "rajasthani-heritage-scenes",
+      "name": "Rajasthani Heritage Scenes",
+      "parentCollection": "wall-art-reliefs",
+      "parentSubcategory": "indian-heritage-cultural-murals",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "jharokha-relief-panels",
+      "slug": "jharokha-relief-panels",
+      "name": "Jharokha Relief Panels",
+      "parentCollection": "wall-art-reliefs",
+      "parentSubcategory": "indian-heritage-cultural-murals",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "devotional-relief-panels",
+      "slug": "devotional-relief-panels",
+      "name": "Devotional Relief Panels",
+      "parentCollection": "wall-art-reliefs",
+      "parentSubcategory": "religious-reliefs",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 4 products (4 published)"
+    },
+    {
+      "id": "temple-wall-murals",
+      "slug": "temple-wall-murals",
+      "name": "Temple Wall Murals",
+      "parentCollection": "wall-art-reliefs",
+      "parentSubcategory": "religious-spiritual-reliefs",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "mandala-wall-art",
+      "slug": "mandala-wall-art",
+      "name": "Mandala Wall Art",
+      "parentCollection": "wall-art-reliefs",
+      "parentSubcategory": "religious-spiritual-reliefs",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "tree-of-life-relief",
+      "slug": "tree-of-life-relief",
+      "name": "Tree of Life Relief",
+      "parentCollection": "wall-art-reliefs",
+      "parentSubcategory": "religious-spiritual-reliefs",
+      "isActive": false,
+      "products": {
+        "total": 0,
+        "published": 0,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": false,
+      "isSubActive": false,
+      "group": "Group 2: Obsolete Legacy Category",
+      "proposedAction": "Retain as deactivated (is_active = 0) with redirects preserved",
+      "reason": "Already inactive with 0 products and parent subcategory is inactive"
+    },
+    {
+      "id": "stone-relief-panels",
+      "slug": "stone-relief-panels",
+      "name": "Stone Relief Panels",
+      "parentCollection": "wall-art-reliefs",
+      "parentSubcategory": "stone-relief-panels",
+      "isActive": true,
+      "products": {
+        "total": 32,
+        "published": 32,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 32 products (32 published)"
+    },
+    {
+      "id": "floral-nature-wall-panels",
+      "slug": "floral-nature-wall-panels",
+      "name": "Floral & Nature Relief Panels",
+      "parentCollection": "wall-art-reliefs",
+      "parentSubcategory": "stone-relief-panels",
+      "isActive": true,
+      "products": {
+        "total": 12,
+        "published": 12,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 12 products (12 published)"
+    },
+    {
+      "id": "religious-wall-murals",
+      "slug": "religious-wall-murals",
+      "name": "Religious Wall Murals",
+      "parentCollection": "wall-art-reliefs",
+      "parentSubcategory": "wall-murals",
+      "isActive": true,
+      "products": {
+        "total": 4,
+        "published": 4,
+        "draft": 0,
+        "archived": 0
+      },
+      "isSculpture": false,
+      "isSubApproved": true,
+      "isSubActive": true,
+      "group": "Approved Active Category with Products",
+      "proposedAction": "Retain",
+      "reason": "Contains 4 products (4 published)"
+    }
+  ]
+}

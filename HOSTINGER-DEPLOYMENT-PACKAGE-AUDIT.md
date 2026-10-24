@@ -1,18 +1,18 @@
 # Jaipur Stonecraft — Hostinger Production Deployment Package Audit (Phase 8D)
 
-Generated on: 2026-08-29T18:05:34.277Z
+Generated on: 2026-10-10T07:13:01.454Z
 
 ---
 
 ## 1. Archive Overview
 * **Archive Filename**: `jaipur-stonecraft-hostinger-deployment.zip`
 * **File Path**: `D:\jsc\jsc web1\jaipur-stonecraft-hostinger-deployment.zip`
-* **File Size**: **87.98 MB** (9,22,58,927 bytes)
+* **File Size**: **359.53 MB** (37,69,91,277 bytes)
 * **Archive SHA-256 Checksum**:
   ```
-  95fddac2d9b10c207c119952d342e6389845a9fa352aa5b87a6f0e762d695db2
+  5fd1195e9b8c1224be37a587afb6d6465218d448d38ae8a5ce97d9350b810c64
   ```
-* **Total Entries in ZIP**: **572 entries** (154 directories, 418 files)
+* **Total Entries in ZIP**: **1117 entries** (171 directories, 946 files)
 * **Archive Format**: **100% POSIX-compliant ZIP** (Unix MadeBy `0x0314`, forward slashes `/`, explicit `0755` directory and `0644` file permissions).
 
 ---
@@ -20,16 +20,16 @@ Generated on: 2026-08-29T18:05:34.277Z
 ## 2. Inclusions & Exclusions Summary
 
 ### Included Directories & Files
-* `app/` — Full Next.js App Router hierarchy (pages, layout, components, **all 19 admin API routes**)
+* `app/` — Full Next.js App Router hierarchy (pages, layout, components, **all 28 admin API routes**)
 * `components/` — All UI components
 * `content/` — Static database schemas and content
 * `lib/` — Core database client (`mysql2`), schema definitions, backup engine, image archiver, SEO helpers
-* `public/` — Static assets and **all 106 production media uploads** (`public/uploads/`)
+* `public/` — Static assets and **all 571 production media uploads** (`public/uploads/`)
 * `scripts/` — Production runtime scripts (`sync-production-to-local.mjs`, `backup-runner.js`, `restore-runner.js`, `hostinger-preflight.mjs`, `verify-hostinger-migration.mjs`)
 * `styles/` — Global stylesheet tokens and CSS
 * `server.js` — Custom Node.js HTTP server entry point with startup upload directory scaffolding
 * `next.config.mjs` — Production Next.js configuration
-* `package.json` & `package-lock.json` — Clean production dependencies (**0 SQLite native dependencies**)
+* `package.json` & `package-lock.json` — Clean production dependencies (**Next.js 16.3.8 secure patch**)
 * `.htaccess` — Apache / LiteSpeed web server protection
 * `.env.example` — Clean configuration template
 
@@ -45,16 +45,16 @@ Generated on: 2026-08-29T18:05:34.277Z
 ---
 
 ## 3. Media & Upload Inventory
-* **Total Staged Images**: **106 files**
-* **Total Media Size**: **67.20 MB** (7,04,66,645 bytes)
+* **Total Staged Images**: **571 files**
+* **Total Media Size**: **324.25 MB** (33,99,99,938 bytes)
 * **Directory Structure**:
   * `public/uploads/products/` (`raw/`, `display/`, `card/`, `thumb/`)
   * `public/uploads/categories/` (`raw/`, `display/`, `card/`, `thumb/`)
-* **SHA-256 Parity**: 100% verified match against baseline manifest.
+* **SHA-256 Parity**: Verified match against baseline manifest.
 
 ---
 
-## 4. Admin API Route Inventory (19 Routes)
+## 4. Admin API Route Inventory (28 Routes)
 1. `app/api/admin/ai/analyze-product/route.js`
 2. `app/api/admin/ai/generate-alt-texts/route.js`
 3. `app/api/admin/auth/route.js`

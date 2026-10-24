@@ -9,15 +9,7 @@ import QuickAddModal from "@/components/admin/QuickAddModal/QuickAddModal";
 import MobileImageStudio from "./MobileImageStudio/MobileImageStudio";
 import styles from "./QuickAddProduct.module.css";
 
-const STONE_MATERIALS = [
-  { id: "makrana-pure-white", name: "Makrana Pure White Marble", short: "White Marble", color: "White" },
-  { id: "sangemarmar-white", name: "Sangemarmar White Marble", short: "Sangemarmar", color: "White" },
-  { id: "black-bhainslana", name: "Black Bhainslana Marble", short: "Black Marble", color: "Black" },
-  { id: "pink-bansi-paharpur", name: "Pink Bansi Paharpur Sandstone", short: "Pink Sandstone", color: "Pink" },
-  { id: "jodhpur-red-sandstone", name: "Jodhpur Royal Red Sandstone", short: "Red Sandstone", color: "Red" },
-  { id: "dholpur-beige-sandstone", name: "Dholpur Beige Sandstone", short: "Beige Sandstone", color: "Beige" },
-  { id: "jaisalmer-yellow-limestone", name: "Jaisalmer Golden Yellow Limestone", short: "Golden Yellow", color: "Golden Yellow" }
-];
+import { materialsDB } from "@/content/products-db/materials-db.js";
 
 const PRODUCT_TYPES = [
   { id: "statue", name: "Deity Statue / Murti", icon: "🕉️" },
@@ -67,6 +59,7 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
 
   // Dynamic catalogue list from server
   const [categoriesList, setCategoriesList] = useState(() => Object.values(categoriesData));
+  const [materialsList, setMaterialsList] = useState(() => materialsDB);
   const [subjectsList, setSubjectsList] = useState([]);
 
   // Save / Submit state
@@ -93,6 +86,9 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
     fetch("/api/admin/catalogue")
       .then((res) => res.json())
       .then((data) => {
+        if (data.materials && data.materials.length > 0) {
+          setMaterialsList(data.materials.filter((m) => m.isActive !== false));
+        }
         if (data.subjects) setSubjectsList(data.subjects.filter((s) => s.isActive !== false));
       })
       .catch(() => {});
@@ -362,6 +358,10 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
     const slug = finalName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || `draft-${timestamp}`;
     const primaryImg = images.find((i) => i.isPrimary) || images[0];
 
+    const selectedMat = materialsList.find((m) => m.id === primaryMaterialId);
+    const selectedMaterialName = selectedMat ? selectedMat.name : (primaryMaterialId.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase()));
+    const defaultShortDesc = `Hand-carved ${finalName} sculpted from authentic ${selectedMaterialName} at Jaipur Stonecraft atelier.`;
+
     const payload = {
       name: finalName,
       slug,
@@ -372,12 +372,12 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
       parentCollection: parentCollection || "sculptures-statues",
       parentSubcategory: parentSubcategory || "hindu-sculptures",
       subjectId: subject ? subject.toLowerCase().replace(/[^a-z0-9]+/g, "-") : null,
-      shortDescription: shortDescription || `Hand-carved ${finalName} sculpted in Jaipur Stonecraft atelier.`,
+      shortDescription: shortDescription || defaultShortDesc,
       imageSrc: primaryImg ? primaryImg.url : "https://placehold.co/800x600/E8E4DF/1A1918?text=Product+Photo",
       imageGallery: images.map((img, idx) => ({
         url: img.url,
         rawUrl: img.rawUrl || img.url,
-        altText: img.altText || `${finalName} view ${idx + 1}`,
+        altText: img.altText || `${finalName} hand-carved in ${selectedMaterialName} - view ${idx + 1}`,
         isPrimary: img.isPrimary,
         metadata: img.metadata || {}
       })),
@@ -390,8 +390,8 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
         customizationAvailable: true
       },
       seo: {
-        title: `${finalName} | Jaipur Stonecraft`,
-        description: shortDescription || `Hand-carved ${finalName} in natural stone.`
+        title: `${finalName} - Handcrafted ${selectedMaterialName} | Jaipur Stonecraft`,
+        description: shortDescription || `Hand-carved ${finalName} sculpted from authentic ${selectedMaterialName}. Master artisan craftsmanship from Jaipur Stonecraft atelier.`
       }
     };
 
@@ -407,7 +407,7 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
       if (res.ok && data.success && data.product) {
         setCreatedProduct(data.product);
 
-        // Queue asynchronous background AI enrichment (Grok / Gemini)
+        // Queue asynchronous background AI enrichment strictly grounded in selected stone
         fetch("/api/admin/ai/jobs", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -415,10 +415,11 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
             productSlug: data.product.slug,
             facts: {
               subject,
-              material: STONE_MATERIALS.find((m) => m.id === primaryMaterialId)?.name,
+              material: selectedMaterialName,
+              primaryMaterialId,
               productType,
               suggestedTitle: finalName,
-              userShortDescription: shortDescription?.trim() || ""
+              userShortDescription: shortDescription?.trim() || defaultShortDesc
             }
           })
         }).catch(() => {});
@@ -782,24 +783,50 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
             />
           </div>
 
-          {/* Stone Material (Touch Chips) */}
+          {/* Primary Material Selection (Full Studio Mode List) */}
           <div className={styles.formGroup}>
-            <label className={styles.label}>
-              Stone Material * (Granite strictly excluded)
-              {aiSuggestions.material && <span className={styles.aiBadge}>✨ AI suggested</span>}
-            </label>
-            <div className={styles.chipGroup}>
-              {STONE_MATERIALS.map((mat) => (
-                <button
-                  key={mat.id}
-                  type="button"
-                  onClick={() => setPrimaryMaterialId(mat.id)}
-                  className={`${styles.chip} ${primaryMaterialId === mat.id ? styles.chipSelected : ""}`}
-                >
-                  {mat.short}
-                </button>
-              ))}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.4rem" }}>
+              <label className={styles.label} style={{ margin: 0 }}>
+                Primary Material *
+                {aiSuggestions.material && <span className={styles.aiBadge}>✨ AI suggested</span>}
+              </label>
+              <button
+                type="button"
+                onClick={() => setQuickAddModal({ isOpen: true, targetField: "primaryMaterialId", fieldLabel: "Material" })}
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "var(--color-bronze)",
+                  fontWeight: "600",
+                  fontSize: "0.8rem",
+                  cursor: "pointer",
+                  padding: "0.2rem 0.5rem"
+                }}
+              >
+                + Quick Add
+              </button>
             </div>
+            <select
+              value={primaryMaterialId}
+              onChange={(e) => setPrimaryMaterialId(e.target.value)}
+              className={styles.input}
+              style={{
+                width: "100%",
+                padding: "0.65rem 0.75rem",
+                borderRadius: "6px",
+                border: "1px solid #D5CEBE",
+                fontSize: "0.9rem",
+                backgroundColor: "#FFFFFF",
+                color: "var(--color-navy)",
+                fontWeight: "500"
+              }}
+            >
+              {materialsList.map((m) => (
+                <option key={m.id} value={m.id}>
+                  {m.name}
+                </option>
+              ))}
+            </select>
           </div>
 
           {/* Product Type (Touch Chips) */}
@@ -933,9 +960,9 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
             )}
 
             <div className={styles.reviewRow}>
-              <span className={styles.reviewLabel}>Material:</span>
+              <span className={styles.reviewLabel}>Primary Material:</span>
               <span className={styles.reviewValue}>
-                {STONE_MATERIALS.find((m) => m.id === primaryMaterialId)?.name || primaryMaterialId}
+                {materialsList.find((m) => m.id === primaryMaterialId)?.name || primaryMaterialId}
               </span>
             </div>
             <div className={styles.reviewRow}>
@@ -1121,7 +1148,13 @@ export default function QuickAddProduct({ onSwitchToAdvanced }) {
         fieldLabel={quickAddModal.fieldLabel}
         onClose={() => setQuickAddModal({ isOpen: false, targetField: "", fieldLabel: "" })}
         onSuccess={(createdItem) => {
-          if (quickAddModal.targetField === "parentCategory") {
+          if (quickAddModal.targetField === "primaryMaterialId") {
+            setMaterialsList((prev) => {
+              const alreadyExists = prev.some((m) => m.id === createdItem.id);
+              return alreadyExists ? prev : [...prev, createdItem];
+            });
+            setPrimaryMaterialId(createdItem.id);
+          } else if (quickAddModal.targetField === "parentCategory") {
             setCategoriesList((prev) => {
               const alreadyExists = prev.some((c) => c.slug === createdItem.slug || c.id === createdItem.id);
               return alreadyExists ? prev : [...prev, createdItem];

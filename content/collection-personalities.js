@@ -301,8 +301,8 @@ export const collectionPersonalities = {
       eyebrow: "INTERIOR STONE ACCENTS",
       heading: "Order Bespoke Stone Décor & Accents",
       description: "Inquire about custom dimensions, stone colors, or bulk decorative accents for luxury interior projects.",
-      primaryCtaText: "Inquire Stone Décor",
-      primaryCtaHref: "/contact?type=custom&collection=decorative-stone-art"
+      primaryCtaText: "Call Now",
+      primaryCtaHref: "tel:+919664388920"
     }
   },
 

@@ -9,10 +9,10 @@ import styles from "./SearchOverlay.module.css";
 const suggestedSearches = [
   { label: "Ganesh Statues", href: "/collections/sculptures-statues/hindu-sculptures/ganesh-ji" },
   { label: "Shiva Statues", href: "/collections/sculptures-statues/hindu-sculptures/shiva-ji" },
-  { label: "Marble Mandirs", href: "/collections/temples-architectural-stonework/home-mandirs/marble-home-temples" },
-  { label: "Wall Reliefs", href: "/collections/wall-art-reliefs/religious-spiritual-reliefs/temple-wall-murals" },
-  { label: "Temple Architecture", href: "/collections/temples-architectural-stonework/temple-architecture/shikhara-domes" },
-  { label: "Water Fountains", href: "/collections/fountains-water-features/classical-fountains/tiered-water-fountains" },
+  { label: "Marble Mandirs", href: "/collections/temples-architectural-stonework/mandirs-temples/small-marble-mandir-for-home" },
+  { label: "Wall Reliefs", href: "/collections/wall-art-reliefs/religious-spiritual-wall-art/religious-wall-murals" },
+  { label: "Temple Architecture", href: "/collections/temples-architectural-stonework/mandirs-temples/temple-parts-designs" },
+  { label: "Water Fountains", href: "/collections/fountains-water-features/tiered-classical-fountains/tiered-fountains" },
 ];
 
 export default function SearchOverlay({ isOpen, onClose }) {

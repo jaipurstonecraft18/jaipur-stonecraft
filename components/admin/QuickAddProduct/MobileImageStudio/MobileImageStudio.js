@@ -5,7 +5,7 @@ import Cropper from "cropperjs";
 import "cropperjs/dist/cropper.css";
 import styles from "./MobileImageStudio.module.css";
 
-const WATERMARK_SVG_URL = "/images/brand/jaipur-stonecraft-watermark.svg";
+const WATERMARK_SVG_URL = "/images/brand/jaipur-stonecraft-watermark.png";
 
 /**
  * Normalizes watermark geometry relative to the crop dimensions.
@@ -13,7 +13,7 @@ const WATERMARK_SVG_URL = "/images/brand/jaipur-stonecraft-watermark.svg";
  */
 function getWatermarkNormDims(sizePercent, logoRatio, cropAspect) {
   const normW = Math.max(0.08, Math.min(0.9, sizePercent / 100));
-  const normH = cropAspect > 0 && logoRatio > 0 ? (normW * cropAspect) / logoRatio : normW / (logoRatio || 4.28);
+  const normH = cropAspect > 0 && logoRatio > 0 ? (normW * cropAspect) / logoRatio : normW / (logoRatio || 5.23);
   return { normW, normH };
 }
 
@@ -85,9 +85,9 @@ export default function MobileImageStudio({
   const [watermarkSource, setWatermarkSource] = useState(initialMetadata?.watermark?.source || "official"); // 'official' | 'custom'
   const [customWatermarkInfo, setCustomWatermarkInfo] = useState(null); // { name, dataUrl }
   const [watermarkPos, setWatermarkPos] = useState(initialMetadata?.watermark?.position || "bottom-right");
-  const [watermarkCoord, setWatermarkCoord] = useState(initialMetadata?.watermark?.coord || { x: 0.64, y: 0.88 });
-  const [watermarkSizePercent, setWatermarkSizePercent] = useState(initialMetadata?.watermark?.sizePercent || 30); // 8% to 90% of crop width
-  const [watermarkOpacity, setWatermarkOpacity] = useState(initialMetadata?.watermark?.opacity ?? 0.85); // 0.1 to 1.0
+  const [watermarkCoord, setWatermarkCoord] = useState(initialMetadata?.watermark?.coord || { x: 0.31, y: 0.88 });
+  const [watermarkSizePercent, setWatermarkSizePercent] = useState(initialMetadata?.watermark?.sizePercent || 65); // 8% to 90% of crop width
+  const [watermarkOpacity, setWatermarkOpacity] = useState(initialMetadata?.watermark?.opacity ?? 0.4); // 0.1 to 1.0
 
   // Real-time Crop Box Tracking (CSS pixels from Cropper.js)
   const [cropBoxData, setCropBoxData] = useState(null); // { left, top, width, height }
@@ -141,7 +141,7 @@ export default function MobileImageStudio({
     const wmImg = new Image();
     wmImg.onload = () => {
       watermarkImgRef.current = wmImg;
-      setOfficialLogoRatio((wmImg.naturalWidth || 1200) / (wmImg.naturalHeight || 280));
+      setOfficialLogoRatio((wmImg.naturalWidth || 946) / (wmImg.naturalHeight || 181));
     };
     wmImg.src = WATERMARK_SVG_URL;
   }, []);
@@ -370,10 +370,10 @@ export default function MobileImageStudio({
     setSaturation(0);
     setWatermarkEnabled(true);
     setWatermarkPos("bottom-right");
-    const defaultCoords = getPresetWatermarkCoords("bottom-right", 30, activeLogoAspectRatio, 1.0, 0.04);
+    const defaultCoords = getPresetWatermarkCoords("bottom-right", 65, activeLogoAspectRatio, 1.0, 0.04);
     setWatermarkCoord(defaultCoords);
-    setWatermarkSizePercent(30);
-    setWatermarkOpacity(0.85);
+    setWatermarkSizePercent(65);
+    setWatermarkOpacity(0.4);
     setHasUnsavedChanges(false);
   };
 
@@ -575,16 +575,16 @@ export default function MobileImageStudio({
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = "high";
 
-      const logoRatio = (activeWm.naturalWidth || 1200) / (activeWm.naturalHeight || 280);
-      const effectiveSizePercent = isSkipped ? 30 : watermarkSizePercent;
-      const effectiveOpacity = isSkipped ? 0.85 : watermarkOpacity;
+      const logoRatio = (activeWm.naturalWidth || 946) / (activeWm.naturalHeight || 181);
+      const effectiveSizePercent = isSkipped ? 65 : watermarkSizePercent;
+      const effectiveOpacity = isSkipped ? 0.4 : watermarkOpacity;
 
       const fullWmW = Math.round(srcW * (effectiveSizePercent / 100));
       const fullWmH = Math.round(fullWmW / logoRatio);
 
       let effectiveCoord = clampedCoord;
       if (isSkipped) {
-        effectiveCoord = getPresetWatermarkCoords("bottom-right", 30, logoRatio, srcW / srcH, 0.04);
+        effectiveCoord = getPresetWatermarkCoords("bottom-right", 65, logoRatio, srcW / srcH, 0.04);
       }
 
       let fullWmX = Math.round(effectiveCoord.x * srcW);
@@ -783,12 +783,6 @@ export default function MobileImageStudio({
           )}
         </div>
 
-        {/* Dynamic touch gesture hint */}
-        <div className={styles.touchHintPill}>
-          {activeTab === "crop" && "🖐️ 1-Finger Pan • Pinch Zoom • Drag Corners & Edges"}
-          {activeTab === "watermark" && "🖐️ 1-Finger Drag Logo • Pinch 2-Fingers to Scale Size"}
-          {activeTab === "adjust" && "✨ Fine-tune marble clarity & lighting"}
-        </div>
 
         {/* Processing Indicator */}
         {isProcessing && (
@@ -1068,10 +1062,10 @@ export default function MobileImageStudio({
                       </button>
                       <button
                         type="button"
-                        className={`${styles.sizePresetBtn} ${watermarkSizePercent === 55 ? styles.sizePresetBtnActive : ""}`}
-                        onClick={() => { setWatermarkSizePercent(55); setHasUnsavedChanges(true); }}
+                        className={`${styles.sizePresetBtn} ${watermarkSizePercent === 65 ? styles.sizePresetBtnActive : ""}`}
+                        onClick={() => { setWatermarkSizePercent(65); setHasUnsavedChanges(true); }}
                       >
-                        Large (55%)
+                        Default (65%)
                       </button>
                       <button
                         type="button"

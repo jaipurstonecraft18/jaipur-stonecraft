@@ -50,25 +50,25 @@ export const collectionsData = {
     imageSrc: "/images/collections/wall-art-relief.webp",
     subcategories: [
       {
-        slug: "wall-murals",
-        name: "Wall Murals",
-        description: "Grand spiritual and devotional stone wall murals hand-carved in high relief.",
+        slug: "religious-spiritual-wall-art",
+        name: "Religious & Spiritual Wall Art",
+        description: "Sacred stone wall murals, deity reliefs, and devotional stone narrative relief panels.",
         parentCollection: "wall-art-reliefs",
         imageSrc: "/images/collections/wall-art-relief.webp"
       },
       {
-        slug: "religious-reliefs",
-        name: "Religious Reliefs",
-        description: "Carved religious wall artwork, deity-themed reliefs, and devotional stone narrative relief panels.",
-        parentCollection: "wall-art-reliefs",
-        imageSrc: "/images/collections/wall-art-relief.webp"
-      },
-      {
-        slug: "stone-relief-panels",
-        name: "Stone Relief Panels",
-        description: "Intricately carved stone relief panels, botanical carvings, and decorative wall art.",
+        slug: "heritage-decorative-wall-art",
+        name: "Heritage & Decorative Wall Art",
+        description: "Intricately carved stone relief panels, Rajasthani heritage scenes, floral motifs, and geometric wall carvings.",
         parentCollection: "wall-art-reliefs",
         imageSrc: "/images/collections/luxury.webp"
+      },
+      {
+        slug: "custom-wall-art-reliefs",
+        name: "Custom Wall Art & Reliefs",
+        description: "Commissioned architectural feature walls, commemorative reliefs, and bespoke stone murals.",
+        parentCollection: "wall-art-reliefs",
+        imageSrc: "/images/collections/custom.webp"
       }
     ]
   },
@@ -88,21 +88,21 @@ export const collectionsData = {
       },
       {
         slug: "jali-designs",
-        name: "Jali Designs",
+        name: "Jali & Stone Screens",
         description: "Perforated stone lattice screens for partitions, balconies, facades, and windows.",
         parentCollection: "temples-architectural-stonework",
         imageSrc: "/images/collections/architectural.webp"
       },
       {
         slug: "pillars-columns",
-        name: "Pillars & Columns",
+        name: "Pillars, Arches & Architectural Elements",
         description: "Hand-carved marble pillars, structural stone columns, torans, and architectural arches.",
         parentCollection: "temples-architectural-stonework",
         imageSrc: "/images/collections/temples-architectural.webp"
       },
       {
         slug: "architectural-components",
-        name: "Architectural Components",
+        name: "Jharokhas & Heritage Stonework",
         description: "Traditional stone jharokhas, heritage balconies, chhatri pavilions, and architectural stonework.",
         parentCollection: "temples-architectural-stonework",
         imageSrc: "/images/collections/architectural.webp"
@@ -117,23 +117,23 @@ export const collectionsData = {
     imageSrc: "/images/collections/garden.webp",
     subcategories: [
       {
-        slug: "tiered-fountains",
-        name: "Tiered Fountains",
-        description: "Classical multi-tier marble and stone water fountains for gardens and courtyards.",
+        slug: "tiered-classical-fountains",
+        name: "Tiered & Classical Fountains",
+        description: "Classical multi-tier marble and stone water fountains, courtyard centerpieces, and lotus basins.",
         parentCollection: "fountains-water-features",
         imageSrc: "/images/collections/luxury.webp"
       },
       {
-        slug: "wall-fountains",
-        name: "Wall Fountains",
-        description: "Stone water walls, spout fountains, and poolside waterfalls for architectural installations.",
+        slug: "wall-freestanding-fountains",
+        name: "Wall & Freestanding Fountains",
+        description: "Architectural wall fountains, freestanding courtyard stone fountains, and stone water features.",
         parentCollection: "fountains-water-features",
         imageSrc: "/images/collections/wall-art-relief.webp"
       },
       {
-        slug: "freestanding-fountains",
-        name: "Freestanding Fountains",
-        description: "Freestanding courtyard stone fountains, lotus basins, and sculptural water features.",
+        slug: "sculptural-water-features",
+        name: "Sculptural Water Features",
+        description: "Cascading stone water walls, poolside waterfalls, and figurative water sculptures.",
         parentCollection: "fountains-water-features",
         imageSrc: "/images/collections/hero-sculptures-group.webp"
       }
@@ -147,25 +147,25 @@ export const collectionsData = {
     imageSrc: "/images/collections/luxury.webp",
     subcategories: [
       {
-        slug: "planters",
-        name: "Planters",
-        description: "Hand-carved marble and sandstone planters, garden urns, and sacred stone vessels.",
-        parentCollection: "decorative-stone-art",
-        imageSrc: "/images/collections/sacred.webp"
-      },
-      {
-        slug: "tulsi-pots",
-        name: "Tulsi Pots",
-        description: "Sacred white marble and natural sandstone carved Tulsi pots for devotional home mandirs.",
+        slug: "planters-tulsi-pots",
+        name: "Planters & Tulsi Pots",
+        description: "Hand-carved marble and sandstone planters, garden urns, and sacred stone Tulsi pots.",
         parentCollection: "decorative-stone-art",
         imageSrc: "/images/collections/sacred.webp"
       },
       {
         slug: "pedestals-stands",
-        name: "Pedestals & Stands",
+        name: "Pedestals, Plinths & Stands",
         description: "Architectural display pedestals, statue plinths, and carved stone bases.",
         parentCollection: "decorative-stone-art",
         imageSrc: "/images/collections/temples-architectural.webp"
+      },
+      {
+        slug: "decorative-garden-stone-art",
+        name: "Decorative & Garden Stone Art",
+        description: "Stone vases, marble urns, decorative bowls, tabletop statuettes, garden lanterns, and stone benches.",
+        parentCollection: "decorative-stone-art",
+        imageSrc: "/images/collections/luxury.webp"
       }
     ]
   },
@@ -184,11 +184,11 @@ export const collectionsData = {
         imageSrc: "/images/collections/architectural.webp"
       },
       {
-        slug: "custom-wall-art-reliefs",
-        name: "Custom Wall Art & Reliefs",
-        description: "Commissioned architectural feature walls, commemorative reliefs, and bespoke stone murals.",
+        slug: "custom-sculptures-portraits-reliefs",
+        name: "Custom Sculptures, Portraits & Reliefs",
+        description: "Commissioned monumental sculptures, ancestral portraits, and memorial busts.",
         parentCollection: "custom-bespoke-creations",
-        imageSrc: "/images/collections/wall-art-relief.webp"
+        imageSrc: "/images/collections/custom.webp"
       }
     ]
   }

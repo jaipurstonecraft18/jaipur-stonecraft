@@ -345,7 +345,7 @@ export default function AdminProductsListPage() {
               title="Filter by Top-Level Collection"
             >
               <option value="all">All Collections (6)</option>
-              <option value="sculptures-statues">Sculptures & Statues (Protected)</option>
+              <option value="sculptures-statues">Sculptures & Statues</option>
               <option value="wall-art-reliefs">Wall Art & Reliefs</option>
               <option value="temples-architectural-stonework">Temples & Architectural</option>
               <option value="fountains-water-features">Fountains & Water Features</option>

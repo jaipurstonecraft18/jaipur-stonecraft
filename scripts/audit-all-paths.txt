@@ -1,0 +1,1308 @@
+TOTAL NON-SCULPTURE PRODUCTS: 193
+TOTAL PATHS: 49
+
+====================================================================
+PATH: custom-bespoke-creations -> custom-architectural-projects -> bespoke-heritage-restoration (4 products)
+====================================================================
+ID: bespoke-bespoke-heritage-restoration-sculpture | SKU: JSC-BESP-BESP | Slug: bespoke-bespoke-heritage-restoration-sculpture
+Name: Bespoke Bespoke Heritage Restoration Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Bespoke Heritage Restoration Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Bespoke%20Heritage%20Restoration%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Bespoke%20Heritage%20Restoration%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Bespoke%20Heritage%20Restoration%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Bespoke%20Heritage%20Restoration%20Sculpture+View+3
+
+ID: heritage-bespoke-heritage-restoration-design | SKU: JSC-BESP-HERI | Slug: heritage-bespoke-heritage-restoration-design
+Name: Heritage Bespoke Heritage Restoration Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Bespoke Heritage Restoration Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Bespoke%20Heritage%20Restoration%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Bespoke%20Heritage%20Restoration%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Bespoke%20Heritage%20Restoration%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Bespoke%20Heritage%20Restoration%20Design+View+3
+
+ID: royal-carved-bespoke-heritage-restoration | SKU: JSC-BESP-ROYA | Slug: royal-carved-bespoke-heritage-restoration
+Name: Royal Carved Bespoke Heritage Restoration
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Bespoke Heritage Restoration crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Bespoke%20Heritage%20Restoration, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Bespoke%20Heritage%20Restoration+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Bespoke%20Heritage%20Restoration+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Bespoke%20Heritage%20Restoration+View+3
+
+ID: traditional-bespoke-heritage-restoration | SKU: JSC-BESP-TRAD | Slug: traditional-bespoke-heritage-restoration
+Name: Traditional Bespoke Heritage Restoration
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Bespoke Heritage Restoration crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Bespoke%20Heritage%20Restoration, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Bespoke%20Heritage%20Restoration+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Bespoke%20Heritage%20Restoration+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Bespoke%20Heritage%20Restoration+View+3
+
+====================================================================
+PATH: custom-bespoke-creations -> custom-architectural-projects -> full-temple-construction (4 products)
+====================================================================
+ID: bespoke-full-temple-construction-sculpture | SKU: JSC-FULL-BESP | Slug: bespoke-full-temple-construction-sculpture
+Name: Bespoke Full Temple Construction Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Full Temple Construction Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Full%20Temple%20Construction%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Full%20Temple%20Construction%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Full%20Temple%20Construction%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Full%20Temple%20Construction%20Sculpture+View+3
+
+ID: heritage-full-temple-construction-design | SKU: JSC-FULL-HERI | Slug: heritage-full-temple-construction-design
+Name: Heritage Full Temple Construction Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Full Temple Construction Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Full%20Temple%20Construction%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Full%20Temple%20Construction%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Full%20Temple%20Construction%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Full%20Temple%20Construction%20Design+View+3
+
+ID: royal-carved-full-temple-construction | SKU: JSC-FULL-ROYA | Slug: royal-carved-full-temple-construction
+Name: Royal Carved Full Temple Construction
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Full Temple Construction crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Full%20Temple%20Construction, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Full%20Temple%20Construction+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Full%20Temple%20Construction+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Full%20Temple%20Construction+View+3
+
+ID: traditional-full-temple-construction | SKU: JSC-FULL-TRAD | Slug: traditional-full-temple-construction
+Name: Traditional Full Temple Construction
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Full Temple Construction crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Full%20Temple%20Construction, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Full%20Temple%20Construction+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Full%20Temple%20Construction+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Full%20Temple%20Construction+View+3
+
+====================================================================
+PATH: custom-bespoke-creations -> custom-architectural-projects -> luxury-estate-stonework (4 products)
+====================================================================
+ID: bespoke-luxury-estate-stonework-sculpture | SKU: JSC-LUXU-BESP | Slug: bespoke-luxury-estate-stonework-sculpture
+Name: Bespoke Luxury Estate Stonework Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Luxury Estate Stonework Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Luxury%20Estate%20Stonework%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Luxury%20Estate%20Stonework%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Luxury%20Estate%20Stonework%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Luxury%20Estate%20Stonework%20Sculpture+View+3
+
+ID: heritage-luxury-estate-stonework-design | SKU: JSC-LUXU-HERI | Slug: heritage-luxury-estate-stonework-design
+Name: Heritage Luxury Estate Stonework Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Luxury Estate Stonework Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Luxury%20Estate%20Stonework%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Luxury%20Estate%20Stonework%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Luxury%20Estate%20Stonework%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Luxury%20Estate%20Stonework%20Design+View+3
+
+ID: royal-carved-luxury-estate-stonework | SKU: JSC-LUXU-ROYA | Slug: royal-carved-luxury-estate-stonework
+Name: Royal Carved Luxury Estate Stonework
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Luxury Estate Stonework crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Luxury%20Estate%20Stonework, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Luxury%20Estate%20Stonework+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Luxury%20Estate%20Stonework+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Luxury%20Estate%20Stonework+View+3
+
+ID: traditional-luxury-estate-stonework | SKU: JSC-LUXU-TRAD | Slug: traditional-luxury-estate-stonework
+Name: Traditional Luxury Estate Stonework
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Luxury Estate Stonework crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Luxury%20Estate%20Stonework, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Luxury%20Estate%20Stonework+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Luxury%20Estate%20Stonework+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Luxury%20Estate%20Stonework+View+3
+
+====================================================================
+PATH: custom-bespoke-creations -> custom-portraits -> ancestral-portrait-carvings (4 products)
+====================================================================
+ID: bespoke-ancestral-portrait-carvings-sculpture | SKU: JSC-ANCE-BESP | Slug: bespoke-ancestral-portrait-carvings-sculpture
+Name: Bespoke Ancestral Portrait Carvings Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Ancestral Portrait Carvings Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Ancestral%20Portrait%20Carvings%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Ancestral%20Portrait%20Carvings%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Ancestral%20Portrait%20Carvings%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Ancestral%20Portrait%20Carvings%20Sculpture+View+3
+
+ID: heritage-ancestral-portrait-carvings-design | SKU: JSC-ANCE-HERI | Slug: heritage-ancestral-portrait-carvings-design
+Name: Heritage Ancestral Portrait Carvings Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Ancestral Portrait Carvings Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Ancestral%20Portrait%20Carvings%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Ancestral%20Portrait%20Carvings%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Ancestral%20Portrait%20Carvings%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Ancestral%20Portrait%20Carvings%20Design+View+3
+
+ID: royal-carved-ancestral-portrait-carvings | SKU: JSC-ANCE-ROYA | Slug: royal-carved-ancestral-portrait-carvings
+Name: Royal Carved Ancestral Portrait Carvings
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Ancestral Portrait Carvings crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Ancestral%20Portrait%20Carvings, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Ancestral%20Portrait%20Carvings+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Ancestral%20Portrait%20Carvings+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Ancestral%20Portrait%20Carvings+View+3
+
+ID: traditional-ancestral-portrait-carvings | SKU: JSC-ANCE-TRAD | Slug: traditional-ancestral-portrait-carvings
+Name: Traditional Ancestral Portrait Carvings
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Ancestral Portrait Carvings crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Ancestral%20Portrait%20Carvings, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Ancestral%20Portrait%20Carvings+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Ancestral%20Portrait%20Carvings+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Ancestral%20Portrait%20Carvings+View+3
+
+====================================================================
+PATH: custom-bespoke-creations -> custom-portraits -> commemorative-reliefs (4 products)
+====================================================================
+ID: bespoke-commemorative-reliefs-sculpture | SKU: JSC-COMM-BESP | Slug: bespoke-commemorative-reliefs-sculpture
+Name: Bespoke Commemorative Reliefs Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Commemorative Reliefs Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Commemorative%20Reliefs%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Commemorative%20Reliefs%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Commemorative%20Reliefs%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Commemorative%20Reliefs%20Sculpture+View+3
+
+ID: heritage-commemorative-reliefs-design | SKU: JSC-COMM-HERI | Slug: heritage-commemorative-reliefs-design
+Name: Heritage Commemorative Reliefs Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Commemorative Reliefs Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Commemorative%20Reliefs%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Commemorative%20Reliefs%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Commemorative%20Reliefs%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Commemorative%20Reliefs%20Design+View+3
+
+ID: royal-carved-commemorative-reliefs | SKU: JSC-COMM-ROYA | Slug: royal-carved-commemorative-reliefs
+Name: Royal Carved Commemorative Reliefs
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Commemorative Reliefs crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Commemorative%20Reliefs, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Commemorative%20Reliefs+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Commemorative%20Reliefs+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Commemorative%20Reliefs+View+3
+
+ID: traditional-commemorative-reliefs | SKU: JSC-COMM-TRAD | Slug: traditional-commemorative-reliefs
+Name: Traditional Commemorative Reliefs
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Commemorative Reliefs crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Commemorative%20Reliefs, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Commemorative%20Reliefs+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Commemorative%20Reliefs+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Commemorative%20Reliefs+View+3
+
+====================================================================
+PATH: custom-bespoke-creations -> custom-portraits -> lifesize-memorial-busts (4 products)
+====================================================================
+ID: bespoke-lifesize-memorial-busts-sculpture | SKU: JSC-LIFE-BESP | Slug: bespoke-lifesize-memorial-busts-sculpture
+Name: Bespoke Lifesize Memorial Busts Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Lifesize Memorial Busts Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Lifesize%20Memorial%20Busts%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Lifesize%20Memorial%20Busts%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Lifesize%20Memorial%20Busts%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Lifesize%20Memorial%20Busts%20Sculpture+View+3
+
+ID: heritage-lifesize-memorial-busts-design | SKU: JSC-LIFE-HERI | Slug: heritage-lifesize-memorial-busts-design
+Name: Heritage Lifesize Memorial Busts Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Lifesize Memorial Busts Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Lifesize%20Memorial%20Busts%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Lifesize%20Memorial%20Busts%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Lifesize%20Memorial%20Busts%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Lifesize%20Memorial%20Busts%20Design+View+3
+
+ID: royal-carved-lifesize-memorial-busts | SKU: JSC-LIFE-ROYA | Slug: royal-carved-lifesize-memorial-busts
+Name: Royal Carved Lifesize Memorial Busts
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Lifesize Memorial Busts crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Lifesize%20Memorial%20Busts, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Lifesize%20Memorial%20Busts+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Lifesize%20Memorial%20Busts+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Lifesize%20Memorial%20Busts+View+3
+
+ID: traditional-lifesize-memorial-busts | SKU: JSC-LIFE-TRAD | Slug: traditional-lifesize-memorial-busts
+Name: Traditional Lifesize Memorial Busts
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Lifesize Memorial Busts crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Lifesize%20Memorial%20Busts, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Lifesize%20Memorial%20Busts+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Lifesize%20Memorial%20Busts+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Lifesize%20Memorial%20Busts+View+3
+
+====================================================================
+PATH: custom-bespoke-creations -> custom-sculptures -> custom-monumental-sculptures (4 products)
+====================================================================
+ID: bespoke-custom-monumental-sculptures-sculpture | SKU: JSC-CUST-BESP | Slug: bespoke-custom-monumental-sculptures-sculpture
+Name: Bespoke Custom Monumental Sculptures Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Custom Monumental Sculptures Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Custom%20Monumental%20Sculptures%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Custom%20Monumental%20Sculptures%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Custom%20Monumental%20Sculptures%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Custom%20Monumental%20Sculptures%20Sculpture+View+3
+
+ID: heritage-custom-monumental-sculptures-design | SKU: JSC-CUST-HERI | Slug: heritage-custom-monumental-sculptures-design
+Name: Heritage Custom Monumental Sculptures Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Custom Monumental Sculptures Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Custom%20Monumental%20Sculptures%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Custom%20Monumental%20Sculptures%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Custom%20Monumental%20Sculptures%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Custom%20Monumental%20Sculptures%20Design+View+3
+
+ID: royal-carved-custom-monumental-sculptures | SKU: JSC-CUST-ROYA | Slug: royal-carved-custom-monumental-sculptures
+Name: Royal Carved Custom Monumental Sculptures
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Custom Monumental Sculptures crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Custom%20Monumental%20Sculptures, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Custom%20Monumental%20Sculptures+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Custom%20Monumental%20Sculptures+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Custom%20Monumental%20Sculptures+View+3
+
+ID: traditional-custom-monumental-sculptures | SKU: JSC-CUST-TRAD | Slug: traditional-custom-monumental-sculptures
+Name: Traditional Custom Monumental Sculptures
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Custom Monumental Sculptures crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Custom%20Monumental%20Sculptures, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Custom%20Monumental%20Sculptures+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Custom%20Monumental%20Sculptures+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Custom%20Monumental%20Sculptures+View+3
+
+====================================================================
+PATH: decorative-stone-art -> garden-outdoor-stone-art -> benches-seating (4 products)
+====================================================================
+ID: bespoke-benches-seating-sculpture | SKU: JSC-BENC-BESP | Slug: bespoke-benches-seating-sculpture
+Name: Bespoke Benches & Seating Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Benches & Seating Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Benches%20%26%20Seating%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Benches%20%26%20Seating%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Benches%20%26%20Seating%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Benches%20%26%20Seating%20Sculpture+View+3
+
+ID: heritage-benches-seating-design | SKU: JSC-BENC-HERI | Slug: heritage-benches-seating-design
+Name: Heritage Benches & Seating Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Benches & Seating Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Benches%20%26%20Seating%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Benches%20%26%20Seating%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Benches%20%26%20Seating%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Benches%20%26%20Seating%20Design+View+3
+
+ID: royal-carved-benches-seating | SKU: JSC-BENC-ROYA | Slug: royal-carved-benches-seating
+Name: Royal Carved Benches & Seating
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Benches & Seating crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Benches%20%26%20Seating, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Benches%20%26%20Seating+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Benches%20%26%20Seating+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Benches%20%26%20Seating+View+3
+
+ID: traditional-benches-seating | SKU: JSC-BENC-TRAD | Slug: traditional-benches-seating
+Name: Traditional Benches & Seating
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Benches & Seating crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Benches%20%26%20Seating, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Benches%20%26%20Seating+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Benches%20%26%20Seating+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Benches%20%26%20Seating+View+3
+
+====================================================================
+PATH: decorative-stone-art -> garden-outdoor-stone-art -> garden-lanterns-lamps (4 products)
+====================================================================
+ID: bespoke-garden-lanterns-lamps-sculpture | SKU: JSC-GARD-BESP | Slug: bespoke-garden-lanterns-lamps-sculpture
+Name: Bespoke Garden Lanterns & Lamps Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Garden Lanterns & Lamps Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Garden%20Lanterns%20%26%20Lamps%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Garden%20Lanterns%20%26%20Lamps%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Garden%20Lanterns%20%26%20Lamps%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Garden%20Lanterns%20%26%20Lamps%20Sculpture+View+3
+
+ID: heritage-garden-lanterns-lamps-design | SKU: JSC-GARD-HERI | Slug: heritage-garden-lanterns-lamps-design
+Name: Heritage Garden Lanterns & Lamps Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Garden Lanterns & Lamps Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Garden%20Lanterns%20%26%20Lamps%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Garden%20Lanterns%20%26%20Lamps%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Garden%20Lanterns%20%26%20Lamps%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Garden%20Lanterns%20%26%20Lamps%20Design+View+3
+
+ID: royal-carved-garden-lanterns-lamps | SKU: JSC-GARD-ROYA | Slug: royal-carved-garden-lanterns-lamps
+Name: Royal Carved Garden Lanterns & Lamps
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Garden Lanterns & Lamps crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Garden%20Lanterns%20%26%20Lamps, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Garden%20Lanterns%20%26%20Lamps+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Garden%20Lanterns%20%26%20Lamps+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Garden%20Lanterns%20%26%20Lamps+View+3
+
+ID: traditional-garden-lanterns-lamps | SKU: JSC-GARD-TRAD | Slug: traditional-garden-lanterns-lamps
+Name: Traditional Garden Lanterns & Lamps
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Garden Lanterns & Lamps crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Garden%20Lanterns%20%26%20Lamps, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Garden%20Lanterns%20%26%20Lamps+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Garden%20Lanterns%20%26%20Lamps+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Garden%20Lanterns%20%26%20Lamps+View+3
+
+====================================================================
+PATH: decorative-stone-art -> garden-outdoor-stone-art -> gazebo-sculptural-elements (4 products)
+====================================================================
+ID: bespoke-gazebo-sculptural-elements-sculpture | SKU: JSC-GAZE-BESP | Slug: bespoke-gazebo-sculptural-elements-sculpture
+Name: Bespoke Gazebo Sculptural Elements Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Gazebo Sculptural Elements Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Gazebo%20Sculptural%20Elements%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Gazebo%20Sculptural%20Elements%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Gazebo%20Sculptural%20Elements%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Gazebo%20Sculptural%20Elements%20Sculpture+View+3
+
+ID: heritage-gazebo-sculptural-elements-design | SKU: JSC-GAZE-HERI | Slug: heritage-gazebo-sculptural-elements-design
+Name: Heritage Gazebo Sculptural Elements Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Gazebo Sculptural Elements Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Gazebo%20Sculptural%20Elements%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Gazebo%20Sculptural%20Elements%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Gazebo%20Sculptural%20Elements%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Gazebo%20Sculptural%20Elements%20Design+View+3
+
+ID: royal-carved-gazebo-sculptural-elements | SKU: JSC-GAZE-ROYA | Slug: royal-carved-gazebo-sculptural-elements
+Name: Royal Carved Gazebo Sculptural Elements
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Gazebo Sculptural Elements crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Gazebo%20Sculptural%20Elements, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Gazebo%20Sculptural%20Elements+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Gazebo%20Sculptural%20Elements+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Gazebo%20Sculptural%20Elements+View+3
+
+ID: traditional-gazebo-sculptural-elements | SKU: JSC-GAZE-TRAD | Slug: traditional-gazebo-sculptural-elements
+Name: Traditional Gazebo Sculptural Elements
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Gazebo Sculptural Elements crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Gazebo%20Sculptural%20Elements, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Gazebo%20Sculptural%20Elements+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Gazebo%20Sculptural%20Elements+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Gazebo%20Sculptural%20Elements+View+3
+
+====================================================================
+PATH: decorative-stone-art -> garden-outdoor-stone-art -> stone-planters (4 products)
+====================================================================
+ID: bespoke-stone-planters-sculpture | SKU: JSC-STON-BESP | Slug: bespoke-stone-planters-sculpture
+Name: Bespoke Stone Planters Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Stone Planters Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Stone%20Planters%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Stone%20Planters%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Stone%20Planters%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Stone%20Planters%20Sculpture+View+3
+
+ID: heritage-stone-planters-design | SKU: JSC-STON-HERI | Slug: heritage-stone-planters-design
+Name: Heritage Stone Planters Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Stone Planters Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Stone%20Planters%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Stone%20Planters%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Stone%20Planters%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Stone%20Planters%20Design+View+3
+
+ID: royal-carved-stone-planters | SKU: JSC-STON-ROYA | Slug: royal-carved-stone-planters
+Name: Royal Carved Stone Planters
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Stone Planters crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Stone%20Planters, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Stone%20Planters+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Stone%20Planters+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Stone%20Planters+View+3
+
+ID: traditional-stone-planters | SKU: JSC-STON-TRAD | Slug: traditional-stone-planters
+Name: Traditional Stone Planters
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Stone Planters crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Stone%20Planters, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Stone%20Planters+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Stone%20Planters+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Stone%20Planters+View+3
+
+====================================================================
+PATH: decorative-stone-art -> interior-stone-decor -> carved-stone-vases (4 products)
+====================================================================
+ID: bespoke-carved-stone-vases-sculpture | SKU: JSC-CARV-BESP | Slug: bespoke-carved-stone-vases-sculpture
+Name: Bespoke Carved Stone Vases Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Carved Stone Vases Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Carved%20Stone%20Vases%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Carved%20Stone%20Vases%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Carved%20Stone%20Vases%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Carved%20Stone%20Vases%20Sculpture+View+3
+
+ID: heritage-carved-stone-vases-design | SKU: JSC-CARV-HERI | Slug: heritage-carved-stone-vases-design
+Name: Heritage Carved Stone Vases Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Carved Stone Vases Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Carved%20Stone%20Vases%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Carved%20Stone%20Vases%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Carved%20Stone%20Vases%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Carved%20Stone%20Vases%20Design+View+3
+
+ID: royal-carved-carved-stone-vases | SKU: JSC-CARV-ROYA | Slug: royal-carved-carved-stone-vases
+Name: Royal Carved Carved Stone Vases
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Carved Stone Vases crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Carved%20Stone%20Vases, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Carved%20Stone%20Vases+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Carved%20Stone%20Vases+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Carved%20Stone%20Vases+View+3
+
+ID: traditional-carved-stone-vases | SKU: JSC-CARV-TRAD | Slug: traditional-carved-stone-vases
+Name: Traditional Carved Stone Vases
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Carved Stone Vases crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Carved%20Stone%20Vases, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Carved%20Stone%20Vases+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Carved%20Stone%20Vases+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Carved%20Stone%20Vases+View+3
+
+====================================================================
+PATH: decorative-stone-art -> interior-stone-decor -> decorative-bowls (4 products)
+====================================================================
+ID: bespoke-decorative-bowls-sculpture | SKU: JSC-DECO-BESP | Slug: bespoke-decorative-bowls-sculpture
+Name: Bespoke Decorative Bowls Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Decorative Bowls Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Decorative%20Bowls%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Decorative%20Bowls%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Decorative%20Bowls%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Decorative%20Bowls%20Sculpture+View+3
+
+ID: heritage-decorative-bowls-design | SKU: JSC-DECO-HERI | Slug: heritage-decorative-bowls-design
+Name: Heritage Decorative Bowls Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Decorative Bowls Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Decorative%20Bowls%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Decorative%20Bowls%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Decorative%20Bowls%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Decorative%20Bowls%20Design+View+3
+
+ID: royal-carved-decorative-bowls | SKU: JSC-DECO-ROYA | Slug: royal-carved-decorative-bowls
+Name: Royal Carved Decorative Bowls
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Decorative Bowls crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Decorative%20Bowls, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Decorative%20Bowls+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Decorative%20Bowls+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Decorative%20Bowls+View+3
+
+ID: traditional-decorative-bowls | SKU: JSC-DECO-TRAD | Slug: traditional-decorative-bowls
+Name: Traditional Decorative Bowls
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Decorative Bowls crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Decorative%20Bowls, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Decorative%20Bowls+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Decorative%20Bowls+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Decorative%20Bowls+View+3
+
+====================================================================
+PATH: decorative-stone-art -> interior-stone-decor -> marble-urns (4 products)
+====================================================================
+ID: bespoke-marble-urns-sculpture | SKU: JSC-MARB-BESP | Slug: bespoke-marble-urns-sculpture
+Name: Bespoke Marble Urns Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Marble Urns Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Marble%20Urns%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Marble%20Urns%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Marble%20Urns%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Marble%20Urns%20Sculpture+View+3
+
+ID: heritage-marble-urns-design | SKU: JSC-MARB-HERI | Slug: heritage-marble-urns-design
+Name: Heritage Marble Urns Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Marble Urns Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Marble%20Urns%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Marble%20Urns%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Marble%20Urns%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Marble%20Urns%20Design+View+3
+
+ID: royal-carved-marble-urns | SKU: JSC-MARB-ROYA | Slug: royal-carved-marble-urns
+Name: Royal Carved Marble Urns
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Marble Urns crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Marble%20Urns, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Marble%20Urns+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Marble%20Urns+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Marble%20Urns+View+3
+
+ID: traditional-marble-urns | SKU: JSC-MARB-TRAD | Slug: traditional-marble-urns
+Name: Traditional Marble Urns
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Marble Urns crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Marble%20Urns, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Marble%20Urns+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Marble%20Urns+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Marble%20Urns+View+3
+
+====================================================================
+PATH: decorative-stone-art -> interior-stone-decor -> pedestals-plinths (4 products)
+====================================================================
+ID: bespoke-pedestals-plinths-sculpture | SKU: JSC-PEDE-BESP | Slug: bespoke-pedestals-plinths-sculpture
+Name: Bespoke Pedestals & Plinths Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Pedestals & Plinths Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Pedestals%20%26%20Plinths%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Pedestals%20%26%20Plinths%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Pedestals%20%26%20Plinths%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Pedestals%20%26%20Plinths%20Sculpture+View+3
+
+ID: heritage-pedestals-plinths-design | SKU: JSC-PEDE-HERI | Slug: heritage-pedestals-plinths-design
+Name: Heritage Pedestals & Plinths Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Pedestals & Plinths Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Pedestals%20%26%20Plinths%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Pedestals%20%26%20Plinths%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Pedestals%20%26%20Plinths%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Pedestals%20%26%20Plinths%20Design+View+3
+
+ID: royal-carved-pedestals-plinths | SKU: JSC-PEDE-ROYA | Slug: royal-carved-pedestals-plinths
+Name: Royal Carved Pedestals & Plinths
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Pedestals & Plinths crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Pedestals%20%26%20Plinths, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Pedestals%20%26%20Plinths+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Pedestals%20%26%20Plinths+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Pedestals%20%26%20Plinths+View+3
+
+ID: traditional-pedestals-plinths | SKU: JSC-PEDE-TRAD | Slug: traditional-pedestals-plinths
+Name: Traditional Pedestals & Plinths
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Pedestals & Plinths crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Pedestals%20%26%20Plinths, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Pedestals%20%26%20Plinths+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Pedestals%20%26%20Plinths+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Pedestals%20%26%20Plinths+View+3
+
+====================================================================
+PATH: decorative-stone-art -> small-sculptural-art -> artisan-accessories (4 products)
+====================================================================
+ID: bespoke-artisan-accessories-sculpture | SKU: JSC-ARTI-BESP | Slug: bespoke-artisan-accessories-sculpture
+Name: Bespoke Artisan Accessories Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Artisan Accessories Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Artisan%20Accessories%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Artisan%20Accessories%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Artisan%20Accessories%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Artisan%20Accessories%20Sculpture+View+3
+
+ID: heritage-artisan-accessories-design | SKU: JSC-ARTI-HERI | Slug: heritage-artisan-accessories-design
+Name: Heritage Artisan Accessories Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Artisan Accessories Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Artisan%20Accessories%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Artisan%20Accessories%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Artisan%20Accessories%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Artisan%20Accessories%20Design+View+3
+
+ID: royal-carved-artisan-accessories | SKU: JSC-ARTI-ROYA | Slug: royal-carved-artisan-accessories
+Name: Royal Carved Artisan Accessories
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Artisan Accessories crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Artisan%20Accessories, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Artisan%20Accessories+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Artisan%20Accessories+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Artisan%20Accessories+View+3
+
+ID: traditional-artisan-accessories | SKU: JSC-ARTI-TRAD | Slug: traditional-artisan-accessories
+Name: Traditional Artisan Accessories
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Artisan Accessories crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Artisan%20Accessories, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Artisan%20Accessories+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Artisan%20Accessories+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Artisan%20Accessories+View+3
+
+====================================================================
+PATH: decorative-stone-art -> small-sculptural-art -> miniature-reliefs (4 products)
+====================================================================
+ID: bespoke-miniature-reliefs-sculpture | SKU: JSC-MINI-BESP | Slug: bespoke-miniature-reliefs-sculpture
+Name: Bespoke Miniature Reliefs Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Miniature Reliefs Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Miniature%20Reliefs%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Miniature%20Reliefs%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Miniature%20Reliefs%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Miniature%20Reliefs%20Sculpture+View+3
+
+ID: heritage-miniature-reliefs-design | SKU: JSC-MINI-HERI | Slug: heritage-miniature-reliefs-design
+Name: Heritage Miniature Reliefs Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Miniature Reliefs Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Miniature%20Reliefs%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Miniature%20Reliefs%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Miniature%20Reliefs%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Miniature%20Reliefs%20Design+View+3
+
+ID: royal-carved-miniature-reliefs | SKU: JSC-MINI-ROYA | Slug: royal-carved-miniature-reliefs
+Name: Royal Carved Miniature Reliefs
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Miniature Reliefs crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Miniature%20Reliefs, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Miniature%20Reliefs+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Miniature%20Reliefs+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Miniature%20Reliefs+View+3
+
+ID: traditional-miniature-reliefs | SKU: JSC-MINI-TRAD | Slug: traditional-miniature-reliefs
+Name: Traditional Miniature Reliefs
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Miniature Reliefs crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Miniature%20Reliefs, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Miniature%20Reliefs+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Miniature%20Reliefs+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Miniature%20Reliefs+View+3
+
+====================================================================
+PATH: decorative-stone-art -> small-sculptural-art -> tabletop-statuettes (4 products)
+====================================================================
+ID: bespoke-tabletop-statuettes-sculpture | SKU: JSC-TABL-BESP | Slug: bespoke-tabletop-statuettes-sculpture
+Name: Bespoke Tabletop Statuettes Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Tabletop Statuettes Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Tabletop%20Statuettes%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Tabletop%20Statuettes%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Tabletop%20Statuettes%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Tabletop%20Statuettes%20Sculpture+View+3
+
+ID: heritage-tabletop-statuettes-design | SKU: JSC-TABL-HERI | Slug: heritage-tabletop-statuettes-design
+Name: Heritage Tabletop Statuettes Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Tabletop Statuettes Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Tabletop%20Statuettes%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Tabletop%20Statuettes%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Tabletop%20Statuettes%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Tabletop%20Statuettes%20Design+View+3
+
+ID: royal-carved-tabletop-statuettes | SKU: JSC-TABL-ROYA | Slug: royal-carved-tabletop-statuettes
+Name: Royal Carved Tabletop Statuettes
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Tabletop Statuettes crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Tabletop%20Statuettes, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Tabletop%20Statuettes+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Tabletop%20Statuettes+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Tabletop%20Statuettes+View+3
+
+ID: traditional-tabletop-statuettes | SKU: JSC-TABL-TRAD | Slug: traditional-tabletop-statuettes
+Name: Traditional Tabletop Statuettes
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Tabletop Statuettes crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Tabletop%20Statuettes, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Tabletop%20Statuettes+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Tabletop%20Statuettes+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Tabletop%20Statuettes+View+3
+
+====================================================================
+PATH: fountains-water-features -> architectural-water-features -> heritage-palace-water-features (4 products)
+====================================================================
+ID: bespoke-heritage-palace-water-features-sculpture | SKU: JSC-HERI-BESP | Slug: bespoke-heritage-palace-water-features-sculpture
+Name: Bespoke Heritage Palace Water Features Sculpture
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Bespoke Heritage Palace Water Features Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Heritage%20Palace%20Water%20Features%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Heritage%20Palace%20Water%20Features%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Heritage%20Palace%20Water%20Features%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Heritage%20Palace%20Water%20Features%20Sculpture+View+3
+
+ID: heritage-heritage-palace-water-features-design | SKU: JSC-HERI-HERI | Slug: heritage-heritage-palace-water-features-design
+Name: Heritage Heritage Palace Water Features Design
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Heritage Heritage Palace Water Features Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Heritage%20Palace%20Water%20Features%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Heritage%20Palace%20Water%20Features%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Heritage%20Palace%20Water%20Features%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Heritage%20Palace%20Water%20Features%20Design+View+3
+
+ID: royal-carved-heritage-palace-water-features | SKU: JSC-HERI-ROYA | Slug: royal-carved-heritage-palace-water-features
+Name: Royal Carved Heritage Palace Water Features
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Royal Carved Heritage Palace Water Features crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Heritage%20Palace%20Water%20Features, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Heritage%20Palace%20Water%20Features+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Heritage%20Palace%20Water%20Features+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Heritage%20Palace%20Water%20Features+View+3
+
+ID: traditional-heritage-palace-water-features | SKU: JSC-HERI-TRAD | Slug: traditional-heritage-palace-water-features
+Name: Traditional Heritage Palace Water Features
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Traditional Heritage Palace Water Features crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Heritage%20Palace%20Water%20Features, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Heritage%20Palace%20Water%20Features+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Heritage%20Palace%20Water%20Features+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Heritage%20Palace%20Water%20Features+View+3
+
+====================================================================
+PATH: fountains-water-features -> architectural-water-features -> poolside-stone-waterfalls (4 products)
+====================================================================
+ID: bespoke-poolside-stone-waterfalls-sculpture | SKU: JSC-POOL-BESP | Slug: bespoke-poolside-stone-waterfalls-sculpture
+Name: Bespoke Poolside Stone Waterfalls Sculpture
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Bespoke Poolside Stone Waterfalls Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Poolside%20Stone%20Waterfalls%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Poolside%20Stone%20Waterfalls%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Poolside%20Stone%20Waterfalls%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Poolside%20Stone%20Waterfalls%20Sculpture+View+3
+
+ID: heritage-poolside-stone-waterfalls-design | SKU: JSC-POOL-HERI | Slug: heritage-poolside-stone-waterfalls-design
+Name: Heritage Poolside Stone Waterfalls Design
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Heritage Poolside Stone Waterfalls Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Poolside%20Stone%20Waterfalls%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Poolside%20Stone%20Waterfalls%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Poolside%20Stone%20Waterfalls%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Poolside%20Stone%20Waterfalls%20Design+View+3
+
+ID: royal-carved-poolside-stone-waterfalls | SKU: JSC-POOL-ROYA | Slug: royal-carved-poolside-stone-waterfalls
+Name: Royal Carved Poolside Stone Waterfalls
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Royal Carved Poolside Stone Waterfalls crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Poolside%20Stone%20Waterfalls, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Poolside%20Stone%20Waterfalls+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Poolside%20Stone%20Waterfalls+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Poolside%20Stone%20Waterfalls+View+3
+
+ID: traditional-poolside-stone-waterfalls | SKU: JSC-POOL-TRAD | Slug: traditional-poolside-stone-waterfalls
+Name: Traditional Poolside Stone Waterfalls
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Traditional Poolside Stone Waterfalls crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Poolside%20Stone%20Waterfalls, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Poolside%20Stone%20Waterfalls+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Poolside%20Stone%20Waterfalls+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Poolside%20Stone%20Waterfalls+View+3
+
+====================================================================
+PATH: fountains-water-features -> architectural-water-features -> spout-fountains (4 products)
+====================================================================
+ID: bespoke-spout-fountains-sculpture | SKU: JSC-SPOU-BESP | Slug: bespoke-spout-fountains-sculpture
+Name: Bespoke Spout Fountains Sculpture
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Bespoke Spout Fountains Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Spout%20Fountains%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Spout%20Fountains%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Spout%20Fountains%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Spout%20Fountains%20Sculpture+View+3
+
+ID: heritage-spout-fountains-design | SKU: JSC-SPOU-HERI | Slug: heritage-spout-fountains-design
+Name: Heritage Spout Fountains Design
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Heritage Spout Fountains Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Spout%20Fountains%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Spout%20Fountains%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Spout%20Fountains%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Spout%20Fountains%20Design+View+3
+
+ID: royal-carved-spout-fountains | SKU: JSC-SPOU-ROYA | Slug: royal-carved-spout-fountains
+Name: Royal Carved Spout Fountains
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Royal Carved Spout Fountains crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Spout%20Fountains, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Spout%20Fountains+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Spout%20Fountains+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Spout%20Fountains+View+3
+
+ID: traditional-spout-fountains | SKU: JSC-SPOU-TRAD | Slug: traditional-spout-fountains
+Name: Traditional Spout Fountains
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Traditional Spout Fountains crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Spout%20Fountains, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Spout%20Fountains+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Spout%20Fountains+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Spout%20Fountains+View+3
+
+====================================================================
+PATH: fountains-water-features -> classical-fountains -> central-courtyard-fountains (4 products)
+====================================================================
+ID: bespoke-central-courtyard-fountains-sculpture | SKU: JSC-CENT-BESP | Slug: bespoke-central-courtyard-fountains-sculpture
+Name: Bespoke Central Courtyard Fountains Sculpture
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Bespoke Central Courtyard Fountains Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Central%20Courtyard%20Fountains%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Central%20Courtyard%20Fountains%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Central%20Courtyard%20Fountains%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Central%20Courtyard%20Fountains%20Sculpture+View+3
+
+ID: heritage-central-courtyard-fountains-design | SKU: JSC-CENT-HERI | Slug: heritage-central-courtyard-fountains-design
+Name: Heritage Central Courtyard Fountains Design
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Heritage Central Courtyard Fountains Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Central%20Courtyard%20Fountains%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Central%20Courtyard%20Fountains%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Central%20Courtyard%20Fountains%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Central%20Courtyard%20Fountains%20Design+View+3
+
+ID: royal-carved-central-courtyard-fountains | SKU: JSC-CENT-ROYA | Slug: royal-carved-central-courtyard-fountains
+Name: Royal Carved Central Courtyard Fountains
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Royal Carved Central Courtyard Fountains crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Central%20Courtyard%20Fountains, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Central%20Courtyard%20Fountains+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Central%20Courtyard%20Fountains+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Central%20Courtyard%20Fountains+View+3
+
+ID: traditional-central-courtyard-fountains | SKU: JSC-CENT-TRAD | Slug: traditional-central-courtyard-fountains
+Name: Traditional Central Courtyard Fountains
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Traditional Central Courtyard Fountains crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Central%20Courtyard%20Fountains, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Central%20Courtyard%20Fountains+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Central%20Courtyard%20Fountains+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Central%20Courtyard%20Fountains+View+3
+
+====================================================================
+PATH: fountains-water-features -> classical-fountains -> lotus-basin-fountains (4 products)
+====================================================================
+ID: bespoke-lotus-basin-fountains-sculpture | SKU: JSC-LOTU-BESP | Slug: bespoke-lotus-basin-fountains-sculpture
+Name: Bespoke Lotus Basin Fountains Sculpture
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Bespoke Lotus Basin Fountains Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Lotus%20Basin%20Fountains%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Lotus%20Basin%20Fountains%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Lotus%20Basin%20Fountains%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Lotus%20Basin%20Fountains%20Sculpture+View+3
+
+ID: heritage-lotus-basin-fountains-design | SKU: JSC-LOTU-HERI | Slug: heritage-lotus-basin-fountains-design
+Name: Heritage Lotus Basin Fountains Design
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Heritage Lotus Basin Fountains Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Lotus%20Basin%20Fountains%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Lotus%20Basin%20Fountains%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Lotus%20Basin%20Fountains%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Lotus%20Basin%20Fountains%20Design+View+3
+
+ID: royal-carved-lotus-basin-fountains | SKU: JSC-LOTU-ROYA | Slug: royal-carved-lotus-basin-fountains
+Name: Royal Carved Lotus Basin Fountains
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Royal Carved Lotus Basin Fountains crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Lotus%20Basin%20Fountains, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Lotus%20Basin%20Fountains+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Lotus%20Basin%20Fountains+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Lotus%20Basin%20Fountains+View+3
+
+ID: traditional-lotus-basin-fountains | SKU: JSC-LOTU-TRAD | Slug: traditional-lotus-basin-fountains
+Name: Traditional Lotus Basin Fountains
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Traditional Lotus Basin Fountains crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Lotus%20Basin%20Fountains, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Lotus%20Basin%20Fountains+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Lotus%20Basin%20Fountains+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Lotus%20Basin%20Fountains+View+3
+
+====================================================================
+PATH: fountains-water-features -> classical-fountains -> tiered-water-fountains (4 products)
+====================================================================
+ID: carved-scalloped-tier-fountain | SKU: JSC-TIER-CARV | Slug: carved-scalloped-tier-fountain
+Name: Carved Scalloped Tier Fountain
+Type: fountain | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Carved Scalloped Tier Fountain crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Carved%20Scalloped%20Tier%20Fountain, https://placehold.co/800x600/E8E4DF/1A1918?text=Carved%20Scalloped%20Tier%20Fountain+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Carved%20Scalloped%20Tier%20Fountain+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Carved%20Scalloped%20Tier%20Fountain+View+3
+
+ID: classical-pedestal-water-fountain | SKU: JSC-TIER-CLAS | Slug: classical-pedestal-water-fountain
+Name: Classical Pedestal Water Fountain
+Type: fountain | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Classical Pedestal Water Fountain crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Classical%20Pedestal%20Water%20Fountain, https://placehold.co/800x600/E8E4DF/1A1918?text=Classical%20Pedestal%20Water%20Fountain+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Classical%20Pedestal%20Water%20Fountain+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Classical%20Pedestal%20Water%20Fountain+View+3
+
+ID: royal-courtyard-tiered-fountain | SKU: JSC-TIER-ROYA | Slug: royal-courtyard-tiered-fountain
+Name: Royal Courtyard Tiered Fountain
+Type: fountain | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Royal Courtyard Tiered Fountain crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Courtyard%20Tiered%20Fountain, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Courtyard%20Tiered%20Fountain+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Courtyard%20Tiered%20Fountain+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Courtyard%20Tiered%20Fountain+View+3
+
+ID: three-tier-lotus-fountain | SKU: JSC-TIER-THRE | Slug: three-tier-lotus-fountain
+Name: Three-Tier Lotus Fountain
+Type: fountain | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Three-Tier Lotus Fountain crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Three-Tier%20Lotus%20Fountain, https://placehold.co/800x600/E8E4DF/1A1918?text=Three-Tier%20Lotus%20Fountain+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Three-Tier%20Lotus%20Fountain+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Three-Tier%20Lotus%20Fountain+View+3
+
+====================================================================
+PATH: fountains-water-features -> sculptural-fountains -> abstract-water-sculptures (4 products)
+====================================================================
+ID: bespoke-abstract-water-sculptures-sculpture | SKU: JSC-ABST-BESP | Slug: bespoke-abstract-water-sculptures-sculpture
+Name: Bespoke Abstract Water Sculptures Sculpture
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Bespoke Abstract Water Sculptures Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Abstract%20Water%20Sculptures%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Abstract%20Water%20Sculptures%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Abstract%20Water%20Sculptures%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Abstract%20Water%20Sculptures%20Sculpture+View+3
+
+ID: heritage-abstract-water-sculptures-design | SKU: JSC-ABST-HERI | Slug: heritage-abstract-water-sculptures-design
+Name: Heritage Abstract Water Sculptures Design
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Heritage Abstract Water Sculptures Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Abstract%20Water%20Sculptures%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Abstract%20Water%20Sculptures%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Abstract%20Water%20Sculptures%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Abstract%20Water%20Sculptures%20Design+View+3
+
+ID: royal-carved-abstract-water-sculptures | SKU: JSC-ABST-ROYA | Slug: royal-carved-abstract-water-sculptures
+Name: Royal Carved Abstract Water Sculptures
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Royal Carved Abstract Water Sculptures crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Abstract%20Water%20Sculptures, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Abstract%20Water%20Sculptures+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Abstract%20Water%20Sculptures+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Abstract%20Water%20Sculptures+View+3
+
+ID: traditional-abstract-water-sculptures | SKU: JSC-ABST-TRAD | Slug: traditional-abstract-water-sculptures
+Name: Traditional Abstract Water Sculptures
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Traditional Abstract Water Sculptures crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Abstract%20Water%20Sculptures, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Abstract%20Water%20Sculptures+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Abstract%20Water%20Sculptures+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Abstract%20Water%20Sculptures+View+3
+
+====================================================================
+PATH: fountains-water-features -> sculptural-fountains -> cascading-water-walls (4 products)
+====================================================================
+ID: bespoke-cascading-water-walls-sculpture | SKU: JSC-CASC-BESP | Slug: bespoke-cascading-water-walls-sculpture
+Name: Bespoke Cascading Water Walls Sculpture
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Bespoke Cascading Water Walls Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Cascading%20Water%20Walls%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Cascading%20Water%20Walls%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Cascading%20Water%20Walls%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Cascading%20Water%20Walls%20Sculpture+View+3
+
+ID: heritage-cascading-water-walls-design | SKU: JSC-CASC-HERI | Slug: heritage-cascading-water-walls-design
+Name: Heritage Cascading Water Walls Design
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Heritage Cascading Water Walls Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Cascading%20Water%20Walls%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Cascading%20Water%20Walls%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Cascading%20Water%20Walls%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Cascading%20Water%20Walls%20Design+View+3
+
+ID: royal-carved-cascading-water-walls | SKU: JSC-CASC-ROYA | Slug: royal-carved-cascading-water-walls
+Name: Royal Carved Cascading Water Walls
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Royal Carved Cascading Water Walls crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Cascading%20Water%20Walls, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Cascading%20Water%20Walls+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Cascading%20Water%20Walls+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Cascading%20Water%20Walls+View+3
+
+ID: traditional-cascading-water-walls | SKU: JSC-CASC-TRAD | Slug: traditional-cascading-water-walls
+Name: Traditional Cascading Water Walls
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Traditional Cascading Water Walls crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Cascading%20Water%20Walls, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Cascading%20Water%20Walls+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Cascading%20Water%20Walls+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Cascading%20Water%20Walls+View+3
+
+====================================================================
+PATH: fountains-water-features -> sculptural-fountains -> figurative-water-sculptures (4 products)
+====================================================================
+ID: bespoke-figurative-water-sculptures-sculpture | SKU: JSC-FIGU-BESP | Slug: bespoke-figurative-water-sculptures-sculpture
+Name: Bespoke Figurative Water Sculptures Sculpture
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Bespoke Figurative Water Sculptures Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Figurative%20Water%20Sculptures%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Figurative%20Water%20Sculptures%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Figurative%20Water%20Sculptures%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Figurative%20Water%20Sculptures%20Sculpture+View+3
+
+ID: heritage-figurative-water-sculptures-design | SKU: JSC-FIGU-HERI | Slug: heritage-figurative-water-sculptures-design
+Name: Heritage Figurative Water Sculptures Design
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Heritage Figurative Water Sculptures Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Figurative%20Water%20Sculptures%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Figurative%20Water%20Sculptures%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Figurative%20Water%20Sculptures%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Figurative%20Water%20Sculptures%20Design+View+3
+
+ID: royal-carved-figurative-water-sculptures | SKU: JSC-FIGU-ROYA | Slug: royal-carved-figurative-water-sculptures
+Name: Royal Carved Figurative Water Sculptures
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Royal Carved Figurative Water Sculptures crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Figurative%20Water%20Sculptures, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Figurative%20Water%20Sculptures+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Figurative%20Water%20Sculptures+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Figurative%20Water%20Sculptures+View+3
+
+ID: traditional-figurative-water-sculptures | SKU: JSC-FIGU-TRAD | Slug: traditional-figurative-water-sculptures
+Name: Traditional Figurative Water Sculptures
+Type: sculpture | Material: pink-bansi-paharpur | Status: published
+Desc: Hand-carved Traditional Figurative Water Sculptures crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Figurative%20Water%20Sculptures, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Figurative%20Water%20Sculptures+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Figurative%20Water%20Sculptures+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Figurative%20Water%20Sculptures+View+3
+
+====================================================================
+PATH: temples-architectural-stonework -> architectural-elements -> jali-screens (3 products)
+====================================================================
+ID: modern-slatted-stone-screen | SKU: JSC-JALI-MODE | Slug: modern-slatted-stone-screen
+Name: Modern Slatted Stone Screen
+Type: architectural_element | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Modern Slatted Stone Screen crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Modern%20Slatted%20Stone%20Screen, https://placehold.co/800x600/E8E4DF/1A1918?text=Modern%20Slatted%20Stone%20Screen+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Modern%20Slatted%20Stone%20Screen+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Modern%20Slatted%20Stone%20Screen+View+3
+
+ID: stones-jali | SKU: JSC-DRAFT-248478 | Slug: stones-jali
+Name: Stones Jali
+Type: architectural_element | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Stones Jali in authentic Dholpur Beige Sandstone: Sandstone jali made by CNC router with perfectly carved design in it.
+Images: /uploads/products/display/quick-add-1790608067424-rloqf.webp
+
+ID: traditional-rajasthani-arch-jali | SKU: JSC-JALI-TRAD | Slug: traditional-rajasthani-arch-jali
+Name: Traditional Rajasthani Arch Jali
+Type: architectural_element | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Rajasthani Arch Jali crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Rajasthani%20Arch%20Jali, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Rajasthani%20Arch%20Jali+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Rajasthani%20Arch%20Jali+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Rajasthani%20Arch%20Jali+View+3
+
+====================================================================
+PATH: temples-architectural-stonework -> architectural-elements -> jharokhas-windows (4 products)
+====================================================================
+ID: bespoke-jharokhas-windows-sculpture | SKU: JSC-JHAR-BESP | Slug: bespoke-jharokhas-windows-sculpture
+Name: Bespoke Jharokhas & Windows Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Jharokhas & Windows Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Jharokhas%20%26%20Windows%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Jharokhas%20%26%20Windows%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Jharokhas%20%26%20Windows%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Jharokhas%20%26%20Windows%20Sculpture+View+3
+
+ID: heritage-jharokhas-windows-design | SKU: JSC-JHAR-HERI | Slug: heritage-jharokhas-windows-design
+Name: Heritage Jharokhas & Windows Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Jharokhas & Windows Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Jharokhas%20%26%20Windows%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Jharokhas%20%26%20Windows%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Jharokhas%20%26%20Windows%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Jharokhas%20%26%20Windows%20Design+View+3
+
+ID: royal-carved-jharokhas-windows | SKU: JSC-JHAR-ROYA | Slug: royal-carved-jharokhas-windows
+Name: Royal Carved Jharokhas & Windows
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Jharokhas & Windows crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Jharokhas%20%26%20Windows, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Jharokhas%20%26%20Windows+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Jharokhas%20%26%20Windows+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Jharokhas%20%26%20Windows+View+3
+
+ID: traditional-jharokhas-windows | SKU: JSC-JHAR-TRAD | Slug: traditional-jharokhas-windows
+Name: Traditional Jharokhas & Windows
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Jharokhas & Windows crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Jharokhas%20%26%20Windows, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Jharokhas%20%26%20Windows+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Jharokhas%20%26%20Windows+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Jharokhas%20%26%20Windows+View+3
+
+====================================================================
+PATH: temples-architectural-stonework -> custom-architectural-stonework -> portico-carvings (4 products)
+====================================================================
+ID: bespoke-portico-carvings-sculpture | SKU: JSC-PORT-BESP | Slug: bespoke-portico-carvings-sculpture
+Name: Bespoke Portico Carvings Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Portico Carvings Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Portico%20Carvings%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Portico%20Carvings%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Portico%20Carvings%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Portico%20Carvings%20Sculpture+View+3
+
+ID: heritage-portico-carvings-design | SKU: JSC-PORT-HERI | Slug: heritage-portico-carvings-design
+Name: Heritage Portico Carvings Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Portico Carvings Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Portico%20Carvings%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Portico%20Carvings%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Portico%20Carvings%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Portico%20Carvings%20Design+View+3
+
+ID: royal-carved-portico-carvings | SKU: JSC-PORT-ROYA | Slug: royal-carved-portico-carvings
+Name: Royal Carved Portico Carvings
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Portico Carvings crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Portico%20Carvings, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Portico%20Carvings+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Portico%20Carvings+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Portico%20Carvings+View+3
+
+ID: traditional-portico-carvings | SKU: JSC-PORT-TRAD | Slug: traditional-portico-carvings
+Name: Traditional Portico Carvings
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Portico Carvings crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Portico%20Carvings, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Portico%20Carvings+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Portico%20Carvings+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Portico%20Carvings+View+3
+
+====================================================================
+PATH: temples-architectural-stonework -> home-mandirs -> compact-wall-mandirs (4 products)
+====================================================================
+ID: bespoke-compact-wall-mandirs-sculpture | SKU: JSC-COMP-BESP | Slug: bespoke-compact-wall-mandirs-sculpture
+Name: Bespoke Compact Wall Mandirs Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Compact Wall Mandirs Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Compact%20Wall%20Mandirs%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Compact%20Wall%20Mandirs%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Compact%20Wall%20Mandirs%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Compact%20Wall%20Mandirs%20Sculpture+View+3
+
+ID: heritage-compact-wall-mandirs-design | SKU: JSC-COMP-HERI | Slug: heritage-compact-wall-mandirs-design
+Name: Heritage Compact Wall Mandirs Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Compact Wall Mandirs Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Compact%20Wall%20Mandirs%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Compact%20Wall%20Mandirs%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Compact%20Wall%20Mandirs%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Compact%20Wall%20Mandirs%20Design+View+3
+
+ID: royal-carved-compact-wall-mandirs | SKU: JSC-COMP-ROYA | Slug: royal-carved-compact-wall-mandirs
+Name: Royal Carved Compact Wall Mandirs
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Compact Wall Mandirs crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Compact%20Wall%20Mandirs, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Compact%20Wall%20Mandirs+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Compact%20Wall%20Mandirs+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Compact%20Wall%20Mandirs+View+3
+
+ID: traditional-compact-wall-mandirs | SKU: JSC-COMP-TRAD | Slug: traditional-compact-wall-mandirs
+Name: Traditional Compact Wall Mandirs
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Compact Wall Mandirs crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Compact%20Wall%20Mandirs, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Compact%20Wall%20Mandirs+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Compact%20Wall%20Mandirs+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Compact%20Wall%20Mandirs+View+3
+
+====================================================================
+PATH: temples-architectural-stonework -> home-mandirs -> pooja-room-panels (4 products)
+====================================================================
+ID: bespoke-pooja-room-panels-sculpture | SKU: JSC-POOJ-BESP | Slug: bespoke-pooja-room-panels-sculpture
+Name: Bespoke Pooja Room Panels Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Pooja Room Panels Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Pooja%20Room%20Panels%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Pooja%20Room%20Panels%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Pooja%20Room%20Panels%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Pooja%20Room%20Panels%20Sculpture+View+3
+
+ID: heritage-pooja-room-panels-design | SKU: JSC-POOJ-HERI | Slug: heritage-pooja-room-panels-design
+Name: Heritage Pooja Room Panels Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Pooja Room Panels Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Pooja%20Room%20Panels%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Pooja%20Room%20Panels%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Pooja%20Room%20Panels%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Pooja%20Room%20Panels%20Design+View+3
+
+ID: royal-carved-pooja-room-panels | SKU: JSC-POOJ-ROYA | Slug: royal-carved-pooja-room-panels
+Name: Royal Carved Pooja Room Panels
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Pooja Room Panels crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Pooja%20Room%20Panels, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Pooja%20Room%20Panels+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Pooja%20Room%20Panels+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Pooja%20Room%20Panels+View+3
+
+ID: traditional-pooja-room-panels | SKU: JSC-POOJ-TRAD | Slug: traditional-pooja-room-panels
+Name: Traditional Pooja Room Panels
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Pooja Room Panels crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Pooja%20Room%20Panels, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Pooja%20Room%20Panels+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Pooja%20Room%20Panels+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Pooja%20Room%20Panels+View+3
+
+====================================================================
+PATH: temples-architectural-stonework -> temple-architecture -> garbhagriha-architecture (4 products)
+====================================================================
+ID: bespoke-garbhagriha-architecture-sculpture | SKU: JSC-GARB-BESP | Slug: bespoke-garbhagriha-architecture-sculpture
+Name: Bespoke Garbhagriha Architecture Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Garbhagriha Architecture Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Garbhagriha%20Architecture%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Garbhagriha%20Architecture%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Garbhagriha%20Architecture%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Garbhagriha%20Architecture%20Sculpture+View+3
+
+ID: heritage-garbhagriha-architecture-design | SKU: JSC-GARB-HERI | Slug: heritage-garbhagriha-architecture-design
+Name: Heritage Garbhagriha Architecture Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Garbhagriha Architecture Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Garbhagriha%20Architecture%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Garbhagriha%20Architecture%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Garbhagriha%20Architecture%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Garbhagriha%20Architecture%20Design+View+3
+
+ID: royal-carved-garbhagriha-architecture | SKU: JSC-GARB-ROYA | Slug: royal-carved-garbhagriha-architecture
+Name: Royal Carved Garbhagriha Architecture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Garbhagriha Architecture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Garbhagriha%20Architecture, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Garbhagriha%20Architecture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Garbhagriha%20Architecture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Garbhagriha%20Architecture+View+3
+
+ID: traditional-garbhagriha-architecture | SKU: JSC-GARB-TRAD | Slug: traditional-garbhagriha-architecture
+Name: Traditional Garbhagriha Architecture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Garbhagriha Architecture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Garbhagriha%20Architecture, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Garbhagriha%20Architecture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Garbhagriha%20Architecture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Garbhagriha%20Architecture+View+3
+
+====================================================================
+PATH: temples-architectural-stonework -> temple-architecture -> intricate-torans (4 products)
+====================================================================
+ID: bespoke-intricate-torans-sculpture | SKU: JSC-INTR-BESP | Slug: bespoke-intricate-torans-sculpture
+Name: Bespoke Intricate Torans Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Intricate Torans Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Intricate%20Torans%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Intricate%20Torans%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Intricate%20Torans%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Intricate%20Torans%20Sculpture+View+3
+
+ID: heritage-intricate-torans-design | SKU: JSC-INTR-HERI | Slug: heritage-intricate-torans-design
+Name: Heritage Intricate Torans Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Intricate Torans Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Intricate%20Torans%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Intricate%20Torans%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Intricate%20Torans%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Intricate%20Torans%20Design+View+3
+
+ID: royal-carved-intricate-torans | SKU: JSC-INTR-ROYA | Slug: royal-carved-intricate-torans
+Name: Royal Carved Intricate Torans
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Intricate Torans crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Intricate%20Torans, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Intricate%20Torans+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Intricate%20Torans+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Intricate%20Torans+View+3
+
+ID: traditional-intricate-torans | SKU: JSC-INTR-TRAD | Slug: traditional-intricate-torans
+Name: Traditional Intricate Torans
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Intricate Torans crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Intricate%20Torans, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Intricate%20Torans+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Intricate%20Torans+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Intricate%20Torans+View+3
+
+====================================================================
+PATH: temples-architectural-stonework -> temple-architecture -> pillared-mandapas (4 products)
+====================================================================
+ID: bespoke-pillared-mandapas-sculpture | SKU: JSC-PILL-BESP | Slug: bespoke-pillared-mandapas-sculpture
+Name: Bespoke Pillared Mandapas Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Pillared Mandapas Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Pillared%20Mandapas%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Pillared%20Mandapas%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Pillared%20Mandapas%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Pillared%20Mandapas%20Sculpture+View+3
+
+ID: heritage-pillared-mandapas-design | SKU: JSC-PILL-HERI | Slug: heritage-pillared-mandapas-design
+Name: Heritage Pillared Mandapas Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Pillared Mandapas Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Pillared%20Mandapas%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Pillared%20Mandapas%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Pillared%20Mandapas%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Pillared%20Mandapas%20Design+View+3
+
+ID: royal-carved-pillared-mandapas | SKU: JSC-PILL-ROYA | Slug: royal-carved-pillared-mandapas
+Name: Royal Carved Pillared Mandapas
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Pillared Mandapas crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Pillared%20Mandapas, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Pillared%20Mandapas+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Pillared%20Mandapas+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Pillared%20Mandapas+View+3
+
+ID: traditional-pillared-mandapas | SKU: JSC-PILL-TRAD | Slug: traditional-pillared-mandapas
+Name: Traditional Pillared Mandapas
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Pillared Mandapas crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Pillared%20Mandapas, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Pillared%20Mandapas+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Pillared%20Mandapas+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Pillared%20Mandapas+View+3
+
+====================================================================
+PATH: temples-architectural-stonework -> temple-architecture -> shikhara-domes (4 products)
+====================================================================
+ID: bespoke-shikhara-domes-sculpture | SKU: JSC-SHIK-BESP | Slug: bespoke-shikhara-domes-sculpture
+Name: Bespoke Shikhara & Domes Sculpture
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Bespoke Shikhara & Domes Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Shikhara%20%26%20Domes%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Shikhara%20%26%20Domes%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Shikhara%20%26%20Domes%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Shikhara%20%26%20Domes%20Sculpture+View+3
+
+ID: heritage-shikhara-domes-design | SKU: JSC-SHIK-HERI | Slug: heritage-shikhara-domes-design
+Name: Heritage Shikhara & Domes Design
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Heritage Shikhara & Domes Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Shikhara%20%26%20Domes%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Shikhara%20%26%20Domes%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Shikhara%20%26%20Domes%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Shikhara%20%26%20Domes%20Design+View+3
+
+ID: royal-carved-shikhara-domes | SKU: JSC-SHIK-ROYA | Slug: royal-carved-shikhara-domes
+Name: Royal Carved Shikhara & Domes
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Royal Carved Shikhara & Domes crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Shikhara%20%26%20Domes, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Shikhara%20%26%20Domes+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Shikhara%20%26%20Domes+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Shikhara%20%26%20Domes+View+3
+
+ID: traditional-shikhara-domes | SKU: JSC-SHIK-TRAD | Slug: traditional-shikhara-domes
+Name: Traditional Shikhara & Domes
+Type: sculpture | Material: makrana-pure-white | Status: published
+Desc: Hand-carved Traditional Shikhara & Domes crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Shikhara%20%26%20Domes, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Shikhara%20%26%20Domes+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Shikhara%20%26%20Domes+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Shikhara%20%26%20Domes+View+3
+
+====================================================================
+PATH: wall-art-reliefs -> custom-wall-art -> architectural-accent-murals (4 products)
+====================================================================
+ID: bespoke-architectural-accent-murals-sculpture | SKU: JSC-ARCH-BESP | Slug: bespoke-architectural-accent-murals-sculpture
+Name: Bespoke Architectural Accent Murals Sculpture
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Bespoke Architectural Accent Murals Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Architectural%20Accent%20Murals%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Architectural%20Accent%20Murals%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Architectural%20Accent%20Murals%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Architectural%20Accent%20Murals%20Sculpture+View+3
+
+ID: heritage-architectural-accent-murals-design | SKU: JSC-ARCH-HERI | Slug: heritage-architectural-accent-murals-design
+Name: Heritage Architectural Accent Murals Design
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Heritage Architectural Accent Murals Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Architectural%20Accent%20Murals%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Architectural%20Accent%20Murals%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Architectural%20Accent%20Murals%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Architectural%20Accent%20Murals%20Design+View+3
+
+ID: royal-carved-architectural-accent-murals | SKU: JSC-ARCH-ROYA | Slug: royal-carved-architectural-accent-murals
+Name: Royal Carved Architectural Accent Murals
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Royal Carved Architectural Accent Murals crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Architectural%20Accent%20Murals, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Architectural%20Accent%20Murals+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Architectural%20Accent%20Murals+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Architectural%20Accent%20Murals+View+3
+
+ID: traditional-architectural-accent-murals | SKU: JSC-ARCH-TRAD | Slug: traditional-architectural-accent-murals
+Name: Traditional Architectural Accent Murals
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Traditional Architectural Accent Murals crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Architectural%20Accent%20Murals, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Architectural%20Accent%20Murals+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Architectural%20Accent%20Murals+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Architectural%20Accent%20Murals+View+3
+
+====================================================================
+PATH: wall-art-reliefs -> decorative-reliefs -> botanical-reliefs (4 products)
+====================================================================
+ID: bespoke-botanical-reliefs-sculpture | SKU: JSC-BOTA-BESP | Slug: bespoke-botanical-reliefs-sculpture
+Name: Bespoke Botanical Reliefs Sculpture
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Bespoke Botanical Reliefs Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Botanical%20Reliefs%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Botanical%20Reliefs%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Botanical%20Reliefs%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Botanical%20Reliefs%20Sculpture+View+3
+
+ID: heritage-botanical-reliefs-design | SKU: JSC-BOTA-HERI | Slug: heritage-botanical-reliefs-design
+Name: Heritage Botanical Reliefs Design
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Heritage Botanical Reliefs Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Botanical%20Reliefs%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Botanical%20Reliefs%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Botanical%20Reliefs%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Botanical%20Reliefs%20Design+View+3
+
+ID: royal-carved-botanical-reliefs | SKU: JSC-BOTA-ROYA | Slug: royal-carved-botanical-reliefs
+Name: Royal Carved Botanical Reliefs
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Royal Carved Botanical Reliefs crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Botanical%20Reliefs, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Botanical%20Reliefs+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Botanical%20Reliefs+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Botanical%20Reliefs+View+3
+
+ID: traditional-botanical-reliefs | SKU: JSC-BOTA-TRAD | Slug: traditional-botanical-reliefs
+Name: Traditional Botanical Reliefs
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Traditional Botanical Reliefs crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Botanical%20Reliefs, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Botanical%20Reliefs+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Botanical%20Reliefs+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Botanical%20Reliefs+View+3
+
+====================================================================
+PATH: wall-art-reliefs -> decorative-reliefs -> floral-pattern-panels (4 products)
+====================================================================
+ID: bespoke-floral-pattern-panels-sculpture | SKU: JSC-FLOR-BESP | Slug: bespoke-floral-pattern-panels-sculpture
+Name: Bespoke Floral Pattern Panels Sculpture
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Bespoke Floral Pattern Panels Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Floral%20Pattern%20Panels%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Floral%20Pattern%20Panels%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Floral%20Pattern%20Panels%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Floral%20Pattern%20Panels%20Sculpture+View+3
+
+ID: heritage-floral-pattern-panels-design | SKU: JSC-FLOR-HERI | Slug: heritage-floral-pattern-panels-design
+Name: Heritage Floral Pattern Panels Design
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Heritage Floral Pattern Panels Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Floral%20Pattern%20Panels%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Floral%20Pattern%20Panels%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Floral%20Pattern%20Panels%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Floral%20Pattern%20Panels%20Design+View+3
+
+ID: royal-carved-floral-pattern-panels | SKU: JSC-FLOR-ROYA | Slug: royal-carved-floral-pattern-panels
+Name: Royal Carved Floral Pattern Panels
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Royal Carved Floral Pattern Panels crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Floral%20Pattern%20Panels, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Floral%20Pattern%20Panels+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Floral%20Pattern%20Panels+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Floral%20Pattern%20Panels+View+3
+
+ID: traditional-floral-pattern-panels | SKU: JSC-FLOR-TRAD | Slug: traditional-floral-pattern-panels
+Name: Traditional Floral Pattern Panels
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Traditional Floral Pattern Panels crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Floral%20Pattern%20Panels, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Floral%20Pattern%20Panels+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Floral%20Pattern%20Panels+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Floral%20Pattern%20Panels+View+3
+
+====================================================================
+PATH: wall-art-reliefs -> decorative-reliefs -> geometric-carved-walls (4 products)
+====================================================================
+ID: bespoke-geometric-carved-walls-sculpture | SKU: JSC-GEOM-BESP | Slug: bespoke-geometric-carved-walls-sculpture
+Name: Bespoke Geometric Carved Walls Sculpture
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Bespoke Geometric Carved Walls Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Geometric%20Carved%20Walls%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Geometric%20Carved%20Walls%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Geometric%20Carved%20Walls%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Geometric%20Carved%20Walls%20Sculpture+View+3
+
+ID: heritage-geometric-carved-walls-design | SKU: JSC-GEOM-HERI | Slug: heritage-geometric-carved-walls-design
+Name: Heritage Geometric Carved Walls Design
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Heritage Geometric Carved Walls Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Geometric%20Carved%20Walls%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Geometric%20Carved%20Walls%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Geometric%20Carved%20Walls%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Geometric%20Carved%20Walls%20Design+View+3
+
+ID: royal-carved-geometric-carved-walls | SKU: JSC-GEOM-ROYA | Slug: royal-carved-geometric-carved-walls
+Name: Royal Carved Geometric Carved Walls
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Royal Carved Geometric Carved Walls crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Geometric%20Carved%20Walls, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Geometric%20Carved%20Walls+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Geometric%20Carved%20Walls+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Geometric%20Carved%20Walls+View+3
+
+ID: traditional-geometric-carved-walls | SKU: JSC-GEOM-TRAD | Slug: traditional-geometric-carved-walls
+Name: Traditional Geometric Carved Walls
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Traditional Geometric Carved Walls crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Geometric%20Carved%20Walls, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Geometric%20Carved%20Walls+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Geometric%20Carved%20Walls+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Geometric%20Carved%20Walls+View+3
+
+====================================================================
+PATH: wall-art-reliefs -> decorative-reliefs -> modern-textured-stone-walls (4 products)
+====================================================================
+ID: bespoke-modern-textured-stone-walls-sculpture | SKU: JSC-MODE-BESP | Slug: bespoke-modern-textured-stone-walls-sculpture
+Name: Bespoke Modern Textured Stone Walls Sculpture
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Bespoke Modern Textured Stone Walls Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Modern%20Textured%20Stone%20Walls%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Modern%20Textured%20Stone%20Walls%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Modern%20Textured%20Stone%20Walls%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Modern%20Textured%20Stone%20Walls%20Sculpture+View+3
+
+ID: heritage-modern-textured-stone-walls-design | SKU: JSC-MODE-HERI | Slug: heritage-modern-textured-stone-walls-design
+Name: Heritage Modern Textured Stone Walls Design
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Heritage Modern Textured Stone Walls Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Modern%20Textured%20Stone%20Walls%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Modern%20Textured%20Stone%20Walls%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Modern%20Textured%20Stone%20Walls%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Modern%20Textured%20Stone%20Walls%20Design+View+3
+
+ID: royal-carved-modern-textured-stone-walls | SKU: JSC-MODE-ROYA | Slug: royal-carved-modern-textured-stone-walls
+Name: Royal Carved Modern Textured Stone Walls
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Royal Carved Modern Textured Stone Walls crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Modern%20Textured%20Stone%20Walls, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Modern%20Textured%20Stone%20Walls+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Modern%20Textured%20Stone%20Walls+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Modern%20Textured%20Stone%20Walls+View+3
+
+ID: traditional-modern-textured-stone-walls | SKU: JSC-MODE-TRAD | Slug: traditional-modern-textured-stone-walls
+Name: Traditional Modern Textured Stone Walls
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Traditional Modern Textured Stone Walls crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Modern%20Textured%20Stone%20Walls, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Modern%20Textured%20Stone%20Walls+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Modern%20Textured%20Stone%20Walls+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Modern%20Textured%20Stone%20Walls+View+3
+
+====================================================================
+PATH: wall-art-reliefs -> indian-heritage-cultural-murals -> rajasthani-heritage-scenes (4 products)
+====================================================================
+ID: bespoke-rajasthani-heritage-scenes-sculpture | SKU: JSC-RAJA-BESP | Slug: bespoke-rajasthani-heritage-scenes-sculpture
+Name: Bespoke Rajasthani Heritage Scenes Sculpture
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Bespoke Rajasthani Heritage Scenes Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Rajasthani%20Heritage%20Scenes%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Rajasthani%20Heritage%20Scenes%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Rajasthani%20Heritage%20Scenes%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Rajasthani%20Heritage%20Scenes%20Sculpture+View+3
+
+ID: heritage-rajasthani-heritage-scenes-design | SKU: JSC-RAJA-HERI | Slug: heritage-rajasthani-heritage-scenes-design
+Name: Heritage Rajasthani Heritage Scenes Design
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Heritage Rajasthani Heritage Scenes Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Rajasthani%20Heritage%20Scenes%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Rajasthani%20Heritage%20Scenes%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Rajasthani%20Heritage%20Scenes%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Rajasthani%20Heritage%20Scenes%20Design+View+3
+
+ID: royal-carved-rajasthani-heritage-scenes | SKU: JSC-RAJA-ROYA | Slug: royal-carved-rajasthani-heritage-scenes
+Name: Royal Carved Rajasthani Heritage Scenes
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Royal Carved Rajasthani Heritage Scenes crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Rajasthani%20Heritage%20Scenes, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Rajasthani%20Heritage%20Scenes+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Rajasthani%20Heritage%20Scenes+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Rajasthani%20Heritage%20Scenes+View+3
+
+ID: traditional-rajasthani-heritage-scenes | SKU: JSC-RAJA-TRAD | Slug: traditional-rajasthani-heritage-scenes
+Name: Traditional Rajasthani Heritage Scenes
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Traditional Rajasthani Heritage Scenes crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Rajasthani%20Heritage%20Scenes, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Rajasthani%20Heritage%20Scenes+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Rajasthani%20Heritage%20Scenes+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Rajasthani%20Heritage%20Scenes+View+3
+
+====================================================================
+PATH: wall-art-reliefs -> indian-heritage-cultural-murals -> royal-court-panels (4 products)
+====================================================================
+ID: bespoke-royal-court-panels-sculpture | SKU: JSC-ROYA-BESP | Slug: bespoke-royal-court-panels-sculpture
+Name: Bespoke Royal Court Panels Sculpture
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Bespoke Royal Court Panels Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Royal%20Court%20Panels%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Royal%20Court%20Panels%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Royal%20Court%20Panels%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Royal%20Court%20Panels%20Sculpture+View+3
+
+ID: heritage-royal-court-panels-design | SKU: JSC-ROYA-HERI | Slug: heritage-royal-court-panels-design
+Name: Heritage Royal Court Panels Design
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Heritage Royal Court Panels Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Royal%20Court%20Panels%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Royal%20Court%20Panels%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Royal%20Court%20Panels%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Royal%20Court%20Panels%20Design+View+3
+
+ID: royal-carved-royal-court-panels | SKU: JSC-ROYA-ROYA | Slug: royal-carved-royal-court-panels
+Name: Royal Carved Royal Court Panels
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Royal Carved Royal Court Panels crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Royal%20Court%20Panels, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Royal%20Court%20Panels+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Royal%20Court%20Panels+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Royal%20Court%20Panels+View+3
+
+ID: traditional-royal-court-panels | SKU: JSC-ROYA-TRAD | Slug: traditional-royal-court-panels
+Name: Traditional Royal Court Panels
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Traditional Royal Court Panels crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Royal%20Court%20Panels, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Royal%20Court%20Panels+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Royal%20Court%20Panels+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Royal%20Court%20Panels+View+3
+
+====================================================================
+PATH: wall-art-reliefs -> indian-heritage-cultural-murals -> traditional-procession-murals (4 products)
+====================================================================
+ID: bespoke-traditional-procession-murals-sculpture | SKU: JSC-TRAD-BESP | Slug: bespoke-traditional-procession-murals-sculpture
+Name: Bespoke Traditional Procession Murals Sculpture
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Bespoke Traditional Procession Murals Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Traditional%20Procession%20Murals%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Traditional%20Procession%20Murals%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Traditional%20Procession%20Murals%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Traditional%20Procession%20Murals%20Sculpture+View+3
+
+ID: heritage-traditional-procession-murals-design | SKU: JSC-TRAD-HERI | Slug: heritage-traditional-procession-murals-design
+Name: Heritage Traditional Procession Murals Design
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Heritage Traditional Procession Murals Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Traditional%20Procession%20Murals%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Traditional%20Procession%20Murals%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Traditional%20Procession%20Murals%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Traditional%20Procession%20Murals%20Design+View+3
+
+ID: royal-carved-traditional-procession-murals | SKU: JSC-TRAD-ROYA | Slug: royal-carved-traditional-procession-murals
+Name: Royal Carved Traditional Procession Murals
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Royal Carved Traditional Procession Murals crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Traditional%20Procession%20Murals, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Traditional%20Procession%20Murals+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Traditional%20Procession%20Murals+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Traditional%20Procession%20Murals+View+3
+
+ID: traditional-traditional-procession-murals | SKU: JSC-TRAD-TRAD | Slug: traditional-traditional-procession-murals
+Name: Traditional Traditional Procession Murals
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Traditional Traditional Procession Murals crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Traditional%20Procession%20Murals, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Traditional%20Procession%20Murals+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Traditional%20Procession%20Murals+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Traditional%20Procession%20Murals+View+3
+
+====================================================================
+PATH: wall-art-reliefs -> jali-screens-panels -> jali-screens (2 products)
+====================================================================
+ID: geometric-star-pattern-jali | SKU: JSC-JAL-001 | Slug: geometric-star-pattern-jali
+Name: Hand-Carved Stone Jali & Lattice Architectural Screen
+Type: architectural_element | Material: bansi-paharpur-pink | Status: published
+Desc: Traditional geometric star-pattern stone jali screen hand-pierced by master stone carvers for luxury facade ventilation and interior dividers.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Geometric%20Star%20Pattern%20Jali, https://placehold.co/800x600/E8E4DF/1A1918?text=Geometric%20Star%20Pattern%20Jali+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Geometric%20Star%20Pattern%20Jali+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Geometric%20Star%20Pattern%20Jali+View+3
+
+ID: botanical-lotus-lattice-screen | SKU: JSC-JAL-002 | Slug: botanical-lotus-lattice-screen
+Name: White Marble Floral Lotus Jali Panel
+Type: architectural_element | Material: makrana-pure-white | Status: published
+Desc: Elegant botanical lotus pattern jali panel hand-carved from white Makrana marble for sacred mandir backdrops and luxury window screens.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Botanical%20Lotus%20Lattice%20Screen, https://placehold.co/800x600/E8E4DF/1A1918?text=Botanical%20Lotus%20Lattice%20Screen+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Botanical%20Lotus%20Lattice%20Screen+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Botanical%20Lotus%20Lattice%20Screen+View+3
+
+====================================================================
+PATH: wall-art-reliefs -> religious-spiritual-reliefs -> devotional-relief-panels (4 products)
+====================================================================
+ID: bespoke-devotional-relief-panels-sculpture | SKU: JSC-DEVO-BESP | Slug: bespoke-devotional-relief-panels-sculpture
+Name: Bespoke Devotional Relief Panels Sculpture
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Bespoke Devotional Relief Panels Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Devotional%20Relief%20Panels%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Devotional%20Relief%20Panels%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Devotional%20Relief%20Panels%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Devotional%20Relief%20Panels%20Sculpture+View+3
+
+ID: heritage-devotional-relief-panels-design | SKU: JSC-DEVO-HERI | Slug: heritage-devotional-relief-panels-design
+Name: Heritage Devotional Relief Panels Design
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Heritage Devotional Relief Panels Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Devotional%20Relief%20Panels%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Devotional%20Relief%20Panels%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Devotional%20Relief%20Panels%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Devotional%20Relief%20Panels%20Design+View+3
+
+ID: royal-carved-devotional-relief-panels | SKU: JSC-DEVO-ROYA | Slug: royal-carved-devotional-relief-panels
+Name: Royal Carved Devotional Relief Panels
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Royal Carved Devotional Relief Panels crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Devotional%20Relief%20Panels, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Devotional%20Relief%20Panels+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Devotional%20Relief%20Panels+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Devotional%20Relief%20Panels+View+3
+
+ID: traditional-devotional-relief-panels | SKU: JSC-DEVO-TRAD | Slug: traditional-devotional-relief-panels
+Name: Traditional Devotional Relief Panels
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Traditional Devotional Relief Panels crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Devotional%20Relief%20Panels, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Devotional%20Relief%20Panels+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Devotional%20Relief%20Panels+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Devotional%20Relief%20Panels+View+3
+
+====================================================================
+PATH: wall-art-reliefs -> religious-spiritual-reliefs -> mandala-wall-art (4 products)
+====================================================================
+ID: bespoke-mandala-wall-art-sculpture | SKU: JSC-MAND-BESP | Slug: bespoke-mandala-wall-art-sculpture
+Name: Bespoke Mandala Wall Art Sculpture
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Bespoke Mandala Wall Art Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Mandala%20Wall%20Art%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Mandala%20Wall%20Art%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Mandala%20Wall%20Art%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Mandala%20Wall%20Art%20Sculpture+View+3
+
+ID: heritage-mandala-wall-art-design | SKU: JSC-MAND-HERI | Slug: heritage-mandala-wall-art-design
+Name: Heritage Mandala Wall Art Design
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Heritage Mandala Wall Art Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Mandala%20Wall%20Art%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Mandala%20Wall%20Art%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Mandala%20Wall%20Art%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Mandala%20Wall%20Art%20Design+View+3
+
+ID: royal-carved-mandala-wall-art | SKU: JSC-MAND-ROYA | Slug: royal-carved-mandala-wall-art
+Name: Royal Carved Mandala Wall Art
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Royal Carved Mandala Wall Art crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Mandala%20Wall%20Art, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Mandala%20Wall%20Art+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Mandala%20Wall%20Art+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Mandala%20Wall%20Art+View+3
+
+ID: traditional-mandala-wall-art | SKU: JSC-MAND-TRAD | Slug: traditional-mandala-wall-art
+Name: Traditional Mandala Wall Art
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Traditional Mandala Wall Art crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Mandala%20Wall%20Art, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Mandala%20Wall%20Art+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Mandala%20Wall%20Art+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Mandala%20Wall%20Art+View+3
+
+====================================================================
+PATH: wall-art-reliefs -> religious-spiritual-reliefs -> temple-wall-murals (4 products)
+====================================================================
+ID: bespoke-temple-wall-murals-sculpture | SKU: JSC-TEMP-BESP | Slug: bespoke-temple-wall-murals-sculpture
+Name: Bespoke Temple Wall Murals Sculpture
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Bespoke Temple Wall Murals Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Temple%20Wall%20Murals%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Temple%20Wall%20Murals%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Temple%20Wall%20Murals%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Temple%20Wall%20Murals%20Sculpture+View+3
+
+ID: heritage-temple-wall-murals-design | SKU: JSC-TEMP-HERI | Slug: heritage-temple-wall-murals-design
+Name: Heritage Temple Wall Murals Design
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Heritage Temple Wall Murals Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Temple%20Wall%20Murals%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Temple%20Wall%20Murals%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Temple%20Wall%20Murals%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Temple%20Wall%20Murals%20Design+View+3
+
+ID: royal-carved-temple-wall-murals | SKU: JSC-TEMP-ROYA | Slug: royal-carved-temple-wall-murals
+Name: Royal Carved Temple Wall Murals
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Royal Carved Temple Wall Murals crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Temple%20Wall%20Murals, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Temple%20Wall%20Murals+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Temple%20Wall%20Murals+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Temple%20Wall%20Murals+View+3
+
+ID: traditional-temple-wall-murals | SKU: JSC-TEMP-TRAD | Slug: traditional-temple-wall-murals
+Name: Traditional Temple Wall Murals
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Traditional Temple Wall Murals crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Temple%20Wall%20Murals, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Temple%20Wall%20Murals+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Temple%20Wall%20Murals+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Temple%20Wall%20Murals+View+3
+
+====================================================================
+PATH: wall-art-reliefs -> religious-spiritual-reliefs -> tree-of-life-relief (4 products)
+====================================================================
+ID: bespoke-tree-of-life-relief-sculpture | SKU: JSC-TREE-BESP | Slug: bespoke-tree-of-life-relief-sculpture
+Name: Bespoke Tree of Life Relief Sculpture
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Bespoke Tree of Life Relief Sculpture crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Tree%20of%20Life%20Relief%20Sculpture, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Tree%20of%20Life%20Relief%20Sculpture+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Tree%20of%20Life%20Relief%20Sculpture+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Bespoke%20Tree%20of%20Life%20Relief%20Sculpture+View+3
+
+ID: heritage-tree-of-life-relief-design | SKU: JSC-TREE-HERI | Slug: heritage-tree-of-life-relief-design
+Name: Heritage Tree of Life Relief Design
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Heritage Tree of Life Relief Design crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Tree%20of%20Life%20Relief%20Design, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Tree%20of%20Life%20Relief%20Design+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Tree%20of%20Life%20Relief%20Design+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Heritage%20Tree%20of%20Life%20Relief%20Design+View+3
+
+ID: royal-carved-tree-of-life-relief | SKU: JSC-TREE-ROYA | Slug: royal-carved-tree-of-life-relief
+Name: Royal Carved Tree of Life Relief
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Royal Carved Tree of Life Relief crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Tree%20of%20Life%20Relief, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Tree%20of%20Life%20Relief+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Tree%20of%20Life%20Relief+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Royal%20Carved%20Tree%20of%20Life%20Relief+View+3
+
+ID: traditional-tree-of-life-relief | SKU: JSC-TREE-TRAD | Slug: traditional-tree-of-life-relief
+Name: Traditional Tree of Life Relief
+Type: sculpture | Material: dholpur-beige-sandstone | Status: published
+Desc: Hand-carved Traditional Tree of Life Relief crafted by master stone artisans in Jaipur.
+Images: https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Tree%20of%20Life%20Relief, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Tree%20of%20Life%20Relief+View+1, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Tree%20of%20Life%20Relief+View+2, https://placehold.co/800x600/E8E4DF/1A1918?text=Traditional%20Tree%20of%20Life%20Relief+View+3
+

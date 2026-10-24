@@ -24,16 +24,29 @@
   object-fit: cover;
   object-position: center right;
   z-index: 1;
+  filter: contrast(0.92) brightness(0.96);
 }
 
-/* Atmospheric Multi-layer Gradient Overlay */
+/* Atmospheric Multi-layer Gradient Overlay: light tint only on both sides and top */
 .overlay {
   position: absolute;
   inset: 0;
   z-index: 2;
   background:
-    linear-gradient(90deg, rgba(18, 17, 16, 0.84) 0%, rgba(18, 17, 16, 0.50) 45%, rgba(18, 17, 16, 0.05) 85%),
-    linear-gradient(180deg, rgba(18, 17, 16, 0.35) 0%, transparent 40%, rgba(18, 17, 16, 0.75) 100%);
+    /* Both sides (left & right) tint */
+    linear-gradient(90deg,
+      rgba(18, 17, 16, 0.60) 0%,
+      rgba(18, 17, 16, 0.28) 28%,
+      transparent 50%,
+      transparent 70%,
+      rgba(18, 17, 16, 0.36) 100%
+    ),
+    /* Top edge subtle tint only (bottom is completely clear) */
+    linear-gradient(180deg,
+      rgba(18, 17, 16, 0.35) 0%,
+      rgba(18, 17, 16, 0.10) 18%,
+      transparent 38%
+    );
 }
 
 .contentWrapper {
@@ -286,10 +299,21 @@
 
 
   .overlay {
-    background: linear-gradient(180deg,
-        rgba(18, 17, 16, 0.78) 0%,
-        rgba(18, 17, 16, 0.52) 50%,
-        rgba(18, 17, 16, 0.84) 100%);
+    background:
+      /* Both sides tint */
+      linear-gradient(90deg,
+        rgba(18, 17, 16, 0.65) 0%,
+        rgba(18, 17, 16, 0.30) 28%,
+        transparent 52%,
+        transparent 68%,
+        rgba(18, 17, 16, 0.45) 100%
+      ),
+      /* Top edge subtle tint only (bottom is completely clear) */
+      linear-gradient(180deg,
+        rgba(18, 17, 16, 0.35) 0%,
+        rgba(18, 17, 16, 0.10) 20%,
+        transparent 42%
+      );
   }
 
   .eyebrow {

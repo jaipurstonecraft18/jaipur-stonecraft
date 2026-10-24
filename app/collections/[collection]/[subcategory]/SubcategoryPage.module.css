@@ -1,0 +1,29 @@
+.categoriesContainer {
+  margin-top: var(--spacing-md);
+}
+
+.featuredWrapper {
+  margin-bottom: var(--spacing-xl);
+}
+
+.categoriesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.categoriesGridTwo {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cardReveal {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+@media (max-width: 640px) {
+  .categoriesGridTwo {
+    grid-template-columns: 1fr;
+  }
+}

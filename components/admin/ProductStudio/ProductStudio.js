@@ -291,13 +291,21 @@ export default function ProductStudio({ initialProduct, isNew = false, onSwitchT
   };
 
   const handleAcceptAiSuggestions = (updates) => {
-    setFormData((prev) => ({
-      ...prev,
-      ...updates,
-      seo: updates.seo ? { ...(prev.seo || {}), ...updates.seo } : prev.seo
-    }));
+    setFormData((prev) => {
+      const mergedSeo = updates.seo ? { ...(prev.seo || {}), ...updates.seo } : prev.seo;
+      const mergedKl = updates.knowledgeLayer ? { ...(prev.knowledgeLayer || {}), ...updates.knowledgeLayer } : prev.knowledgeLayer;
+      const mergedAttrs = updates.attributes ? { ...(prev.attributes || {}), ...updates.attributes } : prev.attributes;
+      return {
+        ...prev,
+        ...updates,
+        seo: mergedSeo,
+        knowledgeLayer: mergedKl,
+        attributes: mergedAttrs
+      };
+    });
     setIsDirty(true);
     setSaveStatus("dirty");
+    setMessage({ type: "success", text: "✓ AI enhancements applied! Click 'Save Draft' or 'Publish' to persist changes." });
   };
 
   // Submit Handler (Save Draft / Publish)
@@ -421,10 +429,6 @@ export default function ProductStudio({ initialProduct, isNew = false, onSwitchT
 
   // Handle Parent Collection Change safely without silent invalid assignments
   const handleCollectionChange = (newCol) => {
-    if (initialProduct?.parentCollection === "sculptures-statues" && !isNew && newCol !== "sculptures-statues") {
-      alert("Sculptures & Statues is a strictly protected collection. Products in this collection cannot be moved to another collection.");
-      return;
-    }
 
     const validCats = categoriesList.filter(
       (c) => (c.parent_collection_slug || c.parentCollection) === newCol
@@ -1091,7 +1095,7 @@ export default function ProductStudio({ initialProduct, isNew = false, onSwitchT
           <div className={styles.formGrid}>
             <div className={styles.formGroup}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <label className={styles.label}>Primary Material * (No Granite)</label>
+                <label className={styles.label}>Primary Material *</label>
                 <button
                   type="button"
                   onClick={() => setQuickAddModal({ isOpen: true, targetField: "primaryMaterialId", fieldLabel: "Material" })}
@@ -1138,19 +1142,11 @@ export default function ProductStudio({ initialProduct, isNew = false, onSwitchT
             </div>
 
             <div className={styles.formGroup}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <label className={styles.label}>Parent Collection *</label>
-                {initialProduct?.parentCollection === "sculptures-statues" && !isNew && (
-                  <span style={{ fontSize: "0.75rem", color: "#666", fontWeight: "600" }}>
-                    🔒 Protected Collection
-                  </span>
-                )}
-              </div>
+              <label className={styles.label}>Parent Collection *</label>
               <select
                 value={formData.parentCollection}
                 onChange={(e) => handleCollectionChange(e.target.value)}
                 className={styles.select}
-                disabled={initialProduct?.parentCollection === "sculptures-statues" && !isNew}
               >
                 <option value="sculptures-statues">Sculptures & Statues</option>
                 <option value="wall-art-reliefs">Wall Art & Reliefs</option>
@@ -1442,7 +1438,16 @@ export default function ProductStudio({ initialProduct, isNew = false, onSwitchT
 
           <div className={styles.formGrid}>
             <div className={styles.formGroupFull}>
-              <label className={styles.label}>Meta Title Tag *</label>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+                <label className={styles.label}>Meta Title Tag *</label>
+                <span style={{
+                  fontSize: "0.75rem",
+                  color: (formData.seo?.title?.length || 0) > 120 ? "#C5221F" : "#666",
+                  fontWeight: (formData.seo?.title?.length || 0) > 120 ? "700" : "500"
+                }}>
+                  {formData.seo?.title?.length || 0} / 120 chars (snippet display: 30–65 chars)
+                </span>
+              </div>
               <input
                 type="text"
                 value={formData.seo?.title || ""}
@@ -1464,7 +1469,9 @@ export default function ProductStudio({ initialProduct, isNew = false, onSwitchT
             </div>
 
             <div className={styles.formGroup}>
-              <label className={styles.label}>Primary Search Phrase</label>
+              <label className={styles.label}>
+                Primary Search Phrase <span style={{ fontSize: "0.75rem", fontWeight: "400", color: "#666" }}>(SEO & AI Target Reference)</span>
+              </label>
               <input
                 type="text"
                 value={formData.seo?.primaryKeyword || ""}

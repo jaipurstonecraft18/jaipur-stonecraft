@@ -17,9 +17,10 @@ export async function POST(request) {
 
     const trimmedName = name.trim();
 
-    // STRICT RULE: Granite is strictly excluded
-    if (trimmedName.toLowerCase().includes("granite")) {
-      return NextResponse.json({ error: "Granite is strictly excluded from Jaipur Stonecraft." }, { status: 400 });
+    // Synthetic composites check (natural stone including marble, sandstone, granite are approved)
+    const SYNTHETIC_STONES = ["synthetic marble", "cultured marble", "resin cast", "bonded marble"];
+    if (SYNTHETIC_STONES.some(s => trimmedName.toLowerCase().includes(s))) {
+      return NextResponse.json({ error: "Synthetic resin and cultured stone composites are strictly excluded from Jaipur Stonecraft." }, { status: 400 });
     }
 
     const id = trimmedName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");

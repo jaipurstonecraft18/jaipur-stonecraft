@@ -1,0 +1,572 @@
+{
+  "collections": [
+    {
+      "path": "/collections/sculptures-statues",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/temples-architectural-stonework",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/wall-art-reliefs",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/fountains-water-features",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/decorative-stone-art",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/custom-bespoke-creations",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    }
+  ],
+  "subcategories": [
+    {
+      "path": "/collections/temples-architectural-stonework/mandirs-temples",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/temples-architectural-stonework/jali-designs",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/temples-architectural-stonework/pillars-columns",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/temples-architectural-stonework/architectural-components",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/wall-art-reliefs/religious-spiritual-wall-art",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/wall-art-reliefs/heritage-decorative-wall-art",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/wall-art-reliefs/custom-wall-art-reliefs",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/fountains-water-features/tiered-classical-fountains",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/fountains-water-features/wall-freestanding-fountains",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/fountains-water-features/sculptural-water-features",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/decorative-stone-art/planters-tulsi-pots",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/decorative-stone-art/pedestals-stands",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/decorative-stone-art/decorative-garden-stone-art",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/custom-bespoke-creations/custom-architectural-stonework",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/custom-bespoke-creations/custom-sculptures-portraits-reliefs",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    }
+  ],
+  "categories": [
+    {
+      "path": "/collections/temples-architectural-stonework/mandirs-temples/small-marble-mandir-for-home",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/temples-architectural-stonework/mandirs-temples/temple-parts-designs",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/temples-architectural-stonework/jali-designs/marble-jali-designs",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/temples-architectural-stonework/pillars-columns/stone-arches-door-frames",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/temples-architectural-stonework/architectural-components/jharokhas-windows",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/wall-art-reliefs/religious-spiritual-wall-art/devotional-relief-panels",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/wall-art-reliefs/religious-spiritual-wall-art/religious-wall-murals",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/wall-art-reliefs/heritage-decorative-wall-art/stone-relief-panels",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/wall-art-reliefs/heritage-decorative-wall-art/floral-nature-wall-panels",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/wall-art-reliefs/custom-wall-art-reliefs/commemorative-reliefs",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/fountains-water-features/tiered-classical-fountains/tiered-fountains",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/fountains-water-features/tiered-classical-fountains/central-courtyard-fountains",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/fountains-water-features/wall-freestanding-fountains/wall-fountains",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/fountains-water-features/wall-freestanding-fountains/freestanding-fountains",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/fountains-water-features/sculptural-water-features/cascading-water-walls",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/fountains-water-features/sculptural-water-features/poolside-stone-waterfalls",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/decorative-stone-art/planters-tulsi-pots/marble-stone-planters",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/decorative-stone-art/pedestals-stands/marble-pedestals-stands",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/decorative-stone-art/decorative-garden-stone-art/carved-stone-vases",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/decorative-stone-art/decorative-garden-stone-art/marble-urns",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/decorative-stone-art/decorative-garden-stone-art/decorative-bowls",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/decorative-stone-art/decorative-garden-stone-art/garden-lanterns-lamps",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/decorative-stone-art/decorative-garden-stone-art/benches-seating",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/custom-bespoke-creations/custom-architectural-stonework/full-temple-construction",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/custom-bespoke-creations/custom-sculptures-portraits-reliefs/custom-monumental-sculptures",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/custom-bespoke-creations/custom-sculptures-portraits-reliefs/ancestral-portrait-carvings",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/custom-bespoke-creations/custom-sculptures-portraits-reliefs/lifesize-memorial-busts",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    }
+  ],
+  "products": [
+    {
+      "path": "/designs/carved-stone-vases/bespoke-carved-stone-vases-sculpture",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/designs/benches-seating/traditional-benches-seating",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/designs/garden-lanterns-lamps/royal-carved-garden-lanterns-lamps",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/designs/custom-monumental-sculptures/bespoke-custom-monumental-sculptures-sculpture",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/designs/ancestral-portrait-carvings/traditional-ancestral-portrait-carvings",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/designs/cascading-water-walls/bespoke-cascading-water-walls-sculpture",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/designs/commemorative-reliefs/bespoke-commemorative-reliefs-sculpture",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    }
+  ],
+  "redirects": [
+    {
+      "path": "/collections/wall-art-reliefs/religious-reliefs",
+      "status": 308,
+      "ok": true,
+      "location": "/collections/wall-art-reliefs/religious-spiritual-wall-art",
+      "error": null,
+      "expectedTo": "/collections/wall-art-reliefs/religious-spiritual-wall-art",
+      "matchesTarget": true
+    },
+    {
+      "path": "/collections/wall-art-reliefs/wall-murals",
+      "status": 308,
+      "ok": true,
+      "location": "/collections/wall-art-reliefs/religious-spiritual-wall-art",
+      "error": null,
+      "expectedTo": "/collections/wall-art-reliefs/religious-spiritual-wall-art",
+      "matchesTarget": true
+    },
+    {
+      "path": "/collections/wall-art-reliefs/stone-relief-panels",
+      "status": 308,
+      "ok": true,
+      "location": "/collections/wall-art-reliefs/heritage-decorative-wall-art",
+      "error": null,
+      "expectedTo": "/collections/wall-art-reliefs/heritage-decorative-wall-art",
+      "matchesTarget": true
+    },
+    {
+      "path": "/collections/custom-bespoke-creations/custom-wall-art-reliefs",
+      "status": 308,
+      "ok": true,
+      "location": "/collections/wall-art-reliefs/custom-wall-art-reliefs",
+      "error": null,
+      "expectedTo": "/collections/wall-art-reliefs/custom-wall-art-reliefs",
+      "matchesTarget": true
+    },
+    {
+      "path": "/collections/fountains-water-features/tiered-fountains",
+      "status": 308,
+      "ok": true,
+      "location": "/collections/fountains-water-features/tiered-classical-fountains",
+      "error": null,
+      "expectedTo": "/collections/fountains-water-features/tiered-classical-fountains",
+      "matchesTarget": true
+    },
+    {
+      "path": "/collections/fountains-water-features/wall-fountains",
+      "status": 308,
+      "ok": true,
+      "location": "/collections/fountains-water-features/wall-freestanding-fountains",
+      "error": null,
+      "expectedTo": "/collections/fountains-water-features/wall-freestanding-fountains",
+      "matchesTarget": true
+    },
+    {
+      "path": "/collections/fountains-water-features/freestanding-fountains",
+      "status": 308,
+      "ok": true,
+      "location": "/collections/fountains-water-features/wall-freestanding-fountains",
+      "error": null,
+      "expectedTo": "/collections/fountains-water-features/wall-freestanding-fountains",
+      "matchesTarget": true
+    },
+    {
+      "path": "/collections/fountains-water-features/sculptural-fountains",
+      "status": 308,
+      "ok": true,
+      "location": "/collections/fountains-water-features/sculptural-water-features",
+      "error": null,
+      "expectedTo": "/collections/fountains-water-features/sculptural-water-features",
+      "matchesTarget": true
+    },
+    {
+      "path": "/collections/decorative-stone-art/planters",
+      "status": 308,
+      "ok": true,
+      "location": "/collections/decorative-stone-art/planters-tulsi-pots",
+      "error": null,
+      "expectedTo": "/collections/decorative-stone-art/planters-tulsi-pots",
+      "matchesTarget": true
+    },
+    {
+      "path": "/collections/decorative-stone-art/tulsi-pots",
+      "status": 308,
+      "ok": true,
+      "location": "/collections/decorative-stone-art/planters-tulsi-pots",
+      "error": null,
+      "expectedTo": "/collections/decorative-stone-art/planters-tulsi-pots",
+      "matchesTarget": true
+    },
+    {
+      "path": "/collections/decorative-stone-art/garden-outdoor-stone-art",
+      "status": 308,
+      "ok": true,
+      "location": "/collections/decorative-stone-art/decorative-garden-stone-art",
+      "error": null,
+      "expectedTo": "/collections/decorative-stone-art/decorative-garden-stone-art",
+      "matchesTarget": true
+    },
+    {
+      "path": "/collections/custom-bespoke-creations/custom-sculptures",
+      "status": 308,
+      "ok": true,
+      "location": "/collections/custom-bespoke-creations/custom-sculptures-portraits-reliefs",
+      "error": null,
+      "expectedTo": "/collections/custom-bespoke-creations/custom-sculptures-portraits-reliefs",
+      "matchesTarget": true
+    },
+    {
+      "path": "/collections/custom-bespoke-creations/custom-portraits",
+      "status": 308,
+      "ok": true,
+      "location": "/collections/custom-bespoke-creations/custom-sculptures-portraits-reliefs",
+      "error": null,
+      "expectedTo": "/collections/custom-bespoke-creations/custom-sculptures-portraits-reliefs",
+      "matchesTarget": true
+    }
+  ],
+  "sculpturesProtection": [
+    {
+      "path": "/collections/sculptures-statues/hindu-sculptures",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/sculptures-statues/buddhist-jain-sculptures",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/sculptures-statues/human-portrait-sculptures",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/sculptures-statues/classical-artistic-sculptures",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/sculptures-statues/animal-bird-sculptures",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/sculptures-statues/hindu-sculptures/ganesh-ji",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/sculptures-statues/hindu-sculptures/krishna-ji",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    },
+    {
+      "path": "/collections/sculptures-statues/hindu-sculptures/shiva-ji",
+      "status": 200,
+      "ok": true,
+      "location": null,
+      "error": null
+    }
+  ]
+}
