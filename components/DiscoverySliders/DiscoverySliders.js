@@ -29,11 +29,6 @@ function DiscoveryRail({
     (item) => item && item.isActive !== false
   );
 
-  // If no items are configured, return null gracefully
-  if (activeItems.length === 0) {
-    return null;
-  }
-
   // Triple items for seamless, continuous infinite loop buffer
   const extendedItems = [...activeItems, ...activeItems, ...activeItems];
 
@@ -177,6 +172,10 @@ function DiscoveryRail({
       scrollByDelta(1);
     }
   };
+
+  if (activeItems.length === 0) {
+    return null;
+  }
 
   return (
     <div

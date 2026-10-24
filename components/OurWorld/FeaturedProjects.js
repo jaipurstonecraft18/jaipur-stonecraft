@@ -9,8 +9,6 @@ import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
 import styles from "./FeaturedProjects.module.css";
 
 export default function FeaturedProjects({ projects = [], header = {} }) {
-  if (!projects || projects.length === 0) return null;
-
   const eyebrow = header.eyebrow || "FEATURED PROJECTS";
   const heading = header.heading || "Crafted for Timeless Spaces";
 
@@ -53,6 +51,8 @@ export default function FeaturedProjects({ projects = [], header = {} }) {
       });
     }
   };
+
+  if (!projects || projects.length === 0) return null;
 
   return (
     <section className={styles.section} aria-label="Featured Projects Portfolio">
