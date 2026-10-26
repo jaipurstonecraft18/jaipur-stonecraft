@@ -17,11 +17,13 @@ export default function ProductCustomizationBanner({ design }) {
       {/* Dark Texture Overlay Background */}
       <div className={styles.bgFrame} aria-hidden="true">
         <Image
-          src="/images/craftsmanship/artisan-hands.png"
+          src="/images/craftsmanship/artisan-hands.webp"
           alt=""
           fill
           sizes="100vw"
+          quality={85}
           className={styles.bgImage}
+          loading="lazy"
         />
         <div className={styles.bgOverlay} />
       </div>

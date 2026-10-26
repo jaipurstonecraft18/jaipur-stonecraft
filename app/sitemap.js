@@ -18,7 +18,6 @@ export default async function sitemap() {
     "/export",
     "/custom-projects",
     "/contact",
-    "/llms.txt",
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),

@@ -162,10 +162,11 @@ export default function FeaturedCreations({ sectionData = null }) {
                   <div className={styles.imageCard}>
                     {item.src && (
                       <Image
-                        src={getImageVariantUrl(item.src, "card")}
+                        src={getImageVariantUrl(item.src, "display")}
                         alt={item.alt || item.title || "Jaipur Stonecraft creation"}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        quality={85}
                         className={styles.cardImage}
                         loading="lazy"
                       />
@@ -206,7 +207,7 @@ export default function FeaturedCreations({ sectionData = null }) {
           {/* Bottom CTA Button */}
           <ScrollReveal animation="fade-up" delay={200}>
             <div className={styles.ctaWrapper}>
-              <Link href={ctaHref} className={styles.ctaButton}>
+              <Link href={ctaHref} prefetch={false} className={styles.ctaButton}>
                 <span>{ctaText}</span>
                 <span className={styles.arrow} aria-hidden="true">
                   &rarr;

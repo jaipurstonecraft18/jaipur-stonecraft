@@ -617,7 +617,7 @@ export default function AdminCataloguePage() {
             </h3>
 
             <div className={styles.formGroup} style={{ marginBottom: "0.85rem" }}>
-              <label className={styles.label}>Material Name * (No Granite)</label>
+              <label className={styles.label}>Material Name *</label>
               <input
                 type="text"
                 value={formData.name}

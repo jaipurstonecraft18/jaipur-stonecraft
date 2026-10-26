@@ -6,6 +6,8 @@
   background-color: #F7F2EB;
   color: #221F1B;
   padding: 3.5rem 0 4.5rem;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 850px;
 }
 
 .outerContainer {

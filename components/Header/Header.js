@@ -226,6 +226,7 @@ export default function Header({ theme }) {
                 width={263}
                 height={30}
                 priority
+                quality={90}
                 style={{ width: "auto" }}
                 className={styles.logoImg}
               />
@@ -236,7 +237,7 @@ export default function Header({ theme }) {
               <ul className={styles.navList}>
                 {/* 1st: Home */}
                 <li>
-                  <Link href="/" className={`${styles.navLink} ${pathname === "/" ? styles.active : ""}`}>
+                  <Link href="/" prefetch={false} className={`${styles.navLink} ${pathname === "/" ? styles.active : ""}`}>
                     Home
                   </Link>
                 </li>
@@ -249,6 +250,7 @@ export default function Header({ theme }) {
                 >
                   <Link
                     href="/collections"
+                    prefetch={false}
                     className={`${styles.navLink} ${pathname.startsWith("/collections") ? styles.active : ""}`}
                     aria-expanded={activeDropdown === "collections"}
                     aria-haspopup="true"
@@ -266,6 +268,7 @@ export default function Header({ theme }) {
                         <Link
                           key={sub.href}
                           href={sub.href}
+                          prefetch={false}
                           className={styles.dropdownItem}
                           onClick={() => setActiveDropdown(null)}
                           suppressHydrationWarning
@@ -280,21 +283,21 @@ export default function Header({ theme }) {
 
                 {/* 3rd: Craftsmanship */}
                 <li>
-                  <Link href="/craftsmanship" className={`${styles.navLink} ${pathname.startsWith("/craftsmanship") ? styles.active : ""}`}>
+                  <Link href="/craftsmanship" prefetch={false} className={`${styles.navLink} ${pathname.startsWith("/craftsmanship") ? styles.active : ""}`}>
                     Craftsmanship
                   </Link>
                 </li>
 
                 {/* 4th: Our World */}
                 <li>
-                  <Link href="/our-world" className={`${styles.navLink} ${pathname.startsWith("/our-world") ? styles.active : ""}`}>
+                  <Link href="/our-world" prefetch={false} className={`${styles.navLink} ${pathname.startsWith("/our-world") ? styles.active : ""}`}>
                     Our World
                   </Link>
                 </li>
 
                 {/* 5th: Our Story */}
                 <li>
-                  <Link href="/our-story" className={`${styles.navLink} ${pathname === "/our-story" ? styles.active : ""}`}>
+                  <Link href="/our-story" prefetch={false} className={`${styles.navLink} ${pathname === "/our-story" ? styles.active : ""}`}>
                     Our Story
                   </Link>
                 </li>
@@ -324,7 +327,7 @@ export default function Header({ theme }) {
               <a
                 href={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`}
                 className={styles.goldenQuoteButton}
-                aria-label={`Call Jaipur Stonecraft at ${siteConfig.contact.phone}`}
+                aria-label={`Call Now at ${siteConfig.contact.phone}`}
               >
                 Call Now
               </a>
@@ -352,7 +355,7 @@ export default function Header({ theme }) {
         />
 
         {/* Mobile Navigation Drawer */}
-        <div className={styles.mobileDrawer} aria-hidden={!isOpen}>
+        <div className={`${styles.mobileDrawer} ${isOpen ? styles.drawerOpen : ""}`} aria-hidden={!isOpen}>
           <div className={styles.mobileDrawerHeader}>
             <Link href="/" onClick={() => setIsOpen(false)} className={styles.mobileDrawerLogoLink} aria-label="Jaipur Stonecraft Home">
               <Image
@@ -360,6 +363,7 @@ export default function Header({ theme }) {
                 alt="Jaipur Stonecraft"
                 width={202}
                 height={23}
+                quality={90}
                 style={{ width: "auto" }}
                 className={styles.mobileDrawerLogo}
               />
@@ -376,7 +380,7 @@ export default function Header({ theme }) {
           <ul className={styles.mobileNavList}>
             {/* 1. Home */}
             <li>
-              <Link href="/" className={styles.mobileNavLink} onClick={() => setIsOpen(false)}>
+              <Link href="/" prefetch={false} className={styles.mobileNavLink} onClick={() => setIsOpen(false)}>
                 Home
               </Link>
             </li>
@@ -384,7 +388,7 @@ export default function Header({ theme }) {
             {/* 2. Collections (Accordion) */}
             <li className={styles.mobileNavItem}>
               <div className={styles.mobileNavHeader}>
-                <Link href="/collections" className={styles.mobileNavLink} onClick={() => setIsOpen(false)}>
+                <Link href="/collections" prefetch={false} className={styles.mobileNavLink} onClick={() => setIsOpen(false)}>
                   Collections
                 </Link>
                 <button
@@ -402,6 +406,7 @@ export default function Header({ theme }) {
                     <li key={sub.href}>
                       <Link
                         href={sub.href}
+                        prefetch={false}
                         className={styles.mobileSubLink}
                         onClick={() => setIsOpen(false)}
                       >
@@ -412,6 +417,7 @@ export default function Header({ theme }) {
                   <li>
                     <Link
                       href="/collections"
+                      prefetch={false}
                       className={styles.mobileSubLink}
                       style={{ color: "var(--color-bronze)", fontWeight: 600 }}
                       onClick={() => setIsOpen(false)}
@@ -425,21 +431,21 @@ export default function Header({ theme }) {
 
             {/* 3. Craftsmanship */}
             <li>
-              <Link href="/craftsmanship" className={styles.mobileNavLink} onClick={() => setIsOpen(false)}>
+              <Link href="/craftsmanship" prefetch={false} className={styles.mobileNavLink} onClick={() => setIsOpen(false)}>
                 Craftsmanship
               </Link>
             </li>
 
             {/* 4. Our World */}
             <li>
-              <Link href="/our-world" className={styles.mobileNavLink} onClick={() => setIsOpen(false)}>
+              <Link href="/our-world" prefetch={false} className={styles.mobileNavLink} onClick={() => setIsOpen(false)}>
                 Our World
               </Link>
             </li>
 
             {/* 5. Our Story */}
             <li>
-              <Link href="/our-story" className={styles.mobileNavLink} onClick={() => setIsOpen(false)}>
+              <Link href="/our-story" prefetch={false} className={styles.mobileNavLink} onClick={() => setIsOpen(false)}>
                 Our Story
               </Link>
             </li>
@@ -450,7 +456,7 @@ export default function Header({ theme }) {
               href={`tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`}
               className={styles.goldenQuoteButton}
               style={{ display: "flex", width: "100%", textAlign: "center", justifyContent: "center", padding: "0.8rem", minHeight: "44px" }}
-              aria-label={`Call Jaipur Stonecraft at ${siteConfig.contact.phone}`}
+              aria-label={`Call Now at ${siteConfig.contact.phone}`}
             >
               Call Now
             </a>

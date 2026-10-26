@@ -6,13 +6,16 @@ const nextConfig = {
     "192.168.29.37:3000",
     "192.168.29.36",
     "192.168.29.36:3000",
+    "10.78.18.49",
+    "10.78.18.49:3000",
     "localhost:3000",
     "0.0.0.0:3000"
   ],
+  compress: true,
   images: {
-    unoptimized: true,
     formats: ["image/avif", "image/webp"],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    qualities: [75, 80, 82, 85, 88, 90, 92],
+    deviceSizes: [390, 430, 640, 750, 828, 1080, 1200, 1440, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 31536000,
     dangerouslyAllowSVG: true,
@@ -22,7 +25,16 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "placehold.co",
-        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "*.hostingersite.com",
         pathname: "/**",
       },
     ],
@@ -432,12 +444,13 @@ const nextConfig = {
         source: "/:path*",
         headers: securityHeaders,
       },
+
       {
         source: "/((?!api|_next/static|_next/image|favicon.ico|images|uploads|videos).*)",
         headers: [
           {
             key: "Cache-Control",
-            value: "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+            value: "private, no-cache, must-revalidate",
           },
           {
             key: "CDN-Cache-Control",

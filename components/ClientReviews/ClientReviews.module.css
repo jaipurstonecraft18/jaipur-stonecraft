@@ -6,6 +6,8 @@
   background-color: #F7F2EB;
   color: #221F1B;
   padding: 4.5rem 0 5.5rem;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 550px;
 }
 
 .headerWrapper {
@@ -51,8 +53,6 @@
   display: flex;
   gap: 1.5rem;
   overflow-x: auto;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
   scrollbar-width: none;
   -ms-overflow-style: none;
   padding: 0.5rem 0.25rem 1rem;

@@ -46,7 +46,7 @@ export default function CTASection({
                 <PrimaryButton
                   href={finalPrimaryHref}
                   variant={background === "dark" ? "bronze" : "charcoal"}
-                  aria-label={finalPrimaryText === "Call Now" ? `Call Jaipur Stonecraft at ${siteConfig.contact.phone}` : undefined}
+                  aria-label={finalPrimaryText === "Call Now" ? `Call Now: Jaipur Stonecraft at ${siteConfig.contact.phone}` : undefined}
                 >
                   {finalPrimaryText}
                 </PrimaryButton>
@@ -55,7 +55,7 @@ export default function CTASection({
                 <SecondaryButton
                   href={finalSecondaryHref}
                   variant={background === "dark" ? "cream" : "charcoal"}
-                  aria-label={finalSecondaryText === "Call Now" ? `Call Jaipur Stonecraft at ${siteConfig.contact.phone}` : undefined}
+                  aria-label={finalSecondaryText === "Call Now" ? `Call Now: Jaipur Stonecraft at ${siteConfig.contact.phone}` : undefined}
                 >
                   {finalSecondaryText}
                 </SecondaryButton>

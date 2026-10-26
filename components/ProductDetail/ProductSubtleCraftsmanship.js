@@ -129,7 +129,9 @@ export default function ProductSubtleCraftsmanship({ design }) {
                     alt="Master artisan meticulously hand-carving and shaping marble sculpture in Jaipur Stonecraft workshop"
                     fill
                     sizes="(max-width: 991px) 100vw, 45vw"
+                    quality={88}
                     className={styles.bannerImage}
+                    loading="lazy"
                   />
                 </div>
               </div>

@@ -30,13 +30,14 @@ export default function HomeProjects() {
           {/* Left Column: Hero Spotlight Project */}
           {heroProject && (
             <ScrollReveal animation="fade-up">
-              <Link href={`/projects/${heroProject.slug}`} className={styles.heroProjectCard}>
+              <Link href={`/projects/${heroProject.slug}`} prefetch={false} className={styles.heroProjectCard}>
                 <div className={styles.heroImageWrapper}>
                   <Image
-                    src={getImageVariantUrl(heroProject.imageSrc, "card")}
+                    src={getImageVariantUrl(heroProject.imageSrc, "display")}
                     alt={heroProject.name}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
+                    quality={88}
                     className={styles.projectImage}
                     loading="lazy"
                   />
@@ -65,13 +66,14 @@ export default function HomeProjects() {
           <div className={styles.sideColumn}>
             {sideProjects.map((proj, idx) => (
               <ScrollReveal key={proj.slug} animation="fade-up" delay={(idx + 1) * 100}>
-                <Link href={`/projects/${proj.slug}`} className={styles.subProjectCard}>
+                <Link href={`/projects/${proj.slug}`} prefetch={false} className={styles.subProjectCard}>
                   <div className={styles.subImageWrapper}>
                     <Image
-                      src={getImageVariantUrl(proj.imageSrc, "card")}
+                      src={getImageVariantUrl(proj.imageSrc, "display")}
                       alt={proj.name}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
+                      quality={85}
                       className={styles.projectImage}
                       loading="lazy"
                     />

@@ -22,7 +22,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  color: #B87B31;
+  color: #8F5B1A;
   margin-bottom: 0.85rem;
 }
 
@@ -214,6 +214,8 @@
   grid-template-columns: 1fr;
   gap: 2rem;
   margin-bottom: 2rem;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 450px;
 }
 
 @media (min-width: 768px) {
@@ -228,6 +230,8 @@
   grid-template-columns: 1fr;
   gap: 2rem;
   margin-bottom: 3.5rem;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 450px;
 }
 
 @media (min-width: 900px) {
@@ -327,7 +331,7 @@
   font-family: var(--font-inter), sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #B87B31;
+  color: #8F5B1A;
   text-decoration: none;
   margin-top: auto;
   transition: color 0.2s ease;

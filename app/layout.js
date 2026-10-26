@@ -4,15 +4,15 @@ import "../styles/globals.css";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
+  weight: ["300", "400", "600"],
+  style: ["normal"],
   variable: "--font-cormorant",
   display: "swap",
 });
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600"],
   variable: "--font-inter",
   display: "swap",
 });
@@ -72,7 +72,7 @@ export default function RootLayout({ children }) {
   const orgSchema = generateOrganizationSchema();
 
   return (
-    <html lang="en" className={`${cormorant.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${cormorant.variable} ${inter.variable}`} data-scroll-behavior="smooth" suppressHydrationWarning>
       <body suppressHydrationWarning>
         <script
           type="application/ld+json"

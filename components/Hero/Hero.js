@@ -59,9 +59,10 @@ export default function Hero(props) {
 
   useEffect(() => {
     if (dynamicSlides.length <= 1) return;
+    // Stately luxury atelier timing: give visitors 12 seconds to absorb the craftsmanship
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % dynamicSlides.length);
-    }, 6000);
+    }, 12000);
     return () => clearInterval(timer);
   }, [dynamicSlides.length]);
 
@@ -77,22 +78,19 @@ export default function Hero(props) {
 
   return (
     <section className={styles.hero} aria-label="Hero Section">
-      {/* Background Image Slider */}
-      {dynamicSlides.map((s, idx) => (
-        <div
-          key={(s.imageSrc || "hero-slide") + idx}
-          className={`${styles.slideBackground} ${idx === currentSlide ? styles.activeBackground : ""}`}
-        >
-          <Image
-            src={getImageVariantUrl(s.imageSrc || "/images/hero/hero-krishna-artisan.webp", "display")}
-            alt={s.imageAlt || s.headingTitle || "Jaipur Stonecraft Atelier"}
-            fill
-            priority={idx === 0}
-            sizes="100vw"
-            className={styles.heroImage}
-          />
-        </div>
-      ))}
+      {/* Hero Background Image (Pristine LCP Element) */}
+      <div className={styles.heroBannerBgWrapper}>
+        <Image
+          src={getImageVariantUrl(slide.imageSrc || "/images/hero/hero-krishna-artisan.webp", "display")}
+          alt={slide.imageAlt || slide.headingTitle || "Jaipur Stonecraft Atelier"}
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          quality={88}
+          className={styles.heroImage}
+        />
+      </div>
 
       {/* Atmospheric Warm Multi-Layer Overlay Gradient */}
       <div className={styles.overlay} aria-hidden="true" />
@@ -120,7 +118,7 @@ export default function Hero(props) {
 
           <ScrollReveal animation="fade-up" delay={300} key={`cta-${currentSlide}`}>
             <div className={styles.ctaGroup}>
-              <Link href={slide.primaryCtaHref || "/collections"} className={styles.primaryCta}>
+              <Link href={slide.primaryCtaHref || "/collections"} prefetch={false} className={styles.primaryCta}>
                 <span>{slide.primaryCtaText || "Explore Our Collections"}</span>
                 <span className={styles.ctaArrow} aria-hidden="true">&rarr;</span>
               </Link>
@@ -143,7 +141,7 @@ export default function Hero(props) {
                   );
                 }
                 return (
-                  <Link href={finalHref} className={styles.secondaryCta}>
+                  <Link href={finalHref} prefetch={false} className={styles.secondaryCta}>
                     <span>{finalText}</span>
                   </Link>
                 );

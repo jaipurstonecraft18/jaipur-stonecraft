@@ -98,7 +98,7 @@ export default function Contact() {
             <div className={styles.businessCard}>
               <h4>Atelier Hours</h4>
               <p className="small">
-                Our workshop operates Monday through Saturday, 9:00 AM to 6:00 PM (IST). Technical drawing reviews and custom estimations are coordinated directly with our carving leads.
+                Our workshop operates Monday through Sunday, 8:00 AM to 10:00 PM (IST). We are open seven days a week, including Sunday. Technical drawing reviews, custom estimations, and consultation inquiries are coordinated directly with our carving leads.
               </p>
             </div>
           </ScrollReveal>

@@ -123,9 +123,6 @@ export async function POST(request) {
     }
 
     const trimmedName = payload.name.trim();
-    if (trimmedName.toLowerCase().includes("granite")) {
-      return NextResponse.json({ error: "Granite is strictly excluded from Jaipur Stonecraft." }, { status: 400 });
-    }
 
     const slug = payload.slug
       ? payload.slug.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")

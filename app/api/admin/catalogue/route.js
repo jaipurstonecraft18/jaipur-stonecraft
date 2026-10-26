@@ -83,11 +83,6 @@ export async function POST(request) {
 
     const trimmedName = payload.name.trim();
 
-    // STRICT RULE: Granite is strictly excluded
-    if (trimmedName.toLowerCase().includes("granite")) {
-      return NextResponse.json({ error: "Granite is strictly excluded from Jaipur Stonecraft catalogue." }, { status: 400 });
-    }
-
     if (entityType === "material") {
       const id = payload.id || trimmedName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
       

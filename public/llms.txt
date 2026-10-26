@@ -1,28 +1,49 @@
-# Jaipur Stonecraft — AI Discoverability Specification
+# Jaipur Stonecraft
 
-> Jaipur Stonecraft is a modern premium stone atelier based in Jaipur, Rajasthan, India, built on generations of family stone craftsmanship.
+> Jaipur Stonecraft is a premier stone atelier and bespoke manufacturer based in Jaipur, Rajasthan, India, specializing in hand-carved Makrana white marble deity statues, home mandirs, temple architecture, lattice jalis, courtyard fountains, relief murals, and custom architectural stonework.
 
-## Core Specializations
-- Sacred & Religious Art: Hand-carved deity statues in Makrana white marble (Ganesha, Radha Krishna, Shiva, Hanuman, Durga, Lakshmi, Buddha, Jain Tirthankaras).
-- Architectural Stonework: Bespoke white marble home mandirs, temple shikhara architecture, carved stone columns, lattice jali screens, jharokhas, and porticos.
-- Fountains & Water Features: Multi-tiered courtyard fountains, lotus basins, and sculptural water walls.
-- Wall Art & Reliefs: Spiritual relief panels, heritage Rajasthani court murals, and custom architectural wall features.
-- Custom Commissioned Work: Lifesize portrait busts, memorial statues, custom temple commissions, and luxury stone decor.
+Built upon generational Rajasthani masonic lineage, Jaipur Stonecraft operates a dedicated carving atelier serving private homeowners, architects, interior designers, temple trusts, and cultural collectors globally. All works are hand-carved from single-block natural stone following traditional Shilpa Shastra proportions, zero-chemical hand polishing, and precision architectural tolerances.
 
-## Heritage Materials Used
-- Makrana Pure White Marble (High purity, non-porous, traditional temple marble from Makrana, Rajasthan)
-- Sangemarmar White Marble
-- Black Bhainslana Marble
-- Pink Bansi Paharpur Sandstone (Historic pink stone of Rajasthani palaces)
-- Jodhpur Red Sandstone
-- Dholpur Beige Sandstone
-- Jaisalmer Golden Yellow Limestone
-- Natural Translucent Onyx
+## Primary Stone Materials Offered
+- **Makrana Pure White Marble**: Dense calcite marble from Makrana, Rajasthan, traditional for sacred temple idols and home mandirs due to its enduring luster and low natural porosity.
+- **Sangemarmar & Ambaji White Marble**: Fine-grained crystalline white marbles chosen for delicate devotional facial chiseling.
+- **Black Bhainslana Marble**: Dense, deep black stone quarried in Rajasthan for Shiva idols and sculptural art.
+- **Pink Bansi Paharpur Sandstone**: Historic pink sandstone quarried in Rajasthan, renowned for temple shikharas and architectural carvings.
+- **Jodhpur Red Sandstone**: High-durability red sandstone used for grand columns, arches, and heritage outdoor facades.
+- **Dholpur Beige Sandstone**: Uniform, warm beige sandstone for garden fountains, relief panels, and architectural jalis.
+- **Jaisalmer Golden Yellow Limestone**: Warm golden fossiliferous limestone for ornate decorative accents.
+- **Natural Translucent Onyx**: Naturally banded semi-precious stone for backlit panels and decorative sanctuary features.
+- **Granite**: Offered where suitable and available for specific architectural, landscape, or structural commissions. Specific variety, color, and finish depend on project requirements and atelier confirmation.
+*(Note: Jaipur Stonecraft works predominantly with natural marbles, sandstones, limestones, onyx, and select granites. Contact the atelier to review material suitability and availability for your project.)*
 
-## Material Exclusion Notice
-- **Granite**: Jaipur Stonecraft does NOT manufacture, carve, or deal in granite. All craftsmanship is exclusively performed in natural marbles, sandstones, limestones, and onyxes.
+## Core Collections
+- [Marble Sculptures & Deity Statues](https://jaipurstonecraft.com/collections/sculptures-statues): Hand-carved Hindu and Jain sacred deity idols (Ganesha, Radha Krishna, Shiva, Hanuman, Durga, Saraswati, Buddha, Jain Tirthankaras) and custom portrait busts in pure Makrana white marble.
+- [Wall Art & Relief Panels](https://jaipurstonecraft.com/collections/wall-art-reliefs): Intricate bas-relief wall murals, temple narrative carvings, floral medallions, and backlit translucent stone art.
+- [Temples & Architectural Stonework](https://jaipurstonecraft.com/collections/temples-architectural-stonework): Custom white marble home mandirs, shikharas, carved pillars, toran arches, and grand temple sanctum architecture.
+- [Fountains & Water Features](https://jaipurstonecraft.com/collections/fountains-water-features): Hand-carved marble courtyard fountains, tiered lotus bowls, and sculptural water walls.
+- [Decorative Stone Art](https://jaipurstonecraft.com/collections/decorative-stone-art): Sculptural planters, urli bowls, candle holders, and luxury artisan tabletop pieces.
+- [Custom & Bespoke Creations](https://jaipurstonecraft.com/collections/custom-bespoke-creations): Commissioned portrait busts, family memorial sculptures, architect-designed focal points, and bespoke temple elements.
 
-## Contact & Inquiries
-- Location: Jaipur, Rajasthan, India
-- Website: https://jaipurstonecraft.com
-- Services: Custom stone carving, domestic delivery across India, and worldwide international export packing and shipping.
+## Architectural & Bespoke Services
+- [Custom Stone Projects](https://jaipurstonecraft.com/custom-projects): End-to-end bespoke commissions from 2D architectural drawings or 3D clay maquettes to final hand-chiseling.
+- [Craftsmanship Process](https://jaipurstonecraft.com/craftsmanship): Five-stage carving lineage: quarry block selection, Shilpa Shastra grid layout, rough chiseling, fine facial detailing (Netra Unmilan), and zero-chemical emery buffing.
+- [Worldwide Export & Packaging](https://jaipurstonecraft.com/export): Specialized international logistics in ISPM-15 certified heat-treated wooden crates with high-density shock foam, port clearance, and fully insured sea/air transit across the USA, UK, UAE, Australia, and Europe.
+- [Our Story & Heritage](https://jaipurstonecraft.com/our-story): Generational masonic lineage, values of ethical quarrying, fair artisan wages, and preservation of Jaipur's stone carving heritage.
+
+## Knowledge Guides & Material Specifications
+- [How Makrana Marble Statues Are Carved](https://jaipurstonecraft.com/knowledge/how-makrana-marble-statues-are-carved): Detailed craftsman guide on block selection, chisel geometry, facial carving, and natural luster finishing.
+- [Selecting Marble for Home Mandirs](https://jaipurstonecraft.com/knowledge/selecting-marble-for-home-mandir): Practical guide to sizing, pooja room weight loading, non-porous durability, and arch proportions.
+- [Makrana Marble vs Artificial Stone](https://jaipurstonecraft.com/knowledge/differences-between-makrana-marble-and-artificial-stone): Factual comparison between natural calcite marble and synthetic cultured/resin marble regarding heat resistance, ritual purity, and multi-century lifespan.
+- [Stone Jali Screens Architectural Guide](https://jaipurstonecraft.com/knowledge/choosing-stone-jali-screens-guide): Comprehensive guide on lattice thickness, structural wind loading, pattern geometry, and indoor/outdoor applications.
+- [Architect & Temple Trust Specification Guide](https://jaipurstonecraft.com/knowledge/architect-specification-guide-custom-stonework): Technical specifications required for accurate stone carving quotations, shop drawings, tolerances, and anchor systems.
+- [Care & Maintenance for Marble Statues](https://jaipurstonecraft.com/knowledge/marble-statue-care-and-maintenance): Conservation guidelines for cleaning sacred murtis, preventing staining from oils, vermilion/kumkum, and safe restoration.
+
+## Atelier Contact & Order Inquiries
+- [Contact Atelier & Direct Consultation](https://jaipurstonecraft.com/contact): Inquire directly with master stone artisans for bespoke quotations, dimensions, and turnaround schedules.
+- Workshop Address: 30, Industrial Area, Krisna Nagar a, Kartarpura, Gopal Pura Mode, Jaipur, Rajasthan 302015, India.
+- Phone & WhatsApp: +91 9664388920
+- Email: Jaipurstonecraft18@gmail.com
+- Working Hours: Monday through Sunday, 08:00 – 22:00 IST (Open seven days a week, including Sunday; consultations and project coordination available daily)
+
+## Optional
+- [Full LLM Context Specification](https://jaipurstonecraft.com/llms-full.txt): Detailed product index, material specifications, and comprehensive architectural FAQs for AI agents.

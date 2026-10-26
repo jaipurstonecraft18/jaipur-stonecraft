@@ -29,7 +29,7 @@ export default function ProjectCard({
   }`;
 
   const defaultAlt = `${name} architectural stone installation executed by Jaipur Stonecraft`;
-  const optimizedSrc = getImageVariantUrl(imageSrc, "card") || `https://placehold.co/1200x800/E8E4DF/1A1918?text=${encodeURIComponent(name)}`;
+  const optimizedSrc = getImageVariantUrl(imageSrc, "display") || `https://placehold.co/1200x800/E8E4DF/1A1918?text=${encodeURIComponent(name)}`;
 
   return (
     <Link href={href} className={cardClassName} aria-label={`View project details for ${name}`}>
@@ -39,6 +39,7 @@ export default function ProjectCard({
           alt={imageAlt || defaultAlt}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
+          quality={85}
           className={styles.image}
           loading="lazy"
         />

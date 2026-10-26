@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
+import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
 import styles from "./ProductPerspectiveGallery.module.css";
 
 export default function ProductPerspectiveGallery({ design }) {
@@ -47,10 +48,11 @@ export default function ProductPerspectiveGallery({ design }) {
                   <div className={styles.card} onClick={() => setActiveModalImage(imgSrc)}>
                     <div className={styles.imageFrame}>
                       <Image
-                        src={imgSrc}
+                        src={getImageVariantUrl(imgSrc, "display")}
                         alt={imgAlt}
                         fill
-                        sizes="(max-width: 768px) 100vw, 20vw"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1440px) 33vw, 480px"
+                        quality={88}
                         className={styles.perspectiveImage}
                         loading="lazy"
                       />
@@ -78,7 +80,14 @@ export default function ProductPerspectiveGallery({ design }) {
         <div className={styles.modalOverlay} onClick={() => setActiveModalImage(null)}>
           <button className={styles.closeBtn} onClick={() => setActiveModalImage(null)}>✕</button>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <Image src={activeModalImage} alt="Expanded gallery view" fill style={{ objectFit: "contain" }} />
+            <Image
+              src={getImageVariantUrl(activeModalImage, "display")}
+              alt="Expanded gallery view"
+              fill
+              sizes="100vw"
+              quality={92}
+              style={{ objectFit: "contain" }}
+            />
           </div>
         </div>
       )}

@@ -60,7 +60,7 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
           }
         }
       },
-      { rootMargin: "300px 0px" }
+      { threshold: 0.25 }
     );
     observer.observe(containerRef.current);
     return () => observer.disconnect();
@@ -130,7 +130,7 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
               loop
               playsInline
               preload="none"
-              poster={data.videoPoster}
+              poster={inView ? (getImageVariantUrl(data.videoPoster || "/images/craftsmanship/artisan-hands.webp", "card") || data.videoPoster) : undefined}
               aria-hidden="true"
               onEnded={() => {
                 if (videoRef.current) {
@@ -157,7 +157,7 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.youtubeCta}
-                aria-label="Watch Jaipur Stonecraft videos on YouTube"
+                aria-label="Watch more on YouTube — Jaipur Stonecraft Atelier Channel"
               >
                 <span className={styles.playIconBg}>
                   <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
@@ -179,7 +179,6 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialCard}
-              aria-label="Explore Jaipur Stonecraft on Instagram"
             >
               <div className={styles.cardImageWrapper}>
                 <Image
@@ -188,6 +187,7 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className={styles.cardImage}
+                  loading="lazy"
                 />
               </div>
               <div className={styles.cardBody}>
@@ -210,7 +210,6 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialCard}
-              aria-label="Explore Jaipur Stonecraft on Pinterest"
             >
               <div className={styles.cardImageWrapper}>
                 <Image
@@ -219,6 +218,7 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className={styles.cardImage}
+                  loading="lazy"
                 />
               </div>
               <div className={styles.cardBody}>
@@ -241,7 +241,6 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialCard}
-              aria-label="Visit Jaipur Stonecraft on Facebook"
             >
               <div className={styles.cardImageWrapper}>
                 <Image
@@ -250,6 +249,7 @@ export default function BeyondTheGallery({ sectionData, globalSocial }) {
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className={styles.cardImage}
+                  loading="lazy"
                 />
               </div>
               <div className={styles.cardBody}>

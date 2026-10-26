@@ -109,7 +109,7 @@
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.18em;
-  color: var(--color-bronze);
+  color: #8F5B1A;
   text-transform: uppercase;
   margin-bottom: 0.25rem;
   display: block;
@@ -210,7 +210,7 @@
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.15em;
-  color: var(--color-bronze);
+  color: #8F5B1A;
   text-transform: uppercase;
   margin-bottom: 0.35rem;
 }

@@ -133,7 +133,7 @@ export default function QuickCreateProductModal({ isOpen, onClose }) {
           </div>
 
           <div className={styles.formGroup} style={{ marginBottom: "1rem" }}>
-            <label className={styles.label}>Primary Stone Material * (Granite strictly excluded)</label>
+            <label className={styles.label}>Primary Stone Material *</label>
             <select value={primaryMaterialId} onChange={(e) => setPrimaryMaterialId(e.target.value)} className={styles.select}>
               <option value="makrana-pure-white">Makrana Pure White Marble</option>
               <option value="sangemarmar-white">Sangemarmar White Marble</option>

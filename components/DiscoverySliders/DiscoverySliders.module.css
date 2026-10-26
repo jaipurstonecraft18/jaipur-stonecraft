@@ -10,6 +10,8 @@
   color: #221F1B;
   padding-top: 6.5rem;
   padding-bottom: 4.5rem;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 750px;
 }
 
 /* 1. Subtle Ornamental Background Linework
@@ -56,7 +58,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  color: #B87B31;
+  color: #8F5B1A;
   margin-bottom: 0.65rem;
 }
 
@@ -91,7 +93,7 @@
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #B87B31;
+  color: #8F5B1A;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -343,13 +345,13 @@
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #8A8177;
+  color: #665E54;
 }
 
 .cardArrow {
   font-size: 1.1rem;
   line-height: 1;
-  color: #B87B31;
+  color: #8F5B1A;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 

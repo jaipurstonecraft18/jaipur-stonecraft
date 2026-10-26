@@ -29,15 +29,38 @@ function DiscoveryRail({
     (item) => item && item.isActive !== false
   );
 
-  // Triple items for seamless, continuous infinite loop buffer
-  const extendedItems = [...activeItems, ...activeItems, ...activeItems];
+  const [isMounted, setIsMounted] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "400px" }
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Triple items only after mount for seamless loop buffer, keeping initial DOM lean
+  const extendedItems = isMounted ? [...activeItems, ...activeItems, ...activeItems] : activeItems;
 
   // Pause movement for a set duration (e.g. after manual click/touch)
   const temporaryPause = useCallback((durationMs = 2500) => {
     pauseUntilRef.current = Date.now() + durationMs;
   }, []);
 
-  // Continuous linear animation loop using requestAnimationFrame & time delta
+  // Continuous linear animation loop using requestAnimationFrame & time delta (Active only when visible in viewport)
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
@@ -46,21 +69,17 @@ function DiscoveryRail({
     const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
 
+    let isVisible = false;
+    let hasInitializedReverse = false;
     let rafId;
     let lastTimestamp = performance.now();
     const speedPxPerSecond = 28; // Stately, slow, luxurious movement
-
-    // Initialize reverse slider at 1/3 of scrollWidth so it can scroll backwards seamlessly
-    const oneSetWidth = el.scrollWidth / 3;
-    if (reverse && el.scrollLeft <= 5) {
-      el.scrollLeft = oneSetWidth;
-    }
 
     const step = (timestamp) => {
       const delta = (timestamp - lastTimestamp) / 1000;
       lastTimestamp = timestamp;
 
-      const isPaused = isHoveredRef.current || isInteractingRef.current || Date.now() < pauseUntilRef.current;
+      const isPaused = !isVisible || isHoveredRef.current || isInteractingRef.current || Date.now() < pauseUntilRef.current;
 
       if (!isPaused && el) {
         const moveDist = speedPxPerSecond * delta;
@@ -79,12 +98,31 @@ function DiscoveryRail({
         }
       }
 
-      rafId = requestAnimationFrame(step);
+      if (isVisible) {
+        rafId = requestAnimationFrame(step);
+      }
     };
 
-    rafId = requestAnimationFrame(step);
+    const observer = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+      if (isVisible) {
+        // Initialize reverse slider at 1/3 of scrollWidth only once when entering viewport
+        if (reverse && !hasInitializedReverse && el.scrollLeft <= 5) {
+          const oneSetWidth = el.scrollWidth / 3;
+          el.scrollLeft = oneSetWidth;
+          hasInitializedReverse = true;
+        }
+        lastTimestamp = performance.now();
+        rafId = requestAnimationFrame(step);
+      } else if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+    }, { threshold: 0.05 });
+
+    observer.observe(el);
 
     return () => {
+      observer.disconnect();
       if (rafId) cancelAnimationFrame(rafId);
     };
   }, [reverse, activeItems.length]);
@@ -179,6 +217,7 @@ function DiscoveryRail({
 
   return (
     <div
+      ref={containerRef}
       className={styles.railWrapper}
       onMouseEnter={() => { isHoveredRef.current = true; }}
       onMouseLeave={() => { isHoveredRef.current = false; handleMouseUpOrLeave(); }}
@@ -232,25 +271,27 @@ function DiscoveryRail({
               <Link
                 key={`${item.id || item.title}-${idx}`}
                 href={destinationHref}
+                prefetch={false}
                 className={`${styles.card} ${isPortrait ? styles.cardPortrait : styles.cardLandscape}`}
                 onClick={handleCardClick}
-                tabIndex={0}
-                aria-label={`${item.title} — ${categoryLabel}`}
               >
                 {/* Visual Image Container */}
                 <div className={`${styles.imageBox} ${isPortrait ? styles.imageBoxPortrait : styles.imageBoxLandscape}`}>
-                  <Image
-                    src={optimizedSrc}
-                    alt={item.imageAlt || item.title || "Jaipur Stonecraft art"}
-                    fill
-                    sizes={
-                      isPortrait
-                        ? "(max-width: 640px) 70vw, (max-width: 1024px) 30vw, 260px"
-                        : "(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 380px"
-                    }
-                    className={styles.cardImage}
-                    loading="lazy"
-                  />
+                  {(idx < 2 || isInView) && (
+                    <Image
+                      src={optimizedSrc}
+                      alt={item.imageAlt || item.title || "Jaipur Stonecraft art"}
+                      fill
+                      sizes={
+                        isPortrait
+                          ? "(max-width: 640px) 75vw, (max-width: 1024px) 35vw, 480px"
+                          : "(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 540px"
+                      }
+                      quality={88}
+                      className={styles.cardImage}
+                      loading="lazy"
+                    />
+                  )}
                   <div className={styles.imageWarmGradient} aria-hidden="true" />
                 </div>
 

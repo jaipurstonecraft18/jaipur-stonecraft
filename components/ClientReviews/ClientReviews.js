@@ -78,13 +78,44 @@ export default function ClientReviews({ reviewsData }) {
     }
   };
 
-  // Automated auto-scroll every 4 seconds (pauses when user hovers)
+  // Automated auto-scroll every 4.2 seconds only when visible in viewport
   useEffect(() => {
-    if (isHovered) return;
-    const timer = setInterval(() => {
-      scrollOneCard("next");
-    }, 4200);
-    return () => clearInterval(timer);
+    const el = sliderRef.current;
+    if (!el || isHovered) return;
+
+    let isVisible = false;
+    let timer = null;
+
+    const startTimer = () => {
+      if (!timer) {
+        timer = setInterval(() => {
+          scrollOneCard("next");
+        }, 4200);
+      }
+    };
+
+    const stopTimer = () => {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    };
+
+    const observer = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+      if (isVisible) {
+        startTimer();
+      } else {
+        stopTimer();
+      }
+    }, { threshold: 0.1 });
+
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+      stopTimer();
+    };
   }, [isHovered, reviewsList.length]);
 
   return (

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./Breadcrumbs.module.css";
 
-export default function Breadcrumbs({ items = [], theme = "light" }) {
+export default function Breadcrumbs({ items = [], theme = "light", renderJsonLd = true }) {
   if (!items || items.length === 0) return null;
 
   const baseUrl = "https://jaipurstonecraft.com";
@@ -26,11 +26,13 @@ export default function Breadcrumbs({ items = [], theme = "light" }) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        suppressHydrationWarning
-      />
+      {renderJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          suppressHydrationWarning
+        />
+      )}
       <nav
         className={`${styles.breadcrumbsNav} ${theme === "dark" ? styles.darkTheme : ""}`}
         aria-label="Breadcrumb"

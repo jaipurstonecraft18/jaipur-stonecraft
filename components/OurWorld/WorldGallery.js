@@ -127,6 +127,7 @@ export default function WorldGallery({ items = [], activeCategory = "all", heade
                           alt={item.altText || item.title}
                           fill
                           sizes="(max-width: 1200px) 33vw, 20vw"
+                          quality={85}
                           className={styles.image}
                           loading="lazy"
                         />
@@ -173,6 +174,7 @@ export default function WorldGallery({ items = [], activeCategory = "all", heade
                     alt={item.altText || item.title}
                     fill
                     sizes={isFullWidth ? "100vw" : "50vw"}
+                    quality={85}
                     className={styles.mobileImage}
                     loading="lazy"
                   />

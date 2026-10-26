@@ -11,6 +11,7 @@ import CTASection from "@/components/CTASection/CTASection";
 import { getPageSection, getSiteSetting } from "@/lib/db/content.js";
 import { siteConfig } from "@/content/site";
 import { getAllCollections } from "@/content/collections";
+import { generateWebSiteSchema } from "@/lib/seo/schemas";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -49,7 +50,7 @@ export default async function Home() {
       primaryCtaHref: "/collections",
       secondaryCtaText: "Start a Custom Project",
       secondaryCtaHref: "/contact?type=custom",
-      imageSrc: "/images/hero/hero-krishna-artisan.jpg"
+      imageSrc: "/images/hero/hero-krishna-artisan.webp"
     },
     {
       eyebrow: "DIVINE SACRED MASONRY",
@@ -155,27 +156,7 @@ export default async function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": ["Organization", "LocalBusiness"],
-            name: "Jaipur Stonecraft",
-            url: "https://jaipurstonecraft.com",
-            logo: "https://jaipurstonecraft.com/images/hero/homepage-hero.png",
-            telephone: "+91 9664388920",
-            email: "Jaipurstonecraft18@gmail.com",
-            address: {
-              "@type": "PostalAddress",
-              streetAddress: "30, Industrial Area, Krisna Nagar a, Kartarpura, Gopal Pura Mode",
-              addressLocality: "Jaipur",
-              addressRegion: "Rajasthan",
-              postalCode: "302015",
-              addressCountry: "IN"
-            },
-            sameAs: [
-              "https://instagram.com",
-              "https://pinterest.com",
-            ],
-          }),
+          __html: JSON.stringify(generateWebSiteSchema()),
         }}
       />
     </>

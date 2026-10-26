@@ -146,7 +146,17 @@
   padding-top: var(--spacing-lg);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   font-size: 0.8rem;
-  color: rgba(252, 251, 249, 0.4);
+  color: rgba(252, 251, 249, 0.72);
+}
+
+.legalLink {
+  color: rgba(252, 251, 249, 0.72);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.legalLink:hover {
+  color: #FFFFFF;
 }
 
 @media (max-width: 767px) {

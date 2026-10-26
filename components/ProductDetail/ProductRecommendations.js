@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
+import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
 import { categoriesData } from "@/content/categories-data.js";
 import styles from "./ProductRecommendations.module.css";
 
@@ -55,10 +56,11 @@ export default function ProductRecommendations({
                   <Link href={relHref} className={styles.imageLink} tabIndex={-1}>
                     <div className={styles.imageFrame}>
                       <Image
-                        src={rel.imageSrc}
+                        src={getImageVariantUrl(rel.imageSrc, "display")}
                         alt={rel.name || "Hand-carved stone sculpture"}
                         fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 16vw"
+                        sizes="(max-width: 576px) 50vw, (max-width: 991px) 33vw, (max-width: 1440px) 22vw, 320px"
+                        quality={85}
                         className={styles.cardImage}
                         loading="lazy"
                       />

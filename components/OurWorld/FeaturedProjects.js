@@ -97,7 +97,7 @@ export default function FeaturedProjects({ projects = [], header = {} }) {
           tabIndex={0}
         >
           {projects.map((project, idx) => {
-            const imgSrc = getImageVariantUrl(project.imageSrc, "card") || project.imageSrc;
+            const imgSrc = getImageVariantUrl(project.imageSrc, "display") || project.imageSrc;
             return (
               <div key={project.id || project.slug} className={styles.projectCardWrapper}>
                 <ScrollReveal
@@ -115,6 +115,7 @@ export default function FeaturedProjects({ projects = [], header = {} }) {
                         alt={project.title}
                         fill
                         sizes="(max-width: 768px) 85vw, (max-width: 1100px) 50vw, 25vw"
+                        quality={85}
                         className={styles.projectImage}
                         loading="lazy"
                       />

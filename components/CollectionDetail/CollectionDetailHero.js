@@ -31,6 +31,7 @@ export default function CollectionDetailHero({ collection, heroData }) {
         <div className={styles.heroBannerContent}>
           <div className={styles.breadcrumbsWrapperDark}>
             <Breadcrumbs
+              renderJsonLd={false}
               items={[
                 { label: "Collections", href: "/collections" },
                 { label: collection.name },

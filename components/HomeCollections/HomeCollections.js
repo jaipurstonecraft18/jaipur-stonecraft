@@ -21,11 +21,11 @@ export default function HomeCollections({ collections }) {
   const custom = colMap["custom-bespoke-creations"] || collections?.[5] || {};
 
   const spotlightImg = getImageVariantUrl(spotlight.imageSrc || "/images/collections/hero-sculptures-group.webp", "display");
-  const wallArtImg = getImageVariantUrl(wallArt.imageSrc || "/images/collections/wall-art-relief.webp", "card");
-  const templesImg = getImageVariantUrl(temples.imageSrc || "/images/collections/temples-architectural.webp", "card");
-  const fountainsImg = getImageVariantUrl(fountains.imageSrc || "/images/collections/garden.webp", "card");
-  const decorImg = getImageVariantUrl(decor.imageSrc || "/images/collections/luxury.webp", "card");
-  const customImg = getImageVariantUrl(custom.imageSrc || "/images/collections/custom.webp", "card");
+  const wallArtImg = getImageVariantUrl(wallArt.imageSrc || "/images/collections/wall-art-relief.webp", "display");
+  const templesImg = getImageVariantUrl(temples.imageSrc || "/images/collections/temples-architectural.webp", "display");
+  const fountainsImg = getImageVariantUrl(fountains.imageSrc || "/images/collections/garden.webp", "display");
+  const decorImg = getImageVariantUrl(decor.imageSrc || "/images/collections/luxury.webp", "display");
+  const customImg = getImageVariantUrl(custom.imageSrc || "/images/collections/custom.webp", "display");
 
   const spotlightTitle = spotlight.name || "Sculptures & Statues";
   const wallArtTitle = wallArt.name || "Wall Art & Reliefs";
@@ -84,8 +84,9 @@ export default function HomeCollections({ collections }) {
                 alt={spotlightTitle}
                 fill
                 sizes="(max-width: 1024px) 100vw, 55vw"
+                quality={88}
                 className={styles.featuredImage}
-                priority
+                loading="lazy"
               />
             </div>
             <div className={styles.featuredTextCol}>
@@ -101,6 +102,7 @@ export default function HomeCollections({ collections }) {
                       <Link
                         key={sub.slug}
                         href={`/collections/${spotlight.slug || "sculptures-statues"}/${sub.slug}`}
+                        prefetch={false}
                         className={styles.pill}
                       >
                         {sub.name}
@@ -109,23 +111,23 @@ export default function HomeCollections({ collections }) {
                   </div>
                 ) : (
                   <div className={styles.pillGrid}>
-                    <Link href="/collections/sculptures-statues/hindu-sculptures" className={styles.pill}>
+                    <Link href="/collections/sculptures-statues/hindu-sculptures" prefetch={false} className={styles.pill}>
                       Hindu Sculpture
                     </Link>
-                    <Link href="/collections/sculptures-statues/buddhist-jain-sculptures" className={styles.pill}>
+                    <Link href="/collections/sculptures-statues/buddhist-jain-sculptures" prefetch={false} className={styles.pill}>
                       Buddhist & Jain Sculpture
                     </Link>
-                    <Link href="/collections/sculptures-statues/human-portrait-sculptures" className={styles.pill}>
+                    <Link href="/collections/sculptures-statues/human-portrait-sculptures" prefetch={false} className={styles.pill}>
                       Human & Portrait Sculpture
                     </Link>
-                    <Link href="/collections/sculptures-statues/classical-artistic-sculptures" className={styles.pill}>
+                    <Link href="/collections/sculptures-statues/classical-artistic-sculptures" prefetch={false} className={styles.pill}>
                       Classical & Artistic Sculpture
                     </Link>
                   </div>
                 )}
               </div>
 
-              <Link href={`/collections/${spotlight.slug || "sculptures-statues"}`} className={styles.featuredLink}>
+              <Link href={`/collections/${spotlight.slug || "sculptures-statues"}`} prefetch={false} className={styles.featuredLink}>
                 <span>Explore {spotlightTitle}</span>
                 <span className={styles.arrow} aria-hidden="true">&rarr;</span>
               </Link>
@@ -139,6 +141,7 @@ export default function HomeCollections({ collections }) {
             <div className={styles.collectionCard}>
               <Link
                 href={`/collections/${wallArt.slug || "wall-art-reliefs"}`}
+                prefetch={false}
                 className={styles.overlayCardLink}
                 aria-label={`Explore ${wallArtTitle} Collection`}
               />
@@ -147,8 +150,10 @@ export default function HomeCollections({ collections }) {
                   src={wallArtImg}
                   alt={wallArtTitle}
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 95vw, (max-width: 1200px) 50vw, 680px"
+                  quality={88}
                   className={styles.cardImage}
+                  loading="lazy"
                 />
               </div>
               <div className={styles.cardBody}>
@@ -161,7 +166,7 @@ export default function HomeCollections({ collections }) {
                 </div>
                 <h3 className={styles.cardTitle}>{wallArtTitle}</h3>
                 <p className={styles.cardDesc}>{wallArtDesc}</p>
-                <Link href={`/collections/${wallArt.slug || "wall-art-reliefs"}`} className={styles.cardLink}>
+                <Link href={`/collections/${wallArt.slug || "wall-art-reliefs"}`} prefetch={false} className={styles.cardLink}>
                   <span>Browse Collection</span>
                   <span className={styles.arrow} aria-hidden="true">&rarr;</span>
                 </Link>
@@ -173,6 +178,7 @@ export default function HomeCollections({ collections }) {
             <div className={styles.collectionCard}>
               <Link
                 href={`/collections/${temples.slug || "temples-architectural-stonework"}`}
+                prefetch={false}
                 className={styles.overlayCardLink}
                 aria-label={`Explore ${templesTitle} Collection`}
               />
@@ -181,8 +187,10 @@ export default function HomeCollections({ collections }) {
                   src={templesImg}
                   alt={templesTitle}
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 95vw, (max-width: 1200px) 50vw, 680px"
+                  quality={88}
                   className={styles.cardImage}
+                  loading="lazy"
                 />
               </div>
               <div className={styles.cardBody}>
@@ -195,7 +203,7 @@ export default function HomeCollections({ collections }) {
                 </div>
                 <h3 className={styles.cardTitle}>{templesTitle}</h3>
                 <p className={styles.cardDesc}>{templesDesc}</p>
-                <Link href={`/collections/${temples.slug || "temples-architectural-stonework"}`} className={styles.cardLink}>
+                <Link href={`/collections/${temples.slug || "temples-architectural-stonework"}`} prefetch={false} className={styles.cardLink}>
                   <span>Browse Collection</span>
                   <span className={styles.arrow} aria-hidden="true">&rarr;</span>
                 </Link>
@@ -210,6 +218,7 @@ export default function HomeCollections({ collections }) {
             <div className={styles.collectionCard}>
               <Link
                 href={`/collections/${fountains.slug || "fountains-water-features"}`}
+                prefetch={false}
                 className={styles.overlayCardLink}
                 aria-label={`Explore ${fountainsTitle} Collection`}
               />
@@ -218,8 +227,10 @@ export default function HomeCollections({ collections }) {
                   src={fountainsImg}
                   alt={fountainsTitle}
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 768px) 95vw, (max-width: 1200px) 33vw, 460px"
+                  quality={88}
                   className={styles.cardImage}
+                  loading="lazy"
                 />
               </div>
               <div className={styles.cardBody}>
@@ -231,7 +242,7 @@ export default function HomeCollections({ collections }) {
                 </div>
                 <h3 className={styles.cardTitle}>{fountainsTitle}</h3>
                 <p className={styles.cardDesc}>{fountainsDesc}</p>
-                <Link href={`/collections/${fountains.slug || "fountains-water-features"}`} className={styles.cardLink}>
+                <Link href={`/collections/${fountains.slug || "fountains-water-features"}`} prefetch={false} className={styles.cardLink}>
                   <span>Browse Collection</span>
                   <span className={styles.arrow} aria-hidden="true">&rarr;</span>
                 </Link>
@@ -243,6 +254,7 @@ export default function HomeCollections({ collections }) {
             <div className={styles.collectionCard}>
               <Link
                 href={`/collections/${decor.slug || "decorative-stone-art"}`}
+                prefetch={false}
                 className={styles.overlayCardLink}
                 aria-label={`Explore ${decorTitle} Collection`}
               />
@@ -251,8 +263,10 @@ export default function HomeCollections({ collections }) {
                   src={decorImg}
                   alt={decorTitle}
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 768px) 95vw, (max-width: 1200px) 33vw, 460px"
+                  quality={88}
                   className={styles.cardImage}
+                  loading="lazy"
                 />
               </div>
               <div className={styles.cardBody}>
@@ -264,7 +278,7 @@ export default function HomeCollections({ collections }) {
                 </div>
                 <h3 className={styles.cardTitle}>{decorTitle}</h3>
                 <p className={styles.cardDesc}>{decorDesc}</p>
-                <Link href={`/collections/${decor.slug || "decorative-stone-art"}`} className={styles.cardLink}>
+                <Link href={`/collections/${decor.slug || "decorative-stone-art"}`} prefetch={false} className={styles.cardLink}>
                   <span>Browse Collection</span>
                   <span className={styles.arrow} aria-hidden="true">&rarr;</span>
                 </Link>
@@ -276,6 +290,7 @@ export default function HomeCollections({ collections }) {
             <div className={styles.collectionCard}>
               <Link
                 href={`/collections/${custom.slug || "custom-bespoke-creations"}`}
+                prefetch={false}
                 className={styles.overlayCardLink}
                 aria-label={`Explore ${customTitle} Collection`}
               />
@@ -284,8 +299,10 @@ export default function HomeCollections({ collections }) {
                   src={customImg}
                   alt={customTitle}
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 768px) 95vw, (max-width: 1200px) 33vw, 460px"
+                  quality={88}
                   className={styles.cardImage}
+                  loading="lazy"
                 />
               </div>
               <div className={styles.cardBody}>
@@ -296,7 +313,7 @@ export default function HomeCollections({ collections }) {
                 </div>
                 <h3 className={styles.cardTitle}>{customTitle}</h3>
                 <p className={styles.cardDesc}>{customDesc}</p>
-                <Link href={`/collections/${custom.slug || "custom-bespoke-creations"}`} className={styles.cardLink}>
+                <Link href={`/collections/${custom.slug || "custom-bespoke-creations"}`} prefetch={false} className={styles.cardLink}>
                   <span>Browse Collection</span>
                   <span className={styles.arrow} aria-hidden="true">&rarr;</span>
                 </Link>

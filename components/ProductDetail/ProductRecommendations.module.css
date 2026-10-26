@@ -121,7 +121,8 @@
 .viewLink {
   font-family: var(--font-body);
   font-size: 0.75rem;
-  color: var(--color-bronze);
+  font-weight: 500;
+  color: #8F5B1A;
   text-decoration: none;
   transition: color var(--transition-fast);
 }

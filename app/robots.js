@@ -1,15 +1,49 @@
 export default function robots() {
+  const disallowedPaths = [
+    "/admin/",
+    "/api/",
+    "/style-guide",
+    "/search",
+  ];
+
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-      disallow: [
-        "/admin/",
-        "/api/",
-        "/style-guide",
-        "/search",
-      ],
-    },
+    rules: [
+      {
+        userAgent: "Googlebot",
+        allow: "/",
+        disallow: disallowedPaths,
+      },
+      {
+        userAgent: "Bingbot",
+        allow: "/",
+        disallow: disallowedPaths,
+      },
+      {
+        userAgent: "OAI-SearchBot",
+        allow: "/",
+        disallow: disallowedPaths,
+      },
+      {
+        userAgent: "ChatGPT-User",
+        allow: "/",
+        disallow: disallowedPaths,
+      },
+      {
+        userAgent: "PerplexityBot",
+        allow: "/",
+        disallow: disallowedPaths,
+      },
+      {
+        userAgent: "Claude-Web",
+        allow: "/",
+        disallow: disallowedPaths,
+      },
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: disallowedPaths,
+      },
+    ],
     sitemap: "https://jaipurstonecraft.com/sitemap.xml",
   };
 }

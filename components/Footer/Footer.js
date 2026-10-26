@@ -30,7 +30,7 @@ export default function Footer() {
 
           {/* Column 2: Navigation Links */}
           <div className={styles.colNav}>
-            <h4 className={styles.colTitle}>Explore</h4>
+            <h3 className={styles.colTitle}>Explore</h3>
             <ul className={styles.linkList}>
               {(siteConfig.footerExplore || siteConfig.navigation).map((item) => (
                 <li key={item.href}>
@@ -44,7 +44,7 @@ export default function Footer() {
 
           {/* Column 3: Collections links */}
           <div className={styles.colNav}>
-            <h4 className={styles.colTitle}>Collections</h4>
+            <h3 className={styles.colTitle}>Collections</h3>
             <ul className={styles.linkList}>
               {siteConfig.collections.map((item, idx) => (
                 <li key={`${item.label}-${idx}`}>
@@ -58,7 +58,7 @@ export default function Footer() {
 
           {/* Column 4: Contact & Social Info */}
           <div className={styles.colContact}>
-            <h4 className={styles.colTitle}>Inquiries</h4>
+            <h3 className={styles.colTitle}>Inquiries</h3>
             <ul className={styles.contactList}>
               <li>
                 <span className={styles.contactLabel}>Email:</span>{" "}

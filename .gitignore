@@ -58,3 +58,8 @@ backups/
 
 # image optimization backups
 public/images/.originals/
+
+# lighthouse reports & audit artifacts
+*.report.json
+*.report.html
+artifacts/

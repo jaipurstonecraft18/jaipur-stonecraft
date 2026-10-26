@@ -6,6 +6,7 @@ import Link from "next/link";
 import { siteConfig } from "@/content/site";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
+import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
 import styles from "./ProductHero.module.css";
 
 export default function ProductHero({ design, category, collection, subcategory }) {
@@ -60,6 +61,7 @@ export default function ProductHero({ design, category, collection, subcategory 
     <div className={styles.heroWrapper} suppressHydrationWarning>
       {/* Top Breadcrumb Navigation */}
       <Breadcrumbs
+        renderJsonLd={false}
         items={[
           { label: "Collections", href: "/collections" },
           ...(collection ? [{ label: collection.name, href: `/collections/${collection.slug}` }] : []),
@@ -83,10 +85,11 @@ export default function ProductHero({ design, category, collection, subcategory 
                   aria-label={`View perspective ${idx + 1}`}
                 >
                   <Image
-                    src={img.src}
+                    src={getImageVariantUrl(img.src, "thumb")}
                     alt={img.alt}
                     fill
-                    sizes="80px"
+                    sizes="(max-width: 768px) 70px, 120px"
+                    quality={82}
                     className={styles.thumbImage}
                   />
                 </button>
@@ -97,10 +100,11 @@ export default function ProductHero({ design, category, collection, subcategory 
           {/* Dominant Primary Image Frame */}
           <div className={styles.mainImageFrame}>
             <Image
-              src={currentImage.src}
+              src={getImageVariantUrl(currentImage.src, "display")}
               alt={currentImage.alt}
               fill
               priority
+              quality={90}
               sizes="(max-width: 991px) 100vw, 48vw"
               className={styles.mainImage}
             />
@@ -201,7 +205,7 @@ export default function ProductHero({ design, category, collection, subcategory 
 
             {/* Custom Sizes Available Box */}
             <div className={styles.customSizeBox}>
-              <h3 className={styles.customSizeTitle}>CUSTOM SIZES AVAILABLE</h3>
+              <h2 className={styles.customSizeTitle}>CUSTOM SIZES AVAILABLE</h2>
               <p className={styles.customSizeText}>
                 Every piece is individually handcrafted to your required size and space specifications.
               </p>
@@ -247,9 +251,11 @@ export default function ProductHero({ design, category, collection, subcategory 
           </button>
           <div className={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
             <Image
-              src={currentImage.src}
+              src={getImageVariantUrl(currentImage.src, "display")}
               alt={currentImage.alt}
               fill
+              sizes="100vw"
+              quality={92}
               style={{ objectFit: "contain" }}
             />
           </div>
