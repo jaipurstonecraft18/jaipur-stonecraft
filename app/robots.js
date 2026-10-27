@@ -1,6 +1,8 @@
 export default function robots() {
   const disallowedPaths = [
+    "/admin",
     "/admin/",
+    "/api",
     "/api/",
     "/style-guide",
     "/search",
@@ -47,4 +49,3 @@ export default function robots() {
     sitemap: "https://jaipurstonecraft.com/sitemap.xml",
   };
 }
-
