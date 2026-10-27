@@ -115,8 +115,19 @@ export default async function sitemap() {
     priority: 0.7,
   }));
 
-  // 5. Dynamic Level 3 Category Landing Routes
-  const categoryRoutes = categoryRows.map((cat) => ({
+  // 5. Dynamic Level 3 Category Landing Routes (Exclude thin/empty categories that emit noindex)
+  const activeCategorySlugs = new Set();
+  ["marble-home-temples", "carved-pillars-columns", "bespoke-portrait-busts"].forEach((s) => activeCategorySlugs.add(s));
+  
+  if (productRows && productRows.length > 0) {
+    productRows.forEach((p) => {
+      if (p.parent_category) activeCategorySlugs.add(p.parent_category);
+    });
+  }
+
+  const eligibleCategoryRows = categoryRows.filter((cat) => activeCategorySlugs.has(cat.slug));
+
+  const categoryRoutes = eligibleCategoryRows.map((cat) => ({
     url: `${baseUrl}/collections/${cat.parent_collection_slug}/${cat.parent_subcategory_slug}/${cat.slug}`,
     lastModified: cat.created_at ? new Date(cat.created_at) : staticBaselineDate,
     changeFrequency: "monthly",

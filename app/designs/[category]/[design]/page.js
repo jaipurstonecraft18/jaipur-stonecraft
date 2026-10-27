@@ -40,9 +40,12 @@ export async function generateMetadata({ params }) {
     seoObj = design.seo;
   }
 
-  const pageTitle = (seoObj.title || seoObj.seoTitle || seoObj.titleTag || "").trim() || `${design.name} | Jaipur Stonecraft`;
-  const metaDesc = (seoObj.description || seoObj.metaDescription || "").trim() || design.shortDescription || `Hand-carved ${design.name} sculpted in Jaipur, Rajasthan. Custom dimensions and worldwide delivery available.`;
-  const canonicalUrl = (seoObj.canonicalUrl || seoObj.canonical || "").trim() || `https://jaipurstonecraft.com/designs/${categorySlug}/${designSlug}`;
+  const targetCategory = design.parentCategory || categorySlug;
+  const targetSlug = design.slug || designSlug;
+  const rawCanonical = (seoObj.canonicalUrl || seoObj.canonical || "").trim();
+  const canonicalUrl = (rawCanonical && !rawCanonical.includes("/other-deities/") && !rawCanonical.includes("/jali-screens/"))
+    ? rawCanonical
+    : `https://jaipurstonecraft.com/designs/${targetCategory}/${targetSlug}`;
   const isIndexable = seoObj.indexable !== undefined ? Boolean(seoObj.indexable) : true;
   
   const primaryKw = (seoObj.primaryKeyword || "").trim();
