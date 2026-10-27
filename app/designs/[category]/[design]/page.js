@@ -40,6 +40,8 @@ export async function generateMetadata({ params }) {
     seoObj = design.seo;
   }
 
+  const pageTitle = (seoObj.title || seoObj.seoTitle || seoObj.titleTag || "").trim() || `${design.name} | Jaipur Stonecraft`;
+  const metaDesc = (seoObj.description || seoObj.metaDescription || "").trim() || design.shortDescription || `Hand-carved ${design.name} sculpted in Jaipur, Rajasthan. Custom dimensions and worldwide delivery available.`;
   const targetCategory = design.parentCategory || categorySlug;
   const targetSlug = design.slug || designSlug;
   const rawCanonical = (seoObj.canonicalUrl || seoObj.canonical || "").trim();
