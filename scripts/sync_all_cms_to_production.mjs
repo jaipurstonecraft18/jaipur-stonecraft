@@ -3,7 +3,10 @@ import fs from 'fs';
 import path from 'path';
 import { query } from '../lib/db/client.js';
 
-const APP_DIR = "/home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com/hbuilds/current/nodejs";
+const DOMAIN_DIR = fs.existsSync("/home/u209772524/domains/jaipurstonecraft.com")
+  ? "/home/u209772524/domains/jaipurstonecraft.com"
+  : "/home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com";
+const APP_DIR = `${DOMAIN_DIR}/hbuilds/current/nodejs`;
 
 async function syncAllCms() {
   console.log("================================================================================");
@@ -253,7 +256,7 @@ applySync().catch(err => {
 
   // 6. Reload Passenger worker so Next.js cache reloads
   console.log("6. Triggering graceful reload of Passenger / Next.js on Hostinger...");
-  const restartCmd = `export PATH=/opt/alt/alt-nodejs22/root/usr/bin:$PATH && mkdir -p /home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com/public_html/tmp && touch /home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com/public_html/tmp/restart.txt`;
+  const restartCmd = `export PATH=/opt/alt/alt-nodejs22/root/usr/bin:$PATH && DOM_ROOT="/home/u209772524/domains/jaipurstonecraft.com" && [ ! -d "$DOM_ROOT" ] && DOM_ROOT="/home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com" && mkdir -p "$DOM_ROOT/public_html/tmp" && touch "$DOM_ROOT/public_html/tmp/restart.txt"`;
   execSync(
     `ssh -i scratch/deploy_key -p 65002 -o BatchMode=yes -o StrictHostKeyChecking=accept-new u209772524@217.21.91.171 "${restartCmd}"`,
     { stdio: 'inherit' }

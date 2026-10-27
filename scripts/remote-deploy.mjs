@@ -30,8 +30,7 @@ const SSH_HOST = process.env.HOSTINGER_SSH_HOST || "217.21.91.171";
 const SSH_PORT = process.env.HOSTINGER_SSH_PORT || "65002";
 const SSH_USER = process.env.HOSTINGER_SSH_USER || "u209772524";
 
-const REMOTE_APP_DIR = "/home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com/hbuilds/last-source";
-const LIVE_URL = "https://lavenderblush-crab-850824.hostingersite.com";
+const LIVE_URL = process.env.LIVE_URL || "https://jaipurstonecraft.com";
 
 console.log("================================================================================");
 console.log("JAIPUR STONECRAFT — PRODUCTION DEPLOYMENT DISPATCHER");
@@ -122,12 +121,24 @@ if (hasUncommitted && !process.env.GITHUB_ACTIONS) {
   console.warn("Only committed and pushed changes will be deployed to Hostinger production.\n");
 }
 
-// Step 3: Construct remote execution command
+// Step 3: Construct resilient remote execution command
 const remoteCommand = [
-  `cd "${REMOTE_APP_DIR}"`,
-  `git fetch origin main --tags`,
+  'DOMAINS_ROOT="/home/u209772524/domains"',
+  'TARGET_DOMAIN="jaipurstonecraft.com"',
+  'OLD_DOMAIN="lavenderblush-crab-850824.hostingersite.com"',
+  'echo "=== HOSTINGER REMOTE DEPLOYMENT DISPATCH ==="',
+  'echo "User: $(whoami)"',
+  'echo "Available Domains on Hostinger:"',
+  'ls -la "$DOMAINS_ROOT"',
+  'if [ -d "$DOMAINS_ROOT/$TARGET_DOMAIN" ]; then ACTIVE_DOMAIN_DIR="$DOMAINS_ROOT/$TARGET_DOMAIN"; elif [ -d "$DOMAINS_ROOT/$OLD_DOMAIN" ]; then ACTIVE_DOMAIN_DIR="$DOMAINS_ROOT/$OLD_DOMAIN"; else ACTIVE_DOMAIN_DIR=$(find "$DOMAINS_ROOT" -maxdepth 1 -mindepth 1 -type d | head -n 1); fi',
+  'echo "Target Domain Directory: $ACTIVE_DOMAIN_DIR"',
+  'if [ "$ACTIVE_DOMAIN_DIR" = "$DOMAINS_ROOT/$TARGET_DOMAIN" ] && [ -d "$DOMAINS_ROOT/$OLD_DOMAIN/hbuilds" ] && [ ! -d "$ACTIVE_DOMAIN_DIR/hbuilds" ]; then echo "Migrating hbuilds from old preview domain to $TARGET_DOMAIN..."; cp -a "$DOMAINS_ROOT/$OLD_DOMAIN/hbuilds" "$ACTIVE_DOMAIN_DIR/"; fi',
+  'mkdir -p "$ACTIVE_DOMAIN_DIR/hbuilds"',
+  'if [ ! -d "$ACTIVE_DOMAIN_DIR/hbuilds/last-source/.git" ]; then echo "Initializing last-source in $ACTIVE_DOMAIN_DIR..."; git clone https://github.com/jaipurstonecraft18/jaipur-stonecraft.git "$ACTIVE_DOMAIN_DIR/hbuilds/last-source"; fi',
+  'cd "$ACTIVE_DOMAIN_DIR/hbuilds/last-source"',
+  'git fetch origin main --tags',
   `git reset --hard "${targetCommit}"`,
-  `bash scripts/deploy-hostinger.sh "${targetCommit}"`
+  `bash scripts/deploy-hostinger.sh "${targetCommit}" "$ACTIVE_DOMAIN_DIR"`
 ].join(" && ");
 
 console.log(`\n[Step 1/2] Connecting to Hostinger and executing deployment for commit ${shortHead}...`);

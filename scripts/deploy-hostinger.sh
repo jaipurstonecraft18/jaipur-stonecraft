@@ -15,8 +15,20 @@
 
 set -euo pipefail
 
-# 1. Environment & Paths Configuration
-DOMAIN_ROOT="/home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com"
+TARGET_COMMIT="${1:-HEAD}"
+DOMAIN_ARG="${2:-}"
+
+# 1. Environment & Paths Configuration (jaipurstonecraft.com priority)
+if [ -n "${DOMAIN_ARG}" ] && [ -d "${DOMAIN_ARG}" ]; then
+    DOMAIN_ROOT="${DOMAIN_ARG}"
+elif [ -d "/home/u209772524/domains/jaipurstonecraft.com" ]; then
+    DOMAIN_ROOT="/home/u209772524/domains/jaipurstonecraft.com"
+elif [ -d "/home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com" ]; then
+    DOMAIN_ROOT="/home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com"
+else
+    DOMAIN_ROOT="/home/u209772524/domains/jaipurstonecraft.com"
+fi
+
 HBUILDS_ROOT="${DOMAIN_ROOT}/hbuilds"
 LAST_SOURCE="${HBUILDS_ROOT}/last-source"
 VERSIONS_DIR="${HBUILDS_ROOT}/versions"
@@ -29,8 +41,6 @@ export PATH="${NODE_BIN_DIR}:${PATH}"
 export NODE_ENV="production"
 export NEXT_PRIVATE_MAX_WORKERS=2
 
-TARGET_COMMIT="${1:-HEAD}"
-
 echo "================================================================================"
 echo "JAIPUR STONECRAFT — PRODUCTION DEPLOYMENT RUNNER"
 echo "================================================================================"
@@ -42,6 +52,19 @@ echo "==========================================================================
 # Step 1: Preflight Directory & Shared Storage Initialization
 mkdir -p "${VERSIONS_DIR}"
 mkdir -p "${SHARED_UPLOADS}"
+
+# Import persistent shared uploads and configs from old preview domain if migrating
+OLD_SHARED="/home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com/hbuilds/shared/uploads"
+if [ -d "${OLD_SHARED}" ] && [ "${SHARED_UPLOADS}" != "${OLD_SHARED}" ]; then
+    echo "[Preflight] Importing persistent shared uploads from previous domain..."
+    rsync -a --ignore-existing "${OLD_SHARED}/" "${SHARED_UPLOADS}/" 2>/dev/null || true
+fi
+
+OLD_CONFIG="/home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com/hbuilds/config/.env"
+if [ ! -f "${HBUILDS_ROOT}/config/.env" ] && [ -f "${OLD_CONFIG}" ]; then
+    mkdir -p "${HBUILDS_ROOT}/config"
+    cp -f "${OLD_CONFIG}" "${HBUILDS_ROOT}/config/.env"
+fi
 
 # Seed shared storage if not yet populated (non-destructive rsync)
 if [ -d "${LAST_SOURCE}/public/uploads" ]; then
@@ -138,12 +161,23 @@ METADATA
 
 echo "[Step 5/6] Atomically switching active release to ${RELEASE_ID}..."
 ln -sfn "versions/${RELEASE_ID}" "${CURRENT_LINK}"
+mkdir -p "${DOMAIN_ROOT}/public_html"
 ln -sfn "${SHARED_UPLOADS}" "${DOMAIN_ROOT}/public_html/uploads"
+
+# Ensure public_html contains runtime links so LiteSpeed can run regardless of whether App Root is /public_html or /hbuilds/current/nodejs
+ln -sfn "${NEW_NODEJS_DIR}/server.js" "${DOMAIN_ROOT}/public_html/server.js"
+ln -sfn "${NEW_NODEJS_DIR}/.next" "${DOMAIN_ROOT}/public_html/.next"
+ln -sfn "${NEW_NODEJS_DIR}/node_modules" "${DOMAIN_ROOT}/public_html/node_modules"
+ln -sfn "${NEW_NODEJS_DIR}/package.json" "${DOMAIN_ROOT}/public_html/package.json"
+[ -f "${NEW_NODEJS_DIR}/.env" ] && cp -f "${NEW_NODEJS_DIR}/.env" "${DOMAIN_ROOT}/public_html/.env"
+[ -f "${NEW_NODEJS_DIR}/.htaccess" ] && cp -f "${NEW_NODEJS_DIR}/.htaccess" "${DOMAIN_ROOT}/public_html/.htaccess"
 
 # Step 7: Graceful process reload
 echo "[Step 6/6] Reloading LiteSpeed Passenger worker..."
 mkdir -p "${NEW_NODEJS_DIR}/tmp"
 touch "${NEW_NODEJS_DIR}/tmp/restart.txt"
+mkdir -p "${DOMAIN_ROOT}/public_html/tmp"
+touch "${DOMAIN_ROOT}/public_html/tmp/restart.txt"
 rm -rf "${NEW_NODEJS_DIR}/.next/cache" 2>/dev/null || true
 pkill -f "lsnode" 2>/dev/null || true
 pkill -f "next-server" 2>/dev/null || true
@@ -164,5 +198,5 @@ echo "==========================================================================
 echo "DEPLOYMENT COMPLETED SUCCESSFULLY!"
 echo "Active Release: ${NEW_RELEASE_DIR}"
 echo "Active Commit:  ${DEPLOYED_HASH}"
-echo "Live URL:       https://lavenderblush-crab-850824.hostingersite.com"
+echo "Live URL:       https://jaipurstonecraft.com"
 echo "================================================================================"

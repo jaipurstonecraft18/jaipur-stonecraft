@@ -4,7 +4,13 @@
 # ==============================================================================
 set -euo pipefail
 
-DOMAIN_ROOT="/home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com"
+if [ -d "/home/u209772524/domains/jaipurstonecraft.com" ]; then
+    DOMAIN_ROOT="/home/u209772524/domains/jaipurstonecraft.com"
+elif [ -d "/home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com" ]; then
+    DOMAIN_ROOT="/home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com"
+else
+    DOMAIN_ROOT="/home/u209772524/domains/jaipurstonecraft.com"
+fi
 HBUILDS_ROOT="${DOMAIN_ROOT}/hbuilds"
 VERSIONS_DIR="${HBUILDS_ROOT}/versions"
 CURRENT_LINK="${HBUILDS_ROOT}/current"

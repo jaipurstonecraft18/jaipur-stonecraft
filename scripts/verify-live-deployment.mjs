@@ -1,4 +1,4 @@
-const LIVE_BASE = "https://lavenderblush-crab-850824.hostingersite.com";
+const LIVE_BASE = process.env.LIVE_URL || "https://jaipurstonecraft.com";
 
 async function verify() {
   console.log("=== VERIFYING LIVE PRODUCTION DEPLOYMENT ===");

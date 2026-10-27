@@ -18,8 +18,7 @@ const SSH_HOST = process.env.HOSTINGER_SSH_HOST || "217.21.91.171";
 const SSH_PORT = process.env.HOSTINGER_SSH_PORT || "65002";
 const SSH_USER = process.env.HOSTINGER_SSH_USER || "u209772524";
 
-const REMOTE_APP_DIR = "/home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com/hbuilds/last-source";
-const LIVE_URL = "https://lavenderblush-crab-850824.hostingersite.com";
+const LIVE_URL = process.env.LIVE_URL || "https://jaipurstonecraft.com";
 
 console.log("================================================================================");
 console.log("JAIPUR STONECRAFT — PRODUCTION ROLLBACK DISPATCHER");
@@ -77,7 +76,11 @@ if (!deployKeyPath || !fs.existsSync(deployKeyPath)) {
   process.exit(1);
 }
 
-const remoteCommand = `bash "${REMOTE_APP_DIR}/scripts/rollback-hostinger.sh"`;
+const remoteCommand = [
+  'DOM_ROOT="/home/u209772524/domains/jaipurstonecraft.com"',
+  '[ ! -d "$DOM_ROOT" ] && DOM_ROOT="/home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com"',
+  'bash "$DOM_ROOT/hbuilds/last-source/scripts/rollback-hostinger.sh"'
+].join(" && ");
 
 console.log("\n[Rollback] Connecting to Hostinger and reverting to previous release...");
 console.log("--------------------------------------------------------------------------------");

@@ -40,7 +40,7 @@ async function syncMedia() {
     ssh.stderr.on("data", (d) => process.stderr.write(d));
 
     const script = [
-      'DOMAIN_ROOT="/home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com"',
+      'if [ -d "/home/u209772524/domains/jaipurstonecraft.com" ]; then DOMAIN_ROOT="/home/u209772524/domains/jaipurstonecraft.com"; else DOMAIN_ROOT="/home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com"; fi',
       'SHARED_UPLOADS="$DOMAIN_ROOT/hbuilds/shared/uploads"',
       'CURRENT_NODEJS="$DOMAIN_ROOT/hbuilds/current/nodejs"',
       'LAST_SOURCE="$DOMAIN_ROOT/hbuilds/last-source"',
