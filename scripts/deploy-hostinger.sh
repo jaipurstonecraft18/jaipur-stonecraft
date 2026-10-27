@@ -170,7 +170,41 @@ ln -sfn "${NEW_NODEJS_DIR}/.next" "${DOMAIN_ROOT}/public_html/.next"
 ln -sfn "${NEW_NODEJS_DIR}/node_modules" "${DOMAIN_ROOT}/public_html/node_modules"
 ln -sfn "${NEW_NODEJS_DIR}/package.json" "${DOMAIN_ROOT}/public_html/package.json"
 [ -f "${NEW_NODEJS_DIR}/.env" ] && cp -f "${NEW_NODEJS_DIR}/.env" "${DOMAIN_ROOT}/public_html/.env"
-[ -f "${NEW_NODEJS_DIR}/.htaccess" ] && cp -f "${NEW_NODEJS_DIR}/.htaccess" "${DOMAIN_ROOT}/public_html/.htaccess"
+# Write complete LiteSpeed Passenger configuration and security rules
+cat << HTACCESS_EOF > "${DOMAIN_ROOT}/public_html/.htaccess"
+PassengerAppRoot ${DOMAIN_ROOT}/hbuilds/current/nodejs
+PassengerAppType node
+PassengerNodejs /opt/alt/alt-nodejs22/root/bin/node
+PassengerStartupFile server.js
+PassengerBaseURI /
+PassengerRestartDir ${DOMAIN_ROOT}/hbuilds/current/nodejs/tmp
+SetEnv NODE_OPTIONS "--require ${DOMAIN_ROOT}/hbuilds/config/preload-timestamp.js"
+SetEnv LSNODE_CONSOLE_LOG console.log
+SetEnv TOKIO_WORKER_THREADS 2
+
+<IfModule mod_authz_core.c>
+    <FilesMatch "^\\.env|\\.git|.*\\.(sql|gz|db|log|sh|bat|ps1|mjs|sqlite)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+
+<IfModule !mod_authz_core.c>
+    <FilesMatch "^\\.env|\\.git|.*\\.(sql|gz|db|log|sh|bat|ps1|mjs|sqlite)$">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(backups|data|lib|scripts|scratch|\\.git)(/.*)?$ - [F,L,NC]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0" "expr=%{CONTENT_TYPE} =~ m#text/html#"
+    Header set CDN-Cache-Control "no-store" "expr=%{CONTENT_TYPE} =~ m#text/html#"
+</IfModule>
+HTACCESS_EOF
 
 # Step 7: Graceful process reload
 echo "[Step 6/6] Reloading LiteSpeed Passenger worker..."
