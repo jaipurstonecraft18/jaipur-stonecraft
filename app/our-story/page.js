@@ -37,8 +37,29 @@ export const metadata = {
 };
 
 export default async function OurStory() {
+  const [
+    cmsHeader,
+    cmsPlace,
+    cmsLineage,
+    cmsPeople,
+    cmsValues,
+    cmsStats,
+    cmsEvolution,
+    cmsVision,
+    cmsCta
+  ] = await Promise.all([
+    getPageSection("story_header", {}),
+    getPageSection("story_place", {}),
+    getPageSection("story_lineage", {}),
+    getPageSection("story_people", {}),
+    getPageSection("story_values", {}),
+    getPageSection("story_stats", {}),
+    getPageSection("story_evolution", {}),
+    getPageSection("story_vision", {}),
+    getPageSection("story_cta", {})
+  ]);
+
   // 1. HERO DATA (Origin / Headline)
-  const cmsHeader = await getPageSection("story_header", {});
   const headerData = {
     eyebrow: cmsHeader.eyebrow || "OUR STORY",
     heading: cmsHeader.heading || "A Story Written in Stone",
@@ -50,7 +71,6 @@ export default async function OurStory() {
   };
 
   // 2. CHAPTER 01: THE PLACE (Born in Rajasthan)
-  const cmsPlace = await getPageSection("story_place", {});
   const placeData = {
     chapter: cmsPlace.chapter || "CHAPTER 01",
     heading: cmsPlace.heading || "Born in Rajasthan",
@@ -63,8 +83,7 @@ export default async function OurStory() {
     overlayTitle: cmsPlace.overlayTitle || "Living Heritage of Rajasthan Stone Art"
   };
 
-  // 3. CHAPTER 02: THE LINEAGE (A Craft Passed Hand to Hand)
-  const cmsLineage = await getPageSection("story_lineage", {});
+
   const defaultMilestones = [
     {
       tag: "3+ GENERATIONS",
@@ -98,8 +117,7 @@ export default async function OurStory() {
     milestones: Array.isArray(cmsLineage.milestones) && cmsLineage.milestones.length > 0 ? cmsLineage.milestones : defaultMilestones
   };
 
-  // 4. CHAPTER 03: THE PEOPLE (The People Behind the Name)
-  const cmsPeople = await getPageSection("story_people", {});
+
   const peopleData = {
     chapter: cmsPeople.chapter || "CHAPTER 03",
     heading: cmsPeople.heading || "The People Behind the Name",
@@ -111,8 +129,7 @@ export default async function OurStory() {
     emphasisText: cmsPeople.emphasisText || "Generations of devotion, patience, and skilled hands in our Jaipur workshop."
   };
 
-  // 5. CHAPTER 04: WHAT WE CARRY FORWARD (Core Principles)
-  const cmsValues = await getPageSection("story_values", {});
+
   const defaultValuesList = [
     {
       num: "01",
@@ -142,8 +159,7 @@ export default async function OurStory() {
     values: Array.isArray(cmsValues.values) && cmsValues.values.length > 0 ? cmsValues.values : defaultValuesList
   };
 
-  // 6. DARK SECTION: A LIVING TRADITION IN A MODERN WORLD (Stats & Scale)
-  const cmsStats = await getPageSection("story_stats", {});
+
   const defaultStats = [
     { value: "3+", label: "Generations of Stone Carving Heritage" },
     { value: "500+", label: "Skilled Artisans Across Rajasthan" },
@@ -161,8 +177,7 @@ export default async function OurStory() {
     stats: Array.isArray(cmsStats.stats) && cmsStats.stats.length > 0 ? cmsStats.stats : defaultStats
   };
 
-  // 7. CHAPTER 05: WHAT WE KEPT. WHAT WE CHANGED. (Evolution)
-  const cmsEvolution = await getPageSection("story_evolution", {});
+
   const evolutionData = {
     chapter: cmsEvolution.chapter || "CHAPTER 05",
     heading: cmsEvolution.heading || "What We Kept. What We Changed.",
@@ -181,8 +196,7 @@ export default async function OurStory() {
     modernAlt: cmsEvolution.modernAlt || "Contemporary architectural stonework and monumental pavilions"
   };
 
-  // 8. CHAPTER 06: CARVING INDIAN HERITAGE FOR THE WORLD (The Future)
-  const cmsVision = await getPageSection("story_vision", {});
+
   const visionData = {
     chapter: cmsVision.chapter || "CHAPTER 06",
     heading: cmsVision.heading || "Carving Indian Heritage for the World",
@@ -194,8 +208,7 @@ export default async function OurStory() {
     visionStatement: cmsVision.visionStatement || "A Global Bridge for Master Indian Stonework"
   };
 
-  // 9. FINAL STORY CTA
-  const cmsCta = await getPageSection("story_cta", {});
+
   const ctaData = {
     eyebrow: cmsCta.eyebrow || "LET'S CREATE TOGETHER",
     heading: cmsCta.heading || "Bring Your Architectural Vision to Stone",

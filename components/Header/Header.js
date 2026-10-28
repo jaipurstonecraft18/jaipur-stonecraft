@@ -225,7 +225,7 @@ export default function Header({ theme }) {
                 alt="Jaipur Stonecraft"
                 width={263}
                 height={30}
-                priority
+                loading="lazy"
                 quality={90}
                 style={{ width: "auto" }}
                 className={styles.logoImg}

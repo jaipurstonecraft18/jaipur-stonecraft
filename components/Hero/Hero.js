@@ -87,7 +87,7 @@ export default function Hero(props) {
           priority
           fetchPriority="high"
           sizes="100vw"
-          quality={88}
+          quality={82}
           className={styles.heroImage}
         />
       </div>

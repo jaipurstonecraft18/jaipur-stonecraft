@@ -76,46 +76,55 @@ export default async function Home() {
     }
   ];
 
-  const heroData = await getPageSection("homepage_hero", { slides: defaultSlides });
+  const [
+    heroData,
+    trustData,
+    statuesData,
+    archData,
+    ctaData,
+    reviewsData,
+    socialData,
+    craftData,
+    globalSocialLinks,
+    featuredCreationsData,
+    collectionsDataList
+  ] = await Promise.all([
+    getPageSection("homepage_hero", { slides: defaultSlides }),
+    getPageSection("homepage_trust_strip", {
+      stats: [
+        { value: "3+", label: "Generations of Craft" },
+        { value: "500+", label: "Master Artisans in Atelier" },
+        { value: "25+", label: "Countries Shipped & Installed" },
+        { value: "1000+", label: "Bespoke Commissions Delivered" }
+      ]
+    }),
+    getPageSection("homepage_discovery_statues", popularStatuesData),
+    getPageSection("homepage_discovery_arch", architecturalArtData),
+    getPageSection("homepage_cta", {
+      heading: "Have a Vision in Mind?",
+      description: "Whether you have a hand sketch, architectural CAD blueprint, or a reference photo, our atelier team will guide your custom stone creation from block selection to global delivery.",
+      primaryCtaText: "Discuss Your Project",
+      primaryCtaHref: "/contact?type=custom",
+      secondaryCtaText: "Call Now",
+      secondaryCtaHref: `tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`
+    }),
+    getPageSection("homepage_reviews", {
+      eyebrow: "WHAT OUR CLIENTS SAY",
+      heading: "Trusted by Devotees. Loved for Generations.",
+      reviews: []
+    }),
+    getPageSection("homepage_social", {}),
+    getPageSection("craftsmanship_hero", {}),
+    getSiteSetting("social_links", siteConfig.social),
+    getPageSection("homepage_featured_creations", {}),
+    getAllCollections()
+  ]);
+
   const heroSlides = Array.isArray(heroData.slides) && heroData.slides.length > 0
     ? heroData.slides
     : heroData.imageSrc
     ? [{ ...defaultSlides[0], ...heroData }, defaultSlides[1], defaultSlides[2]]
     : defaultSlides;
-
-  const trustData = await getPageSection("homepage_trust_strip", {
-    stats: [
-      { value: "3+", label: "Generations of Craft" },
-      { value: "500+", label: "Master Artisans in Atelier" },
-      { value: "25+", label: "Countries Shipped & Installed" },
-      { value: "1000+", label: "Bespoke Commissions Delivered" }
-    ]
-  });
-
-  const statuesData = await getPageSection("homepage_discovery_statues", popularStatuesData);
-  const archData = await getPageSection("homepage_discovery_arch", architecturalArtData);
-
-  const ctaData = await getPageSection("homepage_cta", {
-    heading: "Have a Vision in Mind?",
-    description: "Whether you have a hand sketch, architectural CAD blueprint, or a reference photo, our atelier team will guide your custom stone creation from block selection to global delivery.",
-    primaryCtaText: "Discuss Your Project",
-    primaryCtaHref: "/contact?type=custom",
-    secondaryCtaText: "Call Now",
-    secondaryCtaHref: `tel:${siteConfig.contact.phone.replace(/\s+/g, "")}`
-  });
-
-  const reviewsData = await getPageSection("homepage_reviews", {
-    eyebrow: "WHAT OUR CLIENTS SAY",
-    heading: "Trusted by Devotees. Loved for Generations.",
-    reviews: []
-  });
-
-  const socialData = await getPageSection("homepage_social", {});
-  const craftData = await getPageSection("craftsmanship_hero", {});
-  const globalSocialLinks = await getSiteSetting("social_links", siteConfig.social);
-
-  const featuredCreationsData = await getPageSection("homepage_featured_creations", {});
-  const collectionsDataList = await getAllCollections();
 
   return (
     <>
