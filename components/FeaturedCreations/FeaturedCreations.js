@@ -162,7 +162,7 @@ export default function FeaturedCreations({ sectionData = null }) {
                   <div className={styles.imageCard}>
                     {item.src && (
                       <Image
-                        src={getImageVariantUrl(item.src, "display")}
+                        src={getImageVariantUrl(item.src, "card")}
                         alt={item.alt || item.title || "Jaipur Stonecraft creation"}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

@@ -13,9 +13,11 @@ const nextConfig = {
   ],
   compress: true,
   images: {
-    formats: ["image/avif", "image/webp"],
+    loader: "custom",
+    loaderFile: "./lib/media/image-loader.js",
+    formats: ["image/webp"],
     qualities: [75, 80, 82, 85, 88, 90, 92],
-    deviceSizes: [390, 430, 640, 750, 828, 1080, 1200, 1440, 1920, 2048],
+    deviceSizes: [400, 640, 960, 1280, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 31536000,
     dangerouslyAllowSVG: true,

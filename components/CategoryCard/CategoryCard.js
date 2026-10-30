@@ -33,7 +33,7 @@ export default function CategoryCard({
   }`;
 
   const defaultAlt = `Hand-carved white marble ${name} sculpture created by master artisans in Jaipur`;
-  const targetVariant = "display";
+  const targetVariant = isFeatured ? "display" : "card";
   const optimizedSrc = (imageSrc ? getImageVariantUrl(imageSrc, targetVariant) : null) || "/images/collections/hero-sculptures-group.webp";
 
   return (

@@ -48,7 +48,7 @@ export default function ProductPerspectiveGallery({ design }) {
                 <ScrollReveal key={idx} animation="fade-up" delay={idx * 50}>
                   <div className={styles.card} onClick={() => setActiveModalImage(imgSrc)}>
                     <ProductImageFrame
-                      src={getImageVariantUrl(imgSrc, "display")}
+                      src={getImageVariantUrl(imgSrc, "card")}
                       alt={imgAlt}
                       aspectRatio="4 / 5"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1440px) 33vw, 480px"

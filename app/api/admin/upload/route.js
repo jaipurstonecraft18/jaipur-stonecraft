@@ -3,6 +3,7 @@ import path from "path";
 import fs from "fs/promises";
 import sharp from "sharp";
 import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
+import { generateImageVariants } from "@/lib/media/variant-generator.js";
 
 const ALLOWED_MIME_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/avif"];
 const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15MB
@@ -89,37 +90,33 @@ export async function POST(request) {
       const rawPath = path.join(rawDir, rawFilename);
       await fs.writeFile(rawPath, rawBuffer);
 
-      // 2. Process Sharp WebP Variants with EXIF Auto-Orientation & Metadata Stripping
-      const baseSharp = () => sharp(buffer).rotate();
-
-      // Display Variant (1920x2400 max, WebP 90% with smartSubsample - High-Res for Hero/Cover/Detail)
-      const displayBuffer = await baseSharp()
-        .resize(1920, 2400, { fit: "inside", withoutEnlargement: true })
-        .webp({ quality: 90, effort: 5, smartSubsample: true })
-        .toBuffer();
-      const displayPath = path.join(displayDir, webpFilename);
-      await fs.writeFile(displayPath, displayBuffer);
-
-      // Card Variant (1080x1350 max, WebP 85% with smartSubsample - Crisp for High-DPI Card Grids)
-      const cardBuffer = await baseSharp()
-        .resize(1080, 1350, { fit: "inside", withoutEnlargement: true })
-        .webp({ quality: 85, effort: 5, smartSubsample: true })
-        .toBuffer();
-      const cardPath = path.join(cardDir, webpFilename);
-      await fs.writeFile(cardPath, cardBuffer);
-
-      // Thumb Variant (400x400 square cover, WebP 80%)
-      const thumbBuffer = await baseSharp()
-        .resize(400, 400, { fit: "cover", position: "center" })
-        .webp({ quality: 80, effort: 4 })
-        .toBuffer();
-      const thumbPath = path.join(thumbDir, webpFilename);
-      await fs.writeFile(thumbPath, thumbBuffer);
+      // 2. Generate comprehensive responsive static WebP variants + legacy variants atomically
+      let variantResults;
+      try {
+        variantResults = await generateImageVariants(buffer, baseUploadDir, baseFilename, {
+          skipExisting: false
+        });
+      } catch (genErr) {
+        console.error(`[Upload API Warning] Fast variant generation failed for ${baseFilename}:`, genErr);
+        // Fallback: minimal display WebP generation so upload never breaks
+        const fallbackBuf = await sharp(buffer)
+          .rotate()
+          .resize(1920, 2400, { fit: "inside", withoutEnlargement: true })
+          .webp({ quality: 90 })
+          .toBuffer();
+        const displayPath = path.join(displayDir, webpFilename);
+        await fs.writeFile(displayPath, fallbackBuf);
+        variantResults = {
+          originalWidth: metadata.width,
+          originalHeight: metadata.height,
+          variants: { display: { size: fallbackBuf.length } }
+        };
+      }
 
       const rawSize = file.size;
-      const displaySize = displayBuffer.length;
-      const cardSize = cardBuffer.length;
-      const thumbSize = thumbBuffer.length;
+      const displaySize = variantResults.variants?.display?.size || 0;
+      const cardSize = variantResults.variants?.card?.size || variantResults.variants?.w960?.size || displaySize;
+      const thumbSize = variantResults.variants?.thumb?.size || variantResults.variants?.w400?.size || 0;
       const savingsPercent = Math.max(0, Math.round(((rawSize - displaySize) / rawSize) * 100));
 
       const displayUrl = `/uploads/${targetFolder}/display/${webpFilename}`;
@@ -141,7 +138,14 @@ export async function POST(request) {
         thumbSize,
         savingsPercent,
         dimensions: { width: metadata.width, height: metadata.height },
-        altText: `${cleanSlug.replace(/-/g, " ")} hand-carved in Jaipur atelier`
+        altText: `${cleanSlug.replace(/-/g, " ")} hand-carved in Jaipur atelier`,
+        variants: {
+          w400: `/uploads/${targetFolder}/w400/${webpFilename}`,
+          w640: `/uploads/${targetFolder}/w640/${webpFilename}`,
+          w960: `/uploads/${targetFolder}/w960/${webpFilename}`,
+          w1280: `/uploads/${targetFolder}/w1280/${webpFilename}`,
+          w1920: `/uploads/${targetFolder}/w1920/${webpFilename}`
+        }
       });
     }
 

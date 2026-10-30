@@ -25,7 +25,7 @@ export default function ProductCard({
   }`;
 
   const defaultAlt = `Hand-carved ${name} in ${material || 'white marble'} sculpted in Jaipur atelier`;
-  const targetVariant = "display";
+  const targetVariant = isFeatured ? "display" : "card";
   const optimizedImageSrc = getImageVariantUrl(imageSrc, targetVariant) || `https://placehold.co/800x1000/E8E4DF/1A1918?text=${encodeURIComponent(name)}`;
 
   return (

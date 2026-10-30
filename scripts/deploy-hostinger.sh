@@ -35,6 +35,7 @@ VERSIONS_DIR="${HBUILDS_ROOT}/versions"
 CURRENT_LINK="${HBUILDS_ROOT}/current"
 SHARED_DIR="${HBUILDS_ROOT}/shared"
 SHARED_UPLOADS="${SHARED_DIR}/uploads"
+SHARED_CACHE="${SHARED_DIR}/cache/images"
 
 NODE_BIN_DIR="/opt/alt/alt-nodejs22/root/usr/bin"
 export PATH="${NODE_BIN_DIR}:${PATH}"
@@ -52,6 +53,7 @@ echo "==========================================================================
 # Step 1: Preflight Directory & Shared Storage Initialization
 mkdir -p "${VERSIONS_DIR}"
 mkdir -p "${SHARED_UPLOADS}"
+mkdir -p "${SHARED_CACHE}"
 
 # Import persistent shared uploads and configs from old preview domain if migrating
 OLD_SHARED="/home/u209772524/domains/lavenderblush-crab-850824.hostingersite.com/hbuilds/shared/uploads"
@@ -144,6 +146,14 @@ if [ ! -f "${NEW_NODEJS_DIR}/server.js" ]; then
     rm -rf "${NEW_RELEASE_DIR}"
     exit 1
 fi
+
+# Step 4.5: Persist Next.js image cache & verify responsive static WebP variants
+echo "[Step 4.5/6] Linking persistent image cache & verifying static WebP variants..."
+mkdir -p "${NEW_NODEJS_DIR}/.next/cache"
+rm -rf "${NEW_NODEJS_DIR}/.next/cache/images"
+ln -sfn "${SHARED_CACHE}" "${NEW_NODEJS_DIR}/.next/cache/images"
+
+node scripts/generate-static-variants.mjs || true
 
 # Write release metadata
 cat << METADATA > "${NEW_RELEASE_DIR}/.metadata.json"

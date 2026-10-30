@@ -263,7 +263,7 @@ function DiscoveryRail({
           {extendedItems.map((item, idx) => {
             const isPortrait = cardType === "portrait";
             const rawSrc = item.customImage || item.imageSrc || item.fallbackImage || "/images/collections/hero-sculptures-group.webp";
-            const optimizedSrc = getImageVariantUrl(rawSrc, "display");
+            const optimizedSrc = getImageVariantUrl(rawSrc, "card");
             const destinationHref = item.href || "/collections";
             const categoryLabel = item.category || item.subtitle || (isPortrait ? "Marble Statues" : "Architectural Art");
 

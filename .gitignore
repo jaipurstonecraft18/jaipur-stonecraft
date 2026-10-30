@@ -58,6 +58,11 @@ backups/
 
 # image optimization backups
 public/images/.originals/
+public/uploads/**/w400/
+public/uploads/**/w640/
+public/uploads/**/w960/
+public/uploads/**/w1280/
+public/uploads/**/w1920/
 
 # lighthouse reports & audit artifacts
 *.report.json

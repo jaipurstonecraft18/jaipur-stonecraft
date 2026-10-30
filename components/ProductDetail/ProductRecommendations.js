@@ -55,7 +55,7 @@ export default function ProductRecommendations({
                 <div className={styles.card}>
                   <Link href={relHref} className={styles.imageLink} tabIndex={-1}>
                     <ProductImageFrame
-                      src={getImageVariantUrl(rel.imageSrc, "display")}
+                      src={getImageVariantUrl(rel.imageSrc, "card")}
                       alt={rel.name || "Hand-carved stone sculpture"}
                       aspectRatio="4 / 5"
                       sizes="(max-width: 576px) 50vw, (max-width: 991px) 33vw, (max-width: 1440px) 22vw, 320px"
