@@ -5,8 +5,7 @@ import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import ProjectsList from "@/components/ProjectsList/ProjectsList";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 3600; // 1-hour ISR with instant admin on-demand revalidation
 
 export const metadata = {
   title: "Completed Installations Portfolio — Jaipur Stonecraft",

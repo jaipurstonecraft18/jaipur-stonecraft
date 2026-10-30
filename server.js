@@ -111,18 +111,14 @@ app.prepare().then(() => {
         }
       }
 
-      // Ensure HTML routes are revalidated while enabling browser back/forward cache (bfcache)
-      const isStaticOrMedia = parsedUrl.pathname?.startsWith("/_next/") ||
-                              parsedUrl.pathname?.startsWith("/uploads/") ||
-                              parsedUrl.pathname?.startsWith("/images/") ||
-                              parsedUrl.pathname?.startsWith("/videos/");
+      // Admin routes MUST NEVER be cached publicly or by CDN/proxies
+      const isAdminRoute = parsedUrl.pathname?.startsWith("/admin") ||
+                           parsedUrl.pathname?.startsWith("/api/admin");
 
-      if (!isStaticOrMedia) {
-        res.setHeader("Cache-Control", "private, no-cache, must-revalidate");
-        res.setHeader("CDN-Cache-Control", "no-store");
-        res.setHeader("Surrogate-Control", "no-store");
+      if (isAdminRoute) {
+        res.setHeader("Cache-Control", "private, no-cache, no-store, max-age=0, must-revalidate");
         res.setHeader("Pragma", "no-cache");
-        res.setHeader("X-LiteSpeed-Purge", "*");
+        res.setHeader("Expires", "0");
       }
 
       await handle(req, res, parsedUrl);

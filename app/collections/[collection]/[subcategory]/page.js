@@ -10,7 +10,7 @@ import { collectionsData, getCollection, getSubcategory } from "@/content/collec
 import { getCategoriesBySubcategory, getCategory } from "@/content/categories";
 import { LEGACY_CATEGORY_REDIRECTS, resolveCanonicalCategoryUrl } from "@/lib/taxonomy/legacy-redirects";
 import styles from "./SubcategoryPage.module.css";
-export const revalidate = 60;
+export const revalidate = 600; // 10-minute ISR with instant admin on-demand revalidation
 
 export async function generateStaticParams() {
   const params = [];

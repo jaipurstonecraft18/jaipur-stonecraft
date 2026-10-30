@@ -10,8 +10,7 @@ import { getCollection, getSubcategory } from "@/content/collections";
 import { categoriesData, getCategory } from "@/content/categories";
 import { getProductFromDB, getRelatedProductsFromDB, getAllProductsFromDB } from "@/content/products-db";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 3600; // 1-hour ISR with instant admin on-demand revalidation
 
 export async function generateStaticParams() {
   const designs = await getAllProductsFromDB();

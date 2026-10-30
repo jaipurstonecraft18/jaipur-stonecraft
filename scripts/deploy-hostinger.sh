@@ -211,8 +211,15 @@ SetEnv TOKIO_WORKER_THREADS 2
 </IfModule>
 
 <IfModule mod_headers.c>
-    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0" "expr=%{CONTENT_TYPE} =~ m#text/html#"
-    Header set CDN-Cache-Control "no-store" "expr=%{CONTENT_TYPE} =~ m#text/html#"
+    # Aggressively cache static & media assets
+    <FilesMatch "\.(webp|avif|jpg|jpeg|png|svg|gif|mp4|webm|css|js|woff|woff2|ttf|eot|ico)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+
+    # Enforce strict private no-store headers on admin paths
+    SetEnvIf Request_URI "^/(admin|api/admin)" NO_CACHE_ZONE
+    Header set Cache-Control "private, no-cache, no-store, max-age=0, must-revalidate" env=NO_CACHE_ZONE
+    Header set Pragma "no-cache" env=NO_CACHE_ZONE
 </IfModule>
 HTACCESS_EOF
 
@@ -222,7 +229,8 @@ mkdir -p "${NEW_NODEJS_DIR}/tmp"
 touch "${NEW_NODEJS_DIR}/tmp/restart.txt"
 mkdir -p "${DOMAIN_ROOT}/public_html/tmp"
 touch "${DOMAIN_ROOT}/public_html/tmp/restart.txt"
-rm -rf "${NEW_NODEJS_DIR}/.next/cache" 2>/dev/null || true
+# Clear stale fetch cache while preserving linked image cache
+rm -rf "${NEW_NODEJS_DIR}/.next/cache/fetch-cache" 2>/dev/null || true
 pkill -f "lsnode" 2>/dev/null || true
 pkill -f "next-server" 2>/dev/null || true
 

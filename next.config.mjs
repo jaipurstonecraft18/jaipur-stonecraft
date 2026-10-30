@@ -458,19 +458,28 @@ const nextConfig = {
       },
 
       {
-        source: "/((?!api|_next/static|_next/image|favicon.ico|images|uploads|videos).*)",
+        source: "/admin/:path*",
         headers: [
           {
             key: "Cache-Control",
-            value: "private, no-cache, must-revalidate",
+            value: "private, no-cache, no-store, max-age=0, must-revalidate",
           },
           {
-            key: "CDN-Cache-Control",
-            value: "no-store",
+            key: "Pragma",
+            value: "no-cache",
+          },
+        ],
+      },
+      {
+        source: "/api/admin/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "private, no-cache, no-store, max-age=0, must-revalidate",
           },
           {
-            key: "Surrogate-Control",
-            value: "no-store",
+            key: "Pragma",
+            value: "no-cache",
           },
         ],
       },

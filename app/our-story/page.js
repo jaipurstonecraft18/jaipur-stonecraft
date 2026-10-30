@@ -9,8 +9,7 @@ import StoryFutureSection from "@/components/OurStory/StoryFutureSection";
 import StoryCTA from "@/components/OurStory/StoryCTA";
 import { getPageSection } from "@/lib/db/content.js";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 3600; // 1-hour ISR with instant admin on-demand revalidation
 
 export const metadata = {
   title: "Our Story — Jaipur Stonecraft Atelier",

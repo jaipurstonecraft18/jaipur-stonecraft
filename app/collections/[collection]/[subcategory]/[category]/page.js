@@ -15,7 +15,7 @@ import { getDesignsByCategory } from "@/content/designs";
 import { siteConfig } from "@/content/site";
 import { LEGACY_CATEGORY_REDIRECTS, resolveCanonicalCategoryUrl } from "@/lib/taxonomy/legacy-redirects";
 
-export const revalidate = 60;
+export const revalidate = 300; // 5-minute ISR with instant admin on-demand revalidation
 
 
 const FINAL_CUSTOMER_NAMES = {

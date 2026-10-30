@@ -7,8 +7,7 @@ import { getAllCollections } from "@/content/collections";
 import { getImageVariantUrl } from "@/lib/utils/image-utils";
 import styles from "@/components/CollectionsOverview/CollectionsOverview.module.css";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 600; // 10-minute ISR with instant admin on-demand revalidation
 
 export const metadata = {
   title: "Bespoke Stonecraft Collections — Jaipur Stonecraft Atelier",

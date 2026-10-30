@@ -6,7 +6,7 @@ import CollectionMetricsBar from "@/components/CollectionDetail/CollectionMetric
 import SubcollectionExploration from "@/components/CollectionDetail/SubcollectionExploration";
 import CollectionCraftProcess from "@/components/CollectionDetail/CollectionCraftProcess";
 import CollectionCTA from "@/components/CollectionDetail/CollectionCTA";
-export const revalidate = 60;
+export const revalidate = 600; // 10-minute ISR with instant admin on-demand revalidation
 
 export async function generateStaticParams() {
   return Object.keys(collectionsData).map((collection) => ({

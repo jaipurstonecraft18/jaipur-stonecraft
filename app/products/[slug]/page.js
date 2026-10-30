@@ -2,8 +2,7 @@ import { permanentRedirect, notFound } from "next/navigation";
 import { categoriesData } from "@/content/categories";
 import { getProductFromDB, getAllProductsFromDB } from "@/content/products-db";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 3600; // 1-hour ISR with instant admin on-demand revalidation
 
 export async function generateStaticParams() {
   const categorySlugs = Object.keys(categoriesData).map((slug) => ({ slug }));

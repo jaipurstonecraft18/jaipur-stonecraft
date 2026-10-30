@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getOne, execute } from "@/lib/db/client.js";
 import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
+import { revalidateTaxonomyPaths } from "@/lib/cache/revalidate.js";
 
 export async function POST(request) {
   if (!isAuthorizedAdminRequest(request)) {
@@ -105,6 +106,8 @@ export async function POST(request) {
         INSERT INTO categories (id, slug, parent_collection_slug, parent_subcategory_slug, name, description, image_src, image_alt, featured, is_active)
         VALUES (?, ?, ?, ?, ?, 'Custom artisan category added via Product Studio.', 'https://placehold.co/800x500/E8E4DF/1A1918?text=Category', ?, 0, 1)
       `, [id, id, parentCollection, parentSubcategory, trimmedName, `${trimmedName} hand-carved in Jaipur`]);
+
+      revalidateTaxonomyPaths(id, parentCollection, parentSubcategory);
 
       return NextResponse.json({
         success: true,

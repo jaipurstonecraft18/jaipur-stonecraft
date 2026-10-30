@@ -13,8 +13,7 @@ import { siteConfig } from "@/content/site";
 import { getAllCollections } from "@/content/collections";
 import { generateWebSiteSchema } from "@/lib/seo/schemas";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 300; // 5-minute ISR with instant admin on-demand revalidation
 
 export const metadata = {
   title: "Jaipur Stonecraft — Premium Stone Atelier & Generational Craftsmanship",

@@ -12,8 +12,7 @@ import CTASection from "@/components/CTASection/CTASection";
 import { siteConfig } from "@/content/site";
 import { getPageSection } from "@/lib/db/content.js";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 3600; // 1-hour ISR with instant admin on-demand revalidation
 
 export const metadata = {
   title: "Atelier Journey & Craftsmanship Process — Jaipur Stonecraft",
