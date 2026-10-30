@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
+import ProductImageFrame from "@/components/ProductImageFrame/ProductImageFrame";
 import styles from "./ProductPerspectiveGallery.module.css";
 
 export default function ProductPerspectiveGallery({ design }) {
@@ -46,17 +47,14 @@ export default function ProductPerspectiveGallery({ design }) {
               return (
                 <ScrollReveal key={idx} animation="fade-up" delay={idx * 50}>
                   <div className={styles.card} onClick={() => setActiveModalImage(imgSrc)}>
-                    <div className={styles.imageFrame}>
-                      <Image
-                        src={getImageVariantUrl(imgSrc, "display")}
-                        alt={imgAlt}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1440px) 33vw, 480px"
-                        quality={88}
-                        className={styles.perspectiveImage}
-                        loading="lazy"
-                      />
-                    </div>
+                    <ProductImageFrame
+                      src={getImageVariantUrl(imgSrc, "display")}
+                      alt={imgAlt}
+                      aspectRatio="4 / 5"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1440px) 33vw, 480px"
+                      quality={88}
+                      className={styles.imageFrame}
+                    />
                   </div>
                 </ScrollReveal>
               );

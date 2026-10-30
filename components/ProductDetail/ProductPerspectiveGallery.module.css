@@ -41,32 +41,20 @@
 }
 
 .card {
-  background-color: #0d0d0d;
+  background-color: transparent;
   border-radius: var(--radius-subtle);
   overflow: hidden;
-  border: 1px solid var(--color-border-subtle);
   cursor: pointer;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(26, 25, 24, 0.12);
 }
 
 .imageFrame {
-  position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
-}
-
-.perspectiveImage {
-  object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.card:hover .perspectiveImage {
-  transform: scale(1.04);
 }
 
 .btnRow {

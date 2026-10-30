@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
 import { categoriesData } from "@/content/categories-data.js";
+import ProductImageFrame from "@/components/ProductImageFrame/ProductImageFrame";
 import styles from "./ProductRecommendations.module.css";
 
 export default function ProductRecommendations({ 
@@ -54,18 +54,16 @@ export default function ProductRecommendations({
               <ScrollReveal key={rel.slug || idx} animation="fade-up" delay={idx * 40}>
                 <div className={styles.card}>
                   <Link href={relHref} className={styles.imageLink} tabIndex={-1}>
-                    <div className={styles.imageFrame}>
-                      <Image
-                        src={getImageVariantUrl(rel.imageSrc, "display")}
-                        alt={rel.name || "Hand-carved stone sculpture"}
-                        fill
-                        sizes="(max-width: 576px) 50vw, (max-width: 991px) 33vw, (max-width: 1440px) 22vw, 320px"
-                        quality={85}
-                        className={styles.cardImage}
-                        loading="lazy"
-                      />
+                    <ProductImageFrame
+                      src={getImageVariantUrl(rel.imageSrc, "display")}
+                      alt={rel.name || "Hand-carved stone sculpture"}
+                      aspectRatio="4 / 5"
+                      sizes="(max-width: 576px) 50vw, (max-width: 991px) 33vw, (max-width: 1440px) 22vw, 320px"
+                      quality={88}
+                      className={styles.imageFrame}
+                    >
                       <span className={styles.favoriteIcon} aria-hidden="true">♡</span>
-                    </div>
+                    </ProductImageFrame>
                   </Link>
 
                   <div className={styles.cardBody}>

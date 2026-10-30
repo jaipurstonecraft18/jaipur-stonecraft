@@ -4,27 +4,16 @@
   color: var(--color-charcoal);
   text-decoration: none;
   transition: opacity var(--transition-fast);
+  height: 100%;
 }
 
 .card:hover {
   opacity: 0.95;
 }
 
-.imageContainer {
-  position: relative;
+.imageFrame {
   width: 100%;
   aspect-ratio: 4 / 5;
-  overflow: hidden;
-  background-color: var(--color-stone-grey);
-}
-
-.image {
-  object-fit: cover;
-  transition: transform var(--transition-smooth);
-}
-
-.card:hover .image {
-  transform: scale(1.04);
 }
 
 .content {

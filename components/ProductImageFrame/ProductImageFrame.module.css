@@ -1,0 +1,52 @@
+.frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-subtle, 4px);
+  background: radial-gradient(circle at 50% 45%, #FAF8F5 0%, #EFEBE4 70%, #E8E3DA 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(226, 221, 213, 0.7);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: border-color var(--transition-fast, 0.2s ease), box-shadow var(--transition-fast, 0.2s ease);
+}
+
+/* Subtle architectural pedestal ambient vignette */
+.canvasBackground {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 85%, rgba(158, 123, 79, 0.05) 0%, transparent 60%);
+  z-index: 1;
+}
+
+.imageWrapper {
+  position: absolute;
+  inset: clamp(0.75rem, 2.5%, 1.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.containImage {
+  object-fit: contain !important;
+  object-position: center !important;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Filter: Crisp architectural shadow for white marble sculptures on warm background */
+  filter: drop-shadow(0 10px 24px rgba(26, 25, 24, 0.08));
+}
+
+.frame:hover .containImage {
+  transform: scale(1.02);
+  filter: drop-shadow(0 14px 30px rgba(26, 25, 24, 0.12));
+}
+
+.badgeSlot {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 3;
+}
+

@@ -32,9 +32,10 @@
   border-radius: var(--radius-subtle);
   overflow: hidden;
   border: 1px solid var(--color-border-subtle);
-  background-color: var(--color-stone-grey);
+  background: radial-gradient(circle at 50% 50%, #FAF8F5 0%, #EFEBE4 100%);
   cursor: pointer;
   transition: all var(--transition-fast);
+  padding: 4px;
 }
 
 .thumbBtn:hover {
@@ -47,27 +48,23 @@
 }
 
 .thumbImage {
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
+}
+
+.mainImageContainer {
+  flex-grow: 1;
+  min-width: 0;
 }
 
 .mainImageFrame {
-  position: relative;
-  flex-grow: 1;
+  width: 100%;
   aspect-ratio: 4 / 5;
-  border-radius: var(--radius-subtle);
-  overflow: hidden;
-  background-color: #0d0d0d;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
-  border: 1px solid var(--color-border-subtle);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
 }
 
 .mainImage {
-  object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.mainImageFrame:hover .mainImage {
-  transform: scale(1.025);
+  object-fit: contain !important;
 }
 
 .galleryControls {

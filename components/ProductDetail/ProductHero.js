@@ -7,6 +7,7 @@ import { siteConfig } from "@/content/site";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import { getImageVariantUrl } from "@/lib/utils/image-utils.js";
+import ProductImageFrame from "@/components/ProductImageFrame/ProductImageFrame";
 import styles from "./ProductHero.module.css";
 
 export default function ProductHero({ design, category, collection, subcategory }) {
@@ -97,44 +98,45 @@ export default function ProductHero({ design, category, collection, subcategory 
             </div>
           )}
 
-          {/* Dominant Primary Image Frame */}
-          <div className={styles.mainImageFrame}>
-            <Image
+          {/* Dominant Primary Image Frame with Intelligent Presentation */}
+          <div className={styles.mainImageContainer}>
+            <ProductImageFrame
               src={getImageVariantUrl(currentImage.src, "display")}
               alt={currentImage.alt}
-              fill
               priority
-              quality={90}
+              quality={92}
+              aspectRatio="4 / 5"
               sizes="(max-width: 991px) 100vw, 48vw"
-              className={styles.mainImage}
-            />
-
-            {/* Gallery Control Overlay Icons (Zoom & Fullscreen) */}
-            <div className={styles.galleryControls}>
-              <button
-                onClick={() => setIsFullscreen(true)}
-                className={styles.controlIconBtn}
-                title="Expand Fullscreen View"
-                aria-label="Expand Fullscreen View"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="11" cy="11" r="8" />
-                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                  <line x1="11" y1="8" x2="11" y2="14" />
-                  <line x1="8" y1="11" x2="14" y2="11" />
-                </svg>
-              </button>
-              <button
-                onClick={() => setIsFullscreen(true)}
-                className={styles.controlIconBtn}
-                title="Fullscreen Toggle"
-                aria-label="Fullscreen Toggle"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
-                </svg>
-              </button>
-            </div>
+              className={styles.mainImageFrame}
+              imageClassName={styles.mainImage}
+            >
+              {/* Gallery Control Overlay Icons (Zoom & Fullscreen) */}
+              <div className={styles.galleryControls}>
+                <button
+                  onClick={() => setIsFullscreen(true)}
+                  className={styles.controlIconBtn}
+                  title="Expand Fullscreen View"
+                  aria-label="Expand Fullscreen View"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    <line x1="11" y1="8" x2="11" y2="14" />
+                    <line x1="8" y1="11" x2="14" y2="11" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => setIsFullscreen(true)}
+                  className={styles.controlIconBtn}
+                  title="Fullscreen Toggle"
+                  aria-label="Fullscreen Toggle"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+                  </svg>
+                </button>
+              </div>
+            </ProductImageFrame>
           </div>
         </div>
 
