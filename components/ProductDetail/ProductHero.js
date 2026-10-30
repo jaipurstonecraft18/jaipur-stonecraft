@@ -55,7 +55,7 @@ export default function ProductHero({ design, category, collection, subcategory 
   const whatsappMessage = encodeURIComponent(
     `Hello Jaipur Stonecraft, I am interested in custom ordering the "${design.name}". Please provide details on sizing, pricing, and turnaround.`
   );
-  const whatsappNumber = (siteConfig.contact.whatsappNumber || siteConfig.contact.whatsapp || "919664388920").replace(/\D/g, "");
+  const whatsappNumber = (siteConfig.contact.whatsappNumber || siteConfig.contact.whatsapp || "918690471802").replace(/\D/g, "");
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   return (
@@ -216,7 +216,7 @@ export default function ProductHero({ design, category, collection, subcategory 
             {/* Action Buttons Row */}
             <div className={styles.actionRow}>
               <a
-                href={`tel:${(siteConfig.contact?.phone || "+91 9664388920").replace(/\s+/g, "")}`}
+                href={`tel:${(siteConfig.contact?.phone || "+91 8690471802").replace(/\s+/g, "")}`}
                 className={styles.primaryActionBtn}
                 aria-label={`Call now to inquire about ${design.name}`}
               >

@@ -35,7 +35,7 @@ export default function AdminPageCMS() {
       primaryCtaText: "View Temples",
       primaryCtaHref: "/collections/temples-architectural-stonework",
       secondaryCtaText: "Call Now",
-      secondaryCtaHref: "tel:+919664388920",
+      secondaryCtaHref: "tel:+918690471802",
       imageSrc: "/images/collections/temples-architectural.jpg"
     },
     {
@@ -479,7 +479,7 @@ export default function AdminPageCMS() {
     heading: "Bring Jaipur Stonecraft to Your Project",
     description: "Collaborate with our master masons to custom-carve white marble deity statues, temple architecture, garden fountains, fireplace mantels, or bespoke stone friezes.",
     primaryCtaText: "Call Now",
-    primaryCtaHref: "tel:+919664388920",
+    primaryCtaHref: "tel:+918690471802",
     secondaryCtaText: "Start Custom Project",
     secondaryCtaHref: "/contact?type=custom"
   };

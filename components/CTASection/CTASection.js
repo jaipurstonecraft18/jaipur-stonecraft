@@ -15,7 +15,7 @@ export default function CTASection({
   secondaryCtaHref,
   background = "dark",
 }) {
-  const directPhoneHref = `tel:${(siteConfig?.contact?.phone || "+91 9664388920").replace(/\s+/g, "")}`;
+  const directPhoneHref = `tel:${(siteConfig?.contact?.phone || "+91 8690471802").replace(/\s+/g, "")}`;
 
   const isQuoteOrInquiry = (text = "", href = "") => {
     const t = String(text || "").toLowerCase();

@@ -12,10 +12,10 @@ export default function CollectionCTA({ ctaData = {}, collectionSlug = "" }) {
     primaryCtaText = "Discuss Your Project",
     primaryCtaHref = `/contact?type=custom&collection=${collectionSlug}`,
     secondaryCtaText = "WhatsApp Designer",
-    secondaryCtaHref = siteConfig?.contact?.whatsappLink || "https://wa.me/919664388920"
+    secondaryCtaHref = siteConfig?.contact?.whatsappLink || "https://wa.me/918690471802"
   } = ctaData;
 
-  const directPhoneHref = `tel:${(siteConfig?.contact?.phone || "+91 9664388920").replace(/\s+/g, "")}`;
+  const directPhoneHref = `tel:${(siteConfig?.contact?.phone || "+91 8690471802").replace(/\s+/g, "")}`;
   const isQuoteOrInquiry = (text = "", href = "") => {
     const t = String(text || "").toLowerCase();
     const h = String(href || "").toLowerCase();

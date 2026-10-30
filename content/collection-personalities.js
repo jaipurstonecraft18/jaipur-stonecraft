@@ -302,7 +302,7 @@ export const collectionPersonalities = {
       heading: "Order Bespoke Stone Décor & Accents",
       description: "Inquire about custom dimensions, stone colors, or bulk decorative accents for luxury interior projects.",
       primaryCtaText: "Call Now",
-      primaryCtaHref: "tel:+919664388920"
+      primaryCtaHref: "tel:+918690471802"
     }
   },
 

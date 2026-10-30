@@ -19,7 +19,7 @@ export default function StoryCTA({ data = {} }) {
   const whatsappMessage = encodeURIComponent(
     "Hello Jaipur Stonecraft, I have reviewed your story and would like to discuss an architectural commission or custom sculpture project."
   );
-  const whatsappNumber = (siteConfig.contact.whatsappNumber || siteConfig.contact.whatsapp || "919664388920").replace(/\D/g, "");
+  const whatsappNumber = (siteConfig.contact.whatsappNumber || siteConfig.contact.whatsapp || "918690471802").replace(/\D/g, "");
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   return (

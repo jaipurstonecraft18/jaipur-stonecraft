@@ -30,7 +30,7 @@ const heroSlides = [
     primaryCtaText: "View Temples",
     primaryCtaHref: "/collections/temples-architectural-stonework",
     secondaryCtaText: "Call Now",
-    secondaryCtaHref: `tel:${(siteConfig?.contact?.phone || "+91 9664388920").replace(/\s+/g, "")}`,
+    secondaryCtaHref: `tel:${(siteConfig?.contact?.phone || "+91 8690471802").replace(/\s+/g, "")}`,
     imageSrc: "/images/collections/temples-architectural.webp",
     imageAlt: "Intricately carved stone temple architecture",
   },
@@ -126,7 +126,7 @@ export default function Hero(props) {
               {(() => {
                 const secHref = slide.secondaryCtaHref || "/contact?type=custom";
                 const isQuote = String(slide.secondaryCtaText || "").toLowerCase().includes("quote") || String(secHref).includes("type=quote");
-                const finalHref = isQuote ? `tel:${(siteConfig?.contact?.phone || "+91 9664388920").replace(/\s+/g, "")}` : secHref;
+                const finalHref = isQuote ? `tel:${(siteConfig?.contact?.phone || "+91 8690471802").replace(/\s+/g, "")}` : secHref;
                 const finalText = isQuote ? "Call Now" : (slide.secondaryCtaText || "Start a Custom Project");
 
                 if (finalHref.startsWith("tel:")) {
