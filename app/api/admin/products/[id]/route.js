@@ -3,6 +3,7 @@ import { query, getOne, execute } from "@/lib/db/client.js";
 import { formatProductFromRow } from "@/lib/db/products.js";
 import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
 import { safeUnlinkObsoleteUpload } from "@/lib/admin/uploads.js";
+import { revalidateProductPaths } from "@/lib/cache/revalidate.js";
 
 export async function GET(request, { params }) {
   if (!isAuthorizedAdminRequest(request)) {
@@ -178,6 +179,18 @@ export async function PUT(request, { params }) {
 
     const updatedRow = await getOne("SELECT * FROM products WHERE slug = ?", [slug]);
     const updatedProduct = await formatProductFromRow(updatedRow);
+
+    revalidateProductPaths({
+      slug,
+      parentCategory: targetCategory,
+      parentCollection: targetCollection,
+      parentSubcategory: targetSubcategory,
+      oldSlug: existingRow.slug,
+      oldCategory: existingRow.parent_category,
+      oldCollection: existingRow.parent_collection,
+      oldSubcategory: existingRow.parent_subcategory
+    });
+
     return NextResponse.json({ success: true, product: updatedProduct });
   } catch (error) {
     return NextResponse.json({ error: error.message || "Failed to update product" }, { status: 500 });
@@ -291,11 +304,26 @@ export async function DELETE(request, { params }) {
         }
       }
 
+      revalidateProductPaths({
+        slug: existingRow.slug,
+        parentCategory: existingRow.parent_category,
+        parentCollection: existingRow.parent_collection,
+        parentSubcategory: existingRow.parent_subcategory
+      });
+
       return NextResponse.json({ success: true, message: "Product permanently deleted safely." });
     }
 
     // Default: Safe soft archiving
     await execute("UPDATE products SET status = 'archived' WHERE id = ?", [existingRow.id]);
+
+    revalidateProductPaths({
+      slug: existingRow.slug,
+      parentCategory: existingRow.parent_category,
+      parentCollection: existingRow.parent_collection,
+      parentSubcategory: existingRow.parent_subcategory
+    });
+
     return NextResponse.json({ success: true, message: "Product archived successfully." });
   } catch (error) {
     return NextResponse.json({ error: error.message || "Failed to delete product" }, { status: 500 });

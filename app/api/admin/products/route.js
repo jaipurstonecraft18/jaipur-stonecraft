@@ -4,6 +4,7 @@ import { formatProductFromRow } from "@/lib/db/products.js";
 import { isAuthorizedAdminRequest } from "@/lib/admin/auth.js";
 import { evaluateSeoReadiness, DEFAULT_SEO_AUDIT_CONFIG } from "@/lib/seo/readiness-checker.js";
 import { getSiteSetting } from "@/lib/db/content.js";
+import { revalidateProductPaths } from "@/lib/cache/revalidate.js";
 
 export async function GET(request) {
   if (!isAuthorizedAdminRequest(request)) {
@@ -272,6 +273,13 @@ export async function POST(request) {
         }
       }
     }
+
+    revalidateProductPaths({
+      slug,
+      parentCategory,
+      parentCollection,
+      parentSubcategory
+    });
 
     return NextResponse.json({ success: true, product: { slug, name, sku } });
   } catch (error) {

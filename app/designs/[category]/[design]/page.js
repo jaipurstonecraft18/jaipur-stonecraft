@@ -7,7 +7,7 @@ import ProductPerspectiveGallery from "@/components/ProductDetail/ProductPerspec
 import ProductRecommendations from "@/components/ProductDetail/ProductRecommendations";
 import ProductCustomizationBanner from "@/components/ProductDetail/ProductCustomizationBanner";
 import { getCollection, getSubcategory } from "@/content/collections";
-import { categoriesData } from "@/content/categories";
+import { categoriesData, getCategory } from "@/content/categories";
 import { getProductFromDB, getRelatedProductsFromDB, getAllProductsFromDB } from "@/content/products-db";
 
 export const dynamic = "force-dynamic";
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }) {
 
   if (!design) return {};
 
-  const category = categoriesData[design.parentCategory];
+  const category = await getCategory(design.parentCategory);
 
   let seoObj = {};
   if (typeof design.seo === "string") {
@@ -101,7 +101,7 @@ export default async function DesignDetailPage({ params }) {
     notFound();
   }
 
-  const category = categoriesData[design.parentCategory];
+  const category = await getCategory(design.parentCategory);
   const collection = category ? await getCollection(category.parentCollection) : null;
   const subcategory = category ? await getSubcategory(category.parentCollection, category.parentSubcategory) : null;
 

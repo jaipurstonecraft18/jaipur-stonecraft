@@ -10,11 +10,40 @@ export default function CategoryCatalogue({ designs = [], categoryName = "" }) {
   const [sizeFilter, setSizeFilter] = useState("all");
   const [finishFilter, setFinishFilter] = useState("all");
 
+  // Helper to extract effective material from product
+  const getProductMaterials = (d) => {
+    if (Array.isArray(d.variants?.materials) && d.variants.materials.length > 0) {
+      return d.variants.materials;
+    }
+    const mat = d.attributes?.stoneVariety || d.primaryMaterial?.name || "Makrana Pure White Marble";
+    return [mat];
+  };
+
+  // Helper to extract effective sizes from product
+  const getProductSizes = (d) => {
+    if (Array.isArray(d.variants?.sizes) && d.variants.sizes.length > 0) {
+      return d.variants.sizes;
+    }
+    const h = d.attributes?.dimensions?.heightInches || d.attributes?.dimensions_height_inches;
+    if (h) return [`${h} Inches`];
+    return [];
+  };
+
+  // Helper to extract effective finishes from product
+  const getProductFinishes = (d) => {
+    if (Array.isArray(d.variants?.finishes) && d.variants.finishes.length > 0) {
+      return d.variants.finishes;
+    }
+    const f = d.attributes?.finish;
+    if (f) return [f];
+    return [];
+  };
+
   // Collect unique materials, sizes, finishes from designs
   const availableMaterials = useMemo(() => {
     const set = new Set();
     designs.forEach((d) => {
-      d.variants?.materials?.forEach((m) => set.add(m));
+      getProductMaterials(d).forEach((m) => set.add(m));
     });
     return Array.from(set);
   }, [designs]);
@@ -22,7 +51,7 @@ export default function CategoryCatalogue({ designs = [], categoryName = "" }) {
   const availableSizes = useMemo(() => {
     const set = new Set();
     designs.forEach((d) => {
-      d.variants?.sizes?.forEach((s) => set.add(s));
+      getProductSizes(d).forEach((s) => set.add(s));
     });
     return Array.from(set);
   }, [designs]);
@@ -30,7 +59,7 @@ export default function CategoryCatalogue({ designs = [], categoryName = "" }) {
   const availableFinishes = useMemo(() => {
     const set = new Set();
     designs.forEach((d) => {
-      d.variants?.finishes?.forEach((f) => set.add(f));
+      getProductFinishes(d).forEach((f) => set.add(f));
     });
     return Array.from(set);
   }, [designs]);
@@ -38,14 +67,17 @@ export default function CategoryCatalogue({ designs = [], categoryName = "" }) {
   // Filter designs dynamically
   const filteredDesigns = useMemo(() => {
     return designs.filter((d) => {
-      if (materialFilter !== "all" && !d.variants?.materials?.includes(materialFilter)) {
-        return false;
+      if (materialFilter !== "all") {
+        const mats = getProductMaterials(d);
+        if (!mats.includes(materialFilter)) return false;
       }
-      if (sizeFilter !== "all" && !d.variants?.sizes?.includes(sizeFilter)) {
-        return false;
+      if (sizeFilter !== "all") {
+        const sizes = getProductSizes(d);
+        if (!sizes.includes(sizeFilter)) return false;
       }
-      if (finishFilter !== "all" && !d.variants?.finishes?.includes(finishFilter)) {
-        return false;
+      if (finishFilter !== "all") {
+        const finishes = getProductFinishes(d);
+        if (!finishes.includes(finishFilter)) return false;
       }
       return true;
     });
@@ -119,7 +151,7 @@ export default function CategoryCatalogue({ designs = [], categoryName = "" }) {
               <ProductCard
                 name={design.name}
                 category={categoryName}
-                material={design.variants?.materials?.[0] || "Marble"}
+                material={getProductMaterials(design)[0] || "Makrana Pure White Marble"}
                 imageSrc={design.imageSrc}
                 href={`/designs/${design.parentCategory}/${design.slug}`}
               />
