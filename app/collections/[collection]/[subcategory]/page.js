@@ -10,7 +10,20 @@ import { collectionsData, getCollection, getSubcategory } from "@/content/collec
 import { getCategoriesBySubcategory, getCategory } from "@/content/categories";
 import { LEGACY_CATEGORY_REDIRECTS, resolveCanonicalCategoryUrl } from "@/lib/taxonomy/legacy-redirects";
 import styles from "./SubcategoryPage.module.css";
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const params = [];
+  for (const col of Object.values(collectionsData)) {
+    for (const sub of col.subcategories || []) {
+      params.push({
+        collection: sub.parentCollection || col.slug,
+        subcategory: sub.slug,
+      });
+    }
+  }
+  return params;
+}
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const { collection: collectionSlug, subcategory: subcategorySlug } = resolvedParams;

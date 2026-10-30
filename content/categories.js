@@ -40,7 +40,7 @@ export async function getCategoriesBySubcategory(collectionSlug, subcategorySlug
   );
 }
 
-export { LEGACY_CATEGORY_REDIRECTS, resolveCanonicalCategoryUrl } from "@/lib/taxonomy/legacy-redirects.js";
+export { LEGACY_CATEGORY_REDIRECTS, resolveCanonicalCategoryUrl } from "../lib/taxonomy/legacy-redirects.js";
 
 export function getCategoryCanonicalUrl(catOrSlug, fallbackCollection, fallbackSubcategory) {
   if (!catOrSlug) return "/collections";

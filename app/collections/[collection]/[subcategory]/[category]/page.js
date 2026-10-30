@@ -15,8 +15,7 @@ import { getDesignsByCategory } from "@/content/designs";
 import { siteConfig } from "@/content/site";
 import { LEGACY_CATEGORY_REDIRECTS, resolveCanonicalCategoryUrl } from "@/lib/taxonomy/legacy-redirects";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
 
 
 const FINAL_CUSTOMER_NAMES = {

@@ -44,10 +44,7 @@ export async function generateMetadata({ params }) {
   const metaDesc = (seoObj.description || seoObj.metaDescription || "").trim() || design.shortDescription || `Hand-carved ${design.name} sculpted in Jaipur, Rajasthan. Custom dimensions and worldwide delivery available.`;
   const targetCategory = design.parentCategory || categorySlug;
   const targetSlug = design.slug || designSlug;
-  const rawCanonical = (seoObj.canonicalUrl || seoObj.canonical || "").trim();
-  const canonicalUrl = (rawCanonical && !rawCanonical.includes("/other-deities/") && !rawCanonical.includes("/jali-screens/"))
-    ? rawCanonical
-    : `https://jaipurstonecraft.com/designs/${targetCategory}/${targetSlug}`;
+  const canonicalUrl = `https://jaipurstonecraft.com/designs/${targetCategory}/${targetSlug}`;
   const isIndexable = seoObj.indexable !== undefined ? Boolean(seoObj.indexable) : true;
   
   const primaryKw = (seoObj.primaryKeyword || "").trim();
@@ -114,7 +111,7 @@ export default async function DesignDetailPage({ params }) {
     ? "https://schema.org/PreOrder"
     : "https://schema.org/InStock";
 
-  const canonicalUrl = `https://jaipurstonecraft.com/designs/${categorySlug}/${designSlug}`;
+  const canonicalUrl = `https://jaipurstonecraft.com/designs/${design.parentCategory || categorySlug}/${design.slug || designSlug}`;
 
   // Image perspectives array for schema (deduplicated)
   const allImageUrls = Array.from(
