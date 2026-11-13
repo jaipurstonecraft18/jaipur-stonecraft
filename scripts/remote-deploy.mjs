@@ -26,7 +26,7 @@ import path from "path";
 import os from "os";
 import crypto from "crypto";
 
-const SSH_HOST = process.env.HOSTINGER_SSH_HOST || "217.21.91.171";
+const SSH_HOST = process.env.HOSTINGER_SSH_HOST || "in-mum-web831.main-hosting.eu";
 const SSH_PORT = process.env.HOSTINGER_SSH_PORT || "65002";
 const SSH_USER = process.env.HOSTINGER_SSH_USER || "u209772524";
 

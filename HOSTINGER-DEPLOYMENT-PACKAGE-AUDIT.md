@@ -1,18 +1,18 @@
 # Jaipur Stonecraft — Hostinger Production Deployment Package Audit (Phase 8D)
 
-Generated on: 2026-10-10T07:13:01.454Z
+Generated on: 2026-11-13T12:03:35.772Z
 
 ---
 
 ## 1. Archive Overview
 * **Archive Filename**: `jaipur-stonecraft-hostinger-deployment.zip`
-* **File Path**: `D:\jsc\jsc web1\jaipur-stonecraft-hostinger-deployment.zip`
-* **File Size**: **359.53 MB** (37,69,91,277 bytes)
+* **File Path**: `C:\Users\kiran\.gemini\antigravity\worktrees\jsc web1\seo_landing_pages_strategy\jaipur-stonecraft-hostinger-deployment.zip`
+* **File Size**: **635.16 MB** (66,60,08,666 bytes)
 * **Archive SHA-256 Checksum**:
   ```
-  5fd1195e9b8c1224be37a587afb6d6465218d448d38ae8a5ce97d9350b810c64
+  8c7b2c3b8a5dc08ee9ae6853c77a36d169c9bfcad8dd85d0a436bb107765e97a
   ```
-* **Total Entries in ZIP**: **1117 entries** (171 directories, 946 files)
+* **Total Entries in ZIP**: **2414 entries** (199 directories, 2215 files)
 * **Archive Format**: **100% POSIX-compliant ZIP** (Unix MadeBy `0x0314`, forward slashes `/`, explicit `0755` directory and `0644` file permissions).
 
 ---
@@ -24,7 +24,7 @@ Generated on: 2026-10-10T07:13:01.454Z
 * `components/` — All UI components
 * `content/` — Static database schemas and content
 * `lib/` — Core database client (`mysql2`), schema definitions, backup engine, image archiver, SEO helpers
-* `public/` — Static assets and **all 571 production media uploads** (`public/uploads/`)
+* `public/` — Static assets and **all 1756 production media uploads** (`public/uploads/`)
 * `scripts/` — Production runtime scripts (`sync-production-to-local.mjs`, `backup-runner.js`, `restore-runner.js`, `hostinger-preflight.mjs`, `verify-hostinger-migration.mjs`)
 * `styles/` — Global stylesheet tokens and CSS
 * `server.js` — Custom Node.js HTTP server entry point with startup upload directory scaffolding
@@ -45,8 +45,8 @@ Generated on: 2026-10-10T07:13:01.454Z
 ---
 
 ## 3. Media & Upload Inventory
-* **Total Staged Images**: **571 files**
-* **Total Media Size**: **324.25 MB** (33,99,99,938 bytes)
+* **Total Staged Images**: **1756 files**
+* **Total Media Size**: **590.47 MB** (61,91,56,323 bytes)
 * **Directory Structure**:
   * `public/uploads/products/` (`raw/`, `display/`, `card/`, `thumb/`)
   * `public/uploads/categories/` (`raw/`, `display/`, `card/`, `thumb/`)
