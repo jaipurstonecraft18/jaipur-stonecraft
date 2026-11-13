@@ -28,7 +28,7 @@ jobs:
 
       - name: Execute Production Deployment
         env:
-          HOSTINGER_SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST || '217.21.91.171' }}
+          HOSTINGER_SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST || '145.223.17.17' }}
           HOSTINGER_SSH_PORT: ${{ secrets.HOSTINGER_SSH_PORT || '65002' }}
           HOSTINGER_SSH_USER: ${{ secrets.HOSTINGER_SSH_USER || 'u209772524' }}
           HOSTINGER_SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
