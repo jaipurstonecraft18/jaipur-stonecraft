@@ -1,0 +1,158 @@
+.sectionWrapper {
+  padding: clamp(3.5rem, 6vw, 6rem) 0;
+  background-color: var(--color-cream);
+}
+
+.headerWrapper {
+  max-width: 820px;
+  margin: 0 auto 3rem auto;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-bronze);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--color-charcoal);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.sectionDescription {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  color: #55504B;
+  line-height: 1.7;
+}
+
+.tiersGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.tierCard {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-card);
+  padding: 2.25rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.tierTag {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-bronze);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.tierHeight {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-charcoal);
+  margin-bottom: 0.75rem;
+  line-height: 1.1;
+}
+
+.tierPlacement {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-charcoal);
+  margin-bottom: 0.75rem;
+}
+
+.tierDetails {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: #5A5652;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.specsBox {
+  background: var(--color-cream-secondary);
+  border-radius: var(--radius-subtle);
+  padding: 1rem;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: #4A4642;
+  line-height: 1.5;
+}
+
+.logisticsCard {
+  background: var(--color-charcoal);
+  color: #FFFFFF;
+  border-radius: var(--radius-card);
+  padding: clamp(2rem, 4vw, 3rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.logisticsTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.logisticsText {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: #D3CEC7;
+  line-height: 1.7;
+}
+
+.logisticsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.logisticsItem {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: #E8E4DF;
+  margin-bottom: 0.875rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.checkIcon {
+  color: var(--color-bronze);
+  font-weight: bold;
+}
+
+@media (max-width: 992px) {
+  .tiersGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .logisticsCard {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

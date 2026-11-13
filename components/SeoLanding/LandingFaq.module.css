@@ -1,0 +1,105 @@
+.sectionWrapper {
+  padding: clamp(3.5rem, 6vw, 6rem) 0;
+  background-color: var(--color-cream-secondary);
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.headerWrapper {
+  max-width: 820px;
+  margin: 0 auto 3rem auto;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-bronze);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--color-charcoal);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.sectionDescription {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  color: #55504B;
+  line-height: 1.7;
+}
+
+.faqList {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faqItem {
+  background: #FFFFFF;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+}
+
+.faqItem:hover {
+  border-color: var(--color-bronze);
+}
+
+.faqQuestion {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 1.5rem 1.75rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-charcoal);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 500;
+}
+
+.faqIcon {
+  font-size: 1.25rem;
+  color: var(--color-bronze);
+  transition: transform var(--transition-fast);
+  line-height: 1;
+}
+
+.faqAnswer {
+  padding: 0 1.75rem 1.5rem 1.75rem;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: #55504B;
+  line-height: 1.7;
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .faqQuestion {
+    font-size: 1.125rem;
+    padding: 1.25rem;
+  }
+
+  .faqAnswer {
+    padding: 0 1.25rem 1.25rem 1.25rem;
+    padding-top: 1rem;
+  }
+}

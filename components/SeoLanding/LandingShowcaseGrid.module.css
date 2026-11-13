@@ -1,0 +1,144 @@
+.sectionWrapper {
+  padding: clamp(3rem, 6vw, 5.5rem) 0;
+  background-color: var(--color-cream);
+}
+
+.headerWrapper {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-bronze);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  color: var(--color-charcoal);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.sectionSubtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: #66615C;
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.customCommissionCard {
+  background: linear-gradient(135deg, #F4F1EA 0%, #FFFFFF 100%);
+  border: 1px dashed var(--color-bronze);
+  border-radius: var(--radius-card);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 380px;
+}
+
+.commissionBadge {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-bronze);
+  background: var(--color-bronze-light);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-subtle);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.commissionTitle {
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  color: var(--color-charcoal);
+  margin-bottom: 0.75rem;
+  font-weight: 400;
+}
+
+.commissionText {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: #55504B;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  max-width: 320px;
+}
+
+.catalogueFooter {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.catalogueNote {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: #55504B;
+  line-height: 1.5;
+}
+
+.catalogueLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-charcoal);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-charcoal);
+  padding-bottom: 2px;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.catalogueLink:hover {
+  color: var(--color-bronze);
+  border-color: var(--color-bronze);
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .catalogueFooter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

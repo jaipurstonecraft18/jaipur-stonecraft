@@ -34,6 +34,20 @@ export default async function sitemap() {
     priority: route === "" ? 1.0 : route === "/products" || route === "/collections" || route === "/our-world" ? 0.9 : 0.8,
   }));
 
+  // 1b. Dedicated SEO Landing Pages (High-Intent Organic Search Entry Points)
+  const seoLandingRoutes = [
+    { path: "/marble-statues", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/marble-ganesh-statues", priority: 0.85, changeFrequency: "weekly" },
+    { path: "/marble-radha-krishna-statues", priority: 0.85, changeFrequency: "weekly" },
+    { path: "/marble-shiva-statues", priority: 0.85, changeFrequency: "weekly" },
+    { path: "/marble-hanuman-statues", priority: 0.85, changeFrequency: "weekly" },
+  ].map((item) => ({
+    url: `${baseUrl}${item.path}`,
+    lastModified: new Date("2026-11-13T00:00:00Z"),
+    changeFrequency: item.changeFrequency,
+    priority: item.priority,
+  }));
+
   // 2. Knowledge Article Routes (Editorial Guides & Material Knowledge)
   const knowledgeRoutes = getAllKnowledgeArticles().map((art) => ({
     url: `${baseUrl}/knowledge/${art.slug}`,
@@ -163,6 +177,7 @@ export default async function sitemap() {
 
   const rawEntries = [
     ...staticRoutes,
+    ...seoLandingRoutes,
     ...knowledgeRoutes,
     ...collectionRoutes,
     ...subcategoryRoutes,

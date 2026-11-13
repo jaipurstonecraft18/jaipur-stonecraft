@@ -18,6 +18,34 @@ import { LEGACY_CATEGORY_REDIRECTS, resolveCanonicalCategoryUrl } from "@/lib/ta
 export const revalidate = 300; // 5-minute ISR with instant admin on-demand revalidation
 
 
+const DEDICATED_SEO_LANDINGS = {
+  "ganesh-ji": {
+    href: "/marble-ganesh-statues",
+    title: "Dedicated Marble Ganesh Statues Guide & Sizing Specifications",
+    desc: "Looking for in-depth iconography guidance (left vs. right trunk), Makrana marble grades, and bespoke mandir sizing? Read our comprehensive Marble Ganesh Statues guide."
+  },
+  "krishna-ji": {
+    href: "/marble-radha-krishna-statues",
+    title: "Dedicated Marble Radha Krishna Statues & Jugal Jodi Guide",
+    desc: "Explore classical Tribhanga mudras, delicate shringar detailing, and single-block vs pair carving specifications in our dedicated guide."
+  },
+  "radha-krishna": {
+    href: "/marble-radha-krishna-statues",
+    title: "Dedicated Marble Radha Krishna Statues & Jugal Jodi Guide",
+    desc: "Explore classical Tribhanga mudras, delicate shringar detailing, and single-block vs pair carving specifications in our dedicated guide."
+  },
+  "shiva-ji": {
+    href: "/marble-shiva-statues",
+    title: "Dedicated Marble Shiva Statues & Mahadev Murtis Guide",
+    desc: "Learn about meditative Dhyana mudra postures, Shiv Parivar compositions, and Makrana vs Bhainslana marble selection in our dedicated guide."
+  },
+  "hanuman-ji": {
+    href: "/marble-hanuman-statues",
+    title: "Dedicated Marble Hanuman Statues & Bajrangbali Guide",
+    desc: "Discover Veer Hanuman, Bhakti mudra, and Panchmukhi iconographies, muscular carving nuances, and mandir sizing in our dedicated guide."
+  }
+};
+
 const FINAL_CUSTOMER_NAMES = {
   "small-marble-mandir-for-home": "Small Marble Mandir for Home",
   "floor-standing-marble-mandir": "Floor-Standing Marble Mandir",
@@ -425,6 +453,72 @@ export default async function CategoryLandingPage({ params }) {
               </p>
             </ScrollReveal>
           </div>
+
+          {/* Contextual Link to Dedicated SEO Guide Page */}
+          {DEDICATED_SEO_LANDINGS[category.slug] && (
+            <div style={{
+              marginTop: "var(--spacing-xl)",
+              padding: "1.75rem 2rem",
+              background: "#F4F1EA",
+              border: "1px solid var(--color-border-subtle)",
+              borderRadius: "var(--radius-card)",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: "1.25rem"
+            }}>
+              <div style={{ maxWidth: "700px" }}>
+                <span style={{
+                  fontSize: "0.75rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.15em",
+                  color: "var(--color-bronze)",
+                  fontWeight: "600",
+                  display: "block",
+                  marginBottom: "0.35rem"
+                }}>
+                  In-Depth Atelier Guide
+                </span>
+                <h4 style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "1.35rem",
+                  color: "var(--color-charcoal)",
+                  marginBottom: "0.35rem"
+                }}>
+                  {DEDICATED_SEO_LANDINGS[category.slug].title}
+                </h4>
+                <p style={{
+                  fontSize: "0.9375rem",
+                  color: "#55504B",
+                  lineHeight: 1.5,
+                  margin: 0
+                }}>
+                  {DEDICATED_SEO_LANDINGS[category.slug].desc}
+                </p>
+              </div>
+              <Link
+                href={DEDICATED_SEO_LANDINGS[category.slug].href}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  padding: "0.75rem 1.5rem",
+                  backgroundColor: "var(--color-charcoal)",
+                  color: "#FFFFFF",
+                  textDecoration: "none",
+                  fontSize: "0.8125rem",
+                  fontWeight: "600",
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  borderRadius: "var(--radius-subtle)",
+                  transition: "background-color 0.2s ease"
+                }}
+              >
+                Read Guide & Sizing →
+              </Link>
+            </div>
+          )}
         </Container>
       </Section>
 
