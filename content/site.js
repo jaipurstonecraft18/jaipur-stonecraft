@@ -48,6 +48,13 @@ export const siteConfig = {
     { label: "Decorative Stone Art", href: "/collections/decorative-stone-art" },
     { label: "Custom & Bespoke Creations", href: "/collections/custom-bespoke-creations" },
   ],
+  marbleStatues: [
+    { label: "Marble Statues Overview", href: "/marble-statues" },
+    { label: "Marble Ganesh Statues", href: "/marble-ganesh-statues" },
+    { label: "Marble Radha Krishna Statues", href: "/marble-radha-krishna-statues" },
+    { label: "Marble Shiva Statues", href: "/marble-shiva-statues" },
+    { label: "Marble Hanuman Statues", href: "/marble-hanuman-statues" },
+  ],
   legal: [
     { label: "Privacy Policy", href: "#" },
     { label: "Terms & Conditions", href: "#" },

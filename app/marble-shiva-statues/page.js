@@ -13,8 +13,8 @@ export const revalidate = 600;
 
 export async function generateMetadata() {
   return generatePageMetadata({
-    title: "Marble Shiva Statue & Shiv Parivar Murti in Jaipur | Jaipur Stonecraft",
-    description: "Handcrafted marble Lord Shiva statues and Shiv Parivar murtis carved in premium white and natural black marble. Meditative postures, custom sizing, and secure delivery from Jaipur.",
+    title: "Marble Shiva Statues & Shiv Parivar in Jaipur | Jaipur Stonecraft",
+    description: "Handcrafted marble Shiva statues & Shiv Parivar murtis carved in white & black marble in Jaipur. Meditative postures, custom sizes and worldwide delivery.",
     path: "/marble-shiva-statues",
     ogImage: "https://jaipurstonecraft.com/images/collections/hero-sculptures-group.webp"
   });

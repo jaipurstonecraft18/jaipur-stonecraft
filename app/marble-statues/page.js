@@ -14,7 +14,7 @@ export const revalidate = 600;
 export async function generateMetadata() {
   return generatePageMetadata({
     title: "Marble Statues & Murtis Manufacturer in Jaipur | Jaipur Stonecraft",
-    description: "Premier manufacturer of handcrafted marble statues and Hindu god murtis in Jaipur, Rajasthan. Sculpted from premium white marble for home mandirs and temple installations worldwide.",
+    description: "Handcrafted marble statues and Hindu deity murtis in Jaipur. Sculpted from pure natural marble for mandirs and temples. Custom sizing & global delivery.",
     path: "/marble-statues",
     ogImage: "https://jaipurstonecraft.com/images/collections/hero-sculptures-group.webp"
   });

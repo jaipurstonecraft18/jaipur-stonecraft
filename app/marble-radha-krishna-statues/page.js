@@ -13,8 +13,8 @@ export const revalidate = 600;
 
 export async function generateMetadata() {
   return generatePageMetadata({
-    title: "Marble Radha Krishna Statue Manufacturer in Jaipur | Jaipur Stonecraft",
-    description: "Exquisite hand-carved marble Radha Krishna statues in quality natural white marble. Beautifully sculpted Jugal Jodi murtis with graceful postures, flute, and fine detailing from Jaipur.",
+    title: "Marble Radha Krishna Statues in Jaipur | Jaipur Stonecraft",
+    description: "Hand-carved marble Radha Krishna statues & Jugal Jodi murtis sculpted from pure white marble in Jaipur. Custom mandir sizing and secure worldwide delivery.",
     path: "/marble-radha-krishna-statues",
     ogImage: "https://jaipurstonecraft.com/images/collections/hero-sculptures-group.webp"
   });

@@ -125,6 +125,16 @@ export default function HomeCollections({ collections }) {
                     </Link>
                   </div>
                 )}
+
+                {/* Dedicated Marble Landing Page Quick Guides */}
+                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.45rem", marginBottom: "1.75rem", position: "relative", zIndex: 2 }}>
+                  <span style={{ fontSize: "0.72rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--color-bronze)", fontWeight: 600 }}>Marble Guides:</span>
+                  <Link href="/marble-statues" className={styles.pill} style={{ padding: "0.35rem 0.75rem", fontSize: "0.75rem" }}>Marble Statues</Link>
+                  <Link href="/marble-ganesh-statues" className={styles.pill} style={{ padding: "0.35rem 0.75rem", fontSize: "0.75rem" }}>Ganesh</Link>
+                  <Link href="/marble-radha-krishna-statues" className={styles.pill} style={{ padding: "0.35rem 0.75rem", fontSize: "0.75rem" }}>Radha Krishna</Link>
+                  <Link href="/marble-shiva-statues" className={styles.pill} style={{ padding: "0.35rem 0.75rem", fontSize: "0.75rem" }}>Shiva</Link>
+                  <Link href="/marble-hanuman-statues" className={styles.pill} style={{ padding: "0.35rem 0.75rem", fontSize: "0.75rem" }}>Hanuman</Link>
+                </div>
               </div>
 
               <Link href={`/collections/${spotlight.slug || "sculptures-statues"}`} prefetch={false} className={styles.featuredLink}>

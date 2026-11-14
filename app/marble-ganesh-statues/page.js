@@ -13,8 +13,8 @@ export const revalidate = 600;
 
 export async function generateMetadata() {
   return generatePageMetadata({
-    title: "Marble Ganesh Statue & Murti Manufacturer in Jaipur | Jaipur Stonecraft",
-    description: "Handcrafted marble Ganesh statues sculpted from quality natural white marble in Jaipur. Explore seated, blessing, and dancing Ganpati murtis with custom mandir sizing and secure global delivery.",
+    title: "Marble Ganesh Statues & Murtis in Jaipur | Jaipur Stonecraft",
+    description: "Handcrafted marble Ganesh statues and Ganpati murtis from Jaipur. Carved from pure white marble for home mandirs. Custom sizing and secure global delivery.",
     path: "/marble-ganesh-statues",
     ogImage: "https://jaipurstonecraft.com/images/collections/hero-sculptures-group.webp"
   });

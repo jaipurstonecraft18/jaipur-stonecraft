@@ -278,6 +278,18 @@ export default function Header({ theme }) {
                         </Link>
                       ))}
                     </div>
+                    <div className={styles.dropdownFooterStrip}>
+                      <span className={styles.dropdownFooterLabel}>Marble Statues:</span>
+                      <Link href="/marble-statues" className={styles.dropdownFooterLink} onClick={() => setActiveDropdown(null)}>Overview</Link>
+                      <span className={styles.dropdownFooterDot}>•</span>
+                      <Link href="/marble-ganesh-statues" className={styles.dropdownFooterLink} onClick={() => setActiveDropdown(null)}>Ganesh</Link>
+                      <span className={styles.dropdownFooterDot}>•</span>
+                      <Link href="/marble-radha-krishna-statues" className={styles.dropdownFooterLink} onClick={() => setActiveDropdown(null)}>Radha Krishna</Link>
+                      <span className={styles.dropdownFooterDot}>•</span>
+                      <Link href="/marble-shiva-statues" className={styles.dropdownFooterLink} onClick={() => setActiveDropdown(null)}>Shiva</Link>
+                      <span className={styles.dropdownFooterDot}>•</span>
+                      <Link href="/marble-hanuman-statues" className={styles.dropdownFooterLink} onClick={() => setActiveDropdown(null)}>Hanuman</Link>
+                    </div>
                   </div>
                 </li>
 
@@ -414,6 +426,17 @@ export default function Header({ theme }) {
                       </Link>
                     </li>
                   ))}
+                  <li>
+                    <Link
+                      href="/marble-statues"
+                      prefetch={false}
+                      className={styles.mobileSubLink}
+                      style={{ color: "var(--color-bronze)", fontWeight: 600 }}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Marble Statues Hub &rarr;
+                    </Link>
+                  </li>
                   <li>
                     <Link
                       href="/collections"

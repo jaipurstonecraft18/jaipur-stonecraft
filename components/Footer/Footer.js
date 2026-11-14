@@ -56,7 +56,21 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Contact & Social Info */}
+          {/* Column 4: Dedicated Marble Statues Guides & Pages */}
+          <div className={styles.colNav}>
+            <h3 className={styles.colTitle}>Marble Statues</h3>
+            <ul className={styles.linkList}>
+              {(siteConfig.marbleStatues || []).map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={styles.link}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 5: Contact & Social Info */}
           <div className={styles.colContact}>
             <h3 className={styles.colTitle}>Inquiries</h3>
             <ul className={styles.contactList}>

@@ -13,8 +13,8 @@ export const revalidate = 600;
 
 export async function generateMetadata() {
   return generatePageMetadata({
-    title: "Marble Hanuman Statue & Murti Manufacturer in Jaipur | Jaipur Stonecraft",
-    description: "Hand-sculpted marble Hanuman statues in quality natural white marble. From muscular Veer Hanuman to Panchmukhi postures, sculpted by skilled Jaipur craftsmen with secure worldwide delivery.",
+    title: "Marble Hanuman Statues & Murtis in Jaipur | Jaipur Stonecraft",
+    description: "Hand-sculpted marble Hanuman statues in pure white marble from Jaipur. Veer and Panchmukhi postures with custom mandir sizing and secure global delivery.",
     path: "/marble-hanuman-statues",
     ogImage: "https://jaipurstonecraft.com/images/collections/hero-sculptures-group.webp"
   });

@@ -41,6 +41,21 @@ export default function robots() {
         disallow: disallowedPaths,
       },
       {
+        userAgent: "ClaudeBot",
+        allow: "/",
+        disallow: disallowedPaths,
+      },
+      {
+        userAgent: "Applebot",
+        allow: "/",
+        disallow: disallowedPaths,
+      },
+      {
+        userAgent: "meta-externalagent",
+        allow: "/",
+        disallow: disallowedPaths,
+      },
+      {
         userAgent: "*",
         allow: "/",
         disallow: disallowedPaths,

@@ -31,7 +31,7 @@ The atelier's catalog is organized into 6 principal collections:
 1. **Sculptures & Statues** (`https://jaipurstonecraft.com/collections/sculptures-statues`):
    - Deity Idols: Ganesha, Radha Krishna, Shiva, Hanuman, Durga, Saraswati, Lakshmi, Buddha, Mahavira, and Jain Tirthankaras.
    - Sizing: Available from 12 inches (tabletop pooja altars) up to 72+ inches (life-size temple sanctum murtis).
-   - Finishing: Mirror buff, natural matte, gold foil (24k leaf) embossing, and traditional colored enamel detailing.
+   - Finishing: Mirror buff, natural matte, and traditional decorative gold-finish detailing.
 2. **Wall Art & Relief Panels** (`https://jaipurstonecraft.com/collections/wall-art-reliefs`):
    - Bas-relief spiritual murals, narrative carvings of Ramayana and Mahabharata episodes, lotus rosettes, and backlit onyx wall features.
 3. **Temples & Architectural Stonework** (`https://jaipurstonecraft.com/collections/temples-architectural-stonework`):
@@ -42,6 +42,13 @@ The atelier's catalog is organized into 6 principal collections:
    - Monolithic carved stone bathtubs, urli bowls with petal carvings, architectural planters, and solid marble pedestals.
 6. **Custom & Bespoke Creations** (`https://jaipurstonecraft.com/collections/custom-bespoke-creations`):
    - Portrait busts from photographs, institutional commemorative statues, bespoke architectural screen walls, and custom temple restoration elements.
+
+### Dedicated Marble Statue & Murti Landing Pages
+- [Marble Statues & Murtis Manufacturer in Jaipur](https://jaipurstonecraft.com/marble-statues): High-intent entry hub for white marble statues, murtis, and Hindu deity sculptures with sizing, material, and packaging specifications.
+- [Marble Ganesh Statues](https://jaipurstonecraft.com/marble-ganesh-statues): Specialized landing for handcrafted marble Ganesh statues, Ganpati murtis, seated, blessing, and dancing forms for residential mandirs and temples.
+- [Marble Radha Krishna Statues](https://jaipurstonecraft.com/marble-radha-krishna-statues): Dedicated guide for hand-carved marble Radha Krishna statues, Jugal Jodi murtis, Tribhanga postures, and delicate shringar detailing.
+- [Marble Shiva Statues](https://jaipurstonecraft.com/marble-shiva-statues): Specialized guide for handcrafted marble Lord Shiva statues and Shiv Parivar murtis sculpted from pure Makrana white and Black Bhainslana marble.
+- [Marble Hanuman Statues](https://jaipurstonecraft.com/marble-hanuman-statues): Dedicated guide for hand-sculpted marble Hanuman statues, Veer Hanuman, and Panchmukhi postures with mandir sizing.
 
 ## 4. Craftsmanship Lineage & Quality Standards
 - Proportion System: Iconographic adherence to Shilpa Shastra, Tala measurement ratios, and Vastu orientation guidelines.

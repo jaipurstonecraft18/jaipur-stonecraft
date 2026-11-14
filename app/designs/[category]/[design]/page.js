@@ -1,4 +1,5 @@
 import { permanentRedirect, notFound } from "next/navigation";
+import Link from "next/link";
 import Container from "@/components/Container/Container";
 import Section from "@/components/Section/Section";
 import ProductHero from "@/components/ProductDetail/ProductHero";
@@ -191,6 +192,17 @@ export default async function DesignDetailPage({ params }) {
   };
 
 
+  const MARBLE_DEITY_LANDINGS = {
+    "ganesh-ji": { href: "/marble-ganesh-statues", label: "Marble Ganesh Statues Guide" },
+    "shiva-ji": { href: "/marble-shiva-statues", label: "Marble Shiva Statues Guide" },
+    "radha-krishna": { href: "/marble-radha-krishna-statues", label: "Marble Radha Krishna Statues Guide" },
+    "krishna-ji": { href: "/marble-radha-krishna-statues", label: "Marble Radha Krishna Statues Guide" },
+    "hanuman-ji": { href: "/marble-hanuman-statues", label: "Marble Hanuman Statues Guide" },
+  };
+
+  const relevantLanding = MARBLE_DEITY_LANDINGS[design.parentCategory] || 
+    (category?.parentCollection === "sculptures-statues" ? { href: "/marble-statues", label: "Marble Statues Guide" } : null);
+
   return (
     <main style={{ minHeight: "100vh", backgroundColor: "var(--color-cream)" }}>
       <script
@@ -224,6 +236,43 @@ export default async function DesignDetailPage({ params }) {
         subcategorySlug={subcategory ? subcategory.slug : ""}
         categorySlug={category ? category.slug : ""}
       />
+
+      {/* Contextual Link to Dedicated Marble Guide */}
+      {relevantLanding && (
+        <section style={{ backgroundColor: "#F4F1EA", padding: "1.75rem 0", borderTop: "1px solid var(--color-border-subtle)", borderBottom: "1px solid var(--color-border-subtle)" }}>
+          <Container>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
+              <div>
+                <span style={{ fontSize: "0.72rem", textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--color-bronze)", fontWeight: "600", display: "block", marginBottom: "0.25rem" }}>
+                  Iconography & Sizing Specifications
+                </span>
+                <p style={{ margin: 0, fontSize: "0.95rem", color: "var(--color-charcoal)", fontWeight: 500 }}>
+                  Explore comprehensive guidelines on posture traditions, Makrana marble grades, and temple sizing for this sacred form.
+                </p>
+              </div>
+              <Link
+                href={relevantLanding.href}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  padding: "0.65rem 1.25rem",
+                  backgroundColor: "var(--color-charcoal)",
+                  color: "#FFF",
+                  textDecoration: "none",
+                  fontSize: "0.8rem",
+                  fontWeight: "600",
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  borderRadius: "2px"
+                }}
+              >
+                {relevantLanding.label} →
+              </Link>
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* 5. CUSTOM ORDER CONSULTATION BANNER (STEP 3) */}
       <ProductCustomizationBanner design={design} />

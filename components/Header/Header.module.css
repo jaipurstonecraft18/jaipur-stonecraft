@@ -377,6 +377,40 @@
   line-height: 1.35;
 }
 
+.dropdownFooterStrip {
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(158, 123, 79, 0.25);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.76rem;
+}
+
+.dropdownFooterLabel {
+  font-weight: 600;
+  color: var(--color-bronze);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+}
+
+.dropdownFooterLink {
+  color: rgba(247, 245, 240, 0.8);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.dropdownFooterLink:hover {
+  color: #FFFFFF;
+}
+
+.dropdownFooterDot {
+  color: rgba(158, 123, 79, 0.4);
+  font-size: 0.65rem;
+}
+
 .goldenQuoteButton {
   display: none;
   align-items: center;
